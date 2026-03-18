@@ -3,29 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North Crescent</title>
+    <title>Professional Website</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .lang-btn { margin: 10px; padding: 10px; cursor: pointer; }
-        .header { background-color: #f1f1f1; padding: 20px; text-align: center; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #1E3A5F;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        form {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4A9B8C;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #429F94;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Welcome to North Crescent</h1>
-        <div>
-            <button class="lang-btn" onclick="setLanguage('en')">English</button>
-            <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
-        </div>
-    </div>
-    <script>
-        function setLanguage(lang) {
-            if(lang === 'fr') {
-                document.querySelector('h1').innerText = 'Bienvenue à North Crescent';
-            } else {
-                document.querySelector('h1').innerText = 'Welcome to North Crescent';
-            }
-        }
-    </script>
+    <header>
+        <h1>Bienvenue / Welcome to Our Professional Website</h1>
+    </header>
+    <main>
+        <h2>Contact Us / Contactez-nous</h2>
+        <form>
+            <label for="name">Name / Nom:</label>
+            <input type="text" id="name" name="name" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <label for="phone">Phone / Téléphone:</label>
+            <input type="tel" id="phone" name="phone" required />
+            <label for="service">Service Needed / Service Nécessaire:</label>
+            <input type="text" id="service" name="service" required />
+            <label for="comments">Comments / Commentaires:</label>
+            <textarea id="comments" name="comments" required></textarea>
+            <button type="submit">Send / Envoyer</button>
+        </form>
+    </main>
 </body>
 </html>
