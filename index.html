@@ -18,8 +18,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--light);
@@ -148,34 +146,6 @@
       padding: 0 15px 20px;
     }
 
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    form {
-      display: grid;
-      gap: 15px;
-      max-width: 500px;
-    }
-
-    input, select, textarea {
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-
     .whatsapp {
       position: fixed;
       bottom: 20px;
@@ -214,11 +184,6 @@
       text-align: center;
       padding: 30px;
     }
-
-    @media(max-width:768px){
-      .about { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2rem; }
-    }
   </style>
 </head>
 
@@ -226,13 +191,15 @@
 
 <header>
   <img src="images/logo.png" alt="North Crescent Facility Solutions Logo">
+
   <nav>
-    <a href="#services">Services</a>
-    <a href="#why">Why Us</a>
-    <a href="#process">Process</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#work">Our Work</a>
-    <a href="#contact" class="cta">Contact Us</a>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="why.html">Why Us</a>
+    <a href="process.html">Process</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="work.html">Our Work</a>
+    <a href="contact.html" class="cta">Contact Us</a>
   </nav>
 </header>
 
@@ -290,7 +257,7 @@
   </div>
 </section>
 
-<a class="quote-float" href="#contact">Get a Free Quote</a>
+<a class="quote-float" href="contact.html">Get a Free Quote</a>
 <a class="whatsapp" href="https://wa.me/14288880542">WhatsApp</a>
 
 <footer>
