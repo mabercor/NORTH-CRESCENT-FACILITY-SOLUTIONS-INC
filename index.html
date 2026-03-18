@@ -3,66 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #1E3A5F;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        form {
-            background-color: white;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #4A9B8C;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #429F94;
-        }
-    </style>
+    <meta name="description" content="North Crescent Facility Solutions offers professional cleaning services in Moncton. Get to know us and our services today!">
+    <title>North Crescent Facility Solutions | Professional Cleaning Services in Moncton</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenue / Welcome to Our Professional Website</h1>
+        <h1>North Crescent Facility Solutions</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Us / À Propos</a></li>
+                <li><a href="#services">Services / Services</a></li>
+                <li><a href="#contact">Contact / Contactez-nous</a></li>
+                <li><a href="#areas">Service Areas / Zones de Service</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <h2>Contact Us / Contactez-nous</h2>
-        <form>
-            <label for="name">Name / Nom:</label>
-            <input type="text" id="name" name="name" required />
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-            <label for="phone">Phone / Téléphone:</label>
-            <input type="tel" id="phone" name="phone" required />
-            <label for="service">Service Needed / Service Nécessaire:</label>
-            <input type="text" id="service" name="service" required />
-            <label for="comments">Comments / Commentaires:</label>
-            <textarea id="comments" name="comments" required></textarea>
-            <button type="submit">Send / Envoyer</button>
-        </form>
+        <section id="about">
+            <h2>About Us / À Propos</h2>
+            <p>We are a professional cleaning service dedicated to providing high-quality solutions to our clients.</p>
+            <p>Nous sommes un service de nettoyage professionnel dédié à fournir des solutions de haute qualité à nos clients.</p>
+        </section>
+        <section id="services">
+            <h2>Services / Services</h2>
+            <ul>
+                <li>Residential Cleaning / Nettoyage Résidentiel</li>
+                <li>Commercial Cleaning / Nettoyage Commercial</li>
+                <li>Specialized Services / Services Spécialisés</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact / Contactez-nous</h2>
+            <form action="submit_form.php" method="POST">
+                <label for="name">Name / Nom:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message / Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send / Envoyer</button>
+            </form>
+        </section>
+        <section id="areas">
+            <h2>Service Areas / Zones de Service</h2>
+            <p>We provide services in Moncton and surrounding areas. / Nous fournissons des services à Moncton et dans les environs.</p>
+        </section>
     </main>
+    <footer>
+        <p>&copy; 2026 North Crescent Facility Solutions</p>
+    </footer>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #4CAF50; color: white; text-align: center; padding: 1em; }
+        nav ul { list-style-type: none; padding: 0; }
+        nav ul li { display: inline; margin-right: 20px; }
+        main { padding: 20px; }
+        section { margin-bottom: 20px; }
+        form { display: flex; flex-direction: column; }
+        @media (max-width: 600px) {
+            header, main, footer { font-size: 0.8em; }
+        }
+    </style>
 </body>
 </html>
