@@ -14,6 +14,9 @@
 
 <body data-page="reviews">
 
+<!-- OVERLAY -->
+<div class="menu-overlay"></div>
+
 <div class="progress-bar"></div>
 
 <header>
@@ -28,7 +31,14 @@
 
     <div class="nav-wrapper">
 
-      <nav>
+      <!-- HAMBURGER CORRECTO -->
+      <div class="hamburger" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="process.html">Process</a>
@@ -37,13 +47,6 @@
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="btn btn-primary">Contact</a>
       </nav>
-
-      <!-- HAMBURGER -->
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
 
       <div class="lang-switch">
         <button onclick="setLanguage('en')">EN</button>
@@ -54,8 +57,6 @@
 
   </div>
 </header>
-
-<div class="menu-overlay" id="menuOverlay"></div>
 
 <main>
 
@@ -73,11 +74,10 @@
 
     <div class="divider"></div>
 
-    <div style="margin-top:15px;">
+    <!-- BOTONES CORREGIDOS -->
+    <div class="btn-group" style="margin-top:15px;">
       <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-      <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
-        Book Now
-      </a>
+      <a href="contact.html" class="btn btn-dark">Book Now</a>
     </div>
 
     <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
@@ -97,57 +97,45 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        Our reputation is built on reliability, precision, and consistent high-quality results. Here’s what our clients say about working with us.
+        Our reputation is built on reliability, precision, and consistent high-quality results.
       </p>
 
       <div class="grid grid-3">
 
         <div class="card">
           <div class="badge">★★★★★</div>
-          <p>
-            "Absolutely outstanding service. My home looks brand new every time. Highly recommended!"
-          </p>
+          <p>"Absolutely outstanding service. My home looks brand new every time."</p>
           <strong>- Sarah M.</strong>
         </div>
 
         <div class="card">
           <div class="badge">★★★★★</div>
-          <p>
-            "Professional, punctual, and extremely detailed. Easily the best cleaning service I've used."
-          </p>
+          <p>"Professional, punctual, and extremely detailed."</p>
           <strong>- John D.</strong>
         </div>
 
         <div class="card">
           <div class="badge">★★★★★</div>
-          <p>
-            "You can tell they truly care about quality. Every corner is spotless."
-          </p>
+          <p>"You can tell they truly care about quality."</p>
           <strong>- Emily R.</strong>
         </div>
 
         <div class="card">
           <div class="badge">★★★★★</div>
-          <p>
-            "Reliable, efficient, and very easy to work with. Communication was excellent."
-          </p>
+          <p>"Reliable and very easy to work with."</p>
           <strong>- Michael T.</strong>
         </div>
 
         <div class="card">
           <div class="badge">★★★★★</div>
-          <p>
-            "Fast service and incredible results. I will definitely book again."
-          </p>
+          <p>"Fast service and incredible results."</p>
           <strong>- Laura K.</strong>
         </div>
 
         <div class="card">
           <div class="badge">Why Choose Us</div>
           <h3>Consistent Quality</h3>
-          <p>
-            We deliver detailed, reliable, and professional cleaning services — every single visit.
-          </p>
+          <p>Professional results delivered every single visit.</p>
         </div>
 
       </div>
@@ -157,7 +145,7 @@
   </div>
 </section>
 
-<!-- TRUST BOOST (NEW 🔥) -->
+<!-- TRUST -->
 <section>
   <div class="container">
 
@@ -175,12 +163,12 @@
 
         <div class="card">
           <h3>✔ Attention to Detail</h3>
-          <p>We don’t miss the small things — that’s what makes the difference.</p>
+          <p>We don’t miss the small things.</p>
         </div>
 
         <div class="card">
           <h3>✔ Professional Standards</h3>
-          <p>Every job is completed with care, consistency, and high standards.</p>
+          <p>High-quality results every time.</p>
         </div>
 
       </div>
@@ -203,11 +191,10 @@
         Experience the difference of a truly professional cleaning service.
       </p>
 
-      <div style="margin-top:15px;">
+      <!-- BOTONES CORREGIDOS -->
+      <div class="btn-group" style="margin-top:15px;">
         <a href="contact.html" class="btn btn-primary">Get Your Free Quote</a>
-        <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
-          Book Now
-        </a>
+        <a href="contact.html" class="btn btn-dark">Book Now</a>
       </div>
 
     </div>
@@ -232,15 +219,11 @@
 
 </main>
 
-<!-- FLOAT BUTTONS -->
+<!-- FLOAT -->
 <div class="float-container">
-
   <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
-
   <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
-
   <a href="contact.html" class="float-btn float-primary">+</a>
-
 </div>
 
 <footer>
@@ -257,31 +240,43 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-<script src="js/translator.js"></script>
-
-<!-- MENU SCRIPT -->
+<!-- MENU SCRIPT UNIFICADO -->
 <script>
-const hamburger = document.getElementById("hamburger");
-const nav = document.querySelector("nav");
-const overlay = document.getElementById("menuOverlay");
+document.addEventListener("DOMContentLoaded", () => {
 
-function toggleMenu() {
-  hamburger.classList.toggle("active");
-  nav.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
 
-hamburger.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
+  if (!toggle || !nav || !overlay) return;
 
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", () => {
+    toggle.classList.remove("active");
     nav.classList.remove("active");
     overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
   });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
 });
 </script>
+
+<script src="js/translator.js"></script>
 
 </body>
 </html>
