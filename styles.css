@@ -151,9 +151,9 @@ nav a.active {
   margin-top: -10px;
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTIONS (OPTIMIZADO 🔥) ===== */
 section {
-  padding: 40px 0 55px;
+  padding: 35px 0 55px;
 }
 
 /* ===== SECTION TITLE ===== */
@@ -176,7 +176,7 @@ section {
   transform: translateY(-3px);
 }
 
-/* ===== MOBILE MENU FIX 🔥 ===== */
+/* ===== MOBILE MENU + SPACING FIX 🔥 ===== */
 @media (max-width: 768px) {
 
   nav {
@@ -203,8 +203,9 @@ section {
     display: flex;
   }
 
+  /* 🔥 FIX ESPACIOS MOBILE */
   section {
-    padding: 45px 0;
+    padding: 30px 0 45px;
   }
 
   .hero {
