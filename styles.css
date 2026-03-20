@@ -91,15 +91,14 @@ nav a {
   font-size: 13px;
   font-weight: 600;
   color: var(--primary);
+  text-decoration: none;
 }
 
 nav a.active {
   color: var(--secondary);
 }
 
-/* =========================================
-   🔥 HAMBURGER (FIXED)
-========================================= */
+/* ===== HAMBURGER ===== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -152,12 +151,15 @@ nav a.active {
 .btn {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   border: none;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -168,6 +170,13 @@ nav a.active {
 .btn-dark {
   background: var(--primary);
   color: white;
+}
+
+/* ===== BUTTON GROUP (FIX CLAVE) ===== */
+.btn-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* ===== FLOAT BUTTONS ===== */
@@ -202,6 +211,11 @@ nav a.active {
   background: #25D366;
 }
 
+/* ===== SECTIONS SPACING (MEJORA UX) ===== */
+section {
+  margin-bottom: 40px;
+}
+
 /* ===== FOOTER ===== */
 footer {
   background: #0d1f33;
@@ -212,7 +226,7 @@ footer {
 }
 
 /* =========================================
-   📱 MOBILE MENU FIX
+   📱 MOBILE OPTIMIZATION
 ========================================= */
 @media (max-width: 768px) {
 
@@ -221,12 +235,14 @@ footer {
     top: 70px;
     right: -100%;
     width: 75%;
-    height: 100vh;
+    max-width: 320px;
+    height: calc(100vh - 70px);
     background: white;
     flex-direction: column;
     padding: 30px;
     gap: 20px;
     transition: 0.3s;
+    overflow-y: auto;
   }
 
   nav.active {
@@ -237,7 +253,14 @@ footer {
     display: flex;
   }
 
+  /* 🔥 BOTONES MOBILE FIX */
   .btn {
     width: 100%;
   }
+
+  .btn-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
 }
