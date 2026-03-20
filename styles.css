@@ -39,7 +39,7 @@ h1, h2, h3 {
   font-weight: 700;
   color: var(--primary);
   line-height: 1.25;
-  margin-bottom: 12px;
+  margin-bottom: 8px; /* 🔥 reducido */
 }
 
 p {
@@ -166,31 +166,31 @@ nav a.active {
   pointer-events: all;
 }
 
-/* ===== HERO (OPTIMIZADO 🔥) ===== */
+/* ===== HERO ===== */
 .hero {
   padding: 60px 0 60px;
 }
 
-/* ajuste fino para subir contenido */
 .hero-content {
   margin-top: -10px;
 }
 
 /* ===== SECTIONS ===== */
 section {
-  padding: 70px 0;
+  padding: 55px 0; /* 🔥 reducido */
 }
 
 /* ===== SECTION TITLE ===== */
 .section-title {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 30px; /* 🔥 reducido */
 }
 
 .section-title h2 {
   display: inline-block;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 6px; /* 🔥 reducido */
+  margin-bottom: 6px;
 }
 
 .section-title h2::after {
@@ -347,7 +347,11 @@ footer {
   }
 
   section {
-    padding: 50px 0;
+    padding: 40px 0; /* 🔥 reducido mobile */
+  }
+
+  .section-title {
+    margin-bottom: 25px; /* 🔥 nuevo */
   }
 
   .hero {
