@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Our Services | North Crescent Facility Solutions</title>
+<title>Professional Cleaning Services | North Crescent Facility Solutions</title>
+<meta name="description" content="Residential, commercial, deep cleaning, Airbnb and post-construction cleaning services in Moncton. Reliable, detailed and professional.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -13,7 +14,6 @@
 
 <body data-page="services">
 
-<!-- 🔥 PROGRESS BAR -->
 <div class="progress-bar"></div>
 
 <header>
@@ -27,6 +27,7 @@
     </div>
 
     <div class="nav-wrapper">
+
       <nav>
         <a href="index.html">Home</a>
         <a href="services.html" class="active">Services</a>
@@ -37,14 +38,24 @@
         <a href="contact.html" class="btn btn-primary">Contact</a>
       </nav>
 
+      <!-- HAMBURGER -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <div class="lang-switch">
         <button onclick="setLanguage('en')">EN</button>
         <button onclick="setLanguage('fr')">FR</button>
       </div>
+
     </div>
 
   </div>
 </header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
 
 <main>
 
@@ -54,10 +65,10 @@
 
     <div class="badge">Our Services</div>
 
-    <h1>Professional Cleaning Solutions</h1>
+    <h1>Professional Cleaning That Delivers Results</h1>
 
     <p class="hero-sub">
-      Reliable, detailed, and tailored to your needs
+      Reliable • Detailed • Trusted by homes and businesses in Moncton
     </p>
 
     <div class="divider"></div>
@@ -82,67 +93,85 @@
 
     <div class="section-box">
 
-      <h2 class="section-title">What We Offer</h2>
+      <h2 class="section-title">Our Cleaning Services</h2>
       <div class="divider"></div>
 
       <p class="text-box">
-        We provide high-quality cleaning services designed to keep your space spotless, healthy, and welcoming.
+        We provide professional cleaning solutions tailored to your needs — delivering spotless, healthy, and welcoming spaces every time.
       </p>
 
       <div class="grid grid-3">
 
+        <!-- RESIDENTIAL -->
         <div class="card">
           <div class="badge">Residential</div>
           <div class="image-frame">
             <img src="images/residential.jpg" alt="Residential Cleaning">
           </div>
           <h3>Residential Cleaning</h3>
-          <p>Professional home cleaning that removes dust, grime, and buildup.</p>
+          <p>
+            Keep your home fresh, clean, and stress-free with detailed and reliable cleaning services tailored to your lifestyle.
+          </p>
         </div>
 
+        <!-- DEEP CLEAN -->
         <div class="card">
           <div class="badge">Deep Cleaning</div>
           <div class="image-frame">
             <img src="images/deep-cleaning.jpg" alt="Deep Cleaning">
           </div>
-          <h3>Deep Cleaning - Restaurants</h3>
-          <p>We remove grease and dirt, leaving your kitchen spotless and inspection-ready.</p>
+          <h3>Deep Cleaning</h3>
+          <p>
+            Intensive cleaning that targets buildup, grease, and hidden dirt — perfect for kitchens, restaurants, and high-traffic areas.
+          </p>
         </div>
 
+        <!-- MOVE -->
         <div class="card">
           <div class="badge">Move Service</div>
           <div class="image-frame">
             <img src="images/move.jpg" alt="Move Cleaning">
           </div>
           <h3>Move-In / Move-Out</h3>
-          <p>Complete cleaning so your space is ready for the next chapter.</p>
+          <p>
+            Ensure your property is spotless and ready — whether you're moving in, moving out, or preparing for sale.
+          </p>
         </div>
 
+        <!-- COMMERCIAL -->
         <div class="card">
           <div class="badge">Commercial</div>
           <div class="image-frame">
             <img src="images/commercial.jpg" alt="Commercial Cleaning">
           </div>
           <h3>Commercial Cleaning</h3>
-          <p>Maintain a professional and clean environment for your business.</p>
+          <p>
+            Maintain a clean, professional environment that reflects your business standards and impresses clients.
+          </p>
         </div>
 
+        <!-- AIRBNB -->
         <div class="card">
-          <div class="badge">Short-Term Rental</div>
+          <div class="badge">Airbnb</div>
           <div class="image-frame">
             <img src="images/airbnb.jpg" alt="Airbnb Cleaning">
           </div>
           <h3>Airbnb Cleaning</h3>
-          <p>Keep your rental guest-ready and maintain 5-star standards.</p>
+          <p>
+            Fast, reliable turnover cleaning that keeps your property guest-ready and maintains 5-star ratings.
+          </p>
         </div>
 
+        <!-- POST -->
         <div class="card">
           <div class="badge">Post-Construction</div>
           <div class="image-frame">
             <img src="images/postconstruction.jpg" alt="Post Construction Cleaning">
           </div>
-          <h3>Post-Construction</h3>
-          <p>Remove dust and debris after construction or renovation.</p>
+          <h3>Post-Construction Cleaning</h3>
+          <p>
+            Remove dust, debris, and construction residue to reveal a clean and finished space.
+          </p>
         </div>
 
       </div>
@@ -158,15 +187,15 @@
 
     <div class="section-box" style="text-align:center;">
 
-      <h2>Need Professional Cleaning?</h2>
+      <h2>Ready to Book Your Cleaning?</h2>
       <div class="divider"></div>
 
       <p class="text-box">
-        Same-day availability. Limited slots this week.
+        Get a fast quote and secure your spot today. Availability is limited this week.
       </p>
 
       <div style="margin-top:15px;">
-        <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
+        <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
         <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
           Book Now
         </a>
@@ -177,7 +206,7 @@
   </div>
 </section>
 
-<!-- 🔥 NAV FLOW -->
+<!-- NAV FLOW -->
 <div class="container">
   <div class="nav-buttons">
 
@@ -194,7 +223,7 @@
 
 </main>
 
-<!-- 🔥 FLOAT BUTTONS UNIFICADOS -->
+<!-- FLOAT BUTTONS -->
 <div class="float-container">
 
   <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
@@ -209,7 +238,7 @@
   <p>© 2026 North Crescent Facility Solutions Inc</p>
 </footer>
 
-<!-- PROGRESS SCRIPT -->
+<!-- PROGRESS -->
 <script>
 window.addEventListener("scroll", () => {
   const scrollTop = document.documentElement.scrollTop;
@@ -220,6 +249,30 @@ window.addEventListener("scroll", () => {
 </script>
 
 <script src="js/translator.js"></script>
+
+<!-- MENU SCRIPT -->
+<script>
+const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector("nav");
+const overlay = document.getElementById("menuOverlay");
+
+function toggleMenu() {
+  hamburger.classList.toggle("active");
+  nav.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+hamburger.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+</script>
 
 </body>
 </html>
