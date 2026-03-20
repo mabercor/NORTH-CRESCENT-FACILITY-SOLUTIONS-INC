@@ -107,10 +107,6 @@ header.scrolled {
   padding: 14px 0;
 }
 
-header.scrolled .header-inner {
-  padding: 8px 0;
-}
-
 /* ===== LOGO ===== */
 .logo-container {
   display: flex;
@@ -120,10 +116,6 @@ header.scrolled .header-inner {
 
 .logo-container img {
   height: 40px;
-}
-
-header.scrolled .logo-container img {
-  height: 34px;
 }
 
 .brand-title {
@@ -149,8 +141,6 @@ nav a {
   font-weight: 600;
   color: var(--primary);
   position: relative;
-  padding: 6px 0;
-  letter-spacing: 0.3px;
 }
 
 nav a:hover {
@@ -178,6 +168,24 @@ nav a.active {
   color: var(--secondary);
 }
 
+/* =========================================
+   🔥 HAMBURGER MENU (READY)
+========================================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: var(--primary);
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
 /* ===== HERO ===== */
 .hero {
   background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 100%);
@@ -191,17 +199,7 @@ section {
   position: relative;
 }
 
-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-}
-
-/* ===== BUTTON SYSTEM ===== */
+/* ===== BUTTONS ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -213,8 +211,6 @@ section::after {
   font-weight: 600;
   cursor: pointer;
   border: none;
-  position: relative;
-  overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-soft);
 }
@@ -248,7 +244,6 @@ section::after {
   border-radius: 16px;
   padding: 25px;
   position: relative;
-  overflow: hidden;
   border: 1px solid rgba(0,0,0,0.05);
   box-shadow: var(--shadow-medium);
   transition: all 0.3s ease;
@@ -291,32 +286,54 @@ section::after {
   transition: all 0.25s ease;
 }
 
-.contact-form input:hover,
-.contact-form select:hover,
-.contact-form textarea:hover {
-  border-color: rgba(0,0,0,0.15);
-}
-
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--secondary);
   box-shadow: 0 0 0 3px rgba(74,155,140,0.15);
-  transform: scale(1.01);
 }
 
 .contact-form textarea {
   resize: none;
 }
 
-.contact-form ::placeholder {
-  color: #94a3b8;
-}
-
 .contact-form button {
   margin-top: 10px;
   padding: 14px;
+}
+
+/* ===== FLOAT BUTTONS ===== */
+.float-container {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-strong);
+}
+
+.float-dark {
+  background: var(--primary);
+}
+
+.float-primary {
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.float-whatsapp {
+  background: #25D366;
 }
 
 /* ===== FOOTER ===== */
@@ -328,15 +345,31 @@ footer {
   font-size: 12px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* =========================================
+   📱 RESPONSIVE + MOBILE MENU
+========================================= */
 @media (max-width: 768px) {
 
-  body {
-    font-size: 14px;
+  nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 75%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    transition: 0.3s;
+    box-shadow: var(--shadow-strong);
   }
 
-  .hero {
-    padding: 60px 0;
+  nav.active {
+    right: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
   }
 
   .btn {
