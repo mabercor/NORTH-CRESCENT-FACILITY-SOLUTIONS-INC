@@ -1,423 +1,122 @@
-/* ===== VARIABLES ===== */
-:root {
-  --primary: #1E3A5F;
-  --secondary: #4A9B8C;
-  --accent: #2EC4B6;
-  --light: #F5F7FA;
-  --dark: #0F172A;
-  --radius: 12px;
-
-  --shadow-soft: 0 10px 25px rgba(0,0,0,0.05);
-  --shadow-medium: 0 15px 35px rgba(0,0,0,0.08);
-  --shadow-strong: 0 20px 45px rgba(0,0,0,0.12);
-}
-
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ===== BASE ===== */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--light);
-  color: var(--dark);
-  line-height: 1.6;
-  font-size: 15px;
-  padding-top: 80px;
-}
-
-/* ===== TYPOGRAPHY ===== */
-h1, h2, h3 {
-  font-weight: 700;
-  color: var(--primary);
-  line-height: 1.25;
-  margin-bottom: 12px;
-}
-
-p {
-  margin-bottom: 15px;
-  color: #475569;
-  font-size: 14.5px;
-  max-width: 650px;
-}
-
-/* ===== LINKS ===== */
-a {
-  transition: 0.2s ease;
-  text-decoration: none;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ===== HEADER ===== */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-}
-
-/* ===== LOGO ===== */
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-container img {
-  height: 40px;
-}
-
-.brand-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-/* ===== NAV ===== */
-.nav-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-}
-
-nav a {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-nav a.active {
-  color: var(--secondary);
-}
-
-/* ===== HAMBURGER ===== */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger span {
-  height: 3px;
-  width: 25px;
-  background: var(--primary);
-  margin: 4px 0;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* ANIMATION */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* ===== OVERLAY ===== */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: 90px 0 70px;
-}
-
-/* ===== SECTIONS ===== */
-section {
-  padding: 70px 0;
-}
-
-/* ===== SECTION TITLE ===== */
-.section-title {
-  text-align: center;
-  margin-bottom: 45px;
-}
-
-.section-title h2 {
-  display: inline-block;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.section-title h2::after {
-  content: "";
-  width: 60%;
-  height: 3px;
-  background: var(--secondary);
-  position: absolute;
-  left: 20%;
-  bottom: 0;
-  border-radius: 2px;
-}
-
-/* ===== CARDS ===== */
-.card {
-  background: #ffffff;
-  border-radius: var(--radius);
-  padding: 22px;
-  border: 1px solid #e2e8f0;
-  transition: 0.25s ease;
-}
-
-.card:hover {
-  border-color: var(--secondary);
-  transform: translateY(-3px);
-}
-
-/* ===== IMAGES ===== */
-img {
-  max-width: 100%;
-  display: block;
-  border-radius: var(--radius);
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  text-align: center;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-  color: white;
-}
-
-.btn-dark {
-  background: var(--primary);
-  color: white;
-}
-
-.btn-primary:hover,
-.btn-dark:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-/* ===== BUTTON GROUP ===== */
-.btn-group {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-/* ===== CONTACT FORM ===== */
+/* ===== CONTACT FORM (MEJORADO 🔥) */
 .contact-box {
-  max-width: 750px;
+  max-width: 850px; /* 🔥 MÁS GRANDE */
   margin: 0 auto;
   background: #ffffff;
-  padding: 35px;
+  padding: 45px; /* 🔥 MÁS ESPACIO INTERNO */
   border-radius: var(--radius);
-  box-shadow: var(--shadow-medium);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-strong); /* 🔥 MÁS PROFUNDO */
+  border: 2px solid rgba(74,155,140,0.15); /* 🔥 BORDE SUAVE */
+  position: relative;
+  transition: 0.3s ease;
 }
 
+/* ✨ EFECTO VISUAL SUTIL */
+.contact-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--secondary), transparent);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* 🔥 HOVER ELEGANTE */
+.contact-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+}
+
+/* TITULO MÁS CLARO */
 .contact-box h2 {
   text-align: center;
   margin-bottom: 10px;
+  font-size: 24px;
 }
 
+/* TEXTO MÁS AIRE */
 .contact-box p {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  font-size: 15px;
 }
 
+/* INPUTS MÁS GRANDES */
 .contact-box input,
 .contact-box textarea,
 .contact-box select {
   width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
+  padding: 16px; /* 🔥 MÁS CÓMODO */
+  margin-bottom: 18px;
   border-radius: var(--radius);
   border: 1px solid #cbd5e1;
-  font-size: 14px;
-  transition: 0.2s ease;
+  font-size: 14.5px;
+  transition: 0.25s ease;
   background: #f9fbfd;
 }
 
+/* EFECTO FOCUS PREMIUM */
 .contact-box input:focus,
 .contact-box textarea:focus,
 .contact-box select:focus {
   outline: none;
   border-color: var(--secondary);
   background: #ffffff;
-  box-shadow: 0 0 0 2px rgba(74,155,140,0.15);
+  box-shadow: 0 0 0 3px rgba(74,155,140,0.15);
 }
 
+/* TEXTAREA MÁS GRANDE */
 .contact-box textarea {
-  min-height: 120px;
+  min-height: 150px;
   resize: vertical;
 }
 
+/* BOTÓN MÁS IMPORTANTE */
 .contact-box .btn {
   width: 100%;
-  margin-top: 10px;
-  padding: 14px;
-  font-size: 14px;
+  margin-top: 15px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
+/* EFECTO BOTÓN */
 .contact-box .btn:hover {
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-strong);
 }
 
+/* FILAS */
 .form-row {
   display: flex;
-  gap: 12px;
+  gap: 15px;
 }
 
 .form-row input {
   flex: 1;
 }
 
-/* ===== FLOAT BUTTONS ===== */
-.float-container {
-  position: fixed;
-  bottom: 20px;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.float-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.float-dark {
-  background: var(--primary);
-}
-
-.float-primary {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-}
-
-.float-whatsapp {
-  background: #25D366;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: #0d1f33;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 12px;
-}
-
-/* ===== MOBILE ===== */
+/* ===== MOBILE MEJORA ===== */
 @media (max-width: 768px) {
 
-  nav {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 75%;
-    max-width: 320px;
-    height: calc(100vh - 70px);
-    background: white;
-    flex-direction: column;
-    padding: 30px;
-    gap: 20px;
-    transition: 0.3s;
-    overflow-y: auto;
-  }
-
-  nav.active {
-    right: 0;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  section {
-    padding: 50px 0;
-  }
-
-  p {
-    max-width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .btn-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .contact-box {
-    padding: 25px 18px;
+    max-width: 100%;
+    padding: 28px 20px;
+  }
+
+  .contact-box h2 {
+    font-size: 20px;
+  }
+
+  .contact-box input,
+  .contact-box textarea,
+  .contact-box select {
+    padding: 14px;
   }
 
   .form-row {
