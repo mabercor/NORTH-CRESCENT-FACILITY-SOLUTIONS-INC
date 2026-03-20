@@ -14,7 +14,9 @@
 
 <body data-page="process">
 
+<!-- OVERLAY -->
 <div class="menu-overlay"></div>
+
 <div class="progress-bar"></div>
 
 <header>
@@ -29,6 +31,7 @@
 
     <div class="nav-wrapper">
 
+      <!-- HAMBURGER CORRECTO -->
       <div class="hamburger" id="menu-toggle">
         <span></span>
         <span></span>
@@ -71,7 +74,11 @@
 
     <div class="divider"></div>
 
-    <!-- ❌ BOTONES ELIMINADOS -->
+    <!-- BOTONES CORREGIDOS -->
+    <div class="btn-group" style="margin-top:15px;">
+      <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
+      <a href="contact.html" class="btn btn-dark">Book Now</a>
+    </div>
 
     <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
       Same-day availability • Limited slots this week
@@ -138,7 +145,7 @@
   </div>
 </section>
 
-<!-- CTA (SE MANTIENE) -->
+<!-- CTA -->
 <section>
   <div class="container">
 
@@ -151,6 +158,7 @@
         Book today and secure your spot. Same-day appointments available.
       </p>
 
+      <!-- BOTONES CORREGIDOS -->
       <div class="btn-group" style="margin-top:15px;">
         <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
         <a href="contact.html" class="btn btn-dark">Book Now</a>
@@ -161,11 +169,81 @@
   </div>
 </section>
 
+<!-- NAV FLOW -->
+<div class="container">
+  <div class="nav-buttons">
+
+    <a href="services.html" class="btn btn-secondary nav-btn btn-prev">
+      <span>←</span> Previous
+    </a>
+
+    <a href="reviews.html" class="btn btn-primary nav-btn btn-next">
+      Next <span>→</span>
+    </a>
+
+  </div>
+</div>
+
 </main>
+
+<!-- FLOAT -->
+<div class="float-container">
+  <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
+  <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
+  <a href="contact.html" class="float-btn float-primary">+</a>
+</div>
 
 <footer>
   <p>© 2026 North Crescent Facility Solutions Inc</p>
 </footer>
+
+<!-- PROGRESS -->
+<script>
+window.addEventListener("scroll", () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / height) * 100;
+  document.querySelector(".progress-bar").style.width = progress + "%";
+});
+</script>
+
+<!-- MENU SCRIPT UNIFICADO -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay) return;
+
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", () => {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
+});
+</script>
+
+<script src="js/translator.js"></script>
 
 </body>
 </html>
