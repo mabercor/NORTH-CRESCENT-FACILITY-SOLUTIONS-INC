@@ -26,7 +26,6 @@ body {
   background: var(--light);
   color: var(--dark);
   line-height: 1.5;
-
   padding-top: 80px;
 }
 
@@ -38,7 +37,7 @@ img {
 
 a {
   text-decoration: none;
-  transition: 0.25s;
+  transition: 0.3s ease;
 }
 
 ::selection {
@@ -48,38 +47,60 @@ a {
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: 1000px; /* 🔥 más compacto */
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
-/* ===== HEADER ===== */
+/* =========================================
+   🔥 HEADER PRO (NUEVO DISEÑO PREMIUM)
+========================================= */
 header {
-  background: white;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
 
-  border-bottom: 1px solid #eee;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+
+  transition: 0.3s;
+}
+
+/* SCROLL EFFECT */
+header.scrolled {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 14px 0;
+  transition: 0.3s;
+}
+
+/* SHRINK */
+header.scrolled .header-inner {
+  padding: 8px 0;
 }
 
 /* ===== LOGO ===== */
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .logo-container img {
-  height: 38px;
+  height: 40px;
+  transition: 0.3s;
+}
+
+header.scrolled .logo-container img {
+  height: 34px;
 }
 
 .brand-title {
@@ -97,7 +118,7 @@ header {
 
 nav {
   display: flex;
-  gap: 14px;
+  gap: 18px;
 }
 
 nav a {
@@ -105,46 +126,65 @@ nav a {
   font-weight: 600;
   color: var(--primary);
   position: relative;
+  padding: 4px 0;
 }
 
+/* HOVER ANIMATION */
 nav a::after {
   content: "";
-  height: 2px;
-  width: 0;
-  background: var(--secondary);
   position: absolute;
-  bottom: -3px;
-  left: 0;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--secondary);
   transition: 0.3s;
+  transform: translateX(-50%);
 }
 
 nav a:hover::after {
   width: 100%;
 }
 
+/* ACTIVE */
+nav a.active {
+  color: var(--secondary);
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+/* CTA */
 nav a.cta {
-  background: var(--secondary);
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
   color: white;
-  padding: 5px 10px;
+  padding: 6px 14px;
   border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+nav a.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== LANG ===== */
 .lang-switch {
   display: flex;
   gap: 5px;
-  border-left: 1px solid #ddd;
-  padding-left: 10px;
+  margin-left: 10px;
 }
 
 .lang-switch button {
   border: 1px solid var(--secondary);
   background: transparent;
   color: var(--primary);
-  padding: 3px 7px;
+  padding: 4px 8px;
   font-size: 11px;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .lang-switch button:hover {
@@ -155,7 +195,7 @@ nav a.cta {
 /* ===== HERO ===== */
 .hero {
   background: white;
-  padding: 45px 0;
+  padding: 50px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -181,7 +221,7 @@ section {
   padding: 40px 0;
 }
 
-/* ===== BOX SYSTEM ===== */
+/* ===== BOX ===== */
 .section-box {
   background: white;
   padding: 22px;
@@ -228,11 +268,12 @@ section {
   padding: 16px;
   border-radius: var(--radius);
   border: 1px solid #eee;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* ===== BADGE ===== */
@@ -246,47 +287,88 @@ section {
   margin-bottom: 8px;
 }
 
-/* ===== IMAGE FRAME ===== */
+/* ===== IMAGE ===== */
 .image-frame {
   overflow: hidden;
   border-radius: 10px;
   margin-bottom: 8px;
 }
 
+.image-frame img {
+  transition: 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
 /* ===== BUTTON ===== */
 .btn {
   background: var(--secondary);
   color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
+  display: inline-block;
 }
 
 .btn:hover {
   background: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* CTA STRONG */
+.btn-strong {
+  background: var(--primary);
+}
+
+.btn-strong:hover {
+  background: #162d4a;
 }
 
 /* ===== FLOAT BUTTONS ===== */
-.quote-float {
+.float-container {
   position: fixed;
-  bottom: 70px;
+  bottom: 20px;
   right: 15px;
-  background: var(--secondary);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 40px;
-  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
 }
 
-.whatsapp {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  background: #25D366;
-  color: white;
-  padding: 12px;
+.float-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.float-btn:hover {
+  transform: scale(1.1);
+}
+
+.float-call {
+  background: var(--primary);
+}
+
+.float-whatsapp {
+  background: #25D366;
+}
+
+.float-main {
+  border-radius: 30px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--secondary);
 }
 
 /* ===== FOOTER ===== */
