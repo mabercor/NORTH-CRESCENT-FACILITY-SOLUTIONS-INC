@@ -72,17 +72,17 @@
     <div class="grid grid-2">
 
       <!-- FORM -->
-      <div class="section-box" id="contact-form">
+      <div class="section-box form-box" id="contact-form">
 
         <h2 class="section-title">Request Your Quote</h2>
 
-        <p style="margin-bottom:15px; font-size:14px; color:#64748b;">
+        <p>
           Fill out the form and we’ll get back to you in less than 1 hour.
         </p>
 
         <div class="divider"></div>
 
-        <form id="contactForm" action="https://formspree.io/f/xvzwvbed" method="POST">
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xvzwvbed" method="POST">
 
           <input type="text" name="name" placeholder="Full Name *" required>
 
@@ -90,13 +90,8 @@
 
           <input type="tel" name="phone" placeholder="Phone Number (optional)">
 
-          <!-- 🔥 SERVICE SELECTOR MEJORADO -->
-          <label style="font-size:13px; font-weight:600; margin-top:10px; display:block;">
-            Select Service *
-          </label>
-
-          <select name="service" required style="margin-top:6px;">
-            <option value="">Choose a service</option>
+          <select name="service" required>
+            <option value="">Select Service *</option>
             <option>Residential Cleaning</option>
             <option>Commercial Cleaning</option>
             <option>Deep Cleaning</option>
@@ -105,13 +100,13 @@
             <option>Post-Construction Cleaning</option>
           </select>
 
-          <textarea name="message" rows="5" placeholder="Tell us about your project (size, urgency, details)..."></textarea>
+          <textarea name="message" rows="5" placeholder="Tell us about your project..."></textarea>
 
           <button type="submit" class="btn btn-primary">
             Get My Free Quote
           </button>
 
-          <p style="font-size:12px; margin-top:10px; color:#64748b;">
+          <p style="font-size:12px; color:#64748b;">
             🔒 Your information is safe. No spam. Quick response guaranteed.
           </p>
 
@@ -242,12 +237,6 @@ window.addEventListener("scroll", () => {
 </script>
 
 <script src="js/translator.js"></script>
-
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  alert("Thank you! Your request has been received. We will contact you shortly.");
-});
-</script>
 
 </body>
 </html>
