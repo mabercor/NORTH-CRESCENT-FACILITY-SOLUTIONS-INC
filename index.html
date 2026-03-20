@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,6 +13,9 @@
 </head>
 
 <body data-page="index">
+
+<!-- OVERLAY (NUEVO) -->
+<div class="menu-overlay"></div>
 
 <!-- PROGRESS BAR -->
 <div class="progress-bar"></div>
@@ -31,8 +34,8 @@
     <!-- NAV -->
     <div class="nav-wrapper">
 
-      <!-- HAMBURGER -->
-      <div class="menu-toggle" id="menu-toggle">
+      <!-- HAMBURGER (CORREGIDO) -->
+      <div class="hamburger" id="menu-toggle">
         <span></span>
         <span></span>
         <span></span>
@@ -72,9 +75,10 @@
         Residential and commercial cleaning services in Moncton, New Brunswick.
       </p>
 
-      <div style="margin-top:15px;">
+      <!-- BOTONES CORREGIDOS -->
+      <div class="btn-group" style="margin-top:15px;">
         <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-        <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">Book Now</a>
+        <a href="contact.html" class="btn btn-dark">Book Now</a>
       </div>
 
       <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
@@ -156,9 +160,10 @@
         Same-day availability. Limited slots this week.
       </p>
 
-      <div style="margin-top:15px;">
+      <!-- BOTONES CORREGIDOS -->
+      <div class="btn-group" style="margin-top:15px;">
         <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-        <a href="services.html" class="btn btn-dark" style="margin-left:10px;">
+        <a href="services.html" class="btn btn-dark">
           Explore Our Services
         </a>
       </div>
@@ -199,21 +204,39 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-<!-- MENU SCRIPT -->
+<!-- MENU SCRIPT (CORREGIDO Y PROFESIONAL) -->
 <script>
-const toggle = document.getElementById("menu-toggle");
-const nav = document.getElementById("nav-menu");
+document.addEventListener("DOMContentLoaded", () => {
 
-toggle.addEventListener("click", () => {
-  toggle.classList.toggle("active");
-  nav.classList.toggle("active");
-});
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
 
-document.querySelectorAll("#nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
+  if (!toggle || !nav || !overlay) return;
+
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", () => {
     toggle.classList.remove("active");
     nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
   });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
 });
 </script>
 
