@@ -13,6 +13,9 @@
 
 <body data-page="services">
 
+<!-- 🔥 PROGRESS BAR -->
+<div class="progress-bar"></div>
+
 <header>
   <div class="container header-inner">
 
@@ -31,7 +34,7 @@
         <a href="reviews.html">Reviews</a>
         <a href="work.html">Our Work</a>
         <a href="gallery.html">Gallery</a>
-        <a href="contact.html" class="cta">Contact</a>
+        <a href="contact.html" class="btn btn-primary">Contact</a>
       </nav>
 
       <div class="lang-switch">
@@ -57,18 +60,18 @@
       Reliable, detailed, and tailored to your needs
     </p>
 
-    <!-- 🔥 BOTONES DE CONVERSIÓN -->
-    <a href="contact.html" class="btn">Get Instant Quote</a>
-    <a href="contact.html" class="btn" style="margin-left:10px; background:#1E3A5F;">
-      Book Now
-    </a>
+    <div class="divider"></div>
 
-    <!-- 🔥 URGENCY -->
-    <p style="margin-top:10px; font-size:13px; color:#4A9B8C; font-weight:600;">
+    <div style="margin-top:15px;">
+      <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
+      <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
+        Book Now
+      </a>
+    </div>
+
+    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
       Same-day availability • Limited slots this week
     </p>
-
-    <div class="divider"></div>
 
   </div>
 </section>
@@ -91,7 +94,7 @@
         <div class="card">
           <div class="badge">Residential</div>
           <div class="image-frame">
-            <img src="images/residential.jpg" alt="">
+            <img src="images/residential.jpg" alt="Residential Cleaning">
           </div>
           <h3>Residential Cleaning</h3>
           <p>Professional home cleaning that removes dust, grime, and buildup.</p>
@@ -100,7 +103,7 @@
         <div class="card">
           <div class="badge">Deep Cleaning</div>
           <div class="image-frame">
-            <img src="images/deep-cleaning.jpg" alt="">
+            <img src="images/deep-cleaning.jpg" alt="Deep Cleaning">
           </div>
           <h3>Deep Cleaning - Restaurants</h3>
           <p>We remove grease and dirt, leaving your kitchen spotless and inspection-ready.</p>
@@ -109,7 +112,7 @@
         <div class="card">
           <div class="badge">Move Service</div>
           <div class="image-frame">
-            <img src="images/move.jpg" alt="">
+            <img src="images/move.jpg" alt="Move Cleaning">
           </div>
           <h3>Move-In / Move-Out</h3>
           <p>Complete cleaning so your space is ready for the next chapter.</p>
@@ -118,7 +121,7 @@
         <div class="card">
           <div class="badge">Commercial</div>
           <div class="image-frame">
-            <img src="images/commercial.jpg" alt="">
+            <img src="images/commercial.jpg" alt="Commercial Cleaning">
           </div>
           <h3>Commercial Cleaning</h3>
           <p>Maintain a professional and clean environment for your business.</p>
@@ -127,7 +130,7 @@
         <div class="card">
           <div class="badge">Short-Term Rental</div>
           <div class="image-frame">
-            <img src="images/airbnb.jpg" alt="">
+            <img src="images/airbnb.jpg" alt="Airbnb Cleaning">
           </div>
           <h3>Airbnb Cleaning</h3>
           <p>Keep your rental guest-ready and maintain 5-star standards.</p>
@@ -136,7 +139,7 @@
         <div class="card">
           <div class="badge">Post-Construction</div>
           <div class="image-frame">
-            <img src="images/postconstruction.jpg" alt="">
+            <img src="images/postconstruction.jpg" alt="Post Construction Cleaning">
           </div>
           <h3>Post-Construction</h3>
           <p>Remove dust and debris after construction or renovation.</p>
@@ -162,30 +165,43 @@
         Same-day availability. Limited slots this week.
       </p>
 
-      <a href="contact.html" class="btn">Get Instant Quote</a>
-
-      <a href="contact.html" class="btn" style="margin-left:10px; background:#1E3A5F;">
-        Book Now
-      </a>
+      <div style="margin-top:15px;">
+        <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
+        <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
+          Book Now
+        </a>
+      </div>
 
     </div>
 
   </div>
 </section>
 
+<!-- 🔥 NAV FLOW -->
+<div class="container">
+  <div class="nav-buttons">
+
+    <a href="index.html" class="btn btn-secondary nav-btn btn-prev">
+      <span>←</span> Previous
+    </a>
+
+    <a href="process.html" class="btn btn-primary nav-btn btn-next">
+      Next <span>→</span>
+    </a>
+
+  </div>
+</div>
+
 </main>
 
-<!-- 🔥 FLOAT NAVIGATION PRO -->
-<div class="float-nav">
+<!-- 🔥 FLOAT BUTTONS UNIFICADOS -->
+<div class="float-container">
 
-  <a id="prevPage" class="float-btn">⬅</a>
-  <a id="nextPage" class="float-btn">➡</a>
+  <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
 
-  <a href="tel:+14288880542" class="float-btn call">📞</a>
+  <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
 
-  <a href="https://wa.me/14288880542" target="_blank" class="float-btn whatsapp">💬</a>
-
-  <a href="contact.html" class="float-cta">Book Now</a>
+  <a href="contact.html" class="float-btn float-primary">+</a>
 
 </div>
 
@@ -193,38 +209,17 @@
   <p>© 2026 North Crescent Facility Solutions Inc</p>
 </footer>
 
-<script src="js/translator.js"></script>
-
-<!-- 🔥 NAVIGATION SCRIPT -->
+<!-- PROGRESS SCRIPT -->
 <script>
-const pages = [
-  "index.html",
-  "services.html",
-  "process.html",
-  "reviews.html",
-  "work.html",
-  "gallery.html",
-  "contact.html"
-];
-
-const current = window.location.pathname.split("/").pop();
-const index = pages.indexOf(current);
-
-const prevBtn = document.getElementById("prevPage");
-const nextBtn = document.getElementById("nextPage");
-
-if (index > 0) {
-  prevBtn.href = pages[index - 1];
-} else {
-  prevBtn.style.display = "none";
-}
-
-if (index < pages.length - 1) {
-  nextBtn.href = pages[index + 1];
-} else {
-  nextBtn.style.display = "none";
-}
+window.addEventListener("scroll", () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / height) * 100;
+  document.querySelector(".progress-bar").style.width = progress + "%";
+});
 </script>
+
+<script src="js/translator.js"></script>
 
 </body>
 </html>
