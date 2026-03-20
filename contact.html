@@ -14,7 +14,6 @@
 
 <body data-page="contact">
 
-<!-- 🔥 PROGRESS BAR -->
 <div class="progress-bar"></div>
 
 <header>
@@ -53,12 +52,12 @@
 <section class="hero">
   <div class="container hero-content">
 
-    <div class="badge">Contact</div>
+    <div class="badge">Free Quote</div>
 
-    <h1>Get Your Free Cleaning Quote</h1>
+    <h1>Get a Fast & Reliable Cleaning Quote</h1>
 
     <p class="hero-sub">
-      Fast response • Same-day availability • Limited slots this week
+      ⚡ Same-day response • Limited availability this week • 100% satisfaction guaranteed
     </p>
 
     <div class="divider"></div>
@@ -76,29 +75,45 @@
       <div class="section-box" id="contact-form">
 
         <h2 class="section-title">Request Your Quote</h2>
+
+        <p style="margin-bottom:15px; font-size:14px; color:#64748b;">
+          Fill out the form and we’ll get back to you in less than 1 hour.
+        </p>
+
         <div class="divider"></div>
 
-        <form id="contactForm">
+        <form id="contactForm" action="https://formspree.io/f/xvzwvbed" method="POST">
 
-          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="text" name="name" placeholder="Full Name *" required>
 
-          <input type="email" name="email" placeholder="Email Address" required>
+          <input type="email" name="email" placeholder="Email Address *" required>
 
-          <input type="tel" name="phone" placeholder="Phone Number">
+          <input type="tel" name="phone" placeholder="Phone Number (optional)">
 
-          <select name="service" required>
-            <option value="">Select Service</option>
+          <!-- 🔥 SERVICE SELECTOR MEJORADO -->
+          <label style="font-size:13px; font-weight:600; margin-top:10px; display:block;">
+            Select Service *
+          </label>
+
+          <select name="service" required style="margin-top:6px;">
+            <option value="">Choose a service</option>
             <option>Residential Cleaning</option>
             <option>Commercial Cleaning</option>
             <option>Deep Cleaning</option>
             <option>Move-In / Move-Out</option>
             <option>Airbnb Cleaning</option>
-            <option>Post-Construction</option>
+            <option>Post-Construction Cleaning</option>
           </select>
 
-          <textarea name="message" rows="5" placeholder="Tell us about your project..."></textarea>
+          <textarea name="message" rows="5" placeholder="Tell us about your project (size, urgency, details)..."></textarea>
 
-          <button type="submit" class="btn btn-primary">Get Instant Quote</button>
+          <button type="submit" class="btn btn-primary">
+            Get My Free Quote
+          </button>
+
+          <p style="font-size:12px; margin-top:10px; color:#64748b;">
+            🔒 Your information is safe. No spam. Quick response guaranteed.
+          </p>
 
         </form>
 
@@ -111,20 +126,55 @@
         <div class="divider"></div>
 
         <div class="text-box">
-          <p><strong>Location:</strong> Moncton, New Brunswick</p>
-          <p><strong>Phone:</strong> +1 (428) 888-0542</p>
-          <p><strong>Email:</strong> info@northcrescent.ca</p>
+
+          <p><strong>📍 Location:</strong> Moncton, New Brunswick</p>
+
+          <p>
+            <strong>📞 Phone:</strong> 
+            <a href="tel:+14288880542">+1 (428) 888-0542</a>
+          </p>
+
+          <p>
+            <strong>✉ Email:</strong> 
+            <a href="mailto:info@northcrescentcleaning.com">
+              info@northcrescentcleaning.com
+            </a>
+          </p>
+
         </div>
 
-        <div style="margin-top:20px;" class="text-box">
-          <p>
-            We respond quickly to all inquiries. Book today and secure your cleaning slot.
+        <!-- SOCIAL -->
+        <div style="margin-top:25px;">
+
+          <p style="font-weight:600; margin-bottom:10px;">
+            Follow Us
           </p>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+            <a href="https://www.facebook.com/profile.php?id=61580557412140" target="_blank" class="btn btn-secondary">
+              Facebook
+            </a>
+
+            <a href="https://www.instagram.com/northcrescentcleaningsolutions/" target="_blank" class="btn btn-secondary">
+              Instagram
+            </a>
+
+          </div>
+
         </div>
 
         <!-- CTA -->
-        <div style="margin-top:20px; text-align:center;">
-          <a href="tel:+14288880542" class="btn btn-dark">Call Now</a>
+        <div style="margin-top:25px; text-align:center;">
+
+          <a href="tel:+14288880542" class="btn btn-dark">
+            📞 Call Now
+          </a>
+
+          <a href="https://wa.me/14288880542" target="_blank" class="btn btn-primary" style="margin-top:10px;">
+            💬 WhatsApp
+          </a>
+
         </div>
 
       </div>
@@ -144,7 +194,7 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        Same-day appointments available. Contact us now before spots fill up.
+        Same-day appointments are filling fast. Contact us now before spots are gone.
       </p>
 
       <a href="tel:+14288880542" class="btn btn-primary">Call Now</a>
@@ -154,7 +204,7 @@
   </div>
 </section>
 
-<!-- 🔥 NAV FLOW (APP STYLE) -->
+<!-- NAV FLOW -->
 <div class="container">
   <div class="nav-buttons">
 
@@ -167,7 +217,7 @@
 
 </main>
 
-<!-- 🔥 FLOAT BUTTONS UNIFICADOS -->
+<!-- FLOAT BUTTONS -->
 <div class="float-container">
 
   <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
@@ -182,7 +232,6 @@
   <p>© 2026 North Crescent Facility Solutions Inc</p>
 </footer>
 
-<!-- PROGRESS SCRIPT -->
 <script>
 window.addEventListener("scroll", () => {
   const scrollTop = document.documentElement.scrollTop;
@@ -196,7 +245,6 @@ window.addEventListener("scroll", () => {
 
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
   alert("Thank you! Your request has been received. We will contact you shortly.");
 });
 </script>
