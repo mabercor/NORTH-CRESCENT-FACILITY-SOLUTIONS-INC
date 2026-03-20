@@ -14,6 +14,9 @@
 
 <body data-page="services">
 
+<!-- OVERLAY -->
+<div class="menu-overlay"></div>
+
 <div class="progress-bar"></div>
 
 <header>
@@ -28,7 +31,14 @@
 
     <div class="nav-wrapper">
 
-      <nav>
+      <!-- HAMBURGER UNIFICADO -->
+      <div class="hamburger" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="services.html" class="active">Services</a>
         <a href="process.html">Process</a>
@@ -37,12 +47,6 @@
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="btn btn-primary">Contact</a>
       </nav>
-
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
 
       <div class="lang-switch">
         <button onclick="setLanguage('en')">EN</button>
@@ -53,8 +57,6 @@
 
   </div>
 </header>
-
-<div class="menu-overlay" id="menuOverlay"></div>
 
 <main>
 
@@ -72,11 +74,10 @@
 
     <div class="divider"></div>
 
-    <div style="margin-top:15px;">
+    <!-- BOTONES CORREGIDOS -->
+    <div class="btn-group" style="margin-top:15px;">
       <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-      <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
-        Book Now
-      </a>
+      <a href="contact.html" class="btn btn-dark">Book Now</a>
     </div>
 
     <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
@@ -96,81 +97,96 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        At North Crescent Facility Solutions Inc, we provide structured, high-quality cleaning services designed to deliver consistent results, improve hygiene, and elevate your space.
+        We provide structured, high-quality cleaning services designed to deliver consistent results and elevate your space.
       </p>
 
       <div class="grid grid-3">
 
-        <!-- RESIDENTIAL -->
         <div class="card">
           <div class="badge">Residential</div>
           <div class="image-frame">
             <img src="images/residential.jpg" alt="Residential Cleaning">
           </div>
           <h3>Residential Cleaning</h3>
-          <p>
-            Maintain a clean, comfortable home with reliable and detail-oriented cleaning tailored to your lifestyle and schedule.
-          </p>
+          <p>Reliable and detailed cleaning tailored to your home and lifestyle.</p>
         </div>
 
-        <!-- DEEP CLEAN -->
         <div class="card">
           <div class="badge">Deep Cleaning</div>
           <div class="image-frame">
             <img src="images/deep-cleaning.jpg" alt="Deep Cleaning">
           </div>
           <h3>Deep Cleaning</h3>
-          <p>
-            Intensive cleaning that removes buildup, grease, and hidden dirt — ideal for kitchens, restaurants, and high-traffic environments.
-          </p>
+          <p>Remove buildup and hidden dirt with intensive cleaning.</p>
         </div>
 
-        <!-- MOVE -->
         <div class="card">
           <div class="badge">Move Service</div>
           <div class="image-frame">
             <img src="images/move.jpg" alt="Move Cleaning">
           </div>
-          <h3>Move-In / Move-Out Cleaning</h3>
-          <p>
-            Full-property cleaning that ensures your space is spotless and ready for the next tenant, owner, or inspection.
-          </p>
+          <h3>Move-In / Move-Out</h3>
+          <p>Full-property cleaning ready for inspection or new occupants.</p>
         </div>
 
-        <!-- COMMERCIAL -->
         <div class="card">
           <div class="badge">Commercial</div>
           <div class="image-frame">
             <img src="images/commercial.jpg" alt="Commercial Cleaning">
           </div>
           <h3>Commercial Cleaning</h3>
-          <p>
-            Professional cleaning solutions that keep your business environment clean, safe, and aligned with your brand standards.
-          </p>
+          <p>Professional solutions that keep your business clean and safe.</p>
         </div>
 
-        <!-- AIRBNB -->
         <div class="card">
           <div class="badge">Short-Term Rental</div>
           <div class="image-frame">
             <img src="images/airbnb.jpg" alt="Airbnb Cleaning">
           </div>
-          <h3>Airbnb & Rental Cleaning</h3>
-          <p>
-            Fast turnaround cleaning designed to maintain 5-star guest experiences and maximize your property’s performance.
-          </p>
+          <h3>Airbnb Cleaning</h3>
+          <p>Fast turnaround cleaning for 5-star guest experiences.</p>
         </div>
 
-        <!-- POST -->
         <div class="card">
           <div class="badge">Post-Construction</div>
           <div class="image-frame">
             <img src="images/postconstruction.jpg" alt="Post Construction Cleaning">
           </div>
-          <h3>Post-Construction Cleaning</h3>
-          <p>
-            Remove dust, debris, and construction residue to deliver a clean, safe, and move-in-ready environment.
-          </p>
+          <h3>Post-Construction</h3>
+          <p>Remove dust and debris for a move-in-ready space.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST BOOST (VENTA 🔥) -->
+<section>
+  <div class="container">
+
+    <div class="section-box" style="text-align:center;">
+
+      <h2>Why Choose North Crescent?</h2>
+      <div class="divider"></div>
+
+      <div class="grid grid-3" style="margin-top:20px;">
+
+        <div class="card">
+          <h3>✔ Reliable & On-Time</h3>
+          <p>We respect your schedule and deliver consistently.</p>
+        </div>
+
+        <div class="card">
+          <h3>✔ Detail-Oriented</h3>
+          <p>We focus on the small things that others miss.</p>
+        </div>
+
+        <div class="card">
+          <h3>✔ Professional Results</h3>
+          <p>High-quality finishes every single time.</p>
         </div>
 
       </div>
@@ -190,14 +206,12 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        Get a fast quote and secure your service today. Availability is limited this week.
+        Get a fast quote and secure your service today.
       </p>
 
-      <div style="margin-top:15px;">
+      <div class="btn-group" style="margin-top:15px;">
         <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
-        <a href="contact.html" class="btn btn-dark" style="margin-left:10px;">
-          Book Now
-        </a>
+        <a href="contact.html" class="btn btn-dark">Book Now</a>
       </div>
 
     </div>
@@ -222,15 +236,11 @@
 
 </main>
 
-<!-- FLOAT BUTTONS -->
+<!-- FLOAT -->
 <div class="float-container">
-
   <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
-
   <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
-
   <a href="contact.html" class="float-btn float-primary">+</a>
-
 </div>
 
 <footer>
@@ -247,30 +257,43 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-<script src="js/translator.js"></script>
-
+<!-- MENU SCRIPT GLOBAL -->
 <script>
-const hamburger = document.getElementById("hamburger");
-const nav = document.querySelector("nav");
-const overlay = document.getElementById("menuOverlay");
+document.addEventListener("DOMContentLoaded", () => {
 
-function toggleMenu() {
-  hamburger.classList.toggle("active");
-  nav.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
 
-hamburger.addEventListener("click", toggleMenu);
-overlay.addEventListener("click", toggleMenu);
+  if (!toggle || !nav || !overlay) return;
 
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", () => {
+    toggle.classList.remove("active");
     nav.classList.remove("active");
     overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
   });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
 });
 </script>
+
+<script src="js/translator.js"></script>
 
 </body>
 </html>
