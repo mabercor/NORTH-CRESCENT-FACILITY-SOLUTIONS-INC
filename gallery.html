@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Gallery | North Crescent Facility Solutions</title>
-<meta name="description" content="Browse our cleaning gallery. See real results from residential, commercial, and deep cleaning projects in Moncton, NB.">
+<meta name="description" content="Browse real cleaning results from residential, commercial, and deep cleaning projects in Moncton, NB. See the difference.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -14,7 +14,6 @@
 
 <body data-page="gallery">
 
-<!-- 🔥 PROGRESS BAR -->
 <div class="progress-bar"></div>
 
 <header>
@@ -28,6 +27,7 @@
     </div>
 
     <div class="nav-wrapper">
+
       <nav>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -38,14 +38,25 @@
         <a href="contact.html" class="btn btn-primary">Contact</a>
       </nav>
 
+      <!-- HAMBURGER -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <div class="lang-switch">
         <button onclick="setLanguage('en')">EN</button>
         <button onclick="setLanguage('fr')">FR</button>
       </div>
+
     </div>
 
   </div>
 </header>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
 <main>
 
@@ -55,10 +66,10 @@
 
     <div class="badge">Gallery</div>
 
-    <h1>Our Cleaning Results</h1>
+    <h1>See the Results We Deliver</h1>
 
     <p class="hero-sub">
-      Real results from residential, commercial, and deep cleaning projects
+      Real transformations from residential, commercial, and deep cleaning projects.
     </p>
 
     <div class="divider"></div>
@@ -77,7 +88,7 @@
   </div>
 </section>
 
-<!-- GALLERY GRID -->
+<!-- GALLERY -->
 <section>
   <div class="container">
 
@@ -87,7 +98,7 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        Explore our gallery showcasing real cleaning transformations.
+        Every project reflects our attention to detail, professionalism, and commitment to excellence.
       </p>
 
       <div class="grid grid-3">
@@ -147,11 +158,11 @@
 
     <div class="section-box" style="text-align:center;">
 
-      <h2>Like What You See?</h2>
+      <h2>Ready to Get the Same Results?</h2>
       <div class="divider"></div>
 
       <p class="text-box">
-        Same-day availability. Limited slots this week.
+        Book your cleaning today and experience the difference.
       </p>
 
       <div style="margin-top:15px;">
@@ -166,7 +177,7 @@
   </div>
 </section>
 
-<!-- 🔥 NAV FLOW -->
+<!-- NAV FLOW -->
 <div class="container">
   <div class="nav-buttons">
 
@@ -183,7 +194,7 @@
 
 </main>
 
-<!-- 🔥 FLOAT BUTTONS UNIFICADOS -->
+<!-- FLOAT BUTTONS -->
 <div class="float-container">
 
   <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
@@ -198,7 +209,7 @@
   <p>© 2026 North Crescent Facility Solutions Inc</p>
 </footer>
 
-<!-- PROGRESS SCRIPT -->
+<!-- PROGRESS -->
 <script>
 window.addEventListener("scroll", () => {
   const scrollTop = document.documentElement.scrollTop;
@@ -209,6 +220,30 @@ window.addEventListener("scroll", () => {
 </script>
 
 <script src="js/translator.js"></script>
+
+<!-- MENU SCRIPT -->
+<script>
+const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector("nav");
+const overlay = document.getElementById("menuOverlay");
+
+function toggleMenu() {
+  hamburger.classList.toggle("active");
+  nav.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+hamburger.addEventListener("click", toggleMenu);
+overlay.addEventListener("click", toggleMenu);
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+</script>
 
 </body>
 </html>
