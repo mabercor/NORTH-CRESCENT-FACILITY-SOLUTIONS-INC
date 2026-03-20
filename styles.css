@@ -34,11 +34,36 @@ body {
   padding-top: 80px;
 }
 
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3 {
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 15px;
+  color: #475569;
+  font-size: 14.5px;
+  max-width: 650px;
+}
+
+/* ===== LINKS ===== */
+a {
+  transition: 0.2s ease;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
 /* ===== CONTAINER ===== */
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 
 /* ===== HEADER ===== */
@@ -49,6 +74,7 @@ header {
   z-index: 1000;
   background: rgba(255,255,255,0.75);
   backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .header-inner {
@@ -91,7 +117,6 @@ nav a {
   font-size: 13px;
   font-weight: 600;
   color: var(--primary);
-  text-decoration: none;
 }
 
 nav a.active {
@@ -147,6 +172,55 @@ nav a.active {
   padding: 90px 0 70px;
 }
 
+/* ===== SECTIONS ===== */
+section {
+  padding: 70px 0;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title h2 {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title h2::after {
+  content: "";
+  width: 60%;
+  height: 3px;
+  background: var(--secondary);
+  position: absolute;
+  left: 20%;
+  bottom: 0;
+  border-radius: 2px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--secondary);
+  transform: translateY(-3px);
+}
+
+/* ===== IMAGES ===== */
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: var(--radius);
+}
+
 /* ===== BUTTONS ===== */
 .btn {
   display: inline-flex;
@@ -160,6 +234,7 @@ nav a.active {
   border: none;
   text-align: center;
   white-space: nowrap;
+  transition: all 0.25s ease;
 }
 
 .btn-primary {
@@ -172,11 +247,89 @@ nav a.active {
   color: white;
 }
 
-/* ===== BUTTON GROUP (FIX CLAVE) ===== */
+.btn-primary:hover,
+.btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* ===== BUTTON GROUP ===== */
 .btn-group {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-box {
+  max-width: 750px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid #e2e8f0;
+}
+
+.contact-box h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.contact-box p {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.contact-box input,
+.contact-box textarea,
+.contact-box select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: var(--radius);
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  transition: 0.2s ease;
+  background: #f9fbfd;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus,
+.contact-box select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(74,155,140,0.15);
+}
+
+.contact-box textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-box .btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.contact-box .btn:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row input {
+  flex: 1;
 }
 
 /* ===== FLOAT BUTTONS ===== */
@@ -211,11 +364,6 @@ nav a.active {
   background: #25D366;
 }
 
-/* ===== SECTIONS SPACING (MEJORA UX) ===== */
-section {
-  margin-bottom: 40px;
-}
-
 /* ===== FOOTER ===== */
 footer {
   background: #0d1f33;
@@ -225,9 +373,7 @@ footer {
   font-size: 12px;
 }
 
-/* =========================================
-   📱 MOBILE OPTIMIZATION
-========================================= */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
 
   nav {
@@ -253,7 +399,14 @@ footer {
     display: flex;
   }
 
-  /* 🔥 BOTONES MOBILE FIX */
+  section {
+    padding: 50px 0;
+  }
+
+  p {
+    max-width: 100%;
+  }
+
   .btn {
     width: 100%;
   }
@@ -261,6 +414,14 @@ footer {
   .btn-group {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .contact-box {
+    padding: 25px 18px;
+  }
+
+  .form-row {
+    flex-direction: column;
   }
 
 }
