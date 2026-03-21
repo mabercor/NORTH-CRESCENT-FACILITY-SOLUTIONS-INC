@@ -178,14 +178,14 @@ nav a.active {
 
 /* ===== SECTIONS (OPTIMIZED) ===== */
 section {
-  padding-top: 35px;   /* 🔥 REDUCE ESPACIO ARRIBA */
+  padding-top: 35px;
   padding-bottom: 55px;
 }
 
 /* ===== SECTION TITLE (OPTIMIZED) ===== */
 .section-title {
   text-align: center;
-  margin-bottom: 20px; /* 🔥 MENOS ESPACIO */
+  margin-bottom: 20px;
 }
 
 .section-title h2 {
@@ -193,7 +193,7 @@ section {
   position: relative;
   padding-bottom: 6px;
   margin-bottom: 6px;
-  margin-top: 0; /* 🔥 ELIMINA ESPACIO EXTRA */
+  margin-top: 0;
 }
 
 .section-title h2::after {
@@ -271,7 +271,7 @@ img {
   flex-wrap: wrap;
 }
 
-/* ===== FLOAT BUTTONS (FIX) ===== */
+/* ===== FLOAT BUTTONS ===== */
 .float-container {
   position: fixed;
   bottom: 20px;
@@ -335,6 +335,58 @@ a.btn.btn-secondary[href="services.html"] {
 a.btn.btn-secondary[href="services.html"]:hover {
   transform: translateY(-6px) scale(1.06);
   box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+}
+
+/* ===== CONTACT FORM PRO ===== */
+.contact-box {
+  max-width: 750px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-strong);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.contact-box input,
+.contact-box textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(74,155,140,0.2);
+}
+
+.contact-box textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-box .btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 14px;
 }
 
 /* ===== MOBILE FIX ===== */
