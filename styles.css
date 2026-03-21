@@ -159,6 +159,7 @@ nav a.active {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
+  z-index: 900;
 }
 
 .menu-overlay.active {
@@ -268,18 +269,7 @@ img {
   flex-wrap: wrap;
 }
 
-/* ===== CONTACT FORM ===== */
-.contact-box {
-  max-width: 750px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-medium);
-  border: 1px solid #e2e8f0;
-}
-
-/* ===== FLOAT BUTTONS ===== */
+/* ===== FLOAT BUTTONS (FIX) ===== */
 .float-container {
   position: fixed;
   bottom: 20px;
@@ -287,6 +277,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  z-index: 999; /* 🔥 FIX */
 }
 
 .float-btn {
@@ -299,17 +290,9 @@ img {
   color: white;
 }
 
-.float-dark {
-  background: var(--primary);
-}
-
-.float-primary {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-}
-
-.float-whatsapp {
-  background: #25D366;
-}
+.float-dark { background: var(--primary); }
+.float-primary { background: linear-gradient(135deg, var(--secondary), var(--accent)); }
+.float-whatsapp { background: #25D366; }
 
 /* ===== SLIDER ===== */
 .slider-btn {
@@ -326,21 +309,13 @@ img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 50;
 }
 
 .slider-prev { left: 10px; }
 .slider-next { right: 10px; }
 
-/* ===== FOOTER ===== */
-footer {
-  background: #0d1f33;
-  color: white;
-  text-align: center;
-  padding: 18px;
-  font-size: 12px;
-}
-
-/* ===== CTA PRO (VIEW ALL SERVICES) ===== */
+/* ===== CTA PRO ===== */
 a.btn.btn-secondary[href="services.html"] {
   display: inline-block;
   font-size: 1.35rem;
@@ -360,33 +335,38 @@ a.btn.btn-secondary[href="services.html"]:hover {
   box-shadow: 0 25px 60px rgba(0,0,0,0.3);
 }
 
-a.btn.btn-secondary[href="services.html"]::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -80%;
-  width: 60%;
-  height: 100%;
-  background: rgba(255,255,255,0.35);
-  transform: skewX(-25deg);
-  transition: 0.7s;
-}
+/* ===== MOBILE FIX ===== */
+@media (max-width: 768px) {
 
-a.btn.btn-secondary[href="services.html"]:hover::before {
-  left: 120%;
-}
+  nav {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: calc(100vh - 70px);
+    background: white;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    transition: 0.3s;
+    overflow-y: auto;
+    z-index: 950;
+  }
 
-a.btn.btn-secondary[href="services.html"]::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 20px;
-  border: 2px solid rgba(74,155,140,0.4);
-  opacity: 0;
-  transition: 0.3s;
-}
+  nav.active {
+    right: 0; /* 🔥 FIX CLAVE */
+  }
 
-a.btn.btn-secondary[href="services.html"]:hover::after {
-  opacity: 1;
-  transform: scale(1.05);
+  .hamburger {
+    display: flex;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
 }
