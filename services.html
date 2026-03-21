@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,7 +20,6 @@
 <header>
   <div class="container header-inner">
 
-    <!-- LOGO ACTUALIZADO ✅ -->
     <div class="logo-container">
       <a href="index.html">
         <img src="images/logo.jpg" alt="North Crescent Logo" loading="lazy">
@@ -74,8 +73,8 @@
     <div class="divider"></div>
 
     <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-      <a href="contact.html" class="btn btn-dark">Book Now</a>
+      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
+      <a href="contact.html" class="btn btn-dark">📅 Book Now</a>
     </div>
 
     <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
@@ -94,7 +93,7 @@
       <div class="divider"></div>
 
       <p class="text-box">
-        We provide structured, high-quality cleaning services designed to deliver consistent results and elevate your space.
+        We deliver structured, high-quality cleaning services designed to keep your space spotless, healthy, and professional at all times.
       </p>
 
       <div class="grid grid-3">
@@ -105,7 +104,7 @@
             <img src="images/residential-cleaning-moncton.jpg" alt="Residential Cleaning">
           </div>
           <h3>Residential Cleaning</h3>
-          <p>Professional home cleaning that removes dust, grime, and buildup, leaving your living space fresh, spotless, and comfortable for your family.</p>
+          <p>Detailed home cleaning tailored to your lifestyle. We remove dust, dirt, and buildup, leaving your home fresh, spotless, and comfortable.</p>
         </div>
 
         <div class="card">
@@ -114,7 +113,7 @@
             <img src="images/deep-cleaning-restaurant.jpg" alt="Deep Cleaning">
           </div>
           <h3>Deep Cleaning</h3>
-          <p>Thorough cleaning that reaches every corner. We remove grease from ovens, exhaust hoods, walls, and surfaces, leaving your kitchen safe, spotless, and inspection-ready.</p>
+          <p>Intensive cleaning that reaches every corner. Perfect for kitchens, high-traffic areas, and spaces that need a complete reset.</p>
         </div>
 
         <div class="card">
@@ -123,7 +122,7 @@
             <img src="images/move-cleaning-moncton.jpg" alt="Move Cleaning">
           </div>
           <h3>Move-In / Move-Out</h3>
-          <p>Cleaning for a fresh start. We remove dust, grime, and buildup so your space is spotless and ready for the next chapter.</p>
+          <p>Start fresh with a spotless space. Ideal for tenants, landlords, and property managers preparing for new occupants.</p>
         </div>
 
         <div class="card">
@@ -132,7 +131,7 @@
             <img src="images/commercial-cleaning-moncton.jpg" alt="Commercial Cleaning">
           </div>
           <h3>Commercial Cleaning</h3>
-          <p>Professional cleaning for offices and commercial spaces. We clean floors, restrooms, public areas, and surfaces to keep your workplace spotless.</p>
+          <p>Reliable cleaning for offices and businesses. We maintain clean, professional environments that reflect your brand.</p>
         </div>
 
         <div class="card">
@@ -141,7 +140,7 @@
             <img src="images/airbnb-cleaning-bed.jpg" alt="Airbnb Cleaning">
           </div>
           <h3>Airbnb Cleaning</h3>
-          <p>Airbnb cleaning that keeps your rental guest-ready. We clean floors, bathrooms, and all spaces to ensure a spotless stay and great guest reviews.</p>
+          <p>Keep your rental guest-ready with consistent, high-quality cleaning that improves reviews and guest satisfaction.</p>
         </div>
 
         <div class="card">
@@ -150,7 +149,7 @@
             <img src="images/postconstruction-cleaning-nb.jpg" alt="Post Construction Cleaning">
           </div>
           <h3>Post-Construction</h3>
-          <p>Post-construction cleaning that removes dust and debris. We clean floors, bathrooms, and all spaces, leaving your property spotless and move-in ready.</p>
+          <p>We remove dust, debris, and residues after construction, leaving your space clean, safe, and move-in ready.</p>
         </div>
 
       </div>
@@ -160,7 +159,29 @@
   </div>
 </section>
 
+<!-- NAV FLOW -->
+<div class="container">
+  <div class="nav-buttons" style="display:flex; justify-content:space-between; margin-top:40px;">
+    
+    <a href="index.html" class="btn btn-dark">
+      ← Previous
+    </a>
+
+    <a href="process.html" class="btn btn-primary">
+      Next →
+    </a>
+
+  </div>
+</div>
+
 </main>
+
+<!-- FLOAT BUTTONS -->
+<div class="float-container">
+  <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
+  <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
+  <a href="contact.html" class="float-btn float-primary">+</a>
+</div>
 
 <footer>
   <p>© 2026 North Crescent Facility Solutions Inc</p>
@@ -196,15 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.remove("active");
     overlay.classList.remove("active");
     document.body.classList.remove("menu-open");
-  });
-
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      toggle.classList.remove("active");
-      nav.classList.remove("active");
-      overlay.classList.remove("active");
-      document.body.classList.remove("menu-open");
-    });
   });
 
 });
