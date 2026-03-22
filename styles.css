@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */ 
+/* ===== VARIABLES ===== */
 :root {
   --primary: #1E3A5F;
   --secondary: #4A9B8C;
@@ -176,13 +176,13 @@ nav a.active {
   margin-top: -10px;
 }
 
-/* ===== SECTIONS (OPTIMIZED) ===== */
+/* ===== SECTIONS ===== */
 section {
   padding-top: 35px;
   padding-bottom: 55px;
 }
 
-/* ===== SECTION TITLE (OPTIMIZED) ===== */
+/* ===== SECTION TITLE ===== */
 .section-title {
   text-align: center;
   margin-bottom: 20px;
@@ -264,6 +264,29 @@ img {
   transform: scale(0.97);
 }
 
+/* ===== 🔥 NAV BUTTONS (NEW - NEXT & PREVIOUS) ===== */
+.nav-buttons a {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+}
+
+.nav-buttons a:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: linear-gradient(135deg, var(--secondary), var(--accent));
+  box-shadow: var(--shadow-strong);
+}
+
+.nav-buttons a span {
+  font-weight: 900;
+  margin: 0 4px;
+}
+
 /* ===== BUTTON GROUP ===== */
 .btn-group {
   display: flex;
@@ -295,99 +318,6 @@ img {
 .float-dark { background: var(--primary); }
 .float-primary { background: linear-gradient(135deg, var(--secondary), var(--accent)); }
 .float-whatsapp { background: #25D366; }
-
-/* ===== SLIDER ===== */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: white;
-  border: 1px solid #e2e8f0;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 50;
-}
-
-.slider-prev { left: 10px; }
-.slider-next { right: 10px; }
-
-/* ===== CTA PRO ===== */
-a.btn.btn-secondary[href="services.html"] {
-  display: inline-block;
-  font-size: 1.35rem;
-  font-weight: 700;
-  padding: 20px 45px;
-  border-radius: 16px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-a.btn.btn-secondary[href="services.html"]:hover {
-  transform: translateY(-6px) scale(1.06);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-}
-
-/* ===== CONTACT FORM PRO ===== */
-.contact-box {
-  max-width: 750px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-strong);
-  border: 1px solid #e2e8f0;
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-}
-
-.contact-box input,
-.contact-box textarea {
-  width: 100%;
-  padding: 14px 16px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: 1px solid #cbd5f5;
-  font-size: 14px;
-  transition: 0.2s ease;
-}
-
-.contact-box input:focus,
-.contact-box textarea:focus {
-  outline: none;
-  border-color: var(--secondary);
-  box-shadow: 0 0 0 2px rgba(74,155,140,0.2);
-}
-
-.contact-box textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.contact-box .btn {
-  width: 100%;
-  padding: 14px;
-  font-size: 14px;
-}
 
 /* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
