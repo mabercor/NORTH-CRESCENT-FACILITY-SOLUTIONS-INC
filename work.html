@@ -153,7 +153,6 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
-<!-- ✅ NUEVA SECCIÓN DE CONFIANZA -->
 <section>
   <div class="container">
     <div class="section-box" style="text-align:center;">
@@ -246,13 +245,15 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-<!-- ✅ FIX MENÚ -->
+<!-- ✅ MENÚ CORREGIDO COMPLETO (SIN ROMPER NADA) -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const toggle = document.getElementById("menu-toggle");
   const nav = document.getElementById("nav-menu");
   const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay) return;
 
   toggle.addEventListener("click", () => {
     toggle.classList.toggle("active");
@@ -266,6 +267,15 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.remove("active");
     overlay.classList.remove("active");
     document.body.classList.remove("menu-open");
+  });
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      toggle.classList.remove("active");
+      nav.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
   });
 
 });
