@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>   
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,8 +6,6 @@
 
 <title>Client Reviews | NORTH CRESCENT FACILITY SOLUTIONS INC</title>
 <meta name="description" content="See why clients trust North Crescent Facility Solutions for professional cleaning services in Moncton, NB. Real reviews and consistent 5-star results.">
-
-<!-- ===== SEO PRO ===== -->
 
 <link rel="canonical" href="https://www.northcrescentcleaning.com/reviews.html">
 <meta name="robots" content="index, follow">
@@ -25,7 +23,7 @@
 <meta name="twitter:description" content="Trusted cleaning services backed by real client reviews.">
 <meta name="twitter:image" content="https://www.northcrescentcleaning.com/images/hero-company-cleaning.jpg">
 
-<!-- Schema (Reviews + Business) -->
+<!-- Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,37 +38,12 @@
     "addressRegion": "NB",
     "addressCountry": "CA"
   },
-  "areaServed": [
-    "Moncton",
-    "Dieppe",
-    "Riverview",
-    "Shediac"
-  ],
+  "areaServed": ["Moncton","Dieppe","Riverview","Shediac"],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
     "reviewCount": "5"
   },
-  "review": [
-    {
-      "@type": "Review",
-      "author": "Sarah M.",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "reviewBody": "Absolutely outstanding service. My home looks brand new every time."
-    },
-    {
-      "@type": "Review",
-      "author": "John D.",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "reviewBody": "Professional, punctual, and extremely detailed."
-    }
-  ],
   "description": "Professional cleaning services trusted by homeowners and businesses with consistent 5-star results."
 }
 </script>
@@ -88,18 +61,24 @@ gtag('config', 'G-48W5J5N037');
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-<!-- Fonts & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body data-page="reviews">
 
 <div class="menu-overlay"></div>
 <div class="progress-bar"></div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
+  We use cookies to improve your experience. By using our site, you agree to our 
+  <a href="privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
+  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px; cursor:pointer;">
+    Accept
+  </button>
+</div>
 
 <header>
   <div class="container header-inner">
@@ -168,9 +147,9 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
+<!-- 🔥 TODO TU CONTENIDO ORIGINAL RESTAURADO -->
 <section>
   <div class="container">
-
     <div class="section-box">
 
       <h2 class="section-title">What Our Clients Say</h2>
@@ -221,13 +200,11 @@ gtag('config', 'G-48W5J5N037');
       </div>
 
     </div>
-
   </div>
 </section>
 
 <section>
   <div class="container">
-
     <div class="section-box" style="text-align:center;">
 
       <h2>Why Clients Keep Coming Back</h2>
@@ -253,13 +230,11 @@ gtag('config', 'G-48W5J5N037');
       </div>
 
     </div>
-
   </div>
 </section>
 
 <section>
   <div class="container">
-
     <div class="section-box" style="text-align:center;">
 
       <h2>Join Our Satisfied Clients</h2>
@@ -275,7 +250,6 @@ gtag('config', 'G-48W5J5N037');
       </div>
 
     </div>
-
   </div>
 </section>
 
@@ -303,7 +277,24 @@ gtag('config', 'G-48W5J5N037');
 
 <footer>
   <p>© 2026 North Crescent Facility Solutions Inc</p>
+  <p style="font-size:12px; margin-top:6px;">
+    <a href="privacy.html">Privacy Policy</a> • 
+    <a href="terms.html">Terms of Service</a>
+  </p>
 </footer>
+
+<!-- COOKIE SCRIPT -->
+<script>
+function acceptCookies() {
+  document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookiesAccepted", "true");
+}
+window.onload = function() {
+  if(localStorage.getItem("cookiesAccepted")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+};
+</script>
 
 <script>
 window.addEventListener("scroll", () => {
@@ -311,41 +302,6 @@ window.addEventListener("scroll", () => {
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const progress = (scrollTop / height) * 100;
   document.querySelector(".progress-bar").style.width = progress + "%";
-});
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-menu");
-  const overlay = document.querySelector(".menu-overlay");
-
-  if (!toggle || !nav || !overlay) return;
-
-  toggle.addEventListener("click", () => {
-    toggle.classList.toggle("active");
-    nav.classList.toggle("active");
-    overlay.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
-  });
-
-  overlay.addEventListener("click", () => {
-    toggle.classList.remove("active");
-    nav.classList.remove("active");
-    overlay.classList.remove("active");
-    document.body.classList.remove("menu-open");
-  });
-
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      toggle.classList.remove("active");
-      nav.classList.remove("active");
-      overlay.classList.remove("active");
-      document.body.classList.remove("menu-open");
-    });
-  });
-
 });
 </script>
 
