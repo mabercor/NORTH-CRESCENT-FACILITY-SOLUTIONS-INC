@@ -60,10 +60,9 @@ gtag('config', 'G-48W5J5N037');
 <link rel="stylesheet" href="styles.css">
 
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
-<link rel="icon" href="/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="/favicon-32x32.png">
+<link rel="icon" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
 </head>
 
 <body data-page="contact">
@@ -85,7 +84,7 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="logo-container">
       <a href="index.html">
-        <img src="images/logo.jpg" alt="North Crescent Facility Solutions professional cleaning services Moncton NB" loading="lazy">
+        <img src="images/logo.jpg" alt="North Crescent Facility Solutions professional cleaning services Moncton NB">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -191,8 +190,12 @@ gtag('config', 'G-48W5J5N037');
         </div>
       </div>
 
-      <!-- RESTO INTACTO -->
-      <div class="section-box"> ... </div>
+      <div class="section-box">
+        <h2>Contact Information</h2>
+        <p><strong>📍 Location:</strong> Moncton, NB</p>
+        <p><strong>📞 Phone:</strong> +1 (428) 888-0542</p>
+        <p><strong>✉ Email:</strong> info@northcrescentcleaning.com</p>
+      </div>
 
     </div>
 
@@ -201,21 +204,39 @@ gtag('config', 'G-48W5J5N037');
 
 </main>
 
-<!-- ✅ FOOTER AGREGADO -->
 <footer style="background:#1E3A5F; color:#ffffff; padding:25px 0; text-align:center;">
   <div class="container">
     <p>© 2026 North Crescent Facility Solutions Inc. All rights reserved.</p>
-
-    <div style="margin-top:10px;">
-      <a href="privacy.html" style="color:#2EC4B6; margin:0 10px;">Privacy Policy</a>
-      <a href="terms.html" style="color:#2EC4B6; margin:0 10px;">Terms & Conditions</a>
-    </div>
+    <a href="privacy.html" style="color:#2EC4B6;">Privacy Policy</a> |
+    <a href="terms.html" style="color:#2EC4B6;">Terms & Conditions</a>
   </div>
 </footer>
 
-<!-- SCRIPTS ORIGINALES -->
-<script>/* cookies */</script>
-<script>/* menu */</script>
+<!-- ✅ SCRIPT CORRECTO DEL MENÚ -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay) return;
+
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", () => {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+
+});
+</script>
+
 <script src="js/translator.js"></script>
 
 </body>
