@@ -1,4 +1,4 @@
-<!DOCTYPE html>   
+<!DOCTYPE html>    
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -59,11 +59,11 @@ gtag('js', new Date());
 gtag('config', 'G-48W5J5N037');
 </script>
 
-<!-- FAVICON -->
-<link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<!-- FAVICON CORRECTO -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <!-- Fonts & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -75,6 +75,15 @@ gtag('config', 'G-48W5J5N037');
 
 <div class="menu-overlay"></div>
 <div class="progress-bar"></div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
+  We use cookies to improve your experience. By using our site, you agree to our 
+  <a href="privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
+  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px; cursor:pointer;">
+    Accept
+  </button>
+</div>
 
 <header>
   <div class="container header-inner">
@@ -200,28 +209,6 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
-<section>
-  <div class="container">
-
-    <div class="section-box" style="text-align:center;">
-
-      <h2>Ready to Experience Our Process?</h2>
-      <div class="divider"></div>
-
-      <p class="text-box">
-        Book today and secure your spot. Same-day appointments available.
-      </p>
-
-      <div class="btn-group" style="margin-top:15px;">
-        <a href="contact.html" class="btn btn-primary">Get Instant Quote</a>
-        <a href="contact.html" class="btn btn-dark">Book Now</a>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
 <div class="container">
   <div class="nav-buttons">
 
@@ -246,7 +233,25 @@ gtag('config', 'G-48W5J5N037');
 
 <footer>
   <p>© 2026 North Crescent Facility Solutions Inc</p>
+  <p style="margin-top:5px; font-size:13px;">
+    <a href="privacy.html">Privacy Policy</a> • 
+    <a href="terms.html">Terms of Service</a>
+  </p>
 </footer>
+
+<!-- COOKIE SCRIPT -->
+<script>
+function acceptCookies() {
+  document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookiesAccepted", "true");
+}
+
+window.onload = function() {
+  if(localStorage.getItem("cookiesAccepted")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+};
+</script>
 
 <script>
 window.addEventListener("scroll", () => {
