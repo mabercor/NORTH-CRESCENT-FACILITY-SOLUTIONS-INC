@@ -264,26 +264,35 @@ img {
   transform: scale(0.97);
 }
 
-/* ===== 🔥 NAV BUTTONS (NEW - NEXT & PREVIOUS) ===== */
+/* ===== 🔥 NAV BUTTONS FIXED ===== */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
 .nav-buttons a {
+  flex: 1 1 48%;
+  text-align: center;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  padding: 14px 28px;
-  border-radius: 14px;
+  padding: 12px 18px;
+  border-radius: 12px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: #fff;
-  box-shadow: var(--shadow-medium);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.25s ease;
+  min-width: 140px;
 }
 
 .nav-buttons a:hover {
-  transform: translateY(-3px) scale(1.04);
+  transform: translateY(-2px);
   background: linear-gradient(135deg, var(--secondary), var(--accent));
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--shadow-medium);
 }
 
 .nav-buttons a span {
-  font-weight: 900;
   margin: 0 4px;
 }
 
@@ -352,5 +361,14 @@ img {
 
   .btn-group {
     flex-direction: column;
+  }
+
+  /* 👇 NAV BUTTONS STACK CLEAN ON MOBILE */
+  .nav-buttons {
+    flex-direction: column;
+  }
+
+  .nav-buttons a {
+    flex: 1 1 100%;
   }
 }
