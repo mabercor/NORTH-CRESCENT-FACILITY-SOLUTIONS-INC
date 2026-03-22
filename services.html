@@ -33,15 +33,15 @@ gtag('js', new Date());
 gtag('config', 'G-48W5J5N037');
 </script>
 
-<!-- SCHEMA -->
+<!-- ✅ SCHEMA CORREGIDO -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "LocalBusiness",
+ "@type": "CleaningService",
  "name": "North Crescent Facility Solutions Inc",
  "image": "https://www.northcrescentcleaning.com/images/logo.jpg",
  "url": "https://www.northcrescentcleaning.com",
- "telephone": "+14288880542",
+ "telephone": "+1-428-888-0542",
  "address": {
    "@type": "PostalAddress",
    "addressLocality": "Moncton",
@@ -63,9 +63,11 @@ gtag('config', 'G-48W5J5N037');
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
-<!-- FAVICON -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- ✅ FAVICON UNIFICADO -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 </head>
 
@@ -73,6 +75,15 @@ gtag('config', 'G-48W5J5N037');
 
 <div class="menu-overlay"></div>
 <div class="progress-bar"></div>
+
+<!-- ✅ COOKIE AGREGADO -->
+<div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
+  We use cookies to improve your experience. By using our site, you agree to our 
+  <a href="privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
+  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px;">
+    Accept
+  </button>
+</div>
 
 <header>
   <div class="container header-inner">
@@ -214,7 +225,6 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
-<!-- SEO BOOST SECTION (AGREGADO SIN ROMPER NADA) -->
 <section>
   <div class="container">
     <div class="section-box">
@@ -252,6 +262,18 @@ gtag('config', 'G-48W5J5N037');
     <a href="terms.html">Terms of Service</a>
   </div>
 </footer>
+
+<script>
+function acceptCookies() {
+  document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookiesAccepted", "true");
+}
+window.onload = function() {
+  if(localStorage.getItem("cookiesAccepted")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+};
+</script>
 
 <script>
 window.addEventListener("scroll", () => {
