@@ -1,4 +1,4 @@
-/* ===== VARIABLES ===== */
+/* ===== VARIABLES ===== */ 
 :root {
   --primary: #1E3A5F;
   --secondary: #4A9B8C;
@@ -431,4 +431,22 @@ img {
     flex: none;
     width: 100%;
   }
+}
+
+/* ===== TEXT CENTER FIX (ADDED) ===== */
+body {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
+
+p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav {
+  justify-content: center;
 }
