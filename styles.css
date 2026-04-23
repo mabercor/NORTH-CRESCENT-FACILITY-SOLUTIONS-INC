@@ -487,3 +487,22 @@ nav {
 .card a {
   color: inherit;
 }
+/* ===== SECTION BOX (CAJAS PRO) ===== */
+.section-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+.section-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Para imágenes dentro de caja */
+.section-box img {
+  border-radius: 12px;
+}
