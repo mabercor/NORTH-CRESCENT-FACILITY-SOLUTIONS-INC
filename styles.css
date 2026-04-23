@@ -450,3 +450,40 @@ p {
 nav {
   justify-content: center;
 }
+
+/* ===== 🔥 INTERACTIVITY UPGRADE (SAFE PATCH) ===== */
+
+/* Cards más dinámicas */
+.card {
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+}
+
+/* Botones más visibles */
+.btn-primary {
+  box-shadow: 0 10px 25px rgba(74,155,140,0.3);
+}
+
+.btn-primary:hover,
+.btn-dark:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(74,155,140,0.4);
+}
+
+/* Botones flotantes */
+.float-btn {
+  transition: transform 0.2s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Links dentro de cards no cambian color */
+.card a {
+  color: inherit;
+}
