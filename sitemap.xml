@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- PRINCIPALES -->
   <url>
     <loc>https://www.northcrescentcleaning.com/</loc>
-    <lastmod>2026-03-22</lastmod>
-    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/services.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/process.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/reviews.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/work.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/gallery.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/contact.html</loc>
+  </url>
+
+  <!-- SERVICIOS SEO -->
+  <url>
+    <loc>https://www.northcrescentcleaning.com/commercial-cleaning-moncton.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/office-cleaning-moncton.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/deep-cleaning-moncton.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/post-construction-cleaning-moncton.html</loc>
+  </url>
+
+  <!-- LEGALES -->
+  <url>
+    <loc>https://www.northcrescentcleaning.com/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://www.northcrescentcleaning.com/terms.html</loc>
   </url>
 
 </urlset>
