@@ -637,35 +637,61 @@ nav {
   }
 
 }
-/* CONTAINER */
+/* CONTENEDOR */
 .lang-switch {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: #f1f5f9; /* fondo claro sólido */
+  background: #e2e8f0;
   padding: 4px;
   border-radius: 30px;
+  margin-left: 12px;
+  overflow: hidden;
 }
 
 /* LINKS */
 .lang-switch a {
+  flex: 1;
+  text-align: center;
   text-decoration: none;
   color: #64748b;
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.25s ease;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
-/* ACTIVE */
+/* ACTIVO */
 .lang-switch a.active {
-  background: #4A9B8C;
   color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* SLIDER */
+.lang-switch::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 50%;
+  height: calc(100% - 8px);
+  background: linear-gradient(135deg, #4A9B8C, #2f7c70);
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* CUANDO ES FR */
+.lang-switch.fr-active::before {
+  transform: translateX(100%);
 }
 
 /* HOVER */
 .lang-switch a:hover {
   color: #1E3A5F;
+}
+
+/* OCULTAR DIVIDER */
+.lang-switch span {
+  display: none;
 }
