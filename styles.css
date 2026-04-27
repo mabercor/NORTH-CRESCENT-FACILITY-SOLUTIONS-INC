@@ -88,11 +88,11 @@ header {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .logo-container img {
-  height: 60px;
+  height: 70px;
 }
 
 .brand-title {
