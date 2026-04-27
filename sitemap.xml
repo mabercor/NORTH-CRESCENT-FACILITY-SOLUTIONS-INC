@@ -7,51 +7,47 @@
     <loc>https://www.northcrescentcleaning.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.northcrescentcleaning.com/"/>
   </url>
 
-  <!-- SERVICES -->
+  <!-- MAIN PAGES -->
   <url>
     <loc>https://www.northcrescentcleaning.com/services.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/services.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/services.html"/>
   </url>
 
-  <!-- PROCESS -->
   <url>
     <loc>https://www.northcrescentcleaning.com/process.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/process.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/process.html"/>
   </url>
 
-  <!-- REVIEWS -->
   <url>
     <loc>https://www.northcrescentcleaning.com/reviews.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/reviews.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/reviews.html"/>
   </url>
 
-  <!-- WORK -->
   <url>
     <loc>https://www.northcrescentcleaning.com/work.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/work.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/work.html"/>
   </url>
 
-  <!-- GALLERY -->
   <url>
     <loc>https://www.northcrescentcleaning.com/gallery.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/gallery.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/gallery.html"/>
   </url>
 
-  <!-- CONTACT -->
   <url>
     <loc>https://www.northcrescentcleaning.com/contact.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/contact.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/contact.html"/>
   </url>
 
-  <!-- SERVICES SEO -->
+  <!-- SEO SERVICES -->
   <url>
     <loc>https://www.northcrescentcleaning.com/commercial-cleaning-moncton.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/commercial-cleaning-moncton.html"/>
@@ -76,7 +72,7 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/post-construction-cleaning-moncton.html"/>
   </url>
 
-  <!-- LEGALES -->
+  <!-- LEGAL (NO HREFLANG NECESARIO) -->
   <url>
     <loc>https://www.northcrescentcleaning.com/privacy.html</loc>
   </url>
