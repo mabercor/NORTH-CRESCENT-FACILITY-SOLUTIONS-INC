@@ -697,3 +697,33 @@ nav {
 .lang-switch span {
   display: none;
 }
+/* ===== MOBILE MENU (NUEVO) ===== */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  #nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 260px;
+    height: 100%;
+    background: #0F172A;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 15px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  #nav-menu.active {
+    left: 0;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+}
