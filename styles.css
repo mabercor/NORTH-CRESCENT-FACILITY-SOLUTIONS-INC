@@ -637,34 +637,7 @@ nav {
   }
 
 }
-<style>
-@media (max-width: 768px) {
 
-  footer .top-row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  footer .nav {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  footer .contact {
-    text-align: center !important;
-  }
-
-  footer .bottom-row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  footer .bottom-links {
-    justify-content: center;
-  }
-
-}
-</style>
 
 /* CONTENEDOR */
 .lang-switch {
