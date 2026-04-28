@@ -1532,6 +1532,34 @@ nav {
     text-decoration: none;
   }
 
+  /* ✅ HAMBURGER SOLO EN MOBILE */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+}
+
+/* ===== DESKTOP FIX ===== */
+@media (min-width: 769px) {
+
+  /* ❌ OCULTAR HAMBURGER */
+  .hamburger {
+    display: none;
+  }
+
+  /* ✅ MENU NORMAL HORIZONTAL */
+  nav {
+    position: static;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    background: transparent;
+    right: 0;
+  }
+
 }
 
 /* ===== DROPDOWN NUEVO ===== */
@@ -1579,13 +1607,7 @@ nav {
   transform: rotate(180deg);
 }
 
-/* HAMBURGER */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
+/* ===== HAMBURGER ICON ===== */
 .hamburger span {
   width: 25px;
   height: 3px;
@@ -1593,7 +1615,7 @@ nav {
   margin: 4px 0;
 }
 
-/* OVERLAY */
+/* ===== OVERLAY ===== */
 .menu-overlay {
   position: fixed;
   inset: 0;
