@@ -1533,14 +1533,14 @@ nav {
     font-size: 15px;
   }
 
-  /* ===== DROPDOWN FIX ===== */
+  /* ===== DROPDOWN ===== */
 
   .dropdown {
     width: 100%;
   }
 
   .dropdown-menu {
-    display: none;              /* 🔥 IMPORTANTE */
+    display: none;
     position: static;
     width: 100%;
     padding-left: 10px;
@@ -1556,7 +1556,7 @@ nav {
     padding: 8px 0;
   }
 
-  /* 🔥 SOLO ESTE MÉTODO (JS) */
+  /* 🔥 APERTURA CON JS */
   .dropdown.open .dropdown-menu {
     display: flex;
   }
@@ -1588,7 +1588,7 @@ nav {
   z-index: 800;
   opacity: 0;
   pointer-events: none;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .menu-overlay.active {
@@ -1596,14 +1596,32 @@ nav {
   pointer-events: all;
 }
 
-/* ===== SCROLL FIX ===== */
+/* ===================================== */
+/* 🔥🔥 FIX DEFINITIVO DEL SCROLL 🔥🔥 */
+/* ===================================== */
+
 html, body {
-  height: auto;
+  height: auto !important;
+  min-height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 
-/* ===== MAIN FIX ===== */
+/* 🔥 evita bloqueo por layouts */
+body {
+  position: relative;
+}
+
+/* 🔥 contenedor principal */
 main {
   min-height: 100vh;
+  height: auto;
+}
+
+/* 🔥 evita que se corte contenido */
+section,
+.hero,
+.container {
+  height: auto !important;
+  min-height: unset !important;
 }
