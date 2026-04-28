@@ -85,7 +85,7 @@ gtag('config', 'G-48W5J5N037');
 <div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
   We use cookies to improve your experience. By using our site, you agree to our 
   <a href="/privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
-  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px; cursor:pointer;">
+  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px;">
     Accept
   </button>
 </div>
@@ -93,10 +93,9 @@ gtag('config', 'G-48W5J5N037');
 <header>
   <div class="container header-inner">
 
-    <!-- LOGO -->
     <div class="logo-container">
       <a href="/index.html">
-        <img src="/images/logo.jpg" alt="North Crescent cleaning services Moncton NB" loading="lazy">
+        <img src="/images/logo.jpg" alt="North Crescent cleaning services in Moncton NB" loading="lazy">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -105,30 +104,26 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="nav-wrapper">
 
-      <!-- HAMBURGER -->
-      <button class="hamburger" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <div class="hamburger" id="menu-toggle">
         <span></span>
         <span></span>
         <span></span>
-      </button>
+      </div>
 
-      <!-- NAV -->
       <nav id="nav-menu">
         
         <a href="/index.html">Home</a>
 
-        <!-- DROPDOWN -->
         <div class="dropdown">
-          <!-- 🔥 FIX: evitar navegación en móvil -->
-          <a href="#" class="active dropdown-toggle" id="services-toggle">
-            Services <span class="arrow">▾</span>
+          <a href="/services.html" class="active dropdown-toggle">
+            Services ▾
           </a>
 
-          <div class="dropdown-menu" id="services-menu">
+          <div class="dropdown-menu">
             <a href="/commercial-cleaning-moncton.html">Commercial Cleaning</a>
             <a href="/office-cleaning-moncton.html">Office Cleaning</a>
+            <a href="/deep-cleaning-moncton.html">Deep Cleaning</a> 
             <a href="/janitorial-cleaning-moncton.html">Janitorial Services</a>
-            <a href="/deep-cleaning-moncton.html">Deep Cleaning</a>    
             <a href="/post-construction-cleaning-moncton.html">Post-Construction Cleaning</a>
           </div>
         </div>
@@ -141,10 +136,8 @@ gtag('config', 'G-48W5J5N037');
 
       </nav>
 
-      <!-- LANGUAGE SWITCH -->
-      <div class="lang-switch" style="margin-left:15px;">
-        <a href="/services.html" class="active">EN</a>
-        <span>|</span>
+      <div class="lang-switch">
+        <a href="/services.html">EN</a>
         <a href="/fr/services.html">FR</a>
       </div>
 
@@ -152,63 +145,6 @@ gtag('config', 'G-48W5J5N037');
 
   </div>
 </header>
-
-<!-- SCRIPT MENU + DROPDOWN -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  const overlay = document.querySelector(".menu-overlay");
-
-  const servicesToggle = document.getElementById("services-toggle");
-  const servicesMenu = document.getElementById("services-menu");
-
-  // ✅ HAMBURGER
-  menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("active");
-    overlay.classList.toggle("active");
-
-    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
-    menuToggle.setAttribute("aria-expanded", !expanded);
-  });
-
-  // ✅ DROPDOWN MOBILE (ULTRA FIX)
-  servicesToggle.addEventListener("click", function (e) {
-
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      servicesMenu.classList.toggle("open");
-    }
-
-  });
-
-  // 🔥 FALLBACK (iOS / Safari fix)
-  servicesToggle.addEventListener("touchstart", function (e) {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      servicesMenu.classList.toggle("open");
-    }
-  });
-
-  // ✅ CERRAR AL TOCAR OVERLAY
- document.addEventListener("click", function (e) {
-
-  // Si el click NO fue dentro del menú
-  if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-
-    navMenu.classList.remove("active");
-    overlay.classList.remove("active");
-    servicesMenu.classList.remove("open");
-
-  }
-
-});
-
-});
-</script>
 
 <main>
 
