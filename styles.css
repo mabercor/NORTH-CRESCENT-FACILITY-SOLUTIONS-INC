@@ -1563,101 +1563,54 @@ nav {
 
   /* ===== MOBILE SUBMENU FIX (NUEVA LÓGICA) ===== */
 
-/* ❌ ELIMINAMOS focus-within (ya no lo usamos) */
-/* Ahora usamos .open desde el click en la flecha */
+/* ===== MOBILE MENU (CRÍTICO) ===== */
 
-.dropdown-menu {
-  display: none;
-  flex-direction: column;
+@media (max-width: 768px) {
+
+  nav {
+    position: fixed;
+    top: 70px;
+    right: -100%; /* oculto */
+    width: 85%;
+    max-width: 320px;
+    height: calc(100vh - 70px);
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 20px;
+    gap: 12px;
+
+    transition: 0.3s ease;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  /* 🔥 CLAVE PARA QUE APAREZCA */
+  nav.active {
+    right: 0;
+  }
+
+  nav a {
+    width: 100%;
+    padding: 10px 0;
+    text-align: left;
+    font-size: 15px;
+    color: #1E3A5F;
+    text-decoration: none;
+  }
+
 }
 
-/* 🔥 ABRIR SUBMENU */
-.dropdown.open .dropdown-menu {
-  display: flex;
-}
+/* ===== DROPDOWN ===== */
 
-/* ===== HAMBURGER ===== */
-
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  z-index: 1101;
-}
-
-/* ICONO */
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: #1E3A5F;
-  margin: 4px 0;
-  border-radius: 2px;
-}
-
-/* ===== OVERLAY ===== */
-
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 800;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* ===== DROPDOWN STRUCTURE ===== */
-
-/* CONTENEDOR SUPERIOR */
-.dropdown-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* TEXTO (LINK) */
-.menu-label {
-  flex: 1;
-  padding: 10px 0;
-  text-decoration: none;
-  color: #1E3A5F;
-}
-
-/* FLECHA */
-.menu-arrow {
-  font-size: 22px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: rgba(74, 155, 140, 0.1);
-  color: #4A9B8C;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-/* HOVER (DESKTOP) */
-.menu-arrow:hover {
-  background: #4A9B8C;
-  color: #fff;
-}
-
-/* TOUCH FEEDBACK */
-.menu-arrow:active {
-  transform: scale(0.9);
-}
-
-/* 🔥 ROTACIÓN CUANDO ABRE */
-.dropdown.open .menu-arrow {
-  transform: rotate(180deg);
-}
 .dropdown {
   width: 100%;
 }
 
+/* CONTENEDOR SUPERIOR */
 .dropdown-top {
   display: flex;
   justify-content: space-between;
@@ -1688,6 +1641,17 @@ nav {
 
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* EFECTOS */
+.menu-arrow:hover {
+  background: #4A9B8C;
+  color: #fff;
+}
+
+.menu-arrow:active {
+  transform: scale(0.9);
 }
 
 /* SUBMENU */
@@ -1697,7 +1661,7 @@ nav {
   padding-left: 12px;
 }
 
-/* ABIERTO */
+/* 🔥 ABRIR SUBMENU */
 .dropdown.open .dropdown-menu {
   display: flex;
 }
@@ -1706,3 +1670,41 @@ nav {
 .dropdown.open .menu-arrow {
   transform: rotate(180deg);
 }
+
+/* ===== HAMBURGER ===== */
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1101;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #1E3A5F;
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+/* ===== OVERLAY ===== */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+
+
