@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         <a href="/index.html">Home</a>
 
-        <!-- 🔥 DROPDOWN CORRECTO -->
+        <!-- DROPDOWN -->
         <div class="dropdown">
 
           <div class="dropdown-top">
@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
               Services
             </a>
 
-            <!-- 🔥 BOTÓN REAL (NO span) -->
             <button class="menu-arrow" type="button">
               ▾
             </button>
@@ -173,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </header>
 
-<!-- 🔥 SCRIPT (OBLIGATORIO PARA QUE FUNCIONE) -->
+<!-- 🔥 SCRIPT CORREGIDO -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -181,38 +180,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const navMenu = document.getElementById("nav-menu");
   const overlay = document.querySelector(".menu-overlay");
 
-  // HAMBURGER
-  menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
-
-  // DROPDOWN
-  document.querySelectorAll(".menu-arrow").forEach(btn => {
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation();
-
-      const dropdown = this.closest(".dropdown");
-
-      dropdown.classList.toggle("open");
+  // ✅ HAMBURGER (PROTEGIDO)
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", function () {
+      navMenu.classList.toggle("active");
+      if (overlay) overlay.classList.toggle("active");
     });
-  });
+  }
 
-  // CERRAR CON OVERLAY
-  overlay.addEventListener("click", function () {
-    navMenu.classList.remove("active");
-    overlay.classList.remove("active");
+  // ✅ DROPDOWN (PROTEGIDO)
+  const arrows = document.querySelectorAll(".menu-arrow");
 
-    document.querySelectorAll(".dropdown").forEach(d => {
-      d.classList.remove("open");
+  if (arrows.length > 0) {
+    arrows.forEach(btn => {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+
+        const dropdown = this.closest(".dropdown");
+        if (dropdown) {
+          dropdown.classList.toggle("open");
+        }
+      });
     });
-  });
+  }
+
+  // ✅ CERRAR CON OVERLAY
+  if (overlay && navMenu) {
+    overlay.addEventListener("click", function () {
+      navMenu.classList.remove("active");
+      overlay.classList.remove("active");
+
+      document.querySelectorAll(".dropdown").forEach(d => {
+        d.classList.remove("open");
+      });
+    });
+  }
 
 });
 </script>
 
 </body>
-
  
 <main>
 
