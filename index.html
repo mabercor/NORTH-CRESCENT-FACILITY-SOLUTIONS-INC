@@ -78,16 +78,16 @@
       </div>
     </div>
 
-     <div class="nav-wrapper">
+    <div class="nav-wrapper">
 
       <div class="hamburger" id="menu-toggle">
         <span></span><span></span><span></span>
       </div>
 
       <nav id="nav-menu">
-        <a href="/index.html">Home</a>
+        <a href="/index.html" class="active">Home</a>
         <a href="/services.html">Services</a>
-        <a href="/process.html" class="active">Process</a>
+        <a href="/process.html">Process</a>
         <a href="/reviews.html">Reviews</a>
         <a href="/work.html">Our Work</a>
         <a href="/gallery.html">Gallery</a>
@@ -95,51 +95,14 @@
       </nav>
 
       <div class="lang-switch">
-        <a href="/process.html">EN</a>
-        <a href="/fr/process.html">FR</a>
+        <a href="/index.html">EN</a>
+        <a href="/fr/index.html">FR</a>
       </div>
 
     </div>
 
   </div>
 </header>
-
-
-<main>
-
-<!-- 🔥 TU CONTENIDO AQUÍ -->
-
-</main>
-
-<!-- 🔥 SCRIPT CORRECTO (FUERA DE MAIN) -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  const overlay = document.querySelector(".menu-overlay");
-
-  // ✅ HAMBURGER FUNCIONAL
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", function () {
-      navMenu.classList.toggle("active");
-      if (overlay) overlay.classList.toggle("active");
-    });
-  }
-
-  // ✅ CERRAR CON OVERLAY
-  if (overlay && navMenu) {
-    overlay.addEventListener("click", function () {
-      navMenu.classList.remove("active");
-      overlay.classList.remove("active");
-    });
-  }
-
-});
-</script>
-
-</body>
-</html>
   
 <main>
 
