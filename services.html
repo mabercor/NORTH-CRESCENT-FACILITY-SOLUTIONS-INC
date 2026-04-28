@@ -37,7 +37,7 @@ gtag('js', new Date());
 gtag('config', 'G-48W5J5N037');
 </script>
 
-<!-- SCHEMA MEJORADO -->
+<!-- SCHEMA -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -75,21 +75,34 @@ gtag('config', 'G-48W5J5N037');
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 </head>
+
+<body data-page="services">
+
+<!-- TU CONTENIDO VA AQUÍ -->
+
+<!-- SCRIPT CORREGIDO -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  const arrows = document.querySelectorAll(".menu-arrow");
+  const arrows = document.querySelectorAll(".arrow");
 
   arrows.forEach(arrow => {
     arrow.addEventListener("click", function (e) {
-      e.stopPropagation(); // 🔥 evita conflictos
+      e.preventDefault();
+      e.stopPropagation();
+
       const dropdown = this.closest(".dropdown");
-      dropdown.classList.toggle("open");
+      if (dropdown) {
+        dropdown.classList.toggle("open");
+      }
     });
   });
 
 });
 </script>
+
+</body>
+</html>
  
 <body data-page="services">
 
@@ -131,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         <a href="/index.html">Home</a>
 
-        <!-- ✅ DROPDOWN LIMPIO -->
+        <!-- DROPDOWN -->
         <div class="dropdown">
           <a href="/services.html" class="menu-link active">
             Services <span class="arrow">▾</span>
@@ -163,9 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
   </div>
- <script>
-  </header>
+</header>
 
+<!-- SCRIPT CORREGIDO (FUERA DEL HEADER) -->
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(".menu-link").forEach(link => {
@@ -183,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
+
  
 <main>
 
