@@ -76,6 +76,22 @@ gtag('config', 'G-48W5J5N037');
 
 </head>
 
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const arrows = document.querySelectorAll(".menu-arrow");
+
+  arrows.forEach(arrow => {
+    arrow.addEventListener("click", function (e) {
+      e.stopPropagation(); // 🔥 evita conflictos
+      const dropdown = this.closest(".dropdown");
+      dropdown.classList.toggle("open");
+    });
+  });
+
+});
+</script>
+ 
 <body data-page="services">
 
 <div class="menu-overlay"></div>
