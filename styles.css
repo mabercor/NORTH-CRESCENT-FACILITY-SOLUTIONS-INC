@@ -1625,3 +1625,29 @@ section,
   height: auto !important;
   min-height: unset !important;
 }
+@media (max-width: 768px) {
+
+  /* Mostrar siempre el submenu */
+  .dropdown .dropdown-menu {
+    display: block !important;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  /* Quitar interacción tipo dropdown */
+  .dropdown {
+    pointer-events: none;
+  }
+
+  /* Permitir clicks en links internos */
+  .dropdown-menu a {
+    pointer-events: auto;
+  }
+
+  /* Opcional: ocultar flecha */
+  .arrow {
+    display: none;
+  }
+}
