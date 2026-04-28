@@ -114,13 +114,22 @@ gtag('config', 'G-48W5J5N037');
         
         <a href="/index.html">Home</a>
 
-        <!-- 🔥 DROPDOWN MEJORADO -->
+        <!-- 🔥 DROPDOWN FIX REAL -->
         <div class="dropdown">
-          <a href="/services.html" class="active dropdown-toggle">
-            <span class="menu-label">Services</span>
-            <span class="menu-arrow">▾</span>
-          </a>
 
+          <!-- FILA SUPERIOR -->
+          <div class="dropdown-top">
+            <a href="/services.html" class="menu-label active">
+              Services
+            </a>
+
+            <!-- BOTÓN FLECHA -->
+            <span class="menu-arrow" onclick="this.closest('.dropdown').classList.toggle('open')">
+              ▾
+            </span>
+          </div>
+
+          <!-- SUBMENU -->
           <div class="dropdown-menu">
             <a href="/commercial-cleaning-moncton.html">Commercial Cleaning</a>
             <a href="/office-cleaning-moncton.html">Office Cleaning</a>
@@ -128,6 +137,7 @@ gtag('config', 'G-48W5J5N037');
             <a href="/janitorial-cleaning-moncton.html">Janitorial Services</a>
             <a href="/post-construction-cleaning-moncton.html">Post-Construction Cleaning</a>
           </div>
+
         </div>
 
         <a href="/process.html">Process</a>
