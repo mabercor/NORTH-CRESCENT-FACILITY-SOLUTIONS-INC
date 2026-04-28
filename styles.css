@@ -1470,13 +1470,14 @@ nav {
 
 .dropdown {
   position: relative;
+  z-index: 1; /* 🔥 asegura contexto dentro del nav */
 }
 
 /* BASE */
 .dropdown-menu {
   display: none;
   flex-direction: column;
-  z-index: 1100; /* 🔥 FIX CLICK */
+  z-index: 1100;
 }
 
 /* DESKTOP */
@@ -1511,13 +1512,17 @@ nav {
     max-width: 320px;
     height: calc(100vh - 70px);
     background: white;
+
+    display: flex;              /* 🔥 FIX CRÍTICO */
     flex-direction: column;
     align-items: flex-start;
+
     padding: 25px;
     gap: 18px;
     transition: 0.3s ease;
     overflow-y: auto;
-    z-index: 1000; /* 🔥 FIX SUPERIOR */
+
+    z-index: 1000;
   }
 
   nav.active {
@@ -1546,7 +1551,7 @@ nav {
   }
 
   .dropdown-menu a {
-    display: block; /* 🔥 FIX CLICK */
+    display: block;
     width: 100%;
     font-size: 14px;
     padding: 8px 0;
@@ -1561,7 +1566,7 @@ nav {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    z-index: 1101; /* 🔥 SOBRE TODO */
+    z-index: 1101;
   }
 
 }
@@ -1575,7 +1580,18 @@ nav {
   border-radius: 2px;
 }
 
-/* OVERLAY FIX (MUY IMPORTANTE) */
+/* OVERLAY */
 .menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
   z-index: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
