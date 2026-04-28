@@ -72,6 +72,12 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/post-construction-cleaning-moncton.html"/>
   </url>
 
+<url>
+  <loc>https://www.northcrescentcleaning.com/janitorial-cleaning-moncton.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/janitorial-cleaning-moncton.html"/>
+  <xhtml:link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/janitorial-cleaning-moncton.html"/>
+</url>
+        
   <!-- LEGAL (NO HREFLANG NECESARIO) -->
   <url>
     <loc>https://www.northcrescentcleaning.com/privacy.html</loc>
