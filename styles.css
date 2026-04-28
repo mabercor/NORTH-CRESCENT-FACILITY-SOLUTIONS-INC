@@ -615,29 +615,6 @@ nav {
 .dropdown:hover > a::after {
   width: 100%;
 }
-/* ===== MOBILE DROPDOWN FIX ===== */
-@media (max-width: 768px) {
-
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
-    display: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .dropdown-menu a {
-    padding: 10px 0;
-  }
-
-  .dropdown.active .dropdown-menu {
-    display: block;
-  }
-
-}
-
 
 /* CONTENEDOR */
 .lang-switch {
