@@ -66,8 +66,35 @@ gtag('config', 'G-48W5J5N037');
 
 <!-- FONTS + CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css">
 
+  <style>
+  @media (max-width: 768px) {
+
+    .dropdown .dropdown-menu {
+      display: block !important;
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    .dropdown {
+      pointer-events: none;
+    }
+
+    .dropdown-menu a {
+      pointer-events: auto;
+    }
+
+    .arrow {
+      display: none;
+    }
+  }
+  </style>
+
+</head>
+ 
 <!-- FAVICON -->
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32">
