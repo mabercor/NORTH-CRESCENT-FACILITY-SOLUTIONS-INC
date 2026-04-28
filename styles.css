@@ -1651,3 +1651,22 @@ section,
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+
+  footer {
+    text-align: center;
+  }
+
+  footer div {
+    text-align: center;
+  }
+
+  footer a {
+    display: inline-block;
+    margin: 5px 8px;
+  }
+
+}
+
+
