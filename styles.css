@@ -1561,16 +1561,14 @@ nav {
     padding: 6px 0;
   }
 
-  /* ===== MOBILE SUBMENU FIX (NUEVA LÓGICA) ===== */
-
-/* ===== MOBILE MENU (CRÍTICO) ===== */
+ /* ===== MOBILE MENU (CRÍTICO) ===== */
 
 @media (max-width: 768px) {
 
   nav {
     position: fixed;
     top: 70px;
-    right: -100%; /* oculto */
+    right: -100%;
     width: 85%;
     max-width: 320px;
     height: calc(100vh - 70px);
@@ -1583,12 +1581,11 @@ nav {
     padding: 20px;
     gap: 12px;
 
-    transition: 0.3s ease;
+    transition: right 0.3s ease;
     overflow-y: auto;
     z-index: 1000;
   }
 
-  /* 🔥 CLAVE PARA QUE APAREZCA */
   nav.active {
     right: 0;
   }
@@ -1610,14 +1607,15 @@ nav {
   width: 100%;
 }
 
-/* CONTENEDOR SUPERIOR */
+/* TOP ROW */
 .dropdown-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-/* TEXTO */
+/* LABEL */
 .menu-label {
   flex: 1;
   padding: 10px 0;
@@ -1625,7 +1623,7 @@ nav {
   color: #1E3A5F;
 }
 
-/* BOTÓN FLECHA */
+/* ARROW BUTTON */
 .menu-arrow {
   width: 44px;
   height: 44px;
@@ -1644,7 +1642,7 @@ nav {
   transition: all 0.25s ease;
 }
 
-/* EFECTOS */
+/* EFFECTS */
 .menu-arrow:hover {
   background: #4A9B8C;
   color: #fff;
@@ -1661,12 +1659,12 @@ nav {
   padding-left: 12px;
 }
 
-/* 🔥 ABRIR SUBMENU */
+/* 🔥 OPEN STATE */
 .dropdown.open .dropdown-menu {
   display: flex;
 }
 
-/* ROTACIÓN */
+/* ROTATION */
 .dropdown.open .menu-arrow {
   transform: rotate(180deg);
 }
@@ -1694,7 +1692,7 @@ nav {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  z-index: 800;
+  z-index: 900;
   opacity: 0;
   pointer-events: none;
   transition: 0.3s ease;
@@ -1704,7 +1702,3 @@ nav {
   opacity: 1;
   pointer-events: all;
 }
-
-
-
-
