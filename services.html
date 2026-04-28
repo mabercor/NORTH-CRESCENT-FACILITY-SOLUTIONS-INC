@@ -106,23 +106,24 @@ gtag('config', 'G-48W5J5N037');
     <div class="nav-wrapper">
 
       <!-- HAMBURGER -->
-      <div class="hamburger" id="menu-toggle">
+      <button class="hamburger" id="menu-toggle" aria-label="Menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </button>
 
       <!-- NAV -->
       <nav id="nav-menu">
         
         <a href="/index.html">Home</a>
 
+        <!-- DROPDOWN FIXED -->
         <div class="dropdown">
-          <a href="/services.html" class="active dropdown-toggle">
+          <a href="/services.html" class="active dropdown-toggle" id="services-toggle">
             Services ▾
           </a>
 
-          <div class="dropdown-menu">
+          <div class="dropdown-menu" id="services-menu">
             <a href="/commercial-cleaning-moncton.html">Commercial Cleaning</a>
             <a href="/office-cleaning-moncton.html">Office Cleaning</a>
             <a href="/janitorial-cleaning-moncton.html">Janitorial Services</a>
@@ -139,7 +140,7 @@ gtag('config', 'G-48W5J5N037');
 
       </nav>
 
-      <!-- LANGUAGE SWITCH (MEJORADO) -->
+      <!-- LANGUAGE SWITCH -->
       <div class="lang-switch" style="margin-left:15px;">
         <a href="/services.html" class="active">EN</a>
         <span>|</span>
@@ -150,6 +151,42 @@ gtag('config', 'G-48W5J5N037');
 
   </div>
 </header>
+
+<!-- SCRIPT MENU + DROPDOWN -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const navMenu = document.getElementById("nav-menu");
+
+  const servicesToggle = document.getElementById("services-toggle");
+  const servicesMenu = document.getElementById("services-menu");
+
+  // HAMBURGER MENU
+  menuToggle.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", !expanded);
+  });
+
+  // DROPDOWN MOBILE FIX
+  servicesToggle.addEventListener("click", function (e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      servicesMenu.classList.toggle("open");
+    }
+  });
+
+  // CLOSE WHEN CLICK OUTSIDE
+  document.addEventListener("click", function (e) {
+    if (!servicesToggle.contains(e.target) && !servicesMenu.contains(e.target)) {
+      servicesMenu.classList.remove("open");
+    }
+  });
+
+});
+</script>
 
 <main>
 
