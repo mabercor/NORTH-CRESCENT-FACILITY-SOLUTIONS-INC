@@ -1561,22 +1561,31 @@ nav {
     padding: 6px 0;
   }
 
-  /* 🔥 FIX REAL DEL SUBMENU EN MOBILE */
-  .dropdown:focus-within .dropdown-menu {
-    display: flex;
-  }
+  /* ===== MOBILE SUBMENU FIX (NUEVA LÓGICA) ===== */
 
-  /* HAMBURGER */
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    z-index: 1101;
-  }
+/* ❌ ELIMINAMOS focus-within (ya no lo usamos) */
+/* Ahora usamos .open desde el click en la flecha */
 
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
 }
 
-/* HAMBURGER ICON */
+/* 🔥 ABRIR SUBMENU */
+.dropdown.open .dropdown-menu {
+  display: flex;
+}
+
+/* ===== HAMBURGER ===== */
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1101;
+}
+
+/* ICONO */
 .hamburger span {
   width: 25px;
   height: 3px;
@@ -1585,7 +1594,8 @@ nav {
   border-radius: 2px;
 }
 
-/* OVERLAY */
+/* ===== OVERLAY ===== */
+
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -1593,28 +1603,34 @@ nav {
   z-index: 800;
   opacity: 0;
   pointer-events: none;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .menu-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
-/* CONTENEDOR */
-.dropdown-toggle {
+
+/* ===== DROPDOWN STRUCTURE ===== */
+
+/* CONTENEDOR SUPERIOR */
+.dropdown-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* TEXTO */
+/* TEXTO (LINK) */
 .menu-label {
   flex: 1;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #1E3A5F;
 }
 
 /* FLECHA */
 .menu-arrow {
-  font-size: 20px;
+  font-size: 22px;
   padding: 10px 14px;
   border-radius: 8px;
   background: rgba(74, 155, 140, 0.1);
@@ -1629,12 +1645,12 @@ nav {
   color: #fff;
 }
 
-/* ACTIVE (TOUCH FEEDBACK) */
+/* TOUCH FEEDBACK */
 .menu-arrow:active {
   transform: scale(0.9);
 }
 
-/* 🔥 ROTACIÓN CUANDO ABRE (SI USAS JS) */
+/* 🔥 ROTACIÓN CUANDO ABRE */
 .dropdown.open .menu-arrow {
   transform: rotate(180deg);
 }
