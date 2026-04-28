@@ -1733,3 +1733,75 @@ section,
   }
 
 }
+
+
+/* ===== DROPDOWN DESKTOP PREMIUM ===== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  min-width: 250px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 0;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+/* ACTIVACIÓN */
+.dropdown:hover .dropdown-menu,
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* LINKS */
+.dropdown-menu a {
+  display: block;
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #1E293B;
+  text-decoration: none;
+  border-radius: 8px;
+
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+.dropdown-menu a:hover {
+  background: rgba(74,155,140,0.12);
+  color: #1E3A5F;
+  padding-left: 22px;
+}
+
+/* LINEA INDICADORA */
+.dropdown-menu a::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 2px;
+  background: #4A9B8C;
+
+  transition: width 0.25s ease;
+}
+
+.dropdown-menu a:hover::before {
+  width: 10px;
+}
