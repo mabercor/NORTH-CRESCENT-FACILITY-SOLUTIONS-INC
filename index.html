@@ -52,52 +52,6 @@
 </script>
 
 </head>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  const overlay = document.querySelector(".menu-overlay");
-
-  const arrows = document.querySelectorAll(".menu-arrow");
-
-  // 🔥 HAMBURGER
-  menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("active");
-    overlay.classList.toggle("active");
-  });
-
-  // 🔥 DROPDOWN
-  arrows.forEach(btn => {
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation();
-
-      const dropdown = this.closest(".dropdown");
-
-      // cerrar otros
-      document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== dropdown) d.classList.remove("open");
-      });
-
-      dropdown.classList.toggle("open");
-    });
-  });
-
-  // 🔥 CERRAR CON OVERLAY
-  overlay.addEventListener("click", function () {
-    navMenu.classList.remove("active");
-    overlay.classList.remove("active");
-
-    document.querySelectorAll(".dropdown").forEach(d => {
-      d.classList.remove("open");
-    });
-  });
-
-});
-</script>
-
-  
 <body data-page="index">
 
 <div class="menu-overlay"></div>
@@ -106,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- ✅ COOKIE -->
 <div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
   We use cookies to improve your experience. By using our site, you agree to our 
-  <a href="privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
+  <a href="/privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
   <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px;">
     Accept
   </button>
@@ -116,8 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="container header-inner">
 
     <div class="logo-container">
-      <a href="index.html">
-        <img src="/images/logo.jpg" alt="North Crescent Facility Solutions professional cleaning services Moncton NB">
+      <a href="/index.html">
+        <img src="/images/logo.jpg" alt="North Crescent cleaning services in Moncton NB">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -126,57 +80,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="nav-wrapper">
 
-      <!-- HAMBURGER -->
       <div class="hamburger" id="menu-toggle">
         <span></span><span></span><span></span>
       </div>
 
-      <!-- NAV -->
       <nav id="nav-menu">
-        
-        <a href="index.html" class="active">Home</a>
-
-        <!-- 🔥 DROPDOWN SERVICES -->
-        <div class="dropdown">
-
-          <div class="dropdown-top">
-            <a href="services.html" class="menu-label">
-              Services
-            </a>
-
-            <button class="menu-arrow" aria-expanded="false">
-              ▾
-            </button>
-          </div>
-
-          <div class="dropdown-menu">
-            <a href="commercial-cleaning-moncton.html">Commercial Cleaning</a>
-            <a href="office-cleaning-moncton.html">Office Cleaning</a>
-            <a href="deep-cleaning-moncton.html">Deep Cleaning</a>
-            <a href="janitorial-cleaning-moncton.html">Janitorial Services</a>
-            <a href="post-construction-cleaning-moncton.html">Post-Construction Cleaning</a>
-          </div>
-
-        </div>
-
-        <a href="process.html">Process</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="work.html">Our Work</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html" class="btn btn-primary">Contact</a>
-
+        <a href="/index.html" class="active">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/process.html">Process</a>
+        <a href="/reviews.html">Reviews</a>
+        <a href="/work.html">Our Work</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/contact.html" class="btn btn-primary">Contact</a>
       </nav>
 
-      <!-- LANGUAGE SWITCH -->
       <div class="lang-switch">
-        <a href="/index.html">EN</a>
-        <a href="/fr/index.html">FR</a>
+        <a href="/">EN</a>
+        <a href="/fr/">FR</a>
       </div>
 
     </div>
   </div>
 </header>
-
 <main>
 
 <!-- 🔥 SCRIPT FUNCIONAL -->
