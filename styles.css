@@ -873,3 +873,20 @@ nav {
   }
 
 }
+/* DESKTOP */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+  .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown-menu.open {
+    display: block;
+  }
+
+}
