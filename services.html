@@ -119,31 +119,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="nav-wrapper">
 
-      <!-- HAMBURGER -->
       <div class="hamburger" id="menu-toggle">
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      <!-- NAV -->
       <nav id="nav-menu">
         
         <a href="/index.html">Home</a>
 
-        <!-- DROPDOWN -->
+        <!-- 🔥 DROPDOWN -->
         <div class="dropdown">
 
+          <!-- TOP ROW -->
           <div class="dropdown-top">
             <a href="/services.html" class="menu-label active">
               Services
             </a>
 
-            <button class="menu-arrow" type="button">
+            <!-- ARROW BUTTON -->
+            <span class="menu-arrow" onclick="this.closest('.dropdown').classList.toggle('open')">
               ▾
-            </button>
+            </span>
           </div>
 
+          <!-- SUBMENU -->
           <div class="dropdown-menu">
             <a href="/commercial-cleaning-moncton.html">Commercial Cleaning</a>
             <a href="/office-cleaning-moncton.html">Office Cleaning</a>
@@ -171,55 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </div>
 </header>
-
-<!-- 🔥 SCRIPT CORREGIDO -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const menuToggle = document.getElementById("menu-toggle");
-  const navMenu = document.getElementById("nav-menu");
-  const overlay = document.querySelector(".menu-overlay");
-
-  // ✅ HAMBURGER (PROTEGIDO)
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", function () {
-      navMenu.classList.toggle("active");
-      if (overlay) overlay.classList.toggle("active");
-    });
-  }
-
-  // ✅ DROPDOWN (PROTEGIDO)
-  const arrows = document.querySelectorAll(".menu-arrow");
-
-  if (arrows.length > 0) {
-    arrows.forEach(btn => {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-
-        const dropdown = this.closest(".dropdown");
-        if (dropdown) {
-          dropdown.classList.toggle("open");
-        }
-      });
-    });
-  }
-
-  // ✅ CERRAR CON OVERLAY
-  if (overlay && navMenu) {
-    overlay.addEventListener("click", function () {
-      navMenu.classList.remove("active");
-      overlay.classList.remove("active");
-
-      document.querySelectorAll(".dropdown").forEach(d => {
-        d.classList.remove("open");
-      });
-    });
-  }
-
-});
-</script>
-
-</body>
  
 <main>
 
