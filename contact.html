@@ -97,7 +97,45 @@ gtag('config', 'G-48W5J5N037');
 
   </div>
 </div>
+<script>
+function closeModal() {
+  document.getElementById("successModal").style.display = "none";
+}
 
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+
+      form.reset();
+
+      const message = "Hi, I just submitted a cleaning request. I will send photos/videos for a faster quote.";
+      const waUrl = "https://wa.me/14288880542?text=" + encodeURIComponent(message);
+
+      document.getElementById("waLink").href = waUrl;
+
+      document.getElementById("successModal").style.display = "flex";
+
+    } else {
+      alert("Something went wrong.");
+    }
+  })
+  .catch(() => {
+    alert("Error sending form.");
+  });
+});
+</script>
+  
 <body data-page="contact">
 
 <div class="menu-overlay"></div>
