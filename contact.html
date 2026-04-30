@@ -171,7 +171,7 @@ gtag('config', 'G-48W5J5N037');
               <input type="email" name="email" placeholder="Email Address *" required>
             </div>
 
-            <input type="tel" name="phone" placeholder="Phone Number (optional)">
+            <input type="tel" name="phone" placeholder="Phone Number">
 
             <!-- SERVICE -->
             <div class="custom-select">
@@ -500,6 +500,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
   }
+
+});
+</script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const fields = form.querySelectorAll("input, select, textarea");
+
+  // 🔁 CARGAR DATOS GUARDADOS
+  fields.forEach(field => {
+    const saved = localStorage.getItem(field.name);
+
+    if (saved) {
+      if (field.type === "checkbox") {
+        if (saved.includes(field.value)) {
+          field.checked = true;
+        }
+      } else {
+        field.value = saved;
+      }
+    }
+  });
+
+  // 🔁 GUARDAR DATOS
+  fields.forEach(field => {
+    field.addEventListener("change", () => {
+
+      if (field.type === "checkbox") {
+        let values = [];
+
+        document.querySelectorAll(`input[name="${field.name}"]:checked`).forEach(cb => {
+          values.push(cb.value);
+        });
+
+        localStorage.setItem(field.name, values.join(","));
+      } else {
+        localStorage.setItem(field.name, field.value);
+      }
+
+    });
+  });
+
+});
+</script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const fields = form.querySelectorAll("input, select, textarea");
+
+  // 🔁 CARGAR DATOS GUARDADOS
+  fields.forEach(field => {
+    const saved = localStorage.getItem(field.name);
+
+    if (saved) {
+      if (field.type === "checkbox") {
+        if (saved.includes(field.value)) {
+          field.checked = true;
+        }
+      } else {
+        field.value = saved;
+      }
+    }
+  });
+
+  // 🔁 GUARDAR DATOS
+  fields.forEach(field => {
+    field.addEventListener("change", () => {
+
+      if (field.type === "checkbox") {
+        let values = [];
+
+        document.querySelectorAll(`input[name="${field.name}"]:checked`).forEach(cb => {
+          values.push(cb.value);
+        });
+
+        localStorage.setItem(field.name, values.join(","));
+      } else {
+        localStorage.setItem(field.name, field.value);
+      }
+
+    });
+  });
 
 });
 </script>
