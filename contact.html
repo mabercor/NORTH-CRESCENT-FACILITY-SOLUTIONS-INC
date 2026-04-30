@@ -193,14 +193,58 @@ gtag('config', 'G-48W5J5N037');
 
   <div class="form-group">
     <label style="font-size:13px;">Preferred Time *</label>
-    <select name="preferred_time" required>
-      <option value="">Select Time</option>
-      <option value="morning">Morning (8AM – 12PM)</option>
-      <option value="afternoon">Afternoon (12PM – 4PM)</option>
-      <option value="evening">Evening (4PM – 7PM)</option>
+   <select name="time_slot" required>
+  <option value="">Preferred Time Slot *</option>
+  <option>12AM – 4AM</option>
+  <option>4AM – 8AM</option>
+  <option>8AM – 12PM</option>
+  <option>12PM – 4PM</option>
+  <option>4PM – 8PM</option>
+  <option>8PM – 12AM</option>
     </select>
+    <select name="frequency" id="frequencySelect" required>
+  <option value="">Cleaning Frequency *</option>
+  <option value="daily">Every Day</option>
+  <option value="2week">2 Times per Week</option>
+  <option value="4month">4 Times per Month</option>
+  <option value="2month">2 Times per Month</option>
+  <option value="custom">Custom</option>
+</select>
+  <div id="daysContainer" style="display:none; margin-top:10px;">
+  <label style="font-size:13px;">Select Preferred Days *</label>
+
+  <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+    <label><input type="checkbox" name="days[]" value="Monday"> Mon</label>
+    <label><input type="checkbox" name="days[]" value="Tuesday"> Tue</label>
+    <label><input type="checkbox" name="days[]" value="Wednesday"> Wed</label>
+    <label><input type="checkbox" name="days[]" value="Thursday"> Thu</label>
+    <label><input type="checkbox" name="days[]" value="Friday"> Fri</label>
+    <label><input type="checkbox" name="days[]" value="Saturday"> Sat</label>
+    <label><input type="checkbox" name="days[]" value="Sunday"> Sun</label>
   </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const frequency = document.getElementById("frequencySelect");
+  const daysContainer = document.getElementById("daysContainer");
+
+  if (frequency) {
+    frequency.addEventListener("change", function () {
+
+      if (this.value === "2week" || this.value === "4month" || this.value === "2month" || this.value === "custom") {
+        daysContainer.style.display = "block";
+      } else {
+        daysContainer.style.display = "none";
+      }
+
+    });
+  }
+
+});
+</script>        
+
+    
             <p style="font-size:12px; color:#64748b;">
 Preferred date and time are subject to availability. We’ll confirm within 1 hour.
 </p>
