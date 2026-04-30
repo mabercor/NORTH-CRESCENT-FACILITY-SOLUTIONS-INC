@@ -184,7 +184,24 @@ gtag('config', 'G-48W5J5N037');
     <option>Post-Construction Cleaning</option>
   </select>
 </div>
+ <select name="frequency" id="frequencySelect" required>
+  <option value="">Cleaning Frequency *</option>
+  <option value="daily">Every Day</option>
+  <option value="2week">2 Times per Week</option>
+  <option value="4month">4 Times per Month</option>
+  <option value="2month">2 Times per Month</option>
+  <option value="custom">Custom</option>
 
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+    <label><input type="checkbox" name="days[]" value="Monday"> Mon</label>
+    <label><input type="checkbox" name="days[]" value="Tuesday"> Tue</label>
+    <label><input type="checkbox" name="days[]" value="Wednesday"> Wed</label>
+    <label><input type="checkbox" name="days[]" value="Thursday"> Thu</label>
+    <label><input type="checkbox" name="days[]" value="Friday"> Fri</label>
+    <label><input type="checkbox" name="days[]" value="Saturday"> Sat</label>
+    <label><input type="checkbox" name="days[]" value="Sunday"> Sun</label>
+  </div>
+</select>
     <div class="form-group">
     <label style="font-size:13px;">Preferred Time *</label>
    <select name="time_slot" required>
@@ -196,27 +213,11 @@ gtag('config', 'G-48W5J5N037');
   <option>4PM – 8PM</option>
   <option>8PM – 12AM</option>
     </select>
-    <select name="frequency" id="frequencySelect" required>
-  <option value="">Cleaning Frequency *</option>
-  <option value="daily">Every Day</option>
-  <option value="2week">2 Times per Week</option>
-  <option value="4month">4 Times per Month</option>
-  <option value="2month">2 Times per Month</option>
-  <option value="custom">Custom</option>
-</select>
+   
   <div id="daysContainer" style="display:none; margin-top:10px;">
   <label style="font-size:13px;">Select Preferred Days *</label>
 
-  <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
-    <label><input type="checkbox" name="days[]" value="Monday"> Mon</label>
-    <label><input type="checkbox" name="days[]" value="Tuesday"> Tue</label>
-    <label><input type="checkbox" name="days[]" value="Wednesday"> Wed</label>
-    <label><input type="checkbox" name="days[]" value="Thursday"> Thu</label>
-    <label><input type="checkbox" name="days[]" value="Friday"> Fri</label>
-    <label><input type="checkbox" name="days[]" value="Saturday"> Sat</label>
-    <label><input type="checkbox" name="days[]" value="Sunday"> Sun</label>
-  </div>
-</div>
+ </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
