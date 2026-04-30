@@ -159,7 +159,7 @@ gtag('config', 'G-48W5J5N037');
       <div id="contact-form">
         <div class="contact-box">
 
-          <h2>Request Your Free Quote</h2>
+          <h2>Get Your Quote & Book Your Preferred Time</h2>
           <p>Tell us about your space and get a personalized quote within 1 hour.</p>
 
           <div class="divider"></div>
@@ -173,89 +173,68 @@ gtag('config', 'G-48W5J5N037');
 
             <input type="tel" name="phone" placeholder="Phone Number (optional)">
 
+            <!-- SERVICE -->
             <div class="custom-select">
-  <select name="service" required>
-    <option value="">Select Service *</option>
-    <option>Residential Cleaning</option>
-    <option>Commercial Cleaning</option>
-    <option>Deep Cleaning</option>
-    <option>Move-In / Move-Out</option>
-    <option>Airbnb Cleaning</option>
-    <option>Post-Construction Cleaning</option>
-  </select>
-</div>
+              <select name="service" required>
+                <option value="">Select Service *</option>
+                <option>Residential Cleaning</option>
+                <option>Commercial Cleaning</option>
+                <option>Deep Cleaning</option>
+                <option>Move-In / Move-Out</option>
+                <option>Airbnb Cleaning</option>
+                <option>Post-Construction Cleaning</option>
+              </select>
+            </div>
 
-<div class="form-group">
-  <select name="frequency" id="frequencySelect" required>
-    <option value="">Cleaning Frequency *</option>
-    <option value="daily">Every Day</option>
-    <option value="2week">2 Times per Week</option>
-    <option value="4month">4 Times per Month</option>
-    <option value="2month">2 Times per Month</option>
-    <option value="custom">Custom</option>
-  </select>
-</div>
+            <!-- FREQUENCY -->
+            <div class="form-group">
+              <select name="frequency" id="frequencySelect" required>
+                <option value="">Cleaning Frequency *</option>
+                <option value="daily">Every Day</option>
+                <option value="2week">2 Times per Week</option>
+                <option value="4month">4 Times per Month</option>
+                <option value="2month">2 Times per Month</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
 
-<!-- DAYS -->
-<div id="daysContainer" class="form-group" style="display:none;">
-  <label style="font-size:13px;">Select Preferred Days *</label>
+            <!-- DAYS -->
+            <div id="daysContainer" class="form-group" style="display:none;">
+              <label style="font-size:13px;">Select Preferred Days *</label>
 
-  <div class="days-grid">
-    <label><input type="checkbox" name="days[]" value="Monday"> Mon</label>
-    <label><input type="checkbox" name="days[]" value="Tuesday"> Tue</label>
-    <label><input type="checkbox" name="days[]" value="Wednesday"> Wed</label>
-    <label><input type="checkbox" name="days[]" value="Thursday"> Thu</label>
-    <label><input type="checkbox" name="days[]" value="Friday"> Fri</label>
-    <label><input type="checkbox" name="days[]" value="Saturday"> Sat</label>
-    <label><input type="checkbox" name="days[]" value="Sunday"> Sun</label>
-  </div>
-</div>
+              <div class="days-grid">
+                <label><input type="checkbox" name="days[]" value="Monday"> Mon</label>
+                <label><input type="checkbox" name="days[]" value="Tuesday"> Tue</label>
+                <label><input type="checkbox" name="days[]" value="Wednesday"> Wed</label>
+                <label><input type="checkbox" name="days[]" value="Thursday"> Thu</label>
+                <label><input type="checkbox" name="days[]" value="Friday"> Fri</label>
+                <label><input type="checkbox" name="days[]" value="Saturday"> Sat</label>
+                <label><input type="checkbox" name="days[]" value="Sunday"> Sun</label>
+              </div>
+            </div>
 
-<!-- TIME -->
-<div class="form-group">
-  <select name="time_slot" required>
-    <option value="">Preferred Time Slot *</option>
-    <option>12AM – 4AM</option>
-    <option>4AM – 8AM</option>
-    <option>8AM – 12PM</option>
-    <option>12PM – 4PM</option>
-    <option>4PM – 8PM</option>
-    <option>8PM – 12AM</option>
-  </select>
-</div>
+            <!-- TIME -->
+            <div class="form-group">
+              <select name="time_slot" required>
+                <option value="">Preferred Time Slot *</option>
+                <option>12AM – 4AM</option>
+                <option>4AM – 8AM</option>
+                <option>8AM – 12PM</option>
+                <option>12PM – 4PM</option>
+                <option>4PM – 8PM</option>
+                <option>8PM – 12AM</option>
+              </select>
+            </div>
 
-<p style="font-size:12px; color:#64748b;">
-Schedule is subject to availability. We will confirm your service plan after review.
-</p>
- 
- </div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+            <!-- NOTE -->
+            <p style="font-size:12px; color:#64748b;">
+              Schedule is subject to availability. We will confirm your service plan after review.
+            </p>
 
-  const frequency = document.getElementById("frequencySelect");
-  const daysContainer = document.getElementById("daysContainer");
-
-  if (frequency) {
-    frequency.addEventListener("change", function () {
-
-      if (this.value === "2week" || this.value === "4month" || this.value === "2month" || this.value === "custom") {
-        daysContainer.style.display = "block";
-      } else {
-        daysContainer.style.display = "none";
-      }
-
-    });
-  }
-
-});
-</script>    
-      
-<p style="font-size:12px; color:#64748b;">
-Schedule is subject to availability. We will confirm your service plan after review.
-</p>
-    
+            <!-- MESSAGE -->
             <textarea name="message" placeholder="Describe your space..."></textarea>
 
+            <!-- BUTTON -->
             <button type="submit" class="btn btn-primary">
               Get My Free Quote
             </button>
@@ -279,6 +258,8 @@ Schedule is subject to availability. We will confirm your service plan after rev
 
   </div>
 </section>
+
+</main>
 
 <!-- 🔥 MODAL -->
 <div id="successModal" class="modal">
@@ -502,6 +483,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+  const frequency = document.getElementById("frequencySelect");
+  const daysContainer = document.getElementById("daysContainer");
+
+  if (frequency) {
+    frequency.addEventListener("change", function () {
+
+      if (this.value === "2week" || this.value === "4month" || this.value === "2month" || this.value === "custom") {
+        daysContainer.style.display = "block";
+      } else {
+        daysContainer.style.display = "none";
+      }
+
+    });
+  }
+
+});
+</script>
 </body>
 </html>
