@@ -173,15 +173,37 @@ gtag('config', 'G-48W5J5N037');
 
             <input type="tel" name="phone" placeholder="Phone Number (optional)">
 
-            <select name="service" required>
-              <option value="">Select Service *</option>
-              <option>Residential Cleaning</option>
-              <option>Commercial Cleaning</option>
-              <option>Deep Cleaning</option>
-              <option>Move-In / Move-Out</option>
-              <option>Airbnb Cleaning</option>
-              <option>Post-Construction Cleaning</option>
-            </select>
+            <div class="custom-select">
+  <select name="service" required>
+    <option value="">Select Service *</option>
+    <option>Residential Cleaning</option>
+    <option>Commercial Cleaning</option>
+    <option>Deep Cleaning</option>
+    <option>Move-In / Move-Out</option>
+    <option>Airbnb Cleaning</option>
+    <option>Post-Construction Cleaning</option>
+  </select>
+</div>
+
+            <div class="form-row">
+  <div class="form-group">
+    <label style="font-size:13px;">Preferred Date *</label>
+    <input type="date" name="preferred_date" required>
+  </div>
+
+  <div class="form-group">
+    <label style="font-size:13px;">Preferred Time *</label>
+    <select name="preferred_time" required>
+      <option value="">Select Time</option>
+      <option value="morning">Morning (8AM – 12PM)</option>
+      <option value="afternoon">Afternoon (12PM – 4PM)</option>
+      <option value="evening">Evening (4PM – 7PM)</option>
+    </select>
+  </div>
+</div>
+            <p style="font-size:12px; color:#64748b;">
+Preferred date and time are subject to availability. We’ll confirm within 1 hour.
+</p>
 
             <textarea name="message" placeholder="Describe your space..."></textarea>
 
