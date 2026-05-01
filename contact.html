@@ -519,5 +519,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const frequency = document.getElementById("frequencySelect");
+  const daysContainer = document.getElementById("daysContainer");
+
+  if (!frequency || !daysContainer) return;
+
+  function toggleDays() {
+    if (
+      frequency.value === "2week" ||
+      frequency.value === "4month" ||
+      frequency.value === "2month" ||
+      frequency.value === "custom"
+    ) {
+      daysContainer.style.display = "block";
+    } else {
+      daysContainer.style.display = "none";
+    }
+  }
+
+  frequency.addEventListener("change", toggleDays);
+
+  // 🔥 importante para cuando se recarga
+  toggleDays();
+
+});
+</script>
 </body>
 </html>
