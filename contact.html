@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </footer>
 
-<script>
+<script> 
 function acceptCookies() {
   const banner = document.getElementById("cookie-banner");
   if (banner) {
@@ -490,7 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("nav-menu");
   const overlay = document.querySelector(".menu-overlay");
 
-  // 🔒 VALIDACIÓN SEGURA
+  // 🔒 VALIDACIÓN SEGURA (NO CAMBIA LÓGICA)
   if (!toggle || !nav || !overlay) return;
 
   toggle.addEventListener("click", () => {
@@ -515,13 +515,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const frequency = document.getElementById("frequencySelect");
   const daysContainer = document.getElementById("daysContainer");
 
-  if (frequency) {
+  // 🔒 SOLO AGREGA SEGURIDAD
+  if (frequency && daysContainer) {
     frequency.addEventListener("change", function () {
 
       if (
@@ -549,10 +551,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const fields = form.querySelectorAll("input, select, textarea");
 
-  // 🔁 CARGAR DATOS GUARDADOS (CONTROLADO)
+  // 🔁 CARGAR DATOS GUARDADOS (MISMA LÓGICA + FILTRO)
   fields.forEach(field => {
 
-    // ❌ NO CARGAR ESTOS CAMPOS
     if (
       field.name === "service" ||
       field.name === "frequency" ||
@@ -575,11 +576,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 🔁 GUARDAR DATOS (CONTROLADO)
+  // 🔁 GUARDAR DATOS (MISMA LÓGICA + FILTRO)
   fields.forEach(field => {
     field.addEventListener("change", () => {
 
-      // ❌ CAMPOS QUE NO SE GUARDAN
       if (
         field.name === "service" ||
         field.name === "frequency" ||
@@ -589,7 +589,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // ✅ CHECKBOXES
       if (field.type === "checkbox") {
         let values = [];
 
@@ -598,9 +597,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         localStorage.setItem(field.name, values.join(","));
-      } 
-      // ✅ INPUTS
-      else {
+      } else {
         localStorage.setItem(field.name, field.value);
       }
 
