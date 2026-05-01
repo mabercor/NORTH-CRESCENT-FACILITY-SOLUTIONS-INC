@@ -467,3 +467,85 @@ document.getElementById("successModal").style.display = "flex";
   </div>
 
 </footer>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay) return;
+
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  function closeMenu() {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  }
+
+});
+</script>
+<script>
+function acceptCookies() {
+  const banner = document.getElementById("cookie-banner");
+
+  if (banner) {
+    banner.style.display = "none";
+  }
+
+  localStorage.setItem("cookiesAccepted", "true");
+}
+
+// 🔁 garder caché si déjà accepté
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+
+  if (localStorage.getItem("cookiesAccepted") && banner) {
+    banner.style.display = "none";
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const frequency = document.getElementById("frequencySelect");
+  const daysContainer = document.getElementById("daysContainer");
+
+  if (!frequency || !daysContainer) return;
+
+  function toggleDays() {
+    if (
+      frequency.value === "2week" ||
+      frequency.value === "4month" ||
+      frequency.value === "2month" ||
+      frequency.value === "custom"
+    ) {
+      daysContainer.style.display = "block";
+    } else {
+      daysContainer.style.display = "none";
+    }
+  }
+
+  frequency.addEventListener("change", toggleDays);
+
+  // 🔥 important lors du rechargement
+  toggleDays();
+
+});
+</script>
+</body>
+</html>
