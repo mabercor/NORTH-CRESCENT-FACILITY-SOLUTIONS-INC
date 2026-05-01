@@ -464,7 +464,6 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 
 </footer>
-
 <script> 
 function acceptCookies() {
   const banner = document.getElementById("cookie-banner");
@@ -474,13 +473,13 @@ function acceptCookies() {
   localStorage.setItem("cookiesAccepted", "true");
 }
 
-window.onload = function() {
+window.addEventListener("load", function() {
   const banner = document.getElementById("cookie-banner");
 
   if (localStorage.getItem("cookiesAccepted") && banner) {
     banner.style.display = "none";
   }
-};
+});
 </script>
 
 <script>
