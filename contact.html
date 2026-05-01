@@ -517,7 +517,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (frequency) {
     frequency.addEventListener("change", function () {
 
-      if (this.value === "2week" || this.value === "4month" || this.value === "2month" || this.value === "custom") {
+      if (
+        this.value === "2week" ||
+        this.value === "4month" ||
+        this.value === "2month" ||
+        this.value === "custom"
+      ) {
         daysContainer.style.display = "block";
       } else {
         daysContainer.style.display = "none";
@@ -528,7 +533,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-    <script>
+
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("contactForm");
@@ -536,9 +542,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const fields = form.querySelectorAll("input, select, textarea");
 
- 
-  // 🔁 CARGAR DATOS GUARDADOS
+  // 🔁 CARGAR DATOS GUARDADOS (CONTROLADO)
   fields.forEach(field => {
+
+    // ❌ NO CARGAR ESTOS CAMPOS
+    if (
+      field.name === "service" ||
+      field.name === "frequency" ||
+      field.name === "time_slot" ||
+      field.name === "message"
+    ) {
+      return;
+    }
+
     const saved = localStorage.getItem(field.name);
 
     if (saved) {
@@ -552,36 +568,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 🔁 GUARDAR DATOS
- fields.forEach(field => {
-  field.addEventListener("change", () => {
+  // 🔁 GUARDAR DATOS (CONTROLADO)
+  fields.forEach(field => {
+    field.addEventListener("change", () => {
 
-    // ❌ CAMPOS QUE NO SE GUARDAN
-    if (
-      field.name === "service" ||
-      field.name === "frequency" ||
-      field.name === "time_slot" ||
-      field.name === "message"
-    ) {
-      return;
-    }
+      // ❌ CAMPOS QUE NO SE GUARDAN
+      if (
+        field.name === "service" ||
+        field.name === "frequency" ||
+        field.name === "time_slot" ||
+        field.name === "message"
+      ) {
+        return;
+      }
 
-    // ✅ GUARDAR SOLO LO NECESARIO
-    if (field.type === "checkbox") {
-      let values = [];
-
-      document.querySelectorAll(`input[name="${field.name}"]:checked`).forEach(cb => {
-        values.push(cb.value);
-      });
-
-      localStorage.setItem(field.name, values.join(","));
-    } else {
-      localStorage.setItem(field.name, field.value);
-    }
-
-  });
-});
-
+      // ✅ CHECKBOXES
       if (field.type === "checkbox") {
         let values = [];
 
@@ -590,7 +591,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         localStorage.setItem(field.name, values.join(","));
-      } else {
+      } 
+      // ✅ INPUTS
+      else {
         localStorage.setItem(field.name, field.value);
       }
 
