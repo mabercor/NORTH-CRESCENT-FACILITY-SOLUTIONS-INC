@@ -415,7 +415,6 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </section>
 
-</main>
 <footer style="background:#0F172A; color:#CBD5F5; padding:20px 0 12px; font-family:sans-serif;">
 
   <div style="max-width:1100px; margin:auto; padding:0 20px;">
@@ -551,35 +550,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 🔁 GUARDAR DATOS
-  fields.forEach(field => {
-    field.addEventListener("change", () => {
-
-      if (field.type === "checkbox") {
-        let values = [];
-
-        document.querySelectorAll(`input[name="${field.name}"]:checked`).forEach(cb => {
-          values.push(cb.value);
-        });
-
-        localStorage.setItem(field.name, values.join(","));
-      } else {
-        localStorage.setItem(field.name, field.value);
-      }
-
-    });
-  });
-
-});
-</script>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const form = document.getElementById("contactForm");
-  if (!form) return;
-
-  const fields = form.querySelectorAll("input, select, textarea");
-
+ 
   // 🔁 CARGAR DATOS GUARDADOS
   fields.forEach(field => {
     const saved = localStorage.getItem(field.name);
