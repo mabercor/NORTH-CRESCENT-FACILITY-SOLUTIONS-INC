@@ -337,25 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const waUrl = "https://wa.me/14288880542?text=" + encodeURIComponent(message);
 
-    document.getElementById("waLink").href = waUrl;
-    document.getElementById("successModal").style.display = "flex";
-const service = form.querySelector('select[name="service"]').value;
-const frequency = form.querySelector('select[name="frequency"]').value;
-
-let message = `Hi, my name is ${name}.\n\n`;
-
-if (service) {
-  message += `I just submitted a request for ${service}.\n`;
-}
-
-if (frequency) {
-  message += `Preferred frequency: ${frequency}.\n`;
-}
-
-message += `\nI will send photos or videos for a faster quote.`;
-        const waUrl = "https://wa.me/14288880542?text=" + encodeURIComponent(message);
-
-        document.getElementById("waLink").href = waUrl;
+          document.getElementById("waLink").href = waUrl;
         document.getElementById("successModal").style.display = "flex";
 
       } else {
