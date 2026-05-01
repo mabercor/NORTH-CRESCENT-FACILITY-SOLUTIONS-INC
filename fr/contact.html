@@ -257,3 +257,101 @@ gtag('config', 'G-48W5J5N037');
 </section>
 
 </main>
+
+  <!-- 🔥 MODAL -->
+<div id="successModal" class="modal">
+  <div class="modal-box">
+
+    <h2>Vous êtes à une étape de votre soumission ✅</h2>
+
+    <p>Envoyez des photos ou une courte vidéo afin que nous puissions préparer votre espace correctement et répondre plus rapidement.</p>
+    <p class="highlight">Envoyez des photos ou une vidéo pour une soumission plus rapide.</p>
+
+    <a id="waLink" href="#" target="_blank" class="wa-btn">
+      📲 Envoyer des photos via WhatsApp
+    </a>
+
+    <button onclick="closeModal()" class="close-btn">
+      Continuer la navigation
+    </button>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function closeModal() {
+    const modal = document.getElementById("successModal");
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  window.closeModal = closeModal;
+
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+
+      if (response.ok) {
+
+        // 🔥 CAPTURA DATOS
+        const name = form.querySelector('input[name="name"]')?.value || "";
+        const service = form.querySelector('select[name="service"]')?.value || "";
+       const frequency = form.querySelector('select[name="frequency"]').value;
+        const description = form.querySelector('textarea[name="message"]')?.value || "";
+
+const days = Array.from(document.querySelectorAll('input[name="days[]"]:checked'))
+  .map(cb => cb.value)
+  .join(", ");
+
+let message = `Bonjour, je m'appelle ${name}.\n\n`;
+
+if (service) {
+  message += `Je viens de soumettre une demande pour ${service}.\n`;
+}
+
+if (frequency) {
+  message += `Fréquence préférée : ${frequency}.\n`;
+}
+
+if (days) {
+  message += `Jours préférés : ${days}.\n`;
+}
+if (description) {
+  message += `Détails du projet : ${description}\n`;
+}
+
+        message += `\nAvant de finaliser votre soumission, je vais envoyer des photos ou une courte vidéo.\n\nVoir nos services : https://www.northcrescentcleaning.com`;
+
+// 🔥 DESPUÉS limpias el form
+form.reset();
+
+const waUrl = "https://wa.me/14288880542?text=" + encodeURIComponent(message);
+
+document.getElementById("waLink").href = waUrl;
+document.getElementById("successModal").style.display = "flex";
+
+      } else {
+        alert("Une erreur s'est produite.");
+      }
+    })
+    .catch(() => {
+      alert("Erreur lors de l'envoi du formulaire.");
+    });
+  });
+
+});
+</script>
