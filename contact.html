@@ -499,6 +499,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+function acceptCookies() {
+  const banner = document.getElementById("cookie-banner");
 
+  if (banner) {
+    banner.style.display = "none";
+  }
+
+  localStorage.setItem("cookiesAccepted", "true");
+}
+
+// 🔁 mantener oculto si ya aceptó
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+
+  if (localStorage.getItem("cookiesAccepted") && banner) {
+    banner.style.display = "none";
+  }
+});
+</script>
 </body>
 </html>
