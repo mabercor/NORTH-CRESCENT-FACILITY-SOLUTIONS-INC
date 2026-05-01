@@ -2033,4 +2033,67 @@ section,
 
 }
 
+/* ===== FORM UNIFICADO ===== */
 
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #1E293B;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+/* PLACEHOLDER */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+/* FOCUS (cuando el usuario hace click) */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #4A9B8C;
+  box-shadow: 0 0 0 2px rgba(74,155,140,0.15);
+}
+
+/* SELECT STYLE */
+.contact-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%231E3A5F' viewBox='0 0 20 20'%3E%3Cpath d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+
+/* TEXTAREA */
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* BUTTON */
+.contact-form .btn {
+  width: 100%;
+  padding: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1E3A5F, #4A9B8C);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.contact-form .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(30,58,95,0.2);
+}
