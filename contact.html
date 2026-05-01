@@ -535,21 +535,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const fields = form.querySelectorAll("input, select, textarea");
 
-  // 🔁 CARGAR DATOS GUARDADOS
-  fields.forEach(field => {
-    const saved = localStorage.getItem(field.name);
-
-    if (saved) {
-      if (field.type === "checkbox") {
-        if (saved.includes(field.value)) {
-          field.checked = true;
-        }
-      } else {
-        field.value = saved;
-      }
-    }
-  });
-
  
   // 🔁 CARGAR DATOS GUARDADOS
   fields.forEach(field => {
