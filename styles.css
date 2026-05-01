@@ -2097,3 +2097,74 @@ section,
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(30,58,95,0.2);
 }
+/* ===== DAYS GRID PREMIUM ===== */
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* cada botón */
+.days-grid label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  border-radius: 12px;
+  background: #F1F5F9;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1E293B;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+/* ocultar checkbox feo */
+.days-grid input {
+  display: none;
+}
+
+/* hover */
+.days-grid label:hover {
+  background: #E2E8F0;
+}
+
+/* estado seleccionado */
+.days-grid input:checked + span {
+  color: white;
+}
+
+.days-grid input:checked + span::before {
+  background: linear-gradient(135deg, #1E3A5F, #4A9B8C);
+}
+
+/* fondo cuando está activo */
+.days-grid input:checked + span {
+  position: relative;
+  z-index: 2;
+}
+
+.days-grid input:checked + span::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+/* texto */
+.days-grid span {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== MOBILE MEJORADO ===== */
+@media (max-width: 480px) {
+  .days-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
