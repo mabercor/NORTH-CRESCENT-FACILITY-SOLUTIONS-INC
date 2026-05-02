@@ -2168,3 +2168,55 @@ section,
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+.footer-pro {
+  background: #0F172A;
+  color: #fff;
+  padding: 25px 15px;
+  font-size: 14px;
+}
+
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.footer-contact p {
+  margin: 2px 0;
+}
+
+.footer-cta {
+  margin-top: 5px;
+}
+
+.footer-trust {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #4A9B8C;
+  text-align: center;
+}
+
+.footer-bottom {
+  margin-top: 15px;
+  font-size: 12px;
+  text-align: center;
+  color: #94A3B8;
+}
+
+.footer-links a {
+  color: #94A3B8;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #4A9B8C;
+}
