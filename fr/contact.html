@@ -302,7 +302,10 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(form.action, {
       method: "POST",
       body: data,
-      headers: { 'Accept': 'application/json' }
+      fetch(form.action, {
+  method: "POST",
+  body: data
+})
     })
     .then(response => {
 
