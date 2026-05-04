@@ -300,7 +300,17 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const data = new FormData(form);
+    const formData = new FormData(form);
+
+// 🔥 capturar días seleccionados
+const selectedDays = Array.from(document.querySelectorAll('input[name="days[]"]:checked'))
+  .map(cb => cb.value);
+
+// 🔥 eliminar array original
+formData.delete("days[]");
+
+// 🔥 agregar como string limpio
+formData.append("days", selectedDays.join(", "));
 
     fetch(form.action, {
   method: "POST",
