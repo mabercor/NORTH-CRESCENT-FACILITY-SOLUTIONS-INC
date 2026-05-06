@@ -2419,3 +2419,40 @@ section,
   margin-right: 8px;
   margin-top: 2px;
 }
+/* ===== FIX VALUE GRID (CRÍTICO) ===== */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.value-card {
+  background: #f9fafb;
+  padding: 22px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.value-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.value-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.value-card li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+}
+
+.value-card li::before {
+  content: "✔";
+  color: #4A9B8C;
+  margin-right: 8px;
+}
