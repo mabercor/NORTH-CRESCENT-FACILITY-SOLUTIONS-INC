@@ -2171,58 +2171,84 @@ section,
 
 
 
-/* ===== PRIVADO ARCHIVO ===== */
-.discount-badge {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  background: #4A9B8C;
-  color: white;
-  font-weight: bold;
-  padding: 10px 14px;
-  border-radius: 50px;
-  font-size: 14px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  animation: pulse 1.5s infinite;
-}
-
+/* ===== NEW PAGE CARDS BASE ===== */
 .card {
   position: relative;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+.card:hover {
+  transform: translateY(-5px);
 }
 
+/* ===== DISCOUNT BADGE ===== */
+.discount-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: linear-gradient(45deg, #4A9B8C, #1E3A5F);
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  animation: pulse 1.6s infinite;
+}
+
+/* ===== STANDARD PLAN HIGHLIGHT ===== */
 .highlight {
   border: 2px solid #4A9B8C;
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   z-index: 2;
 }
 
+/* etiqueta recommended */
 .highlight::before {
   content: "RECOMMENDED";
   position: absolute;
   top: -12px;
-  left: 20px;
+  left: 15px;
   background: #4A9B8C;
   color: white;
-  padding: 5px 12px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 10px;
   font-weight: bold;
   border-radius: 20px;
+  letter-spacing: 0.5px;
 }
 
-/* animación suave */
-.highlight {
-  animation: glow 2s infinite;
+/* ===== ANIMACIONES ===== */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 0 rgba(74,155,140,0.4); }
-  50% { box-shadow: 0 0 20px rgba(74,155,140,0.6); }
-  100% { box-shadow: 0 0 0 rgba(74,155,140,0.4); }
+  0% { box-shadow: 0 0 0 rgba(74,155,140,0.3); }
+  50% { box-shadow: 0 0 18px rgba(74,155,140,0.5); }
+  100% { box-shadow: 0 0 0 rgba(74,155,140,0.3); }
+}
+
+/* glow solo al destacado */
+.highlight {
+  animation: glow 2.5s infinite;
+}
+
+/* ===== TEXTO ===== */
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.promo {
+  color: #4A9B8C;
+  font-weight: bold;
 }
