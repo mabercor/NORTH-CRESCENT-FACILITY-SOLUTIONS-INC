@@ -2356,3 +2356,9 @@ section,
   justify-content: center;
   text-align: center;
 }
+
+.super-banner h1,
+.super-banner p {
+  text-align: center;
+  width: 100%;
+}
