@@ -152,19 +152,11 @@ buttons.forEach(button => {
 
   button.addEventListener("click", () => {
 
-    const card =
-    button.closest(".ncs-store-card");
+    selectPlan(button);
 
-    // REMOVE ACTIVE
-    document
-      .querySelectorAll(".ncs-store-card")
-      .forEach(item => {
+  });
 
-        item.classList.remove(
-          "ncs-store-card-active"
-        );
-
-      });
+});
 
     // ADD ACTIVE
     card.classList.add(
