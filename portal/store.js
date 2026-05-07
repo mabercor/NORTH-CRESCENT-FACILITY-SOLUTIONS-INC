@@ -26,9 +26,13 @@ new URLSearchParams(window.location.search);
 
 const client =
 params.get("client");
+const advisor =
+params.get("advisor");
 
 const welcome =
 document.getElementById("clientWelcome");
+const advisorAssigned =
+document.getElementById("advisorAssigned");
 
 if (client && welcome) {
 
@@ -36,7 +40,12 @@ if (client && welcome) {
   `Welcome ${client}`;
 
 }
+if (advisor && advisorAssigned) {
 
+  advisorAssigned.innerText =
+  `Your advisor: ${advisor}`;
+
+}
 /* =========================================
    PLAN FEATURES
 ========================================= */
