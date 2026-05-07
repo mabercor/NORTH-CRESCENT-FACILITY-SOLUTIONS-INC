@@ -6,7 +6,7 @@
 
 <title>North Crescent – Service Plans</title>
 <style>
-<body class="maintenance-page"> 
+<body  
   {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -160,8 +160,6 @@ Our goal is to stabilize your environment so it stays clean, organized, and func
 </p>
 </div>
 
-
-
   
 <div class="super-banner">
 
@@ -225,6 +223,60 @@ Your available service options are presented below
 
 </div>
 </div>
+
+<div class="section-box">
+
+<h2 class="section-title">Select Your Plan</h2>
+<div class="divider"></div>
+
+<form id="leadForm">
+
+<!-- PLAN SELECT -->
+<div style="margin-bottom:20px;">
+  <label style="font-weight:bold;">Choose your plan:</label><br><br>
+
+  <label>
+    <input type="radio" name="plan" value="Basic Plan"> 🟢 Basic Plan
+  </label><br>
+
+  <label>
+    <input type="radio" name="plan" value="Standard Plan"> 🔵 Standard Plan
+  </label><br>
+
+  <label>
+    <input type="radio" name="plan" value="Intensive Plan"> 🔥 Intensive Plan
+  </label>
+</div>
+
+<!-- MESSAGE -->
+<p style="font-size:14px; margin-bottom:15px;">
+Send your request and one of our advisors will contact you shortly.
+</p>
+
+<!-- PHONE -->
+<input type="tel" name="phone" placeholder="Enter your phone number" required
+style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; margin-bottom:15px;">
+
+<!-- CONTACT TYPE -->
+<div style="margin-bottom:20px;">
+  <label>
+    <input type="radio" name="contact_type" value="Call" required> Call me
+  </label><br>
+
+  <label>
+    <input type="radio" name="contact_type" value="Text"> Text message
+  </label>
+</div>
+
+<!-- BUTTON -->
+<button type="submit" class="btn" style="width:100%;">
+Send Request
+</button>
+
+</form>
+
+</div>
+  
   <div class="section-box"> 
   <h2 class="section-title">What This Means for Your Space</h2>
   <div class="divider"></div>
