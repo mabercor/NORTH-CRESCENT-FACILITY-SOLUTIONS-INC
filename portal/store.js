@@ -210,6 +210,33 @@ buttons.forEach(button => {
 });
 
 /* =========================================
+   URL PLAN AUTO SELECT
+========================================= */
+
+const urlPlan =
+params.get("plan");
+
+if (urlPlan) {
+
+  buttons.forEach(button => {
+
+    const buttonPlan =
+    button.dataset.plan.toLowerCase();
+
+    if (
+      buttonPlan.includes(
+        urlPlan.toLowerCase()
+      )
+    ) {
+
+      selectPlan(button);
+
+    }
+
+  });
+
+}
+/* =========================================
    ADVISOR BUTTON
 ========================================= */
 
