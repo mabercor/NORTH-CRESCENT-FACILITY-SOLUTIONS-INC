@@ -68,6 +68,11 @@ body {
 }
 
 .ncs-store-card:hover {
+   .ncs-store-card-active {
+  border: 2px solid #4A9B8C;
+  transform: translateY(-10px);
+  box-shadow: 0 25px 70px rgba(74,155,140,0.22);
+}
   transform: translateY(-10px);
   box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
@@ -156,3 +161,5 @@ body {
   font-weight: 600;
   margin-bottom: 25px;
 }
+
+
