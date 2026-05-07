@@ -26,13 +26,19 @@ new URLSearchParams(window.location.search);
 
 const client =
 params.get("client");
+
 const advisor =
 params.get("advisor");
 
 const welcome =
 document.getElementById("clientWelcome");
+
 const advisorAssigned =
 document.getElementById("advisorAssigned");
+
+/* =========================================
+   CLIENT INFO
+========================================= */
 
 if (client && welcome) {
 
@@ -40,12 +46,14 @@ if (client && welcome) {
   `Welcome ${client}`;
 
 }
+
 if (advisor && advisorAssigned) {
 
   advisorAssigned.innerText =
   `Your advisor: ${advisor}`;
 
 }
+
 /* =========================================
    PLAN FEATURES
 ========================================= */
@@ -86,7 +94,7 @@ let currentPrice = "";
 let currentFrequency = "";
 
 /* =========================================
-   AUTO SELECT PLAN
+   SELECT PLAN
 ========================================= */
 
 function selectPlan(button) {
@@ -105,9 +113,58 @@ function selectPlan(button) {
 
     });
 
- 
+  // ADD ACTIVE
+  card.classList.add(
+    "ncs-store-card-active"
+  );
+
+  // STEP ACTIVE
+  stepSelect.classList.add(
+    "ncs-store-step-active"
+  );
+
+  // DATA
+  const plan =
+  button.dataset.plan;
+
+  const price =
+  button.dataset.price;
+
+  const frequency =
+  button.dataset.frequency;
+
+  // SAVE
+  currentPlan = plan;
+  currentPrice = price;
+  currentFrequency = frequency;
+
+  // SUMMARY
+  selectedPlan.innerText = plan;
+
+  selectedFrequency.innerText =
+  frequency;
+
+  selectedPrice.innerText =
+  price;
+
+  // FEATURES
+  selectedFeatures.innerHTML = "";
+
+  features[plan].forEach(feature => {
+
+    const li =
+    document.createElement("li");
+
+    li.innerText = feature;
+
+    selectedFeatures.appendChild(li);
+
+  });
+
+}
+
 /* =========================================
-   PLAN SELECTION
+   BUTTON EVENTS
 ========================================= */
 
 buttons.forEach(button => {
@@ -120,59 +177,8 @@ buttons.forEach(button => {
 
 });
 
-    // ADD ACTIVE
-    card.classList.add(
-      "ncs-store-card-active"
-    );
-
-    // STEP ACTIVE
-    stepSelect.classList.add(
-      "ncs-store-step-active"
-    );
-
-    // DATA
-    const plan =
-    button.dataset.plan;
-
-    const price =
-    button.dataset.price;
-
-    const frequency =
-    button.dataset.frequency;
-
-    // SAVE CURRENT
-    currentPlan = plan;
-    currentPrice = price;
-    currentFrequency = frequency;
-
-    // UPDATE SUMMARY
-    selectedPlan.innerText = plan;
-
-    selectedFrequency.innerText =
-    frequency;
-
-    selectedPrice.innerText = price;
-
-    // FEATURES
-    selectedFeatures.innerHTML = "";
-
-    features[plan].forEach(feature => {
-
-      const li =
-      document.createElement("li");
-
-      li.innerText = feature;
-
-      selectedFeatures.appendChild(li);
-
-    });
-
-  });
-
-});
-
 /* =========================================
-   URL PLAN AUTO SELECT
+   URL AUTO SELECT
 ========================================= */
 
 const urlPlan =
@@ -198,6 +204,7 @@ if (urlPlan) {
   });
 
 }
+
 /* =========================================
    ADVISOR BUTTON
 ========================================= */
@@ -208,7 +215,7 @@ advisorButton.addEventListener(
 
   e.preventDefault();
 
-  // STEP 3 ACTIVE
+  // STEP 3
   stepAdvisor.classList.add(
     "ncs-store-step-active"
   );
@@ -250,7 +257,7 @@ Assigned Advisor:
 ${advisor || "North Crescent Team"}
 
 I would like to continue with the recommendation review process.`;
-  
+
   // SMS
   if (method === "sms") {
 
