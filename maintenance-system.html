@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>North Crescent – Service Plans</title>
+
 <style>
-<body  
-  {
+
+/* ===== BASE ===== */
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #f5f7fa;
@@ -44,6 +46,7 @@
   line-height: 1.6;
 }
 
+/* ===== GRID ===== */
 .grid {
   display: grid;
   gap: 20px;
@@ -82,14 +85,13 @@
   animation: pulse 1.4s infinite;
 }
 
-/* ===== OLD PRICE ===== */
+/* ===== PRICES ===== */
 .old-price {
   text-decoration: line-through;
   color: #999;
   margin-right: 6px;
 }
 
-/* ===== PROMO ===== */
 .promo {
   background: rgba(74,155,140,0.12);
   color: #4A9B8C;
@@ -130,6 +132,33 @@
   margin-top: 20px;
 }
 
+/* ===== SUPER BANNER (FALTABA) ===== */
+.super-banner {
+  background: linear-gradient(135deg, #1E3A5F, #4A9B8C);
+  color: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ===== LIST STYLE (MEJORA VISUAL) ===== */
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card li {
+  margin-bottom: 8px;
+}
+
+.card li::before {
+  content: "✔ ";
+  color: #4A9B8C;
+  font-weight: bold;
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -142,13 +171,15 @@
   50% { box-shadow: 0 0 18px rgba(74,155,140,0.5); }
   100% { box-shadow: 0 0 0 rgba(74,155,140,0.3); }
 }
+
 </style>
 </head>
 
-<body>
+<body class="maintenance-page">
 
 <div class="container">
 
+<!-- INTRO -->
 <div class="section-box">
 <h2 class="section-title">A Structured Approach to Cleaning</h2>
 <div class="divider"></div>
@@ -160,21 +191,16 @@ Our goal is to stabilize your environment so it stays clean, organized, and func
 </p>
 </div>
 
-  
+<!-- BANNER -->
 <div class="super-banner">
-
 <h1>🔥 Exclusive May Offer for New Clients</h1>
-
-<p>
-Exclusive pricing available for new clients during May — limited availability
-</p>
-
+<p>Exclusive pricing available for new clients during May — limited availability</p>
 <p style="margin-top:10px; font-size:13px; opacity:0.85;">
 Your available service options are presented below
 </p>
-
 </div>
-  
+
+<!-- PLANS -->
 <div class="section-box"> 
 <h2 class="section-title">Service Plans</h2>
 <div class="divider"></div>
@@ -183,11 +209,9 @@ Your available service options are presented below
 
 <div class="card">
 <div class="discount-badge">12% OFF</div>
-
 <h3>🟢 Basic Plan</h3>
 <p>2 visits / month</p>
 <p>Initial control of the space</p>
-
 <p>
 <span class="old-price">$450</span>
 <span class="promo">$396 Limited Offer</span>
@@ -196,12 +220,10 @@ Your available service options are presented below
 
 <div class="card highlight">
 <div class="discount-badge">15% OFF</div>
-
 <h3>🔵 Standard Plan ⭐</h3>
 <p>4 visits / month</p>
 <p style="color:#4A9B8C; font-weight:bold;">Most Popular Choice</p>
 <p>Consistency and stability</p>
-
 <p>
 <span class="old-price">$900</span>
 <span class="promo">$765 Best Choice</span>
@@ -210,11 +232,9 @@ Your available service options are presented below
 
 <div class="card">
 <div class="discount-badge">20% OFF</div>
-
 <h3>🔥 Intensive Plan</h3>
 <p>8 visits / month</p>
 <p>Full control for demanding spaces</p>
-
 <p>
 <span class="old-price">$1400</span>
 <span class="promo">$1100 Best Value</span>
@@ -224,6 +244,7 @@ Your available service options are presented below
 </div>
 </div>
 
+<!-- PLAN SELECTION (MEJORADO) -->
 <div class="section-box">
 
 <h2 class="section-title">Select Your Plan</h2>
@@ -231,34 +252,35 @@ Your available service options are presented below
 
 <form id="leadForm">
 
-<!-- PLAN SELECT -->
 <div style="margin-bottom:20px;">
-  <label style="font-weight:bold;">Choose your plan:</label><br><br>
+  <p style="font-weight:bold;">Choose your plan:</p>
 
-  <label>
-    <input type="radio" name="plan" value="Basic Plan"> 🟢 Basic Plan
-  </label><br>
+  <label class="plan-option">
+    <input type="radio" name="plan" value="Basic Plan" required>
+    🟢 Basic Plan
+  </label>
 
-  <label>
-    <input type="radio" name="plan" value="Standard Plan"> 🔵 Standard Plan
-  </label><br>
+  <label class="plan-option">
+    <input type="radio" name="plan" value="Standard Plan">
+    🔵 Standard Plan
+  </label>
 
-  <label>
-    <input type="radio" name="plan" value="Intensive Plan"> 🔥 Intensive Plan
+  <label class="plan-option">
+    <input type="radio" name="plan" value="Intensive Plan">
+    🔥 Intensive Plan
   </label>
 </div>
 
-<!-- MESSAGE -->
 <p style="font-size:14px; margin-bottom:15px;">
 Send your request and one of our advisors will contact you shortly.
 </p>
 
-<!-- PHONE -->
 <input type="tel" name="phone" placeholder="Enter your phone number" required
 style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; margin-bottom:15px;">
 
-<!-- CONTACT TYPE -->
 <div style="margin-bottom:20px;">
+  <p style="font-weight:bold;">Preferred contact method:</p>
+
   <label>
     <input type="radio" name="contact_type" value="Call" required> Call me
   </label><br>
@@ -268,7 +290,6 @@ style="width:100%; padding:12px; border-radius:8px; border:1px solid #ccc; margi
   </label>
 </div>
 
-<!-- BUTTON -->
 <button type="submit" class="btn" style="width:100%;">
 Send Request
 </button>
@@ -276,59 +297,59 @@ Send Request
 </form>
 
 </div>
-  
-  <div class="section-box"> 
-  <h2 class="section-title">What This Means for Your Space</h2>
-  <div class="divider"></div>
 
-  <div class="grid grid-3">
+<!-- VALUE -->
+<div class="section-box"> 
+<h2 class="section-title">What This Means for Your Space</h2>
+<div class="divider"></div>
 
-    <!-- CONTROL -->
-    <div class="card">
-      <h3>🧠 Control & Operation</h3>
-      <ul>
-        <li>Total control of the building environment</li>
-        <li>Real consistency across all areas</li>
-        <li>Constant maintenance of key areas</li>
-        <li>Continuous supervision and quality control</li>
-        <li>Functional organization of common areas</li>
-        <li>Service adapted to building flow</li>
-        <li>Rapid response to operational needs</li>
-        <li>Continuous improvement of the space</li>
-      </ul>
-    </div>
+<div class="grid grid-3">
 
-    <!-- HYGIENE -->
-    <div class="card">
-      <h3>🧼 Hygiene & Safety</h3>
-      <ul>
-        <li>Zone-based disinfection system</li>
-        <li>Proper maintenance of hygiene stations</li>
-        <li>Professional waste management</li>
-        <li>Odor control and elimination</li>
-        <li>Pest prevention protocols</li>
-        <li>Healthier and safer environments</li>
-        <li>Regulatory compliance (WHMIS)</li>
-        <li>Long-term cost reduction</li>
-      </ul>
-    </div>
+<div class="card">
+<h3>🧠 Control & Operation</h3>
+<ul>
+<li>Total control of the building environment</li>
+<li>Real consistency across all areas</li>
+<li>Constant maintenance of key areas</li>
+<li>Continuous supervision and quality control</li>
+<li>Functional organization of common areas</li>
+<li>Service adapted to building flow</li>
+<li>Rapid response to operational needs</li>
+<li>Continuous improvement of the space</li>
+</ul>
+</div>
 
-    <!-- VALUE -->
-    <div class="card">
-      <h3>💼 Value & Experience</h3>
-      <ul>
-        <li>Immediate improvement of property image</li>
-        <li>Reduction of daily operational issues</li>
-        <li>Greater durability of assets</li>
-        <li>Enhanced perceived property value</li>
-        <li>Improved user and resident experience</li>
-        <li>Increased tenant retention</li>
-        <li>Professional image standards</li>
-        <li>Peace of mind through structured management</li>
-      </ul>
-    </div>
+<div class="card">
+<h3>🧼 Hygiene & Safety</h3>
+<ul>
+<li>Zone-based disinfection system</li>
+<li>Proper maintenance of hygiene stations</li>
+<li>Professional waste management</li>
+<li>Odor control and elimination</li>
+<li>Pest prevention protocols</li>
+<li>Healthier and safer environments</li>
+<li>Regulatory compliance (WHMIS)</li>
+<li>Long-term cost reduction</li>
+</ul>
+</div>
 
-  </div>
+<div class="card">
+<h3>💼 Value & Experience</h3>
+<ul>
+<li>Immediate improvement of property image</li>
+<li>Reduction of daily operational issues</li>
+<li>Greater durability of assets</li>
+<li>Enhanced perceived property value</li>
+<li>Improved user and resident experience</li>
+<li>Increased tenant retention</li>
+<li>Professional image standards</li>
+<li>Peace of mind through structured management</li>
+</ul>
+</div>
+
+</div>
+</div>
+
 </div>
 
 <div class="section-box">
