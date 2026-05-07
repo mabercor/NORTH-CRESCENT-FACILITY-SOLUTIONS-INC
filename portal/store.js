@@ -32,6 +32,11 @@ const features = {
 
 };
 buttons.forEach(button => {
+  const stepSelect =
+document.getElementById("stepSelect");
+
+const stepAdvisor =
+document.getElementById("stepAdvisor");
 
   button.addEventListener("click", () => {
 
