@@ -275,19 +275,30 @@ advisorButton.addEventListener(
   ).value;
 
   const message =
-`Hello, my name is ${clientName}.
+`North Crescent Facility Solutions
 
-I reviewed the service portal and I am interested in the following recommendation:
+Your structured recommendation has been prepared.
 
-Plan: ${currentPlan}
-Frequency: ${currentFrequency}
-Price: ${currentPrice}
+Client:
+${clientName}
 
-Preferred callback window:
+Selected Plan:
+${currentPlan}
+
+Service Frequency:
+${currentFrequency}
+
+Estimated Investment:
+${currentPrice}
+
+Preferred Callback Window:
 ${callback}
 
-I would like to speak with an advisor for additional guidance.`;
+Assigned Advisor:
+${advisor || "North Crescent Team"}
 
+I would like to continue with the recommendation review process.`;
+  
   // SMS
   if (method === "sms") {
 
