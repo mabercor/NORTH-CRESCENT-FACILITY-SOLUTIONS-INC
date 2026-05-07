@@ -43,3 +43,108 @@ body {
   line-height: 1.8;
   color: #64748B;
 }
+
+
+
+/* =========================================
+   PRODUCT GRID
+========================================= */
+
+.ncs-store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 70px;
+}
+
+.ncs-store-card {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  transition: all 0.35s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.ncs-store-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+.ncs-store-card-featured {
+  border: 2px solid #4A9B8C;
+  transform: scale(1.03);
+}
+
+.ncs-store-recommended {
+  position: absolute;
+  top: -14px;
+  left: 30px;
+  background: #4A9B8C;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+}
+
+.ncs-store-badge {
+  display: inline-block;
+  background: rgba(74,155,140,0.12);
+  color: #4A9B8C;
+  padding: 8px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.ncs-store-card-title {
+  font-size: 32px;
+  color: #1E3A5F;
+  margin-bottom: 12px;
+}
+
+.ncs-store-card-frequency {
+  color: #4A9B8C;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ncs-store-card-description {
+  color: #64748B;
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+.ncs-store-price {
+  font-size: 42px;
+  font-weight: bold;
+  color: #1E3A5F;
+  margin-bottom: 30px;
+}
+
+.ncs-store-price span {
+  font-size: 16px;
+  color: #64748B;
+  font-weight: normal;
+}
+
+.ncs-store-button {
+  width: 100%;
+  border: none;
+  background: #1E3A5F;
+  color: white;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ncs-store-button:hover {
+  background: #4A9B8C;
+}
