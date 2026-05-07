@@ -162,4 +162,28 @@ body {
   margin-bottom: 25px;
 }
 
+.ncs-store-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ncs-store-features li {
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1E3A5F;
+  font-size: 16px;
+}
+
+.ncs-store-features li::before {
+  content: "✓";
+  color: #4A9B8C;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
 
