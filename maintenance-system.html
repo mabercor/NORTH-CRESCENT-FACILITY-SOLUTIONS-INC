@@ -251,61 +251,49 @@ Your available service options are presented below
 
 <form id="leadForm">
 
-<p class="label-title">Choose your plan:</p>
+<p style="font-weight:bold;">Choose your plan:</p>
 
 <div class="plan-grid">
 
 <label class="plan-card">
-<input type="radio" name="plan" value="Basic Plan" required>
-<div class="plan-box">
-<span class="plan-icon">🟢</span>
-<p class="plan-name">Basic Plan</p>
-<p class="plan-desc">Essential control</p>
-</div>
+  <input type="radio" name="plan" value="Basic Plan" required>
+  <div class="plan-inner">
+    <h3>🟢 Basic Plan</h3>
+    <p>Essential control</p>
+  </div>
 </label>
 
 <label class="plan-card">
-<input type="radio" name="plan" value="Standard Plan">
-<div class="plan-box recommended">
-<span class="badge">RECOMMENDED</span>
-<span class="plan-icon">🔵</span>
-<p class="plan-name">Standard Plan</p>
-<p class="plan-desc">Best balance</p>
-</div>
+  <input type="radio" name="plan" value="Standard Plan">
+  <div class="plan-inner recommended">
+    <span class="tag">RECOMMENDED</span>
+    <h3>🔵 Standard Plan</h3>
+    <p>Best balance</p>
+  </div>
 </label>
 
 <label class="plan-card">
-<input type="radio" name="plan" value="Intensive Plan">
-<div class="plan-box">
-<span class="plan-icon">🔥</span>
-<p class="plan-name">Intensive Plan</p>
-<p class="plan-desc">Full control</p>
-</div>
+  <input type="radio" name="plan" value="Intensive Plan">
+  <div class="plan-inner">
+    <h3>🔥 Intensive Plan</h3>
+    <p>Full control</p>
+  </div>
 </label>
 
 </div>
 
-<p class="helper-text">
+<p style="margin-top:20px;">
 Send your request and one of our advisors will contact you shortly.
 </p>
 
 <input type="tel" name="phone" placeholder="Enter your phone number" required class="input-pro">
 
-<p class="label-title">Preferred contact method:</p>
+<p style="font-weight:bold;">Preferred contact method:</p>
 
-<div class="contact-grid">
-<label class="contact-option">
-<input type="radio" name="contact_type" value="Call" required>
-<span>📞 Call</span>
-</label>
+<label><input type="radio" name="contact_type" value="Call" required> Call me</label><br>
+<label><input type="radio" name="contact_type" value="Text"> Text message</label>
 
-<label class="contact-option">
-<input type="radio" name="contact_type" value="Text">
-<span>💬 Text</span>
-</label>
-</div>
-
-<button type="submit" class="btn-pro">
+<button type="submit" class="btn" style="width:100%;">
 Send Request
 </button>
 
