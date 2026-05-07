@@ -31,6 +31,12 @@ const features = {
   ]
 
 };
+const stepSelect =
+document.getElementById("stepSelect");
+
+const stepAdvisor =
+document.getElementById("stepAdvisor");
+
 buttons.forEach(button => {
   const stepSelect =
 document.getElementById("stepSelect");
@@ -50,7 +56,8 @@ document.getElementById("stepAdvisor");
 
     // ADD ACTIVE
     card.classList.add("ncs-store-card-active");
-
+stepSelect.classList.add("ncs-store-step-active");
+    
     // DATA
     const plan = button.dataset.plan;
     const price = button.dataset.price;
