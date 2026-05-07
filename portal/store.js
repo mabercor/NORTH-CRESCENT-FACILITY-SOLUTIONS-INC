@@ -96,54 +96,7 @@ function selectPlan(button) {
 
     });
 
-  // ADD ACTIVE
-  card.classList.add(
-    "ncs-store-card-active"
-  );
-
-  // STEP ACTIVE
-  stepSelect.classList.add(
-    "ncs-store-step-active"
-  );
-
-  // DATA
-  const plan =
-  button.dataset.plan;
-
-  const price =
-  button.dataset.price;
-
-  const frequency =
-  button.dataset.frequency;
-
-  // SAVE CURRENT
-  currentPlan = plan;
-  currentPrice = price;
-  currentFrequency = frequency;
-
-  // UPDATE SUMMARY
-  selectedPlan.innerText = plan;
-
-  selectedFrequency.innerText =
-  frequency;
-
-  selectedPrice.innerText = price;
-
-  // FEATURES
-  selectedFeatures.innerHTML = "";
-
-  features[plan].forEach(feature => {
-
-    const li =
-    document.createElement("li");
-
-    li.innerText = feature;
-
-    selectedFeatures.appendChild(li);
-
-  });
-
-}
+ 
 /* =========================================
    PLAN SELECTION
 ========================================= */
