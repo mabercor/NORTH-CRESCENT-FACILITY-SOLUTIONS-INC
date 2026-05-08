@@ -2184,4 +2184,29 @@ section,
   animation: pulse 1.4s infinite;
 }
 
+/* =========================================
+   PROMOTIONAL PRICING
+========================================= */
 
+.ncs-store-price-wrapper {
+  margin-bottom: 30px;
+}
+
+.ncs-store-old-price {
+  font-size: 16px;
+  color: #94A3B8;
+  text-decoration: line-through;
+  margin-bottom: 10px;
+}
+
+.ncs-store-save {
+  display: inline-block;
+  margin-top: 14px;
+  background: rgba(74,155,140,0.12);
+  color: #4A9B8C;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
