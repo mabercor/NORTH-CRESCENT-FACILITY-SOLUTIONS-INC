@@ -2193,7 +2193,7 @@ section,
 }
 
 .ncs-store-old-price {
-  font-size: 16px;
+  font-size: 18px;
   color: #94A3B8;
   text-decoration: line-through;
   margin-bottom: 10px;
@@ -2204,7 +2204,7 @@ section,
   margin-top: 14px;
   background: rgba(74,155,140,0.12);
   color: #4A9B8C;
-  padding: 8px 14px;
+  padding: 10px 16px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
