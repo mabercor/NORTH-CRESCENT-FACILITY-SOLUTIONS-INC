@@ -276,4 +276,12 @@ I would like to continue with the recommendation review process.`;
 
   }
 
+  // PHONE CALL
+  if (method === "call") {
+
+    window.location.href =
+    "tel:+14288880542";
+
+  }
+
 });
