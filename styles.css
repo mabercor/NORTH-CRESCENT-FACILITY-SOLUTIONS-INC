@@ -3252,86 +3252,167 @@ body[data-page="airbnb"] .badge{
   height: auto;
   aspect-ratio: 1060 / 707;
 }
+
+
+
 /* ============================================
-   GOOGLE REVIEWS
+   GOOGLE REVIEWS — NORTH CRESCENT
 ============================================ */
+
+/* --------------------------------------------
+   REVIEW BOX
+-------------------------------------------- */
 
 .review-box {
+  width: 100%;
   text-align: center;
-  padding: 38px 35px;
+
+  padding: 28px 30px;
+
   border-radius: 18px;
   background: #ffffff;
+
   border: 1px solid #dbe3ec;
-  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08);
+
+  box-shadow:
+    0 6px 18px rgba(30, 58, 95, 0.07);
+
+  box-sizing: border-box;
 }
 
 
-/* ============================================
+/* --------------------------------------------
    REVIEW AUTHOR
-============================================ */
+-------------------------------------------- */
 
-.review-author {
-  margin: 0 0 10px;
+.review-box .review-author {
+  margin: 0 0 6px;
+
   color: #1E3A5F;
-  font-size: 1.35rem;
+
+  font-size: 1.25rem;
   font-weight: 700;
+
+  line-height: 1.3;
+
+  text-align: center;
 }
 
 
-/* ============================================
+/* --------------------------------------------
    GOOGLE STARS
-============================================ */
+-------------------------------------------- */
 
-.review-stars {
+.review-box .review-stars {
+  display: block;
+
+  margin: 4px auto 16px;
+
   color: #fbbc04;
-  font-size: 1.55rem;
-  letter-spacing: 3px;
+
+  font-size: 1.35rem;
+
+  letter-spacing: 2px;
+
   line-height: 1;
-  margin: 8px 0 22px;
+
+  text-align: center;
 }
 
 
-/* ============================================
+/* --------------------------------------------
+   REVIEW QUOTE
+-------------------------------------------- */
+
+.review-box .review-quote {
+  display: block;
+
+  width: 100%;
+  max-width: 850px;
+
+  margin: 0 auto !important;
+
+  padding: 0 !important;
+
+  text-align: center !important;
+
+  box-sizing: border-box;
+}
+
+
+/* --------------------------------------------
    REVIEW TEXT
-============================================ */
+-------------------------------------------- */
 
-.review-quote {
-  max-width: 900px;
-  margin: 0 auto;
-}
+.review-box .review-quote p {
+  display: block;
 
-.review-quote p {
-  margin: 0 0 15px;
+  width: 100%;
+  max-width: 850px;
+
+  margin: 0 auto 10px !important;
+
+  padding: 0 !important;
+
   color: #1E3A5F;
-  font-size: 1.05rem;
-  line-height: 1.7;
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+
+  text-align: center !important;
+
+  box-sizing: border-box;
 }
 
 
-/* ============================================
-   GOOGLE REVIEW BRAND
-============================================ */
+/* Remove extra spacing from last paragraph */
 
-.google-review {
+.review-box .review-quote p:last-child {
+  margin-bottom: 0 !important;
+}
+
+
+/* --------------------------------------------
+   GOOGLE REVIEW BRAND
+-------------------------------------------- */
+
+.review-box .google-review {
   display: flex;
+
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 28px;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
   color: #3c4043;
-  font-size: 1rem;
+
+  font-size: 0.95rem;
+
   font-weight: 500;
+
+  line-height: 1;
+
+  text-align: center;
 }
 
 
-/* ============================================
+/* --------------------------------------------
    GOOGLE "G" LOGO
-============================================ */
+-------------------------------------------- */
 
-.google-logo {
+.review-box .google-logo {
+  display: inline-block;
+
   font-family: Arial, sans-serif;
+
   font-size: 1.65rem;
+
   font-weight: 700;
+
+  line-height: 1;
 
   background: linear-gradient(
     90deg,
@@ -3347,32 +3428,76 @@ body[data-page="airbnb"] .badge{
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
 
-/* ============================================
+/* --------------------------------------------
+   REVIEW SECTION SPACING
+-------------------------------------------- */
+
+.review-section {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+
+/* --------------------------------------------
    MOBILE
-============================================ */
+-------------------------------------------- */
 
 @media (max-width: 768px) {
 
   .review-box {
-    padding: 30px 20px;
+    padding: 24px 20px;
+    border-radius: 16px;
   }
 
-  .review-author {
+  .review-box .review-author {
+    font-size: 1.15rem;
+  }
+
+  .review-box .review-stars {
+    font-size: 1.25rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+
+  .review-box .review-quote p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .review-box .google-review {
+    margin-top: 16px;
+    font-size: 0.9rem;
+  }
+
+  .review-box .google-logo {
+    font-size: 1.5rem;
+  }
+
+}
+
+
+/* --------------------------------------------
+   SMALL MOBILE
+-------------------------------------------- */
+
+@media (max-width: 480px) {
+
+  .review-box {
+    padding: 22px 16px;
+  }
+
+  .review-box .review-stars {
     font-size: 1.2rem;
+    letter-spacing: 1px;
   }
 
-  .review-stars {
-    font-size: 1.35rem;
-    letter-spacing: 2px;
-  }
-
-  .review-quote p {
-    font-size: 1rem;
-    line-height: 1.65;
+  .review-box .review-quote p {
+    font-size: 0.95rem;
   }
 
 }
