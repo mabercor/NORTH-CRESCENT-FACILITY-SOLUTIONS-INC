@@ -3252,4 +3252,127 @@ body[data-page="airbnb"] .badge{
   height: auto;
   aspect-ratio: 1060 / 707;
 }
+/* ============================================
+   GOOGLE REVIEWS
+============================================ */
 
+.review-box {
+  text-align: center;
+  padding: 38px 35px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #dbe3ec;
+  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.08);
+}
+
+
+/* ============================================
+   REVIEW AUTHOR
+============================================ */
+
+.review-author {
+  margin: 0 0 10px;
+  color: #1E3A5F;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+
+/* ============================================
+   GOOGLE STARS
+============================================ */
+
+.review-stars {
+  color: #fbbc04;
+  font-size: 1.55rem;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin: 8px 0 22px;
+}
+
+
+/* ============================================
+   REVIEW TEXT
+============================================ */
+
+.review-quote {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.review-quote p {
+  margin: 0 0 15px;
+  color: #1E3A5F;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+
+/* ============================================
+   GOOGLE REVIEW BRAND
+============================================ */
+
+.google-review {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  color: #3c4043;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+/* ============================================
+   GOOGLE "G" LOGO
+============================================ */
+
+.google-logo {
+  font-family: Arial, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+
+  background: linear-gradient(
+    90deg,
+    #4285F4 0%,
+    #4285F4 25%,
+    #34A853 25%,
+    #34A853 50%,
+    #FBBC05 50%,
+    #FBBC05 75%,
+    #EA4335 75%,
+    #EA4335 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 768px) {
+
+  .review-box {
+    padding: 30px 20px;
+  }
+
+  .review-author {
+    font-size: 1.2rem;
+  }
+
+  .review-stars {
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+  }
+
+  .review-quote p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+}
