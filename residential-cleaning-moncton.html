@@ -66,7 +66,7 @@ content="https://northcrescentcleaning.com/residential-cleaning-moncton.html">
 
 
 <meta property="og:image"
-content="https://northcrescentcleaning.com/images/residential-cleaning-moncton.jpg">
+content="https://northcrescentcleaning.com/images/residential-cleaning-moncton-960.webp">
 
 
 <!-- =====================================================
@@ -86,7 +86,7 @@ content="Professional residential cleaning and sanitization services throughout 
 
 
 <meta name="twitter:image"
-content="https://northcrescentcleaning.com/images/residential-cleaning-moncton.jpg">
+content="https://northcrescentcleaning.com/images/residential-cleaning-moncton-960.webp">
 
 
 <!-- =====================================================
@@ -119,10 +119,23 @@ href="https://northcrescentcleaning.com/fr/residential-cleaning-moncton.html">
 <!-- =====================================================
      GOOGLE FONT
 ====================================================== -->
+     <link rel="preload"
+      as="image"
+      href="/images/residential-cleaning-moncton-960.webp"
+      imagesrcset="/images/residential-cleaning-moncton-768.webp 768w,
+                   /images/residential-cleaning-moncton-960.webp 960w"
+      imagesizes="(max-width: 767px) 100vw, 960px"
+      fetchpriority="high">
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-rel="stylesheet">
+<link rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</noscript>
 
 
 <!-- GLOBAL CSS -->
@@ -176,10 +189,10 @@ gtag('config', 'G-48W5J5N037');
 
       "logo":{
         "@type":"ImageObject",
-        "url":"https://northcrescentcleaning.com/images/logo.jpg"
+        "url":"https://northcrescentcleaning.com/images/logo.webp"
       },
 
-      "image":"https://northcrescentcleaning.com/images/logo.jpg",
+      "image":"https://northcrescentcleaning.com/images/logo.webp",
 
       "telephone":"+1-428-888-0542",
 
@@ -215,7 +228,7 @@ gtag('config', 'G-48W5J5N037');
         "@id":"https://northcrescentcleaning.com/#organization"
       },
 
-      "image":"https://northcrescentcleaning.com/images/logo.jpg",
+      "image":"https://northcrescentcleaning.com/images/logo.webp",
 
       "telephone":"+1-428-888-0542",
 
@@ -425,7 +438,7 @@ gtag('config', 'G-48W5J5N037');
 
       "primaryImageOfPage":{
         "@type":"ImageObject",
-        "url":"https://northcrescentcleaning.com/images/residential-cleaning-moncton.jpg"
+        "url":"https://northcrescentcleaning.com/images/residential-cleaning-moncton-960.webp"
       },
 
       "inLanguage":"en-CA"
@@ -593,9 +606,11 @@ gtag('config', 'G-48W5J5N037');
 
       <a href="/index.html">
         <img
-          src="/images/logo.jpg"
-          alt="North Crescent Facility Solutions residential cleaning services Moncton NB"
-        >
+  src="/images/logo.webp"
+  alt="North Crescent cleaning services in Moncton NB"
+  width="70"
+  height="70"
+  decoding="async">
       </a>
 
       <div class="brand-title">
@@ -786,18 +801,21 @@ gtag('config', 'G-48W5J5N037');
 
       <div class="hero-image section-box">
 
-        <img
-          src="/images/residential-cleaning-moncton.jpg"
-          alt="Professional residential cleaning and sanitization service for homes in Moncton NB and surrounding communities"
-          loading="lazy"
-        >
+         <img
+    src="/images/residential-cleaning-moncton-960.webp"
+    srcset="/images/residential-cleaning-moncton-768.webp 768w,
+            /images/residential-cleaning-moncton-960.webp 960w"
+    sizes="(max-width: 767px) 100vw, 960px"
+    alt="Professional residential cleaning and sanitization service for homes in Moncton NB and surrounding communities"
+    width="960"
+    height="747"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async">
 
       </div>
 
-
-    </div>
-
-  </section>
+      </section>
 
         <!-- =========================================================
      RESIDENTIAL CLEANING — OUR APPROACH
@@ -1731,7 +1749,7 @@ gtag('config', 'G-48W5J5N037');
 
 </section>
 
-        <!-- =========================================================
+   <!-- =========================================================
      RESIDENTIAL CLEANING — FAQ
 ========================================================= -->
 
@@ -1747,6 +1765,12 @@ gtag('config', 'G-48W5J5N037');
 
       <div class="divider"></div>
 
+      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
+        Have questions about residential cleaning, deep cleaning, recurring
+        house cleaning, or professional home care? Here are answers to some
+        of the questions homeowners ask before choosing a cleaning service.
+      </p>
+
 
       <div class="faq-grid">
 
@@ -1760,10 +1784,11 @@ gtag('config', 'G-48W5J5N037');
           </h3>
 
           <p>
-            Pricing depends on the size of your home, the type of
-            cleaning required, the condition of the space, and the
-            frequency of service. We provide customized quotes
-            based on your home's specific needs.
+            Pricing depends on the size of your home, the type of cleaning
+            required, the condition of the space, and the frequency of service.
+            We provide customized quotes based on your home's specific needs,
+            so you receive a cleaning solution that fits your home rather than
+            a one-size-fits-all service.
           </p>
 
         </div>
@@ -1778,9 +1803,11 @@ gtag('config', 'G-48W5J5N037');
           </h3>
 
           <p>
-            Yes. We offer weekly, bi-weekly, monthly, and customized
-            residential cleaning schedules designed around your
-            home's needs and your preferred routine.
+            Yes. We offer weekly, bi-weekly, monthly, and customized residential
+            cleaning schedules designed around your home's needs and your
+            preferred routine. Our goal is to provide dependable service that
+            helps you enjoy a consistently clean and comfortable home without
+            adding another responsibility to your schedule.
           </p>
 
         </div>
@@ -1791,14 +1818,15 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Do you provide deep cleaning services for homes?
+            How often should I have my home professionally cleaned?
           </h3>
 
           <p>
-            Yes. Our deep cleaning services provide detailed
-            attention to areas and surfaces that may need additional
-            care. The service can be tailored to the condition and
-            priorities of your home.
+            It depends on your home's size, daily activity, lifestyle, and
+            cleaning priorities. Some homes benefit from weekly service, while
+            others may be better suited to bi-weekly or monthly cleaning.
+            We can help you choose a practical schedule based on what works
+            best for your home and your routine.
           </p>
 
         </div>
@@ -1809,13 +1837,15 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Do you provide move-in and move-out cleaning?
+            What's the difference between regular cleaning and deep cleaning?
           </h3>
 
           <p>
-            Yes. We provide professional move-in and move-out
-            cleaning to help prepare a home for a new occupant
-            or leave a property clean and ready for its next stage.
+            Regular cleaning focuses on maintaining the cleanliness and
+            comfort of your home on an ongoing basis. Deep cleaning provides
+            additional attention to areas and surfaces that may require more
+            detailed care. We can recommend the appropriate service based on
+            the condition and priorities of your home.
           </p>
 
         </div>
@@ -1826,13 +1856,15 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Do you provide residential sanitization services?
+            Do I need a deep cleaning before starting recurring service?
           </h3>
 
           <p>
-            Yes. Our residential cleaning services can include
-            professional cleaning and sanitization practices
-            designed around the needs of your home.
+            Not necessarily. Every home is different. If your home needs
+            additional attention before beginning a regular cleaning routine,
+            we can recommend a deep cleaning first. Our goal is to establish
+            a practical starting point and then help you maintain your home
+            consistently.
           </p>
 
         </div>
@@ -1843,13 +1875,14 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Are your residential cleaning staff trained?
+            Do you provide move-in and move-out cleaning?
           </h3>
 
           <p>
-            Yes. Our team follows professional cleaning and safety
-            practices, including WHMIS, IPAC, Bloodborne Pathogens
-            awareness, and appropriate PPE protocols.
+            Yes. We provide professional move-in and move-out cleaning to
+            help prepare a home for a new occupant or leave a property clean
+            and ready for its next stage. We focus on the details that help
+            make the transition easier and less stressful.
           </p>
 
         </div>
@@ -1860,14 +1893,14 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            What areas do you serve?
+            Do you provide residential sanitization services?
           </h3>
 
           <p>
-            We provide residential cleaning services throughout
-            Moncton, Dieppe, Riverview, Shediac, Pointe-du-Chêne,
-            Cap-Pelé, Cocagne, Grande-Digue, and surrounding
-            communities throughout Southeast New Brunswick.
+            Yes. Our residential cleaning services can include professional
+            cleaning and sanitization practices based on the needs of your
+            home. We focus on careful, responsible service designed to help
+            maintain a clean, comfortable, and welcoming living environment.
           </p>
 
         </div>
@@ -1878,14 +1911,15 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Why should I hire a professional residential cleaner?
+            Do you bring your own cleaning products and equipment?
           </h3>
 
           <p>
-            Professional cleaning can help reduce the time and
-            stress associated with maintaining your home while
-            giving you more time for your family, your loved ones,
-            and the things that matter most.
+            Yes. We can provide the professional cleaning products, equipment,
+            and supplies required for the agreed scope of service. If you have
+            specific product preferences or household considerations, we can
+            discuss them during the consultation so the service is appropriate
+            for your home.
           </p>
 
         </div>
@@ -1896,14 +1930,14 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            How can I request a free residential cleaning quote?
+            Do I need to be home while you clean?
           </h3>
 
           <p>
-            Simply contact North Crescent Facility Solutions and
-            tell us what your home needs. We'll discuss your
-            cleaning requirements and provide a clear,
-            no-obligation quote.
+            Not necessarily. Cleaning arrangements can be coordinated around
+            your schedule and access preferences. Whether you are home or away,
+            we approach every property with professionalism, respect, and care,
+            because we understand that we are being trusted with your home.
           </p>
 
         </div>
@@ -1914,15 +1948,54 @@ gtag('config', 'G-48W5J5N037');
         <div class="faq-card">
 
           <h3>
-            Why choose North Crescent for residential cleaning?
+            Are your residential cleaning staff trained?
           </h3>
 
           <p>
-            We believe cleaning is a way of showing love and care.
-            Our trained team approaches every cleaning with
-            dedication, respect, and attention to detail because
-            we understand that your home is more than a space.
-            It is where life happens.
+            Yes. Our team follows professional cleaning and safety practices,
+            including WHMIS, IPAC, Bloodborne Pathogens awareness, and
+            appropriate PPE protocols. We believe professional cleaning also
+            means treating your home, your belongings, and your family with
+            care and respect.
+          </p>
+
+        </div>
+
+
+        <!-- FAQ 11 -->
+
+        <div class="faq-card">
+
+          <h3>
+            Why should I hire a professional residential cleaner?
+          </h3>
+
+          <p>
+            Professional cleaning can help reduce the time and stress involved
+            in maintaining your home, giving you more time for your family,
+            your loved ones, your work, and the things that matter most.
+            We are here to make home care easier while providing the
+            professionalism and attention to detail your home deserves.
+          </p>
+
+        </div>
+
+
+        <!-- FAQ 12 -->
+
+        <div class="faq-card">
+
+          <h3>
+            Do you provide residential cleaning services near me?
+          </h3>
+
+          <p>
+            Yes. We provide residential cleaning services throughout Moncton,
+            Dieppe, Riverview, Shediac, Pointe-du-Chêne, Cap-Pelé, Cocagne,
+            Grande-Digue, and surrounding communities throughout Southeast
+            New Brunswick. Our goal is to provide dependable, thoughtful
+            service that helps homeowners feel confident their home is
+            properly cared for.
           </p>
 
         </div>
