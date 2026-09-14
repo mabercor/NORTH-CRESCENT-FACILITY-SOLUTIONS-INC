@@ -3243,14 +3243,15 @@ body[data-page="airbnb"] .badge{
 
 }
 /* =========================================
-   ⚡ PAGESPEED OPTIMIZATION
-   HERO IMAGE.
+   HERO IMAGES — NATURAL PROPORTION
    ========================================= */
 
 .hero-image img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1060 / 707;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 
