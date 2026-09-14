@@ -3592,3 +3592,21 @@ body[data-page="airbnb"] .badge{
   color: #1E3A5F;
   font-weight: 600;
 }
+
+
+/* =========================================
+   SERVICES CARD IMAGES — NATURAL PROPORTION
+   ========================================= */
+
+.image-frame {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
