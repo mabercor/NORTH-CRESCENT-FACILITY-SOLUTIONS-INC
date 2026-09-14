@@ -1758,13 +1758,14 @@ section,
 
 
 /* ===== DROPDOWN DESKTOP PREMIUM ===== */
+
 .dropdown {
   position: relative;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 120%;
+  top: 100%;
   left: 0;
   min-width: 250px;
 
@@ -1776,19 +1777,19 @@ section,
 
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px) scale(0.98);
+  transform: translateY(0) scale(0.98);
 
   transition: all 0.25s ease;
   z-index: 1000;
 }
 
-/* ACTIVACIÓN */
 .dropdown:hover .dropdown-menu,
 .dropdown.open .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
 }
+
 
 /* LINKS */
 .dropdown-menu a {
