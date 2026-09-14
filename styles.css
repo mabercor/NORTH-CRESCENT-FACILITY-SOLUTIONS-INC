@@ -3550,3 +3550,44 @@ body[data-page="airbnb"] .badge{
   color: #64748B;
   font-weight: 400;
 }
+/* =========================================
+   CONTACT FORM — REQUIRED / OPTIONAL
+   ========================================= */
+
+/* REQUIRED FIELDS */
+.contact-form input[required],
+.contact-form textarea[required],
+.contact-form select[required] {
+  color: #1E3A5F;
+  font-weight: 600;
+}
+
+/* REQUIRED PLACEHOLDER */
+.contact-form input[required]::placeholder,
+.contact-form textarea[required]::placeholder {
+  color: #64748B;
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* OPTIONAL FIELDS */
+.contact-form input:not([required]),
+.contact-form textarea:not([required]),
+.contact-form select:not([required]) {
+  color: #64748B;
+  font-weight: 400;
+}
+
+/* OPTIONAL PLACEHOLDER */
+.contact-form input:not([required])::placeholder,
+.contact-form textarea:not([required])::placeholder {
+  color: #94A3B8;
+  opacity: 1;
+  font-weight: 400;
+}
+
+/* REQUIRED SELECT WHEN EMPTY */
+.contact-form select[required]:invalid {
+  color: #1E3A5F;
+  font-weight: 600;
+}
