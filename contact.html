@@ -293,7 +293,7 @@ gtag('config', 'G-48W5J5N037');
   <select
     name="visitsPerMonth"
     id="frequencySelect"
-    required>
+    
 
     <option value="">
       Cleaning Frequency *
@@ -402,7 +402,7 @@ gtag('config', 'G-48W5J5N037');
 
   <select
     name="timeSlot"
-    required>
+    
 
     <option value="">
       Preferred Time Slot *
@@ -449,9 +449,12 @@ gtag('config', 'G-48W5J5N037');
 
 <textarea
   name="operationalSummary"
-  placeholder="Describe your space...">
+  placeholder="Observations / Tell us about your space *"
+  required>
 </textarea>
-
+<p style="font-size:12px; color:#64748b; margin-top:6px;">
+  Please tell us a little about your space, cleaning needs, or anything we should know before preparing your quote.
+</p>
       <!-- HONEYPOT ANTI-SPAM -->
 <div style="position:absolute; left:-9999px; opacity:0; pointer-events:none;">
 
@@ -737,14 +740,43 @@ if (containsSuspicious) {
 
 }
 
-// BLOCK VERY SHORT MESSAGES
+if (
+  !operationalSummary.trim()
+) {
+
+  alert("Please tell us a little about your space or cleaning needs before submitting your request.");
+
+  submitButton.dataset.submitting = "false";
+  submitButton.disabled = false;
+  submitButton.innerText = "Get My Free Quote";
+
+  const observationField =
+    form.querySelector('textarea[name="operationalSummary"]');
+
+  if (observationField) {
+    observationField.focus();
+  }
+
+  return;
+
+}
 
 if (
-  operationalSummary &&
   operationalSummary.trim().length < 10
 ) {
 
-  console.warn("Short message blocked.");
+  alert("Please provide a little more information about your space or cleaning needs.");
+
+  submitButton.dataset.submitting = "false";
+  submitButton.disabled = false;
+  submitButton.innerText = "Get My Free Quote";
+
+  const observationField =
+    form.querySelector('textarea[name="operationalSummary"]');
+
+  if (observationField) {
+    observationField.focus();
+  }
 
   return;
 
