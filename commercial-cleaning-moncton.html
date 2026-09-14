@@ -37,7 +37,7 @@ content="Professional commercial cleaning, janitorial services, office cleaning 
 content="https://northcrescentcleaning.com/commercial-cleaning-moncton.html">
 
 <meta property="og:image"
-content="https://northcrescentcleaning.com/images/commercial-cleaning-moncton.jpg">
+content="https://northcrescentcleaning.com/images/commercial-cleaning-moncton-960.webp">
   <!-- TWITTER CARDS -->
 
 <meta name="twitter:card" content="summary_large_image">
@@ -49,7 +49,7 @@ content="Commercial Cleaning Services in Moncton, NB">
 content="Professional commercial cleaning and facility support services throughout Greater Moncton.">
 
 <meta name="twitter:image"
-content="https://northcrescentcleaning.com/images/commercial-cleaning-moncton.jpg">
+content="https://northcrescentcleaning.com/images/commercial-cleaning-moncton-960.webp">
 
 <!-- GEO LOCATION -->
 <meta name="geo.region" content="CA-NB">
@@ -60,7 +60,23 @@ content="https://northcrescentcleaning.com/images/commercial-cleaning-moncton.jp
 <link rel="alternate" hreflang="en" href="https://northcrescentcleaning.com/commercial-cleaning-moncton.html">
 <link rel="alternate" hreflang="fr" href="https://northcrescentcleaning.com/fr/commercial-cleaning-moncton.html">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload"
+      as="image"
+      href="/images/commercial-cleaning-moncton-960.webp"
+      imagesrcset="/images/commercial-cleaning-moncton-768.webp 768w,
+                   /images/commercial-cleaning-moncton-960.webp 960w"
+      imagesizes="(max-width: 767px) 100vw, 960px"
+      fetchpriority="high">
+  
+<link rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</noscript>
 
 <link rel="stylesheet" href="/styles.css">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -89,10 +105,10 @@ gtag('config', 'G-48W5J5N037');
 
       "logo":{
         "@type":"ImageObject",
-        "url":"https://northcrescentcleaning.com/images/logo.jpg"
+        "url":"https://northcrescentcleaning.com/images/logo.webp"
       },
 
-      "image":"https://northcrescentcleaning.com/images/logo.jpg",
+      "image":"https://northcrescentcleaning.com/images/logo.webp",
 
       "telephone":"+1-428-888-0542",
 
@@ -127,7 +143,7 @@ gtag('config', 'G-48W5J5N037');
         "@id":"https://northcrescentcleaning.com/#organization"
       },
 
-      "image":"https://northcrescentcleaning.com/images/logo.jpg",
+      "image":"https://northcrescentcleaning.com/images/logo.webp",
 
       "telephone":"+1-428-888-0542",
 
@@ -352,7 +368,7 @@ gtag('config', 'G-48W5J5N037');
 
       "primaryImageOfPage":{
         "@type":"ImageObject",
-        "url":"https://northcrescentcleaning.com/images/logo.jpg"
+        "url":"https://northcrescentcleaning.com/images/logo.webp"
       },
 
       "inLanguage":"en-CA"
@@ -508,7 +524,11 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="logo-container">
       <a href="/index.html">
-        <img src="/images/logo.jpg" alt="North Crescent Facility Solutions commercial cleaning services Moncton NB">
+        <img src="/images/logo.webp"
+     alt="North Crescent Facility Solutions commercial cleaning services Moncton NB"
+     width="70"
+     height="70"
+     decoding="async">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -616,11 +636,18 @@ Professional commercial cleaning, janitorial services, facility maintenance supp
     </div>
 
     <div class="hero-image section-box">
-    <img
-  src="/images/commercial-cleaning-moncton.jpg"
-  alt="Professional commercial cleaning services for offices, warehouses and businesses in Moncton NB"
-  loading="lazy">
-    </div>
+  <img
+    src="/images/commercial-cleaning-moncton-960.webp"
+    srcset="/images/commercial-cleaning-moncton-768.webp 768w,
+            /images/commercial-cleaning-moncton-960.webp 960w"
+    sizes="(max-width: 767px) 100vw, 960px"
+    alt="Professional commercial cleaning services for offices, warehouses and businesses in Moncton NB"
+    width="960"
+    height="747"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async">
+</div>
 
   </div>
 </section>
@@ -1087,8 +1114,9 @@ Our commercial cleaning programs are designed to support businesses of all sizes
   </div>
 
 </section>
-
-  <!-- FAQ -->
+<!-- ============================================
+     COMMERCIAL CLEANING FAQ
+     ============================================ -->
 <section>
   <div class="container">
     <div class="section-box">
@@ -1099,59 +1127,179 @@ Our commercial cleaning programs are designed to support businesses of all sizes
 
       <div class="divider"></div>
 
+      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
+        Have questions about commercial cleaning, office cleaning, janitorial
+        services, or ongoing facility support? Here are answers to some of the
+        questions businesses ask before choosing a professional cleaning partner.
+      </p>
+
       <div class="faq-grid">
 
+        <!-- FAQ 1 -->
         <div class="faq-card">
           <h3>
             How much does commercial cleaning cost in Moncton?
           </h3>
           <p>
-            Pricing depends on facility size, cleaning frequency, service requirements, and operational complexity. We provide customized quotes based on your specific needs.
+            Commercial cleaning costs depend on the size of your facility,
+            cleaning frequency, service requirements, and operational
+            complexity. We provide customized quotes based on your specific
+            facility and needs, so you receive a service plan that makes sense
+            for your business rather than a one-size-fits-all solution.
           </p>
         </div>
 
+        <!-- FAQ 2 -->
         <div class="faq-card">
           <h3>
-            Do you provide recurring commercial cleaning programs?
+            How often should a business have its facility professionally cleaned?
           </h3>
           <p>
-            Yes. We offer daily, weekly, bi-weekly, and customized cleaning schedules for commercial facilities.
+            It depends on your facility, daily traffic, type of business, and
+            operational needs. Some businesses require daily service, while
+            others may benefit from weekly, bi-weekly, or customized schedules.
+            We help determine a practical cleaning frequency that keeps your
+            facility consistently clean, welcoming, and well cared for.
           </p>
         </div>
 
+        <!-- FAQ 3 -->
+        <div class="faq-card">
+          <h3>
+            Can commercial cleaning be scheduled outside business hours?
+          </h3>
+          <p>
+            Yes. When scheduling and access requirements allow, we can
+            coordinate cleaning around your operating hours to minimize
+            disruption to employees, customers, and daily operations. Our goal
+            is to make professional cleaning easier to manage, not another
+            interruption to your business.
+          </p>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-card">
+          <h3>
+            Can you customize a commercial cleaning program for our business?
+          </h3>
+          <p>
+            Absolutely. Every facility is different. We consider your
+            building size, layout, traffic, priorities, operating hours, and
+            service expectations when developing a cleaning program. Our goal
+            is to provide a reliable solution built around how your business
+            actually operates.
+          </p>
+        </div>
+
+        <!-- FAQ 5 -->
         <div class="faq-card">
           <h3>
             Do you clean offices and corporate buildings?
           </h3>
           <p>
-            Yes. We provide professional office cleaning services for businesses of all sizes throughout Greater Moncton.
+            Yes. We provide professional office and corporate cleaning
+            services for businesses throughout Greater Moncton and surrounding
+            communities. We focus on the details that help your workplace
+            remain clean, organized, professional, and ready for employees,
+            clients, and visitors.
           </p>
         </div>
 
+        <!-- FAQ 6 -->
         <div class="faq-card">
           <h3>
-            Do you provide janitorial services?
+            Do you provide janitorial services for commercial facilities?
           </h3>
           <p>
-            Yes. Our janitorial programs are designed to support ongoing facility cleanliness and operational consistency.
+            Yes. Our janitorial programs are designed for businesses that need
+            dependable ongoing cleaning and sanitation. We work with you to
+            establish a consistent service routine that supports the condition
+            and day-to-day operation of your facility.
           </p>
         </div>
 
+        <!-- FAQ 7 -->
         <div class="faq-card">
           <h3>
             Do you serve warehouses and industrial facilities?
           </h3>
           <p>
-            Yes. We provide cleaning solutions for warehouses, industrial facilities, storage environments, and logistics operations.
+            Yes. We provide commercial cleaning solutions for warehouses,
+            industrial facilities, storage environments, logistics operations,
+            and other commercial spaces. We take the time to understand the
+            environment and its requirements so the cleaning approach supports
+            both safety and operational needs.
           </p>
         </div>
 
+        <!-- FAQ 8 -->
         <div class="faq-card">
           <h3>
-            Are your staff trained and certified?
+            Do you provide the cleaning products, equipment, and supplies?
           </h3>
           <p>
-            Yes. Our team follows WHMIS, IPAC, Bloodborne Awareness, and PPE safety protocols.
+            Yes. We can provide the professional cleaning products, equipment,
+            and supplies required for the agreed scope of service. During the
+            assessment, we can discuss specific facility requirements,
+            preferences, and any products or procedures that need special
+            consideration.
+          </p>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-card">
+          <h3>
+            How do you make sure the cleaning service stays consistent?
+          </h3>
+          <p>
+            Consistency starts with clear expectations, structured cleaning
+            procedures, attention to detail, and reliable communication. We
+            approach every facility with accountability and professional
+            standards because our responsibility does not end when the cleaning
+            is finished. We want you to have confidence that your space is being
+            properly cared for.
+          </p>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-card">
+          <h3>
+            How do you protect our building, keys, and access information?
+          </h3>
+          <p>
+            We understand that allowing a cleaning team into your facility
+            requires trust. Access instructions, keys, entry procedures, and
+            operational information are handled responsibly according to the
+            requirements agreed upon with each client. Professionalism,
+            discretion, and accountability are an important part of how we work.
+          </p>
+        </div>
+
+        <!-- FAQ 11 -->
+        <div class="faq-card">
+          <h3>
+            Are your cleaning staff trained in workplace safety?
+          </h3>
+          <p>
+            Yes. Our team follows workplace safety practices including WHMIS,
+            IPAC, Bloodborne Awareness, and appropriate PPE protocols. We believe
+            professional service also means taking responsibility for the safety
+            of our team, your employees, your customers, and the environments
+            where we work.
+          </p>
+        </div>
+
+        <!-- FAQ 12 -->
+        <div class="faq-card">
+          <h3>
+            Do you provide commercial cleaning services near me?
+          </h3>
+          <p>
+            Yes. We provide commercial cleaning, office cleaning, and janitorial
+            services throughout Moncton, Dieppe, Riverview, Shediac, and
+            surrounding communities across Southeast New Brunswick. We are
+            committed to providing dependable service and becoming a trusted
+            partner for the businesses and facilities we serve.
           </p>
         </div>
 
