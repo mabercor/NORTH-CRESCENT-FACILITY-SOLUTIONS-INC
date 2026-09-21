@@ -219,10 +219,11 @@ gtag('config', 'G-48W5J5N037');
 
       <!-- PHONE NUMBER -->
 
-      <input
-        type="tel"
-        name="phoneNumber"
-        placeholder="Phone Number">
+<input
+  type="tel"
+  name="phoneNumber"
+  placeholder="Phone Number *"
+  required>
 
       <!-- SERVICE ADDRESS -->
 
@@ -525,25 +526,43 @@ gtag('config', 'G-48W5J5N037');
 
 </main>
     
-<!-- 🔥 MODAL -->
+<!-- 🔥 SUCCESS MODAL -->
 <div id="successModal" class="modal">
+
   <div class="modal-box">
 
     <h2>You're one step away from your quote ✅</h2>
 
-    <p>Send photos or a short video so we can prepare your space properly and respond faster.</p>
-    <p class="highlight">                                                        Send photos or a video for a faster quote.</p>
+    <p>
+      Send photos or a short video so we can prepare your quote
+      more accurately and respond faster.
+    </p>
 
-    <a id="waLink" href="#" target="_blank" class="wa-btn">
-      📲 Send Photos via WhatsApp
+    <p class="highlight">
+      📸 Send photos or a short video by text message for a faster quote.
+    </p>
+
+    <a
+      id="smsLink"
+      href="#"
+      class="wa-btn">
+
+      📱 Send Photos by Text Message
+
     </a>
 
-    <button onclick="closeModal()" class="close-btn">
+    <button
+      onclick="closeModal()"
+      class="close-btn">
+
       Continue browsing
+
     </button>
 
   </div>
+
 </div>
+    
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -901,81 +920,115 @@ fetch("/.netlify/functions/contact-form", {
           .join(", ");
 
           /* =========================================
-             WHATSAPP MESSAGE
-          ========================================= */
+   SMS MESSAGE
+========================================= */
 
-          let message =
-          `Hi, my name is ${clientName}.\n\n`;
+let message =
+  `Hi, my name is ${clientName}.\n\n`;
 
-          if (serviceType) {
+if (serviceType) {
 
-            message +=
-            `I just submitted a request for ${serviceType}.\n`;
+  message +=
+    `I just submitted a request for ${serviceType}.\n`;
 
-          }
+}
 
-          if (visitsPerMonth) {
+if (visitsPerMonth) {
 
-            message +=
-            `Preferred frequency: ${visitsPerMonth}.\n`;
+  message +=
+    `Preferred frequency: ${visitsPerMonth}.\n`;
 
-          }
+}
 
-          if (selectedVisits) {
+if (selectedVisits) {
 
-            message +=
-            `Preferred days: ${selectedVisits}.\n`;
+  message +=
+    `Preferred days: ${selectedVisits}.\n`;
 
-          }
+}
 
-          if (operationalSummary) {
+if (operationalSummary) {
 
-            message +=
-            `Project details: ${operationalSummary}\n`;
+  message +=
+    `Project details: ${operationalSummary}\n`;
 
-          }
+}
 
 
-        message += `\nBefore we finalize your quote, I will send photos or a short video.\n\nView our services: https://www.northcrescentcleaning.com`;
+/* =========================================
+   PHOTO / VIDEO REQUEST
+========================================= */
 
-// 🔥 DESPUÉS limpias el form
+message +=
+  `\nI can send photos or a short video here so you can prepare my quote.`;
+
+
+/* =========================================
+   RESET FORM
+========================================= */
+
 form.reset();
 
-const waUrl = "https://wa.me/14288880542?text=" + encodeURIComponent(message);
 
-document.getElementById("waLink").href = waUrl;
+/* =========================================
+   SMS LINK
+========================================= */
+
+const smsUrl =
+  "sms:+14288880542?body=" +
+  encodeURIComponent(message);
+
+
+/* =========================================
+   SHOW SUCCESS MODAL
+========================================= */
+
+document.getElementById("smsLink").href = smsUrl;
+
 document.getElementById("successModal").style.display = "flex";
-          submitButton.innerText =
-"Quote Request Sent";
+
+
+/* =========================================
+   UPDATE BUTTON
+========================================= */
+
+submitButton.innerText =
+  "Quote Request Sent";
 
 submitButton.disabled = true;
 
-      } else {
-          submitButton.dataset.submitting = "false";
 
-submitButton.disabled = false;
+} else {
 
-submitButton.innerText =
-"Get My Free Quote";
-          
-        alert("Something went wrong.");
-      }
-    })
-    .catch(() => {
-       submitButton.dataset.submitting = "false";
+  submitButton.dataset.submitting = "false";
 
   submitButton.disabled = false;
 
   submitButton.innerText =
-  "Get My Free Quote";
-      
-      alert("Error sending form.");
-    });
-  });
+    "Get My Free Quote";
+
+  alert("Something went wrong.");
+
+}
+
+})
+.catch(() => {
+
+  submitButton.dataset.submitting = "false";
+
+  submitButton.disabled = false;
+
+  submitButton.innerText =
+    "Get My Free Quote";
+
+  alert("Error sending form.");
+
+});
+
+});
 
 });
 </script>
-
     
     
 <section>
