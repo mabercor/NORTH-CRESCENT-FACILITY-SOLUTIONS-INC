@@ -451,12 +451,9 @@ body[data-page="cleaning-concierge"] #conciergeChatSection{
 }
 
 body[data-page="cleaning-concierge"] .concierge-chat-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 270px;
-  gap:16px;
+  display:block;
   max-width:1100px;
-  margin:auto;
-  align-items:start;
+  margin:0 auto;
 }
 
 body[data-page="cleaning-concierge"] .concierge-chat-card{
@@ -822,19 +819,52 @@ body[data-page="cleaning-concierge"] .concierge-input-footer{
 /* =========================================================
    SIDEBAR
    ========================================================= */
+/* =========================================================
+   CONCIERGE SUPPORT INFORMATION
+   Appears below the chat
+   ========================================================= */
 
-body[data-page="cleaning-concierge"] .concierge-chat-sidebar{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+body[data-page="cleaning-concierge"] .concierge-support-info{
+  padding:28px 0 36px;
+  background:#F7FAFC;
 }
 
-body[data-page="cleaning-concierge"] .concierge-sidebar-card{
-  padding:15px;
+body[data-page="cleaning-concierge"] .concierge-support-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+body[data-page="cleaning-concierge"] .concierge-support-card{
+  min-width:0;
+  padding:16px;
   border:1px solid rgba(30,58,95,.08);
   border-radius:15px;
   background:#fff;
   box-shadow:var(--nc-shadow-soft);
+}
+
+body[data-page="cleaning-concierge"] .concierge-support-card h2{
+  margin:0;
+  color:var(--nc-navy);
+  font-size:.9rem;
+  line-height:1.3;
+}
+
+body[data-page="cleaning-concierge"] .concierge-support-card h3{
+  margin:0 0 8px;
+  color:var(--nc-navy);
+  font-size:.75rem;
+  line-height:1.3;
+}
+
+body[data-page="cleaning-concierge"] .concierge-support-card p{
+  margin:7px 0 0;
+  color:var(--nc-soft);
+  font-size:.64rem;
+  line-height:1.55;
 }
 
 body[data-page="cleaning-concierge"] .section-eyebrow{
@@ -847,26 +877,6 @@ body[data-page="cleaning-concierge"] .section-eyebrow{
   text-transform:uppercase;
 }
 
-body[data-page="cleaning-concierge"] .concierge-sidebar-card h2{
-  margin:0;
-  color:var(--nc-navy);
-  font-size:.9rem;
-  line-height:1.3;
-}
-
-body[data-page="cleaning-concierge"] .concierge-sidebar-card h3{
-  margin:0 0 8px;
-  color:var(--nc-navy);
-  font-size:.75rem;
-}
-
-body[data-page="cleaning-concierge"] .concierge-sidebar-card p{
-  margin:7px 0 0;
-  color:var(--nc-soft);
-  font-size:.64rem;
-  line-height:1.55;
-}
-
 body[data-page="cleaning-concierge"] .concierge-help-list{
   margin:0;
   padding:0;
@@ -875,25 +885,29 @@ body[data-page="cleaning-concierge"] .concierge-help-list{
 
 body[data-page="cleaning-concierge"] .concierge-help-list li{
   display:flex;
+  align-items:flex-start;
   gap:7px;
   margin:6px 0;
   color:var(--nc-soft);
   font-size:.62rem;
+  line-height:1.35;
 }
 
 body[data-page="cleaning-concierge"] .concierge-help-list li span{
+  flex:0 0 auto;
   color:var(--nc-teal-dark);
   font-weight:800;
 }
 
 body[data-page="cleaning-concierge"] .concierge-human-support{
   display:flex;
-  gap:9px;
   align-items:flex-start;
+  gap:9px;
   background:linear-gradient(135deg,#F5FBF9,#fff);
 }
 
 body[data-page="cleaning-concierge"] .human-support-icon{
+  flex:0 0 auto;
   font-size:1rem;
 }
 
@@ -1256,6 +1270,7 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
    ========================================================= */
 
 @media (max-width:1050px){
+
   body[data-page="cleaning-concierge"] .main-navigation > a{
     padding-inline:8px;
     font-size:.72rem;
@@ -1269,9 +1284,12 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
   body[data-page="cleaning-concierge"] .footer-grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
+
 }
 
+
 @media (max-width:900px){
+
   body[data-page="cleaning-concierge"] .main-navigation{
     display:none;
   }
@@ -1318,12 +1336,13 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     margin:auto;
   }
 
+  /* Chat remains a single full-width card */
   body[data-page="cleaning-concierge"] .concierge-chat-layout{
-    grid-template-columns:1fr;
+    display:block;
   }
 
-  body[data-page="cleaning-concierge"] .concierge-chat-sidebar{
-    display:grid;
+  /* Support information becomes two columns */
+  body[data-page="cleaning-concierge"] .concierge-support-grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
@@ -1340,9 +1359,12 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     justify-content:flex-start;
     max-width:none;
   }
+
 }
 
+
 @media (max-width:600px){
+
   body[data-page="cleaning-concierge"] .container{
     width:min(calc(100% - 24px),1240px);
   }
@@ -1386,7 +1408,7 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
   }
 
   body[data-page="cleaning-concierge"] #conciergeChatSection{
-    padding:28px 0 34px;
+    padding:28px 0 24px;
   }
 
   body[data-page="cleaning-concierge"] .concierge-chat-card{
@@ -1403,8 +1425,18 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
-  body[data-page="cleaning-concierge"] .concierge-chat-sidebar{
+  /* Support information becomes one column */
+  body[data-page="cleaning-concierge"] .concierge-support-info{
+    padding:22px 0 28px;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-support-grid{
     grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-support-card{
+    padding:14px;
   }
 
   body[data-page="cleaning-concierge"] .concierge-service-preview{
@@ -1428,9 +1460,12 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     right:12px;
     bottom:12px;
   }
+
 }
 
+
 @media (prefers-reduced-motion:reduce){
+
   body[data-page="cleaning-concierge"] *,
   body[data-page="cleaning-concierge"] *::before,
   body[data-page="cleaning-concierge"] *::after{
@@ -1439,6 +1474,7 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     transition-duration:.01ms !important;
     scroll-behavior:auto !important;
   }
+
 }
 /* =========================================================
    FIX — CHAT HIDDEN UNTIL EMAIL IS SUBMITTED
