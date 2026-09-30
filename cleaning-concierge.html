@@ -445,6 +445,28 @@
 
 </head>
   <body data-page="cleaning-concierge">
+      <script>
+    (function () {
+
+        "use strict";
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        if (
+            params.get("embed") === "1"
+        ) {
+
+            document.body.classList.add(
+                "concierge-embed-mode"
+            );
+
+        }
+
+    })();
+</script>
 
     <!-- =========================================================
          NORTH CRESCENT FACILITY SOLUTIONS INC.
