@@ -4,6 +4,15 @@
    Dedicated stylesheet for cleaning-concierge.html
    ========================================================= */
 
+/* =========================================================
+   NORTH CRESCENT CLEANING CONCIERGE
+   Dedicated stylesheet for cleaning-concierge.html
+   ========================================================= */
+
+html:has(body[data-page="cleaning-concierge"]){
+  background:#EEF3F6;
+}
+
 body[data-page="cleaning-concierge"]{
   --nc-navy:#1E3A5F;
   --nc-dark:#142A45;
@@ -21,9 +30,22 @@ body[data-page="cleaning-concierge"]{
   --nc-shadow-soft:0 8px 24px rgba(20,42,69,.07);
   --nc-gradient:linear-gradient(135deg,#1E3A5F 0%,#4A9B8C 100%);
   --nc-radius:18px;
-  background:var(--nc-bg);
+
+  width:min(100%,1280px);
+  min-height:100vh;
+  margin:0 auto;
+
+  background:#fff;
   color:var(--nc-text);
+
+  border-left:1px solid rgba(30,58,95,.10);
+  border-right:1px solid rgba(30,58,95,.10);
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.8),
+    0 12px 40px rgba(20,42,69,.08);
 }
+
 
 body[data-page="cleaning-concierge"] *,
 body[data-page="cleaning-concierge"] *::before,
@@ -1482,4 +1504,22 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
 
 body[data-page="cleaning-concierge"] #conciergeChatSection[hidden] {
     display: none !important;
+}
+/* =========================================================
+   PORTAL FRAME — MOBILE
+   ========================================================= */
+
+@media (max-width:600px){
+
+  html:has(body[data-page="cleaning-concierge"]){
+    background:#fff;
+  }
+
+  body[data-page="cleaning-concierge"]{
+    width:100%;
+    border-left:0;
+    border-right:0;
+    box-shadow:none;
+  }
+
 }
