@@ -447,7 +447,8 @@ body[data-page="cleaning-concierge"] .concierge-chat-layout{
 body[data-page="cleaning-concierge"] .concierge-chat-card{
   display:flex;
   flex-direction:column;
-  min-height:520px;
+  min-height:0;
+  height:auto;
   border:1px solid rgba(30,58,95,.09);
   border-radius:20px;
   background:#fff;
@@ -545,9 +546,9 @@ body[data-page="cleaning-concierge"] .concierge-context-clear{
 }
 
 body[data-page="cleaning-concierge"] .concierge-messages{
-  flex:1;
-  min-height:300px;
-  max-height:520px;
+  flex:none;
+  min-height:0;
+  max-height:none;
   padding:18px;
   overflow:auto;
   background:#FBFCFD;
@@ -605,7 +606,7 @@ body[data-page="cleaning-concierge"] .chat-message-time{
 }
 
 body[data-page="cleaning-concierge"] .concierge-quick-start{
-  margin-top:16px;
+  margin-top:12px;
 }
 
 body[data-page="cleaning-concierge"] .quick-start-label{
@@ -622,7 +623,7 @@ body[data-page="cleaning-concierge"] .quick-action-grid{
 }
 
 body[data-page="cleaning-concierge"] .quick-action-button{
-  min-height:38px;
+  min-height:36px;
   padding:7px 8px;
   border:1px solid var(--nc-border);
   border-radius:10px;
