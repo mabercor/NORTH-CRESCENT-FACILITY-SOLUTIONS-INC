@@ -560,3 +560,82 @@
   }
 
 }
+
+/* =========================================================
+   CONCIERGE BUTTON — PREMIUM GLOW
+   ========================================================= */
+
+.nc-concierge-widget-button{
+  position:relative;
+  overflow:visible;
+  isolation:isolate;
+}
+
+/* Halo exterior */
+.nc-concierge-widget-button::before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:999px;
+  background:linear-gradient(
+    135deg,
+    rgba(74,155,140,.45),
+    rgba(30,58,95,.25)
+  );
+  filter:blur(8px);
+  opacity:.65;
+  z-index:-1;
+  animation:ncConciergeGlow 2.8s ease-in-out infinite;
+}
+
+/* Borde luminoso sutil */
+.nc-concierge-widget-button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  padding:1px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.55),
+    rgba(255,255,255,0)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+@keyframes ncConciergeGlow{
+  0%,100%{
+    transform:scale(.92);
+    opacity:.45;
+  }
+
+  50%{
+    transform:scale(1.08);
+    opacity:.8;
+  }
+}
+
+/* Hover */
+.nc-concierge-widget-button:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:
+    0 14px 36px rgba(30,58,95,.32),
+    0 0 24px rgba(74,155,140,.28);
+}
+
+/* Click */
+.nc-concierge-widget-button:active{
+  transform:scale(.97);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .nc-concierge-widget-button::before{
+    animation:none;
+  }
+}
