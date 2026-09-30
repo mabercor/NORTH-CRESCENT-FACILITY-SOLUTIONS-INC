@@ -1440,3 +1440,10 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     scroll-behavior:auto !important;
   }
 }
+/* =========================================================
+   FIX — CHAT HIDDEN UNTIL EMAIL IS SUBMITTED
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] #conciergeChatSection[hidden] {
+    display: none !important;
+}
