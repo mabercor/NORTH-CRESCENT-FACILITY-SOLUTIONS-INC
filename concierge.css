@@ -1813,3 +1813,42 @@ body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-messages{
         scroll-behavior:auto !important;
     }
 }
+/* =========================================================
+   CONCIERGE HEADER — MATCH MAIN WEBSITE SCALE
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .header-inner{
+    height:88px !important;
+    min-height:88px !important;
+}
+
+body[data-page="cleaning-concierge"] .brand-logo{
+    height:66px !important;
+    width:66px !important;
+    max-height:66px !important;
+}
+
+body[data-page="cleaning-concierge"] .brand-name{
+    font-size:1.12rem !important;
+}
+
+body[data-page="cleaning-concierge"] .brand-subtitle{
+    font-size:.68rem !important;
+}
+
+body[data-page="cleaning-concierge"] .main-navigation{
+    gap:8px !important;
+}
+
+body[data-page="cleaning-concierge"] .main-navigation > a{
+    min-height:44px !important;
+    padding:8px 14px !important;
+    font-size:.86rem !important;
+}
+
+body[data-page="cleaning-concierge"] .main-navigation .nav-cta{
+    padding:12px 22px !important;
+    font-size:.86rem !important;
+}
+
+
