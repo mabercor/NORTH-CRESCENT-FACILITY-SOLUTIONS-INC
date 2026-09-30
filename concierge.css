@@ -1523,3 +1523,195 @@ body[data-page="cleaning-concierge"] #conciergeChatSection[hidden] {
   }
 
 }
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   EMBED MODE
+   ========================================================= */
+
+/*
+ * Activated when cleaning-concierge.html is opened with:
+ *
+ * /cleaning-concierge.html?embed=1
+ *
+ * The full Concierge page remains unchanged when accessed
+ * normally.
+ */
+
+
+/* ---------------------------------------------------------
+   EMBED BODY
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode{
+    width:100%;
+    min-height:100%;
+    margin:0;
+    padding:0;
+
+    overflow:hidden;
+
+    background:#F7FAFC;
+}
+
+
+/* ---------------------------------------------------------
+   HIDE FULL-PAGE ELEMENTS
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .site-header,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-hero,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-support-info,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-information-notice,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-service-preview,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-service-area,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .site-footer,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode #floatingConciergeButton,
+
+body[data-page="cleaning-concierge"].concierge-embed-mode #conciergeLoadingOverlay{
+    display:none !important;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode main{
+    width:100%;
+    min-height:100vh;
+    margin:0;
+    padding:0;
+}
+
+
+/* ---------------------------------------------------------
+   EMAIL ENTRY CARD
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode #conciergeEntryCard{
+    width:100%;
+    max-width:none;
+
+    min-height:100vh;
+
+    margin:0;
+    padding:24px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    border:0;
+    border-radius:0;
+
+    box-shadow:none;
+
+    background:#F7FAFC;
+}
+
+
+/* ---------------------------------------------------------
+   CHAT SECTION
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode #conciergeChatSection{
+    width:100%;
+    min-height:100vh;
+
+    margin:0;
+    padding:0;
+
+    border:0;
+
+    background:#F7FAFC;
+}
+
+
+/* ---------------------------------------------------------
+   CHAT CONTAINER
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode #conciergeChatSection .container{
+    width:100%;
+    max-width:none;
+
+    margin:0;
+    padding:0;
+}
+
+
+/* ---------------------------------------------------------
+   CHAT LAYOUT
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-chat-layout{
+    width:100%;
+    max-width:none;
+
+    margin:0;
+    padding:0;
+
+    display:block;
+}
+
+
+/* ---------------------------------------------------------
+   CHAT CARD
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-chat-card{
+    width:100%;
+    min-height:100vh;
+
+    margin:0;
+    padding:0;
+
+    border:0;
+    border-radius:0;
+
+    box-shadow:none;
+
+    background:#ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   CHAT MESSAGES
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-messages{
+    min-height:0;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE EMBED
+   --------------------------------------------------------- */
+
+@media (max-width:600px){
+
+    body[data-page="cleaning-concierge"].concierge-embed-mode #conciergeEntryCard{
+        padding:18px;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+
+    body[data-page="cleaning-concierge"].concierge-embed-mode *{
+        scroll-behavior:auto !important;
+    }
+
+}
