@@ -616,197 +616,192 @@
 
     <main id="main-content">
 
+<!-- =================================================
+     EMAIL GATE CARD
+     ================================================= -->
 
-        
+<div
+    class="concierge-entry-card"
+    id="conciergeEntryCard"
+>
 
-                    <!-- =================================================
-                         EMAIL GATE CARD
-                         ================================================= -->
+    <!-- =================================================
+         CARD HEADER
+         ================================================= -->
 
-                    <<div class="concierge-card-header">
+    <div class="concierge-card-header">
 
-    <div class="concierge-avatar" aria-hidden="true">
-        <span>NC</span>
+        <div
+            class="concierge-avatar"
+            aria-hidden="true"
+        >
+            <span>NC</span>
+        </div>
+
+        <div>
+
+            <span class="concierge-card-label">
+                NORTH CRESCENT
+            </span>
+
+            <h2 class="concierge-entry-title">
+                Tell us what you need. We’ll help with the next step.
+            </h2>
+
+        </div>
+
     </div>
 
-    <div>
 
-        <span class="concierge-card-label">
-            NORTH CRESCENT
-        </span>
+    <!-- =================================================
+         WELCOME MESSAGE
+         ================================================= -->
 
-        <h2 class="concierge-entry-title">
-            Tell us what you need. We’ll help with the next step.
-        </h2>
+    <div
+        class="concierge-welcome-message"
+        id="conciergeWelcomeMessage"
+    >
+
+        <p>
+            Hello! Welcome to North Crescent Facility Solutions.
+        </p>
+
+        <p>
+            Before we get started, what is the best email address to reach you?
+        </p>
+
+        <p class="concierge-small-text">
+            We use your email to keep your conversation connected with our team
+            if follow-up is needed.
+        </p>
 
     </div>
+
+
+    <!-- =================================================
+         EMAIL FORM
+         ================================================= -->
+
+    <form
+        id="conciergeEmailForm"
+        class="concierge-email-form"
+        novalidate
+    >
+
+        <!-- Email -->
+
+        <div class="form-field">
+
+            <label for="conciergeEmail">
+                Email address
+            </label>
+
+            <input
+                type="email"
+                id="conciergeEmail"
+                name="emailAddress"
+                autocomplete="email"
+                inputmode="email"
+                placeholder="you@example.com"
+                maxlength="254"
+                required
+                aria-required="true"
+                aria-describedby="conciergeEmailHelp conciergeEmailError"
+            >
+
+            <div
+                id="conciergeEmailHelp"
+                class="form-help"
+            >
+                We’ll use this to keep your conversation connected.
+            </div>
+
+            <div
+                id="conciergeEmailError"
+                class="form-error"
+                role="alert"
+                aria-live="polite"
+                hidden
+            ></div>
+
+        </div>
+
+
+        <!-- =================================================
+             SERVICE CONTEXT
+             ================================================= -->
+
+        <div
+            id="serviceContextNotice"
+            class="service-context-notice"
+            hidden
+        >
+
+            <span
+                class="service-context-icon"
+                aria-hidden="true"
+            >
+                ✓
+            </span>
+
+            <div>
+
+                <strong>
+                    You’re exploring:
+                </strong>
+
+                <span id="serviceContextLabel"></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             START BUTTON
+             ================================================= -->
+
+        <button
+            type="submit"
+            class="concierge-start-button"
+            id="conciergeStartButton"
+        >
+
+            <span class="button-text">
+                Start Conversation
+            </span>
+
+            <span
+                class="button-arrow"
+                aria-hidden="true"
+            >
+                →
+            </span>
+
+        </button>
+
+
+        <!-- =================================================
+             PRIVACY NOTICE
+             ================================================= -->
+
+        <p class="concierge-privacy-note">
+            By continuing, you agree that North Crescent Facility Solutions
+            may use the information you provide to assist with your service
+            inquiry and follow-up.
+        </p>
+
+    </form>
+
+</div>
 
 </div>
 
 
-                        <!-- =================================================
-                             WELCOME MESSAGE
-                             ================================================= -->
-
-                        <div
-                            class="concierge-welcome-message"
-                            id="conciergeWelcomeMessage"
-                        >
-
-                            <p>
-
-                                Hello! Welcome to North Crescent Facility
-                                Solutions.
-
-                            </p>
-
-                            <p>
-
-                                Before we get started, what is the best email
-                                address to reach you?
-
-                            </p>
-
-                            <p class="concierge-small-text">
-
-                                We use your email to keep your conversation
-                                connected with our team if follow-up is needed.
-
-                            </p>
-
-                        </div>
-
-
-                        <!-- =================================================
-                             EMAIL FORM
-                             ================================================= -->
-
-                        <form
-                            id="conciergeEmailForm"
-                            class="concierge-email-form"
-                            novalidate
-                        >
-
-
-                            <!-- Email -->
-
-                            <div class="form-field">
-
-                                <label
-                                    for="conciergeEmail"
-                                >
-                                    Email address
-                                </label>
-
-                                <input
-                                    type="email"
-                                    id="conciergeEmail"
-                                    name="emailAddress"
-                                    autocomplete="email"
-                                    inputmode="email"
-                                    placeholder="you@example.com"
-                                    maxlength="254"
-                                    required
-                                    aria-required="true"
-                                    aria-describedby="conciergeEmailHelp conciergeEmailError"
-                                >
-
-                                <div
-                                    id="conciergeEmailHelp"
-                                    class="form-help"
-                                >
-                                    We’ll use this to keep your conversation connected.
-                                </div>
-
-                                <div
-                                    id="conciergeEmailError"
-                                    class="form-error"
-                                    role="alert"
-                                    aria-live="polite"
-                                    hidden
-                                ></div>
-
-                            </div>
-
-
-                            <!-- =================================================
-                                 SERVICE CONTEXT
-                                 
-                                 This area is hidden initially.
-                                 JavaScript will populate it automatically when
-                                 the visitor arrives with a service parameter.
-                                 ================================================= -->
-
-                            <div
-                                id="serviceContextNotice"
-                                class="service-context-notice"
-                                hidden
-                            >
-
-                                <span
-                                    class="service-context-icon"
-                                    aria-hidden="true"
-                                >
-                                    ✓
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        You’re exploring:
-                                    </strong>
-
-                                    <span
-                                        id="serviceContextLabel"
-                                    ></span>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- =================================================
-                                 START BUTTON
-                                 ================================================= -->
-
-                            <button
-                                type="submit"
-                                class="concierge-start-button"
-                                id="conciergeStartButton"
-                            >
-
-                                <span class="button-text">
-                                    Start Conversation
-                                </span>
-
-                                <span
-                                    class="button-arrow"
-                                    aria-hidden="true"
-                                >
-                                    →
-                                </span>
-
-                            </button>
-
-
-                            <!-- =================================================
-                                 PRIVACY NOTICE
-                                 ================================================= -->
-
-                            <p class="concierge-privacy-note">
-
-                                By continuing, you agree that North Crescent
-                                Facility Solutions may use the information
-                                you provide to assist with your service
-                                inquiry and follow-up.
-
-                            </p>
-
-                        </form>
-
-                    </div>
-
-                </div>
+<!-- =========================================================
+     CONCIERGE CHAT APPLICATION
+     ========================================================= -->
+        
         
     <!-- =========================================================
          CONCIERGE CHAT APPLICATION
