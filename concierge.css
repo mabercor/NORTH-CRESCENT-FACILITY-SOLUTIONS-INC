@@ -7280,3 +7280,406 @@ body[data-page="cleaning-concierge"] #floatingConciergeButton {
         padding-bottom: 28px !important;
     }
 }
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   CHAT UI — FINAL POLISH
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-chat-section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+}
+
+/* =========================================================
+   CHAT GRID
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-chat-card {
+    overflow: hidden;
+}
+
+body[data-page="cleaning-concierge"] .concierge-chat-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 20px;
+    align-items: start;
+}
+
+/* =========================================================
+   CHAT HEADER
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    min-height: 72px;
+}
+
+body[data-page="cleaning-concierge"] .concierge-chat-header h2,
+body[data-page="cleaning-concierge"] .concierge-chat-header h3 {
+    margin: 0;
+}
+
+body[data-page="cleaning-concierge"] .concierge-chat-header p {
+    margin: 4px 0 0;
+}
+
+/* =========================================================
+   MESSAGE AREA
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] #conciergeMessages {
+    min-height: 360px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 28px 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(74,155,140,.045),
+            transparent 45%
+        ),
+        #ffffff;
+}
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-quick-actions {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Catch the actual buttons even if class names differ */
+body[data-page="cleaning-concierge"] .concierge-quick-actions button,
+body[data-page="cleaning-concierge"] .quick-action,
+body[data-page="cleaning-concierge"] .quick-action-button {
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    border: 1px solid #DCE8E6 !important;
+    border-radius: 999px !important;
+
+    background: #ffffff !important;
+    color: #1E3A5F !important;
+
+    padding: 9px 15px !important;
+
+    font-family: Poppins, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.2 !important;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(20,42,69,.05);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+}
+
+body[data-page="cleaning-concierge"] .concierge-quick-actions button:hover,
+body[data-page="cleaning-concierge"] .quick-action:hover,
+body[data-page="cleaning-concierge"] .quick-action-button:hover {
+
+    transform: translateY(-1px);
+
+    border-color: #4A9B8C !important;
+
+    background: #EAF6F3 !important;
+
+    box-shadow: 0 6px 16px rgba(30,58,95,.10);
+}
+
+/* =========================================================
+   CHAT INPUT
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-message-form {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-top: 1px solid #E6ECEF;
+
+    background: #ffffff;
+}
+
+body[data-page="cleaning-concierge"] .concierge-message-form textarea,
+body[data-page="cleaning-concierge"] #conciergeMessageInput {
+
+    width: 100% !important;
+
+    min-height: 52px !important;
+    max-height: 120px !important;
+
+    resize: vertical;
+
+    border: 1px solid #DCE5EA !important;
+    border-radius: 14px !important;
+
+    padding: 14px 16px !important;
+
+    background: #FDFEFE !important;
+
+    color: #1F2937 !important;
+
+    font-family: Poppins, sans-serif !important;
+    font-size: 13px !important;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+body[data-page="cleaning-concierge"] .concierge-message-form textarea:focus,
+body[data-page="cleaning-concierge"] #conciergeMessageInput:focus {
+
+    border-color: #4A9B8C !important;
+
+    box-shadow:
+        0 0 0 3px rgba(74,155,140,.10);
+}
+
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-message-form button[type="submit"],
+body[data-page="cleaning-concierge"] #conciergeSendButton {
+
+    flex: 0 0 auto;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+
+    border: none !important;
+    border-radius: 14px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1E3A5F,
+            #4A9B8C
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-size: 18px !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(30,58,95,.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+body[data-page="cleaning-concierge"] #conciergeSendButton:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(30,58,95,.24);
+}
+
+/* =========================================================
+   ATTACHMENT BUTTON
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-attachment-button,
+body[data-page="cleaning-concierge"] #conciergeAttachmentButton {
+
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #DCE5EA !important;
+    border-radius: 12px !important;
+
+    background: #ffffff !important;
+
+    color: #1E3A5F !important;
+
+    display: inline-flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 16px !important;
+}
+
+/* =========================================================
+   CHARACTER COUNTER
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-char-count,
+body[data-page="cleaning-concierge"] #conciergeCharCount {
+
+    font-size: 10px;
+
+    color: #94A3B8;
+
+    text-align: right;
+
+    margin: 4px 4px 0 0;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+body[data-page="cleaning-concierge"] .concierge-sidebar > * {
+    box-sizing: border-box;
+}
+
+/* Sidebar cards */
+body[data-page="cleaning-concierge"] .concierge-sidebar-card,
+body[data-page="cleaning-concierge"] .concierge-info-card {
+
+    padding: 22px !important;
+
+    border:
+        1px solid #E1E9EC !important;
+
+    border-radius: 18px !important;
+
+    background: rgba(255,255,255,.92) !important;
+
+    box-shadow:
+        0 8px 25px rgba(20,42,69,.06);
+}
+
+/* Sidebar lists */
+body[data-page="cleaning-concierge"] .concierge-sidebar ul,
+body[data-page="cleaning-concierge"] .concierge-sidebar-card ul,
+body[data-page="cleaning-concierge"] .concierge-info-card ul {
+
+    list-style: none !important;
+
+    margin: 12px 0 0 !important;
+
+    padding: 0 !important;
+}
+
+body[data-page="cleaning-concierge"] .concierge-sidebar li,
+body[data-page="cleaning-concierge"] .concierge-sidebar-card li,
+body[data-page="cleaning-concierge"] .concierge-info-card li {
+
+    list-style: none !important;
+
+    margin: 7px 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 12px;
+
+    color: #475569;
+}
+
+/* =========================================================
+   HANDOFF / ASSISTANCE CARD
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-handoff-card {
+
+    border:
+        1px solid rgba(74,155,140,.22);
+
+    background:
+        linear-gradient(
+            145deg,
+            #F2FAF8,
+            #FFFFFF
+        );
+
+    border-radius: 18px;
+
+    padding: 22px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    body[data-page="cleaning-concierge"] .concierge-chat-layout {
+        grid-template-columns: 1fr;
+    }
+
+    body[data-page="cleaning-concierge"] #conciergeMessages {
+        min-height: 320px;
+    }
+
+    body[data-page="cleaning-concierge"] .concierge-sidebar {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body[data-page="cleaning-concierge"] .concierge-chat-section {
+        padding-top: 42px;
+        padding-bottom: 50px;
+    }
+
+    body[data-page="cleaning-concierge"] #conciergeMessages {
+        min-height: 300px;
+        padding: 20px 16px;
+    }
+
+    body[data-page="cleaning-concierge"] .concierge-quick-actions {
+        justify-content: flex-start;
+        padding: 12px;
+    }
+
+    body[data-page="cleaning-concierge"] .concierge-quick-actions button {
+        font-size: 11px !important;
+        padding: 8px 12px !important;
+    }
+
+    body[data-page="cleaning-concierge"] .concierge-message-form {
+        padding: 10px;
+    }
+}
