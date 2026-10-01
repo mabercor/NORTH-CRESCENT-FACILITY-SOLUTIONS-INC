@@ -1,24 +1,7 @@
 exports.handler = async (event) => {
 
   /* =====================================================
-     METHOD CHECK
-     ===================================================== */
-
-  if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        error: "Method Not Allowed"
-      })
-    };
-  }
-
-
-  /* =====================================================
-     CORS
+     RESPONSE HEADERS
      ===================================================== */
 
   const headers = {
@@ -29,31 +12,72 @@ exports.handler = async (event) => {
   };
 
 
+  /* =====================================================
+     CORS PREFLIGHT
+     ===================================================== */
+
   if (event.httpMethod === "OPTIONS") {
+
     return {
       statusCode: 204,
       headers,
       body: ""
     };
+
+  }
+
+
+  /* =====================================================
+     METHOD CHECK
+     ===================================================== */
+
+  if (event.httpMethod !== "POST") {
+
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({
+        error: "Method Not Allowed"
+      })
+    };
+
   }
 
 
   try {
 
     /* ===================================================
+       REQUEST RECEIVED
+       =================================================== */
+
+    console.log(
+      "Concierge request received."
+    );
+
+
+    /* ===================================================
        PARSE REQUEST
        =================================================== */
 
-    const data = JSON.parse(
-      event.body || "{}"
-    );
+    const data =
+      JSON.parse(
+        event.body || "{}"
+      );
 
 
     /* ===================================================
        BASIC VALIDATION
        =================================================== */
 
-    if (!data || typeof data !== "object") {
+    if (
+      !data ||
+      typeof data !== "object"
+    ) {
+
+      console.error(
+        "Invalid Concierge request."
+      );
+
       return {
         statusCode: 400,
         headers,
@@ -61,6 +85,7 @@ exports.handler = async (event) => {
           error: "Invalid request."
         })
       };
+
     }
 
 
@@ -112,7 +137,7 @@ exports.handler = async (event) => {
 
 
     /* ===================================================
-       MAKE WEBHOOK
+       VALIDATE REQUIRED BACKEND CONFIG
        =================================================== */
 
     const makeWebhookUrl =
@@ -133,7 +158,13 @@ exports.handler = async (event) => {
             "Concierge backend is not configured."
         })
       };
+
     }
+
+
+    console.log(
+      "Concierge configuration loaded."
+    );
 
 
     /* ===================================================
@@ -153,6 +184,7 @@ exports.handler = async (event) => {
 
           body:
             JSON.stringify(payload)
+
         }
       );
 
@@ -180,7 +212,13 @@ exports.handler = async (event) => {
             "Unable to connect with the Concierge system."
         })
       };
+
     }
+
+
+    console.log(
+      "Concierge request successfully sent to Make."
+    );
 
 
     /* ===================================================
@@ -206,26 +244,30 @@ exports.handler = async (event) => {
        =================================================== */
 
     return {
+
       statusCode: 200,
+
       headers,
 
-      body: JSON.stringify({
+      body:
+        JSON.stringify({
 
-        reply:
-          makeData.reply ||
-          makeData.message ||
-          makeData.response ||
-          "Thank you. We've received your message.",
+          reply:
+            makeData.reply ||
+            makeData.message ||
+            makeData.response ||
+            "Thank you. We've received your message.",
 
-        leadProfile:
-          makeData.leadProfile ||
-          payload.leadProfile,
+          leadProfile:
+            makeData.leadProfile ||
+            payload.leadProfile,
 
-        conversationId:
-          makeData.conversationId ||
-          payload.conversationId
+          conversationId:
+            makeData.conversationId ||
+            payload.conversationId
 
-      })
+        })
+
     };
 
 
@@ -237,13 +279,19 @@ exports.handler = async (event) => {
     );
 
     return {
+
       statusCode: 500,
+
       headers,
 
-      body: JSON.stringify({
-        error:
-          "An unexpected Concierge error occurred."
-      })
+      body:
+        JSON.stringify({
+          error:
+            "An unexpected Concierge error occurred."
+        })
+
     };
+
   }
+
 };
