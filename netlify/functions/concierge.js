@@ -1,0 +1,249 @@
+exports.handler = async (event) => {
+
+  /* =====================================================
+     METHOD CHECK
+     ===================================================== */
+
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        error: "Method Not Allowed"
+      })
+    };
+  }
+
+
+  /* =====================================================
+     CORS
+     ===================================================== */
+
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS"
+  };
+
+
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 204,
+      headers,
+      body: ""
+    };
+  }
+
+
+  try {
+
+    /* ===================================================
+       PARSE REQUEST
+       =================================================== */
+
+    const data = JSON.parse(
+      event.body || "{}"
+    );
+
+
+    /* ===================================================
+       BASIC VALIDATION
+       =================================================== */
+
+    if (!data || typeof data !== "object") {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: "Invalid request."
+        })
+      };
+    }
+
+
+    /* ===================================================
+       EXTRACT CONCIERGE DATA
+       =================================================== */
+
+    const payload = {
+
+      conversationId:
+        data.conversationId || null,
+
+      emailAddress:
+        data.emailAddress || null,
+
+      serviceContext:
+        data.serviceContext || null,
+
+      source:
+        data.source || null,
+
+      campaign:
+        data.campaign || null,
+
+      pageUrl:
+        data.pageUrl || null,
+
+      referrer:
+        data.referrer || null,
+
+      messages:
+        Array.isArray(data.messages)
+          ? data.messages
+          : [],
+
+      leadProfile:
+        data.leadProfile &&
+        typeof data.leadProfile === "object"
+          ? data.leadProfile
+          : {},
+
+      context:
+        data.context &&
+        typeof data.context === "object"
+          ? data.context
+          : {}
+
+    };
+
+
+    /* ===================================================
+       MAKE WEBHOOK
+       =================================================== */
+
+    const makeWebhookUrl =
+      process.env.MAKE_CONCIERGE_WEBHOOK_URL;
+
+
+    if (!makeWebhookUrl) {
+
+      console.error(
+        "MAKE_CONCIERGE_WEBHOOK_URL is not configured."
+      );
+
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          error:
+            "Concierge backend is not configured."
+        })
+      };
+    }
+
+
+    /* ===================================================
+       SEND TO MAKE
+       =================================================== */
+
+    const makeResponse =
+      await fetch(
+        makeWebhookUrl,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify(payload)
+        }
+      );
+
+
+    /* ===================================================
+       HANDLE MAKE ERROR
+       =================================================== */
+
+    if (!makeResponse.ok) {
+
+      const makeText =
+        await makeResponse.text();
+
+      console.error(
+        "Make webhook error:",
+        makeResponse.status,
+        makeText
+      );
+
+      return {
+        statusCode: 502,
+        headers,
+        body: JSON.stringify({
+          error:
+            "Unable to connect with the Concierge system."
+        })
+      };
+    }
+
+
+    /* ===================================================
+       READ MAKE RESPONSE
+       =================================================== */
+
+    let makeData = {};
+
+    try {
+
+      makeData =
+        await makeResponse.json();
+
+    } catch (error) {
+
+      makeData = {};
+
+    }
+
+
+    /* ===================================================
+       RETURN TO CONCIERGE
+       =================================================== */
+
+    return {
+      statusCode: 200,
+      headers,
+
+      body: JSON.stringify({
+
+        reply:
+          makeData.reply ||
+          makeData.message ||
+          makeData.response ||
+          "Thank you. We've received your message.",
+
+        leadProfile:
+          makeData.leadProfile ||
+          payload.leadProfile,
+
+        conversationId:
+          makeData.conversationId ||
+          payload.conversationId
+
+      })
+    };
+
+
+  } catch (error) {
+
+    console.error(
+      "Concierge function error:",
+      error
+    );
+
+    return {
+      statusCode: 500,
+      headers,
+
+      body: JSON.stringify({
+        error:
+          "An unexpected Concierge error occurred."
+      })
+    };
+  }
+};
