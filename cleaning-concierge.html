@@ -179,8 +179,7 @@
 
     <link rel="stylesheet"
       href="/concierge.css">
-    >
-
+    
 
     <!-- =========================================================
          NORTH CRESCENT CONCIERGE CONFIGURATION
@@ -3267,83 +3266,6 @@ const state = {
 
             }
 
-            /* =====================================================
-   LEAD PROFILE MEMORY
-   ===================================================== */
-
-function saveLeadProfile() {
-
-    try {
-
-        localStorage.setItem(
-            "north_crescent_concierge_lead_profile",
-            JSON.stringify(
-                state.leadProfile
-            )
-        );
-
-    } catch (error) {
-
-        console.warn(
-            "Unable to save Concierge lead profile.",
-            error
-        );
-
-    }
-
-}
-
-
-function loadLeadProfile() {
-
-    try {
-
-        const stored =
-            localStorage.getItem(
-                "north_crescent_concierge_lead_profile"
-            );
-
-
-        if (!stored) {
-            return;
-        }
-
-
-        const parsed =
-            JSON.parse(
-                stored
-            );
-
-
-        if (
-            !parsed ||
-            typeof parsed !== "object"
-        ) {
-
-            return;
-
-        }
-
-
-        state.leadProfile = {
-
-            ...state.leadProfile,
-
-            ...parsed
-
-        };
-
-    } catch (error) {
-
-        console.warn(
-            "Unable to restore Concierge lead profile.",
-            error
-        );
-
-    }
-
-}
-
 /* =====================================================
    LEAD PROFILE MEMORY
    ===================================================== */
@@ -4595,4 +4517,4 @@ if (
     
   
 
-</head>
+
