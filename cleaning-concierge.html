@@ -2633,26 +2633,26 @@ const state = {
                     params.get("campaign") || null;
 
 
-                CONFIG.context.service =
-                    state.service;
+              if (!CONFIG.context) {
 
+    CONFIG.context = {};
 
-                CONFIG.context.source =
-                    state.source;
+}
 
+CONFIG.context.service =
+    state.service;
 
-                CONFIG.context.campaign =
-                    state.campaign;
+CONFIG.context.source =
+    state.source;
 
+CONFIG.context.campaign =
+    state.campaign;
 
-                CONFIG.context.pageUrl =
-                    window.location.href;
+CONFIG.context.pageUrl =
+    window.location.href;
 
-
-                CONFIG.context.referrer =
-                    document.referrer || null;
-
-            }
+CONFIG.context.referrer =
+    document.referrer || null;
 
 
             /* =====================================================
@@ -3936,7 +3936,7 @@ if (
                 );
 
 
- /* =====================================================
+/* =====================================================
    SERVICE CARDS
    ===================================================== */
 
