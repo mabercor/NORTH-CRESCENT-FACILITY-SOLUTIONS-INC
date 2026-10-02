@@ -2852,14 +2852,18 @@ const state = {
                         }
 
 
-                        state.email =
-                            email;
+                       state.email =
+    email;
 
+state.leadProfile.emailAddress =
+    email;
 
-                        localStorage.setItem(
-                            CONFIG.storage.email,
-                            email
-                        );
+saveLeadProfile();
+
+localStorage.setItem(
+    CONFIG.storage.email,
+    email
+);
 
 
                         if (!state.conversationId) {
@@ -3932,89 +3936,108 @@ if (
                 );
 
 
-            /* =====================================================
-               SERVICE CARDS
-               ===================================================== */
+          /* =====================================================
+   SERVICE CARDS
+   ===================================================== */
 
-            document
-                .querySelectorAll(
-                    ".concierge-service-card"
-                )
-                .forEach(
-                    function (card) {
+document
+    .querySelectorAll(
+        ".concierge-service-card"
+    )
+    .forEach(
+        function (card) {
 
-                        card.addEventListener(
-                            "click",
-                            function () {
+            card.addEventListener(
+                "click",
+                function () {
 
-                                const service =
-                                    card.dataset.service;
+                    const service =
+                        card.dataset.service;
 
+                    if (!service) {
+                        return;
+                    }
 
-                                if (!service) {
-                                    return;
-                                }
+                    const serviceMessages = {
 
+                        commercial:
+                            "I need commercial cleaning services.",
 
-                                state.service =
-                                    service;
+                        residential:
+                            "I need residential cleaning services.",
 
+                        airbnb:
+                            "I need Airbnb cleaning or turnover service.",
 
-                                CONFIG.context.service =
-                                    service;
+                        janitorial:
+                            "I need recurring janitorial or office cleaning.",
 
+                        postConstruction:
+                            "I need post-construction cleaning.",
 
-                                updateServiceContextUI();
+                        general:
+                            "I have a question about your cleaning services."
 
+                    };
 
-                                if (
-                                    chatSection &&
-                                    chatSection.hidden
-                                ) {
+                    const message =
+                        serviceMessages[service] || "";
 
-                                    if (
-                                        !state.email
-                                    ) {
+                    state.service =
+                        service;
 
-                                        if (
-                                            emailInput
-                                        ) {
+                    CONFIG.context.service =
+                        service;
 
-                                            emailInput.focus();
-
-                                        }
-
-
-                                        entryCard.scrollIntoView({
-                                            behavior:
-                                                "smooth",
-                                            block:
-                                                "center"
-                                        });
+                    updateServiceContextUI();
 
 
-                                        return;
+                    if (
+                        chatSection &&
+                        chatSection.hidden
+                    ) {
 
-                                    }
+                        if (!state.email) {
 
+                            if (emailInput) {
 
-                                    startConversation();
-
-                                }
-
-
-                                if (messageInput) {
-
-                                    messageInput.focus();
-
-                                }
+                                emailInput.focus();
 
                             }
+
+                            entryCard.scrollIntoView({
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "center"
+                            });
+
+                            return;
+
+                        }
+
+                        startConversation();
+
+                    }
+
+
+                    if (
+                        message &&
+                        !state.isSending
+                    ) {
+
+                        processUserMessage(
+                            message
                         );
 
                     }
-                );
 
+                }
+            );
+
+        }
+    );
 
             /* =====================================================
                CHANGE SERVICE
