@@ -13,420 +13,495 @@
 export const BRAIN_RULES = Object.freeze({
 
     // =========================================================
-    // CORE
+// CORE
+// =========================================================
+
+core: Object.freeze({
+
+    preserveKnownData: true,
+
+    customerCorrectionWins: true,
+
+    currentCustomerRequestWins: true,
+
+    serviceContextIsBackgroundOnly: true,
+
+    unknownValue: "",
+
+    allowNull: false,
+
+    allowUnknownString: false,
+
+    allowNotProvidedString: false,
+
+    inventInformation: false,
+
+    inferUnsupportedInformation: false,
+
+    exposeInternalSystems: false
+
+}),
+
     // =========================================================
+// INTENT
+// =========================================================
 
-    core: Object.freeze({
+intent: Object.freeze({
 
-        preserveKnownData: true,
+    types: Object.freeze([
 
-        customerCorrectionWins: true,
+        "QUOTE",
 
-        currentCustomerRequestWins: true,
+        "GENERAL_QUESTION",
 
-        serviceContextIsBackgroundOnly: true,
+        "SERVICE_INFORMATION",
 
-        unknownValue: "",
+        "PRICE_QUESTION",
 
-        allowNull: false,
+        "AVAILABILITY_QUESTION",
 
-        allowUnknownString: false,
+        "CONFIRMATION",
 
-        allowNotProvidedString: false,
+        "CORRECTION",
 
-        inventInformation: false,
+        "POST_CONFIRMATION",
 
-        exposeInternalSystems: false
+        "NEW_REQUEST"
 
-    }),
+    ]),
 
+    analyzeFrom: Object.freeze([
+
+        "currentMessage",
+
+        "conversationHistory",
+
+        "leadProfile",
+
+        "serviceContext"
+
+    ]),
+
+    currentMessageHasPriority: true,
+
+    contextMustBeConsidered: true,
+
+    serviceContextCannotOverrideCustomer: true,
+
+    customerExplicitRequestWins: true,
+
+    customerCorrectionWins: true,
+
+    conversationHistoryMustBeConsidered: true,
+
+    doNotInferIntentFromServiceContextAlone: true
+
+}),
 
     // =========================================================
-    // INTENT
-    // =========================================================
+// MEMORY
+// =========================================================
 
-    intent: Object.freeze({
+memory: Object.freeze({
 
-        types: Object.freeze([
+    source: "leadProfile",
 
-            "QUOTE",
+    preserveExistingValues: true,
 
-            "GENERAL_QUESTION",
+    addNewCustomerFacts: true,
 
-            "SERVICE_INFORMATION",
+    replaceExplicitCorrections: true,
 
-            "PRICE_QUESTION",
+    replaceWithMorePreciseInformation: true,
 
-            "AVAILABILITY_QUESTION",
+    removeKnownDataWithoutCorrection: false,
 
-            "CONFIRMATION",
+    repeatKnownQuestions: false,
 
-            "CORRECTION",
+    missingValue: "",
 
-            "POST_CONFIRMATION",
+    neverUseNull: true,
 
-            "NEW_REQUEST"
+    neverUseUnknown: true,
 
+    neverUseNotProvided: true,
+
+    neverOverwriteWithAssumption: true,
+
+    customerIsPrimarySourceForCustomerData: true
+
+}),
+
+   // =========================================================
+// CONVERSATION
+// =========================================================
+
+conversation: Object.freeze({
+
+    style: Object.freeze([
+
+        "friendly",
+
+        "warm",
+
+        "professional",
+
+        "helpful",
+
+        "confident",
+
+        "natural"
+
+    ]),
+
+    defaultResponseSentences: "1-3",
+
+    oneQuestionAtATime: true,
+
+    avoidQuestionnaire: true,
+
+    avoidRoboticBehavior: true,
+
+    acknowledgeBeforeNextQuestion: true,
+
+    useCustomerNameWhenKnown: true,
+
+    avoidRepeatedQuestions: true,
+
+    avoidUnnecessaryQuestions: true,
+
+    customerCanExplainInOwnWords: true,
+
+    opening: Object.freeze({
+
+        warmWelcomeAfterName: true,
+
+        introduceConciergeNaturally: true,
+
+        openWithCustomerNeed: true,
+
+        allowCustomerToExplainInOwnWords: true,
+
+        explorePropertyBeforeAddressWhenNatural: true,
+
+        doNotImmediatelyAskAddress: true,
+
+        avoidFormLikeOpening: true,
+
+        avoidPrematureQualification: true,
+
+        objective:
+            "Make the customer feel welcomed, supported, and understood before beginning structured qualification."
+
+    })
+
+}),
+
+   // =========================================================
+// DISCOVERY
+// =========================================================
+
+discovery: Object.freeze({
+
+    enabled: true,
+
+    naturalOnly: true,
+
+    questionnaireMode: false,
+
+    oneQuestionAtATime: true,
+
+    fixedQuestionOrder: false,
+
+    numberedQuestions: false,
+
+    optionalInformationBlocksQuote: false,
+
+    minimumContextualQuestions: 2,
+
+    minimumQuestionsCanBeSkipped: true,
+
+    questionsAreGuidelinesNotRequirements: true,
+
+    stopIfCustomerWantsToProceed: true,
+
+    stopIfCustomerDoesNotWantMoreDiscovery: true,
+
+    prioritizeRelevantContext: true,
+
+    doNotAskOptionalQuestionsJustToFillProfile: true,
+
+    doNotForceMinimumQuestions: true,
+
+    adaptDiscoveryToCustomerResponse: true,
+
+    examplesByService: Object.freeze({
+
+        residential: Object.freeze([
+            "flooring",
+            "bedrooms",
+            "bathrooms",
+            "approximateSize",
+            "frequency",
+            "pets",
+            "specialAttentionAreas",
+            "ecoFriendlyProducts"
         ]),
 
-        analyzeFrom: Object.freeze([
-
-            "currentMessage",
-
-            "conversationHistory",
-
-            "leadProfile",
-
-            "serviceContext"
-
+        postConstruction: Object.freeze([
+            "propertyType",
+            "approximateSize",
+            "rooms",
+            "flooring",
+            "constructionDustOrDebris",
+            "windowsOrGlass",
+            "cabinetsOrFixtures",
+            "detailedAttentionAreas",
+            "otherContractors"
         ]),
 
-        currentMessageHasPriority: true,
-
-        contextMustBeConsidered: true,
-
-        serviceContextCannotOverrideCustomer: true
-
-    }),
-
-
-    // =========================================================
-    // MEMORY
-    // =========================================================
-
-    memory: Object.freeze({
-
-        source: "leadProfile",
-
-        preserveExistingValues: true,
-
-        addNewCustomerFacts: true,
-
-        replaceExplicitCorrections: true,
-
-        replaceWithMorePreciseInformation: true,
-
-        removeKnownDataWithoutCorrection: false,
-
-        repeatKnownQuestions: false,
-
-        missingValue: "",
-
-        neverUseNull: true,
-
-        neverUseUnknown: true,
-
-        neverUseNotProvided: true
-
-    }),
-
-
-    // =========================================================
-    // CONVERSATION
-    // =========================================================
-
-    conversation: Object.freeze({
-
-        style: Object.freeze([
-
-            "friendly",
-
-            "warm",
-
-            "professional",
-
-            "helpful",
-
-            "confident",
-
-            "natural"
-
+        moveInMoveOut: Object.freeze([
+            "propertySize",
+            "bedrooms",
+            "bathrooms",
+            "flooring",
+            "furnitureRemoved",
+            "propertyCondition",
+            "extraAttentionAreas",
+            "moveContext"
         ]),
 
-        defaultResponseSentences: "1-3",
-
-        oneQuestionAtATime: true,
-
-        avoidQuestionnaire: true,
-
-        avoidRoboticBehavior: true,
-
-        acknowledgeBeforeNextQuestion: true,
-
-        useCustomerNameWhenKnown: true,
-
-        avoidRepeatedQuestions: true,
-
-        avoidUnnecessaryQuestions: true,
-
-        customerCanExplainInOwnWords: true
-
-    }),
-
-
-    // =========================================================
-    // DISCOVERY
-    // =========================================================
-
-    discovery: Object.freeze({
-
-        enabled: true,
-
-        naturalOnly: true,
-
-        questionnaireMode: false,
-
-        oneQuestionAtATime: true,
-
-        fixedQuestionOrder: false,
-
-        numberedQuestions: false,
-
-        optionalInformationBlocksQuote: false,
-
-        minimumContextualQuestions: 2,
-
-        minimumQuestionsCanBeSkipped: true,
-
-        stopIfCustomerWantsToProceed: true,
-
-        stopIfCustomerDoesNotWantMoreDiscovery: true,
-
-        prioritizeRelevantContext: true,
-
-        examplesByService: Object.freeze({
-
-            residential: Object.freeze([
-                "flooring",
-                "bedrooms",
-                "bathrooms",
-                "approximateSize",
-                "frequency",
-                "pets",
-                "specialAttentionAreas",
-                "ecoFriendlyProducts"
-            ]),
-
-            postConstruction: Object.freeze([
-                "propertyType",
-                "approximateSize",
-                "rooms",
-                "flooring",
-                "constructionDustOrDebris",
-                "windowsOrGlass",
-                "cabinetsOrFixtures",
-                "detailedAttentionAreas",
-                "otherContractors"
-            ]),
-
-            moveInMoveOut: Object.freeze([
-                "propertySize",
-                "bedrooms",
-                "bathrooms",
-                "flooring",
-                "furnitureRemoved",
-                "propertyCondition",
-                "extraAttentionAreas",
-                "moveContext"
-            ]),
-
-            deepCleaning: Object.freeze([
-                "propertySize",
-                "bedrooms",
-                "bathrooms",
-                "flooring",
-                "buildup",
-                "kitchenCondition",
-                "bathroomsNeedingAttention",
-                "pets",
-                "cleaningHistory"
-            ]),
-
-            airbnb: Object.freeze([
-                "propertySize",
-                "bedrooms",
-                "bathrooms",
-                "turnoverFrequency",
-                "guestReadyRequirements",
-                "laundryOrLinen",
-                "restocking",
-                "specialGuestInstructions"
-            ]),
-
-            commercial: Object.freeze([
-                "facilityType",
-                "approximateSize",
-                "roomsOrAreas",
-                "occupancyOrTraffic",
-                "cleaningFrequency",
-                "preferredSchedule",
-                "highTouchAreas",
-                "specialOperationalRequirements"
-            ]),
-
-            janitorial: Object.freeze([
-                "facilityType",
-                "approximateSize",
-                "cleaningFrequency",
-                "operatingHours",
-                "regularAttentionAreas",
-                "washrooms",
-                "commonAreas",
-                "specialOperationalRequirements"
-            ])
-
-        })
-
-    }),
-
-
-    // =========================================================
-    // CONTACT
-    // =========================================================
-
-    contact: Object.freeze({
-
-        phone: Object.freeze({
-
-            priority: true,
-
-            requestNaturally: true,
-
-            requestAtLeastOnce: true,
-
-            requiredForQualification: false,
-
-            repeatAfterExplicitConfirmation: false,
-
-            optionalLanguage: false
-
-        }),
-
-        email: Object.freeze({
-
-            priority: true,
-
-            verifyBeforeFinalConfirmation: true,
-
-            initialEmailCountsAsAvailable: true,
-
-            initialEmailCountsAsConfirmed: false,
-
-            repeatAfterExplicitConfirmation: false
-
-        }),
-
-        correction: Object.freeze({
-
-            updateLeadProfile: true,
-
-            preserveCorrection: true,
-
-            requireNewConfirmation: true
-
-        })
-
-    }),
-
-
-    // =========================================================
-    // QUOTE
-    // =========================================================
-
-    quote: Object.freeze({
-
-        essentialFields: Object.freeze([
-
-            "clientName",
-
-            "contact",
-
-            "serviceAddress",
-
-            "city",
-
-            "serviceType",
-
-            "operationalSummary"
-
+        deepCleaning: Object.freeze([
+            "propertySize",
+            "bedrooms",
+            "bathrooms",
+            "flooring",
+            "buildup",
+            "kitchenCondition",
+            "bathroomsNeedingAttention",
+            "pets",
+            "cleaningHistory"
         ]),
 
-        contactRequirement: Object.freeze([
-
-            "emailAddress",
-
-            "phoneNumber"
-
+        airbnb: Object.freeze([
+            "propertySize",
+            "bedrooms",
+            "bathrooms",
+            "turnoverFrequency",
+            "guestReadyRequirements",
+            "laundryOrLinen",
+            "restocking",
+            "specialGuestInstructions"
         ]),
 
-        contactRequiresOneOf: true,
+        commercial: Object.freeze([
+            "facilityType",
+            "approximateSize",
+            "roomsOrAreas",
+            "occupancyOrTraffic",
+            "cleaningFrequency",
+            "preferredSchedule",
+            "highTouchAreas",
+            "specialOperationalRequirements"
+        ]),
 
-        optionalFieldsNeverBlockQuote: true,
+        janitorial: Object.freeze([
+            "facilityType",
+            "approximateSize",
+            "cleaningFrequency",
+            "operatingHours",
+            "regularAttentionAreas",
+            "washrooms",
+            "commonAreas",
+            "specialOperationalRequirements"
+        ])
 
-        stopQualificationWhenEssentialsComplete: true,
+    })
 
-        finalSummaryRequired: true,
+}),
+// =========================================================
+// CONTACT
+// =========================================================
 
-        explicitConfirmationRequired: true,
+contact: Object.freeze({
 
-        priceQuestionIsNotConfirmation: true,
+    phone: Object.freeze({
 
-        availabilityQuestionIsNotConfirmation: true,
+        priority: true,
 
-        timingQuestionIsNotConfirmation: true,
+        requestNaturally: true,
 
-        partialAgreementIsNotConfirmation: true,
+        requestAtLeastOnce: true,
 
-        quoteConfirmedIsEvent: true,
+        requiredForQualification: false,
 
-        quoteConfirmedIsPersistentState: false
+        repeatAfterExplicitConfirmation: false,
+
+        optionalLanguage: false,
+
+        doNotInventPhoneNumber: true,
+
+        preserveCustomerProvidedNumber: true
 
     }),
 
+    email: Object.freeze({
 
-    // =========================================================
-    // CONFIRMATION
-    // =========================================================
+        priority: true,
 
-    confirmation: Object.freeze({
+        verifyBeforeFinalConfirmation: true,
 
-        requiresFinalSummary: true,
+        initialEmailCountsAsAvailable: true,
 
-        requiresExplicitCustomerConfirmation: true,
+        initialEmailCountsAsConfirmed: false,
 
-        requiresContactConfirmation: true,
+        repeatAfterExplicitConfirmation: false,
 
-        validMessages: Object.freeze([
+        doNotAssumeCustomerConfirmedEmail: true,
 
-            "yes",
+        doNotClaimSystemAlreadyHasEmail: true,
 
-            "yes everything is correct",
+        preserveCustomerProvidedEmail: true,
 
-            "correct",
-
-            "that's right",
-
-            "looks good",
-
-            "confirmed",
-
-            "sí",
-
-            "sí confirmo",
-
-            "todo está correcto",
-
-            "está bien"
-
-        ]),
-
-        previousConfirmationDoesNotPersist: true,
-
-        correctionReturnsToConfirmation: true,
-
-        questionDoesNotEqualConfirmation: true
+        requireExplicitConfirmationBeforeQuote: true
 
     }),
+
+    correction: Object.freeze({
+
+        updateLeadProfile: true,
+
+        preserveCorrection: true,
+
+        requireNewConfirmation: true,
+
+        customerCorrectionWins: true
+
+    })
+
+}),
+    
+// =========================================================
+// QUOTE
+// =========================================================
+
+quote: Object.freeze({
+
+    essentialFields: Object.freeze([
+
+        "clientName",
+
+        "contact",
+
+        "serviceAddress",
+
+        "city",
+
+        "serviceType",
+
+        "operationalSummary"
+
+    ]),
+
+    contactRequirement: Object.freeze([
+
+        "emailAddress",
+
+        "phoneNumber"
+
+    ]),
+
+    contactRequiresOneOf: true,
+
+    optionalFieldsNeverBlockQuote: true,
+
+    stopQualificationWhenEssentialsComplete: true,
+
+    doNotContinueDiscoveryAfterEssentialsComplete: true,
+
+    moveToConfirmationWhenEssentialsComplete: true,
+
+    finalSummaryRequired: true,
+
+    explicitConfirmationRequired: true,
+
+    priceQuestionIsNotConfirmation: true,
+
+    availabilityQuestionIsNotConfirmation: true,
+
+    timingQuestionIsNotConfirmation: true,
+
+    partialAgreementIsNotConfirmation: true,
+
+    quoteConfirmedIsEvent: true,
+
+    quoteConfirmedIsPersistentState: false,
+
+    confirmationMustReflectCurrentRequest: true,
+
+    correctionsRequireNewConfirmation: true
+
+}),
+
+   // =========================================================
+// CONFIRMATION
+// =========================================================
+
+confirmation: Object.freeze({
+
+    requiresFinalSummary: true,
+
+    requiresExplicitCustomerConfirmation: true,
+
+    requiresContactConfirmation: true,
+
+    confirmationAppliesToCompleteRequest: true,
+
+    confirmationAppliesToCurrentRequestOnly: true,
+
+    validMessages: Object.freeze([
+
+        "yes",
+
+        "yes everything is correct",
+
+        "correct",
+
+        "that's right",
+
+        "looks good",
+
+        "confirmed",
+
+        "sí",
+
+        "sí confirmo",
+
+        "todo está correcto",
+
+        "está bien"
+
+    ]),
+
+    previousConfirmationDoesNotPersist: true,
+
+    correctionReturnsToConfirmation: true,
+
+    questionDoesNotEqualConfirmation: true,
+
+    partialAgreementDoesNotEqualConfirmation: true,
+
+    priceAgreementDoesNotEqualConfirmation: true,
+
+    availabilityAgreementDoesNotEqualConfirmation: true,
+
+    timingAgreementDoesNotEqualConfirmation: true,
+
+    postConfirmationDoesNotRestartQuote: true,
+
+    quoteConfirmedIsCurrentResponseEventOnly: true
+
+}),
 
 
     // =========================================================
@@ -455,119 +530,392 @@ export const BRAIN_RULES = Object.freeze({
 
     }),
 
+// =========================================================
+// SALES & PRICE RESPONSE
+// =========================================================
 
-    // =========================================================
-    // SALES
-    // =========================================================
+sales: Object.freeze({
 
-    sales: Object.freeze({
+    naturalSales: true,
 
-        naturalSales: true,
+    valueBeforePrice: true,
 
-        valueBeforePrice: true,
+    pressureSelling: false,
 
-        pressureSelling: false,
+    unsupportedComparisons: false,
 
-        unsupportedComparisons: false,
+    cheapestClaim: false,
 
-        cheapestClaim: false,
+    lowestPriceClaim: false,
 
-        bestClaimWithoutEvidence: false,
+    bestClaimWithoutEvidence: false,
 
-        explainRelevantServiceValue: true,
+    explainRelevantServiceValue: true,
 
-        explainCustomerBenefit: true,
+    explainCustomerBenefit: true,
 
-        reassureCustomer: true,
+    reassureCustomer: true,
 
-        tailorConversationToService: true,
+    tailorConversationToService: true,
 
-        sellThroughRelevance: true,
+    sellThroughRelevance: true,
 
-        neverInventServiceBenefits: true
+    neverInventServiceBenefits: true,
 
-    }),
+    priceQuestion: Object.freeze({
 
+        enabled: true,
 
-    // =========================================================
-    // GENERAL QUESTIONS
-    // =========================================================
+        answerPriceConcernDirectly: true,
 
-    generalQuestions: Object.freeze({
+        maintainCustomerInterest: true,
 
-        answerDirectly: true,
+        reinforceValueBeforeQuote: true,
 
-        automaticallyStartQuote: false,
+        useValueMessageNaturally: true,
 
-        automaticallyCollectLead: false,
-
-        useVerifiedKnowledge: true,
-
-        inventCompanyInformation: false,
-
-        missingCompanyInformationRequiresVerification: true
-
-    }),
-
-
-    // =========================================================
-    // SAFETY
-    // =========================================================
-
-    safety: Object.freeze({
+        avoidForcedRepetition: true,
 
         neverInventPrice: true,
 
-        neverInventAvailability: true,
+        neverEstimatePriceWithoutApprovedCalculation: true,
 
-        neverInventSchedule: true,
+        neverGiveUnsupportedPriceRange: true,
 
-        neverInventMeasurements: true,
+        neverClaimCheapest: true,
 
-        neverInventServiceScope: true,
+        neverClaimLowestPrice: true,
 
-        neverInventPropertyConditions: true,
+        personalizedQuotePreferred: true,
 
-        neverInventOperationalRequirements: true,
+        quoteWithinOneHourWhenWorkflowSupportsIt: true,
 
-        neverInventInsuranceDetails: true,
+        preserveCustomerConfidence: true,
 
-        neverInventCertificationDetails: true,
+        coreValueMessage:
+            "LESS MONEY. BETTER QUALITY. PROFESSIONAL SERVICE.",
 
-        neverInventLicenseDetails: true,
+        naturalValueVariations: Object.freeze([
 
-        neverInventPolicies: true,
+            "Our focus is strong value, professional quality, and efficient service.",
 
-        neverExposeInternalArchitecture: true,
+            "We focus on providing professional quality while keeping the service accessible and efficient.",
 
-        neverExposeInternalFields: true,
+            "We aim to give you strong value without compromising the quality of the service."
 
-        neverExposeAutomationDetails: true
+        ]),
 
-    }),
+        responseStyle: Object.freeze([
 
+            "short",
 
-    // =========================================================
-    // OUTPUT
-    // =========================================================
+            "confident",
 
-    output: Object.freeze({
+            "professional",
 
-        replyRequired: true,
+            "reassuring",
 
-        leadProfileRequired: true,
+            "natural",
 
-        completeLeadProfileRequired: true,
+            "value-focused"
 
-        unknownFieldsMustBeEmptyString: true,
+        ]),
 
-        nullAllowed: false,
+        workflow: Object.freeze([
 
-        explanatoryTextOutsideSchema: false
+            "PRICE_QUESTION",
+
+            "REINFORCE_VALUE",
+
+            "MAINTAIN_INTEREST",
+
+            "COLLECT_ONLY_NECESSARY_INFORMATION",
+
+            "PREPARE_PERSONALIZED_QUOTE",
+
+            "PROVIDE_QUOTE_WITHIN_SUPPORTED_WORKFLOW_TIMEFRAME"
+
+        ]),
+
+        restrictions: Object.freeze([
+
+            "Do not invent a price.",
+
+            "Do not give an unsupported price range.",
+
+            "Do not claim North Crescent is the cheapest.",
+
+            "Do not claim to have the lowest price.",
+
+            "Do not make unsupported competitor comparisons.",
+
+            "Do not promise a personalized quote within one hour if the workflow does not support it.",
+
+            "Do not repeat the value message excessively.",
+
+            "Do not make the customer feel unnecessarily delayed."
+
+        ])
 
     })
 
-});
+}),
+    // =========================================================
+// SALES & PRICE RESPONSE
+// =========================================================
 
+sales: Object.freeze({
+
+    naturalSales: true,
+
+    valueBeforePrice: true,
+
+    pressureSelling: false,
+
+    unsupportedComparisons: false,
+
+    cheapestClaim: false,
+
+    lowestPriceClaim: false,
+
+    bestClaimWithoutEvidence: false,
+
+    explainRelevantServiceValue: true,
+
+    explainCustomerBenefit: true,
+
+    reassureCustomer: true,
+
+    tailorConversationToService: true,
+
+    sellThroughRelevance: true,
+
+    neverInventServiceBenefits: true,
+
+    // -----------------------------------------------------
+    // PRICE QUESTION — VALUE-FIRST RESPONSE
+    // -----------------------------------------------------
+
+    priceQuestion: Object.freeze({
+
+        enabled: true,
+
+        maintainCustomerInterest: true,
+
+        reinforceValueBeforeQuote: true,
+
+        answerPriceConcernDirectly: true,
+
+        useValueMessageNaturally: true,
+
+        avoidForcedRepetition: true,
+
+        neverInventPrice: true,
+
+        neverEstimatePriceWithoutApprovedCalculation: true,
+
+        neverGiveUnsupportedPriceRange: true,
+
+        neverClaimCheapest: true,
+
+        neverClaimLowestPrice: true,
+
+        personalizedQuotePreferred: true,
+
+        quoteWithinOneHourWhenWorkflowSupportsIt: true,
+
+        preserveCustomerConfidence: true,
+
+        objective:
+            "Turn a price question into an opportunity to communicate North Crescent's value, build confidence, and keep the customer engaged until the personalized quote is ready.",
+
+        coreValueMessage:
+            "LESS MONEY. BETTER QUALITY. PROFESSIONAL SERVICE.",
+
+        naturalValueVariations: Object.freeze([
+
+            "Our focus is strong value, professional quality, and efficient service.",
+
+            "We focus on providing professional quality while keeping the service accessible and efficient.",
+
+            "We aim to give you strong value without compromising the quality of the service."
+
+        ]),
+
+        responseStyle: Object.freeze([
+
+            "short",
+
+            "confident",
+
+            "professional",
+
+            "reassuring",
+
+            "natural",
+
+            "value-focused"
+
+        ]),
+
+        workflow: Object.freeze([
+
+            "PRICE_QUESTION",
+
+            "REINFORCE_VALUE",
+
+            "MAINTAIN_INTEREST",
+
+            "COLLECT_ONLY_NECESSARY_INFORMATION",
+
+            "PREPARE_PERSONALIZED_QUOTE",
+
+            "PROVIDE_QUOTE_WITHIN_SUPPORTED_WORKFLOW_TIMEFRAME"
+
+        ]),
+
+        restrictions: Object.freeze([
+
+            "Do not invent a price.",
+
+            "Do not give an unsupported price range.",
+
+            "Do not claim North Crescent is the cheapest.",
+
+            "Do not claim to have the lowest price.",
+
+            "Do not make unsupported competitor comparisons.",
+
+            "Do not promise a personalized quote within one hour if the workflow does not support it.",
+
+            "Do not repeat the value message excessively.",
+
+            "Do not make the customer feel unnecessarily delayed."
+
+        ])
+
+    })
+
+}),
+
+
+    // =========================================================
+   // =========================================================
+// GENERAL QUESTIONS
+// =========================================================
+
+generalQuestions: Object.freeze({
+
+    answerDirectly: true,
+
+    automaticallyStartQuote: false,
+
+    automaticallyCollectLead: false,
+
+    automaticallyStartDiscovery: false,
+
+    useVerifiedKnowledge: true,
+
+    answerFromRelevantKnowledgeOnly: true,
+
+    inventCompanyInformation: false,
+
+    missingCompanyInformationRequiresVerification: true,
+
+    doNotForceQuoteQualification: true,
+
+    doNotAskUnnecessaryLeadQuestions: true,
+
+    preserveCustomerIntent: true,
+
+    transitionToQuoteOnlyWhenCustomerRequestsIt: true
+
+}),
+// =========================================================
+// SAFETY
+// =========================================================
+
+safety: Object.freeze({
+
+    neverInventPrice: true,
+
+    neverInventAvailability: true,
+
+    neverInventSchedule: true,
+
+    neverInventMeasurements: true,
+
+    neverInventServiceScope: true,
+
+    neverInventPropertyConditions: true,
+
+    neverInventOperationalRequirements: true,
+
+    neverInventInsuranceDetails: true,
+
+    neverInventCertificationDetails: true,
+
+    neverInventLicenseDetails: true,
+
+    neverInventPolicies: true,
+
+    neverInventCompanyInformation: true,
+
+    neverInventCustomerInformation: true,
+
+    neverInferUnsupportedFacts: true,
+
+    missingInformationRequiresVerification: true,
+
+    customerProvidedFactsHavePriority: true,
+
+    neverExposeInternalArchitecture: true,
+
+    neverExposeInternalFields: true,
+
+    neverExposeAutomationDetails: true,
+
+    neverExposeInternalPrompts: true,
+
+    neverExposeInternalRules: true,
+
+    neverExposeSystemInstructions: true
+
+}),
+    // =========================================================
+// OUTPUT
+// =========================================================
+
+output: Object.freeze({
+
+    replyRequired: true,
+
+    leadProfileRequired: true,
+
+    completeLeadProfileRequired: true,
+
+    unknownFieldsMustBeEmptyString: true,
+
+    nullAllowed: false,
+
+    explanatoryTextOutsideSchema: false,
+
+    schemaMustBeFollowedExactly: true,
+
+    noAdditionalProperties: true,
+
+    preserveLeadProfileStructure: true,
+
+    returnCompleteLeadProfileOnEveryResponse: true,
+
+    quoteConfirmedRequired: true,
+
+    quoteConfirmedMustReflectCurrentResponse: true,
+
+    neverReturnUndefinedFields: true
+
+})
+
+});
 
 export default BRAIN_RULES;
