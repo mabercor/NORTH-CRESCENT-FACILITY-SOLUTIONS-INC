@@ -10,7 +10,7 @@
  * - existing North Crescent OS systems
  *
  * It does NOT contain:
- * - pricing
+ * - pricing calculations
  * - Airtable logic
  * - customer database logic
  * - duplicate operational state
@@ -29,11 +29,14 @@ import CONCIERGE_KNOWLEDGE from "./knowledge.js";
    ========================================================= */
 
 function isObject(value) {
-    return value !== null && typeof value === "object" && !Array.isArray(value);
+    return value !== null &&
+        typeof value === "object" &&
+        !Array.isArray(value);
 }
 
 
 function cleanValue(value) {
+
     if (value === null || value === undefined) {
         return "";
     }
@@ -43,6 +46,15 @@ function cleanValue(value) {
     }
 
     return value.trim();
+}
+
+
+function normalizeText(value) {
+
+    return cleanValue(value)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 }
 
 
@@ -75,12 +87,69 @@ function normalizeLeadProfile(profile = {}) {
 
 
 /* =========================================================
+   CONVERSATION HELPERS
+   ========================================================= */
+
+function getMessages(conversationHistory = []) {
+
+    if (!Array.isArray(conversationHistory)) {
+        return [];
+    }
+
+    return conversationHistory;
+}
+
+
+function getMostRecentUserMessage(conversationHistory = []) {
+
+    const messages = getMessages(conversationHistory);
+
+    for (let i = messages.length - 1; i >= 0; i--) {
+
+        const message = messages[i];
+
+        if (
+            isObject(message) &&
+            normalizeText(message.role) === "user"
+        ) {
+            return cleanValue(message.content);
+        }
+    }
+
+    return "";
+}
+
+
+function getPreviousAssistantMessage(conversationHistory = []) {
+
+    const messages = getMessages(conversationHistory);
+
+    for (let i = messages.length - 1; i >= 0; i--) {
+
+        const message = messages[i];
+
+        if (
+            isObject(message) &&
+            normalizeText(message.role) === "assistant"
+        ) {
+            return cleanValue(message.content);
+        }
+    }
+
+    return "";
+}
+
+
+/* =========================================================
    MEMORY
    ========================================================= */
 
 /**
- * Preserve known information while allowing explicit
- * customer corrections and more precise information.
+ * Preserve known information.
+ *
+ * Customer-provided incoming information can replace
+ * previous information when it is more precise or is
+ * an explicit correction.
  */
 export function mergeLeadProfile(
     existingProfile = {},
@@ -158,9 +227,10 @@ export function hasEssentialInformation(leadProfile = {}) {
 
 export function findServiceArea(city = "") {
 
-    const normalizedCity = cleanValue(city).toLowerCase();
+    const normalizedCity = normalizeText(city);
 
     if (!normalizedCity) {
+
         return {
             known: false,
             city: "",
@@ -171,7 +241,7 @@ export function findServiceArea(city = "") {
     const cities = CONCIERGE_KNOWLEDGE.serviceAreas.primary;
 
     const matchedCity = cities.find(
-        item => item.toLowerCase() === normalizedCity
+        item => normalizeText(item) === normalizedCity
     );
 
     return {
@@ -183,43 +253,429 @@ export function findServiceArea(city = "") {
 
 
 /* =========================================================
-   INTENT
+   CONFIRMATION DETECTION
    ========================================================= */
 
 /**
- * Basic deterministic intent signals.
+ * Confirmation must be explicit.
  *
- * This is intentionally lightweight.
- * Natural-language reasoning remains with the AI layer.
+ * A simple "yes" is only treated as confirmation when
+ * the conversation context indicates that the assistant
+ * just presented a final summary requiring confirmation.
+ *
+ * This prevents:
+ *
+ * "Yes, I have a question..."
+ *
+ * from becoming CONFIRMATION.
  */
-export function detectIntent(message = "") {
 
-    const text = cleanValue(message).toLowerCase();
+function isExplicitConfirmation(message = "") {
+
+    const text = normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
+
+    const exactConfirmationPatterns = [
+
+        /^yes$/,
+        /^yes[,!. ]*everything is correct[.!]?$/,
+        /^yes[,!. ]*thats right[.!]?$/,
+        /^yes[,!. ]*looks good[.!]?$/,
+
+        /^correct[.!]?$/,
+        /^confirmed[.!]?$/,
+        /^thats right[.!]?$/,
+        /^looks good[.!]?$/,
+
+        /^si$/,
+        /^si confirmo$/,
+        /^todo esta correcto$/,
+        /^esta bien$/,
+        /^confirmado$/
+    ];
+
+    return exactConfirmationPatterns.some(
+        pattern => pattern.test(text)
+    );
+}
+
+
+/**
+ * Determines whether the previous assistant response
+ * appears to contain a final confirmation request.
+ *
+ * This is intentionally conservative.
+ */
+function assistantRequestedConfirmation(assistantMessage = "") {
+
+    const text = normalizeText(assistantMessage);
+
+    if (!text) {
+        return false;
+    }
+
+    const confirmationSignals = [
+
+        "is everything correct",
+        "is all of this correct",
+        "does everything look correct",
+        "please confirm",
+        "can you confirm",
+        "confirm the details",
+        "confirm everything",
+
+        "todo esta correcto",
+        "esta todo correcto",
+        "puede confirmar",
+        "confirme los detalles"
+    ];
+
+    return confirmationSignals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/* =========================================================
+   CORRECTION DETECTION
+   ========================================================= */
+
+function isCorrection(message = "") {
+
+    const text = normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
+
+    const correctionSignals = [
+
+        "actually",
+        "correction",
+        "correct that",
+        "change that",
+        "i meant",
+        "instead",
+        "not that",
+        "the address is",
+        "my address is",
+
+        "en realidad",
+        "correccion",
+        "corrige",
+        "cambia eso",
+        "quise decir",
+        "la direccion es",
+        "mi direccion es"
+    ];
+
+    return correctionSignals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/* =========================================================
+   PRICE DETECTION
+   ========================================================= */
+
+function isPriceQuestion(message = "") {
+
+    const text = normalizeText(message);
+
+    const signals = [
+
+        "price",
+        "pricing",
+        "cost",
+        "costs",
+        "how much",
+        "quote",
+        "quotation",
+        "estimate",
+
+        "precio",
+        "precios",
+        "cuanto",
+        "cuanto cuesta",
+        "cotizacion",
+        "cotizar",
+        "estimado"
+    ];
+
+    return signals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/* =========================================================
+   AVAILABILITY DETECTION
+   ========================================================= */
+
+function isAvailabilityQuestion(message = "") {
+
+    const text = normalizeText(message);
+
+    const signals = [
+
+        "available",
+        "availability",
+        "when can",
+        "what date",
+        "schedule",
+        "appointment",
+        "booking",
+        "book",
+
+        "disponible",
+        "disponibilidad",
+        "cuando pueden",
+        "que fecha",
+        "horario",
+        "cita",
+        "reservar"
+    ];
+
+    return signals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/* =========================================================
+   SERVICE INFORMATION DETECTION
+   ========================================================= */
+
+function isServiceInformationQuestion(message = "") {
+
+    const text = normalizeText(message);
+
+    const signals = [
+
+        "what services",
+        "what do you offer",
+        "do you offer",
+        "what is included",
+        "what does the service include",
+        "tell me about your service",
+        "how does it work",
+
+        "que servicios",
+        "que ofrecen",
+        "que incluye",
+        "que incluye el servicio",
+        "como funciona"
+    ];
+
+    return signals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/* =========================================================
+   NEW REQUEST DETECTION
+   ========================================================= */
+
+function isNewRequest(message = "", leadProfile = {}) {
+
+    const text = normalizeText(message);
+    const profile = normalizeLeadProfile(leadProfile);
+
+    if (!text) {
+        return false;
+    }
+
+    const requestSignals = [
+
+        "i need another",
+        "i also need",
+        "another quote",
+        "new quote",
+        "different property",
+        "another property",
+
+        "necesito otra",
+        "tambien necesito",
+        "otra cotizacion",
+        "nueva cotizacion",
+        "otra propiedad"
+    ];
+
+    const hasRequestSignal = requestSignals.some(
+        signal => text.includes(signal)
+    );
+
+    if (hasRequestSignal) {
+        return true;
+    }
+
+    /*
+     * If the customer already has a completed profile
+     * and suddenly provides a clearly different service
+     * context, the language layer should later verify
+     * whether this is a new request.
+     *
+     * We intentionally do not automatically classify it here.
+     */
+
+    return Boolean(profile.serviceType && false);
+}
+
+
+/* =========================================================
+   POST-CONFIRMATION DETECTION
+   ========================================================= */
+
+function isPostConfirmation(
+    conversationHistory = [],
+    leadProfile = {}
+) {
+
+    const messages = getMessages(conversationHistory);
+    const profile = normalizeLeadProfile(leadProfile);
+
+    if (!profile.clientName) {
+        return false;
+    }
+
+    if (messages.length < 2) {
+        return false;
+    }
+
+    /*
+     * The Brain does not persist quoteConfirmed as state.
+     *
+     * This function only recognizes that the conversation
+     * contains a previous explicit confirmation event.
+     *
+     * The current message must still be evaluated separately.
+     */
+
+    let confirmationFound = false;
+
+    for (let i = 0; i < messages.length; i++) {
+
+        const message = messages[i];
+
+        if (
+            isObject(message) &&
+            normalizeText(message.role) === "user"
+        ) {
+
+            const content = cleanValue(message.content);
+
+            if (isExplicitConfirmation(content)) {
+
+                const previousAssistant =
+                    i > 0
+                        ? messages[i - 1]
+                        : null;
+
+                if (
+                    previousAssistant &&
+                    normalizeText(previousAssistant.role) === "assistant" &&
+                    assistantRequestedConfirmation(
+                        previousAssistant.content
+                    )
+                ) {
+                    confirmationFound = true;
+                }
+            }
+        }
+    }
+
+    return confirmationFound;
+}
+
+
+/* =========================================================
+   INTENT
+   ========================================================= */
+
+export function detectIntent(
+    message = "",
+    {
+        conversationHistory = [],
+        leadProfile = {}
+    } = {}
+) {
+
+    const text = cleanValue(message);
 
     if (!text) {
         return "GENERAL_QUESTION";
     }
 
+    /*
+     * Corrections have priority because they modify
+     * existing customer information.
+     */
+    if (isCorrection(text)) {
+        return "CORRECTION";
+    }
+
+    /*
+     * Explicit confirmation is only valid when the
+     * previous assistant message requested confirmation.
+     */
     if (
-        /\b(correct|confirmed|confirm|yes|that's right|looks good|sí|si confirmo|todo está correcto|está bien)\b/i.test(text)
+        isExplicitConfirmation(text) &&
+        assistantRequestedConfirmation(
+            getPreviousAssistantMessage(conversationHistory)
+        )
     ) {
         return "CONFIRMATION";
     }
 
-    if (
-        /\b(price|pricing|cost|costs|quote|quotation|estimate|how much|precio|precios|cuánto|cuanto|cotización|cotizacion)\b/i.test(text)
-    ) {
+    if (isNewRequest(text, leadProfile)) {
+        return "NEW_REQUEST";
+    }
+
+    if (isPriceQuestion(text)) {
         return "PRICE_QUESTION";
     }
 
-    if (
-        /\b(available|availability|available date|when can|schedule|appointment|disponible|disponibilidad|fecha|cuándo|cuando)\b/i.test(text)
-    ) {
+    if (isAvailabilityQuestion(text)) {
         return "AVAILABILITY_QUESTION";
     }
 
+    if (isServiceInformationQuestion(text)) {
+        return "SERVICE_INFORMATION";
+    }
+
+    /*
+     * Quote intent is deliberately broad but conservative.
+     */
+    const quoteSignals = [
+
+        "i need cleaning",
+        "i need a cleaner",
+        "i need cleaning service",
+        "looking for cleaning",
+        "looking for a cleaning company",
+        "i want a quote",
+        "i need a quote",
+        "can you clean",
+        "can you provide cleaning",
+
+        "necesito limpieza",
+        "necesito un servicio de limpieza",
+        "busco limpieza",
+        "busco una empresa de limpieza",
+        "quiero una cotizacion",
+        "necesito una cotizacion",
+        "pueden limpiar"
+    ];
+
     if (
-        /\b(book|booking|hire|need cleaning|i need|looking for|want cleaning|reservar|contratar|necesito limpieza|quiero limpieza)\b/i.test(text)
+        quoteSignals.some(
+            signal => normalizeText(text).includes(signal)
+        )
     ) {
         return "QUOTE";
     }
@@ -233,66 +689,98 @@ export function detectIntent(message = "") {
    ========================================================= */
 
 export function getKnowledge() {
+
     return CONCIERGE_KNOWLEDGE;
 }
 
 
 export function getRules() {
+
     return BRAIN_RULES;
 }
 
 
 /* =========================================================
-   BRAIN ANALYSIS
+   ANALYSIS
    ========================================================= */
 
-/**
- * Creates a deterministic analysis object.
- *
- * The brain does not generate the final customer response.
- * It prepares the structured context that the language layer
- * can use safely.
- */
 export function analyzeRequest({
+
     currentMessage = "",
     conversationHistory = [],
     leadProfile = {},
     serviceContext = ""
+
 } = {}) {
 
-    const profile = normalizeLeadProfile(leadProfile);
+    const history = getMessages(conversationHistory);
 
-    const intent = detectIntent(currentMessage);
+    /*
+     * The current request should normally be supplied
+     * explicitly by the integration layer.
+     *
+     * If it is missing, recover the most recent user
+     * message from the conversation history.
+     */
+    const currentCustomerMessage =
+        cleanValue(currentMessage) ||
+        getMostRecentUserMessage(history);
 
-    const missingFields = getMissingEssentialFields(profile);
+    const profile =
+        normalizeLeadProfile(leadProfile);
 
-    const serviceArea = findServiceArea(profile.city);
+    const intent = detectIntent(
+        currentCustomerMessage,
+        {
+            conversationHistory: history,
+            leadProfile: profile
+        }
+    );
 
-    const quoteReady = missingFields.length === 0;
+    const missingFields =
+        getMissingEssentialFields(profile);
+
+    const serviceArea =
+        findServiceArea(profile.city);
+
+    const quoteReady =
+        missingFields.length === 0;
+
+    const postConfirmation =
+        isPostConfirmation(
+            history,
+            profile
+        );
 
     return Object.freeze({
 
         intent,
 
-        currentMessage: cleanValue(currentMessage),
+        currentMessage:
+            currentCustomerMessage,
 
-        conversationHistory: Array.isArray(conversationHistory)
-            ? conversationHistory
-            : [],
+        conversationHistory:
+            history,
 
-        leadProfile: profile,
+        leadProfile:
+            profile,
 
-        serviceContext: cleanValue(serviceContext),
+        serviceContext:
+            cleanValue(serviceContext),
 
         missingFields,
 
         quoteReady,
 
+        postConfirmation,
+
         serviceArea,
 
-        rules: BRAIN_RULES,
+        rules:
+            BRAIN_RULES,
 
-        knowledge: CONCIERGE_KNOWLEDGE
+        knowledge:
+            CONCIERGE_KNOWLEDGE
     });
 }
 
@@ -301,53 +789,86 @@ export function analyzeRequest({
    NEXT ACTION
    ========================================================= */
 
-export function determineNextAction(analysis = {}) {
+export function determineNextAction(
+    analysis = {}
+) {
 
-    const intent = analysis.intent;
-    const quoteReady = Boolean(analysis.quoteReady);
+    const intent =
+        analysis.intent || "GENERAL_QUESTION";
 
-    if (intent === "PRICE_QUESTION") {
-        return "USE_PRICING_ENGINE";
-    }
+    const quoteReady =
+        Boolean(analysis.quoteReady);
 
-    if (intent === "AVAILABILITY_QUESTION") {
-        return "CHECK_AVAILABILITY";
-    }
+    const postConfirmation =
+        Boolean(analysis.postConfirmation);
 
-    if (intent === "GENERAL_QUESTION") {
-        return "ANSWER_FROM_KNOWLEDGE";
-    }
 
-    if (intent === "SERVICE_INFORMATION") {
-        return "ANSWER_FROM_KNOWLEDGE";
-    }
-
-    if (intent === "CONFIRMATION" && quoteReady) {
-        return "PROCESS_CONFIRMATION";
-    }
-
-    if (intent === "CORRECTION") {
-        return "UPDATE_PROFILE_AND_RECONFIRM";
-    }
-
-    if (intent === "POST_CONFIRMATION") {
+    /*
+     * Post-confirmation follow-up.
+     *
+     * The previous confirmation is not reused as
+     * quoteConfirmed for the current response.
+     */
+    if (
+        postConfirmation &&
+        intent !== "NEW_REQUEST" &&
+        intent !== "CORRECTION"
+    ) {
         return "ANSWER_FOLLOW_UP";
     }
 
-    if (intent === "NEW_REQUEST") {
-        return "START_NEW_REQUEST";
+
+    switch (intent) {
+
+        case "PRICE_QUESTION":
+            return "USE_PRICING_ENGINE";
+
+
+        case "AVAILABILITY_QUESTION":
+            return "CHECK_AVAILABILITY";
+
+
+        case "GENERAL_QUESTION":
+            return "ANSWER_FROM_KNOWLEDGE";
+
+
+        case "SERVICE_INFORMATION":
+            return "ANSWER_FROM_KNOWLEDGE";
+
+
+        case "CORRECTION":
+            return "UPDATE_PROFILE_AND_RECONFIRM";
+
+
+        case "NEW_REQUEST":
+            return "START_NEW_REQUEST";
+
+
+        case "CONFIRMATION":
+
+            if (quoteReady) {
+                return "PROCESS_CONFIRMATION";
+            }
+
+            return "CONTINUE_QUALIFICATION";
+
+
+        case "QUOTE":
+
+            if (quoteReady) {
+                return "PREPARE_FINAL_CONFIRMATION";
+            }
+
+            return "CONTINUE_QUALIFICATION";
+
+
+        case "POST_CONFIRMATION":
+            return "ANSWER_FOLLOW_UP";
+
+
+        default:
+            return "CONTINUE_CONVERSATION";
     }
-
-    if (intent === "QUOTE") {
-
-        if (quoteReady) {
-            return "PREPARE_FINAL_CONFIRMATION";
-        }
-
-        return "CONTINUE_QUALIFICATION";
-    }
-
-    return "CONTINUE_CONVERSATION";
 }
 
 
@@ -355,23 +876,15 @@ export function determineNextAction(analysis = {}) {
    MAIN BRAIN ENTRY
    ========================================================= */
 
-/**
- * Main entry point for the Concierge Brain.
- *
- * External systems can later call:
- *
- *   processConciergeRequest(...)
- *
- * The function returns structured intelligence.
- *
- * It does not call OpenAI, Make, Airtable, or pricing-engine
- * yet. Those integrations will be connected later.
- */
-export function processConciergeRequest(input = {}) {
+export function processConciergeRequest(
+    input = {}
+) {
 
-    const analysis = analyzeRequest(input);
+    const analysis =
+        analyzeRequest(input);
 
-    const nextAction = determineNextAction(analysis);
+    const nextAction =
+        determineNextAction(analysis);
 
     return Object.freeze({
 
@@ -381,6 +894,10 @@ export function processConciergeRequest(input = {}) {
     });
 }
 
+
+/* =========================================================
+   PUBLIC API
+   ========================================================= */
 
 export default Object.freeze({
 
