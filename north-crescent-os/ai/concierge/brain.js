@@ -145,15 +145,24 @@ function getPreviousAssistantMessage(conversationHistory = []) {
    ========================================================= */
 
 /**
- * Preserve known information.
+ * Merge customer memory safely.
  *
- * Customer-provided incoming information can replace
- * previous information when it is more precise or is
- * an explicit correction.
+ * Rules:
+ * - Preserve known information.
+ * - Add new customer-provided information.
+ * - Allow explicit customer corrections to replace previous data.
+ * - Allow more precise customer-provided information to replace
+ *   less precise information.
+ * - Never overwrite known information with an assumption.
+ * - Never use null, undefined, or placeholder values.
+ *
+ * The customer remains the primary source for customer-specific data.
  */
+
 export function mergeLeadProfile(
     existingProfile = {},
-    incomingProfile = {}
+    incomingProfile = {},
+    options = {}
 ) {
 
     const existing = normalizeLeadProfile(existingProfile);
@@ -161,21 +170,79 @@ export function mergeLeadProfile(
 
     const merged = {};
 
+    const correctedFields = new Set(
+        Array.isArray(options.correctedFields)
+            ? options.correctedFields
+            : []
+    );
+
+    const preciseFields = new Set(
+        Array.isArray(options.morePreciseFields)
+            ? options.morePreciseFields
+            : []
+    );
+
     for (const field of Object.keys(existing)) {
 
         const oldValue = existing[field];
         const newValue = incoming[field];
 
-        if (newValue !== "") {
-            merged[field] = newValue;
-        } else {
+        /*
+         * No new information.
+         * Preserve the existing value.
+         */
+        if (!newValue) {
+
             merged[field] = oldValue;
+
+            continue;
         }
+
+        /*
+         * No previous information.
+         * Add the new customer-provided value.
+         */
+        if (!oldValue) {
+
+            merged[field] = newValue;
+
+            continue;
+        }
+
+        /*
+         * Explicit customer correction.
+         * Customer-provided correction wins.
+         */
+        if (correctedFields.has(field)) {
+
+            merged[field] = newValue;
+
+            continue;
+        }
+
+        /*
+         * More precise customer-provided information.
+         * More precise information replaces the previous value.
+         */
+        if (preciseFields.has(field)) {
+
+            merged[field] = newValue;
+
+            continue;
+        }
+
+        /*
+         * Existing information remains authoritative
+         * when the incoming value is not explicitly identified
+         * as a correction or more precise information.
+         *
+         * This prevents assumptions from overwriting known data.
+         */
+        merged[field] = oldValue;
     }
 
     return merged;
 }
-
 
 /* =========================================================
    REQUIRED INFORMATION
@@ -597,59 +664,262 @@ function isPostConfirmation(
    INTENT
    ========================================================= */
 
+/**
+ * Detect the customer's current intent using:
+ *
+ * - current customer message
+ * - conversation history
+ * - current lead profile
+ *
+ * Rules:
+ * - Current customer request has priority.
+ * - Explicit corrections have priority over other intents.
+ * - Explicit confirmation only counts when confirmation was requested.
+ * - Conversation history must be considered.
+ * - Service context must never override the customer's actual request.
+ * - Intent must not be inferred from service context alone.
+ *
+ * The Brain performs deterministic routing.
+ * Complex language interpretation remains with the language layer.
+ */
+
 export function detectIntent(
     message = "",
     {
         conversationHistory = [],
-        leadProfile = {}
+        leadProfile = {},
+        serviceContext = ""
     } = {}
 ) {
 
     const text = cleanValue(message);
 
-    if (!text) {
+    const normalizedText = normalizeText(text);
+
+    const history = getMessages(conversationHistory);
+
+    const profile = normalizeLeadProfile(leadProfile);
+
+    const normalizedServiceContext =
+        normalizeText(serviceContext);
+
+    /*
+     * Empty customer message.
+     *
+     * Do not infer intent from leadProfile or serviceContext.
+     */
+    if (!normalizedText) {
         return "GENERAL_QUESTION";
     }
 
     /*
-     * Corrections have priority because they modify
-     * existing customer information.
+     * ---------------------------------------------------------
+     * 1. CORRECTION
+     * ---------------------------------------------------------
+     *
+     * A customer's explicit correction has priority because
+     * it modifies previously known customer information.
      */
     if (isCorrection(text)) {
         return "CORRECTION";
     }
 
-    /*
-     * Explicit confirmation is only valid when the
-     * previous assistant message requested confirmation.
-     */
-    if (
-        isExplicitConfirmation(text) &&
-        assistantRequestedConfirmation(
-            getPreviousAssistantMessage(conversationHistory)
-        )
-    ) {
-        return "CONFIRMATION";
+    
+   /* =========================================================
+   CONFIRMATION DETECTION
+   ========================================================= */
+
+/**
+ * Confirmation must be explicit and contextual.
+ *
+ * A confirmation is valid only when:
+ *
+ * 1. The customer explicitly confirms.
+ * 2. The previous assistant response requested confirmation.
+ * 3. The current request contains all essential information.
+ *
+ * Previous confirmations do not persist as confirmation
+ * for the current response.
+ */
+
+/**
+ * Determines whether the customer's message contains
+ * an explicit confirmation.
+ */
+function isExplicitConfirmation(message = "") {
+
+    const text = normalizeText(message);
+
+    if (!text) {
+        return false;
     }
 
-    if (isNewRequest(text, leadProfile)) {
+    const exactConfirmationPatterns = [
+
+        /^yes$/,
+        /^yes[,!. ]*everything is correct[.!]?$/,
+        /^yes[,!. ]*thats right[.!]?$/,
+        /^yes[,!. ]*looks good[.!]?$/,
+
+        /^correct[.!]?$/,
+        /^confirmed[.!]?$/,
+        /^thats right[.!]?$/,
+        /^looks good[.!]?$/,
+
+        /^si$/,
+        /^si confirmo$/,
+        /^todo esta correcto$/,
+        /^esta bien$/,
+        /^confirmado$/
+
+    ];
+
+    return exactConfirmationPatterns.some(
+        pattern => pattern.test(text)
+    );
+}
+
+
+/**
+ * Determines whether the previous assistant response
+ * requested confirmation of the current request.
+ *
+ * This remains intentionally conservative.
+ */
+function assistantRequestedConfirmation(
+    assistantMessage = ""
+) {
+
+    const text = normalizeText(assistantMessage);
+
+    if (!text) {
+        return false;
+    }
+
+    const confirmationSignals = [
+
+        "is everything correct",
+        "is all of this correct",
+        "does everything look correct",
+        "please confirm",
+        "can you confirm",
+        "confirm the details",
+        "confirm everything",
+
+        "todo esta correcto",
+        "esta todo correcto",
+        "puede confirmar",
+        "confirme los detalles"
+
+    ];
+
+    return confirmationSignals.some(
+        signal => text.includes(signal)
+    );
+}
+
+
+/**
+ * Determines whether the current customer message
+ * can be treated as a valid quote confirmation.
+ *
+ * This function does NOT persist confirmation state.
+ */
+function isValidCurrentConfirmation(
+    message = "",
+    conversationHistory = [],
+    leadProfile = {}
+) {
+
+    const text = cleanValue(message);
+
+    if (!isExplicitConfirmation(text)) {
+        return false;
+    }
+
+    const previousAssistantMessage =
+        getPreviousAssistantMessage(
+            conversationHistory
+        );
+
+    if (
+        !assistantRequestedConfirmation(
+            previousAssistantMessage
+        )
+    ) {
+        return false;
+    }
+
+    /*
+     * A confirmation cannot process an incomplete request.
+     */
+    if (!hasEssentialInformation(leadProfile)) {
+        return false;
+    }
+
+    return true;
+}
+
+    /*
+     * ---------------------------------------------------------
+     * 3. NEW REQUEST
+     * ---------------------------------------------------------
+     *
+     * A clearly stated new request takes priority over
+     * the previous service context.
+     */
+    if (isNewRequest(text, profile)) {
         return "NEW_REQUEST";
     }
 
-    if (isPriceQuestion(text)) {
-        return "PRICE_QUESTION";
-    }
-
-    if (isAvailabilityQuestion(text)) {
-        return "AVAILABILITY_QUESTION";
-    }
-
+    /*
+     * ---------------------------------------------------------
+     * 4. SERVICE INFORMATION
+     * ---------------------------------------------------------
+     *
+     * Questions about what North Crescent offers or includes
+     * should remain informational and should not automatically
+     * become quote qualification.
+     */
     if (isServiceInformationQuestion(text)) {
         return "SERVICE_INFORMATION";
     }
 
+    
+   
+   /*
+     * ---------------------------------------------------------
+     * 5. PRICE QUESTION
+     * ---------------------------------------------------------
+     *
+     * A price question is routed to the pricing/value workflow.
+     *
+     * The Brain does NOT calculate or invent the price here.
+     */
+    if (isPriceQuestion(text)) {
+        return "PRICE_QUESTION";
+    }
+
     /*
-     * Quote intent is deliberately broad but conservative.
+     * ---------------------------------------------------------
+     * 6. AVAILABILITY QUESTION
+     * ---------------------------------------------------------
+     *
+     * Availability questions are kept separate from pricing
+     * and quote confirmation.
+     */
+    if (isAvailabilityQuestion(text)) {
+        return "AVAILABILITY_QUESTION";
+    }
+
+    /*
+     * ---------------------------------------------------------
+     * 7. QUOTE INTENT
+     * ---------------------------------------------------------
+     *
+     * Quote intent is based on an explicit customer request.
+     *
+     * Service context alone can NEVER create quote intent.
      */
     const quoteSignals = [
 
@@ -670,19 +940,31 @@ export function detectIntent(
         "quiero una cotizacion",
         "necesito una cotizacion",
         "pueden limpiar"
+
     ];
 
     if (
         quoteSignals.some(
-            signal => normalizeText(text).includes(signal)
+            signal => normalizedText.includes(signal)
         )
     ) {
         return "QUOTE";
     }
 
+    /*
+     * ---------------------------------------------------------
+     * 8. GENERAL QUESTION
+     * ---------------------------------------------------------
+     *
+     * If no explicit supported intent is detected, remain
+     * informational rather than forcing the customer into
+     * qualification.
+     *
+     * Service context and existing leadProfile do not override
+     * the customer's current request.
+     */
     return "GENERAL_QUESTION";
 }
-
 
 /* =========================================================
    KNOWLEDGE ACCESS
