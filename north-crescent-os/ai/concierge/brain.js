@@ -573,72 +573,7 @@ function isPostConfirmation(
     return confirmationFound;
 }
 
-
-/* =========================================================
-   INTENT
-   ========================================================= */
-
-/**
- * Detect the customer's current intent using:
- *
- * - current customer message
- * - conversation history
- * - current lead profile
- *
- * Rules:
- * - Current customer request has priority.
- * - Explicit corrections have priority over other intents.
- * - Explicit confirmation only counts when confirmation was requested.
- * - Conversation history must be considered.
- * - Service context must never override the customer's actual request.
- * - Intent must not be inferred from service context alone.
- *
- * The Brain performs deterministic routing.
- * Complex language interpretation remains with the language layer.
- */
-
-export function detectIntent(
-    message = "",
-    {
-        conversationHistory = [],
-        leadProfile = {},
-        serviceContext = ""
-    } = {}
-) {
-
-    const text = cleanValue(message);
-
-    const normalizedText = normalizeText(text);
-
-    const history = getMessages(conversationHistory);
-
-    const profile = normalizeLeadProfile(leadProfile);
-
-    const normalizedServiceContext =
-        normalizeText(serviceContext);
-
-    /*
-     * Empty customer message.
-     *
-     * Do not infer intent from leadProfile or serviceContext.
-     */
-    if (!normalizedText) {
-        return "GENERAL_QUESTION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 1. CORRECTION
-     * ---------------------------------------------------------
-     *
-     * A customer's explicit correction has priority because
-     * it modifies previously known customer information.
-     */
-    if (isCorrection(text)) {
-        return "CORRECTION";
-    }
-
-    
+  
    /* =========================================================
    CONFIRMATION DETECTION
    ========================================================= */
@@ -774,6 +709,95 @@ function isValidCurrentConfirmation(
     return true;
 }
 
+/* =========================================================
+   INTENT
+   ========================================================= */
+
+/**
+ * Detect the customer's current intent using:
+ *
+ * - current customer message
+ * - conversation history
+ * - current lead profile
+ * - service context
+ *
+ * Rules:
+ * - Current customer request has priority.
+ * - Explicit corrections have priority over other intents.
+ * - Explicit confirmation only counts when confirmation was requested.
+ * - Conversation history must be considered.
+ * - Service context must never override the customer's actual request.
+ * - Intent must not be inferred from service context alone.
+ *
+ * The Brain performs deterministic routing.
+ * Complex language interpretation remains with the language layer.
+ */
+
+export function detectIntent(
+    message = "",
+    {
+        conversationHistory = [],
+        leadProfile = {},
+        serviceContext = ""
+    } = {}
+) {
+
+    const text = cleanValue(message);
+
+    const normalizedText = normalizeText(text);
+
+    const history = getMessages(conversationHistory);
+
+    const profile = normalizeLeadProfile(leadProfile);
+
+    const normalizedServiceContext =
+        normalizeText(serviceContext);
+
+    /*
+     * Empty customer message.
+     *
+     * Do not infer intent from leadProfile or serviceContext.
+     */
+    if (!normalizedText) {
+        return "GENERAL_QUESTION";
+    }
+
+    /*
+     * ---------------------------------------------------------
+     * 1. CORRECTION
+     * ---------------------------------------------------------
+     *
+     * A customer's explicit correction has priority because
+     * it modifies previously known customer information.
+     */
+    if (isCorrection(text)) {
+        return "CORRECTION";
+    }
+
+    /*
+     * ---------------------------------------------------------
+     * 2. CONFIRMATION
+     * ---------------------------------------------------------
+     *
+     * Confirmation is valid only when:
+     *
+     * - the customer explicitly confirms,
+     * - the previous assistant response requested confirmation,
+     * - the current lead profile contains all essential information.
+     *
+     * Previous confirmations do not persist as confirmation
+     * for the current response.
+     */
+    if (
+        isValidCurrentConfirmation(
+            text,
+            history,
+            profile
+        )
+    ) {
+        return "CONFIRMATION";
+    }
+
     /*
      * ---------------------------------------------------------
      * 3. NEW REQUEST
@@ -799,9 +823,7 @@ function isValidCurrentConfirmation(
         return "SERVICE_INFORMATION";
     }
 
-    
-   
-   /*
+    /*
      * ---------------------------------------------------------
      * 5. PRICE QUESTION
      * ---------------------------------------------------------
