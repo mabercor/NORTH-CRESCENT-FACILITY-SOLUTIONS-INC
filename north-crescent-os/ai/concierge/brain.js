@@ -48,13 +48,13 @@ function cleanValue(value) {
     return value.trim();
 }
 
-
 function normalizeText(value) {
 
     return cleanValue(value)
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
 }
 
 
@@ -323,7 +323,6 @@ export function findServiceArea(city = "") {
 /* =========================================================
    CORRECTION DETECTION
    ========================================================= */
-
 function isCorrection(message = "") {
 
     const text = normalizeText(message);
@@ -332,36 +331,34 @@ function isCorrection(message = "") {
         return false;
     }
 
-   const correctionSignals = [
+    const correctionSignals = [
+        "actually",
+        "correction",
+        "correct that",
+        "change that",
+        "i meant",
+        "instead",
+        "not that",
+        "the address is",
+        "my address is",
 
-    "actually",
-    "correction",
-    "correct that",
-    "change that",
-    "i meant",
-    "instead",
-    "not that",
-    "the address is",
-    "my address is",
-
-    "en fait",
-    "correction",
-    "corrigez cela",
-    "corrige ça",
-    "changez cela",
-    "change ça",
-    "je voulais dire",
-    "plutôt",
-    "pas ça",
-    "l'adresse est",
-    "mon adresse est"
-];
+        "en fait",
+        "correction",
+        "corrigez cela",
+        "corrige ça",
+        "changez cela",
+        "change ça",
+        "je voulais dire",
+        "plutôt",
+        "pas ça",
+        "l'adresse est",
+        "mon adresse est"
+    ];
 
     return correctionSignals.some(
-        signal => text.includes(signal)
+        signal => text.includes(normalizeText(signal))
     );
 }
-
 
 /* =========================================================
    PRICE DETECTION
@@ -389,7 +386,7 @@ function isPriceQuestion(message = "") {
     ];
 
     return signals.some(
-        signal => text.includes(signal)
+      signal => text.includes(normalizeText(signal))
     );
 }
 
@@ -571,36 +568,25 @@ function isExplicitConfirmation(message = "") {
         return false;
     }
 
-    const exactConfirmationPatterns = [
+    const validConfirmations = [
+    "yes",
+    "yes everything is correct",
+    "correct",
+    "that's right",
+    "looks good",
+    "confirmed",
 
-        /^yes$/,
-        /^yes[,!. ]*everything is correct[.!]?$/,
-        /^yes[,!. ]*thats right[.!]?$/,
-        /^yes[,!. ]*looks good[.!]?$/,
+    "oui",
+    "oui tout est correct",
+    "c'est exact",
+    "tout est correct"
+];
 
-        /^correct[.!]?$/,
-        /^confirmed[.!]?$/,
-        /^thats right[.!]?$/,
-        /^looks good[.!]?$/,
-
-        /^oui$/,
-        /^oui[,!. ]*tout est correct[.!]?$/,
-        /^oui[,!. ]*c'est exact[.!]?$/,
-        /^oui[,!. ]*tout semble bon[.!]?$/,
-
-        /^correct[.!]?$/,
-        /^confirmé[.!]?$/,
-        /^c'est exact[.!]?$/,
-        /^ça semble bon[.!]?$/,
-        /^tout est correct[.!]?$/
-
-    ];
-
-    return exactConfirmationPatterns.some(
-        pattern => pattern.test(text)
+ return validConfirmations.some(
+        confirmation =>
+            normalizeText(confirmation) === normalizeText(message)
     );
 }
-
 
 /**
  * Determines whether the previous assistant response
@@ -618,28 +604,25 @@ function assistantRequestedConfirmation(
         return false;
     }
 
-    const confirmationSignals = [
+   const confirmationSignals = [
+    "is everything correct",
+    "is all of this correct",
+    "does everything look correct",
+    "please confirm",
+    "can you confirm",
+    "confirm the details",
+    "confirm everything",
 
-        "is everything correct",
-        "is all of this correct",
-        "does everything look correct",
-        "please confirm",
-        "can you confirm",
-        "confirm the details",
-        "confirm everything",
-
-        "est-ce que tout est correct",
-        "tout est-il correct",
-        "est-ce que tout semble correct",
-        "veuillez confirmer",
-        "pouvez-vous confirmer",
-        "confirmez les détails",
-        "confirmez tout"
-
-    ];
-
+    "est-ce que tout est correct",
+    "tout est-il correct",
+    "est-ce que tout semble correct",
+    "veuillez confirmer",
+    "pouvez-vous confirmer",
+    "confirmez les détails",
+    "confirmez tout"
+];
     return confirmationSignals.some(
-        signal => text.includes(signal)
+       signal => text.includes(normalizeText(signal))
     );
 }
 
