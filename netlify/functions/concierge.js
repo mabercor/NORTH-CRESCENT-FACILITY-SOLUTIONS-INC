@@ -137,13 +137,63 @@ exports.handler = async (event) => {
 
         /* ===================================================
        NORTH CRESCENT OS — CONCIERGE BRAIN
-       =================================================== */
-
+       ==================================================
     const {
       processConciergeRequest
     } = await import(
       "../../north-crescent-os/ai/concierge/brain.js"
+    );==== */
+
+let processConciergeRequest;
+
+try {
+  console.log("CONCIERGE DEBUG: Starting Brain import...");
+
+  const brainModule = await import(
+    "../../north-crescent-os/ai/concierge/brain.js"
+  );
+
+  console.log(
+    "CONCIERGE DEBUG: Brain module imported successfully.",
+    Object.keys(brainModule)
+  );
+
+  processConciergeRequest = brainModule.processConciergeRequest;
+
+  if (typeof processConciergeRequest !== "function") {
+    throw new Error(
+      "Brain module loaded, but processConciergeRequest is not a function."
     );
+  }
+
+  console.log(
+    "CONCIERGE DEBUG: processConciergeRequest is ready."
+  );
+
+} catch (brainImportError) {
+
+  console.error(
+    "CONCIERGE DEBUG: Brain import FAILED."
+  );
+
+  console.error(
+    "Brain error name:",
+    brainImportError?.name
+  );
+
+  console.error(
+    "Brain error message:",
+    brainImportError?.message
+  );
+
+  console.error(
+    "Brain error stack:",
+    brainImportError?.stack
+  );
+
+  throw brainImportError;
+}
+  
 
     const brainAnalysis =
       processConciergeRequest({
