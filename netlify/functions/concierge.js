@@ -135,6 +135,42 @@ exports.handler = async (event) => {
 
     };
 
+        /* ===================================================
+       NORTH CRESCENT OS — CONCIERGE BRAIN
+       =================================================== */
+
+    const {
+      processConciergeRequest
+    } = await import(
+      "../../north-crescent-os/ai/concierge/brain.js"
+    );
+
+    const brainAnalysis =
+      processConciergeRequest({
+
+        currentMessage:
+          Array.isArray(payload.messages) &&
+          payload.messages.length > 0
+            ? payload.messages[payload.messages.length - 1]?.content || ""
+            : "",
+
+        conversationHistory:
+          payload.messages,
+
+        leadProfile:
+          payload.leadProfile,
+
+        serviceContext:
+          payload.serviceContext || ""
+
+      });
+
+    console.log(
+      "North Crescent Brain analysis:",
+      brainAnalysis.intent,
+      brainAnalysis.nextAction
+    );
+
 
     /* ===================================================
        VALIDATE REQUIRED BACKEND CONFIG
