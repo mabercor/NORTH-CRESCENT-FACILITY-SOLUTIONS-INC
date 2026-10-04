@@ -459,29 +459,29 @@ confirmation: Object.freeze({
 
     confirmationAppliesToCurrentRequestOnly: true,
 
-    validMessages: Object.freeze([
+   validMessages: Object.freeze([
 
-        "yes",
+    "yes",
 
-        "yes everything is correct",
+    "yes everything is correct",
 
-        "correct",
+    "correct",
 
-        "that's right",
+    "that's right",
 
-        "looks good",
+    "looks good",
 
-        "confirmed",
+    "confirmed",
 
-        "sí",
+    "oui",
 
-        "sí confirmo",
+    "oui tout est correct",
 
-        "todo está correcto",
+    "c'est exact",
 
-        "está bien"
+    "tout est correct"
 
-    ]),
+]),
 
     previousConfirmationDoesNotPersist: true,
 
