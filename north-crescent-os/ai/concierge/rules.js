@@ -660,38 +660,7 @@ sales: Object.freeze({
     })
 
 }),
-    // =========================================================
-// SALES & PRICE RESPONSE
-// =========================================================
-
-sales: Object.freeze({
-
-    naturalSales: true,
-
-    valueBeforePrice: true,
-
-    pressureSelling: false,
-
-    unsupportedComparisons: false,
-
-    cheapestClaim: false,
-
-    lowestPriceClaim: false,
-
-    bestClaimWithoutEvidence: false,
-
-    explainRelevantServiceValue: true,
-
-    explainCustomerBenefit: true,
-
-    reassureCustomer: true,
-
-    tailorConversationToService: true,
-
-    sellThroughRelevance: true,
-
-    neverInventServiceBenefits: true,
-
+    
     // -----------------------------------------------------
     // PRICE QUESTION — VALUE-FIRST RESPONSE
     // -----------------------------------------------------
