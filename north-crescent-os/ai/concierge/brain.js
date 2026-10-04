@@ -301,11 +301,11 @@ export function findServiceArea(city = "") {
         return {
             known: false,
             city: "",
-            region: CONCIERGE_KNOWLEDGE.serviceAreas.region
+            region: CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.region
         };
     }
 
-    const cities = CONCIERGE_KNOWLEDGE.serviceAreas.primary;
+    const cities = CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.primaryCities;
 
     const matchedCity = cities.find(
         item => normalizeText(item) === normalizedCity
@@ -314,96 +314,10 @@ export function findServiceArea(city = "") {
     return {
         known: Boolean(matchedCity),
         city: matchedCity || city,
-        region: CONCIERGE_KNOWLEDGE.serviceAreas.region
+        region: CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.region
     };
 }
 
-
-/* =========================================================
-   CONFIRMATION DETECTION
-   ========================================================= */
-
-/**
- * Confirmation must be explicit.
- *
- * A simple "yes" is only treated as confirmation when
- * the conversation context indicates that the assistant
- * just presented a final summary requiring confirmation.
- *
- * This prevents:
- *
- * "Yes, I have a question..."
- *
- * from becoming CONFIRMATION.
- */
-
-function isExplicitConfirmation(message = "") {
-
-    const text = normalizeText(message);
-
-    if (!text) {
-        return false;
-    }
-
-    const exactConfirmationPatterns = [
-
-        /^yes$/,
-        /^yes[,!. ]*everything is correct[.!]?$/,
-        /^yes[,!. ]*thats right[.!]?$/,
-        /^yes[,!. ]*looks good[.!]?$/,
-
-        /^correct[.!]?$/,
-        /^confirmed[.!]?$/,
-        /^thats right[.!]?$/,
-        /^looks good[.!]?$/,
-
-        /^si$/,
-        /^si confirmo$/,
-        /^todo esta correcto$/,
-        /^esta bien$/,
-        /^confirmado$/
-    ];
-
-    return exactConfirmationPatterns.some(
-        pattern => pattern.test(text)
-    );
-}
-
-
-/**
- * Determines whether the previous assistant response
- * appears to contain a final confirmation request.
- *
- * This is intentionally conservative.
- */
-function assistantRequestedConfirmation(assistantMessage = "") {
-
-    const text = normalizeText(assistantMessage);
-
-    if (!text) {
-        return false;
-    }
-
-    const confirmationSignals = [
-
-        "is everything correct",
-        "is all of this correct",
-        "does everything look correct",
-        "please confirm",
-        "can you confirm",
-        "confirm the details",
-        "confirm everything",
-
-        "todo esta correcto",
-        "esta todo correcto",
-        "puede confirmar",
-        "confirme los detalles"
-    ];
-
-    return confirmationSignals.some(
-        signal => text.includes(signal)
-    );
-}
 
 
 /* =========================================================
@@ -1011,13 +925,14 @@ export function analyzeRequest({
     const profile =
         normalizeLeadProfile(leadProfile);
 
-    const intent = detectIntent(
-        currentCustomerMessage,
-        {
-            conversationHistory: history,
-            leadProfile: profile
-        }
-    );
+   const intent = detectIntent(
+    currentCustomerMessage,
+    {
+        conversationHistory: history,
+        leadProfile: profile,
+        serviceContext: serviceContext
+    }
+);
 
     const missingFields =
         getMissingEssentialFields(profile);
