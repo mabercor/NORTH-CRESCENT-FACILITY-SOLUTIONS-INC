@@ -332,26 +332,30 @@ function isCorrection(message = "") {
         return false;
     }
 
-    const correctionSignals = [
+   const correctionSignals = [
 
-        "actually",
-        "correction",
-        "correct that",
-        "change that",
-        "i meant",
-        "instead",
-        "not that",
-        "the address is",
-        "my address is",
+    "actually",
+    "correction",
+    "correct that",
+    "change that",
+    "i meant",
+    "instead",
+    "not that",
+    "the address is",
+    "my address is",
 
-        "en realidad",
-        "correccion",
-        "corrige",
-        "cambia eso",
-        "quise decir",
-        "la direccion es",
-        "mi direccion es"
-    ];
+    "en fait",
+    "correction",
+    "corrigez cela",
+    "corrige ça",
+    "changez cela",
+    "change ça",
+    "je voulais dire",
+    "plutôt",
+    "pas ça",
+    "l'adresse est",
+    "mon adresse est"
+];
 
     return correctionSignals.some(
         signal => text.includes(signal)
@@ -374,24 +378,20 @@ function isPriceQuestion(message = "") {
         "cost",
         "costs",
         "how much",
-        "quote",
-        "quotation",
-        "estimate",
 
-        "precio",
-        "precios",
-        "cuanto",
-        "cuanto cuesta",
-        "cotizacion",
-        "cotizar",
-        "estimado"
+        "prix",
+        "tarif",
+        "tarifs",
+        "coût",
+        "coûts",
+        "combien",
+        "combien ça coûte"
     ];
 
     return signals.some(
         signal => text.includes(signal)
     );
 }
-
 
 /* =========================================================
    AVAILABILITY DETECTION
@@ -413,19 +413,19 @@ function isAvailabilityQuestion(message = "") {
         "book",
 
         "disponible",
-        "disponibilidad",
-        "cuando pueden",
-        "que fecha",
-        "horario",
-        "cita",
-        "reservar"
+        "disponibilité",
+        "quand pouvez-vous",
+        "quelle date",
+        "horaire",
+        "rendez-vous",
+        "réservation",
+        "réserver"
     ];
 
     return signals.some(
         signal => text.includes(signal)
     );
 }
-
 
 /* =========================================================
    SERVICE INFORMATION DETECTION
@@ -445,11 +445,14 @@ function isServiceInformationQuestion(message = "") {
         "tell me about your service",
         "how does it work",
 
-        "que servicios",
-        "que ofrecen",
-        "que incluye",
-        "que incluye el servicio",
-        "como funciona"
+        "quels services",
+        "quels services offrez-vous",
+        "qu'est-ce que vous offrez",
+        "qu'offrez-vous",
+        "qu'est-ce qui est inclus",
+        "que comprend le service",
+        "parlez-moi de vos services",
+        "comment ça fonctionne"
     ];
 
     return signals.some(
@@ -457,56 +460,22 @@ function isServiceInformationQuestion(message = "") {
     );
 }
 
+const requestSignals = [
 
-/* =========================================================
-   NEW REQUEST DETECTION
-   ========================================================= */
+    "i need another",
+    "i also need",
+    "another quote",
+    "new quote",
+    "different property",
+    "another property",
 
-function isNewRequest(message = "", leadProfile = {}) {
-
-    const text = normalizeText(message);
-    const profile = normalizeLeadProfile(leadProfile);
-
-    if (!text) {
-        return false;
-    }
-
-    const requestSignals = [
-
-        "i need another",
-        "i also need",
-        "another quote",
-        "new quote",
-        "different property",
-        "another property",
-
-        "necesito otra",
-        "tambien necesito",
-        "otra cotizacion",
-        "nueva cotizacion",
-        "otra propiedad"
-    ];
-
-    const hasRequestSignal = requestSignals.some(
-        signal => text.includes(signal)
-    );
-
-    if (hasRequestSignal) {
-        return true;
-    }
-
-    /*
-     * If the customer already has a completed profile
-     * and suddenly provides a clearly different service
-     * context, the language layer should later verify
-     * whether this is a new request.
-     *
-     * We intentionally do not automatically classify it here.
-     */
-
-    return Boolean(profile.serviceType && false);
-}
-
+    "j'ai besoin d'un autre",
+    "j'ai aussi besoin",
+    "une autre soumission",
+    "une nouvelle soumission",
+    "une propriété différente",
+    "une autre propriété"
+];
 
 /* =========================================================
    POST-CONFIRMATION DETECTION
@@ -573,8 +542,7 @@ function isPostConfirmation(
     return confirmationFound;
 }
 
-  
-   /* =========================================================
+ /* =========================================================
    CONFIRMATION DETECTION
    ========================================================= */
 
@@ -615,11 +583,16 @@ function isExplicitConfirmation(message = "") {
         /^thats right[.!]?$/,
         /^looks good[.!]?$/,
 
-        /^si$/,
-        /^si confirmo$/,
-        /^todo esta correcto$/,
-        /^esta bien$/,
-        /^confirmado$/
+        /^oui$/,
+        /^oui[,!. ]*tout est correct[.!]?$/,
+        /^oui[,!. ]*c'est exact[.!]?$/,
+        /^oui[,!. ]*tout semble bon[.!]?$/,
+
+        /^correct[.!]?$/,
+        /^confirmé[.!]?$/,
+        /^c'est exact[.!]?$/,
+        /^ça semble bon[.!]?$/,
+        /^tout est correct[.!]?$/
 
     ];
 
@@ -655,10 +628,13 @@ function assistantRequestedConfirmation(
         "confirm the details",
         "confirm everything",
 
-        "todo esta correcto",
-        "esta todo correcto",
-        "puede confirmar",
-        "confirme los detalles"
+        "est-ce que tout est correct",
+        "tout est-il correct",
+        "est-ce que tout semble correct",
+        "veuillez confirmer",
+        "pouvez-vous confirmer",
+        "confirmez les détails",
+        "confirmez tout"
 
     ];
 
@@ -857,27 +833,38 @@ export function detectIntent(
      *
      * Service context alone can NEVER create quote intent.
      */
-    const quoteSignals = [
+   const quoteSignals = [
 
-        "i need cleaning",
-        "i need a cleaner",
-        "i need cleaning service",
-        "looking for cleaning",
-        "looking for a cleaning company",
-        "i want a quote",
-        "i need a quote",
-        "can you clean",
-        "can you provide cleaning",
+    "i need cleaning",
+    "i need a cleaner",
+    "i need cleaning service",
+    "looking for cleaning",
+    "looking for a cleaning company",
+    "i want a quote",
+    "i need a quote",
+    "i need an estimate",
+    "i want an estimate",
+    "can i get a quote",
+    "can i get an estimate",
+    "can you give me a quote",
+    "can you give me an estimate",
+    "can you clean",
+    "can you provide cleaning",
 
-        "necesito limpieza",
-        "necesito un servicio de limpieza",
-        "busco limpieza",
-        "busco una empresa de limpieza",
-        "quiero una cotizacion",
-        "necesito una cotizacion",
-        "pueden limpiar"
-
-    ];
+    "j'ai besoin de nettoyage",
+    "j'ai besoin d'un service de nettoyage",
+    "je cherche un service de nettoyage",
+    "je cherche une entreprise de nettoyage",
+    "je veux une soumission",
+    "j'ai besoin d'une soumission",
+    "je voudrais une soumission",
+    "j'ai besoin d'une estimation",
+    "je veux une estimation",
+    "puis-je avoir une soumission",
+    "pouvez-vous me donner une soumission",
+    "pouvez-vous faire le nettoyage",
+    "pouvez-vous fournir un service de nettoyage"
+];
 
     if (
         quoteSignals.some(
