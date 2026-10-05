@@ -138,11 +138,7 @@ exports.handler = async (event) => {
         /* ===================================================
        NORTH CRESCENT OS — CONCIERGE BRAIN
        ==================================================
-    const {
-      processConciergeRequest
-    } = await import(
-      "../../north-crescent-os/ai/concierge/brain.js"
-    );==== */
+==== */
 
 let processConciergeRequest;
 
