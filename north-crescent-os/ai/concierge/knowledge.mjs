@@ -541,7 +541,9 @@ includes: Object.freeze([
 
     "Consistent service execution focused on cleanliness, safety, professionalism, and operational reliability"
 
-]),
+  ])
+
+}),
 
         // --------------------------------------------------------
         // OFFICE
@@ -740,8 +742,10 @@ includes: Object.freeze([
 
     "Facility refresh and reset cleaning"
 
-]),
 
+])
+
+}),
 
         // --------------------------------------------------------
 // POST-CONSTRUCTION
@@ -849,7 +853,11 @@ includes: Object.freeze([
 
     "Occupancy and client handover preparation"
 
+
 ])
+
+}),
+        
 // --------------------------------------------------------
 // JANITORIAL
 // --------------------------------------------------------
@@ -936,8 +944,10 @@ includes: Object.freeze([
 
     "Quality inspections and service consistency monitoring"
 
+
 ])
 
+}),
 
      // --------------------------------------------------------
 // AIRBNB
@@ -1034,8 +1044,10 @@ includes: Object.freeze([
     "Support for multiple short-term rental properties",
     "Operational support for Airbnb hosts and property managers"
 
+
 ])
 
+}),
 
        // --------------------------------------------------------
 // MOVE-IN / MOVE-OUT
@@ -1123,12 +1135,13 @@ includes: Object.freeze([
     "Property preparation for new occupants",
     "Property cleaning after previous occupants have moved out"
 
-])
+       ])
 
-
-
-    
     })
+
+}),
+
+}),
 
 });
 
