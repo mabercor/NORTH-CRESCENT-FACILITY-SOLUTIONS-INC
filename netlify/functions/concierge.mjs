@@ -136,32 +136,51 @@ export const handler = async (event) => {
 
     };
 
-        /* ===================================================
-       NORTH CRESCENT OS — CONCIERGE BRAIN
-       ==================================================
-==== */
+       /* ===================================================
+   NORTH CRESCENT OS — CONCIERGE BRAIN
+   ================================================== */
 
+const brainAnalysis =
+  processConciergeRequest({
 
-    const brainAnalysis =
-      processConciergeRequest({
+    currentMessage:
+      Array.isArray(payload.messages)
+        ? [...payload.messages]
+            .reverse()
+            .find(message => message?.role === "user")
+            ?.content || ""
+        : "",
 
-       currentMessage:
-  Array.isArray(payload.messages)
-    ? [...payload.messages]
-        .reverse()
-        .find(message => message?.role === "user")
-        ?.content || ""
-    : "",
+    conversationHistory:
+      Array.isArray(payload.messages)
+        ? payload.messages
+        : [],
 
-      });
+    leadProfile:
+      payload.leadProfile &&
+      typeof payload.leadProfile === "object"
+        ? payload.leadProfile
+        : {},
 
-    console.log(
-      "North Crescent Brain analysis:",
-      brainAnalysis.intent,
-      brainAnalysis.nextAction
-    );
+    serviceContext:
+      payload.serviceContext || ""
 
+  });
 
+console.log(
+  "North Crescent Brain analysis:",
+  brainAnalysis.intent,
+  brainAnalysis.nextAction
+);
+
+const brainRouting = {
+  intent: brainAnalysis.intent,
+  nextAction: brainAnalysis.nextAction,
+  missingFields: brainAnalysis.missingFields,
+  quoteReady: brainAnalysis.quoteReady,
+  postConfirmation: brainAnalysis.postConfirmation,
+  serviceArea: brainAnalysis.serviceArea
+};
     /* ===================================================
        VALIDATE REQUIRED BACKEND CONFIG
        =================================================== */
@@ -193,29 +212,36 @@ export const handler = async (event) => {
     );
 
 
-    /* ===================================================
-       SEND TO MAKE
-       =================================================== */
+   /* ===================================================
+   SEND TO MAKE
+   =================================================== */
 
-    const makeResponse =
-      await fetch(
-        makeWebhookUrl,
-        {
-          method: "POST",
+const makeResponse =
+  await fetch(
+    makeWebhookUrl,
+    {
+      method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+      headers: {
+        "Content-Type":
+          "application/json"
+      },
 
-          body:
-  JSON.stringify({
-    ...payload,
-    brainAnalysis
-  })
+      body:
+        JSON.stringify({
+          ...payload,
 
-        }
-      );
+          brain: {
+            intent: brainRouting.intent,
+            nextAction: brainRouting.nextAction,
+            missingFields: brainRouting.missingFields,
+            quoteReady: brainRouting.quoteReady,
+            postConfirmation: brainRouting.postConfirmation,
+            serviceArea: brainRouting.serviceArea
+          }
+        })
+    }
+  );
 
 
     /* ===================================================
