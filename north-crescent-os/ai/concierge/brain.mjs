@@ -1194,11 +1194,18 @@ case "SERVICE_INFORMATION":
 
         case "QUOTE":
 
-            if (quoteReady) {
-                return "PREPARE_FINAL_CONFIRMATION";
-            }
+    if (quoteReady) {
+        return "PREPARE_FINAL_CONFIRMATION";
+    }
 
-            return "CONTINUE_QUALIFICATION";
+    if (
+        analysis.leadProfile &&
+        !analysis.leadProfile.operationalSummary
+    ) {
+        return "START_PROPERTY_DISCOVERY";
+    }
+
+    return "CONTINUE_QUALIFICATION";
 
 
         case "POST_CONFIRMATION":
