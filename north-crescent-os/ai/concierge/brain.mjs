@@ -1017,7 +1017,86 @@ export function analyzeRequest({
     });
 }
 
+/* =========================================================
+   QUOTE CONVERSION CHECK
+   ========================================================= */
 
+function shouldReconnectToQuote(
+    conversationHistory = [],
+    leadProfile = {}
+) {
+
+    const history =
+        getMessages(conversationHistory);
+
+    const profile =
+        normalizeLeadProfile(leadProfile);
+
+    /*
+     * If the customer already has all essential
+     * information, do not continue selling or
+     * qualification. The conversation must move
+     * toward final confirmation.
+     */
+    if (hasEssentialInformation(profile)) {
+        return false;
+    }
+
+    /*
+     * Count recent customer informational exchanges.
+     *
+     * The goal is not to force a quote after every
+     * message. The Concierge should naturally
+     * reconnect the conversation to the quote after
+     * approximately 1–2 informational exchanges.
+     */
+    let informationalExchanges = 0;
+
+    for (let i = history.length - 1; i >= 0; i--) {
+
+        const message = history[i];
+
+        if (
+            !isObject(message) ||
+            normalizeText(message.role) !== "user"
+        ) {
+            continue;
+        }
+
+        const content =
+            cleanValue(message.content);
+
+        if (!content) {
+            continue;
+        }
+
+        if (
+            isCorrection(content) ||
+            isExplicitConfirmation(content) ||
+            isNewRequest(content)
+        ) {
+            break;
+        }
+
+        if (
+            isServiceInformationQuestion(content) ||
+            isPriceQuestion(content) ||
+            isAvailabilityQuestion(content)
+        ) {
+            informationalExchanges += 1;
+            continue;
+        }
+
+        /*
+         * Stop when the conversation reaches a message
+         * that is clearly not part of the informational
+         * exchange sequence.
+         */
+        break;
+    }
+
+    return informationalExchanges >= 2;
+}
 /* =========================================================
    NEXT ACTION
    ========================================================= */
@@ -1061,12 +1140,32 @@ export function determineNextAction(
             return "CHECK_AVAILABILITY";
 
 
-        case "GENERAL_QUESTION":
-            return "ANSWER_FROM_KNOWLEDGE";
+       case "GENERAL_QUESTION":
+
+    if (
+        shouldReconnectToQuote(
+            analysis.conversationHistory,
+            analysis.leadProfile
+        )
+    ) {
+        return "RECONNECT_TO_QUOTE";
+    }
+
+    return "ANSWER_FROM_KNOWLEDGE";
 
 
-        case "SERVICE_INFORMATION":
-            return "ANSWER_FROM_KNOWLEDGE";
+case "SERVICE_INFORMATION":
+
+    if (
+        shouldReconnectToQuote(
+            analysis.conversationHistory,
+            analysis.leadProfile
+        )
+    ) {
+        return "RECONNECT_TO_QUOTE";
+    }
+
+    return "ANSWER_FROM_KNOWLEDGE";
 
 
         case "CORRECTION":
