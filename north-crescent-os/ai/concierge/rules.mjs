@@ -666,8 +666,6 @@ sales: Object.freeze({
 
         ])
 
-    })
-
 }),
 
 
