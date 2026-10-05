@@ -20,7 +20,7 @@
  * Operational truth remains in operationalState.
  */
 
-import BRAIN_RULES from "./rules.js";
+import BRAIN_RULES from "./rules.mjs";
 import CONCIERGE_KNOWLEDGE from "./knowledge.js";
 
 
