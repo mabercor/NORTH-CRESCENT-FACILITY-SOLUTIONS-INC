@@ -541,7 +541,7 @@ includes: Object.freeze([
 
     "Consistent service execution focused on cleanliness, safety, professionalism, and operational reliability"
 
-])
+]),
 
         // --------------------------------------------------------
         // OFFICE
