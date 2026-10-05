@@ -1078,14 +1078,21 @@ function shouldReconnectToQuote(
             break;
         }
 
-        if (
-            isServiceInformationQuestion(content) ||
-            isPriceQuestion(content) ||
-            isAvailabilityQuestion(content)
-        ) {
-            informationalExchanges += 1;
-            continue;
+      if (
+    isServiceInformationQuestion(content) ||
+    isPriceQuestion(content) ||
+    isAvailabilityQuestion(content) ||
+    detectIntent(
+        content,
+        {
+            conversationHistory: history,
+            leadProfile: profile
         }
+    ) === "GENERAL_QUESTION"
+) {
+    informationalExchanges += 1;
+    continue;
+}
 
         /*
          * Stop when the conversation reaches a message
