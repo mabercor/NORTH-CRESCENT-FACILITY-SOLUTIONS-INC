@@ -181,6 +181,8 @@ const brainRouting = {
   postConfirmation: brainAnalysis.postConfirmation,
   serviceArea: brainAnalysis.serviceArea
 };
+    const knowledge = brainAnalysis.knowledge;
+    
     /* ===================================================
        VALIDATE REQUIRED BACKEND CONFIG
        =================================================== */
@@ -227,19 +229,21 @@ const makeResponse =
           "application/json"
       },
 
-      body:
-        JSON.stringify({
-          ...payload,
+     body:
+  JSON.stringify({
+    ...payload,
 
-          brain: {
-            intent: brainRouting.intent,
-            nextAction: brainRouting.nextAction,
-            missingFields: brainRouting.missingFields,
-            quoteReady: brainRouting.quoteReady,
-            postConfirmation: brainRouting.postConfirmation,
-            serviceArea: brainRouting.serviceArea
-          }
-        })
+    brain: {
+      intent: brainRouting.intent,
+      nextAction: brainRouting.nextAction,
+      missingFields: brainRouting.missingFields,
+      quoteReady: brainRouting.quoteReady,
+      postConfirmation: brainRouting.postConfirmation,
+      serviceArea: brainRouting.serviceArea
+    },
+
+    knowledge
+  })
     }
   );
 
