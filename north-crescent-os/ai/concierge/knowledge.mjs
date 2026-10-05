@@ -234,7 +234,7 @@ socialMedia: Object.freeze({
 
     facebook:
         "https://www.facebook.com/profile.php?id=61590535282882"
-})
+}),
 
       // ========================================================
 // 8. OFFICIAL WEBSITE
