@@ -21,7 +21,7 @@
  */
 
 import BRAIN_RULES from "./rules.mjs";
-import CONCIERGE_KNOWLEDGE from "./knowledge.js";
+import CONCIERGE_KNOWLEDGE from "./knowledge.mjs";
 
 
 /* =========================================================
