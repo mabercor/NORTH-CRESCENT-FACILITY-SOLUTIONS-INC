@@ -740,7 +740,7 @@ includes: Object.freeze([
 
     "Facility refresh and reset cleaning"
 
-])
+]),
 
 
         // --------------------------------------------------------
