@@ -473,7 +473,17 @@ const requestSignals = [
     "une propriété différente",
     "une autre propriété"
 ];
+function isNewRequest(message = "") {
+    const text = normalizeText(message);
 
+    if (!text) {
+        return false;
+    }
+
+    return requestSignals.some(
+        signal => text.includes(normalizeText(signal))
+    );
+}
 /* =========================================================
    POST-CONFIRMATION DETECTION
    ========================================================= */
