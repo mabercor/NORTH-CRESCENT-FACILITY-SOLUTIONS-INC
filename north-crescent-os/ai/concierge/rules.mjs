@@ -697,8 +697,8 @@ generalQuestions: Object.freeze({
     doNotAskUnnecessaryLeadQuestions: true,
 
     preserveCustomerIntent: true,
-
-    transitionToQuoteOnlyWhenCustomerRequestsIt: true
+    
+transitionToQuoteOnlyWhenCustomerRequestsIt: false,
 
 }),
 // =========================================================
