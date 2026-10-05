@@ -150,8 +150,8 @@ try {
   console.log("CONCIERGE DEBUG: Starting Brain import...");
 
   const brainModule = await import(
-    "../../north-crescent-os/ai/concierge/brain.js"
-  );
+  "../../north-crescent-os/ai/concierge/brain.mjs"
+);
 
   console.log(
     "CONCIERGE DEBUG: Brain module imported successfully.",
