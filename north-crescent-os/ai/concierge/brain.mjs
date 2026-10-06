@@ -243,6 +243,174 @@ export function mergeLeadProfile(
 
     return merged;
 }
+function extractOperationalInformation(
+    conversationHistory = []
+) {
+
+    const messages =
+        getMessages(conversationHistory);
+
+    const customerMessages =
+        messages
+            .filter(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) === "user"
+            )
+            .map(
+                message =>
+                    cleanValue(message.content)
+            )
+            .filter(Boolean);
+
+    if (!customerMessages.length) {
+        return {
+            propertySize: "",
+            rooms: "",
+            bathrooms: "",
+            flooring: "",
+            priorityAreas: "",
+            customerConcerns: ""
+        };
+    }
+
+    const sourceText =
+        customerMessages.join(" ");
+
+    const normalized =
+        normalizeText(sourceText);
+
+    const propertySizeMatch =
+        sourceText.match(
+            /\b(\d[\d,.\s]*)\s*(sq\.?\s*ft|sq\s*ft|square\s*feet|square\s*foot|ft2|ft²)\b/i
+        );
+
+    const roomsMatch =
+        sourceText.match(
+            /\b(\d+)\s*(bedrooms?|rooms?|habitaciones?)\b/i
+        );
+
+    const bathroomsMatch =
+        sourceText.match(
+            /\b(\d+)\s*(bathrooms?|baths?|banos?)\b/i
+        );
+
+    const flooringSignals = [
+        "hardwood",
+        "laminate",
+        "vinyl",
+        "tile",
+        "carpet",
+        "concrete",
+        "wood floor",
+        "flooring",
+        "piso",
+        "pisos",
+        "alfombra",
+        "baldosa"
+    ];
+
+    const prioritySignals = [
+        "kitchen",
+        "bathroom",
+        "bedroom",
+        "basement",
+        "garage",
+        "windows",
+        "floors",
+        "cocina",
+        "bano",
+        "banos",
+        "habitacion",
+        "sotano",
+        "garaje",
+        "ventanas",
+        "pisos"
+    ];
+
+    const concernSignals = [
+        "concern",
+        "concerns",
+        "important",
+        "priority",
+        "priorities",
+        "focus",
+        "attention",
+        "worried",
+        "problem",
+        "problems",
+        "preocup",
+        "importante",
+        "prioridad",
+        "atencion",
+        "problema"
+    ];
+
+    const flooring =
+        flooringSignals.find(
+            signal =>
+                normalized.includes(
+                    normalizeText(signal)
+                )
+        ) || "";
+
+    const priorityAreas =
+        prioritySignals.filter(
+            signal =>
+                normalized.includes(
+                    normalizeText(signal)
+                )
+        );
+
+    const customerConcerns =
+        concernSignals.some(
+            signal =>
+                normalized.includes(
+                    normalizeText(signal)
+                )
+        );
+
+    return {
+        propertySize:
+            propertySizeMatch
+                ? propertySizeMatch[0].trim()
+                : "",
+
+        rooms:
+            roomsMatch
+                ? roomsMatch[0].trim()
+                : "",
+
+        bathrooms:
+            bathroomsMatch
+                ? bathroomsMatch[0].trim()
+                : "",
+
+        flooring,
+
+        priorityAreas:
+            priorityAreas.join(", "),
+
+        customerConcerns:
+            customerConcerns
+                ? sourceText
+                : ""
+    };
+}
+function getNextOperationalDiscoveryTarget(...) {
+    ...
+}
+
+function getOperationalDiscoveryQuestionTarget(...) {
+    ...
+}
+
+/* PONEMOS AQUÍ LA NUEVA FUNCIÓN */
+
+function extractOperationalInformation(conversationHistory = []) {
+    ...
+}
+
 
 /* =========================================================
    REQUIRED INFORMATION
@@ -251,6 +419,8 @@ export function mergeLeadProfile(
 export function getMissingEssentialFields(leadProfile = {}) {
 
     const profile = normalizeLeadProfile(leadProfile);
+   const operationalInformation =
+    extractOperationalInformation(conversationHistory);
 
     const missing = [];
 
@@ -286,8 +456,148 @@ export function hasEssentialInformation(leadProfile = {}) {
 
     return getMissingEssentialFields(leadProfile).length === 0;
 }
+function getOperationalDiscoveryState(leadProfile = {}) {
 
+    const profile =
+        normalizeLeadProfile(leadProfile);
+   
 
+    const summary =
+        normalizeText(profile.operationalSummary);
+   const sourceText =
+    summary;
+
+    return {
+        hasSummary: Boolean(summary),
+
+        hasPropertySize:
+            Boolean(profile.squareFootage),
+
+       hasBedroomsOrRooms:
+    /\b\d+\s*(bedroom|bedrooms|room|rooms|habitacion|habitaciones)\b/i.test(
+        sourceText
+    ),
+
+hasBathrooms:
+    /\b\d+\s*(bathroom|bathrooms|bath|baths|bano|banos)\b/i.test(
+        sourceText
+    ),
+
+hasFlooring:
+    /\b(hardwood|laminate|vinyl|tile|carpet|concrete|wood floor|flooring|piso|pisos|alfombra|baldosa)\b/i.test(
+        sourceText
+    ),
+
+        hasPriorityAreas:
+            /\b(kitchen|bathroom|bedroom|floor|window|windows|basement|garage|office|kitchen|cocina|bano|banos|habitacion|ventana|ventanas|sotano|garaje)\b/i.test(
+                summary
+            ),
+
+        hasCustomerConcern:
+            /\b(need|needs|concern|concerns|important|priority|priorities|focus|attention|worried|problem|problems|necesito|necesita|importante|prioridad|atencion|preocup|problema)\b/i.test(
+                summary
+            )
+    };
+}
+function getNextOperationalDiscoveryTarget(
+    leadProfile = {}
+) {
+
+   function hasSufficientOperationalSummary(
+    leadProfile = {}
+) {
+
+    const state =
+        getOperationalDiscoveryState(leadProfile);
+
+    if (!state.hasSummary) {
+        return false;
+    }
+
+    const meaningfulSignals = [
+        state.hasPropertySize,
+        state.hasBedroomsOrRooms,
+        state.hasBathrooms,
+        state.hasFlooring,
+        state.hasPriorityAreas,
+        state.hasCustomerConcern
+    ];
+
+    const informationCount =
+        meaningfulSignals.filter(Boolean).length;
+
+    return informationCount >= 2;
+} 
+   const state =
+        getOperationalDiscoveryState(leadProfile);
+
+    if (!state.hasSummary) {
+        return "PROPERTY_OVERVIEW";
+    }
+
+    if (!state.hasPropertySize) {
+        return "PROPERTY_SIZE";
+    }
+
+    if (!state.hasBedroomsOrRooms) {
+        return "ROOMS";
+    }
+
+    if (!state.hasBathrooms) {
+        return "BATHROOMS";
+    }
+
+    if (!state.hasFlooring) {
+        return "FLOORING";
+    }
+
+    if (!state.hasPriorityAreas) {
+        return "PRIORITY_AREAS";
+    }
+
+    if (!state.hasCustomerConcern) {
+        return "CUSTOMER_CONCERNS";
+    }
+
+    return "SUFFICIENT";
+}
+function getOperationalDiscoveryQuestionTarget(
+    leadProfile = {}
+) {
+
+    const target =
+        getNextOperationalDiscoveryTarget(leadProfile);
+
+    switch (target) {
+
+        case "PROPERTY_OVERVIEW":
+            return "Invite the customer to describe the property and what they need from the cleaning service in their own words.";
+
+        case "PROPERTY_SIZE":
+            return "Ask the customer approximately how large the property is.";
+
+        case "ROOMS":
+            return "Ask the customer approximately how many bedrooms or rooms the property has.";
+
+        case "BATHROOMS":
+            return "Ask the customer approximately how many bathrooms the property has.";
+
+        case "FLOORING":
+            return "Ask the customer what types of flooring or surfaces are present in the property.";
+
+        case "PRIORITY_AREAS":
+            return "Ask the customer which areas of the property they would like the cleaning team to prioritize.";
+
+        case "CUSTOMER_CONCERNS":
+            return "Ask the customer if there is anything specific they are concerned about or want the cleaning team to pay special attention to.";
+
+        case "SUFFICIENT":
+            return "";
+
+        default:
+            return "";
+    }
+}
 /* =========================================================
    SERVICE AREA
    ========================================================= */
@@ -961,23 +1271,55 @@ export function analyzeRequest({
     const profile =
         normalizeLeadProfile(leadProfile);
 
-   const intent = detectIntent(
-    currentCustomerMessage,
-    {
-        conversationHistory: history,
-        leadProfile: profile,
-        serviceContext: serviceContext
-    }
-);
+    const operationalInformation =
+        extractOperationalInformation(history);
+   const operationalDiscoveryComplete =
+    [
+        operationalInformation.propertySize,
+        operationalInformation.rooms,
+        operationalInformation.bathrooms,
+        operationalInformation.flooring,
+        operationalInformation.priorityAreas,
+        operationalInformation.customerConcerns
+    ].filter(Boolean).length >= 2;
+
+    const intent = detectIntent(
+        currentCustomerMessage,
+        {
+            conversationHistory: history,
+            leadProfile: profile,
+            serviceContext: serviceContext
+        }
+    );
 
     const missingFields =
         getMissingEssentialFields(profile);
 
+    const operationalSummaryReady =
+        hasSufficientOperationalSummary(profile) ||
+        [
+            operationalInformation.propertySize,
+            operationalInformation.rooms,
+            operationalInformation.bathrooms,
+            operationalInformation.flooring,
+            operationalInformation.priorityAreas,
+            operationalInformation.customerConcerns
+        ].filter(Boolean).length >= 2;
+
+    if (
+    !operationalDiscoveryComplete &&
+    !missingFields.includes("operationalSummary")
+) {
+    missingFields.push("operationalSummary");
+}
+
     const serviceArea =
         findServiceArea(profile.city);
 
-    const quoteReady =
-        missingFields.length === 0;
+ const quoteReady =
+    missingFields.length === 0 &&
+    operationalSummaryReady &&
+    operationalDiscoveryComplete;
 
     const postConfirmation =
         isPostConfirmation(
@@ -1104,6 +1446,39 @@ function shouldReconnectToQuote(
 
     return informationalExchanges >= 2;
 }
+function hasActiveQuoteContext(analysis = {}) {
+
+    const profile =
+        normalizeLeadProfile(analysis.leadProfile);
+
+    const history =
+        getMessages(analysis.conversationHistory);
+
+    if (
+        analysis.intent === "QUOTE"
+    ) {
+        return true;
+    }
+
+    if (
+        profile.serviceType &&
+        history.some(message =>
+            isObject(message) &&
+            normalizeText(message.role) === "user" &&
+            detectIntent(
+                cleanValue(message.content),
+                {
+                    conversationHistory: history,
+                    leadProfile: profile
+                }
+            ) === "QUOTE"
+        )
+    ) {
+        return true;
+    }
+
+    return false;
+}
 /* =========================================================
    NEXT ACTION
    ========================================================= */
@@ -1120,6 +1495,23 @@ export function determineNextAction(
 
     const postConfirmation =
         Boolean(analysis.postConfirmation);
+   const hasQuoteContext =
+    hasActiveQuoteContext(analysis);
+
+const hasOperationalSummary =
+    Boolean(
+        analysis.leadProfile &&
+        analysis.leadProfile.operationalSummary
+    );
+   const operationalDiscoveryTarget =
+    getNextOperationalDiscoveryTarget(
+        analysis.leadProfile
+    );
+
+const operationalDiscoveryQuestion =
+    getOperationalDiscoveryQuestionTarget(
+        analysis.leadProfile
+    );
 
 
     /*
@@ -1135,7 +1527,24 @@ export function determineNextAction(
     ) {
         return "ANSWER_FOLLOW_UP";
     }
-
+/*
+ * ACTIVE QUOTE PROGRESSION
+ *
+ * Once a customer has entered a quote process,
+ * operationalSummary must be developed before
+ * the conversation can progress toward quote completion.
+ *
+ * The customer may still ask questions, but the
+ * conversation must remain commercially progressive.
+ */
+if (
+    hasQuoteContext &&
+    !hasOperationalSummary &&
+    intent !== "CORRECTION" &&
+    intent !== "NEW_REQUEST"
+) {
+    return "START_PROPERTY_DISCOVERY";
+}
 
     switch (intent) {
 
@@ -1229,6 +1638,16 @@ export function processConciergeRequest(
     const analysis =
         analyzeRequest(input);
 
+   const operationalDiscoveryTarget =
+    getNextOperationalDiscoveryTarget(
+        analysis.leadProfile
+    );
+
+const operationalDiscoveryQuestion =
+    getOperationalDiscoveryQuestionTarget(
+        analysis.leadProfile
+    );
+
     const nextAction =
         determineNextAction(analysis);
 
@@ -1237,6 +1656,10 @@ export function processConciergeRequest(
         ...analysis,
 
         nextAction
+       
+operationalDiscoveryTarget,
+
+operationalDiscoveryQuestion
     });
 }
 
