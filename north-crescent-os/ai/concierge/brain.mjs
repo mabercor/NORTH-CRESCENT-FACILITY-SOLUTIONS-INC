@@ -717,8 +717,6 @@ function getOperationalDiscoveryQuestionTarget(
 
 /* =========================================================
    SERVICE AREA
-/* =========================================================
-   SERVICE AREA
    ========================================================= */
 
 export function findServiceArea(city = "") {
