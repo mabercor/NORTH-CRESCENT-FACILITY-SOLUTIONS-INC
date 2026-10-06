@@ -397,113 +397,7 @@ function extractOperationalInformation(
                 : ""
     };
 }
-function getNextOperationalDiscoveryTarget(...) {
-    ...
-}
-
-function getOperationalDiscoveryQuestionTarget(...) {
-    ...
-}
-
-/* PONEMOS AQUÍ LA NUEVA FUNCIÓN */
-
-function extractOperationalInformation(conversationHistory = []) {
-    ...
-}
-
-
-/* =========================================================
-   REQUIRED INFORMATION
-   ========================================================= */
-
-export function getMissingEssentialFields(leadProfile = {}) {
-
-    const profile = normalizeLeadProfile(leadProfile);
-   const operationalInformation =
-    extractOperationalInformation(conversationHistory);
-
-    const missing = [];
-
-    if (!profile.clientName) {
-        missing.push("clientName");
-    }
-
-    if (!profile.emailAddress && !profile.phoneNumber) {
-        missing.push("contact");
-    }
-
-    if (!profile.serviceAddress) {
-        missing.push("serviceAddress");
-    }
-
-    if (!profile.city) {
-        missing.push("city");
-    }
-
-    if (!profile.serviceType) {
-        missing.push("serviceType");
-    }
-
-    if (!profile.operationalSummary) {
-        missing.push("operationalSummary");
-    }
-
-    return missing;
-}
-
-
-export function hasEssentialInformation(leadProfile = {}) {
-
-    return getMissingEssentialFields(leadProfile).length === 0;
-}
-function getOperationalDiscoveryState(leadProfile = {}) {
-
-    const profile =
-        normalizeLeadProfile(leadProfile);
-   
-
-    const summary =
-        normalizeText(profile.operationalSummary);
-   const sourceText =
-    summary;
-
-    return {
-        hasSummary: Boolean(summary),
-
-        hasPropertySize:
-            Boolean(profile.squareFootage),
-
-       hasBedroomsOrRooms:
-    /\b\d+\s*(bedroom|bedrooms|room|rooms|habitacion|habitaciones)\b/i.test(
-        sourceText
-    ),
-
-hasBathrooms:
-    /\b\d+\s*(bathroom|bathrooms|bath|baths|bano|banos)\b/i.test(
-        sourceText
-    ),
-
-hasFlooring:
-    /\b(hardwood|laminate|vinyl|tile|carpet|concrete|wood floor|flooring|piso|pisos|alfombra|baldosa)\b/i.test(
-        sourceText
-    ),
-
-        hasPriorityAreas:
-            /\b(kitchen|bathroom|bedroom|floor|window|windows|basement|garage|office|kitchen|cocina|bano|banos|habitacion|ventana|ventanas|sotano|garaje)\b/i.test(
-                summary
-            ),
-
-        hasCustomerConcern:
-            /\b(need|needs|concern|concerns|important|priority|priorities|focus|attention|worried|problem|problems|necesito|necesita|importante|prioridad|atencion|preocup|problema)\b/i.test(
-                summary
-            )
-    };
-}
-function getNextOperationalDiscoveryTarget(
-    leadProfile = {}
-) {
-
-   function hasSufficientOperationalSummary(
+function hasSufficientOperationalSummary(
     leadProfile = {}
 ) {
 
@@ -527,46 +421,92 @@ function getNextOperationalDiscoveryTarget(
         meaningfulSignals.filter(Boolean).length;
 
     return informationCount >= 2;
-} 
-   const state =
+}
+
+
+function getNextOperationalDiscoveryTarget(
+    leadProfile = {},
+    operationalInformation = {}
+) {
+
+    const state =
         getOperationalDiscoveryState(leadProfile);
 
-    if (!state.hasSummary) {
+    const conversationSignals = [
+        operationalInformation.propertySize,
+        operationalInformation.rooms,
+        operationalInformation.bathrooms,
+        operationalInformation.flooring,
+        operationalInformation.priorityAreas,
+        operationalInformation.customerConcerns
+    ].filter(Boolean);
+
+    const hasConversationOperationalInformation =
+        conversationSignals.length >= 2;
+
+    if (
+        !state.hasSummary &&
+        !hasConversationOperationalInformation
+    ) {
         return "PROPERTY_OVERVIEW";
     }
 
-    if (!state.hasPropertySize) {
+    if (
+        !state.hasPropertySize &&
+        !operationalInformation.propertySize
+    ) {
         return "PROPERTY_SIZE";
     }
 
-    if (!state.hasBedroomsOrRooms) {
+    if (
+        !state.hasBedroomsOrRooms &&
+        !operationalInformation.rooms
+    ) {
         return "ROOMS";
     }
 
-    if (!state.hasBathrooms) {
+    if (
+        !state.hasBathrooms &&
+        !operationalInformation.bathrooms
+    ) {
         return "BATHROOMS";
     }
 
-    if (!state.hasFlooring) {
+    if (
+        !state.hasFlooring &&
+        !operationalInformation.flooring
+    ) {
         return "FLOORING";
     }
 
-    if (!state.hasPriorityAreas) {
+    if (
+        !state.hasPriorityAreas &&
+        !operationalInformation.priorityAreas
+    ) {
         return "PRIORITY_AREAS";
     }
 
-    if (!state.hasCustomerConcern) {
+    if (
+        !state.hasCustomerConcern &&
+        !operationalInformation.customerConcerns
+    ) {
         return "CUSTOMER_CONCERNS";
     }
 
     return "SUFFICIENT";
 }
+
+
 function getOperationalDiscoveryQuestionTarget(
-    leadProfile = {}
+    leadProfile = {},
+    operationalInformation = {}
 ) {
 
     const target =
-        getNextOperationalDiscoveryTarget(leadProfile);
+        getNextOperationalDiscoveryTarget(
+            leadProfile,
+            operationalInformation
+        );
 
     switch (target) {
 
@@ -598,6 +538,10 @@ function getOperationalDiscoveryQuestionTarget(
             return "";
     }
 }
+
+
+/* =========================================================
+   SERVICE AREA
 /* =========================================================
    SERVICE AREA
    ========================================================= */
@@ -1343,11 +1287,13 @@ export function analyzeRequest({
         serviceContext:
             cleanValue(serviceContext),
 
-        missingFields,
+       missingFields,
 
-        quoteReady,
+quoteReady,
 
-        postConfirmation,
+operationalDiscoveryComplete,
+
+postConfirmation,
 
         serviceArea,
 
@@ -1498,11 +1444,9 @@ export function determineNextAction(
    const hasQuoteContext =
     hasActiveQuoteContext(analysis);
 
-const hasOperationalSummary =
-    Boolean(
-        analysis.leadProfile &&
-        analysis.leadProfile.operationalSummary
-    );
+const operationalDiscoveryComplete =
+    Boolean(analysis.operationalDiscoveryComplete);
+   
    const operationalDiscoveryTarget =
     getNextOperationalDiscoveryTarget(
         analysis.leadProfile
@@ -1539,7 +1483,7 @@ const operationalDiscoveryQuestion =
  */
 if (
     hasQuoteContext &&
-    !hasOperationalSummary &&
+    !operationalDiscoveryComplete &&
     intent !== "CORRECTION" &&
     intent !== "NEW_REQUEST"
 ) {
