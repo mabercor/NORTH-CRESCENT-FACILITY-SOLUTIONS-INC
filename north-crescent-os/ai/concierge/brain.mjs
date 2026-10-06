@@ -1,40 +1,65 @@
 /**
+ * =========================================================
  * NORTH CRESCENT OS
- * Concierge Brain
+ * CONCIERGE BRAIN
  *
- * Central coordinator for the Concierge intelligence layer.
+ * SECTION 1 — FOUNDATION + MEMORY
+ * =========================================================
  *
- * brain.js coordinates:
- * - rules.js
- * - knowledge.js
- * - existing North Crescent OS systems
+ * Purpose:
+ * - Establish the Brain foundation.
+ * - Normalize customer information.
+ * - Preserve customer-provided information.
+ * - Support explicit customer corrections.
+ * - Preserve conversation continuity.
+ * - Maintain a single normalized lead profile.
  *
- * It does NOT contain:
- * - pricing calculations
- * - Airtable logic
- * - customer database logic
- * - duplicate operational state
- * - Make/OpenAI connection logic
+ * This section does NOT:
+ * - determine sales stages
+ * - calculate pricing
+ * - access Airtable
+ * - create customers
+ * - control Make
+ * - generate final replies
+ * - create a second operational state
  *
- * Pricing remains in pricing-engine.js.
- * Operational truth remains in operationalState.
+ * The customer remains the primary source of truth
+ * for customer-specific information.
+ * =========================================================
  */
+
+
+/* =========================================================
+   IMPORTS
+   ========================================================= */
 
 import BRAIN_RULES from "./rules.mjs";
 import CONCIERGE_KNOWLEDGE from "./knowledge.mjs";
 
 
 /* =========================================================
-   INTERNAL HELPERS
+   CORE HELPERS
    ========================================================= */
 
+/**
+ * Determines whether a value is a plain object.
+ */
 function isObject(value) {
-    return value !== null &&
+    return (
+        value !== null &&
         typeof value === "object" &&
-        !Array.isArray(value);
+        !Array.isArray(value)
+    );
 }
 
 
+/**
+ * Converts an unknown value into a safe string.
+ *
+ * The Brain uses an empty string for missing values.
+ * Null, undefined, and placeholder values are never
+ * stored as customer data.
+ */
 function cleanValue(value) {
 
     if (value === null || value === undefined) {
@@ -42,12 +67,19 @@ function cleanValue(value) {
     }
 
     if (typeof value !== "string") {
-        return String(value);
+        return String(value).trim();
     }
 
     return value.trim();
 }
 
+
+/**
+ * Normalizes text for deterministic comparisons.
+ *
+ * This does NOT change the customer's stored information.
+ * It is only used internally for comparison and detection.
+ */
 function normalizeText(value) {
 
     return cleanValue(value)
@@ -58,38 +90,94 @@ function normalizeText(value) {
 }
 
 
+/* =========================================================
+   LEAD PROFILE
+   ========================================================= */
+
+/**
+ * Canonical customer profile.
+ *
+ * Every Brain response works from this normalized structure.
+ *
+ * Missing values remain empty strings.
+ * No null values are used.
+ */
 function normalizeLeadProfile(profile = {}) {
 
-    const source = isObject(profile) ? profile : {};
+    const source =
+        isObject(profile)
+            ? profile
+            : {};
 
     return {
-        clientName: cleanValue(source.clientName),
-        companyName: cleanValue(source.companyName),
-        mainContact: cleanValue(source.mainContact),
-        phoneNumber: cleanValue(source.phoneNumber),
-        emailAddress: cleanValue(source.emailAddress),
-        serviceAddress: cleanValue(source.serviceAddress),
-        city: cleanValue(source.city),
-        province: cleanValue(source.province),
-        postalCode: cleanValue(source.postalCode),
-        serviceType: cleanValue(source.serviceType),
-        squareFootage: cleanValue(source.squareFootage),
-        visitsPerMonth: cleanValue(source.visitsPerMonth),
-        recurringVisits: cleanValue(source.recurringVisits),
-        timeSlot: cleanValue(source.timeSlot),
-        estimatedDuration: cleanValue(source.estimatedDuration),
-        complexityLevel: cleanValue(source.complexityLevel),
-        operationalSummary: cleanValue(source.operationalSummary),
-        accessInstructions: cleanValue(source.accessInstructions),
-        sensitiveAreas: cleanValue(source.sensitiveAreas)
+
+        clientName:
+            cleanValue(source.clientName),
+
+        companyName:
+            cleanValue(source.companyName),
+
+        mainContact:
+            cleanValue(source.mainContact),
+
+        phoneNumber:
+            cleanValue(source.phoneNumber),
+
+        emailAddress:
+            cleanValue(source.emailAddress),
+
+        serviceAddress:
+            cleanValue(source.serviceAddress),
+
+        city:
+            cleanValue(source.city),
+
+        province:
+            cleanValue(source.province),
+
+        postalCode:
+            cleanValue(source.postalCode),
+
+        serviceType:
+            cleanValue(source.serviceType),
+
+        squareFootage:
+            cleanValue(source.squareFootage),
+
+        visitsPerMonth:
+            cleanValue(source.visitsPerMonth),
+
+        recurringVisits:
+            cleanValue(source.recurringVisits),
+
+        timeSlot:
+            cleanValue(source.timeSlot),
+
+        estimatedDuration:
+            cleanValue(source.estimatedDuration),
+
+        complexityLevel:
+            cleanValue(source.complexityLevel),
+
+        operationalSummary:
+            cleanValue(source.operationalSummary),
+
+        accessInstructions:
+            cleanValue(source.accessInstructions),
+
+        sensitiveAreas:
+            cleanValue(source.sensitiveAreas)
     };
 }
 
 
 /* =========================================================
-   CONVERSATION HELPERS
+   CONVERSATION HISTORY
    ========================================================= */
 
+/**
+ * Returns a safe conversation history array.
+ */
 function getMessages(conversationHistory = []) {
 
     if (!Array.isArray(conversationHistory)) {
@@ -100,19 +188,33 @@ function getMessages(conversationHistory = []) {
 }
 
 
-function getMostRecentUserMessage(conversationHistory = []) {
+/**
+ * Returns the most recent customer message.
+ */
+function getMostRecentUserMessage(
+    conversationHistory = []
+) {
 
-    const messages = getMessages(conversationHistory);
+    const messages =
+        getMessages(conversationHistory);
 
-    for (let i = messages.length - 1; i >= 0; i--) {
+    for (
+        let i = messages.length - 1;
+        i >= 0;
+        i--
+    ) {
 
-        const message = messages[i];
+        const message =
+            messages[i];
 
         if (
             isObject(message) &&
             normalizeText(message.role) === "user"
         ) {
-            return cleanValue(message.content);
+
+            return cleanValue(
+                message.content
+            );
         }
     }
 
@@ -120,19 +222,33 @@ function getMostRecentUserMessage(conversationHistory = []) {
 }
 
 
-function getPreviousAssistantMessage(conversationHistory = []) {
+/**
+ * Returns the most recent assistant message.
+ */
+function getPreviousAssistantMessage(
+    conversationHistory = []
+) {
 
-    const messages = getMessages(conversationHistory);
+    const messages =
+        getMessages(conversationHistory);
 
-    for (let i = messages.length - 1; i >= 0; i--) {
+    for (
+        let i = messages.length - 1;
+        i >= 0;
+        i--
+    ) {
 
-        const message = messages[i];
+        const message =
+            messages[i];
 
         if (
             isObject(message) &&
             normalizeText(message.role) === "assistant"
         ) {
-            return cleanValue(message.content);
+
+            return cleanValue(
+                message.content
+            );
         }
     }
 
@@ -147,621 +263,402 @@ function getPreviousAssistantMessage(conversationHistory = []) {
 /**
  * Merge customer memory safely.
  *
- * Rules:
- * - Preserve known information.
- * - Add new customer-provided information.
- * - Allow explicit customer corrections to replace previous data.
- * - Allow more precise customer-provided information to replace
- *   less precise information.
- * - Never overwrite known information with an assumption.
- * - Never use null, undefined, or placeholder values.
+ * Priority:
  *
- * The customer remains the primary source for customer-specific data.
+ * 1. Explicit customer correction.
+ * 2. More precise customer-provided information.
+ * 3. New customer-provided information.
+ * 4. Existing known information.
+ *
+ * The Brain must never replace known customer data
+ * with an assumption.
  */
-
 export function mergeLeadProfile(
     existingProfile = {},
     incomingProfile = {},
     options = {}
 ) {
 
-    const existing = normalizeLeadProfile(existingProfile);
-    const incoming = normalizeLeadProfile(incomingProfile);
+    const existing =
+        normalizeLeadProfile(
+            existingProfile
+        );
+
+    const incoming =
+        normalizeLeadProfile(
+            incomingProfile
+        );
 
     const merged = {};
 
-    const correctedFields = new Set(
-        Array.isArray(options.correctedFields)
-            ? options.correctedFields
-            : []
-    );
+    const correctedFields =
+        new Set(
+            Array.isArray(
+                options.correctedFields
+            )
+                ? options.correctedFields
+                : []
+        );
 
-    const preciseFields = new Set(
-        Array.isArray(options.morePreciseFields)
-            ? options.morePreciseFields
-            : []
-    );
+    const preciseFields =
+        new Set(
+            Array.isArray(
+                options.morePreciseFields
+            )
+                ? options.morePreciseFields
+                : []
+        );
 
-    for (const field of Object.keys(existing)) {
 
-        const oldValue = existing[field];
-        const newValue = incoming[field];
+    for (
+        const field of Object.keys(existing)
+    ) {
+
+        const oldValue =
+            existing[field];
+
+        const newValue =
+            incoming[field];
+
 
         /*
-         * No new information.
-         * Preserve the existing value.
+         * -----------------------------------------------------
+         * NO NEW INFORMATION
+         * -----------------------------------------------------
          */
+
         if (!newValue) {
 
-            merged[field] = oldValue;
+            merged[field] =
+                oldValue;
 
             continue;
         }
 
+
         /*
-         * No previous information.
-         * Add the new customer-provided value.
+         * -----------------------------------------------------
+         * NEW CUSTOMER INFORMATION
+         * -----------------------------------------------------
          */
+
         if (!oldValue) {
 
-            merged[field] = newValue;
+            merged[field] =
+                newValue;
 
             continue;
         }
 
-        /*
-         * Explicit customer correction.
-         * Customer-provided correction wins.
-         */
-        if (correctedFields.has(field)) {
-
-            merged[field] = newValue;
-
-            continue;
-        }
 
         /*
-         * More precise customer-provided information.
-         * More precise information replaces the previous value.
-         */
-        if (preciseFields.has(field)) {
-
-            merged[field] = newValue;
-
-            continue;
-        }
-
-        /*
-         * Existing information remains authoritative
-         * when the incoming value is not explicitly identified
-         * as a correction or more precise information.
+         * -----------------------------------------------------
+         * EXPLICIT CUSTOMER CORRECTION
+         * -----------------------------------------------------
          *
-         * This prevents assumptions from overwriting known data.
+         * The customer's correction always wins.
          */
-        merged[field] = oldValue;
+
+        if (
+            correctedFields.has(field)
+        ) {
+
+            merged[field] =
+                newValue;
+
+            continue;
+        }
+
+
+        /*
+         * -----------------------------------------------------
+         * MORE PRECISE CUSTOMER INFORMATION
+         * -----------------------------------------------------
+         */
+
+        if (
+            preciseFields.has(field)
+        ) {
+
+            merged[field] =
+                newValue;
+
+            continue;
+        }
+
+
+        /*
+         * -----------------------------------------------------
+         * EXISTING INFORMATION REMAINS
+         * -----------------------------------------------------
+         *
+         * The Brain does not replace known information
+         * simply because another value exists.
+         */
+
+        merged[field] =
+            oldValue;
     }
+
 
     return merged;
-}
-function extractOperationalInformation(
-    conversationHistory = []
-) {
-
-    const messages =
-        getMessages(conversationHistory);
-
-    const customerMessages =
-        messages
-            .filter(
-                message =>
-                    isObject(message) &&
-                    normalizeText(message.role) === "user"
-            )
-            .map(
-                message =>
-                    cleanValue(message.content)
-            )
-            .filter(Boolean);
-
-    if (!customerMessages.length) {
-        return {
-            propertySize: "",
-            rooms: "",
-            bathrooms: "",
-            flooring: "",
-            priorityAreas: "",
-            customerConcerns: ""
-        };
-    }
-
-    const sourceText =
-        customerMessages.join(" ");
-
-    const normalized =
-        normalizeText(sourceText);
-
-    const propertySizeMatch =
-        sourceText.match(
-            /\b(\d[\d,.\s]*)\s*(sq\.?\s*ft|sq\s*ft|square\s*feet|square\s*foot|ft2|ft²)\b/i
-        );
-
-    const roomsMatch =
-        sourceText.match(
-            /\b(\d+)\s*(bedrooms?|rooms?|habitaciones?)\b/i
-        );
-
-    const bathroomsMatch =
-        sourceText.match(
-            /\b(\d+)\s*(bathrooms?|baths?|banos?)\b/i
-        );
-
-    const flooringSignals = [
-        "hardwood",
-        "laminate",
-        "vinyl",
-        "tile",
-        "carpet",
-        "concrete",
-        "wood floor",
-        "flooring",
-        "piso",
-        "pisos",
-        "alfombra",
-        "baldosa"
-    ];
-
-    const prioritySignals = [
-        "kitchen",
-        "bathroom",
-        "bedroom",
-        "basement",
-        "garage",
-        "windows",
-        "floors",
-        "cocina",
-        "bano",
-        "banos",
-        "habitacion",
-        "sotano",
-        "garaje",
-        "ventanas",
-        "pisos"
-    ];
-
-    const concernSignals = [
-        "concern",
-        "concerns",
-        "important",
-        "priority",
-        "priorities",
-        "focus",
-        "attention",
-        "worried",
-        "problem",
-        "problems",
-        "preocup",
-        "importante",
-        "prioridad",
-        "atencion",
-        "problema"
-    ];
-
-    const flooring =
-        flooringSignals.find(
-            signal =>
-                normalized.includes(
-                    normalizeText(signal)
-                )
-        ) || "";
-
-    const priorityAreas =
-        prioritySignals.filter(
-            signal =>
-                normalized.includes(
-                    normalizeText(signal)
-                )
-        );
-
-    const customerConcernMatches =
-    concernSignals.filter(
-        signal =>
-            normalized.includes(
-                normalizeText(signal)
-            )
-    );
-
-
-const customerConcerns =
-    customerConcernMatches.length
-        ? customerConcernMatches.join(", ")
-        : "";
-
-    return {
-        propertySize:
-            propertySizeMatch
-                ? propertySizeMatch[0].trim()
-                : "",
-
-        rooms:
-            roomsMatch
-                ? roomsMatch[0].trim()
-                : "",
-
-        bathrooms:
-            bathroomsMatch
-                ? bathroomsMatch[0].trim()
-                : "",
-
-        flooring,
-
-        priorityAreas:
-            priorityAreas.join(", "),
-
-             customerConcerns
-    };
-}
-function buildOperationalSummary(
-    operationalInformation = {},
-    existingSummary = ""
-) {
-
-    const existing =
-        cleanValue(existingSummary);
-
-    const parts = [];
-
-    if (
-        operationalInformation.propertySize
-    ) {
-        parts.push(
-            `Property size: ${operationalInformation.propertySize}`
-        );
-    }
-
-    if (
-        operationalInformation.rooms
-    ) {
-        parts.push(
-            `Rooms: ${operationalInformation.rooms}`
-        );
-    }
-
-    if (
-        operationalInformation.bathrooms
-    ) {
-        parts.push(
-            `Bathrooms: ${operationalInformation.bathrooms}`
-        );
-    }
-
-    if (
-        operationalInformation.flooring
-    ) {
-        parts.push(
-            `Flooring: ${operationalInformation.flooring}`
-        );
-    }
-
-    if (
-        operationalInformation.priorityAreas
-    ) {
-        parts.push(
-            `Priority areas: ${operationalInformation.priorityAreas}`
-        );
-    }
-
-    if (
-        operationalInformation.customerConcerns
-    ) {
-        parts.push(
-            `Customer concerns: ${operationalInformation.customerConcerns}`
-        );
-    }
-
-    if (!parts.length) {
-        return existing;
-    }
-
-    if (!existing) {
-        return parts.join("; ");
-    }
-
-    return `${existing}; ${parts.join("; ")}`;
-}
-   
-
-function getMissingEssentialFields(
-    leadProfile = {}
-) {
-
-    const profile =
-        normalizeLeadProfile(leadProfile);
-
-    const missingFields = [];
-
-    if (!profile.clientName) {
-        missingFields.push("clientName");
-    }
-
-    if (!profile.emailAddress && !profile.phoneNumber) {
-        missingFields.push("contact");
-    }
-
-    if (!profile.serviceAddress) {
-        missingFields.push("serviceAddress");
-    }
-
-    if (!profile.city) {
-        missingFields.push("city");
-    }
-
-    if (!profile.serviceType) {
-        missingFields.push("serviceType");
-    }
-
-    if (!profile.operationalSummary) {
-        missingFields.push("operationalSummary");
-    }
-
-    return missingFields;
-}
-
-function hasEssentialInformation(
-    leadProfile = {}
-) {
-
-    const missingFields =
-        getMissingEssentialFields(leadProfile);
-
-    return missingFields.length === 0;
-}
-function getOperationalDiscoveryState(
-    leadProfile = {}
-) {
-
-    const profile =
-        normalizeLeadProfile(leadProfile);
-
-    const summary =
-        cleanValue(profile.operationalSummary);
-
-    const normalizedSummary =
-        normalizeText(summary);
-
-    return {
-        hasSummary: Boolean(summary),
-
-        hasPropertySize:
-            Boolean(
-                profile.squareFootage ||
-                normalizedSummary.includes("sq ft") ||
-                normalizedSummary.includes("square feet") ||
-                normalizedSummary.includes("square foot")
-            ),
-
-        hasBedroomsOrRooms:
-            Boolean(
-                normalizedSummary.match(
-                    /\b\d+\s*(bedrooms?|rooms?)\b/i
-                )
-            ),
-
-        hasBathrooms:
-            Boolean(
-                normalizedSummary.match(
-                    /\b\d+\s*(bathrooms?|baths?)\b/i
-                )
-            ),
-
-        hasFlooring:
-            Boolean(
-                normalizedSummary.match(
-                    /\b(hardwood|laminate|vinyl|tile|carpet|concrete|flooring)\b/i
-                )
-            ),
-
-        hasPriorityAreas:
-            Boolean(
-                normalizedSummary.match(
-                    /\b(kitchen|bathroom|bedroom|basement|garage|windows|floors)\b/i
-                )
-            ),
-
-        hasCustomerConcern:
-            Boolean(
-                normalizedSummary.match(
-                    /\b(concern|concerns|important|priority|priorities|focus|attention|worried|problem|problems)\b/i
-                )
-            )
-    };
-}
-function hasSufficientOperationalSummary(
-    leadProfile = {}
-) {
-
-    const state =
-        getOperationalDiscoveryState(leadProfile);
-
-    if (!state.hasSummary) {
-        return false;
-    }
-
-    const meaningfulSignals = [
-        state.hasPropertySize,
-        state.hasBedroomsOrRooms,
-        state.hasBathrooms,
-        state.hasFlooring,
-        state.hasPriorityAreas,
-        state.hasCustomerConcern
-    ];
-
-    const informationCount =
-        meaningfulSignals.filter(Boolean).length;
-
-    return informationCount >= 2;
-}
-
-
-function getNextOperationalDiscoveryTarget(
-    leadProfile = {},
-    operationalInformation = {}
-) {
-
-    const state =
-        getOperationalDiscoveryState(leadProfile);
-
-    const conversationSignals = [
-        operationalInformation.propertySize,
-        operationalInformation.rooms,
-        operationalInformation.bathrooms,
-        operationalInformation.flooring,
-        operationalInformation.priorityAreas,
-        operationalInformation.customerConcerns
-    ].filter(Boolean);
-
-    const hasConversationOperationalInformation =
-        conversationSignals.length >= 2;
-
-    if (
-        !state.hasSummary &&
-        !hasConversationOperationalInformation
-    ) {
-        return "PROPERTY_OVERVIEW";
-    }
-
-    if (
-        !state.hasPropertySize &&
-        !operationalInformation.propertySize
-    ) {
-        return "PROPERTY_SIZE";
-    }
-
-    if (
-        !state.hasBedroomsOrRooms &&
-        !operationalInformation.rooms
-    ) {
-        return "ROOMS";
-    }
-
-    if (
-        !state.hasBathrooms &&
-        !operationalInformation.bathrooms
-    ) {
-        return "BATHROOMS";
-    }
-
-    if (
-        !state.hasFlooring &&
-        !operationalInformation.flooring
-    ) {
-        return "FLOORING";
-    }
-
-    if (
-        !state.hasPriorityAreas &&
-        !operationalInformation.priorityAreas
-    ) {
-        return "PRIORITY_AREAS";
-    }
-
-    if (
-        !state.hasCustomerConcern &&
-        !operationalInformation.customerConcerns
-    ) {
-        return "CUSTOMER_CONCERNS";
-    }
-
-    return "SUFFICIENT";
-}
-
-
-function getOperationalDiscoveryQuestionTarget(
-    leadProfile = {},
-    operationalInformation = {}
-) {
-
-    const target =
-        getNextOperationalDiscoveryTarget(
-            leadProfile,
-            operationalInformation
-        );
-
-    switch (target) {
-
-        case "PROPERTY_OVERVIEW":
-            return "Invite the customer to describe the property and what they need from the cleaning service in their own words.";
-
-        case "PROPERTY_SIZE":
-            return "Ask the customer approximately how large the property is.";
-
-        case "ROOMS":
-            return "Ask the customer approximately how many bedrooms or rooms the property has.";
-
-        case "BATHROOMS":
-            return "Ask the customer approximately how many bathrooms the property has.";
-
-        case "FLOORING":
-            return "Ask the customer what types of flooring or surfaces are present in the property.";
-
-        case "PRIORITY_AREAS":
-            return "Ask the customer which areas of the property they would like the cleaning team to prioritize.";
-
-        case "CUSTOMER_CONCERNS":
-            return "Ask the customer if there is anything specific they are concerned about or want the cleaning team to pay special attention to.";
-
-        case "SUFFICIENT":
-            return "";
-
-        default:
-            return "";
-    }
 }
 
 
 /* =========================================================
-   SERVICE AREA
+   CUSTOMER DATA RULES
    ========================================================= */
 
-export function findServiceArea(city = "") {
+/**
+ * Determines whether a profile field already contains
+ * customer information.
+ */
+function hasKnownValue(
+    profile = {},
+    field = ""
+) {
 
-    const normalizedCity = normalizeText(city);
-
-    if (!normalizedCity) {
-
-        return {
-            known: false,
-            city: "",
-            region: CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.region
-        };
-    }
-
-    const cities = CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.primaryCities;
-
-    const matchedCity = cities.find(
-        item => normalizeText(item) === normalizedCity
+    return Boolean(
+        cleanValue(
+            profile[field]
+        )
     );
-
-    return {
-        known: Boolean(matchedCity),
-        city: matchedCity || city,
-        region: CONCIERGE_KNOWLEDGE.companyInfo.serviceAreas.region
-    };
 }
 
+
+/**
+ * Returns fields that are already known.
+ */
+function getKnownFields(
+    profile = {}
+) {
+
+    const normalizedProfile =
+        normalizeLeadProfile(
+            profile
+        );
+
+    return Object.keys(
+        normalizedProfile
+    ).filter(
+        field =>
+            hasKnownValue(
+                normalizedProfile,
+                field
+            )
+    );
+}
+
+
+/**
+ * Returns fields that remain empty.
+ *
+ * Empty means genuinely unknown.
+ * It does NOT mean that the Brain is allowed
+ * to invent or assume the value.
+ */
+function getEmptyFields(
+    profile = {}
+) {
+
+    const normalizedProfile =
+        normalizeLeadProfile(
+            profile
+        );
+
+    return Object.keys(
+        normalizedProfile
+    ).filter(
+        field =>
+            !hasKnownValue(
+                normalizedProfile,
+                field
+            )
+    );
+}
+
+
+/* =========================================================
+   CUSTOMER CORRECTION SUPPORT
+   ========================================================= */
+
+/**
+ * Applies an explicit customer correction.
+ *
+ * Only fields explicitly identified as corrected
+ * are replaced.
+ */
+export function applyCustomerCorrection(
+    profile = {},
+    correctedFields = [],
+    correctedValues = {}
+) {
+
+    const currentProfile =
+        normalizeLeadProfile(
+            profile
+        );
+
+    const incomingProfile =
+        normalizeLeadProfile(
+            correctedValues
+        );
+
+    return mergeLeadProfile(
+        currentProfile,
+        incomingProfile,
+        {
+            correctedFields
+        }
+    );
+}
+
+
+/* =========================================================
+   CONVERSATION CONTINUITY
+   ========================================================= */
+
+/**
+ * Builds a normalized conversation context.
+ *
+ * This section does not decide the next sales stage.
+ * It only provides reliable context to later sections.
+ */
+export function getConversationContext(
+    conversationHistory = []
+) {
+
+    const messages =
+        getMessages(
+            conversationHistory
+        );
+
+    return Object.freeze({
+
+        messages,
+
+        messageCount:
+            messages.length,
+
+        currentCustomerMessage:
+            getMostRecentUserMessage(
+                messages
+            ),
+
+        previousAssistantMessage:
+            getPreviousAssistantMessage(
+                messages
+            )
+    });
+}
+
+
+/* =========================================================
+   FOUNDATION STATE
+   ========================================================= */
+
+/**
+ * Creates the normalized foundation used by the
+ * remaining Concierge Brain sections.
+ */
+export function buildFoundation(
+    {
+        conversationHistory = [],
+        leadProfile = {}
+    } = {}
+) {
+
+    const normalizedProfile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const conversation =
+        getConversationContext(
+            conversationHistory
+        );
+
+    return Object.freeze({
+
+        leadProfile:
+            normalizedProfile,
+
+        conversation,
+
+        knownFields:
+            getKnownFields(
+                normalizedProfile
+            ),
+
+        emptyFields:
+            getEmptyFields(
+                normalizedProfile
+            ),
+
+        rules:
+            BRAIN_RULES,
+
+        knowledge:
+            CONCIERGE_KNOWLEDGE
+    });
+}
+
+
+/* =========================================================
+   PUBLIC API
+   ========================================================= */
+
+export default Object.freeze({
+
+    normalizeLeadProfile,
+
+    mergeLeadProfile,
+
+    applyCustomerCorrection,
+
+    getConversationContext,
+
+    buildFoundation
+});
+
+/* =========================================================
+   SECTION 2 — CONVERSATION UNDERSTANDING
+   ========================================================= */
+
+/**
+ * Purpose:
+ * - Understand the customer's current message.
+ * - Respect conversation history.
+ * - Detect corrections, questions, confirmations,
+ *   new requests, and quote-related intent.
+ *
+ * This section does NOT:
+ * - decide the sales stage
+ * - decide the next question
+ * - calculate pricing
+ * - create a quote
+ * - modify operational state
+ *
+ * Intent describes the customer's current communication.
+ * Stage progression belongs to a later Brain section.
+ */
 
 
 /* =========================================================
    CORRECTION DETECTION
    ========================================================= */
+
 function isCorrection(message = "") {
 
-    const text = normalizeText(message);
+    const text =
+        normalizeText(message);
 
     if (!text) {
         return false;
     }
 
     const correctionSignals = [
+
         "actually",
         "correction",
         "correct that",
@@ -782,21 +679,40 @@ function isCorrection(message = "") {
         "plutôt",
         "pas ça",
         "l'adresse est",
-        "mon adresse est"
+        "mon adresse est",
+
+        "en realidad",
+        "corrección",
+        "corrige eso",
+        "quise decir",
+        "me refería",
+        "en vez de",
+        "no es",
+        "la dirección es",
+        "mi dirección es"
     ];
 
     return correctionSignals.some(
-        signal => text.includes(normalizeText(signal))
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
 
+
 /* =========================================================
-   PRICE DETECTION
+   PRICE QUESTION DETECTION
    ========================================================= */
 
 function isPriceQuestion(message = "") {
 
-    const text = normalizeText(message);
+    const text =
+        normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
 
     const signals = [
 
@@ -812,21 +728,38 @@ function isPriceQuestion(message = "") {
         "coût",
         "coûts",
         "combien",
-        "combien ça coûte"
+        "combien ça coûte",
+
+        "precio",
+        "precios",
+        "costo",
+        "cuánto",
+        "cuanto",
+        "cuánto cuesta",
+        "cuanto cuesta"
     ];
 
     return signals.some(
-      signal => text.includes(normalizeText(signal))
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
 
+
 /* =========================================================
-   AVAILABILITY DETECTION
+   AVAILABILITY QUESTION DETECTION
    ========================================================= */
 
 function isAvailabilityQuestion(message = "") {
 
-    const text = normalizeText(message);
+    const text =
+        normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
 
     const signals = [
 
@@ -846,21 +779,43 @@ function isAvailabilityQuestion(message = "") {
         "horaire",
         "rendez-vous",
         "réservation",
-        "réserver"
+        "réserver",
+
+        "disponibilidad",
+        "disponible",
+        "cuándo pueden",
+        "cuando pueden",
+        "qué fecha",
+        "que fecha",
+        "horario",
+        "cita",
+        "reservar",
+        "reserva"
     ];
 
     return signals.some(
-        signal => text.includes(signal)
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
+
 
 /* =========================================================
    SERVICE INFORMATION DETECTION
    ========================================================= */
 
-function isServiceInformationQuestion(message = "") {
+function isServiceInformationQuestion(
+    message = ""
+) {
 
-    const text = normalizeText(message);
+    const text =
+        normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
 
     const signals = [
 
@@ -879,209 +834,218 @@ function isServiceInformationQuestion(message = "") {
         "qu'est-ce qui est inclus",
         "que comprend le service",
         "parlez-moi de vos services",
-        "comment ça fonctionne"
+        "comment ça fonctionne",
+
+        "qué servicios",
+        "que servicios",
+        "qué ofrecen",
+        "que ofrecen",
+        "qué incluye",
+        "que incluye",
+        "qué incluye el servicio",
+        "cómo funciona",
+        "como funciona"
     ];
 
     return signals.some(
-        signal => text.includes(signal)
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
 
-const requestSignals = [
 
-    "i need another",
-    "i also need",
-    "another quote",
-    "new quote",
-    "different property",
-    "another property",
+/* =========================================================
+   NEW REQUEST DETECTION
+   ========================================================= */
 
-    "j'ai besoin d'un autre",
-    "j'ai aussi besoin",
-    "une autre soumission",
-    "une nouvelle soumission",
-    "une propriété différente",
-    "une autre propriété"
-];
 function isNewRequest(message = "") {
-    const text = normalizeText(message);
+
+    const text =
+        normalizeText(message);
 
     if (!text) {
         return false;
     }
 
+    const requestSignals = [
+
+        "i need another",
+        "i also need",
+        "another quote",
+        "new quote",
+        "different property",
+        "another property",
+
+        "j'ai besoin d'un autre",
+        "j'ai aussi besoin",
+        "une autre soumission",
+        "une nouvelle soumission",
+        "une propriété différente",
+        "une autre propriété",
+
+        "necesito otra",
+        "también necesito",
+        "tambien necesito",
+        "otra cotización",
+        "otra cotizacion",
+        "una nueva cotización",
+        "una nueva cotizacion",
+        "otra propiedad",
+        "una propiedad diferente"
+    ];
+
     return requestSignals.some(
-        signal => text.includes(normalizeText(signal))
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
+
+
 /* =========================================================
-   POST-CONFIRMATION DETECTION
+   EXPLICIT CONFIRMATION DETECTION
    ========================================================= */
 
-function isPostConfirmation(
-    conversationHistory = [],
-    leadProfile = {}
+/**
+ * Confirmation is intentionally conservative.
+ *
+ * A short "yes" is NOT enough by itself.
+ * The previous assistant message must have requested
+ * confirmation of the customer's current information.
+ */
+
+function isExplicitConfirmation(
+    message = ""
 ) {
 
-    const messages = getMessages(conversationHistory);
-    const profile = normalizeLeadProfile(leadProfile);
-
-    if (!profile.clientName) {
-        return false;
-    }
-
-    if (messages.length < 2) {
-        return false;
-    }
-
-    /*
-     * The Brain does not persist quoteConfirmed as state.
-     *
-     * This function only recognizes that the conversation
-     * contains a previous explicit confirmation event.
-     *
-     * The current message must still be evaluated separately.
-     */
-
-    let confirmationFound = false;
-
-    for (let i = 0; i < messages.length; i++) {
-
-        const message = messages[i];
-
-        if (
-            isObject(message) &&
-            normalizeText(message.role) === "user"
-        ) {
-
-            const content = cleanValue(message.content);
-
-            if (isExplicitConfirmation(content)) {
-
-                const previousAssistant =
-                    i > 0
-                        ? messages[i - 1]
-                        : null;
-
-                if (
-                    previousAssistant &&
-                    normalizeText(previousAssistant.role) === "assistant" &&
-                    assistantRequestedConfirmation(
-                        previousAssistant.content
-                    )
-                ) {
-                    confirmationFound = true;
-                }
-            }
-        }
-    }
-
-    return confirmationFound;
-}
-
- /* =========================================================
-   CONFIRMATION DETECTION
-   ========================================================= */
-
-/**
- * Confirmation must be explicit and contextual.
- *
- * A confirmation is valid only when:
- *
- * 1. The customer explicitly confirms.
- * 2. The previous assistant response requested confirmation.
- * 3. The current request contains all essential information.
- *
- * Previous confirmations do not persist as confirmation
- * for the current response.
- */
-
-/**
- * Determines whether the customer's message contains
- * an explicit confirmation.
- */
-function isExplicitConfirmation(message = "") {
-
-    const text = normalizeText(message);
+    const text =
+        normalizeText(message);
 
     if (!text) {
         return false;
     }
 
     const validConfirmations = [
-    "yes",
-    "yes everything is correct",
-    "correct",
-    "that's right",
-    "looks good",
-    "confirmed",
 
-    "oui",
-    "oui tout est correct",
-    "c'est exact",
-    "tout est correct"
-];
+        "yes",
+        "yes everything is correct",
+        "correct",
+        "that's right",
+        "looks good",
+        "confirmed",
 
- return validConfirmations.some(
+        "oui",
+        "oui tout est correct",
+        "c'est exact",
+        "tout est correct",
+
+        "sí",
+        "si",
+        "sí todo está correcto",
+        "si todo esta correcto",
+        "correcto",
+        "es correcto",
+        "está correcto",
+        "esta correcto",
+        "todo está correcto",
+        "todo esta correcto",
+        "confirmado"
+    ];
+
+    return validConfirmations.some(
         confirmation =>
-            normalizeText(confirmation) === normalizeText(message)
+            normalizeText(
+                confirmation
+            ) === text
     );
 }
 
-/**
- * Determines whether the previous assistant response
- * requested confirmation of the current request.
- *
- * This remains intentionally conservative.
- */
+
+/* =========================================================
+   PREVIOUS ASSISTANT CONFIRMATION REQUEST
+   ========================================================= */
+
 function assistantRequestedConfirmation(
     assistantMessage = ""
 ) {
 
-    const text = normalizeText(assistantMessage);
+    const text =
+        normalizeText(
+            assistantMessage
+        );
 
     if (!text) {
         return false;
     }
 
-   const confirmationSignals = [
-    "is everything correct",
-    "is all of this correct",
-    "does everything look correct",
-    "please confirm",
-    "can you confirm",
-    "confirm the details",
-    "confirm everything",
+    const confirmationSignals = [
 
-    "est-ce que tout est correct",
-    "tout est-il correct",
-    "est-ce que tout semble correct",
-    "veuillez confirmer",
-    "pouvez-vous confirmer",
-    "confirmez les détails",
-    "confirmez tout"
-];
+        "is everything correct",
+        "is all of this correct",
+        "does everything look correct",
+        "please confirm",
+        "can you confirm",
+        "confirm the details",
+        "confirm everything",
+
+        "est-ce que tout est correct",
+        "tout est-il correct",
+        "est-ce que tout semble correct",
+        "veuillez confirmer",
+        "pouvez-vous confirmer",
+        "confirmez les détails",
+        "confirmez tout",
+
+        "está toda esta información correcta",
+        "esta toda esta informacion correcta",
+        "está todo correcto",
+        "esta todo correcto",
+        "por favor confirme",
+        "puede confirmar",
+        "puede confirmarme",
+        "confirme los detalles",
+        "confirme todo"
+    ];
+
     return confirmationSignals.some(
-       signal => text.includes(normalizeText(signal))
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
     );
 }
 
 
+/* =========================================================
+   CURRENT CONFIRMATION VALIDATION
+   ========================================================= */
+
 /**
  * Determines whether the current customer message
- * can be treated as a valid quote confirmation.
+ * is a valid contextual confirmation.
  *
- * This function does NOT persist confirmation state.
+ * A confirmation requires:
+ *
+ * 1. Explicit confirmation.
+ * 2. Previous assistant message requested confirmation.
+ *
+ * Completeness of the quote request is evaluated later
+ * by the progression layer.
  */
-function isValidCurrentConfirmation(
+
+function isCurrentConfirmation(
     message = "",
-    conversationHistory = [],
-    leadProfile = {}
+    conversationHistory = []
 ) {
 
-    const text = cleanValue(message);
-
-    if (!isExplicitConfirmation(text)) {
+    if (
+        !isExplicitConfirmation(
+            message
+        )
+    ) {
         return false;
     }
 
@@ -1090,749 +1054,4123 @@ function isValidCurrentConfirmation(
             conversationHistory
         );
 
-    if (
-        !assistantRequestedConfirmation(
-            previousAssistantMessage
-        )
-    ) {
-        return false;
-    }
-
-    /*
-     * A confirmation cannot process an incomplete request.
-     */
-    if (!hasEssentialInformation(leadProfile)) {
-        return false;
-    }
-
-    return true;
+    return assistantRequestedConfirmation(
+        previousAssistantMessage
+    );
 }
 
+
 /* =========================================================
-   INTENT
+   QUOTE REQUEST DETECTION
+   ========================================================= */
+
+function isQuoteRequest(
+    message = ""
+) {
+
+    const text =
+        normalizeText(message);
+
+    if (!text) {
+        return false;
+    }
+
+    const quoteSignals = [
+
+        "i want a quote",
+        "i need a quote",
+        "i need an estimate",
+        "i want an estimate",
+        "can i get a quote",
+        "can i get an estimate",
+        "can you give me a quote",
+        "can you give me an estimate",
+
+        "i need residential cleaning",
+        "i need commercial cleaning",
+        "i need deep cleaning",
+        "i need move-in cleaning",
+        "i need move-out cleaning",
+        "i need move in cleaning",
+        "i need move out cleaning",
+        "i need airbnb cleaning",
+        "i need janitorial service",
+        "i need post-construction cleaning",
+        "i need post construction cleaning",
+        "i need office cleaning",
+        "i need retail cleaning",
+        "i need warehouse cleaning",
+        "i need industrial cleaning",
+        "i need facility services",
+        "i need cleaning",
+        "i need a cleaner",
+        "i need cleaning service",
+        "looking for cleaning",
+        "looking for a cleaning company",
+        "can you clean",
+        "can you provide cleaning",
+
+        "je veux une soumission",
+        "j'ai besoin d'une soumission",
+        "je voudrais une soumission",
+        "j'ai besoin d'une estimation",
+        "je veux une estimation",
+        "puis-je avoir une soumission",
+        "pouvez-vous me donner une soumission",
+        "pouvez-vous faire le nettoyage",
+        "pouvez-vous fournir un service de nettoyage",
+
+        "quiero una cotización",
+        "quiero una cotizacion",
+        "necesito una cotización",
+        "necesito una cotizacion",
+        "quiero un presupuesto",
+        "necesito un presupuesto",
+        "necesito una estimación",
+        "necesito una estimacion",
+        "puedo obtener una cotización",
+        "puedo obtener una cotizacion",
+        "pueden darme una cotización",
+        "pueden darme una cotizacion"
+    ];
+
+    return quoteSignals.some(
+        signal =>
+            text.includes(
+                normalizeText(signal)
+            )
+    );
+}
+
+
+/* =========================================================
+   CURRENT MESSAGE UNDERSTANDING
    ========================================================= */
 
 /**
- * Detect the customer's current intent using:
+ * Understands what the customer is communicating now.
  *
- * - current customer message
- * - conversation history
- * - current lead profile
- * - service context
+ * Priority:
  *
- * Rules:
- * - Current customer request has priority.
- * - Explicit corrections have priority over other intents.
- * - Explicit confirmation only counts when confirmation was requested.
- * - Conversation history must be considered.
- * - Service context must never override the customer's actual request.
- * - Intent must not be inferred from service context alone.
+ * CORRECTION
+ * ↓
+ * CONFIRMATION
+ * ↓
+ * NEW REQUEST
+ * ↓
+ * SERVICE INFORMATION
+ * ↓
+ * PRICE QUESTION
+ * ↓
+ * AVAILABILITY QUESTION
+ * ↓
+ * QUOTE
+ * ↓
+ * GENERAL QUESTION
  *
- * The Brain performs deterministic routing.
- * Complex language interpretation remains with the language layer.
+ * This priority describes the message itself.
+ * It does not define the customer's sales stage.
  */
 
-export function detectIntent(
-    message = "",
+export function understandCurrentMessage(
     {
-        conversationHistory = [],
-        leadProfile = {},
-        serviceContext = ""
+        currentMessage = "",
+        conversationHistory = []
     } = {}
 ) {
 
-    const text = cleanValue(message);
-
-    const normalizedText = normalizeText(text);
-
-    const history = getMessages(conversationHistory);
-
-    const profile = normalizeLeadProfile(leadProfile);
-
-    const normalizedServiceContext =
-        normalizeText(serviceContext);
-
-    /*
-     * Empty customer message.
-     *
-     * Do not infer intent from leadProfile or serviceContext.
-     */
-    if (!normalizedText) {
-        return "GENERAL_QUESTION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 1. CORRECTION
-     * ---------------------------------------------------------
-     *
-     * A customer's explicit correction has priority because
-     * it modifies previously known customer information.
-     */
-    if (isCorrection(text)) {
-        return "CORRECTION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 2. CONFIRMATION
-     * ---------------------------------------------------------
-     *
-     * Confirmation is valid only when:
-     *
-     * - the customer explicitly confirms,
-     * - the previous assistant response requested confirmation,
-     * - the current lead profile contains all essential information.
-     *
-     * Previous confirmations do not persist as confirmation
-     * for the current response.
-     */
-    if (
-        isValidCurrentConfirmation(
-            text,
-            history,
-            profile
-        )
-    ) {
-        return "CONFIRMATION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 3. NEW REQUEST
-     * ---------------------------------------------------------
-     *
-     * A clearly stated new request takes priority over
-     * the previous service context.
-     */
-    if (isNewRequest(text, profile)) {
-        return "NEW_REQUEST";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 4. SERVICE INFORMATION
-     * ---------------------------------------------------------
-     *
-     * Questions about what North Crescent offers or includes
-     * should remain informational and should not automatically
-     * become quote qualification.
-     */
-    if (isServiceInformationQuestion(text)) {
-        return "SERVICE_INFORMATION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 5. PRICE QUESTION
-     * ---------------------------------------------------------
-     *
-     * A price question is routed to the pricing/value workflow.
-     *
-     * The Brain does NOT calculate or invent the price here.
-     */
-    if (isPriceQuestion(text)) {
-        return "PRICE_QUESTION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 6. AVAILABILITY QUESTION
-     * ---------------------------------------------------------
-     *
-     * Availability questions are kept separate from pricing
-     * and quote confirmation.
-     */
-    if (isAvailabilityQuestion(text)) {
-        return "AVAILABILITY_QUESTION";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 7. QUOTE INTENT
-     * ---------------------------------------------------------
-     *
-     * Quote intent is based on an explicit customer request.
-     *
-     * Service context alone can NEVER create quote intent.
-     */
-   const quoteSignals = [
-
-      "post-construction cleaning",
-"commercial cleaning",
-"residential cleaning",
-"deep cleaning",
-"move-in cleaning",
-"move-out cleaning",
-"move in cleaning",
-"move out cleaning",
-"airbnb cleaning",
-"janitorial cleaning",
-"office cleaning",
-"retail cleaning",
-"warehouse cleaning",
-"industrial cleaning",
-"medical office cleaning",
-"facility cleaning",
-      
- // Specific service requests
-    "i need residential cleaning",
-    "i need commercial cleaning",
-    "i need deep cleaning",
-    "i need move-in cleaning",
-    "i need move-out cleaning",
-    "i need move in cleaning",
-    "i need move out cleaning",
-    "i need airbnb cleaning",
-    "i need janitorial service",
-    "i need post-construction cleaning",
-    "i need post construction cleaning",
-    "i need office cleaning",
-    "i need retail cleaning",
-    "i need warehouse cleaning",
-    "i need industrial cleaning",
-    "i need facility services",
-    "i need cleaning",
-    "i need a cleaner",
-    "i need cleaning service",
-    "looking for cleaning",
-    "looking for a cleaning company",
-    "i want a quote",
-    "i need a quote",
-    "i need an estimate",
-    "i want an estimate",
-    "can i get a quote",
-    "can i get an estimate",
-    "can you give me a quote",
-    "can you give me an estimate",
-    "can you clean",
-    "can you provide cleaning",
-
-    "j'ai besoin de nettoyage",
-    "j'ai besoin d'un service de nettoyage",
-    "je cherche un service de nettoyage",
-    "je cherche une entreprise de nettoyage",
-    "je veux une soumission",
-    "j'ai besoin d'une soumission",
-    "je voudrais une soumission",
-    "j'ai besoin d'une estimation",
-    "je veux une estimation",
-    "puis-je avoir une soumission",
-    "pouvez-vous me donner une soumission",
-    "pouvez-vous faire le nettoyage",
-    "pouvez-vous fournir un service de nettoyage"
-];
-
-    if (
-        quoteSignals.some(
-            signal => normalizedText.includes(signal)
-        )
-    ) {
-        return "QUOTE";
-    }
-
-    /*
-     * ---------------------------------------------------------
-     * 8. GENERAL QUESTION
-     * ---------------------------------------------------------
-     *
-     * If no explicit supported intent is detected, remain
-     * informational rather than forcing the customer into
-     * qualification.
-     *
-     * Service context and existing leadProfile do not override
-     * the customer's current request.
-     */
-    return "GENERAL_QUESTION";
-}
-
-/* =========================================================
-   KNOWLEDGE ACCESS
-   ========================================================= */
-
-export function getKnowledge() {
-
-    return CONCIERGE_KNOWLEDGE;
-}
-
-
-export function getRules() {
-
-    return BRAIN_RULES;
-}
-
-
-/* =========================================================
-   ANALYSIS
-   ========================================================= */
-
-export function analyzeRequest({
-
-    currentMessage = "",
-    conversationHistory = [],
-    leadProfile = {},
-    serviceContext = ""
-
-} = {}) {
-
-    const history = getMessages(conversationHistory);
-
-    /*
-     * The current request should normally be supplied
-     * explicitly by the integration layer.
-     *
-     * If it is missing, recover the most recent user
-     * message from the conversation history.
-     */
-    const currentCustomerMessage =
-        cleanValue(currentMessage) ||
-        getMostRecentUserMessage(history);
-
-   const profile =
-    normalizeLeadProfile(leadProfile);
-
-const operationalInformation =
-    extractOperationalInformation(history);
-
-const derivedOperationalSummary =
-    buildOperationalSummary(
-        operationalInformation,
-        profile.operationalSummary
-    ); 
-
-   const resolvedProfile = {
-    ...profile,
-    operationalSummary:
-        derivedOperationalSummary
-};
-   const operationalDiscoveryComplete =
-    [
-        operationalInformation.propertySize,
-        operationalInformation.rooms,
-        operationalInformation.bathrooms,
-        operationalInformation.flooring,
-        operationalInformation.priorityAreas,
-        operationalInformation.customerConcerns
-    ].filter(Boolean).length >= 2;
-
-   const intent = detectIntent(
-    currentCustomerMessage,
-    {
-        conversationHistory: history,
-        leadProfile: resolvedProfile,
-        serviceContext: serviceContext
-    }
-);
-const missingFields =
-    getMissingEssentialFields(resolvedProfile);
-
-    const operationalSummaryReady =
-    hasSufficientOperationalSummary(resolvedProfile) ||
-        [
-            operationalInformation.propertySize,
-            operationalInformation.rooms,
-            operationalInformation.bathrooms,
-            operationalInformation.flooring,
-            operationalInformation.priorityAreas,
-            operationalInformation.customerConcerns
-        ].filter(Boolean).length >= 2;
-
-    if (
-    !operationalDiscoveryComplete &&
-    !missingFields.includes("operationalSummary")
-) {
-    missingFields.push("operationalSummary");
-}
-
-    const serviceArea =
-        findServiceArea(profile.city);
-
- const quoteReady =
-    missingFields.length === 0 &&
-    operationalSummaryReady &&
-    operationalDiscoveryComplete;
-
-    const postConfirmation =
-        isPostConfirmation(
-            history,
-            profile
+    const history =
+        getMessages(
+            conversationHistory
         );
+
+    const message =
+        cleanValue(
+            currentMessage
+        ) ||
+        getMostRecentUserMessage(
+            history
+        );
+
+
+    if (!message) {
+
+        return Object.freeze({
+
+            intent:
+                "GENERAL_QUESTION",
+
+            currentMessage:
+                "",
+
+            isCorrection:
+                false,
+
+            isConfirmation:
+                false,
+
+            isNewRequest:
+                false,
+
+            isServiceInformation:
+                false,
+
+            isPriceQuestion:
+                false,
+
+            isAvailabilityQuestion:
+                false,
+
+            isQuoteRequest:
+                false
+        });
+    }
+
+
+    const correction =
+        isCorrection(message);
+
+    const confirmation =
+        isCurrentConfirmation(
+            message,
+            history
+        );
+
+    const newRequest =
+        isNewRequest(message);
+
+    const serviceInformation =
+        isServiceInformationQuestion(
+            message
+        );
+
+    const priceQuestion =
+        isPriceQuestion(message);
+
+    const availabilityQuestion =
+        isAvailabilityQuestion(
+            message
+        );
+
+    const quoteRequest =
+        isQuoteRequest(message);
+
+
+    let intent =
+        "GENERAL_QUESTION";
+
+
+    if (correction) {
+
+        intent =
+            "CORRECTION";
+
+    } else if (confirmation) {
+
+        intent =
+            "CONFIRMATION";
+
+    } else if (newRequest) {
+
+        intent =
+            "NEW_REQUEST";
+
+    } else if (serviceInformation) {
+
+        intent =
+            "SERVICE_INFORMATION";
+
+    } else if (priceQuestion) {
+
+        intent =
+            "PRICE_QUESTION";
+
+    } else if (availabilityQuestion) {
+
+        intent =
+            "AVAILABILITY_QUESTION";
+
+    } else if (quoteRequest) {
+
+        intent =
+            "QUOTE";
+    }
+
 
     return Object.freeze({
 
         intent,
 
         currentMessage:
-            currentCustomerMessage,
+            message,
 
-        conversationHistory:
-            history,
-       leadProfile:
-    resolvedProfile,
+        isCorrection:
+            correction,
 
-        operationalInformation,
+        isConfirmation:
+            confirmation,
 
-        serviceContext:
-            cleanValue(serviceContext),
+        isNewRequest:
+            newRequest,
 
-        missingFields,
+        isServiceInformation:
+            serviceInformation,
 
-quoteReady,
+        isPriceQuestion:
+            priceQuestion,
 
-operationalDiscoveryComplete,
+        isAvailabilityQuestion:
+            availabilityQuestion,
 
-postConfirmation,
-
-        serviceArea,
-
-        rules:
-            BRAIN_RULES,
-
-        knowledge:
-            CONCIERGE_KNOWLEDGE
+        isQuoteRequest:
+            quoteRequest
     });
 }
 
+
 /* =========================================================
-   QUOTE CONVERSION CHECK
+   CONVERSATION UNDERSTANDING
    ========================================================= */
 
-function shouldReconnectToQuote(
-    conversationHistory = [],
+/**
+ * Combines the foundation context with current-message
+ * understanding.
+ *
+ * No sales progression happens here.
+ */
+export function buildConversationUnderstanding(
+    {
+        currentMessage = "",
+        conversationHistory = [],
+        leadProfile = {}
+    } = {}
+) {
+
+    const foundation =
+        buildFoundation({
+            conversationHistory,
+            leadProfile
+        });
+
+    const understanding =
+        understandCurrentMessage({
+            currentMessage:
+                currentMessage ||
+                foundation.conversation.currentCustomerMessage,
+
+            conversationHistory:
+                foundation.conversation.messages
+        });
+
+    return Object.freeze({
+
+        ...foundation,
+
+        understanding
+    });
+}
+export function buildConversationUnderstanding(
+    {
+        currentMessage = "",
+        conversationHistory = [],
+        leadProfile = {}
+    } = {}
+) {
+
+    const foundation =
+        buildFoundation({
+            conversationHistory,
+            leadProfile
+        });
+
+    const understanding =
+        understandCurrentMessage({
+            currentMessage:
+                currentMessage ||
+                foundation.conversation.currentCustomerMessage,
+
+            conversationHistory:
+                foundation.conversation.messages
+        });
+
+    return Object.freeze({
+
+        ...foundation,
+
+        understanding
+    });
+}
+/* =========================================================
+   SECTION 3 — SALES JOURNEY / STAGES
+   ========================================================= */
+
+/**
+ * Purpose:
+ *
+ * Define the official North Crescent conversational journey.
+ *
+ * The Brain must understand:
+ *
+ * - where the customer currently is
+ * - what has already been resolved
+ * - what stage should come next
+ * - when a stage is complete
+ * - when the conversation must move forward
+ *
+ * Core ADN:
+ *
+ * RECOGNIZE
+ * → ACKNOWLEDGE
+ * → ANSWER
+ * → VALUE
+ * → EXPLAIN WHY
+ * → ADVANCE
+ * → ASK
+ *
+ * Core progression rule:
+ *
+ * ONE QUESTION
+ * = ONE OBJECTIVE
+ * = ONE RESULT
+ * = ONE ADVANCE
+ *
+ * This section defines the journey only.
+ *
+ * It does NOT:
+ * - generate customer-facing replies
+ * - calculate prices
+ * - create Airtable records
+ * - control Make
+ * - modify operational state
+ */
+
+
+/* =========================================================
+   OFFICIAL SALES JOURNEY
+   ========================================================= */
+
+const SALES_STAGES = Object.freeze([
+
+    "IDENTIFY",
+
+    "UNDERSTAND_NEED",
+
+    "RESOLVE_SERVICE",
+
+    "UNDERSTAND_PROPERTY",
+
+    "RELEVANT_DISCOVERY",
+
+    "EMAIL",
+
+    "PHONE",
+
+    "SERVICE_DATE",
+
+    "PRIORITIES",
+
+    "FINAL_DETAIL_CHECK",
+
+    "FINAL_QUESTION_CHECK",
+
+    "FINAL_SUMMARY",
+
+    "EXPLICIT_CONFIRMATION",
+
+    "PROCESSING",
+
+    "FINAL_SERVICE_CHECK",
+
+    "CLOSE"
+]);
+
+
+/* =========================================================
+   STAGE ORDER
+   ========================================================= */
+
+/**
+ * The order is intentional.
+ *
+ * The Concierge should progress naturally through the journey
+ * while still allowing customer interruptions.
+ */
+const STAGE_ORDER = Object.freeze({
+
+    IDENTIFY: 0,
+
+    UNDERSTAND_NEED: 1,
+
+    RESOLVE_SERVICE: 2,
+
+    UNDERSTAND_PROPERTY: 3,
+
+    RELEVANT_DISCOVERY: 4,
+
+    EMAIL: 5,
+
+    PHONE: 6,
+
+    SERVICE_DATE: 7,
+
+    PRIORITIES: 8,
+
+    FINAL_DETAIL_CHECK: 9,
+
+    FINAL_QUESTION_CHECK: 10,
+
+    FINAL_SUMMARY: 11,
+
+    EXPLICIT_CONFIRMATION: 12,
+
+    PROCESSING: 13,
+
+    FINAL_SERVICE_CHECK: 14,
+
+    CLOSE: 15
+});
+
+
+/* =========================================================
+   STAGE DEFINITIONS
+   ========================================================= */
+
+/**
+ * Each stage has:
+ *
+ * - objective
+ * - completion condition
+ * - customer result
+ * - next stage
+ *
+ * The Brain uses these definitions to preserve
+ * commercial progression without becoming a questionnaire.
+ */
+
+const STAGE_DEFINITIONS = Object.freeze({
+
+    IDENTIFY: Object.freeze({
+
+        objective:
+            "Identify the customer naturally and establish a personalized conversation.",
+
+        completion:
+            "Customer name is known.",
+
+        result:
+            "A known customer identity is available for personalized conversation.",
+
+        nextStage:
+            "UNDERSTAND_NEED"
+    }),
+
+
+    UNDERSTAND_NEED: Object.freeze({
+
+        objective:
+            "Understand what the customer needs and how North Crescent can help.",
+
+        completion:
+            "The customer's requested service or primary need is understood.",
+
+        result:
+            "The Concierge understands the customer's reason for contacting North Crescent.",
+
+        nextStage:
+            "RESOLVE_SERVICE"
+    }),
+
+
+    RESOLVE_SERVICE: Object.freeze({
+
+        objective:
+            "Ensure the requested service is correctly understood and aligned with the customer's need.",
+
+        completion:
+            "The service is sufficiently clear and no correction is required.",
+
+        result:
+            "The Concierge and customer have a shared understanding of the requested service.",
+
+        nextStage:
+            "UNDERSTAND_PROPERTY"
+    }),
+
+
+    UNDERSTAND_PROPERTY: Object.freeze({
+
+        objective:
+            "Understand the property sufficiently to avoid a generic or poorly targeted quote.",
+
+        completion:
+            "Relevant property context has been obtained.",
+
+        result:
+            "The Concierge understands the type and basic characteristics of the property.",
+
+        nextStage:
+            "RELEVANT_DISCOVERY"
+    }),
+
+
+    RELEVANT_DISCOVERY: Object.freeze({
+
+        objective:
+            "Collect only the operational details that are relevant to the requested service.",
+
+        completion:
+            "The service-specific operational context is sufficient for the quote process.",
+
+        result:
+            "The Concierge understands the details that materially affect the service.",
+
+        nextStage:
+            "EMAIL"
+    }),
+
+
+    EMAIL: Object.freeze({
+
+        objective:
+            "Confirm the best email address for the customer's quote and follow-up.",
+
+        completion:
+            "A valid customer email has been explicitly confirmed.",
+
+        result:
+            "The quote has a confirmed email destination.",
+
+        nextStage:
+            "PHONE"
+    }),
+
+
+    PHONE: Object.freeze({
+
+        objective:
+            "Obtain the best phone number for customer communication and follow-up.",
+
+        completion:
+            "A customer phone number is known or the customer has explicitly confirmed the available contact path.",
+
+        result:
+            "The Concierge has an appropriate contact path for follow-up.",
+
+        nextStage:
+            "SERVICE_DATE"
+    }),
+
+
+    SERVICE_DATE: Object.freeze({
+
+        objective:
+            "Understand when the customer would like the service to take place.",
+
+        completion:
+            "The customer's requested service date or timing preference is known.",
+
+        result:
+            "The request contains a service timing preference.",
+
+        nextStage:
+            "PRIORITIES"
+    }),
+
+
+    PRIORITIES: Object.freeze({
+
+        objective:
+            "Identify the areas, details, or conditions that matter most to the customer.",
+
+        completion:
+            "Customer priorities have been established or the customer has indicated there are none.",
+
+        result:
+            "The Concierge knows what deserves special attention.",
+
+        nextStage:
+            "FINAL_DETAIL_CHECK"
+    }),
+
+
+    FINAL_DETAIL_CHECK: Object.freeze({
+
+        objective:
+            "Give the customer one final opportunity to provide an important detail before the request is finalized.",
+
+        completion:
+            "The customer confirms there are no additional relevant details or provides the final detail.",
+
+        result:
+            "The discovery process is complete.",
+
+        nextStage:
+            "FINAL_QUESTION_CHECK"
+    }),
+
+
+    FINAL_QUESTION_CHECK: Object.freeze({
+
+        objective:
+            "Resolve any remaining customer questions before presenting the final summary.",
+
+        completion:
+            "The customer confirms there are no additional questions.",
+
+        result:
+            "The customer has had the opportunity to clarify remaining concerns.",
+
+        nextStage:
+            "FINAL_SUMMARY"
+    }),
+
+
+    FINAL_SUMMARY: Object.freeze({
+
+        objective:
+            "Present a concise and accurate summary of the customer's current request.",
+
+        completion:
+            "The summary has been presented and the customer has been asked to confirm it.",
+
+        result:
+            "The customer is positioned to provide explicit confirmation.",
+
+        nextStage:
+            "EXPLICIT_CONFIRMATION"
+    }),
+
+
+    EXPLICIT_CONFIRMATION: Object.freeze({
+
+        objective:
+            "Obtain explicit confirmation that the summarized request is correct.",
+
+        completion:
+            "The customer explicitly confirms the complete current request.",
+
+        result:
+            "The current request becomes a confirmed quote-processing event.",
+
+        nextStage:
+            "PROCESSING"
+    }),
+
+
+    PROCESSING: Object.freeze({
+
+        objective:
+            "Communicate that the confirmed request is being processed for quotation.",
+
+        completion:
+            "The customer has been informed that the request is being processed.",
+
+        result:
+            "The quote request has entered the processing stage.",
+
+        nextStage:
+            "FINAL_SERVICE_CHECK"
+    }),
+
+
+    FINAL_SERVICE_CHECK: Object.freeze({
+
+        objective:
+            "Give the customer one final opportunity to request additional assistance.",
+
+        completion:
+            "The customer indicates whether additional help is needed.",
+
+        result:
+            "The conversation is ready to close or address a new customer need.",
+
+        nextStage:
+            "CLOSE"
+    }),
+
+
+    CLOSE: Object.freeze({
+
+        objective:
+            "Close the conversation professionally and warmly.",
+
+        completion:
+            "The customer has no additional request.",
+
+        result:
+            "The current conversation is professionally closed.",
+
+        nextStage:
+            null
+    })
+});
+
+
+/* =========================================================
+   STAGE UTILITIES
+   ========================================================= */
+
+/**
+ * Returns whether a stage exists.
+ */
+function isValidStage(
+    stage = ""
+) {
+
+    return SALES_STAGES.includes(
+        stage
+    );
+}
+
+
+/**
+ * Returns the numerical position of a stage.
+ */
+function getStageIndex(
+    stage = ""
+) {
+
+    if (!isValidStage(stage)) {
+        return -1;
+    }
+
+    return STAGE_ORDER[stage];
+}
+
+
+/**
+ * Returns the next stage in the official journey.
+ */
+function getNextStage(
+    stage = ""
+) {
+
+    if (!isValidStage(stage)) {
+        return "IDENTIFY";
+    }
+
+    return (
+        STAGE_DEFINITIONS[stage]
+            ?.nextStage || null
+    );
+}
+
+
+/**
+ * Returns the complete definition of a stage.
+ */
+function getStageDefinition(
+    stage = ""
+) {
+
+    if (!isValidStage(stage)) {
+        return null;
+    }
+
+    return STAGE_DEFINITIONS[stage];
+}
+
+
+/* =========================================================
+   STAGE COMPLETION HELPERS
+   ========================================================= */
+
+/**
+ * Determines whether customer identity has been established.
+ */
+function isIdentifyComplete(
     leadProfile = {}
 ) {
 
-    const history =
-        getMessages(conversationHistory);
+    return Boolean(
+        cleanValue(
+            leadProfile.clientName
+        )
+    );
+}
+
+
+/**
+ * Determines whether the customer need is understood.
+ *
+ * A service type is the strongest deterministic signal,
+ * while operational context may also support understanding.
+ */
+function isNeedUnderstandingComplete(
+    leadProfile = {},
+    understanding = {}
+) {
+
+    return Boolean(
+        cleanValue(
+            leadProfile.serviceType
+        ) ||
+        understanding.isQuoteRequest ||
+        understanding.isServiceInformation
+    );
+}
+
+
+/**
+ * Determines whether the requested service is sufficiently
+ * understood.
+ */
+function isServiceResolved(
+    leadProfile = {}
+) {
+
+    return Boolean(
+        cleanValue(
+            leadProfile.serviceType
+        )
+    );
+}
+
+
+/**
+ * Determines whether basic property understanding exists.
+ *
+ * The Brain does not require every optional property field.
+ */
+function isPropertyUnderstandingComplete(
+    leadProfile = {}
+) {
 
     const profile =
-        normalizeLeadProfile(leadProfile);
+        normalizeLeadProfile(
+            leadProfile
+        );
 
-    /*
-     * If the customer already has all essential
-     * information, do not continue selling or
-     * qualification. The conversation must move
-     * toward final confirmation.
-     */
-    if (hasEssentialInformation(profile)) {
+    return Boolean(
+        profile.operationalSummary ||
+        profile.squareFootage ||
+        profile.serviceAddress
+    );
+}
+
+
+/**
+ * Determines whether relevant operational discovery
+ * is sufficient.
+ *
+ * This deliberately uses the operational summary as the
+ * primary source rather than forcing a fixed questionnaire.
+ */
+function isRelevantDiscoveryComplete(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Boolean(
+        profile.operationalSummary
+    );
+}
+
+
+/**
+ * Determines whether an email exists.
+ *
+ * Explicit confirmation of the email is handled by
+ * the confirmation/progression layer.
+ */
+function hasEmail(
+    leadProfile = {}
+) {
+
+    return Boolean(
+        cleanValue(
+            leadProfile.emailAddress
+        )
+    );
+}
+
+
+/**
+ * Determines whether a phone number exists.
+ */
+function hasPhone(
+    leadProfile = {}
+) {
+
+    return Boolean(
+        cleanValue(
+            leadProfile.phoneNumber
+        )
+    );
+}
+
+
+/**
+ * Determines whether a service date exists.
+ *
+ * Current leadProfile supports timeSlot but not yet
+ * a dedicated serviceDate field.
+ *
+ * We therefore use timeSlot only when it actually
+ * represents customer timing information.
+ */
+function hasServiceDate(
+    leadProfile = {}
+) {
+
+    return Boolean(
+        cleanValue(
+            leadProfile.timeSlot
+        )
+    );
+}
+
+
+/**
+ * Determines whether customer priorities exist.
+ *
+ * sensitiveAreas and operationalSummary may contain
+ * relevant priority information.
+ */
+function hasCustomerPriorities(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Boolean(
+        profile.sensitiveAreas ||
+        profile.operationalSummary
+    );
+}
+
+
+/* =========================================================
+   STAGE RESOLUTION
+   ========================================================= */
+
+/**
+ * Determines the highest confirmed point of progression
+ * from the information currently available.
+ *
+ * IMPORTANT:
+ *
+ * This function does not decide what to ask next.
+ *
+ * It only determines what has already been achieved.
+ */
+export function resolveCompletedStage(
+    {
+        leadProfile = {},
+        understanding = {}
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+
+    if (
+        !isIdentifyComplete(
+            profile
+        )
+    ) {
+
+        return "IDENTIFY";
+    }
+
+
+    if (
+        !isNeedUnderstandingComplete(
+            profile,
+            understanding
+        )
+    ) {
+
+        return "UNDERSTAND_NEED";
+    }
+
+
+    if (
+        !isServiceResolved(
+            profile
+        )
+    ) {
+
+        return "RESOLVE_SERVICE";
+    }
+
+
+    if (
+        !isPropertyUnderstandingComplete(
+            profile
+        )
+    ) {
+
+        return "UNDERSTAND_PROPERTY";
+    }
+
+
+    if (
+        !isRelevantDiscoveryComplete(
+            profile
+        )
+    ) {
+
+        return "RELEVANT_DISCOVERY";
+    }
+
+
+    if (
+        !hasEmail(
+            profile
+        )
+    ) {
+
+        return "EMAIL";
+    }
+
+
+    if (
+        !hasPhone(
+            profile
+        )
+    ) {
+
+        return "PHONE";
+    }
+
+
+    if (
+        !hasServiceDate(
+            profile
+        )
+    ) {
+
+        return "SERVICE_DATE";
+    }
+
+
+    if (
+        !hasCustomerPriorities(
+            profile
+        )
+    ) {
+
+        return "PRIORITIES";
+    }
+
+
+    return "FINAL_DETAIL_CHECK";
+}
+
+
+/* =========================================================
+   STAGE CONTEXT
+   ========================================================= */
+
+/**
+ * Builds a deterministic stage context.
+ *
+ * Later sections will use this context to decide:
+ *
+ * - what has been resolved
+ * - what remains
+ * - what the next appropriate action is
+ *
+ * The actual conversational response remains outside
+ * this section.
+ */
+export function buildSalesJourney(
+    {
+        leadProfile = {},
+        understanding = {}
+    } = {}
+) {
+
+    const completedStage =
+        resolveCompletedStage({
+            leadProfile,
+            understanding
+        });
+
+    const nextStage =
+        getNextStage(
+            completedStage
+        );
+
+    return Object.freeze({
+
+        currentStage:
+            completedStage,
+
+        nextStage,
+
+        currentStageIndex:
+            getStageIndex(
+                completedStage
+            ),
+
+        nextStageIndex:
+            getStageIndex(
+                nextStage
+            ),
+
+        stageDefinition:
+            getStageDefinition(
+                completedStage
+            ),
+
+        nextStageDefinition:
+            getStageDefinition(
+                nextStage
+            )
+    });
+}
+export function buildSalesJourney(
+    {
+        leadProfile = {},
+        understanding = {}
+    } = {}
+) {
+
+    const completedStage =
+        resolveCompletedStage({
+            leadProfile,
+            understanding
+        });
+
+    const nextStage =
+        getNextStage(
+            completedStage
+        );
+
+    return Object.freeze({
+
+        currentStage:
+            completedStage,
+
+        nextStage,
+
+        currentStageIndex:
+            getStageIndex(
+                completedStage
+            ),
+
+        nextStageIndex:
+            getStageIndex(
+                nextStage
+            ),
+
+        stageDefinition:
+            getStageDefinition(
+                completedStage
+            ),
+
+        nextStageDefinition:
+            getStageDefinition(
+                nextStage
+            )
+    });
+}
+/* =========================================================
+   SECTION 4 — PROGRESSION ENGINE
+   ========================================================= */
+
+/**
+ * Purpose:
+ *
+ * Convert conversation understanding + sales journey
+ * into one deterministic next conversational action.
+ *
+ * Core ADN:
+ *
+ * RECOGNIZE
+ * → ACKNOWLEDGE
+ * → ANSWER
+ * → VALUE
+ * → EXPLAIN WHY
+ * → ADVANCE
+ * → ASK
+ *
+ * Core progression rule:
+ *
+ * ONE QUESTION
+ * = ONE OBJECTIVE
+ * = ONE RESULT
+ * = ONE ADVANCE
+ *
+ * This section controls progression.
+ *
+ * It does NOT:
+ * - generate the final customer-facing wording
+ * - calculate pricing
+ * - access Airtable
+ * - control Make
+ * - create operational records
+ */
+
+
+/* =========================================================
+   ACTION TYPES
+   ========================================================= */
+
+const PROGRESSION_ACTIONS = Object.freeze([
+
+    "IDENTIFY_CUSTOMER",
+
+    "UNDERSTAND_NEED",
+
+    "RESOLVE_SERVICE",
+
+    "UNDERSTAND_PROPERTY",
+
+    "RELEVANT_DISCOVERY",
+
+    "CONFIRM_EMAIL",
+
+    "REQUEST_PHONE",
+
+    "REQUEST_SERVICE_DATE",
+
+    "IDENTIFY_PRIORITIES",
+
+    "FINAL_DETAIL_CHECK",
+
+    "FINAL_QUESTION_CHECK",
+
+    "PREPARE_FINAL_SUMMARY",
+
+    "REQUEST_EXPLICIT_CONFIRMATION",
+
+    "PROCESS_CONFIRMED_REQUEST",
+
+    "FINAL_SERVICE_CHECK",
+
+    "CLOSE_CONVERSATION",
+
+    "ANSWER_CUSTOMER_QUESTION",
+
+    "ANSWER_PRICE_QUESTION",
+
+    "ANSWER_AVAILABILITY_QUESTION",
+
+    "HANDLE_CORRECTION",
+
+    "START_NEW_REQUEST"
+]);
+
+
+/* =========================================================
+   ACTION VALIDATION
+   ========================================================= */
+
+function isValidProgressionAction(
+    action = ""
+) {
+
+    return PROGRESSION_ACTIONS.includes(
+        action
+    );
+}
+
+
+/* =========================================================
+   CONTACT STATE
+   ========================================================= */
+
+/**
+ * Email confirmation requires more than simply
+ * having an email value.
+ *
+ * Section 4 therefore separates:
+ *
+ * - email available
+ * - email explicitly confirmed
+ *
+ * This prevents the Brain from assuming that an email
+ * arriving from the frontend is automatically confirmed.
+ */
+function getEmailState(
+    leadProfile = {},
+    conversationHistory = []
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const email =
+        cleanValue(
+            profile.emailAddress
+        );
+
+    const history =
+        getMessages(
+            conversationHistory
+        );
+
+    const emailConfirmed =
+        history.some(
+            message =>
+                isObject(message) &&
+                normalizeText(message.role) === "user" &&
+                isExplicitConfirmation(
+                    message.content
+                ) &&
+                history.some(
+                    previous =>
+                        isObject(previous) &&
+                        normalizeText(
+                            previous.role
+                        ) === "assistant" &&
+                        normalizeText(
+                            previous.content
+                        ).includes(
+                            "email"
+                        )
+                )
+        );
+
+    return Object.freeze({
+
+        available:
+            Boolean(email),
+
+        confirmed:
+            emailConfirmed
+    });
+}
+
+
+/**
+ * Phone state.
+ *
+ * A phone number supplied by the customer is considered
+ * known. Explicit confirmation can be handled later when
+ * the customer corrects or validates contact information.
+ */
+function getPhoneState(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Object.freeze({
+
+        available:
+            Boolean(
+                cleanValue(
+                    profile.phoneNumber
+                )
+            )
+    });
+}
+
+
+/* =========================================================
+   CUSTOMER RESPONSE STATE
+   ========================================================= */
+
+/**
+ * Determines whether the customer has indicated
+ * that there are no additional details.
+ *
+ * This is intentionally conservative.
+ */
+function customerIndicatedNoAdditionalDetails(
+    message = ""
+) {
+
+    const text =
+        normalizeText(
+            message
+        );
+
+    if (!text) {
         return false;
     }
 
-    /*
-     * Count recent customer informational exchanges.
-     *
-     * The goal is not to force a quote after every
-     * message. The Concierge should naturally
-     * reconnect the conversation to the quote after
-     * approximately 1–2 informational exchanges.
-     */
-    let informationalExchanges = 0;
+    const signals = [
 
-    for (let i = history.length - 1; i >= 0; i--) {
+        "nothing else",
+        "nothing more",
+        "that's all",
+        "thats all",
+        "no that's all",
+        "no thats all",
+        "no more",
 
-        const message = history[i];
+        "rien d'autre",
+        "c'est tout",
+        "rien de plus",
 
-        if (
-            !isObject(message) ||
-            normalizeText(message.role) !== "user"
-        ) {
-            continue;
-        }
+        "nada más",
+        "nada mas",
+        "eso es todo",
+        "no, eso es todo",
+        "no es todo",
+        "no tengo más",
+        "no tengo mas"
+    ];
 
-        const content =
-            cleanValue(message.content);
+    return signals.some(
+        signal =>
+            text ===
+            normalizeText(signal)
+    );
+}
 
-        if (!content) {
-            continue;
-        }
 
-        if (
-            isCorrection(content) ||
-            isExplicitConfirmation(content) ||
-            isNewRequest(content)
-        ) {
-            break;
-        }
-
-      if (
-    isServiceInformationQuestion(content) ||
-    isPriceQuestion(content) ||
-    isAvailabilityQuestion(content) ||
-    detectIntent(
-        content,
-        {
-            conversationHistory: history,
-            leadProfile: profile
-        }
-    ) === "GENERAL_QUESTION"
+/**
+ * Determines whether the customer has indicated
+ * that there are no additional questions.
+ */
+function customerHasNoMoreQuestions(
+    message = ""
 ) {
-    informationalExchanges += 1;
-    continue;
+
+    return customerIndicatedNoAdditionalDetails(
+        message
+    );
 }
 
-        /*
-         * Stop when the conversation reaches a message
-         * that is clearly not part of the informational
-         * exchange sequence.
-         */
-        break;
-    }
 
-    return informationalExchanges >= 2;
-}
-function hasActiveQuoteContext(analysis = {}) {
-
-    const profile =
-        normalizeLeadProfile(analysis.leadProfile);
-
-    const history =
-        getMessages(analysis.conversationHistory);
-
-    if (
-        analysis.intent === "QUOTE"
-    ) {
-        return true;
-    }
-
-    if (
-        profile.serviceType &&
-        history.some(message =>
-            isObject(message) &&
-            normalizeText(message.role) === "user" &&
-            detectIntent(
-                cleanValue(message.content),
-                {
-                    conversationHistory: history,
-                    leadProfile: profile
-                }
-            ) === "QUOTE"
-        )
-    ) {
-        return true;
-    }
-
-    return false;
-}
 /* =========================================================
-   NEXT ACTION
+   OPERATIONAL DISCOVERY
    ========================================================= */
 
-export function determineNextAction(
-    analysis = {}
-) {
-
-    const intent =
-        analysis.intent || "GENERAL_QUESTION";
-
-    const quoteReady =
-        Boolean(analysis.quoteReady);
-
-    const postConfirmation =
-        Boolean(analysis.postConfirmation);
-   const hasQuoteContext =
-    hasActiveQuoteContext(analysis);
-
-const operationalDiscoveryComplete =
-    Boolean(analysis.operationalDiscoveryComplete);
-   
-
-const operationalInformation =
-    analysis.operationalInformation || {};
-
-const operationalDiscoveryTarget =
-    getNextOperationalDiscoveryTarget(
-        analysis.leadProfile,
-        operationalInformation
-    );
-
-const operationalDiscoveryQuestion =
-    getOperationalDiscoveryQuestionTarget(
-        analysis.leadProfile,
-        operationalInformation
-    );
-
-    /*
-     * Post-confirmation follow-up.
-     *
-     * The previous confirmation is not reused as
-     * quoteConfirmed for the current response.
-     */
-    if (
-        postConfirmation &&
-        intent !== "NEW_REQUEST" &&
-        intent !== "CORRECTION"
-    ) {
-        return "ANSWER_FOLLOW_UP";
-    }
-/*
- * ACTIVE QUOTE PROGRESSION
+/**
+ * Determines whether the customer has provided enough
+ * relevant operational information.
  *
- * Once a customer has entered a quote process,
- * operationalSummary must be developed before
- * the conversation can progress toward quote completion.
+ * The Brain does NOT require a fixed questionnaire.
  *
- * The customer may still ask questions, but the
- * conversation must remain commercially progressive.
+ * It uses:
+ *
+ * - operationalSummary
+ * - property information
+ * - service-specific context
+ * - customer priorities
+ *
+ * to decide whether discovery can move forward.
  */
-if (
-    hasQuoteContext &&
-    !operationalDiscoveryComplete &&
-    intent !== "CORRECTION" &&
-    intent !== "NEW_REQUEST" &&
-    intent !== "PRICE_QUESTION" &&
-    intent !== "AVAILABILITY_QUESTION" &&
-    intent !== "GENERAL_QUESTION" &&
-    intent !== "SERVICE_INFORMATION"
+function hasRelevantDiscovery(
+    leadProfile = {}
 ) {
-    return "START_PROPERTY_DISCOVERY";
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    if (
+        cleanValue(
+            profile.operationalSummary
+        )
+    ) {
+        return true;
+    }
+
+    const signals = [
+
+        profile.squareFootage,
+
+        profile.accessInstructions,
+
+        profile.sensitiveAreas
+    ];
+
+    return signals.filter(
+        Boolean
+    ).length >= 2;
 }
 
-    switch (intent) {
 
-        case "PRICE_QUESTION":
-            return "USE_PRICING_ENGINE";
+/* =========================================================
+   ESSENTIAL QUOTE INFORMATION
+   ========================================================= */
+
+/**
+ * Quote essentials:
+ *
+ * - clientName
+ * - email OR phone
+ * - serviceAddress
+ * - city
+ * - serviceType
+ * - operationalSummary
+ *
+ * This section does not calculate pricing.
+ */
+function getQuoteReadiness(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const missingFields = [];
 
 
-        case "AVAILABILITY_QUESTION":
-            return "CHECK_AVAILABILITY";
+    if (!profile.clientName) {
 
+        missingFields.push(
+            "clientName"
+        );
+    }
 
-       case "GENERAL_QUESTION":
 
     if (
-        shouldReconnectToQuote(
-            analysis.conversationHistory,
-            analysis.leadProfile
-        )
+        !profile.emailAddress &&
+        !profile.phoneNumber
     ) {
-        return "RECONNECT_TO_QUOTE";
+
+        missingFields.push(
+            "contact"
+        );
     }
 
-    return "ANSWER_FROM_KNOWLEDGE";
+
+    if (!profile.serviceAddress) {
+
+        missingFields.push(
+            "serviceAddress"
+        );
+    }
 
 
-case "SERVICE_INFORMATION":
+    if (!profile.city) {
+
+        missingFields.push(
+            "city"
+        );
+    }
+
+
+    if (!profile.serviceType) {
+
+        missingFields.push(
+            "serviceType"
+        );
+    }
+
+
+    if (!profile.operationalSummary) {
+
+        missingFields.push(
+            "operationalSummary"
+        );
+    }
+
+
+    return Object.freeze({
+
+        ready:
+            missingFields.length === 0,
+
+        missingFields
+    });
+}
+
+
+/* =========================================================
+   CUSTOMER QUESTION OVERRIDE
+   ========================================================= */
+
+/**
+ * Customer questions interrupt progression.
+ *
+ * They must be answered before the Concierge advances.
+ *
+ * After answering, the Brain returns to the current
+ * commercial stage.
+ */
+function getCustomerQuestionAction(
+    understanding = {}
+) {
 
     if (
-        shouldReconnectToQuote(
-            analysis.conversationHistory,
-            analysis.leadProfile
-        )
+        understanding.isPriceQuestion
     ) {
-        return "RECONNECT_TO_QUOTE";
+
+        return "ANSWER_PRICE_QUESTION";
     }
 
-    return "ANSWER_FROM_KNOWLEDGE";
-
-
-        case "CORRECTION":
-            return "UPDATE_PROFILE_AND_RECONFIRM";
-
-
-        case "NEW_REQUEST":
-            return "START_NEW_REQUEST";
-
-
-        case "CONFIRMATION":
-
-            if (quoteReady) {
-                return "PROCESS_CONFIRMATION";
-            }
-
-            return "CONTINUE_QUALIFICATION";
-
-
-        case "QUOTE":
-
-    if (quoteReady) {
-        return "PREPARE_FINAL_CONFIRMATION";
-    }
 
     if (
-        analysis.leadProfile &&
-        !analysis.leadProfile.operationalSummary
+        understanding.isAvailabilityQuestion
     ) {
-        return "START_PROPERTY_DISCOVERY";
+
+        return "ANSWER_AVAILABILITY_QUESTION";
     }
 
-    return "CONTINUE_QUALIFICATION";
+
+    if (
+        understanding.isServiceInformation
+    ) {
+
+        return "ANSWER_CUSTOMER_QUESTION";
+    }
 
 
-        case "POST_CONFIRMATION":
-            return "ANSWER_FOLLOW_UP";
+    if (
+        understanding.intent ===
+        "GENERAL_QUESTION"
+    ) {
+
+        return "ANSWER_CUSTOMER_QUESTION";
+    }
+
+
+    return "";
+}
+
+
+/* =========================================================
+   STAGE → ACTION
+   ========================================================= */
+
+/**
+ * Maps a sales stage to the action required to progress.
+ */
+function getActionForStage(
+    stage = ""
+) {
+
+    switch (stage) {
+
+        case "IDENTIFY":
+
+            return "IDENTIFY_CUSTOMER";
+
+
+        case "UNDERSTAND_NEED":
+
+            return "UNDERSTAND_NEED";
+
+
+        case "RESOLVE_SERVICE":
+
+            return "RESOLVE_SERVICE";
+
+
+        case "UNDERSTAND_PROPERTY":
+
+            return "UNDERSTAND_PROPERTY";
+
+
+        case "RELEVANT_DISCOVERY":
+
+            return "RELEVANT_DISCOVERY";
+
+
+        case "EMAIL":
+
+            return "CONFIRM_EMAIL";
+
+
+        case "PHONE":
+
+            return "REQUEST_PHONE";
+
+
+        case "SERVICE_DATE":
+
+            return "REQUEST_SERVICE_DATE";
+
+
+        case "PRIORITIES":
+
+            return "IDENTIFY_PRIORITIES";
+
+
+        case "FINAL_DETAIL_CHECK":
+
+            return "FINAL_DETAIL_CHECK";
+
+
+        case "FINAL_QUESTION_CHECK":
+
+            return "FINAL_QUESTION_CHECK";
+
+
+        case "FINAL_SUMMARY":
+
+            return "PREPARE_FINAL_SUMMARY";
+
+
+        case "EXPLICIT_CONFIRMATION":
+
+            return "REQUEST_EXPLICIT_CONFIRMATION";
+
+
+        case "PROCESSING":
+
+            return "PROCESS_CONFIRMED_REQUEST";
+
+
+        case "FINAL_SERVICE_CHECK":
+
+            return "FINAL_SERVICE_CHECK";
+
+
+        case "CLOSE":
+
+            return "CLOSE_CONVERSATION";
 
 
         default:
-            return "CONTINUE_CONVERSATION";
+
+            return "UNDERSTAND_NEED";
     }
 }
 
 
 /* =========================================================
-   MAIN BRAIN ENTRY
+   CORRECTION ROUTING
    ========================================================= */
 
+/**
+ * Corrections temporarily override normal progression.
+ *
+ * After the correction is applied, the journey must be
+ * recalculated from the corrected customer information.
+ */
+function getCorrectionAction(
+    understanding = {}
+) {
+
+    if (
+        understanding.isCorrection
+    ) {
+
+        return "HANDLE_CORRECTION";
+    }
+
+    return "";
+}
+
+
+/* =========================================================
+   NEW REQUEST ROUTING
+   ========================================================= */
+
+function getNewRequestAction(
+    understanding = {}
+) {
+
+    if (
+        understanding.isNewRequest
+    ) {
+
+        return "START_NEW_REQUEST";
+    }
+
+    return "";
+}
+
+
+/* =========================================================
+   CONFIRMATION ROUTING
+   ========================================================= */
+
+/**
+ * Confirmation is valid only when:
+ *
+ * - current message is an explicit confirmation
+ * - previous assistant message requested confirmation
+ * - the current request is complete enough to process
+ */
+function getConfirmationAction(
+    {
+        understanding = {},
+        leadProfile = {},
+        conversationHistory = []
+    } = {}
+) {
+
+    if (
+        !understanding.isConfirmation
+    ) {
+
+        return "";
+    }
+
+    const quoteReadiness =
+        getQuoteReadiness(
+            leadProfile
+        );
+
+    if (
+        !quoteReadiness.ready
+    ) {
+
+        return "CONTINUE_QUALIFICATION";
+    }
+
+    return "PROCESS_CONFIRMED_REQUEST";
+}
+
+
+/* =========================================================
+   MAIN PROGRESSION DECISION
+   ========================================================= */
+
+/**
+ * Determines exactly one next action.
+ *
+ * Priority:
+ *
+ * 1. New request
+ * 2. Correction
+ * 3. Customer question
+ * 4. Explicit confirmation
+ * 5. Commercial progression
+ *
+ * This prevents informational questions from destroying
+ * the customer's current position in the sales journey.
+ */
+export function determineProgressionAction(
+    {
+        leadProfile = {},
+        understanding = {},
+        journey = {},
+        conversationHistory = []
+    } = {}
+) {
+
+    /*
+     * -----------------------------------------------------
+     * 1. NEW REQUEST
+     * -----------------------------------------------------
+     */
+
+    const newRequestAction =
+        getNewRequestAction(
+            understanding
+        );
+
+    if (newRequestAction) {
+
+        return newRequestAction;
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * 2. CUSTOMER CORRECTION
+     * -----------------------------------------------------
+     */
+
+    const correctionAction =
+        getCorrectionAction(
+            understanding
+        );
+
+    if (correctionAction) {
+
+        return correctionAction;
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * 3. CUSTOMER QUESTION
+     * -----------------------------------------------------
+     *
+     * The customer must receive an answer before
+     * the Concierge advances.
+     */
+
+    const questionAction =
+        getCustomerQuestionAction(
+            understanding
+        );
+
+    if (questionAction) {
+
+        return questionAction;
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * 4. EXPLICIT CONFIRMATION
+     * -----------------------------------------------------
+     */
+
+    const confirmationAction =
+        getConfirmationAction({
+            understanding,
+            leadProfile,
+            conversationHistory
+        });
+
+    if (confirmationAction) {
+
+        return confirmationAction;
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * 5. COMMERCIAL PROGRESSION
+     * -----------------------------------------------------
+     */
+
+    const currentStage =
+        journey.currentStage ||
+        "IDENTIFY";
+
+
+    /*
+     * -----------------------------------------------------
+     * FINAL QUOTE READINESS
+     * -----------------------------------------------------
+     */
+
+    const quoteReadiness =
+        getQuoteReadiness(
+            leadProfile
+        );
+
+
+    if (
+        quoteReadiness.ready &&
+        currentStage !== "FINAL_SUMMARY" &&
+        currentStage !== "EXPLICIT_CONFIRMATION" &&
+        currentStage !== "PROCESSING" &&
+        currentStage !== "FINAL_SERVICE_CHECK" &&
+        currentStage !== "CLOSE"
+    ) {
+
+        /*
+         * All essential quote information exists.
+         *
+         * Do not continue asking discovery questions.
+         *
+         * Move toward final detail check.
+         */
+
+        return "FINAL_DETAIL_CHECK";
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * NORMAL STAGE PROGRESSION
+     * -----------------------------------------------------
+     */
+
+    return getActionForStage(
+        currentStage
+    );
+}
+
+
+/* =========================================================
+   PROGRESSION CONTEXT
+   ========================================================= */
+
+/**
+ * Builds the complete progression decision.
+ */
+export function buildProgressionContext(
+    {
+        leadProfile = {},
+        understanding = {},
+        journey = {},
+        conversationHistory = []
+    } = {}
+) {
+
+    const action =
+        determineProgressionAction({
+            leadProfile,
+            understanding,
+            journey,
+            conversationHistory
+        });
+
+
+    const quoteReadiness =
+        getQuoteReadiness(
+            leadProfile
+        );
+
+
+    return Object.freeze({
+
+        action,
+
+        actionIsValid:
+            isValidProgressionAction(
+                action
+            ),
+
+        currentStage:
+            journey.currentStage ||
+            "IDENTIFY",
+
+        nextStage:
+            journey.nextStage ||
+            null,
+
+        quoteReady:
+            quoteReadiness.ready,
+
+        missingFields:
+            quoteReadiness.missingFields,
+
+        requiresCustomerQuestion:
+            [
+                "IDENTIFY_CUSTOMER",
+                "UNDERSTAND_NEED",
+                "RESOLVE_SERVICE",
+                "UNDERSTAND_PROPERTY",
+                "RELEVANT_DISCOVERY",
+                "CONFIRM_EMAIL",
+                "REQUEST_PHONE",
+                "REQUEST_SERVICE_DATE",
+                "IDENTIFY_PRIORITIES",
+                "FINAL_DETAIL_CHECK",
+                "FINAL_QUESTION_CHECK",
+                "REQUEST_EXPLICIT_CONFIRMATION"
+            ].includes(action)
+    });
+}
+/* =========================================================
+   SECTION 5 — COMMERCIAL / VALUE ENGINE
+   ========================================================= */
+
+/**
+ * Purpose:
+ *
+ * Apply the North Crescent commercial ADN to the
+ * progression selected by the Brain.
+ *
+ * Core ADN:
+ *
+ * RECOGNIZE
+ * → ACKNOWLEDGE
+ * → ANSWER
+ * → VALUE
+ * → EXPLAIN WHY
+ * → ADVANCE
+ * → ASK
+ *
+ * Commercial principle:
+ *
+ * The Concierge is not a passive FAQ.
+ * It should help the customer move naturally toward
+ * the appropriate service and quote process.
+ *
+ * This section does NOT:
+ * - invent prices
+ * - invent availability
+ * - invent service scope
+ * - generate unsupported claims
+ * - replace the progression engine
+ * - calculate pricing
+ */
+
+
+/* =========================================================
+   COMMERCIAL ACTIONS
+   ========================================================= */
+
+const COMMERCIAL_ACTIONS = Object.freeze({
+
+    ANSWER:
+        "ANSWER",
+
+    ANSWER_AND_ADVANCE:
+        "ANSWER_AND_ADVANCE",
+
+    VALUE_AND_ADVANCE:
+        "VALUE_AND_ADVANCE",
+
+    ASK_PROGRESSIVE_QUESTION:
+        "ASK_PROGRESSIVE_QUESTION",
+
+    ANSWER_PRICE:
+        "ANSWER_PRICE",
+
+    ANSWER_AVAILABILITY:
+        "ANSWER_AVAILABILITY",
+
+    ANSWER_SERVICE_INFORMATION:
+        "ANSWER_SERVICE_INFORMATION",
+
+    HANDLE_CORRECTION:
+        "HANDLE_CORRECTION",
+
+    HANDLE_NEW_REQUEST:
+        "HANDLE_NEW_REQUEST",
+
+    PREPARE_SUMMARY:
+        "PREPARE_SUMMARY",
+
+    REQUEST_CONFIRMATION:
+        "REQUEST_CONFIRMATION",
+
+    PROCESS_CONFIRMED_REQUEST:
+        "PROCESS_CONFIRMED_REQUEST",
+
+    CLOSE:
+        "CLOSE"
+});
+
+
+/* =========================================================
+   CUSTOMER-FACING PURPOSE
+   ========================================================= */
+
+/**
+ * Determines the commercial purpose of the current action.
+ *
+ * The Brain does not produce the final wording here.
+ * It provides a clear communication objective for the
+ * language layer.
+ */
+function getCommercialPurpose(
+    action = ""
+) {
+
+    switch (action) {
+
+        case "ANSWER_CUSTOMER_QUESTION":
+
+            return (
+                "Answer the customer's current question clearly, " +
+                "then return naturally to the current sales progression."
+            );
+
+
+        case "ANSWER_PRICE_QUESTION":
+
+            return (
+                "Address the customer's price question directly, " +
+                "protect accuracy, explain the value of a personalized " +
+                "quote, and continue the appropriate progression."
+            );
+
+
+        case "ANSWER_AVAILABILITY_QUESTION":
+
+            return (
+                "Address the customer's availability question without " +
+                "inventing schedule information, then continue the " +
+                "appropriate progression."
+            );
+
+
+        case "ANSWER_SERVICE_INFORMATION":
+
+            return (
+                "Explain the relevant service clearly, connect the " +
+                "service to the customer's need, and advance naturally."
+            );
+
+
+        case "IDENTIFY_CUSTOMER":
+
+            return (
+                "Welcome the customer warmly and establish their identity."
+            );
+
+
+        case "UNDERSTAND_NEED":
+
+            return (
+                "Understand what the customer needs and how North Crescent " +
+                "can help."
+            );
+
+
+        case "RESOLVE_SERVICE":
+
+            return (
+                "Confirm the requested service when clarification is useful, " +
+                "without asking the customer to repeat information already known."
+            );
+
+
+        case "UNDERSTAND_PROPERTY":
+
+            return (
+                "Understand the property sufficiently to avoid a generic " +
+                "service recommendation or quote."
+            );
+
+
+        case "RELEVANT_DISCOVERY":
+
+            return (
+                "Collect only relevant operational information that can " +
+                "materially improve the service or quote."
+            );
+
+
+        case "CONFIRM_EMAIL":
+
+            return (
+                "Confirm the best email for the customer's quote and follow-up."
+            );
+
+
+        case "REQUEST_PHONE":
+
+            return (
+                "Obtain the best phone number for customer communication " +
+                "and follow-up."
+            );
+
+
+        case "REQUEST_SERVICE_DATE":
+
+            return (
+                "Understand the customer's preferred service date or timing."
+            );
+
+
+        case "IDENTIFY_PRIORITIES":
+
+            return (
+                "Understand what matters most to the customer so the service " +
+                "can be aligned with their priorities."
+            );
+
+
+        case "FINAL_DETAIL_CHECK":
+
+            return (
+                "Give the customer one final opportunity to provide a " +
+                "relevant detail before the request is finalized."
+            );
+
+
+        case "FINAL_QUESTION_CHECK":
+
+            return (
+                "Give the customer an opportunity to resolve any remaining " +
+                "questions before the final summary."
+            );
+
+
+        case "PREPARE_FINAL_SUMMARY":
+
+            return (
+                "Present a concise and accurate summary of the current request."
+            );
+
+
+        case "REQUEST_CONFIRMATION":
+
+            return (
+                "Ask the customer to explicitly confirm that the complete " +
+                "summary is correct."
+            );
+
+
+        case "PROCESS_CONFIRMED_REQUEST":
+
+            return (
+                "Thank the customer, acknowledge the confirmation, and " +
+                "communicate that the request is being processed for quotation."
+            );
+
+
+        case "CLOSE":
+
+            return (
+                "Close the conversation warmly and professionally."
+            );
+
+
+        default:
+
+            return (
+                "Continue the conversation naturally while preserving " +
+                "commercial progression."
+            );
+    }
+}
+
+
+/* =========================================================
+   VALUE PRINCIPLES
+   ========================================================= */
+
+/**
+ * These principles define how the Concierge should
+ * communicate commercial value.
+ */
+const VALUE_PRINCIPLES = Object.freeze({
+
+    answerBeforeAdvancing:
+        true,
+
+    valueBeforePrice:
+        true,
+
+    relevanceBeforeQualification:
+        true,
+
+    customerBenefitBeforeCompanyPromotion:
+        true,
+
+    personalizedValue:
+        true,
+
+    professionalReassurance:
+        true,
+
+    noPressureSelling:
+        true,
+
+    noUnsupportedComparison:
+        true,
+
+    noCheapestClaim:
+        true,
+
+    noLowestPriceClaim:
+        true,
+
+    noBestClaimWithoutEvidence:
+        true,
+
+    noInventedBenefits:
+        true,
+
+    noInventedScope:
+        true,
+
+    noInventedPrice:
+        true,
+
+    noInventedAvailability:
+        true,
+
+    naturalCommercialProgression:
+        true
+});
+
+
+/* =========================================================
+   VALUE FRAME
+   ========================================================= */
+
+/**
+ * Provides a structured commercial frame for the language
+ * layer.
+ *
+ * It tells the language layer HOW to communicate value
+ * without inventing facts.
+ */
+function buildValueFrame(
+    {
+        leadProfile = {},
+        understanding = {},
+        action = ""
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const service =
+        cleanValue(
+            profile.serviceType
+        );
+
+    const currentMessage =
+        cleanValue(
+            understanding.currentMessage
+        );
+
+
+    return Object.freeze({
+
+        service,
+
+        customerMessage:
+            currentMessage,
+
+        principles:
+            VALUE_PRINCIPLES,
+
+        purpose:
+            getCommercialPurpose(
+                action
+            ),
+
+        valueSequence: Object.freeze([
+
+            "ANSWER_CUSTOMER_NEED",
+
+            "CONNECT_RESPONSE_TO_CUSTOMER_CONTEXT",
+
+            "EXPLAIN_RELEVANT_VALUE",
+
+            "ADVANCE_CONVERSATION",
+
+            "ASK_ONE_USEFUL_QUESTION"
+        ])
+    });
+}
+
+
+/* =========================================================
+   PRICE HANDLING
+   ========================================================= */
+
+/**
+ * Price questions must be answered directly.
+ *
+ * The Brain never calculates or invents a price here.
+ */
+function buildPriceResponseStrategy(
+    {
+        leadProfile = {}
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Object.freeze({
+
+        action:
+            COMMERCIAL_ACTIONS.ANSWER_PRICE,
+
+        directAnswerRequired:
+            true,
+
+        valueBeforePrice:
+            true,
+
+        personalizedQuotePreferred:
+            true,
+
+        neverInventPrice:
+            true,
+
+        neverInventRange:
+            true,
+
+        neverClaimCheapest:
+            true,
+
+        neverClaimLowest:
+            true,
+
+        explainPersonalization:
+            true,
+
+        service:
+            profile.serviceType
+    });
+}
+
+
+/* =========================================================
+   AVAILABILITY HANDLING
+   ========================================================= */
+
+/**
+ * Availability must never be invented.
+ *
+ * If real availability is available through the appropriate
+ * system, the integration layer can provide it.
+ *
+ * Otherwise the Concierge must communicate that verification
+ * is required.
+ */
+function buildAvailabilityResponseStrategy(
+    {
+        leadProfile = {}
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Object.freeze({
+
+        action:
+            COMMERCIAL_ACTIONS.ANSWER_AVAILABILITY,
+
+        directAnswerRequired:
+            true,
+
+        neverInventAvailability:
+            true,
+
+        neverInventSchedule:
+            true,
+
+        verificationRequiredWhenUnknown:
+            true,
+
+        service:
+            profile.serviceType
+    });
+}
+
+
+/* =========================================================
+   SERVICE INFORMATION HANDLING
+   ========================================================= */
+
+/**
+ * Service questions should be answered from verified
+ * company knowledge.
+ */
+function buildServiceInformationStrategy(
+    {
+        leadProfile = {}
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Object.freeze({
+
+        action:
+            COMMERCIAL_ACTIONS.ANSWER_SERVICE_INFORMATION,
+
+        answerDirectly:
+            true,
+
+        useVerifiedKnowledge:
+            true,
+
+        connectToCustomerNeed:
+            true,
+
+        explainRelevantValue:
+            true,
+
+        avoidGenericCompanyPitch:
+            true,
+
+        service:
+            profile.serviceType
+    });
+}
+
+
+/* =========================================================
+   QUESTION PURPOSE
+   ========================================================= */
+
+/**
+ * Every question must have a reason.
+ *
+ * This structure allows later stages to generate the
+ * appropriate natural-language question without creating
+ * a questionnaire.
+ */
+function buildQuestionPurpose(
+    {
+        action = "",
+        leadProfile = {}
+    } = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+
+    switch (action) {
+
+        case "IDENTIFY_CUSTOMER":
+
+            return Object.freeze({
+
+                objective:
+                    "Identify the customer.",
+
+                expectedResult:
+                    "clientName",
+
+                whyItMatters:
+                    "Allows personalized communication and correct request identification.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "UNDERSTAND_NEED":
+
+            return Object.freeze({
+
+                objective:
+                    "Understand the customer's primary need.",
+
+                expectedResult:
+                    "serviceNeed",
+
+                whyItMatters:
+                    "Ensures North Crescent addresses the actual reason for contact.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "RESOLVE_SERVICE":
+
+            return Object.freeze({
+
+                objective:
+                    "Clarify or confirm the requested service.",
+
+                expectedResult:
+                    "serviceType",
+
+                whyItMatters:
+                    "Prevents the Concierge from qualifying the customer for the wrong service.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "UNDERSTAND_PROPERTY":
+
+            return Object.freeze({
+
+                objective:
+                    "Understand the property at a useful level.",
+
+                expectedResult:
+                    "propertyContext",
+
+                whyItMatters:
+                    "Prevents a generic service recommendation or quote.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "RELEVANT_DISCOVERY":
+
+            return Object.freeze({
+
+                objective:
+                    "Collect one relevant operational detail.",
+
+                expectedResult:
+                    "serviceRelevantDetail",
+
+                whyItMatters:
+                    "Allows the service to be aligned with the property's actual needs.",
+
+                service:
+                    profile.serviceType,
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "CONFIRM_EMAIL":
+
+            return Object.freeze({
+
+                objective:
+                    "Confirm the customer's best email address.",
+
+                expectedResult:
+                    "emailAddress",
+
+                whyItMatters:
+                    "Ensures the personalized quote reaches the correct destination.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "REQUEST_PHONE":
+
+            return Object.freeze({
+
+                objective:
+                    "Obtain the customer's preferred phone number.",
+
+                expectedResult:
+                    "phoneNumber",
+
+                whyItMatters:
+                    "Provides an additional reliable communication path for follow-up.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "REQUEST_SERVICE_DATE":
+
+            return Object.freeze({
+
+                objective:
+                    "Understand when the customer wants the service.",
+
+                expectedResult:
+                    "serviceDate",
+
+                whyItMatters:
+                    "Allows the request to reflect the customer's timing needs.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "IDENTIFY_PRIORITIES":
+
+            return Object.freeze({
+
+                objective:
+                    "Identify what matters most to the customer.",
+
+                expectedResult:
+                    "customerPriorities",
+
+                whyItMatters:
+                    "Allows the team to focus attention where the customer values it most.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "FINAL_DETAIL_CHECK":
+
+            return Object.freeze({
+
+                objective:
+                    "Determine whether any relevant detail remains.",
+
+                expectedResult:
+                    "finalDetailStatus",
+
+                whyItMatters:
+                    "Prevents important information from being missed before finalization.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "FINAL_QUESTION_CHECK":
+
+            return Object.freeze({
+
+                objective:
+                    "Resolve remaining customer questions.",
+
+                expectedResult:
+                    "questionStatus",
+
+                whyItMatters:
+                    "Ensures the customer can confirm the request with clarity.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "REQUEST_EXPLICIT_CONFIRMATION":
+
+            return Object.freeze({
+
+                objective:
+                    "Obtain explicit confirmation of the complete summary.",
+
+                expectedResult:
+                    "explicitConfirmation",
+
+                whyItMatters:
+                    "Prevents the quote request from being processed on assumptions.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        case "FINAL_SERVICE_CHECK":
+
+            return Object.freeze({
+
+                objective:
+                    "Determine whether the customer needs additional assistance.",
+
+                expectedResult:
+                    "additionalHelpStatus",
+
+                whyItMatters:
+                    "Provides a final service-oriented opportunity before closing.",
+
+                oneQuestionOnly:
+                    true
+            });
+
+
+        default:
+
+            return Object.freeze({
+
+                objective:
+                    "",
+
+                expectedResult:
+                    "",
+
+                whyItMatters:
+                    "",
+
+                oneQuestionOnly:
+                    true
+            });
+    }
+}
+
+
+/* =========================================================
+   ANSWER → VALUE → ADVANCE
+   ========================================================= */
+
+/**
+ * Defines the communication sequence after the customer
+ * asks a question.
+ */
+function buildAnswerAdvanceStrategy(
+    {
+        action = "",
+        leadProfile = {},
+        understanding = {}
+    } = {}
+) {
+
+    const valueFrame =
+        buildValueFrame({
+            leadProfile,
+            understanding,
+            action
+        });
+
+
+    return Object.freeze({
+
+        action,
+
+        sequence: Object.freeze([
+
+            "RECOGNIZE",
+
+            "ACKNOWLEDGE",
+
+            "ANSWER",
+
+            "VALUE",
+
+            "EXPLAIN_WHY",
+
+            "ADVANCE",
+
+            "ASK"
+        ]),
+
+        valueFrame,
+
+        oneQuestionOnly:
+            true,
+
+        returnToCurrentStage:
+            true
+    });
+}
+
+
+/* =========================================================
+   COMMERCIAL DECISION
+   ========================================================= */
+
+/**
+ * Converts a progression action into a commercial
+ * communication strategy.
+ */
+export function buildCommercialStrategy(
+    {
+        action = "",
+        leadProfile = {},
+        understanding = {},
+        journey = {}
+    } = {}
+) {
+
+    if (
+        action ===
+        "ANSWER_PRICE_QUESTION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "ANSWER_AND_ADVANCE",
+
+            strategy:
+                buildPriceResponseStrategy({
+                    leadProfile
+                }),
+
+            communication:
+                buildAnswerAdvanceStrategy({
+                    action,
+                    leadProfile,
+                    understanding
+                })
+        });
+    }
+
+
+    if (
+        action ===
+        "ANSWER_AVAILABILITY_QUESTION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "ANSWER_AND_ADVANCE",
+
+            strategy:
+                buildAvailabilityResponseStrategy({
+                    leadProfile
+                }),
+
+            communication:
+                buildAnswerAdvanceStrategy({
+                    action,
+                    leadProfile,
+                    understanding
+                })
+        });
+    }
+
+
+    if (
+        action ===
+        "ANSWER_CUSTOMER_QUESTION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "ANSWER_AND_ADVANCE",
+
+            strategy:
+                buildValueFrame({
+                    leadProfile,
+                    understanding,
+                    action
+                }),
+
+            communication:
+                buildAnswerAdvanceStrategy({
+                    action,
+                    leadProfile,
+                    understanding
+                })
+        });
+    }
+
+
+    if (
+        action ===
+        "ANSWER_SERVICE_INFORMATION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "ANSWER_AND_ADVANCE",
+
+            strategy:
+                buildServiceInformationStrategy({
+                    leadProfile
+                }),
+
+            communication:
+                buildAnswerAdvanceStrategy({
+                    action,
+                    leadProfile,
+                    understanding
+                })
+        });
+    }
+
+
+    if (
+        action ===
+        "HANDLE_CORRECTION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "HANDLE_CORRECTION",
+
+            strategy: Object.freeze({
+
+                acknowledgeCorrection:
+                    true,
+
+                updateCustomerInformation:
+                    true,
+
+                preserveCorrectedValue:
+                    true,
+
+                rebuildConversationContext:
+                    true,
+
+                recalculateProgression:
+                    true,
+
+                doNotRepeatResolvedInformation:
+                    true
+            })
+        });
+    }
+
+
+    if (
+        action ===
+        "START_NEW_REQUEST"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "HANDLE_NEW_REQUEST",
+
+            strategy: Object.freeze({
+
+                acknowledgeNewRequest:
+                    true,
+
+                preserveCustomerIdentity:
+                    true,
+
+                separateNewRequestFromPreviousRequest:
+                    true,
+
+                restartOnlyRelevantQualification:
+                    true,
+
+                doNotDuplicateCustomerContactQuestions:
+                    true
+            })
+        });
+    }
+
+
+    if (
+        action ===
+        "PREPARE_FINAL_SUMMARY"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "PREPARE_SUMMARY",
+
+            strategy: Object.freeze({
+
+                useCurrentCustomerInformation:
+                    true,
+
+                includeRelevantServiceDetails:
+                    true,
+
+                includeConfirmedContact:
+                    true,
+
+                includeServiceDateWhenKnown:
+                    true,
+
+                includeCustomerPrioritiesWhenKnown:
+                    true,
+
+                doNotInventMissingInformation:
+                    true,
+
+                requestExplicitConfirmation:
+                    true
+            })
+        });
+    }
+
+
+    if (
+        action ===
+        "PROCESS_CONFIRMED_REQUEST"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "PROCESS_CONFIRMED_REQUEST",
+
+            strategy: Object.freeze({
+
+                acknowledgeConfirmation:
+                    true,
+
+                thankCustomer:
+                    true,
+
+                communicateProcessing:
+                    true,
+
+                doNotRestartQualification:
+                    true,
+
+                doNotRepeatContactQuestions:
+                    true,
+
+                proceedToFinalServiceCheck:
+                    true
+            })
+        });
+    }
+
+
+    if (
+        action ===
+        "CLOSE_CONVERSATION"
+    ) {
+
+        return Object.freeze({
+
+            type:
+                "CLOSE",
+
+            strategy: Object.freeze({
+
+                warmClosing:
+                    true,
+
+                professionalClosing:
+                    true,
+
+                noAdditionalQualification:
+                    true
+            })
+        });
+    }
+
+
+    /*
+     * Normal progression.
+     *
+     * Every question must have:
+     *
+     * - one objective
+     * - one expected result
+     * - one reason
+     */
+
+    return Object.freeze({
+
+        type:
+            "ASK_PROGRESSIVE_QUESTION",
+
+        strategy:
+            buildQuestionPurpose({
+                action,
+                leadProfile
+            }),
+
+        journey,
+
+        communication: Object.freeze({
+
+            acknowledgeBeforeQuestion:
+                true,
+
+            oneQuestionOnly:
+                true,
+
+            explainRelevantPurpose:
+                true,
+
+            avoidQuestionnaire:
+                true,
+
+            avoidRepeatedQuestions:
+                true,
+
+            preserveCustomerContext:
+                true
+        })
+    });
+}
+
+
+/* =========================================================
+   COMMERCIAL ADN
+   ========================================================= */
+
+/**
+ * Public ADN definition for the language layer.
+ */
+export const COMMERCIAL_ADN =
+    Object.freeze({
+
+        sequence: Object.freeze([
+
+            "RECOGNIZE",
+
+            "ACKNOWLEDGE",
+
+            "ANSWER",
+
+            "VALUE",
+
+            "EXPLAIN_WHY",
+
+            "ADVANCE",
+
+            "ASK"
+        ]),
+
+        rules: Object.freeze({
+
+            oneQuestionAtATime:
+                true,
+
+            oneQuestionOneObjective:
+                true,
+
+            answerBeforeAdvancing:
+                true,
+
+            valueBeforePrice:
+                true,
+
+            acknowledgeBeforeQuestion:
+                true,
+
+            explainRelevantPurpose:
+                true,
+
+            useCustomerContext:
+                true,
+
+            preserveKnownInformation:
+                true,
+
+            neverRepeatResolvedQuestions:
+                true,
+
+            noQuestionnaire:
+                true,
+
+            noPressure:
+                true,
+
+            noInventedInformation:
+                true,
+
+            naturalCommercialProgression:
+                true,
+
+            answerCustomerNeedFirst:
+                true
+        })
+    });
+/* =========================================================
+   SECTION 6 — FINALIZATION + OUTPUT
+   ========================================================= */
+
+/**
+ * Purpose:
+ *
+ * Finalize the complete Concierge Brain.
+ *
+ * This section:
+ *
+ * - combines all Brain sections
+ * - prepares the final conversational state
+ * - handles final summary
+ * - handles explicit confirmation
+ * - handles post-confirmation processing
+ * - handles final service check
+ * - handles closing
+ * - exposes the final Brain API
+ *
+ * Core ADN:
+ *
+ * RECOGNIZE
+ * → ACKNOWLEDGE
+ * → ANSWER
+ * → VALUE
+ * → EXPLAIN WHY
+ * → ADVANCE
+ * → ASK
+ *
+ * No second routing system is created here.
+ *
+ * The Brain remains the single conversational coordinator.
+ */
+
+
+/* =========================================================
+   FINAL SUMMARY
+   ========================================================= */
+
+/**
+ * Builds the factual information that the language layer
+ * may use when preparing the final customer summary.
+ *
+ * No customer information is invented here.
+ */
+function buildFinalSummaryData(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    return Object.freeze({
+
+        clientName:
+            profile.clientName,
+
+        companyName:
+            profile.companyName,
+
+        serviceType:
+            profile.serviceType,
+
+        serviceAddress:
+            profile.serviceAddress,
+
+        city:
+            profile.city,
+
+        phoneNumber:
+            profile.phoneNumber,
+
+        emailAddress:
+            profile.emailAddress,
+
+        squareFootage:
+            profile.squareFootage,
+
+        operationalSummary:
+            profile.operationalSummary,
+
+        visitsPerMonth:
+            profile.visitsPerMonth,
+
+        recurringVisits:
+            profile.recurringVisits,
+
+        timeSlot:
+            profile.timeSlot,
+
+        accessInstructions:
+            profile.accessInstructions,
+
+        sensitiveAreas:
+            profile.sensitiveAreas
+    });
+}
+
+
+/* =========================================================
+   FINAL CONFIRMATION
+   ========================================================= */
+
+/**
+ * Final confirmation is an event, not persistent state.
+ *
+ * It becomes true only for the current customer response
+ * when:
+ *
+ * - the customer explicitly confirms
+ * - the previous assistant response requested confirmation
+ * - essential information is complete
+ */
+function evaluateCurrentConfirmation(
+    {
+        currentMessage = "",
+        conversationHistory = [],
+        leadProfile = {}
+    } = {}
+) {
+
+    const understanding =
+        understandCurrentMessage({
+            currentMessage,
+            conversationHistory
+        });
+
+    const quoteReadiness =
+        getQuoteReadiness(
+            leadProfile
+        );
+
+    const valid =
+        understanding.isConfirmation &&
+        quoteReadiness.ready;
+
+    return Object.freeze({
+
+        confirmed:
+            valid,
+
+        quoteReady:
+            quoteReadiness.ready,
+
+        missingFields:
+            quoteReadiness.missingFields
+    });
+}
+
+
+/* =========================================================
+   PROCESSING MESSAGE
+   ========================================================= */
+
+/**
+ * The language layer must use this exact communication
+ * purpose after explicit confirmation.
+ *
+ * The actual final wording is intentionally provided here
+ * as the official North Crescent protocol.
+ */
+function getProcessingMessageContext(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const name =
+        profile.clientName ||
+        "there";
+
+    return Object.freeze({
+
+        clientName:
+            name,
+
+        message:
+            `Perfecto, ${name}. Muchas gracias por la información y por confirmar todos los detalles. En este momento, nuestro equipo está procesando su solicitud. Su cotización personalizada será enviada a su correo electrónico en el transcurso de la siguiente hora.`,
+
+        nextStep:
+            "FINAL_SERVICE_CHECK"
+    });
+}
+
+
+/* =========================================================
+   FINAL SERVICE CHECK
+   ========================================================= */
+
+/**
+ * After processing, the Concierge gives the customer
+ * one final opportunity to request additional assistance.
+ */
+function getFinalServiceCheckContext(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const name =
+        profile.clientName ||
+        "there";
+
+    return Object.freeze({
+
+        clientName:
+            name,
+
+        question:
+            `Y antes de dejarlo por ahora, ${name}, ¿hay algo más en lo cual le pueda ayudar?`,
+
+        nextStage:
+            "CLOSE"
+    });
+}
+
+
+/* =========================================================
+   CLOSING
+   ========================================================= */
+
+/**
+ * Official North Crescent closing protocol.
+ */
+function getClosingContext(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(
+            leadProfile
+        );
+
+    const name =
+        profile.clientName ||
+        "there";
+
+    return Object.freeze({
+
+        clientName:
+            name,
+
+        message:
+            `Perfecto, ${name}. Ha sido un placer ayudarle. Gracias por considerar a North Crescent Facility Solutions. Nos encargaremos de acompañar su solicitud con el profesionalismo, cuidado y atención que buscamos brindar en cada servicio. Que tenga un excelente día.`
+    });
+}
+
+
+/* =========================================================
+   FINAL ACTION CONTEXT
+   ========================================================= */
+
+/**
+ * Converts the progression action into the final
+ * communication context available to the language layer.
+ */
+function buildFinalActionContext(
+    {
+        action = "",
+        leadProfile = {},
+        understanding = {},
+        journey = {},
+        progression = {},
+        conversationHistory = []
+    } = {}
+) {
+
+    const commercial =
+        buildCommercialStrategy({
+            action,
+            leadProfile,
+            understanding,
+            journey
+        });
+
+
+    switch (action) {
+
+        case "PREPARE_FINAL_SUMMARY":
+
+            return Object.freeze({
+
+                action,
+
+                type:
+                    "FINAL_SUMMARY",
+
+                summary:
+                    buildFinalSummaryData(
+                        leadProfile
+                    ),
+
+                commercial,
+
+                nextAction:
+                    "REQUEST_EXPLICIT_CONFIRMATION"
+            });
+
+
+        case "PROCESS_CONFIRMED_REQUEST":
+
+            return Object.freeze({
+
+                action,
+
+                type:
+                    "PROCESSING",
+
+                confirmation:
+                    evaluateCurrentConfirmation({
+                        currentMessage:
+                            understanding.currentMessage,
+
+                        conversationHistory,
+
+                        leadProfile
+                    }),
+
+                communication:
+                    getProcessingMessageContext(
+                        leadProfile
+                    ),
+
+                commercial,
+
+                nextAction:
+                    "FINAL_SERVICE_CHECK"
+            });
+
+
+        case "FINAL_SERVICE_CHECK":
+
+            return Object.freeze({
+
+                action,
+
+                type:
+                    "FINAL_SERVICE_CHECK",
+
+                communication:
+                    getFinalServiceCheckContext(
+                        leadProfile
+                    ),
+
+                commercial,
+
+                nextAction:
+                    "CLOSE_CONVERSATION"
+            });
+
+
+        case "CLOSE_CONVERSATION":
+
+            return Object.freeze({
+
+                action,
+
+                type:
+                    "CLOSE",
+
+                communication:
+                    getClosingContext(
+                        leadProfile
+                    ),
+
+                commercial,
+
+                nextAction:
+                    null
+            });
+
+
+        default:
+
+            return Object.freeze({
+
+                action,
+
+                type:
+                    "CONVERSATIONAL_PROGRESS",
+
+                commercial,
+
+                progression
+            });
+    }
+}
+
+
+/* =========================================================
+   COMPLETE BRAIN ANALYSIS
+   ========================================================= */
+
+/**
+ * Combines:
+ *
+ * Section 1 — Foundation
+ * Section 2 — Understanding
+ * Section 3 — Sales Journey
+ * Section 4 — Progression
+ * Section 5 — Commercial ADN
+ * Section 6 — Finalization
+ */
+export function analyzeConciergeConversation(
+    {
+        currentMessage = "",
+        conversationHistory = [],
+        leadProfile = {},
+        serviceContext = ""
+    } = {}
+) {
+
+    /*
+     * -----------------------------------------------------
+     * FOUNDATION
+     * -----------------------------------------------------
+     */
+
+    const foundation =
+        buildFoundation({
+            conversationHistory,
+            leadProfile
+        });
+
+
+    /*
+     * -----------------------------------------------------
+     * CONVERSATION UNDERSTANDING
+     * -----------------------------------------------------
+     */
+
+    const understanding =
+        understandCurrentMessage({
+
+            currentMessage:
+                currentMessage ||
+                foundation.conversation.currentCustomerMessage,
+
+            conversationHistory:
+                foundation.conversation.messages
+        });
+
+
+    /*
+     * -----------------------------------------------------
+     * SALES JOURNEY
+     * -----------------------------------------------------
+     */
+
+    const journey =
+        buildSalesJourney({
+
+            leadProfile:
+                foundation.leadProfile,
+
+            understanding
+        });
+
+
+    /*
+     * -----------------------------------------------------
+     * PROGRESSION
+     * -----------------------------------------------------
+ */
+
+    const progression =
+        buildProgressionContext({
+
+            leadProfile:
+                foundation.leadProfile,
+
+            understanding,
+
+            journey,
+
+            conversationHistory:
+                foundation.conversation.messages
+        });
+
+
+    /*
+     * -----------------------------------------------------
+     * COMMERCIAL STRATEGY
+     * -----------------------------------------------------
+ */
+
+    const commercial =
+        buildCommercialStrategy({
+
+            action:
+                progression.action,
+
+            leadProfile:
+                foundation.leadProfile,
+
+            understanding,
+
+            journey
+        });
+
+
+    /*
+     * -----------------------------------------------------
+     * FINAL ACTION
+     * -----------------------------------------------------
+ */
+
+    const finalAction =
+        buildFinalActionContext({
+
+            action:
+                progression.action,
+
+            leadProfile:
+                foundation.leadProfile,
+
+            understanding,
+
+            journey,
+
+            progression,
+
+            conversationHistory:
+                foundation.conversation.messages
+        });
+
+
+    return Object.freeze({
+
+        leadProfile:
+            foundation.leadProfile,
+
+        conversation:
+            foundation.conversation,
+
+        understanding,
+
+        journey,
+
+        progression,
+
+        commercial,
+
+        finalAction,
+
+        serviceContext:
+            cleanValue(
+                serviceContext
+            )
+    });
+}
+
+
+/* =========================================================
+   PUBLIC BRAIN ENTRY
+   ========================================================= */
+
+/**
+ * Main Brain entry point.
+ *
+ * This replaces the old architecture where analysis,
+ * discovery, and nextAction were fragmented across
+ * multiple independent decisions.
+ */
 export function processConciergeRequest(
     input = {}
 ) {
 
     const analysis =
-        analyzeRequest(input);
+        analyzeConciergeConversation(
+            input
+        );
 
-  const operationalInformation =
-    analysis.operationalInformation || {};
 
-const operationalDiscoveryTarget =
-    getNextOperationalDiscoveryTarget(
-        analysis.leadProfile,
-        operationalInformation
-    );
+    const profile =
+        normalizeLeadProfile(
+            analysis.leadProfile
+        );
 
-const operationalDiscoveryQuestion =
-    getOperationalDiscoveryQuestionTarget(
-        analysis.leadProfile,
-        operationalInformation
-    );
 
-    const nextAction =
-        determineNextAction(analysis);
+    const quoteReadiness =
+        getQuoteReadiness(
+            profile
+        );
+
+
+    const quoteConfirmed =
+        Boolean(
+            analysis.finalAction
+                ?.confirmation
+                ?.confirmed
+        );
+
 
     return Object.freeze({
 
-        ...analysis,
+        /*
+         * Customer memory
+         */
+        leadProfile:
+            profile,
 
-        nextAction,
-       
-operationalDiscoveryTarget,
 
-operationalDiscoveryQuestion
+        /*
+         * Current customer intent
+         */
+        intent:
+            analysis.understanding.intent,
+
+
+        /*
+         * Current conversational stage
+         */
+        currentStage:
+            analysis.journey.currentStage,
+
+
+        /*
+         * Next commercial action
+         */
+        nextAction:
+            analysis.progression.action,
+
+
+        /*
+         * Missing quote information
+         */
+        missingFields:
+            quoteReadiness.missingFields,
+
+
+        /*
+         * Quote readiness
+         */
+        quoteReady:
+            quoteReadiness.ready,
+
+
+        /*
+         * Current confirmation event
+         */
+        quoteConfirmed,
+
+
+        /*
+         * Post-confirmation status.
+         *
+         * This is intentionally derived from the current
+         * conversation context and does not create a
+         * permanent confirmation state.
+         */
+        postConfirmation:
+            analysis.journey.currentStage ===
+            "PROCESSING",
+
+
+        /*
+         * Service area remains available to the integration
+         * layer without creating another routing system.
+         */
+        serviceArea:
+            findServiceArea(
+                profile.city
+            ),
+
+
+        /*
+         * Complete conversational context
+         */
+        conversation:
+            analysis.conversation,
+
+
+        understanding:
+            analysis.understanding,
+
+
+        journey:
+            analysis.journey,
+
+
+        progression:
+            analysis.progression,
+
+
+        commercial:
+            analysis.commercial,
+
+
+        finalAction:
+            analysis.finalAction
     });
 }
 
 
 /* =========================================================
-   PUBLIC API
+   FINAL PUBLIC API
    ========================================================= */
 
 export default Object.freeze({
 
-    analyzeRequest,
-
-    determineNextAction,
-
-    processConciergeRequest,
-
-    detectIntent,
-
+    /*
+     * Foundation
+     */
+    normalizeLeadProfile,
     mergeLeadProfile,
+    applyCustomerCorrection,
+    getConversationContext,
+    buildFoundation,
 
-    getMissingEssentialFields,
 
-    hasEssentialInformation,
+    /*
+     * Conversation understanding
+     */
+    understandCurrentMessage,
+    buildConversationUnderstanding,
 
-    findServiceArea,
 
-    getKnowledge,
+    /*
+     * Sales journey
+     */
+    resolveCompletedStage,
+    buildSalesJourney,
 
-    getRules
+
+    /*
+     * Progression
+     */
+    determineProgressionAction,
+    buildProgressionContext,
+
+
+    /*
+     * Commercial ADN
+     */
+    buildCommercialStrategy,
+    COMMERCIAL_ADN,
+
+
+    /*
+     * Finalization
+     */
+    analyzeConciergeConversation,
+    processConciergeRequest
 });
