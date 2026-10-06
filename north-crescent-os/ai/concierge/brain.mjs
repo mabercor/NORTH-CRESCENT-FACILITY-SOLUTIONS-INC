@@ -464,6 +464,8 @@ function buildOperationalSummary(
     }
 
     return `${existing}; ${parts.join("; ")}`;
+}
+   
 
 function getMissingEssentialFields(
     leadProfile = {}
