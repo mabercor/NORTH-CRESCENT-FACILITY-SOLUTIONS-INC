@@ -1610,7 +1610,7 @@ const operationalDiscoveryQuestion =
 
         ...analysis,
 
-        nextAction
+        nextAction,
        
 operationalDiscoveryTarget,
 
