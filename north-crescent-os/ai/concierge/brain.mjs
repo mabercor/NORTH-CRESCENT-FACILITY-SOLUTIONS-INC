@@ -1448,10 +1448,6 @@ export function determineNextAction(
 const operationalDiscoveryComplete =
     Boolean(analysis.operationalDiscoveryComplete);
    
-  const operationalInformation =
-    extractOperationalInformation(
-        analysis.conversationHistory
-    );
 
 const operationalInformation =
     analysis.operationalInformation || {};
