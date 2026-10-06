@@ -464,71 +464,7 @@ function buildOperationalSummary(
     }
 
     return `${existing}; ${parts.join("; ")}`;
-}
 
-    const existing =
-        cleanValue(existingSummary);
-
-    const parts = [];
-
-    if (
-        operationalInformation.propertySize
-    ) {
-        parts.push(
-            `Property size: ${operationalInformation.propertySize}`
-        );
-    }
-
-    if (
-        operationalInformation.rooms
-    ) {
-        parts.push(
-            `Rooms: ${operationalInformation.rooms}`
-        );
-    }
-
-    if (
-        operationalInformation.bathrooms
-    ) {
-        parts.push(
-            `Bathrooms: ${operationalInformation.bathrooms}`
-        );
-    }
-
-    if (
-        operationalInformation.flooring
-    ) {
-        parts.push(
-            `Flooring: ${operationalInformation.flooring}`
-        );
-    }
-
-    if (
-        operationalInformation.priorityAreas?.length
-    ) {
-        parts.push(
-            `Priority areas: ${operationalInformation.priorityAreas.join(", ")}`
-        );
-    }
-
-    if (
-        operationalInformation.customerConcerns?.length
-    ) {
-        parts.push(
-            `Customer concerns: ${operationalInformation.customerConcerns.join(", ")}`
-        );
-    }
-
-    if (!parts.length) {
-        return existing;
-    }
-
-    if (!existing) {
-        return parts.join("; ");
-    }
-
-    return `${existing}; ${parts.join("; ")}`;
-}
 function getMissingEssentialFields(
     leadProfile = {}
 ) {
