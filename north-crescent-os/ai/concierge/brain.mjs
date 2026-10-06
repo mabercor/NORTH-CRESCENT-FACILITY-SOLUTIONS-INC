@@ -362,13 +362,19 @@ function extractOperationalInformation(
                 )
         );
 
-    const customerConcerns =
-        concernSignals.some(
-            signal =>
-                normalized.includes(
-                    normalizeText(signal)
-                )
-        );
+    const customerConcernMatches =
+    concernSignals.filter(
+        signal =>
+            normalized.includes(
+                normalizeText(signal)
+            )
+    );
+
+
+const customerConcerns =
+    customerConcernMatches.length
+        ? customerConcernMatches.join(", ")
+        : "";
 
     return {
         propertySize:
@@ -391,10 +397,7 @@ function extractOperationalInformation(
         priorityAreas:
             priorityAreas.join(", "),
 
-        customerConcerns:
-            customerConcerns
-                ? sourceText
-                : ""
+             customerConcerns
     };
 }
 function buildOperationalSummary(
@@ -1675,7 +1678,11 @@ if (
     hasQuoteContext &&
     !operationalDiscoveryComplete &&
     intent !== "CORRECTION" &&
-    intent !== "NEW_REQUEST"
+    intent !== "NEW_REQUEST" &&
+    intent !== "PRICE_QUESTION" &&
+    intent !== "AVAILABILITY_QUESTION" &&
+    intent !== "GENERAL_QUESTION" &&
+    intent !== "SERVICE_INFORMATION"
 ) {
     return "START_PROPERTY_DISCOVERY";
 }
