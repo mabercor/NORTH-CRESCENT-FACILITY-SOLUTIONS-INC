@@ -397,6 +397,74 @@ function extractOperationalInformation(
                 : ""
     };
 }
+function buildOperationalSummary(
+    operationalInformation = {},
+    existingSummary = ""
+) {
+
+    const existing =
+        cleanValue(existingSummary);
+
+    const parts = [];
+
+    if (
+        operationalInformation.propertySize
+    ) {
+        parts.push(
+            `Property size: ${operationalInformation.propertySize}`
+        );
+    }
+
+    if (
+        operationalInformation.rooms
+    ) {
+        parts.push(
+            `Rooms: ${operationalInformation.rooms}`
+        );
+    }
+
+    if (
+        operationalInformation.bathrooms
+    ) {
+        parts.push(
+            `Bathrooms: ${operationalInformation.bathrooms}`
+        );
+    }
+
+    if (
+        operationalInformation.flooring
+    ) {
+        parts.push(
+            `Flooring: ${operationalInformation.flooring}`
+        );
+    }
+
+    if (
+        operationalInformation.priorityAreas?.length
+    ) {
+        parts.push(
+            `Priority areas: ${operationalInformation.priorityAreas.join(", ")}`
+        );
+    }
+
+    if (
+        operationalInformation.customerConcerns?.length
+    ) {
+        parts.push(
+            `Customer concerns: ${operationalInformation.customerConcerns.join(", ")}`
+        );
+    }
+
+    if (!parts.length) {
+        return existing;
+    }
+
+    if (!existing) {
+        return parts.join("; ");
+    }
+
+    return `${existing}; ${parts.join("; ")}`;
+}
 function getMissingEssentialFields(
     leadProfile = {}
 ) {
@@ -1317,11 +1385,23 @@ export function analyzeRequest({
         cleanValue(currentMessage) ||
         getMostRecentUserMessage(history);
 
-    const profile =
-        normalizeLeadProfile(leadProfile);
+   const profile =
+    normalizeLeadProfile(leadProfile);
 
-    const operationalInformation =
-        extractOperationalInformation(history);
+const operationalInformation =
+    extractOperationalInformation(history);
+
+const derivedOperationalSummary =
+    buildOperationalSummary(
+        operationalInformation,
+        profile.operationalSummary
+    ); 
+
+   const resolvedProfile = {
+    ...profile,
+    operationalSummary:
+        derivedOperationalSummary
+};
    const operationalDiscoveryComplete =
     [
         operationalInformation.propertySize,
@@ -1332,20 +1412,19 @@ export function analyzeRequest({
         operationalInformation.customerConcerns
     ].filter(Boolean).length >= 2;
 
-    const intent = detectIntent(
-        currentCustomerMessage,
-        {
-            conversationHistory: history,
-            leadProfile: profile,
-            serviceContext: serviceContext
-        }
-    );
-
-    const missingFields =
-        getMissingEssentialFields(profile);
+   const intent = detectIntent(
+    currentCustomerMessage,
+    {
+        conversationHistory: history,
+        leadProfile: resolvedProfile,
+        serviceContext: serviceContext
+    }
+);
+const missingFields =
+    getMissingEssentialFields(resolvedProfile);
 
     const operationalSummaryReady =
-        hasSufficientOperationalSummary(profile) ||
+    hasSufficientOperationalSummary(resolvedProfile) ||
         [
             operationalInformation.propertySize,
             operationalInformation.rooms,
@@ -1385,8 +1464,8 @@ export function analyzeRequest({
 
         conversationHistory:
             history,
-        leadProfile:
-            profile,
+       leadProfile:
+    resolvedProfile,
 
         operationalInformation,
 
