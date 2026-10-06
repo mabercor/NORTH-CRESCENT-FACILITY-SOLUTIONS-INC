@@ -1280,14 +1280,15 @@ export function analyzeRequest({
 
         conversationHistory:
             history,
-
         leadProfile:
             profile,
+
+        operationalInformation,
 
         serviceContext:
             cleanValue(serviceContext),
 
-       missingFields,
+        missingFields,
 
 quoteReady,
 
@@ -1447,16 +1448,25 @@ export function determineNextAction(
 const operationalDiscoveryComplete =
     Boolean(analysis.operationalDiscoveryComplete);
    
-   const operationalDiscoveryTarget =
+  const operationalInformation =
+    extractOperationalInformation(
+        analysis.conversationHistory
+    );
+
+const operationalInformation =
+    analysis.operationalInformation || {};
+
+const operationalDiscoveryTarget =
     getNextOperationalDiscoveryTarget(
-        analysis.leadProfile
+        analysis.leadProfile,
+        operationalInformation
     );
 
 const operationalDiscoveryQuestion =
     getOperationalDiscoveryQuestionTarget(
-        analysis.leadProfile
+        analysis.leadProfile,
+        operationalInformation
     );
-
 
     /*
      * Post-confirmation follow-up.
@@ -1582,14 +1592,19 @@ export function processConciergeRequest(
     const analysis =
         analyzeRequest(input);
 
-   const operationalDiscoveryTarget =
+  const operationalInformation =
+    analysis.operationalInformation || {};
+
+const operationalDiscoveryTarget =
     getNextOperationalDiscoveryTarget(
-        analysis.leadProfile
+        analysis.leadProfile,
+        operationalInformation
     );
 
 const operationalDiscoveryQuestion =
     getOperationalDiscoveryQuestionTarget(
-        analysis.leadProfile
+        analysis.leadProfile,
+        operationalInformation
     );
 
     const nextAction =
