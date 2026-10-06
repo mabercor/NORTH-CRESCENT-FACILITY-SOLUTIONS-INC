@@ -440,6 +440,70 @@ function buildOperationalSummary(
     }
 
     if (
+        operationalInformation.priorityAreas
+    ) {
+        parts.push(
+            `Priority areas: ${operationalInformation.priorityAreas}`
+        );
+    }
+
+    if (
+        operationalInformation.customerConcerns
+    ) {
+        parts.push(
+            `Customer concerns: ${operationalInformation.customerConcerns}`
+        );
+    }
+
+    if (!parts.length) {
+        return existing;
+    }
+
+    if (!existing) {
+        return parts.join("; ");
+    }
+
+    return `${existing}; ${parts.join("; ")}`;
+}
+
+    const existing =
+        cleanValue(existingSummary);
+
+    const parts = [];
+
+    if (
+        operationalInformation.propertySize
+    ) {
+        parts.push(
+            `Property size: ${operationalInformation.propertySize}`
+        );
+    }
+
+    if (
+        operationalInformation.rooms
+    ) {
+        parts.push(
+            `Rooms: ${operationalInformation.rooms}`
+        );
+    }
+
+    if (
+        operationalInformation.bathrooms
+    ) {
+        parts.push(
+            `Bathrooms: ${operationalInformation.bathrooms}`
+        );
+    }
+
+    if (
+        operationalInformation.flooring
+    ) {
+        parts.push(
+            `Flooring: ${operationalInformation.flooring}`
+        );
+    }
+
+    if (
         operationalInformation.priorityAreas?.length
     ) {
         parts.push(
