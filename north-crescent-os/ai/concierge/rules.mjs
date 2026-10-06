@@ -12,7 +12,7 @@
 
 export const BRAIN_RULES = Object.freeze({
 
-    // =========================================================
+// =========================================================
 // CORE
 // =========================================================
 
@@ -20,9 +20,39 @@ core: Object.freeze({
 
     preserveKnownData: true,
 
+    preserveCustomerLanguage: true,
+
+    preserveCustomerIntent: true,
+
+    neverOverwriteConfirmedData: true,
+
+    neverDiscardCustomerProvidedData: true,
+
+    customerProvidedInformationHasPriority: true,
+
     customerCorrectionWins: true,
 
     currentCustomerRequestWins: true,
+
+    maintainConversationContinuity: true,
+
+    doNotAskForKnownInformation: true,
+
+    doNotRepeatKnownQuestions: true,
+
+    doNotConvertMissingDataIntoAssumptions: true,
+
+    distinguishCustomerStatementFromSystemInference: true,
+
+    explicitConfirmationRequiredForSensitiveData: true,
+
+    doNotTreatSilenceAsConfirmation: true,
+
+    doNotTreatQuestionsAsConfirmation: true,
+
+    doNotTreatInterestAsConfirmation: true,
+
+    respondToCurrentNeedBeforeAdvancing: true,
 
     serviceContextIsBackgroundOnly: true,
 
@@ -132,7 +162,7 @@ memory: Object.freeze({
 
 }),
 
-   // =========================================================
+ // =========================================================
 // CONVERSATION
 // =========================================================
 
@@ -172,6 +202,14 @@ conversation: Object.freeze({
 
     customerCanExplainInOwnWords: true,
 
+    conversationProgression: true,
+
+    preserveConversationContextBeforeAdvancing: true,
+
+    answerCustomerNeedBeforeQualification: true,
+
+    advanceOnlyWhenContextuallyAppropriate: true,
+
     opening: Object.freeze({
 
         warmWelcomeAfterName: true,
@@ -196,8 +234,7 @@ conversation: Object.freeze({
     })
 
 }),
-
-   // =========================================================
+// =========================================================
 // DISCOVERY
 // =========================================================
 
@@ -228,6 +265,18 @@ discovery: Object.freeze({
     stopIfCustomerDoesNotWantMoreDiscovery: true,
 
     prioritizeRelevantContext: true,
+
+    preserveKnownInformation: true,
+
+    skipAlreadyProvidedInformation: true,
+
+    useCustomerProvidedInformationBeforeDiscovery: true,
+
+    discoverMissingRelevantInformationOnly: true,
+
+    doNotRestartDiscoveryAfterCustomerProvidesInformation: true,
+
+    explainRelevantQuestionsNaturally: true,
 
     doNotAskOptionalQuestionsJustToFillProfile: true,
 
@@ -333,21 +382,33 @@ contact: Object.freeze({
 
         requestAtLeastOnce: true,
 
+        requestPhoneBeforeFinalConfirmation: true,
+
         requiredForQualification: false,
 
         repeatAfterExplicitConfirmation: false,
 
         optionalLanguage: false,
 
+        explainContactPurposeNaturally: true,
+
         doNotInventPhoneNumber: true,
 
-        preserveCustomerProvidedNumber: true
+        preserveCustomerProvidedNumber: true,
+
+        preserveCustomerProvidedContactData: true,
+
+        doNotRepeatKnownContactQuestions: true,
+
+        doNotRequestContactDataAlreadyProvided: true
 
     }),
 
     email: Object.freeze({
 
         priority: true,
+
+        requestEmailAfterCustomerExplainsNeed: true,
 
         verifyBeforeFinalConfirmation: true,
 
@@ -357,11 +418,21 @@ contact: Object.freeze({
 
         repeatAfterExplicitConfirmation: false,
 
+        explainContactPurposeNaturally: true,
+
         doNotAssumeCustomerConfirmedEmail: true,
 
         doNotClaimSystemAlreadyHasEmail: true,
 
         preserveCustomerProvidedEmail: true,
+
+        preserveCustomerProvidedContactData: true,
+
+        doNotRepeatKnownContactQuestions: true,
+
+        doNotRequestContactDataAlreadyProvided: true,
+
+        requireExplicitContactConfirmation: true,
 
         requireExplicitConfirmationBeforeQuote: true
 
@@ -561,26 +632,44 @@ sales: Object.freeze({
     sellThroughRelevance: true,
 
     neverInventServiceBenefits: true,
-    conversationProgression: true,
-commercialFocus: true,
-commercialProgressionRequired: true,
-answerThenAdvance: true,
-limitInformationalLoops: true,
-maxInformationalExchangesBeforeReconnect: 2,
-useOpenEndedDiscovery: true,
-oneQuestionPerMessage: true,
-buildOperationalSummaryProgressively: true,
-avoidRepeatedQuestions: true,
-useCustomerLanguageForDiscovery: true,
-useRelevantCommercialVocabulary: true,
-useValueFraming: true,
-usePersonalization: true,
-useMicroCommitments: true,
-useNaturalClosing: true,
-avoidAggressiveClosing: true,
-avoidInterrogationStyle: true,
 
-    }),
+    conversationProgression: true,
+
+    commercialFocus: true,
+
+    commercialProgressionRequired: true,
+
+    answerThenAdvance: true,
+
+    limitInformationalLoops: true,
+
+    maxInformationalExchangesBeforeReconnect: 2,
+
+    useOpenEndedDiscovery: true,
+
+    oneQuestionPerMessage: true,
+
+    buildOperationalSummaryProgressively: true,
+
+    avoidRepeatedQuestions: true,
+
+    useCustomerLanguageForDiscovery: true,
+
+    useRelevantCommercialVocabulary: true,
+
+    useValueFraming: true,
+
+    usePersonalization: true,
+
+    useMicroCommitments: true,
+
+    useNaturalClosing: true,
+
+    avoidAggressiveClosing: true,
+
+    avoidInterrogationStyle: true
+
+}),
     
     // -----------------------------------------------------
     // PRICE QUESTION — VALUE-FIRST RESPONSE
