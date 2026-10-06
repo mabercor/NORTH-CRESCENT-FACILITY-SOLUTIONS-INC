@@ -397,6 +397,111 @@ function extractOperationalInformation(
                 : ""
     };
 }
+function getMissingEssentialFields(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(leadProfile);
+
+    const missingFields = [];
+
+    if (!profile.clientName) {
+        missingFields.push("clientName");
+    }
+
+    if (!profile.emailAddress && !profile.phoneNumber) {
+        missingFields.push("contact");
+    }
+
+    if (!profile.serviceAddress) {
+        missingFields.push("serviceAddress");
+    }
+
+    if (!profile.city) {
+        missingFields.push("city");
+    }
+
+    if (!profile.serviceType) {
+        missingFields.push("serviceType");
+    }
+
+    if (!profile.operationalSummary) {
+        missingFields.push("operationalSummary");
+    }
+
+    return missingFields;
+}
+
+function hasEssentialInformation(
+    leadProfile = {}
+) {
+
+    const missingFields =
+        getMissingEssentialFields(leadProfile);
+
+    return missingFields.length === 0;
+}
+function getOperationalDiscoveryState(
+    leadProfile = {}
+) {
+
+    const profile =
+        normalizeLeadProfile(leadProfile);
+
+    const summary =
+        cleanValue(profile.operationalSummary);
+
+    const normalizedSummary =
+        normalizeText(summary);
+
+    return {
+        hasSummary: Boolean(summary),
+
+        hasPropertySize:
+            Boolean(
+                profile.squareFootage ||
+                normalizedSummary.includes("sq ft") ||
+                normalizedSummary.includes("square feet") ||
+                normalizedSummary.includes("square foot")
+            ),
+
+        hasBedroomsOrRooms:
+            Boolean(
+                normalizedSummary.match(
+                    /\b\d+\s*(bedrooms?|rooms?)\b/i
+                )
+            ),
+
+        hasBathrooms:
+            Boolean(
+                normalizedSummary.match(
+                    /\b\d+\s*(bathrooms?|baths?)\b/i
+                )
+            ),
+
+        hasFlooring:
+            Boolean(
+                normalizedSummary.match(
+                    /\b(hardwood|laminate|vinyl|tile|carpet|concrete|flooring)\b/i
+                )
+            ),
+
+        hasPriorityAreas:
+            Boolean(
+                normalizedSummary.match(
+                    /\b(kitchen|bathroom|bedroom|basement|garage|windows|floors)\b/i
+                )
+            ),
+
+        hasCustomerConcern:
+            Boolean(
+                normalizedSummary.match(
+                    /\b(concern|concerns|important|priority|priorities|focus|attention|worried|problem|problems)\b/i
+                )
+            )
+    };
+}
 function hasSufficientOperationalSummary(
     leadProfile = {}
 ) {
