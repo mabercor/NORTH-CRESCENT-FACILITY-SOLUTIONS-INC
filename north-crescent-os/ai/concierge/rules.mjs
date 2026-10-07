@@ -254,7 +254,7 @@ discovery: Object.freeze({
 
     optionalInformationBlocksQuote: false,
 
-    minimumContextualQuestions: 2,
+   minimumContextualQuestions: 0,
 
     minimumQuestionsCanBeSkipped: true,
 
@@ -434,7 +434,7 @@ contact: Object.freeze({
 
         requireExplicitContactConfirmation: true,
 
-        requireExplicitConfirmationBeforeQuote: true
+       requireExplicitConfirmationBeforeQuote: false
 
     }),
 
@@ -486,11 +486,11 @@ quote: Object.freeze({
 
     optionalFieldsNeverBlockQuote: true,
 
-    stopQualificationWhenEssentialsComplete: true,
+   stopQualificationWhenEssentialsComplete: false,
 
-    doNotContinueDiscoveryAfterEssentialsComplete: true,
+doNotContinueDiscoveryAfterEssentialsComplete: false,
 
-    moveToConfirmationWhenEssentialsComplete: true,
+moveToConfirmationWhenEssentialsComplete: false,
 
     finalSummaryRequired: true,
 
@@ -747,7 +747,7 @@ sales: Object.freeze({
 
             "COLLECT_ONLY_NECESSARY_INFORMATION",
 
-            "PREPARE_PERSONALIZED_QUOTE",
+            "RETURN_TO_SALES_JOURNEY",
 
             "PROVIDE_QUOTE_WITHIN_SUPPORTED_WORKFLOW_TIMEFRAME"
 
