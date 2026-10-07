@@ -3490,23 +3490,63 @@ const history =
         conversationHistory
     );
 
-const hasAlreadyProcessedConfirmedRequest =
-    history.some(
-        message =>
-            isObject(message) &&
-            normalizeText(message.role) ===
-                "assistant" &&
-            (
-                normalizeText(message.content).includes(
-                    "our team is processing your request"
-                ) ||
-                normalizeText(message.content).includes(
-                    "your quotation is being prepared"
-                ) ||
-                normalizeText(message.content).includes(
-                    "our team is now working"
-                )
+const currentUserIndex =
+    [...history]
+        .map(
+            (message, index) =>
+                ({
+                    message,
+                    index
+                })
+        )
+        .reverse()
+        .find(
+            entry =>
+                isObject(entry.message) &&
+                normalizeText(entry.message.role) ===
+                    "user"
+        )
+        ?.index ?? -1;
+
+const previousAssistantMessage =
+    currentUserIndex > 0
+        ? [...history]
+            .slice(
+                0,
+                currentUserIndex
             )
+            .reverse()
+            .find(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) ===
+                        "assistant"
+            )
+        : null;
+
+const previousUserMessage =
+    currentUserIndex > 0
+        ? [...history]
+            .slice(
+                0,
+                currentUserIndex
+            )
+            .reverse()
+            .find(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) ===
+                        "user"
+            )
+        : null;
+
+const hasAlreadyProcessedConfirmedRequest =
+    Boolean(
+        previousUserMessage &&
+        previousAssistantMessage &&
+        isExplicitConfirmation(
+            previousUserMessage.content
+        )
     );
 
 if (
