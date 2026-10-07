@@ -5922,10 +5922,21 @@ export function processConciergeRequest(
         /*
          * Service area remains available to the integration
          * layer without creating another routing system.
-         */
-       serviceArea:
+             serviceArea:
     profile.city || "",
 
+
+        /*
+         * Verified North Crescent Knowledge
+         */
+        knowledge:
+            analysis.knowledge ||
+            CONCIERGE_KNOWLEDGE,
+
+
+        /*
+         * Complete conversational context
+         */
 
         /*
          * Complete conversational context
