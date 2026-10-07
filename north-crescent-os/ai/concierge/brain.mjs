@@ -1420,24 +1420,31 @@ const SALES_STAGES = Object.freeze([
 
     "PHONE",
 
-    "SERVICE_DATE",
+/* =========================================================
+   OFFICIAL SALES JOURNEY
+   ========================================================= */
+
+const SALES_STAGES = Object.freeze([
+
+    "IDENTIFY",
+
+    "UNDERSTAND_NEED",
+
+    "RESOLVE_SERVICE",
+
+    "UNDERSTAND_PROPERTY",
+
+    "RELEVANT_DISCOVERY",
+
+    "EMAIL",
+
+    "PHONE",
+
+   "SERVICE_DATE",
 
     "PRIORITIES",
 
     "FINAL_DETAIL_CHECK",
-
-    "FINAL_QUESTION_CHECK",
-
-    "FINAL_SUMMARY",
-
-    "EXPLICIT_CONFIRMATION",
-
-    "PROCESSING",
-
-    "FINAL_SERVICE_CHECK",
-
-    "CLOSE"
-]);
 
 
 /* =========================================================
@@ -1468,23 +1475,20 @@ const STAGE_ORDER = Object.freeze({
 
     SERVICE_DATE: 7,
 
-    PRIORITIES: 8,
+    FINAL_DETAIL_CHECK: 8,
 
-    FINAL_DETAIL_CHECK: 9,
+    FINAL_QUESTION_CHECK: 9,
 
-    FINAL_QUESTION_CHECK: 10,
+    FINAL_SUMMARY: 10,
 
-    FINAL_SUMMARY: 11,
+    EXPLICIT_CONFIRMATION: 11,
 
-    EXPLICIT_CONFIRMATION: 12,
+    PROCESSING: 12,
 
-    PROCESSING: 13,
+    FINAL_SERVICE_CHECK: 13,
 
-    FINAL_SERVICE_CHECK: 14,
-
-    CLOSE: 15
+    CLOSE: 14
 });
-
 
 /* =========================================================
    STAGE DEFINITIONS
@@ -2490,11 +2494,14 @@ export function resolveCompletedStage(
     }
 
 
-    if (
-        !hasCustomerPriorities(
+        if (
+        !isRelevantDiscoveryComplete(
             profile
         )
     ) {
+
+        return "RELEVANT_DISCOVERY";
+    }
 
         return "PRIORITIES";
     }
@@ -3041,7 +3048,7 @@ function getCustomerQuestionAction(
  * Maps a sales stage to the action required to progress.
  */
 function getActionForStage(
-    stage = ""
+    stage
 ) {
 
     switch (stage) {
@@ -3073,15 +3080,7 @@ function getActionForStage(
 
         case "EMAIL":
 
-    return (
-        "Confirm the customer's email specifically because it will be used " +
-        "to prepare and send the personalized quotation. Once the customer " +
-        "explicitly confirms the email, consider the EMAIL stage complete and " +
-        "advance immediately to the next required commercial stage. Never ask " +
-        "for the email again after confirmation, even if the customer responds " +
-        "with messages such as 'ok', 'perfect', 'yes', or 'thank you'. Never " +
-        "invent, assume, complete, modify, or fabricate an email address."
-    );
+            return "CONFIRM_EMAIL";
 
 
         case "PHONE":
@@ -3092,11 +3091,6 @@ function getActionForStage(
         case "SERVICE_DATE":
 
             return "REQUEST_SERVICE_DATE";
-
-
-        case "PRIORITIES":
-
-            return "IDENTIFY_PRIORITIES";
 
 
         case "FINAL_DETAIL_CHECK":
@@ -3131,12 +3125,12 @@ function getActionForStage(
 
         case "CLOSE":
 
-            return "CLOSE_CONVERSATION";
+            return "CLOSE";
 
 
         default:
 
-            return "UNDERSTAND_NEED";
+            return "IDENTIFY_CUSTOMER";
     }
 }
 
@@ -5003,8 +4997,7 @@ function getProcessingMessageContext(
             name,
 
         message:
-            `Perfecto, ${name}. Muchas gracias por la información y por confirmar todos los detalles. En este momento, nuestro equipo está procesando su solicitud. Su cotización personalizada será enviada a su correo electrónico en el transcurso de la siguiente hora.`,
-
+    `Perfect, ${name}. Thank you very much for the information and for confirming all the details. Our team is now working on your personalized quotation, and we will send it to your email within the next hour.`,
         nextStep:
             "FINAL_SERVICE_CHECK"
     });
