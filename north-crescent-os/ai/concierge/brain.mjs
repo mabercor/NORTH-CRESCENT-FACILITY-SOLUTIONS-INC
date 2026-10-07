@@ -2002,7 +2002,184 @@ function hasCustomerPriorities(
 /* =========================================================
    STAGE RESOLUTION
    ========================================================= */
+/**
+ * Resolves progression through the final conversational stages
+ * using the current customer response and recent conversation history.
+ *
+ * This function does not create persistent state.
+ *
+ * It only determines which final stage is currently active
+ * based on what the customer and Concierge have already completed.
+ */
+function resolveFinalStage(
+    {
+        currentMessage = "",
+        conversationHistory = []
+    } = {}
+) {
 
+    const history =
+        getMessages(
+            conversationHistory
+        );
+
+    const message =
+        cleanValue(
+            currentMessage
+        ) ||
+        getMostRecentUserMessage(
+            history
+        );
+
+    if (!message) {
+        return "";
+    }
+
+
+    const lastAssistantMessage =
+        [...history]
+            .reverse()
+            .find(
+                entry =>
+                    isObject(entry) &&
+                    normalizeText(entry.role) ===
+                        "assistant"
+            );
+
+
+    const assistantText =
+        normalizeText(
+            lastAssistantMessage?.content || ""
+        );
+
+
+    const customerHasNoMoreDetails =
+        customerIndicatedNoAdditionalDetails(
+            message
+        );
+
+
+    const assistantAskedForFinalDetails =
+        Boolean(
+            assistantText &&
+            (
+                assistantText.includes(
+                    "otro detalle"
+                ) ||
+                assistantText.includes(
+                    "otro detalle que considere importante"
+                ) ||
+                assistantText.includes(
+                    "additional detail"
+                ) ||
+                assistantText.includes(
+                    "additional details"
+                ) ||
+                assistantText.includes(
+                    "anything else"
+                )
+            )
+        );
+
+
+    const assistantAskedForFinalQuestions =
+        Boolean(
+            assistantText &&
+            (
+                assistantText.includes(
+                    "alguna otra duda"
+                ) ||
+                assistantText.includes(
+                    "alguna otra pregunta"
+                ) ||
+                assistantText.includes(
+                    "alguna otra preguntas"
+                ) ||
+                assistantText.includes(
+                    "otras preguntas"
+                ) ||
+                assistantText.includes(
+                    "other questions"
+                ) ||
+                assistantText.includes(
+                    "any other questions"
+                )
+            )
+        );
+
+
+    /*
+     * -----------------------------------------------------
+     * EXPLICIT CONFIRMATION
+     * -----------------------------------------------------
+     *
+     * The customer has confirmed the final summary.
+     */
+    if (
+        isCurrentConfirmation(
+            message,
+            history
+        )
+    ) {
+
+        return "PROCESSING";
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * FINAL SUMMARY
+     * -----------------------------------------------------
+     *
+     * The Concierge has already presented the final
+     * summary and requested explicit confirmation.
+     */
+    if (
+        assistantRequestedConfirmation(
+            assistantText
+        )
+    ) {
+
+        return "EXPLICIT_CONFIRMATION";
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * FINAL QUESTION CHECK
+     * -----------------------------------------------------
+     *
+     * The customer has indicated that there are no more
+     * questions after the Concierge asked for final questions.
+     */
+    if (
+        customerHasNoMoreDetails &&
+        assistantAskedForFinalQuestions
+    ) {
+
+        return "FINAL_SUMMARY";
+    }
+
+
+    /*
+     * -----------------------------------------------------
+     * FINAL DETAIL CHECK
+     * -----------------------------------------------------
+     *
+     * The customer has indicated that there are no more
+     * relevant details after the Concierge asked for them.
+     */
+    if (
+        customerHasNoMoreDetails &&
+        assistantAskedForFinalDetails
+    ) {
+
+        return "FINAL_QUESTION_CHECK";
+    }
+
+
+    return "";
+}
 /**
  * Determines the highest confirmed point of progression
  * from the information currently available.
@@ -2016,7 +2193,8 @@ function hasCustomerPriorities(
 export function resolveCompletedStage(
     {
         leadProfile = {},
-        understanding = {}
+        understanding = {},
+        conversationHistory = []
     } = {}
 ) {
 
@@ -2117,7 +2295,19 @@ export function resolveCompletedStage(
     }
 
 
-    return "FINAL_DETAIL_CHECK";
+   const finalStage =
+    resolveFinalStage({
+        currentMessage:
+            understanding.currentMessage,
+
+        conversationHistory
+    });
+
+if (finalStage) {
+    return finalStage;
+}
+
+return "FINAL_DETAIL_CHECK";
 }
 
 
@@ -2141,15 +2331,17 @@ export function resolveCompletedStage(
 export function buildSalesJourney(
     {
         leadProfile = {},
-        understanding = {}
+        understanding = {},
+        conversationHistory = []
     } = {}
 ) {
 
-    const completedStage =
-        resolveCompletedStage({
-            leadProfile,
-            understanding
-        });
+   const completedStage =
+    resolveCompletedStage({
+        leadProfile,
+        understanding,
+        conversationHistory
+    });
 
     const nextStage =
         getNextStage(
@@ -4775,14 +4967,17 @@ export function analyzeConciergeConversation(
      * -----------------------------------------------------
      */
 
-    const journey =
-        buildSalesJourney({
+   const journey =
+    buildSalesJourney({
 
-            leadProfile:
-                foundation.leadProfile,
+        leadProfile:
+            foundation.leadProfile,
 
-            understanding
-        });
+        understanding,
+
+        conversationHistory:
+            foundation.conversation.messages
+    });
 
 
     /*
