@@ -3048,17 +3048,7 @@ function getConfirmationAction(
         return "";
     }
 
-    const requestedExplicitConfirmation =
-        /¿Está toda esta información correcta\?/i.test(
-            assistantText
-        );
-
-    if (
-        !requestedExplicitConfirmation
-    ) {
-        return "";
-    }
-   const requestedExplicitConfirmation =
+      const requestedExplicitConfirmation =
     /¿Está toda esta información correcta\?/i.test(
         assistantText
     );
@@ -4898,6 +4888,26 @@ case "PREPARE_FINAL_SUMMARY":
         nextAction:
             "REQUEST_EXPLICIT_CONFIRMATION"
     });
+          case "REQUEST_EXPLICIT_CONFIRMATION":
+
+    return Object.freeze({
+
+        action,
+
+        type:
+            "EXPLICIT_CONFIRMATION",
+
+        communication:
+            {
+                question:
+                    "¿Está toda esta información correcta?"
+            },
+
+        commercial,
+
+        nextAction:
+            "PROCESS_CONFIRMED_REQUEST"
+    });
 
 
         case "PROCESS_CONFIRMED_REQUEST":
@@ -5191,11 +5201,10 @@ export function processConciergeRequest(
 
 
     const quoteConfirmed =
-        Boolean(
-            analysis.finalAction
-                ?.confirmation
-                ?.confirmed
-        );
+    Boolean(
+        analysis.finalAction
+            ?.confirmation
+    );
 
 
     return Object.freeze({
