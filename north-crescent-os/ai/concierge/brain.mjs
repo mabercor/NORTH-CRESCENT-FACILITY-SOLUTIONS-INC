@@ -5797,8 +5797,12 @@ export function processConciergeRequest(
          * permanent confirmation state.
          */
       postConfirmation:
-    quoteConfirmed,
-
+    Boolean(
+        analysis.progression.action ===
+            "FINAL_SERVICE_CHECK" ||
+        analysis.progression.action ===
+            "CLOSE"
+    ),
 
         /*
          * Service area remains available to the integration
