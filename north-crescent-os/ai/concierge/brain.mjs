@@ -603,24 +603,6 @@ export function buildFoundation(
     });
 }
 
-
-/* =========================================================
-   PUBLIC API
-   ========================================================= */
-
-export default Object.freeze({
-
-    normalizeLeadProfile,
-
-    mergeLeadProfile,
-
-    applyCustomerCorrection,
-
-    getConversationContext,
-
-    buildFoundation
-});
-
 /* =========================================================
    SECTION 2 — CONVERSATION UNDERSTANDING
    ========================================================= */
@@ -1337,38 +1319,7 @@ export function understandCurrentMessage(
  * understanding.
  *
  * No sales progression happens here.
- */
-export function buildConversationUnderstanding(
-    {
-        currentMessage = "",
-        conversationHistory = [],
-        leadProfile = {}
-    } = {}
-) {
 
-    const foundation =
-        buildFoundation({
-            conversationHistory,
-            leadProfile
-        });
-
-    const understanding =
-        understandCurrentMessage({
-            currentMessage:
-                currentMessage ||
-                foundation.conversation.currentCustomerMessage,
-
-            conversationHistory:
-                foundation.conversation.messages
-        });
-
-    return Object.freeze({
-
-        ...foundation,
-
-        understanding
-    });
-}
 export function buildConversationUnderstanding(
     {
         currentMessage = "",
@@ -1943,8 +1894,7 @@ function isPropertyUnderstandingComplete(
 
     return Boolean(
         profile.operationalSummary ||
-        profile.squareFootage ||
-        profile.serviceAddress
+        profile.squareFootage
     );
 }
 
@@ -1966,6 +1916,7 @@ function isRelevantDiscoveryComplete(
         );
 
     return Boolean(
+        profile.sensitiveAreas &&
         profile.operationalSummary
     );
 }
@@ -2019,7 +1970,7 @@ function hasServiceDate(
 
     return Boolean(
         cleanValue(
-            leadProfile.timeSlot
+            leadProfile.serviceDate
         )
     );
 }
@@ -2042,7 +1993,7 @@ function hasCustomerPriorities(
 
     return Boolean(
         profile.sensitiveAreas ||
-        profile.operationalSummary
+       
     );
 }
 
@@ -2185,52 +2136,7 @@ export function resolveCompletedStage(
  * The actual conversational response remains outside
  * this section.
  */
-export function buildSalesJourney(
-    {
-        leadProfile = {},
-        understanding = {}
-    } = {}
-) {
 
-    const completedStage =
-        resolveCompletedStage({
-            leadProfile,
-            understanding
-        });
-
-    const nextStage =
-        getNextStage(
-            completedStage
-        );
-
-    return Object.freeze({
-
-        currentStage:
-            completedStage,
-
-        nextStage,
-
-        currentStageIndex:
-            getStageIndex(
-                completedStage
-            ),
-
-        nextStageIndex:
-            getStageIndex(
-                nextStage
-            ),
-
-        stageDefinition:
-            getStageDefinition(
-                completedStage
-            ),
-
-        nextStageDefinition:
-            getStageDefinition(
-                nextStage
-            )
-    });
-}
 export function buildSalesJourney(
     {
         leadProfile = {},
@@ -2415,27 +2321,41 @@ function getEmailState(
             conversationHistory
         );
 
-    const emailConfirmed =
-        history.some(
+   const lastAssistantMessage =
+    [...history]
+        .reverse()
+        .find(
             message =>
                 isObject(message) &&
-                normalizeText(message.role) === "user" &&
-                isExplicitConfirmation(
-                    message.content
-                ) &&
-                history.some(
-                    previous =>
-                        isObject(previous) &&
-                        normalizeText(
-                            previous.role
-                        ) === "assistant" &&
-                        normalizeText(
-                            previous.content
-                        ).includes(
-                            "email"
-                        )
-                )
+                normalizeText(message.role) === "assistant"
         );
+
+const lastUserMessage =
+    [...history]
+        .reverse()
+        .find(
+            message =>
+                isObject(message) &&
+                normalizeText(message.role) === "user"
+        );
+
+const emailWasRequested =
+    Boolean(
+        lastAssistantMessage &&
+        normalizeText(
+            lastAssistantMessage.content
+        ).includes("email")
+    );
+
+const emailConfirmed =
+    Boolean(
+        email &&
+        emailWasRequested &&
+        lastUserMessage &&
+        isExplicitConfirmation(
+            lastUserMessage.content
+        )
+    );
 
     return Object.freeze({
 
@@ -2916,7 +2836,7 @@ function getConfirmationAction(
         !quoteReadiness.ready
     ) {
 
-        return "CONTINUE_QUALIFICATION";
+       return "";
     }
 
     return "PROCESS_CONFIRMED_REQUEST";
@@ -3040,31 +2960,7 @@ export function determineProgressionAction(
      * -----------------------------------------------------
      */
 
-    const quoteReadiness =
-        getQuoteReadiness(
-            leadProfile
-        );
-
-
-    if (
-        quoteReadiness.ready &&
-        currentStage !== "FINAL_SUMMARY" &&
-        currentStage !== "EXPLICIT_CONFIRMATION" &&
-        currentStage !== "PROCESSING" &&
-        currentStage !== "FINAL_SERVICE_CHECK" &&
-        currentStage !== "CLOSE"
-    ) {
-
-        /*
-         * All essential quote information exists.
-         *
-         * Do not continue asking discovery questions.
-         *
-         * Move toward final detail check.
-         */
-
-        return "FINAL_DETAIL_CHECK";
-    }
+    
 
 
     /*
@@ -5080,9 +4976,8 @@ export function processConciergeRequest(
          * conversation context and does not create a
          * permanent confirmation state.
          */
-        postConfirmation:
-            analysis.journey.currentStage ===
-            "PROCESSING",
+      postConfirmation:
+    quoteConfirmed,
 
 
         /*
