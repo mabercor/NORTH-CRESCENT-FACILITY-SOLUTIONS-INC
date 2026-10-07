@@ -1920,11 +1920,11 @@ function isRelevantDiscoveryComplete(
         );
 
     return Boolean(
-        profile.sensitiveAreas &&
-        profile.operationalSummary
+        cleanValue(
+            profile.operationalSummary
+        )
     );
 }
-
 
 /**
  * Determines whether an email exists.
@@ -3431,34 +3431,52 @@ function getCommercialPurpose(
             );
 
 
-        case "RELEVANT_DISCOVERY":
+       case "RELEVANT_DISCOVERY":
 
-            return (
-                "Collect only relevant operational information that can " +
-                "materially improve the service or quote."
-            );
+    return (
+        "Guide the customer through a natural, open-ended discovery. " +
+        "First invite the customer to describe their space and what " +
+        "they would like the team to consider. Then allow one relevant " +
+        "follow-up about any specific details they want addressed during " +
+        "the cleaning. Do not turn discovery into a questionnaire. " +
+        "After relevant discovery is captured, direct the customer toward " +
+        "continuing with their personalized quote."
+    );
 
+case "CONFIRM_EMAIL":
 
-        case "CONFIRM_EMAIL":
-
-            return (
-                "Confirm the best email for the customer's quote and follow-up."
-            );
+    return (
+        "Request the best email address for the customer's personalized quote. " +
+        "If an email address has already been provided, ask the customer to " +
+        "confirm that it is correct before continuing. Never assume an email " +
+        "is confirmed simply because it exists. After the customer confirms it, " +
+        "acknowledge the confirmation and continue toward the next commercial stage."
+    );
 
 
         case "REQUEST_PHONE":
 
-            return (
-                "Obtain the best phone number for customer communication " +
-                "and follow-up."
-            );
+    return (
+        "Request the best phone number for customer communication and follow-up. " +
+        "If a phone number has already been provided, ask the customer to " +
+        "confirm that it is correct before continuing. Never assume a phone " +
+        "number is confirmed simply because it exists. After the customer " +
+        "confirms it, acknowledge the confirmation and continue toward the next " +
+        "commercial stage."
+    );
 
 
-        case "REQUEST_SERVICE_DATE":
+       
+       case "REQUEST_SERVICE_DATE":
 
-            return (
-                "Understand the customer's preferred service date or timing."
-            );
+    return (
+        "Request the customer's preferred service date and, when relevant, " +
+        "their preferred time or time window. If a service date has already " +
+        "been provided, ask the customer to confirm that it is correct before " +
+        "continuing. Never assume a date is confirmed simply because it exists. " +
+        "After the customer confirms the date, acknowledge the confirmation and " +
+        "continue toward the next commercial stage."
+    );
 
 
         case "IDENTIFY_PRIORITIES":
@@ -3469,27 +3487,41 @@ function getCommercialPurpose(
             );
 
 
-        case "FINAL_DETAIL_CHECK":
+       case "FINAL_DETAIL_CHECK":
 
-            return (
-                "Give the customer one final opportunity to provide a " +
-                "relevant detail before the request is finalized."
-            );
+    return (
+        "Make one final, natural check for any relevant detail the customer " +
+        "would like to add before preparing the personalized quote. Ask whether " +
+        "there is anything else they would like the team to know or address. " +
+        "If the customer has nothing else to add, acknowledge that and guide " +
+        "the conversation toward the final question check and quotation."
+    );
 
 
-        case "FINAL_QUESTION_CHECK":
+       case "FINAL_QUESTION_CHECK":
 
-            return (
-                "Give the customer an opportunity to resolve any remaining " +
-                "questions before the final summary."
-            );
+    return (
+        "Ask the customer if there is any remaining question about the service " +
+        "that they would like clarified before the final summary. Answer any " +
+        "question they raise clearly and accurately. If there are no remaining " +
+        "questions, acknowledge that and proceed directly to the final summary " +
+        "and confirmation for the personalized quote."
+    );
 
 
         case "PREPARE_FINAL_SUMMARY":
 
-            return (
-                "Present a concise and accurate summary of the current request."
-            );
+    return (
+        "Present a clear, personalized and reassuring summary of the customer's " +
+        "request. Begin by acknowledging the information the customer has shared " +
+        "and the needs they have communicated. Summarize only confirmed details, " +
+        "including the service, property, location, contact information, requested " +
+        "date, and relevant priorities or special details. Do not invent, assume, " +
+        "or add information that the customer has not provided. The summary should " +
+        "make the customer feel understood and confident that North Crescent has " +
+        "correctly understood what they need. End by asking: \"¿Está toda esta " +
+        "información correcta?\""
+    );
 
           case "REQUEST_EXPLICIT_CONFIRMATION":
 
@@ -3513,29 +3545,41 @@ function getCommercialPurpose(
     });
 
 
-       case "REQUEST_EXPLICIT_CONFIRMATION":
+     case "FINAL_DETAIL_CHECK":
 
     return (
-        "Ask the customer to explicitly confirm that the complete " +
-        "summary is correct."
+        "Make one final, natural check for any relevant detail the customer " +
+        "would like to add before preparing the personalized quote. Ask whether " +
+        "there is anything else they would like the team to know or address. " +
+        "If the customer has nothing else to add, acknowledge that and guide " +
+        "the conversation toward the final question check and quotation."
     );
-
           
 
 
         case "PROCESS_CONFIRMED_REQUEST":
 
-            return (
-                "Thank the customer, acknowledge the confirmation, and " +
-                "communicate that the request is being processed for quotation."
-            );
-
+    return (
+        "Thank the customer warmly for providing and confirming all the details. " +
+        "Acknowledge that their request has been fully understood and confirmed. " +
+        "Clearly communicate that the request is now moving forward and that the " +
+        "team is already working on preparing the quotation. The following message " +
+        "is mandatory and must be communicated exactly as written: " +
+        "\"A continuación, nuestro equipo ya está trabajando para enviarle su " +
+        "cotización en el transcurso de la siguiente hora.\" " +
+        "After communicating this, ask: \"Y antes de dejarlo por ahora, [NOMBRE], " +
+        "¿hay algo más en lo cual le pueda ayudar?\""
+    );
 
         case "CLOSE":
 
-            return (
-                "Close the conversation warmly and professionally."
-            );
+    return (
+        "Close the conversation warmly and professionally. Thank the customer " +
+        "for choosing North Crescent Facility Solutions and leave them with a " +
+        "clear sense of confidence, reliability and professional care. End with " +
+        "the company name and a reassuring message that reinforces North Crescent " +
+        "Facility Solutions as a trusted professional partner."
+    );
 
 
         default:
