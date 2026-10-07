@@ -5181,10 +5181,8 @@ export function processConciergeRequest(
          * Service area remains available to the integration
          * layer without creating another routing system.
          */
-        serviceArea:
-            findServiceArea(
-                profile.city
-            ),
+       serviceArea:
+    profile.city || "",
 
 
         /*
