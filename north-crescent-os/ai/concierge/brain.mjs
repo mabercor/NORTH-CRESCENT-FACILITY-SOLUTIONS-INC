@@ -3498,10 +3498,7 @@ const hasAlreadyProcessedConfirmedRequest =
                 "assistant" &&
             (
                 normalizeText(message.content).includes(
-                    "nuestro equipo está procesando"
-                ) ||
-                normalizeText(message.content).includes(
-                    "nuestro equipo ya está trabajando"
+                    "our team is processing your request"
                 ) ||
                 normalizeText(message.content).includes(
                     "your quotation is being prepared"
@@ -3518,7 +3515,6 @@ if (
 
     return "FINAL_SERVICE_CHECK";
 }
-
 
     /*
      * -----------------------------------------------------
