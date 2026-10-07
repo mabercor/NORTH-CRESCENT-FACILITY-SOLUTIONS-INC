@@ -2372,14 +2372,13 @@ const assistantAskedForFinalQuestions =
      * The customer has indicated that there are no more
      * questions after the Concierge asked for final questions.
      */
-    if (
-        customerHasNoMoreDetails &&
-        assistantAskedForFinalQuestions
-    ) {
+   if (
+    customerHasNoMoreDetails &&
+    assistantAskedForFinalQuestions
+) {
 
-        return "FINAL_SUMMARY";
-    }
-
+    return "CLOSE";
+}
 
     /*
      * -----------------------------------------------------
