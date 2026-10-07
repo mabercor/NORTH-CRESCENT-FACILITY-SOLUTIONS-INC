@@ -2300,32 +2300,35 @@ function resolveFinalStage(
         );
 
 
-      const assistantAskedForFinalDetails =
-        Boolean(
-            assistantText &&
-            (
-                assistantText.includes(
-                    "detalle"
-                ) ||
-                assistantText.includes(
-                    "details"
-                ) ||
-                assistantText.includes(
-                    "anything else"
-                )
-            )
-        );
+     const assistantAskedForFinalDetails =
+    Boolean(
+        assistantText &&
+        (
+            assistantText.includes("detalle") ||
+            assistantText.includes("details") ||
+            assistantText.includes("final detail") ||
+            assistantText.includes("final details") ||
+            assistantText.includes("detalle final") ||
+            assistantText.includes("detalles finales")
+        )
+    );
 
 const assistantAskedForFinalQuestions =
     Boolean(
         assistantText &&
         (
-            assistantText.includes("remaining question") ||
-            assistantText.includes("remaining questions") ||
-            assistantText.includes("final question") ||
-            assistantText.includes("final questions") ||
-            assistantText.includes("any remaining question") ||
-            assistantText.includes("any remaining questions")
+            assistantText.includes(
+                "final question"
+            ) ||
+            assistantText.includes(
+                "final questions"
+            ) ||
+            assistantText.includes(
+                "pregunta final"
+            ) ||
+            assistantText.includes(
+                "preguntas finales"
+            )
         )
     );
     /*
@@ -2335,35 +2338,56 @@ const assistantAskedForFinalQuestions =
      *
      * The customer has confirmed the final summary.
      */
+if (
+    hasEmail(
+        profile,
+        conversationHistory
+    ) &&
+    hasPhone(
+        profile
+    )
+) {
+
+    const finalStage =
+        resolveFinalStage({
+            currentMessage:
+                understanding.currentMessage,
+
+            conversationHistory
+        });
+
     if (
-        isCurrentConfirmation(
-            message,
-            history
-        )
+        finalStage === "PROCESSING" ||
+        finalStage === "FINAL_SERVICE_CHECK" ||
+        finalStage === "CLOSE" ||
+        finalStage === "EXPLICIT_CONFIRMATION"
     ) {
 
-        return "PROCESSING";
+        return finalStage;
     }
 
+    const hasFinalSummaryAlreadyBeenPresented =
+        conversationHistory.some(
+            message =>
+                isObject(message) &&
+                normalizeText(message.role) ===
+                    "assistant" &&
+                normalizeText(
+                    message.content
+                ).includes(
+                    "resumen"
+                )
+        );
 
-    /*
-     * -----------------------------------------------------
-     * FINAL SUMMARY
-     * -----------------------------------------------------
-     *
-     * The Concierge has already presented the final
-     * summary and requested explicit confirmation.
-     */
     if (
-        assistantRequestedConfirmation(
-            assistantText
-        )
+        hasFinalSummaryAlreadyBeenPresented
     ) {
 
         return "EXPLICIT_CONFIRMATION";
     }
 
-
+    return "FINAL_SUMMARY";
+}
     /*
      * -----------------------------------------------------
      * FINAL QUESTION CHECK
@@ -2372,14 +2396,12 @@ const assistantAskedForFinalQuestions =
      * The customer has indicated that there are no more
      * questions after the Concierge asked for final questions.
      */
-   if (
+ if (
     customerHasNoMoreDetails &&
     assistantAskedForFinalQuestions
 ) {
-
-    return "CLOSE";
+    return "FINAL_SERVICE_CHECK";
 }
-
     /*
      * -----------------------------------------------------
      * FINAL DETAIL CHECK
@@ -2506,37 +2528,62 @@ export function resolveCompletedStage(
      * final summary / confirmation stage.
      */
     if (
-        hasEmail(
-            profile,
+    hasEmail(
+        profile,
+        conversationHistory
+    ) &&
+    hasPhone(
+        profile
+    )
+) {
+
+    const finalStage =
+        resolveFinalStage({
+            currentMessage:
+                understanding.currentMessage,
+
             conversationHistory
-        ) &&
-        hasPhone(
-            profile
-        )
-    ) {
-
-        return "FINAL_SUMMARY";
-    }
-
+        });
 
     if (
-        !hasServiceDate(
-            profile
-        )
+        finalStage === "PROCESSING" ||
+        finalStage === "FINAL_SERVICE_CHECK" ||
+        finalStage === "CLOSE"
     ) {
 
-        return "SERVICE_DATE";
+        return finalStage;
     }
 
+    return "FINAL_SUMMARY";
+}
 
-    if (
-        !hasCustomerPriorities(
-            profile
-        )
-    ) {
 
-        return "PRIORITIES";
-    }
+   if (
+    !hasServiceDate(
+        profile
+    ) &&
+    !hasEmail(
+        profile,
+        conversationHistory
+    )
+) {
+
+    return "SERVICE_DATE";
+}
+
+
+  if (
+    !hasCustomerPriorities(
+        profile
+    ) &&
+    !hasEmail(
+        profile,
+        conversationHistory
+    )
+) {
+
+    return "PRIORITIES";
+}
 
 
     const finalStage =
@@ -2950,32 +2997,29 @@ function customerIndicatedNoAdditionalDetails(
         return false;
     }
 
-    const hasContinuationSignal =
-        /\b(and|also|plus|but|however|ademas|además|tambien|también|pero|y)\b/i.test(
-            text
-        );
-
-    if (
-        hasContinuationSignal
-    ) {
-        return false;
-    }
-
-    const hasAdditionalInformationSignal =
-        /\b(detail|details|information|info|question|questions|concern|concerns|priority|priorities|detalle|detalles|informacion|información|pregunta|preguntas|duda|dudas|prioridad|prioridades|problema|problemas)\b/i.test(
-            text
-        );
-
-    if (
-        hasAdditionalInformationSignal
-    ) {
-        return false;
-    }
-
-    return (
-        text.length <= 80
+   const hasAdditionalInformationSignal =
+    /\b(detail|details|information|info|question|questions|concern|concerns|priority|priorities|detalle|detalles|informacion|información|pregunta|preguntas|duda|dudas|prioridad|prioridades|problema|problemas)\b/i.test(
+        text
     );
+
+if (
+    hasAdditionalInformationSignal
+) {
+    return false;
 }
+
+const explicitNegativeResponse =
+    /^(no|nope|nah|none|nothing|nothing else|no thanks|no thank you|ninguno|ninguna|nada|nada más|nada mas|no gracias|eso es todo|eso seria todo|eso sería todo|todo bien|that's all|that is all|all good|no further questions?)$/i.test(
+        text.trim()
+    );
+
+if (
+    explicitNegativeResponse
+) {
+    return true;
+}
+
+return false;
 
 /**
  * Determines whether the customer has indicated
@@ -3550,6 +3594,38 @@ const hasAlreadyProcessedConfirmedRequest =
 
 if (
     hasAlreadyProcessedConfirmedRequest
+) {
+
+    return "FINAL_SERVICE_CHECK";
+}
+
+const hasProcessedConfirmationInConversation =
+    history.some(
+        (message, index) =>
+            isObject(message) &&
+            normalizeText(message.role) ===
+                "user" &&
+            isExplicitConfirmation(
+                message.content
+            ) &&
+            history
+                .slice(
+                    index + 1
+                )
+                .some(
+                    followingMessage =>
+                        isObject(
+                            followingMessage
+                        ) &&
+                        normalizeText(
+                            followingMessage.role
+                        ) ===
+                            "assistant"
+                )
+    );
+
+if (
+    hasProcessedConfirmationInConversation
 ) {
 
     return "FINAL_SERVICE_CHECK";
