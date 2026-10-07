@@ -2496,6 +2496,30 @@ export function resolveCompletedStage(
     }
 
 
+    /*
+     * Once the customer's email and phone are both confirmed,
+     * discovery is complete.
+     *
+     * Do not continue into service date, priorities,
+     * final detail checks, or additional discovery questions.
+     *
+     * The conversation should move directly to the
+     * final summary / confirmation stage.
+     */
+    if (
+        hasEmail(
+            profile,
+            conversationHistory
+        ) &&
+        hasPhone(
+            profile
+        )
+    ) {
+
+        return "FINAL_SUMMARY";
+    }
+
+
     if (
         !hasServiceDate(
             profile
@@ -2532,6 +2556,7 @@ export function resolveCompletedStage(
 
     return "FINAL_DETAIL_CHECK";
 }
+
 /* =========================================================
    STAGE CONTEXT
    ========================================================= */
