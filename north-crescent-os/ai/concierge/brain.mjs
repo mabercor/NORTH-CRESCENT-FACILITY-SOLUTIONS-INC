@@ -1420,31 +1420,24 @@ const SALES_STAGES = Object.freeze([
 
     "PHONE",
 
-/* =========================================================
-   OFFICIAL SALES JOURNEY
-   ========================================================= */
-
-const SALES_STAGES = Object.freeze([
-
-    "IDENTIFY",
-
-    "UNDERSTAND_NEED",
-
-    "RESOLVE_SERVICE",
-
-    "UNDERSTAND_PROPERTY",
-
-    "RELEVANT_DISCOVERY",
-
-    "EMAIL",
-
-    "PHONE",
-
-   "SERVICE_DATE",
+    "SERVICE_DATE",
 
     "PRIORITIES",
 
     "FINAL_DETAIL_CHECK",
+
+    "FINAL_QUESTION_CHECK",
+
+    "FINAL_SUMMARY",
+
+    "EXPLICIT_CONFIRMATION",
+
+    "PROCESSING",
+
+    "FINAL_SERVICE_CHECK",
+
+    "CLOSE"
+]);
 
 
 /* =========================================================
@@ -1473,21 +1466,23 @@ const STAGE_ORDER = Object.freeze({
 
     PHONE: 6,
 
-    SERVICE_DATE: 7,
+       SERVICE_DATE: 7,
 
-    FINAL_DETAIL_CHECK: 8,
+    PRIORITIES: 8,
 
-    FINAL_QUESTION_CHECK: 9,
+    FINAL_DETAIL_CHECK: 9,
 
-    FINAL_SUMMARY: 10,
+    FINAL_QUESTION_CHECK: 10,
 
-    EXPLICIT_CONFIRMATION: 11,
+    FINAL_SUMMARY: 11,
 
-    PROCESSING: 12,
+    EXPLICIT_CONFIRMATION: 12,
 
-    FINAL_SERVICE_CHECK: 13,
+    PROCESSING: 13,
 
-    CLOSE: 14
+    FINAL_SERVICE_CHECK: 14,
+
+    CLOSE: 15
 });
 
 /* =========================================================
@@ -1750,8 +1745,32 @@ UNDERSTAND_PROPERTY: Object.freeze({
         "mejor manera, ¿para qué fecha le gustaría programarlo y, si tiene alguna " +
         "preferencia, en qué horario?",
 
-    nextStage:
+      nextStage:
         "PRIORITIES"
+}),
+
+   PRIORITIES: Object.freeze({
+
+    objective:
+        "Understand what matters most to the customer before preparing the personalized quotation.",
+
+    completion:
+        "The customer's priorities have been provided, or the customer has indicated that there are no additional priorities to consider.",
+
+    result:
+        "The Concierge understands the customer's main priorities and can move forward without repeating discovery.",
+
+    communication:
+        "Acknowledge what the customer has shared and give them one natural opportunity to identify anything that matters most to them. If they indicate that there is nothing additional, acknowledge it and move forward. Do not repeat questions that have already been answered.",
+
+    commercialPurpose:
+        "Ensure the personalized quotation reflects the customer's priorities and that the customer feels heard before the request moves into the final quotation stages.",
+
+    preferredQuestion:
+        "Before we move forward with your personalized quotation, is there anything that is especially important to you or anything you would like our team to pay particular attention to?",
+
+    nextStage:
+        "FINAL_DETAIL_CHECK"
 }),
 
    FINAL_DETAIL_CHECK: Object.freeze({
@@ -2163,16 +2182,15 @@ function hasServiceDate(leadProfile = {}) {
     const profile = normalizeLeadProfile(leadProfile);
 
     return Boolean(
-        cleanValue(profile.serviceDate) &&
+        cleanValue(profile.serviceDate) ||
         cleanValue(profile.timeSlot)
     );
 }
 
 /**
- * Determines whether customer priorities exist.
- *
- * sensitiveAreas and operationalSummary may contain
- * relevant priority information.
+/**
+ * Determines whether customer priorities exist or the customer
+ * has indicated that there are no additional priorities.
  */
 function hasCustomerPriorities(
     leadProfile = {}
@@ -2198,7 +2216,7 @@ function hasCustomerPriorities(
 
     if (
         summary &&
-        /\b(no|none|nothing|ninguna|ninguno|nada)\b/i.test(
+        /\b(no|none|nothing|nothing else|no additional|no priorities|no concerns|no special requests)\b/i.test(
             summary
         )
     ) {
@@ -2464,14 +2482,15 @@ export function resolveCompletedStage(
     }
 
 
-   if (
-    !hasEmail(
-        profile,
-        conversationHistory
-    )
-) {
-    return "EMAIL";
-}
+    if (
+        !hasEmail(
+            profile,
+            conversationHistory
+        )
+    ) {
+
+        return "EMAIL";
+    }
 
 
     if (
@@ -2494,35 +2513,32 @@ export function resolveCompletedStage(
     }
 
 
-        if (
-        !isRelevantDiscoveryComplete(
+    if (
+        !hasCustomerPriorities(
             profile
         )
     ) {
-
-        return "RELEVANT_DISCOVERY";
-    }
 
         return "PRIORITIES";
     }
 
 
-   const finalStage =
-    resolveFinalStage({
-        currentMessage:
-            understanding.currentMessage,
+    const finalStage =
+        resolveFinalStage({
+            currentMessage:
+                understanding.currentMessage,
 
-        conversationHistory
-    });
+            conversationHistory
+        });
 
-if (finalStage) {
-    return finalStage;
+
+    if (finalStage) {
+        return finalStage;
+    }
+
+
+    return "FINAL_DETAIL_CHECK";
 }
-
-return "FINAL_DETAIL_CHECK";
-}
-
-
 /* =========================================================
    STAGE CONTEXT
    ========================================================= */
