@@ -3689,9 +3689,16 @@ function getCommercialPurpose(
 
         case "IDENTIFY_CUSTOMER":
 
-            return (
-                "Welcome the customer warmly and establish their identity."
-            );
+    return (
+        "Welcome the customer warmly and, once their name is known, " +
+        "immediately invite them to describe their space in their own words. " +
+        "Encourage them to include useful property details such as the number " +
+        "of bedrooms, bathrooms, approximate square footage, number of floors, " +
+        "flooring type, and any other relevant characteristics. Do not ask " +
+        "these details as separate questions. Treat the examples as guidance, " +
+        "not as a checklist. Capture all information the customer provides " +
+        "and do not ask for information they have already given."
+    );
 
 
         case "UNDERSTAND_NEED":
