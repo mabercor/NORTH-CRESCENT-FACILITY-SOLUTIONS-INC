@@ -2815,11 +2815,57 @@ function getEmailState(
         );
 
     const emailConfirmed =
-        Boolean(
-            email &&
-            assistantRequestedEmail &&
-            customerProvidedEmail
-        );
+    Boolean(
+        email &&
+        history.some(
+            (message, index) => {
+
+                if (
+                    !isObject(message) ||
+                    normalizeText(message.role) !== "user"
+                ) {
+                    return false;
+                }
+
+                const customerEmail =
+                    extractEmailAddress(
+                        message.content || ""
+                    );
+
+                if (
+                    !customerEmail ||
+                    normalizeText(customerEmail) !==
+                        normalizeText(email)
+                ) {
+                    return false;
+                }
+
+                const previousAssistant =
+                    [...history]
+                        .slice(0, index)
+                        .reverse()
+                        .find(
+                            previousMessage =>
+                                isObject(previousMessage) &&
+                                normalizeText(
+                                    previousMessage.role
+                                ) === "assistant"
+                        );
+
+                const previousAssistantText =
+                    normalizeText(
+                        previousAssistant?.content || ""
+                    );
+
+                return (
+                    previousAssistantText.includes("email") ||
+                    previousAssistantText.includes("correo") ||
+                    previousAssistantText.includes("e-mail") ||
+                    previousAssistantText.includes("courriel")
+                );
+            }
+        )
+    );
 
     return Object.freeze({
 
