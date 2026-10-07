@@ -5919,11 +5919,12 @@ export function processConciergeRequest(
             "CLOSE"
     ),
 
-        /*
+                /*
          * Service area remains available to the integration
          * layer without creating another routing system.
-             serviceArea:
-    profile.city || "",
+         */
+        serviceArea:
+            profile.city || "",
 
 
         /*
@@ -5933,10 +5934,6 @@ export function processConciergeRequest(
             analysis.knowledge ||
             CONCIERGE_KNOWLEDGE,
 
-
-        /*
-         * Complete conversational context
-         */
 
         /*
          * Complete conversational context
@@ -5965,7 +5962,6 @@ export function processConciergeRequest(
             analysis.finalAction
     });
 }
-
 
 /* =========================================================
    FINAL PUBLIC API
