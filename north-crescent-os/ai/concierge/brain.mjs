@@ -2314,8 +2314,7 @@ function resolveFinalStage(
             )
         );
 
-
-       const assistantAskedForFinalQuestions =
+const assistantAskedForFinalQuestions =
     Boolean(
         assistantText &&
         (
