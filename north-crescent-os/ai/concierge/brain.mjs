@@ -1671,17 +1671,22 @@ UNDERSTAND_PROPERTY: Object.freeze({
         "for their personalized quotation, which will be sent within the following hour " +
         "after the request is fully confirmed.",
 
-    communication:
-    "When requesting the email, clearly explain that it is needed to prepare " +
-    "and send the customer's personalized quotation. Never display, repeat, " +
-    "reveal, suggest, complete, modify, or fabricate the email address already " +
-    "stored in the customer profile. If an email has already been provided, " +
-    "the customer must personally type the email address again for a second " +
-    "verification. A simple yes, no, or confirmation without an email address " +
-    "does not confirm the email. If the customer provides a different valid " +
-    "email address, use that newly provided address as the current email. " +
-    "After a valid email address is personally provided, acknowledge the " +
-    "verification and move forward to the PHONE stage.",
+   communication:
+    "When requesting the email, clearly explain that it is needed " +
+    "to prepare and send the customer's personalized quotation. " +
+    "The customer must personally type the email address again for " +
+    "a second verification. Never display, repeat, reveal, suggest, " +
+    "complete, infer, or expose the email address already stored in " +
+    "the customer profile. A simple yes, no, OK, perfect, that's fine, " +
+    "or any other verbal confirmation without an email address is NOT " +
+    "a valid email confirmation and must NOT advance the conversation. " +
+    "If the customer provides a valid email address, that address is " +
+    "the confirmation and must become the current email address. If " +
+    "the customer provides a different valid email address, replace " +
+    "the previous email with the newly provided address. After a valid " +
+    "email address is personally provided, acknowledge the verification " +
+    "without revealing the full email unnecessarily and immediately " +
+    "advance to the PHONE stage.",
 
     nextStage:
         "PHONE"
