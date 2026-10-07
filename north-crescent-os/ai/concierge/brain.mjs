@@ -2889,7 +2889,15 @@ function getActionForStage(
 
         case "EMAIL":
 
-            return "CONFIRM_EMAIL";
+    return (
+        "Confirm the customer's email specifically because it will be used " +
+        "to prepare and send the personalized quotation. Once the customer " +
+        "explicitly confirms the email, consider the EMAIL stage complete and " +
+        "advance immediately to the next required commercial stage. Never ask " +
+        "for the email again after confirmation, even if the customer responds " +
+        "with messages such as 'ok', 'perfect', 'yes', or 'thank you'. Never " +
+        "invent, assume, complete, modify, or fabricate an email address."
+    );
 
 
         case "PHONE":
@@ -3446,11 +3454,13 @@ function getCommercialPurpose(
 case "CONFIRM_EMAIL":
 
     return (
-        "Request the best email address for the customer's personalized quote. " +
-        "If an email address has already been provided, ask the customer to " +
-        "confirm that it is correct before continuing. Never assume an email " +
-        "is confirmed simply because it exists. After the customer confirms it, " +
-        "acknowledge the confirmation and continue toward the next commercial stage."
+        "Confirm the customer's email specifically because it will be used " +
+        "to prepare and send the personalized quotation. If the customer has " +
+        "already provided an email address, ask for confirmation before continuing. " +
+        "Never invent, assume, complete, modify, or fabricate an email address. " +
+        "Once the customer explicitly confirms the email, acknowledge the confirmation " +
+        "and immediately advance to the next commercial stage. Do not ask for the " +
+        "same email again and do not remain in the email stage after confirmation."
     );
 
 
@@ -3962,44 +3972,52 @@ function buildQuestionPurpose(
                     true
             });
 
+case "RELEVANT_DISCOVERY":
 
-        case "RELEVANT_DISCOVERY":
+    return Object.freeze({
 
-            return Object.freeze({
+        objective:
+            "Collect one final relevant operational detail that can help " +
+            "North Crescent align the service with the property's actual needs, " +
+            "then guide the customer toward continuing with the personalized quote.",
 
-                objective:
-                    "Collect one relevant operational detail.",
+        expectedResult:
+            "serviceRelevantDetail",
 
-                expectedResult:
-                    "serviceRelevantDetail",
+        whyItMatters:
+            "Allows the service to be aligned with the property's actual needs " +
+            "without turning the conversation into a questionnaire.",
 
-                whyItMatters:
-                    "Allows the service to be aligned with the property's actual needs.",
+        service:
+            profile.serviceType,
 
-                service:
-                    profile.serviceType,
+        nextStep:
+            "PERSONALIZED_QUOTE",
 
-                oneQuestionOnly:
-                    true
-            });
+        oneQuestionOnly:
+            true
+    });
 
 
         case "CONFIRM_EMAIL":
 
-            return Object.freeze({
+    return Object.freeze({
 
-                objective:
-                    "Confirm the customer's best email address.",
+        objective:
+            "Request or confirm the customer's email specifically so the " +
+            "personalized quotation can be prepared and sent to that email address. " +
+            "Never invent, assume, complete, modify, or fabricate an email address.",
 
-                expectedResult:
-                    "emailAddress",
+        expectedResult:
+            "confirmedEmailAddress",
 
-                whyItMatters:
-                    "Ensures the personalized quote reaches the correct destination.",
+        whyItMatters:
+            "Ensures the personalized quotation is sent to the exact email address " +
+            "provided and confirmed by the customer.",
 
-                oneQuestionOnly:
-                    true
-            });
+        oneQuestionOnly:
+            true
+    });
 
 
         case "REQUEST_PHONE":
