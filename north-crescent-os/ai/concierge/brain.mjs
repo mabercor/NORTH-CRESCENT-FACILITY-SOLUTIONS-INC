@@ -2695,7 +2695,33 @@ function isValidProgressionAction(
     );
 }
 
+/**
+ * Extracts a valid email address from the customer's message.
+ *
+ * This does not modify customer memory.
+ * It only identifies an email explicitly provided
+ * by the customer.
+ */
+function extractEmailAddress(
+    message = ""
+) {
 
+    const text =
+        cleanValue(message);
+
+    if (!text) {
+        return "";
+    }
+
+    const match =
+        text.match(
+            /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i
+        );
+
+    return cleanValue(
+        match?.[0] || ""
+    );
+}
 /* =========================================================
    CONTACT STATE
    ========================================================= */
@@ -2773,8 +2799,7 @@ function getEmailState(
 
     const customerProvidedEmail =
         Boolean(
-            userText &&
-            /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(
+            extractEmailAddress(
                 userText
             )
         );
@@ -3661,13 +3686,18 @@ function getCommercialPurpose(
 case "CONFIRM_EMAIL":
 
     return (
-        "Confirm the customer's email specifically because it will be used " +
-        "to prepare and send the personalized quotation. If the customer has " +
-        "already provided an email address, ask for confirmation before continuing. " +
-        "Never invent, assume, complete, modify, or fabricate an email address. " +
-        "Once the customer explicitly confirms the email, acknowledge the confirmation " +
-        "and immediately advance to the next commercial stage. Do not ask for the " +
-        "same email again and do not remain in the email stage after confirmation."
+        "Ask the customer to provide their email address again " +
+        "because it will be used to prepare and send the personalized " +
+        "quotation. Do not display, repeat, reveal, suggest, or " +
+        "complete the email address already stored. The customer must " +
+        "type the email address themselves. A valid email address " +
+        "provided by the customer is the confirmation and second " +
+        "verification. If the customer provides a different email, " +
+        "use the newly provided email as the current contact email. " +
+        "If the customer only says yes, do not treat that as email " +
+        "confirmation; remain in the EMAIL stage and ask them to type " +
+        "the email address. After a valid email is provided, immediately " +
+        "advance to the next commercial stage."
     );
 
 
@@ -4206,21 +4236,25 @@ case "RELEVANT_DISCOVERY":
     });
 
 
-      case "CONFIRM_EMAIL":
+     case "CONFIRM_EMAIL":
 
     return Object.freeze({
 
         objective:
             "Ask the customer to provide their email address again " +
             "for a second verification before the personalized quotation " +
-            "is prepared and sent.",
+            "is prepared and sent. Never display, repeat, reveal, suggest, " +
+            "or complete the email address already stored. The customer " +
+            "must type the email address themselves.",
 
         expectedResult:
             "confirmedEmailAddress",
 
         whyItMatters:
             "Ensures the customer personally provides the exact email " +
-            "address that should receive the quotation.",
+            "address that should receive the quotation. A simple yes, " +
+            "no, or other confirmation without an email address does not " +
+            "confirm the email.",
 
         oneQuestionOnly:
             true
@@ -5296,12 +5330,103 @@ export function analyzeConciergeConversation(
      * FOUNDATION
      * -----------------------------------------------------
      */
+const currentCustomerMessage =
+    cleanValue(
+        currentMessage
+    );
 
-    const foundation =
-        buildFoundation({
-            conversationHistory,
+const history =
+    getMessages(
+        conversationHistory
+    );
+
+const lastMessage =
+    history.length > 0
+        ? history[history.length - 1]
+        : null;
+
+const historyAlreadyContainsCurrentMessage =
+    Boolean(
+        currentCustomerMessage &&
+        isObject(lastMessage) &&
+        normalizeText(lastMessage.role) === "user" &&
+        cleanValue(lastMessage.content) ===
+            currentCustomerMessage
+    );
+
+const effectiveConversationHistory =
+    historyAlreadyContainsCurrentMessage
+        ? history
+        : (
+            currentCustomerMessage
+                ? [
+                    ...history,
+                    {
+                        role: "user",
+                        content:
+                            currentCustomerMessage
+                    }
+                ]
+                : history
+        );
+
+const previousAssistantMessage =
+    [...effectiveConversationHistory]
+        .reverse()
+        .find(
+            message =>
+                isObject(message) &&
+                normalizeText(message.role) === "assistant"
+        );
+
+const extractedEmail =
+    extractEmailAddress(
+        currentCustomerMessage
+    );
+
+const assistantRequestedEmail =
+    Boolean(
+        previousAssistantMessage &&
+        (
+            normalizeText(
+                previousAssistantMessage.content
+            ).includes("email") ||
+            normalizeText(
+                previousAssistantMessage.content
+            ).includes("correo") ||
+            normalizeText(
+                previousAssistantMessage.content
+            ).includes("e-mail") ||
+            normalizeText(
+                previousAssistantMessage.content
+            ).includes("courriel")
+        )
+    );
+
+const correctedLeadProfile =
+    (
+        extractedEmail &&
+        assistantRequestedEmail
+    )
+        ? applyCustomerCorrection(
+            leadProfile,
+            ["emailAddress"],
+            {
+                emailAddress:
+                    extractedEmail
+            }
+        )
+        : normalizeLeadProfile(
             leadProfile
-        });
+        );
+
+const foundation =
+    buildFoundation({
+        conversationHistory:
+            effectiveConversationHistory,
+        leadProfile:
+            correctedLeadProfile
+    });
 
 
     /*
