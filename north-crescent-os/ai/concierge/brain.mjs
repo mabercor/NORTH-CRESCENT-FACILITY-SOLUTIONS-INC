@@ -12,7 +12,7 @@
  * - Preserve customer-provided information.
  * - Support explicit customer corrections.
  * - Preserve conversation continuity.
- * - Maintain a single normalized lead profile.
+ * - Maintain a single normalized lecustomerIndicatedNoAdditionalDetails()ad profile.
  *
  * This section does NOT:
  * - determine sales stages
@@ -3020,6 +3020,8 @@ if (
 }
 
 return false;
+
+   }
 
 /**
  * Determines whether the customer has indicated
