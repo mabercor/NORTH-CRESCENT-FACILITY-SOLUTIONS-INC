@@ -1579,11 +1579,13 @@ RESOLVE_SERVICE: Object.freeze({
         "If the service is already clear, do not repeat the same question or ask " +
         "the customer to confirm information they have already provided.",
 
-    preferredConfirmation:
-        "Perfecto, [NOMBRE]. Por lo que me comenta, estaríamos hablando de un " +
-        "servicio de [SERVICIO]. Para asegurarnos de entender exactamente lo que " +
-        "necesita y poder orientarle correctamente, ¿qué le gustaría principalmente " +
-        "que nuestro equipo resolviera o atendiera con este servicio?",
+   preferredConfirmation:
+    "Perfect, [NAME]. To better understand your request and avoid asking you " +
+    "several questions separately, could you briefly describe your property " +
+    "and what you need? You can include, for example, how many bedrooms and " +
+    "bathrooms it has, the approximate size, how many levels it has, the type " +
+    "of flooring, the type of cleaning you are looking for, and any other " +
+    "details you consider important.",
 
     nextStage:
         "UNDERSTAND_PROPERTY"
