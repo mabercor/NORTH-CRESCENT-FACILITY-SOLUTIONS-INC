@@ -2146,12 +2146,14 @@ function hasEmail(leadProfile = {}, conversationHistory = []) {
         return false;
     }
 
-    const emailState = getEmailState(
+       const emailState = getEmailState(
         profile,
         conversationHistory
     );
 
-    return emailState === "CONFIRMED";
+    return Boolean(
+        emailState.confirmed
+    );
 }
 
 /**
