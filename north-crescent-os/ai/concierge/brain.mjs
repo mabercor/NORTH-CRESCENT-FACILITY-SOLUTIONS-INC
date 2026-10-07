@@ -2732,41 +2732,59 @@ function getEmailState(
             conversationHistory
         );
 
-   const lastAssistantMessage =
-    [...history]
-        .reverse()
-        .find(
-            message =>
-                isObject(message) &&
-                normalizeText(message.role) === "assistant"
-        );
+    const lastAssistantMessage =
+        [...history]
+            .reverse()
+            .find(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) === "assistant"
+            );
 
-const lastUserMessage =
-    [...history]
-        .reverse()
-        .find(
-            message =>
-                isObject(message) &&
-                normalizeText(message.role) === "user"
-        );
+    const lastUserMessage =
+        [...history]
+            .reverse()
+            .find(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) === "user"
+            );
 
-const emailWasRequested =
-    Boolean(
-        lastAssistantMessage &&
+    const assistantText =
         normalizeText(
-            lastAssistantMessage.content
-        ).includes("email")
-    );
+            lastAssistantMessage?.content || ""
+        );
 
-const emailConfirmed =
-    Boolean(
-        email &&
-        emailWasRequested &&
-        lastUserMessage &&
-        isExplicitConfirmation(
-            lastUserMessage.content
-        )
-    );
+    const userText =
+        cleanValue(
+            lastUserMessage?.content || ""
+        );
+
+    const assistantRequestedEmail =
+        Boolean(
+            assistantText &&
+            (
+                assistantText.includes("email") ||
+                assistantText.includes("correo") ||
+                assistantText.includes("e-mail") ||
+                assistantText.includes("courriel")
+            )
+        );
+
+    const customerProvidedEmail =
+        Boolean(
+            userText &&
+            /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(
+                userText
+            )
+        );
+
+    const emailConfirmed =
+        Boolean(
+            email &&
+            assistantRequestedEmail &&
+            customerProvidedEmail
+        );
 
     return Object.freeze({
 
@@ -2777,8 +2795,6 @@ const emailConfirmed =
             emailConfirmed
     });
 }
-
-
 /**
  * Phone state.
  *
@@ -4190,21 +4206,21 @@ case "RELEVANT_DISCOVERY":
     });
 
 
-        case "CONFIRM_EMAIL":
+      case "CONFIRM_EMAIL":
 
     return Object.freeze({
 
         objective:
-            "Request or confirm the customer's email specifically so the " +
-            "personalized quotation can be prepared and sent to that email address. " +
-            "Never invent, assume, complete, modify, or fabricate an email address.",
+            "Ask the customer to provide their email address again " +
+            "for a second verification before the personalized quotation " +
+            "is prepared and sent.",
 
         expectedResult:
             "confirmedEmailAddress",
 
         whyItMatters:
-            "Ensures the personalized quotation is sent to the exact email address " +
-            "provided and confirmed by the customer.",
+            "Ensures the customer personally provides the exact email " +
+            "address that should receive the quotation.",
 
         oneQuestionOnly:
             true
