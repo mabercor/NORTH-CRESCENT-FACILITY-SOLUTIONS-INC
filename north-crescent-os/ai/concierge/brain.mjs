@@ -3015,7 +3015,6 @@ function getConfirmationAction(
     if (
         !understanding.isConfirmation
     ) {
-
         return "";
     }
 
@@ -3027,9 +3026,48 @@ function getConfirmationAction(
     if (
         !quoteReadiness.ready
     ) {
-
-       return "";
+        return "";
     }
+
+    const lastAssistantMessage =
+        [...conversationHistory]
+            .reverse()
+            .find(
+                message =>
+                    message?.role === "assistant"
+            );
+
+    const assistantText =
+        cleanValue(
+            lastAssistantMessage?.content
+        );
+
+    if (
+        !assistantText
+    ) {
+        return "";
+    }
+
+    const requestedExplicitConfirmation =
+        /¿Está toda esta información correcta\?/i.test(
+            assistantText
+        );
+
+    if (
+        !requestedExplicitConfirmation
+    ) {
+        return "";
+    }
+   const requestedExplicitConfirmation =
+    /¿Está toda esta información correcta\?/i.test(
+        assistantText
+    );
+
+if (
+    !requestedExplicitConfirmation
+) {
+    return "";
+}
 
     return "PROCESS_CONFIRMED_REQUEST";
 }
@@ -3463,13 +3501,36 @@ function getCommercialPurpose(
                 "Present a concise and accurate summary of the current request."
             );
 
+          case "REQUEST_EXPLICIT_CONFIRMATION":
 
-        case "REQUEST_CONFIRMATION":
+    return Object.freeze({
 
-            return (
-                "Ask the customer to explicitly confirm that the complete " +
-                "summary is correct."
-            );
+        action,
+
+        type:
+            "EXPLICIT_CONFIRMATION",
+
+        communication:
+            {
+                question:
+                    "¿Está toda esta información correcta?"
+            },
+
+        commercial,
+
+        nextAction:
+            "PROCESS_CONFIRMED_REQUEST"
+    });
+
+
+       case "REQUEST_EXPLICIT_CONFIRMATION":
+
+    return (
+        "Ask the customer to explicitly confirm that the complete " +
+        "summary is correct."
+    );
+
+          
 
 
         case "PROCESS_CONFIRMED_REQUEST":
@@ -4626,38 +4687,53 @@ function buildFinalSummaryData(
  */
 function evaluateCurrentConfirmation(
     {
-        currentMessage = "",
-        conversationHistory = [],
-        leadProfile = {}
+        understanding = {},
+        leadProfile = {},
+        conversationHistory = []
     } = {}
 ) {
 
-    const understanding =
-        understandCurrentMessage({
-            currentMessage,
-            conversationHistory
-        });
+    if (
+        !understanding.isConfirmation
+    ) {
+        return false;
+    }
 
     const quoteReadiness =
         getQuoteReadiness(
             leadProfile
         );
 
-    const valid =
-        understanding.isConfirmation &&
-        quoteReadiness.ready;
+    if (
+        !quoteReadiness.ready
+    ) {
+        return false;
+    }
 
-    return Object.freeze({
+    const lastAssistantMessage =
+        [...conversationHistory]
+            .reverse()
+            .find(
+                message =>
+                    message?.role === "assistant"
+            );
 
-        confirmed:
-            valid,
+    const assistantText =
+        cleanValue(
+            lastAssistantMessage?.content
+        );
 
-        quoteReady:
-            quoteReadiness.ready,
+    if (
+        !assistantText
+    ) {
+        return false;
+    }
 
-        missingFields:
-            quoteReadiness.missingFields
-    });
+    return Boolean(
+        /¿Está toda esta información correcta\?/i.test(
+            assistantText
+        )
+    );
 }
 
 
@@ -4794,26 +4870,34 @@ function buildFinalActionContext(
 
 
     switch (action) {
+case "PREPARE_FINAL_SUMMARY":
 
-        case "PREPARE_FINAL_SUMMARY":
+    return Object.freeze({
 
-            return Object.freeze({
+        action,
 
-                action,
+        type:
+            "FINAL_SUMMARY",
 
-                type:
-                    "FINAL_SUMMARY",
+        summary:
+            buildFinalSummaryData(
+                leadProfile
+            ),
 
-                summary:
-                    buildFinalSummaryData(
-                        leadProfile
-                    ),
+        communication:
+            {
+                instruction:
+                    "Present the complete factual summary and ask for explicit confirmation.",
 
-                commercial,
+                confirmationQuestion:
+                    "¿Está toda esta información correcta?"
+            },
 
-                nextAction:
-                    "REQUEST_EXPLICIT_CONFIRMATION"
-            });
+        commercial,
+
+        nextAction:
+            "REQUEST_EXPLICIT_CONFIRMATION"
+    });
 
 
         case "PROCESS_CONFIRMED_REQUEST":
