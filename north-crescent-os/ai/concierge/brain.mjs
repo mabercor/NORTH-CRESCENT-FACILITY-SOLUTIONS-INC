@@ -5806,10 +5806,13 @@ const foundation =
 
         finalAction,
 
-        serviceContext:
+                serviceContext:
             cleanValue(
                 serviceContext
-            )
+            ),
+
+        knowledge:
+            foundation.knowledge
     });
 }
 
