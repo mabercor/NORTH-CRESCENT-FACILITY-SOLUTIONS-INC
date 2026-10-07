@@ -2315,26 +2315,18 @@ function resolveFinalStage(
         );
 
 
-        const assistantAskedForFinalQuestions =
-        Boolean(
-            assistantText &&
-            (
-                assistantText.includes(
-                    "question"
-                ) ||
-                assistantText.includes(
-                    "questions"
-                ) ||
-                assistantText.includes(
-                    "anything else"
-                ) ||
-                assistantText.includes(
-                    "anything more"
-                )
-            )
-        );
-
-
+       const assistantAskedForFinalQuestions =
+    Boolean(
+        assistantText &&
+        (
+            assistantText.includes("remaining question") ||
+            assistantText.includes("remaining questions") ||
+            assistantText.includes("final question") ||
+            assistantText.includes("final questions") ||
+            assistantText.includes("any remaining question") ||
+            assistantText.includes("any remaining questions")
+        )
+    );
     /*
      * -----------------------------------------------------
      * EXPLICIT CONFIRMATION
