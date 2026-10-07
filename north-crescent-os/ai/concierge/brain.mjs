@@ -1321,7 +1321,8 @@ export function understandCurrentMessage(
  * Combines the foundation context with current-message
  * understanding.
  *
- * No sales progression happens here.
+* No sales progression happens here.
+ */
 
 export function buildConversationUnderstanding(
     {
