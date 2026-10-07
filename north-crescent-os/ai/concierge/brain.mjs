@@ -1887,18 +1887,18 @@ function isServiceResolved(
  *
  * The Brain does not require every optional property field.
  */
-function isPropertyUnderstandingComplete(
-    leadProfile = {}
-) {
-
-    const profile =
-        normalizeLeadProfile(
-            leadProfile
-        );
+function isPropertyUnderstandingComplete(leadProfile = {}) {
+    const profile = normalizeLeadProfile(leadProfile);
 
     return Boolean(
-        profile.operationalSummary ||
-        profile.squareFootage
+        profile.serviceAddress &&
+        profile.city &&
+        (
+            profile.squareFootage ||
+            profile.bedrooms ||
+            profile.bathrooms ||
+            profile.propertyType
+        )
     );
 }
 
@@ -1932,17 +1932,20 @@ function isRelevantDiscoveryComplete(
  * Explicit confirmation of the email is handled by
  * the confirmation/progression layer.
  */
-function hasEmail(
-    leadProfile = {}
-) {
+function hasEmail(leadProfile = {}, conversationHistory = []) {
+    const profile = normalizeLeadProfile(leadProfile);
 
-    return Boolean(
-        cleanValue(
-            leadProfile.emailAddress
-        )
+    if (!cleanValue(profile.emailAddress)) {
+        return false;
+    }
+
+    const emailState = getEmailState(
+        profile,
+        conversationHistory
     );
-}
 
+    return emailState === "CONFIRMED";
+}
 
 /**
  * Determines whether a phone number exists.
@@ -1968,17 +1971,14 @@ function hasPhone(
  * We therefore use timeSlot only when it actually
  * represents customer timing information.
  */
-function hasServiceDate(
-    leadProfile = {}
-) {
+function hasServiceDate(leadProfile = {}) {
+    const profile = normalizeLeadProfile(leadProfile);
 
     return Boolean(
-        cleanValue(
-            leadProfile.serviceDate
-        )
+        cleanValue(profile.serviceDate) &&
+        cleanValue(profile.timeSlot)
     );
 }
-
 
 /**
  * Determines whether customer priorities exist.
@@ -1989,15 +1989,35 @@ function hasServiceDate(
 function hasCustomerPriorities(
     leadProfile = {}
 ) {
-
     const profile =
         normalizeLeadProfile(
             leadProfile
         );
 
-    return Boolean(
-        profile.sensitiveAreas
-    );
+    const priorities =
+        cleanValue(
+            profile.sensitiveAreas
+        );
+
+    if (priorities) {
+        return true;
+    }
+
+    const summary =
+        cleanValue(
+            profile.operationalSummary
+        );
+
+    if (
+        summary &&
+        /\b(no|none|nothing|ninguna|ninguno|nada)\b/i.test(
+            summary
+        )
+    ) {
+        return true;
+    }
+
+    return false;
 }
 
 /* =========================================================
@@ -2256,14 +2276,14 @@ export function resolveCompletedStage(
     }
 
 
-    if (
-        !hasEmail(
-            profile
-        )
-    ) {
-
-        return "EMAIL";
-    }
+   if (
+    !hasEmail(
+        profile,
+        conversationHistory
+    )
+) {
+    return "EMAIL";
+}
 
 
     if (
@@ -2813,39 +2833,17 @@ function getQuoteReadiness(
 function getCustomerQuestionAction(
     understanding = {}
 ) {
-
-    if (
-        understanding.isPriceQuestion
-    ) {
-
+    if (understanding.isPriceQuestion) {
         return "ANSWER_PRICE_QUESTION";
     }
 
-
-    if (
-        understanding.isAvailabilityQuestion
-    ) {
-
+    if (understanding.isAvailabilityQuestion) {
         return "ANSWER_AVAILABILITY_QUESTION";
     }
 
-
-    if (
-        understanding.isServiceInformation
-    ) {
-
+    if (understanding.isServiceInformation) {
         return "ANSWER_CUSTOMER_QUESTION";
     }
-
-
-    if (
-        understanding.intent ===
-        "GENERAL_QUESTION"
-    ) {
-
-        return "ANSWER_CUSTOMER_QUESTION";
-    }
-
 
     return "";
 }
