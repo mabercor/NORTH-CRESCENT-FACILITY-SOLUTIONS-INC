@@ -430,9 +430,18 @@ contact: Object.freeze({
 
         doNotRepeatKnownContactQuestions: true,
 
-        doNotRequestContactDataAlreadyProvided: true,
+        doNotRequestContactDataAlreadyProvided: true, 
+        verificationExceptionForEmail: true,
+
+whenEmailExistsButIsNotConfirmed:
+    "Do not display, repeat, reveal, suggest, or complete the stored email. Ask the customer to personally type the email address again for verification.",
+
+typedEmailIsRequiredForConfirmation: true,
+
+simpleYesDoesNotConfirmEmail: true,
 
         requireExplicitContactConfirmation: true,
+        confirmationRequiresCustomerTypedEmail: true,
 
        requireExplicitConfirmationBeforeQuote: false
 
