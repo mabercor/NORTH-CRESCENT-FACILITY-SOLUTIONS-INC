@@ -2286,21 +2286,15 @@ function resolveFinalStage(
         );
 
 
-    const assistantAskedForFinalDetails =
+      const assistantAskedForFinalDetails =
         Boolean(
             assistantText &&
             (
                 assistantText.includes(
-                    "otro detalle"
+                    "detalle"
                 ) ||
                 assistantText.includes(
-                    "otro detalle que considere importante"
-                ) ||
-                assistantText.includes(
-                    "additional detail"
-                ) ||
-                assistantText.includes(
-                    "additional details"
+                    "details"
                 ) ||
                 assistantText.includes(
                     "anything else"
@@ -2309,27 +2303,21 @@ function resolveFinalStage(
         );
 
 
-    const assistantAskedForFinalQuestions =
+        const assistantAskedForFinalQuestions =
         Boolean(
             assistantText &&
             (
                 assistantText.includes(
-                    "alguna otra duda"
+                    "question"
                 ) ||
                 assistantText.includes(
-                    "alguna otra pregunta"
+                    "questions"
                 ) ||
                 assistantText.includes(
-                    "alguna otra preguntas"
+                    "anything else"
                 ) ||
                 assistantText.includes(
-                    "otras preguntas"
-                ) ||
-                assistantText.includes(
-                    "other questions"
-                ) ||
-                assistantText.includes(
-                    "any other questions"
+                    "anything more"
                 )
             )
         );
@@ -2840,36 +2828,38 @@ function customerIndicatedNoAdditionalDetails(
         return false;
     }
 
-    const signals = [
+    if (
+        text.includes("?")
+    ) {
+        return false;
+    }
 
-        "nothing else",
-        "nothing more",
-        "that's all",
-        "thats all",
-        "no that's all",
-        "no thats all",
-        "no more",
+    const hasContinuationSignal =
+        /\b(and|also|plus|but|however|ademas|además|tambien|también|pero|y)\b/i.test(
+            text
+        );
 
-        "rien d'autre",
-        "c'est tout",
-        "rien de plus",
+    if (
+        hasContinuationSignal
+    ) {
+        return false;
+    }
 
-        "nada más",
-        "nada mas",
-        "eso es todo",
-        "no, eso es todo",
-        "no es todo",
-        "no tengo más",
-        "no tengo mas"
-    ];
+    const hasAdditionalInformationSignal =
+        /\b(detail|details|information|info|question|questions|concern|concerns|priority|priorities|detalle|detalles|informacion|información|pregunta|preguntas|duda|dudas|prioridad|prioridades|problema|problemas)\b/i.test(
+            text
+        );
 
-    return signals.some(
-        signal =>
-            text ===
-            normalizeText(signal)
+    if (
+        hasAdditionalInformationSignal
+    ) {
+        return false;
+    }
+
+    return (
+        text.length <= 80
     );
 }
-
 
 /**
  * Determines whether the customer has indicated
@@ -3104,12 +3094,17 @@ function getActionForStage(
             return "REQUEST_PHONE";
 
 
-        case "SERVICE_DATE":
+                case "SERVICE_DATE":
 
             return "REQUEST_SERVICE_DATE";
 
 
-        case "FINAL_DETAIL_CHECK":
+        case "PRIORITIES":
+
+            return "IDENTIFY_PRIORITIES";
+
+
+               case "FINAL_DETAIL_CHECK":
 
             return "FINAL_DETAIL_CHECK";
 
