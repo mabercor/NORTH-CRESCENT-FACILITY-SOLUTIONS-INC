@@ -3475,6 +3475,49 @@ export function determineProgressionAction(
 
         return confirmationAction;
     }
+   /*
+ * -----------------------------------------------------
+ * 4.5. POST-CONFIRMATION PROGRESSION
+ * -----------------------------------------------------
+ *
+ * If the customer already confirmed the request and
+ * the Concierge has already communicated that the
+ * request is being processed, do not restart the
+ * final summary.
+ */
+const history =
+    getMessages(
+        conversationHistory
+    );
+
+const hasAlreadyProcessedConfirmedRequest =
+    history.some(
+        message =>
+            isObject(message) &&
+            normalizeText(message.role) ===
+                "assistant" &&
+            (
+                normalizeText(message.content).includes(
+                    "nuestro equipo está procesando"
+                ) ||
+                normalizeText(message.content).includes(
+                    "nuestro equipo ya está trabajando"
+                ) ||
+                normalizeText(message.content).includes(
+                    "your quotation is being prepared"
+                ) ||
+                normalizeText(message.content).includes(
+                    "our team is now working"
+                )
+            )
+    );
+
+if (
+    hasAlreadyProcessedConfirmedRequest
+) {
+
+    return "FINAL_SERVICE_CHECK";
+}
 
 
     /*
