@@ -148,10 +148,13 @@ function normalizeLeadProfile(profile = {}) {
             cleanValue(source.visitsPerMonth),
 
         recurringVisits:
-            cleanValue(source.recurringVisits),
+    cleanValue(source.recurringVisits),
 
-        timeSlot:
-            cleanValue(source.timeSlot),
+serviceDate:
+    cleanValue(source.serviceDate),
+
+timeSlot:
+    cleanValue(source.timeSlot),
 
         estimatedDuration:
             cleanValue(source.estimatedDuration),
@@ -1992,11 +1995,9 @@ function hasCustomerPriorities(
         );
 
     return Boolean(
-        profile.sensitiveAreas ||
-       
+        profile.sensitiveAreas
     );
 }
-
 
 /* =========================================================
    STAGE RESOLUTION
