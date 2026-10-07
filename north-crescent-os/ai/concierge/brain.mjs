@@ -4248,22 +4248,33 @@ function buildQuestionPurpose(
             });
 
 
-        case "UNDERSTAND_PROPERTY":
+      case "UNDERSTAND_PROPERTY":
 
-            return Object.freeze({
+    return Object.freeze({
 
-                objective:
-                    "Understand the property at a useful level.",
+        objective:
+            "Understand the property at a useful level using information " +
+            "already provided by the customer.",
 
-                expectedResult:
-                    "propertyContext",
+        expectedResult:
+            "propertyContext",
 
-                whyItMatters:
-                    "Prevents a generic service recommendation or quote.",
+        whyItMatters:
+            "Prevents a generic service recommendation or quote.",
 
-                oneQuestionOnly:
-                    true
-            });
+        rules:
+            [
+                "Use all property information already provided before asking anything.",
+                "Do not ask the customer to confirm information that is already clear from the conversation.",
+                "Do not ask whether the service covers the entire property when the customer has clearly requested service for the property as a whole.",
+                "Only ask about partial or specific areas when the customer indicates that the service may not cover the entire property.",
+                "Do not ask scope-confirmation questions simply because the property address has been provided.",
+                "If the property type, service type, size and relevant characteristics are already sufficiently understood, move forward without another property question."
+            ],
+
+        oneQuestionOnly:
+            true
+    });
 
 case "RELEVANT_DISCOVERY":
 
