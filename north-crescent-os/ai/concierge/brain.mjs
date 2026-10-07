@@ -1504,197 +1504,325 @@ const STAGE_ORDER = Object.freeze({
 
 const STAGE_DEFINITIONS = Object.freeze({
 
-    IDENTIFY: Object.freeze({
+   IDENTIFY: Object.freeze({
 
-        objective:
-            "Identify the customer naturally and establish a personalized conversation.",
+    objective:
+        "Welcome the customer warmly to North Crescent Facility Solutions, " +
+        "establish trust from the first interaction, and naturally identify " +
+        "who they are before beginning the service conversation.",
 
-        completion:
-            "Customer name is known.",
+    completion:
+        "Customer name is known.",
 
-        result:
-            "A known customer identity is available for personalized conversation.",
+    result:
+        "The customer has been warmly welcomed, knows they are speaking with " +
+        "North Crescent Facility Solutions, and their name is available for " +
+        "a personalized conversation.",
 
-        nextStage:
-            "UNDERSTAND_NEED"
-    }),
+    communication:
+        "Welcome the customer to North Crescent Facility Solutions with warmth, " +
+        "professionalism and confidence. The Concierge should communicate that " +
+        "it will be a pleasure to assist them, then naturally ask who they have " +
+        "the pleasure of speaking with. Avoid sounding transactional or like a form.",
+
+    preferredOpening:
+        "¡Bienvenido a North Crescent Facility Solutions! Será un placer ayudarle. " +
+        "¿Con quién tengo el gusto de hablar?",
+
+    nextStage:
+        "UNDERSTAND_NEED"
+}),
 
 
     UNDERSTAND_NEED: Object.freeze({
 
-        objective:
-            "Understand what the customer needs and how North Crescent can help.",
-
-        completion:
-            "The customer's requested service or primary need is understood.",
-
-        result:
-            "The Concierge understands the customer's reason for contacting North Crescent.",
-
-        nextStage:
-            "RESOLVE_SERVICE"
-    }),
-
-
-    RESOLVE_SERVICE: Object.freeze({
-
-        objective:
-            "Ensure the requested service is correctly understood and aligned with the customer's need.",
-
-        completion:
-            "The service is sufficiently clear and no correction is required.",
-
-        result:
-            "The Concierge and customer have a shared understanding of the requested service.",
-
-        nextStage:
-            "UNDERSTAND_PROPERTY"
-    }),
-
-
-    UNDERSTAND_PROPERTY: Object.freeze({
-
-        objective:
-            "Understand the property sufficiently to avoid a generic or poorly targeted quote.",
-
-        completion:
-            "Relevant property context has been obtained.",
-
-        result:
-            "The Concierge understands the type and basic characteristics of the property.",
-
-        nextStage:
-            "RELEVANT_DISCOVERY"
-    }),
-
-
-    RELEVANT_DISCOVERY: Object.freeze({
-
-        objective:
-            "Collect only the operational details that are relevant to the requested service.",
-
-        completion:
-            "The service-specific operational context is sufficient for the quote process.",
-
-        result:
-            "The Concierge understands the details that materially affect the service.",
-
-        nextStage:
-            "EMAIL"
-    }),
-
-
-    EMAIL: Object.freeze({
-
-        objective:
-            "Confirm the best email address for the customer's quote and follow-up.",
-
-        completion:
-            "A valid customer email has been explicitly confirmed.",
-
-        result:
-            "The quote has a confirmed email destination.",
-
-        nextStage:
-            "PHONE"
-    }),
-
-
-    PHONE: Object.freeze({
-
-        objective:
-            "Obtain the best phone number for customer communication and follow-up.",
-
-        completion:
-            "A customer phone number is known or the customer has explicitly confirmed the available contact path.",
-
-        result:
-            "The Concierge has an appropriate contact path for follow-up.",
-
-        nextStage:
-            "SERVICE_DATE"
-    }),
-
-
-    SERVICE_DATE: Object.freeze({
-
-        objective:
-            "Understand when the customer would like the service to take place.",
-
-        completion:
-            "The customer's requested service date or timing preference is known.",
-
-        result:
-            "The request contains a service timing preference.",
-
-        nextStage:
-            "PRIORITIES"
-    }),
-
-
-    PRIORITIES: Object.freeze({
-
-        objective:
-            "Identify the areas, details, or conditions that matter most to the customer.",
-
-        completion:
-            "Customer priorities have been established or the customer has indicated there are none.",
-
-        result:
-            "The Concierge knows what deserves special attention.",
-
-        nextStage:
-            "FINAL_DETAIL_CHECK"
-    }),
-
-
-    FINAL_DETAIL_CHECK: Object.freeze({
-
-        objective:
-            "Give the customer one final opportunity to provide an important detail before the request is finalized.",
-
-        completion:
-            "The customer confirms there are no additional relevant details or provides the final detail.",
-
-        result:
-            "The discovery process is complete.",
-
-        nextStage:
-            "FINAL_QUESTION_CHECK"
-    }),
-
-
-    FINAL_QUESTION_CHECK: Object.freeze({
-
-        objective:
-            "Resolve any remaining customer questions before presenting the final summary.",
-
-        completion:
-            "The customer confirms there are no additional questions.",
-
-        result:
-            "The customer has had the opportunity to clarify remaining concerns.",
-
-        nextStage:
-            "FINAL_SUMMARY"
-    }),
-
-
-    FINAL_SUMMARY: Object.freeze({
-
-        objective:
-            "Present a concise and accurate summary of the customer's current request.",
-
-        completion:
-            "The summary has been presented and the customer has been asked to confirm it.",
-
-        result:
-            "The customer is positioned to provide explicit confirmation.",
-
-        nextStage:
-            "EXPLICIT_CONFIRMATION"
-    }),
-
+    objective:
+        "Understand the customer's needs naturally and personally, while " +
+        "creating a welcoming conversation that makes the customer feel heard " +
+        "and supported by North Crescent.",
+
+    completion:
+        "The customer's requested service or primary need is clearly understood.",
+
+    result:
+        "The Concierge understands why the customer contacted North Crescent, " +
+        "what they need help with, and the direction the conversation should take.",
+
+    communication:
+        "Acknowledge the customer warmly, connect naturally with their request, " +
+        "and invite them to explain what they need in their own words. Avoid " +
+        "sounding like a questionnaire or asking for information that has already " +
+        "been provided.",
+
+    nextStage:
+        "RESOLVE_SERVICE"
+}),
+
+RESOLVE_SERVICE: Object.freeze({
+
+    objective:
+        "Confirm that North Crescent clearly understands the service the customer " +
+        "needs and that the requested service matches the customer's actual goal.",
+
+    completion:
+        "The requested service is clearly identified, understood and confirmed, " +
+        "with no correction or clarification required.",
+
+    result:
+        "The customer and Concierge share the same understanding of the service " +
+        "being requested and the reason it is needed.",
+
+    communication:
+        "Acknowledge what the customer has requested, briefly reflect the service " +
+        "in natural language, and ask one relevant question that helps understand " +
+        "the customer's actual goal and provides useful information for the next " +
+        "stage. If the request is unclear, ask one focused question to clarify it. " +
+        "If the service is already clear, do not repeat the same question or ask " +
+        "the customer to confirm information they have already provided.",
+
+    preferredConfirmation:
+        "Perfecto, [NOMBRE]. Por lo que me comenta, estaríamos hablando de un " +
+        "servicio de [SERVICIO]. Para asegurarnos de entender exactamente lo que " +
+        "necesita y poder orientarle correctamente, ¿qué le gustaría principalmente " +
+        "que nuestro equipo resolviera o atendiera con este servicio?",
+
+    nextStage:
+        "UNDERSTAND_PROPERTY"
+}),
+
+UNDERSTAND_PROPERTY: Object.freeze({
+
+    objective:
+        "Understand the property well enough to prepare a personalized quotation " +
+        "that reflects the customer's actual space and service needs, while making " +
+        "the customer feel that North Crescent is taking the time to understand " +
+        "their property rather than providing a generic price.",
+
+    completion:
+        "The relevant property context required to guide the personalized quotation " +
+        "has been obtained.",
+
+    result:
+        "The Concierge understands the property's type, location and relevant " +
+        "characteristics needed to continue toward a personalized quotation.",
+
+    communication:
+        "Acknowledge the information the customer provides and explain naturally " +
+        "why the next property detail matters to preparing the right service. Ask " +
+        "only for information that can materially influence the scope, effort or " +
+        "accuracy of the quotation. Never ask for information that the customer " +
+        "has already provided and never turn the property discussion into a fixed " +
+        "questionnaire.",
+
+    commercialPurpose:
+        "Build enough understanding of the property to move confidently toward " +
+        "a personalized quotation based on the customer's actual needs.",
+
+    nextStage:
+        "RELEVANT_DISCOVERY"
+}),
+
+
+  RELEVANT_DISCOVERY: Object.freeze({
+
+    objective:
+        "Understand whether there is any specific detail, priority or condition " +
+        "that North Crescent should consider in order to prepare the service " +
+        "according to the customer's actual needs rather than providing a generic quote.",
+
+    completion:
+        "The customer has had a natural opportunity to share any relevant detail " +
+        "that could improve the service or influence the quotation. If there is " +
+        "nothing additional to consider, discovery is complete.",
+
+    result:
+        "The Concierge understands the customer's relevant priorities and any " +
+        "specific detail that may affect how the service should be prepared or delivered.",
+
+    communication:
+        "Acknowledge what the customer has already shared and invite one final, " +
+        "natural detail that would help North Crescent understand what matters most " +
+        "to them. Do not turn discovery into a questionnaire. If the customer " +
+        "has nothing additional to add, acknowledge it and confidently move forward " +
+        "to the quotation process without asking another discovery question.",
+
+    commercialPurpose:
+        "Use the customer's final relevant detail to strengthen the personalized " +
+        "quotation and demonstrate that North Crescent is preparing a service " +
+        "around the customer's actual needs.",
+
+    nextStage:
+        "EMAIL"
+}),
+
+
+ EMAIL: Object.freeze({
+
+    objective:
+        "Confirm the customer's email specifically so North Crescent can prepare " +
+        "and send the personalized quotation to the correct destination. The " +
+        "customer should clearly understand that this email will be used to send " +
+        "their personalized quotation within the following hour after final confirmation.",
+
+    completion:
+        "A valid customer email has been explicitly provided and confirmed.",
+
+    result:
+        "The customer understands that the confirmed email is the destination " +
+        "for their personalized quotation, which will be sent within the following hour " +
+        "after the request is fully confirmed.",
+
+    communication:
+        "When requesting the email, clearly explain that it is needed to prepare " +
+        "and send the customer's personalized quotation. Never invent, assume, " +
+        "complete, modify, or fabricate an email address. If an email has already " +
+        "been provided but not confirmed, ask the customer to confirm it. Once " +
+        "confirmed, acknowledge it and move forward without asking for the email again.",
+
+    nextStage:
+        "PHONE"
+}),
+
+
+   PHONE: Object.freeze({
+
+    objective:
+        "Obtain the customer's best phone number so North Crescent can have a " +
+        "direct contact method when needed to coordinate the service, arrange a " +
+        "property visit when applicable, and ensure the service can be organized " +
+        "smoothly according to the customer's needs.",
+
+    completion:
+        "A customer phone number has been explicitly provided and confirmed.",
+
+    result:
+        "North Crescent has a confirmed phone contact for coordinating the service " +
+        "and arranging the visit or other operational details when required.",
+
+    communication:
+        "Explain naturally that the phone number helps North Crescent coordinate " +
+        "the service and, when applicable, arrange a property visit or clarify " +
+        "important details directly with the customer. If a phone number has " +
+        "already been provided, ask the customer to confirm it rather than asking " +
+        "for it again. Never invent, assume, modify, or fabricate a phone number.",
+
+    nextStage:
+        "SERVICE_DATE"
+}),
+
+
+   SERVICE_DATE: Object.freeze({
+
+    objective:
+        "Understand when the customer would like the service to take place while " +
+        "communicating North Crescent's commitment to responsive scheduling and " +
+        "flexibility around each customer's availability and business needs.",
+
+    completion:
+        "The customer's preferred service date and, when relevant, preferred time " +
+        "or time window are known or clearly understood.",
+
+    result:
+        "The request contains a clear service timing preference that can be used " +
+        "to coordinate the service according to the customer's availability and needs.",
+
+    communication:
+        "Reassure the customer that North Crescent has trained and prepared " +
+        "personnel with a strong availability capacity designed to respond to " +
+        "different scheduling requirements, including the needs of businesses " +
+        "that require flexible service coordination. Ask for the customer's " +
+        "preferred date and, when relevant, preferred time or time window. " +
+        "Never promise a specific appointment or availability until it has been confirmed.",
+
+    commercialPurpose:
+        "Show the customer that North Crescent is prepared to work around their " +
+        "availability and business requirements while obtaining the timing needed " +
+        "to prepare and coordinate the personalized service quotation.",
+
+    preferredQuestion:
+        "Perfecto, [NOMBRE]. Contamos con personal capacitado y una amplia capacidad " +
+        "de disponibilidad para atender diferentes requerimientos de horario y las " +
+        "necesidades de cada cliente y negocio. Para organizar su servicio de la " +
+        "mejor manera, ¿para qué fecha le gustaría programarlo y, si tiene alguna " +
+        "preferencia, en qué horario?",
+
+    nextStage:
+        "PRIORITIES"
+}),
+
+   FINAL_DETAIL_CHECK: Object.freeze({
+
+    objective:
+        "Give the customer one final opportunity to share any priority, " +
+        "special request, condition, concern, or other relevant detail that " +
+        "North Crescent should consider before preparing the personalized quote.",
+
+    completion:
+        "The customer has provided any final relevant detail or has indicated " +
+        "that there is nothing additional to consider.",
+
+    result:
+        "The Concierge has captured the customer's final priorities and relevant " +
+        "details, and the request is ready to move toward final questions and quotation.",
+
+    communication:
+        "Ask one natural, open-ended question that allows the customer to share " +
+        "anything they consider important without turning the conversation into " +
+        "a questionnaire. If the customer provides a detail, acknowledge it and " +
+        "incorporate it into the request. If the customer has nothing additional " +
+        "to add, acknowledge that and move directly toward the final question check.",
+
+    commercialPurpose:
+        "Ensure the personalized quotation reflects what matters most to the " +
+        "customer while creating confidence that North Crescent has listened to " +
+        "and understood their needs before preparing the quote.",
+
+    preferredQuestion:
+        "Perfecto, [NOMBRE]. Antes de preparar su cotización personalizada, " +
+        "¿hay algún detalle, prioridad, área o condición que le gustaría que " +
+        "nuestro equipo tuviera especialmente en cuenta?",
+
+    nextStage:
+        "FINAL_QUESTION_CHECK"
+}),
+
+FINAL_SUMMARY: Object.freeze({
+
+    objective:
+        "Give the customer one final opportunity to clarify any remaining " +
+        "question or add any relevant detail, then present a clear and accurate " +
+        "summary of the requested professional cleaning and sanitization service " +
+        "before preparing the personalized quotation.",
+
+    completion:
+        "The customer has had the opportunity to clarify questions or add relevant " +
+        "details, the final summary has been presented using only confirmed " +
+        "information, and the customer is ready to confirm the request.",
+
+    result:
+        "The customer feels heard, understood and confident that North Crescent " +
+        "has correctly understood the cleaning and sanitization service required " +
+        "and is ready to move forward with the personalized quotation.",
+
+    communication:
+        "Acknowledge the customer's request and provide a professional, reassuring " +
+        "summary of the confirmed service, property, location, timing, contact " +
+        "information and relevant priorities. Reinforce North Crescent's commitment " +
+        "to professional cleaning and sanitization services delivered with care, " +
+        "attention to detail and reliability. If the customer raises a remaining " +
+        "question, answer it clearly and accurately before continuing. If the " +
+        "customer provides an additional relevant detail, incorporate it into the " +
+        "request without inventing or assuming information. Do not reopen discovery " +
+        "or repeat information that has already been confirmed.",
+
+    preferredQuestion:
+        "Perfecto, [NOMBRE]. Antes de generar su cotización personalizada, " +
+        "¿hay algún otro detalle que le gustaría agregar, o desea que continuemos " +
+        "con su cotización?",
+
+    nextStage:
+        "EXPLICIT_CONFIRMATION"
+}),
 
     EXPLICIT_CONFIRMATION: Object.freeze({
 
@@ -1714,50 +1842,106 @@ const STAGE_DEFINITIONS = Object.freeze({
 
     PROCESSING: Object.freeze({
 
-        objective:
-            "Communicate that the confirmed request is being processed for quotation.",
+    objective:
+        "Communicate with confidence that the confirmed request is moving forward " +
+        "for quotation while reinforcing North Crescent's commitment to competitive " +
+        "pricing, professional service quality and trained personnel.",
 
-        completion:
-            "The customer has been informed that the request is being processed.",
+    completion:
+        "The customer has been informed that the personalized quotation is being " +
+        "prepared and has been given confidence in the value of North Crescent's service.",
 
-        result:
-            "The quote request has entered the processing stage.",
+    result:
+        "The customer understands that the quotation is moving forward and feels " +
+        "confident that North Crescent combines competitive pricing, quality service " +
+        "and trained professionals.",
 
-        nextStage:
-            "FINAL_SERVICE_CHECK"
-    }),
+    communication:
+        "Thank the customer for confirming the details and naturally reinforce " +
+        "North Crescent's value: competitive pricing, professional cleaning and " +
+        "sanitization services, quality workmanship and trained personnel. Do not " +
+        "make unsupported guarantees or claim to be the absolute lowest-priced " +
+        "provider. The message should create confidence that the customer is " +
+        "receiving strong value without sounding like a sales pitch.",
 
+    mandatoryMessage:
+        "A continuación, nuestro equipo ya está trabajando para enviarle su " +
+        "cotización en el transcurso de la siguiente hora.",
 
-    FINAL_SERVICE_CHECK: Object.freeze({
+    preferredQuestion:
+        "Y antes de continuar, [NOMBRE], ¿desea que sigamos adelante con su " +
+        "presupuesto o tiene alguna duda acerca del servicio que le gustaría que " +
+        "aclaremos?",
 
-        objective:
-            "Give the customer one final opportunity to request additional assistance.",
+    nextStage:
+        "FINAL_SERVICE_CHECK"
+}),
 
-        completion:
-            "The customer indicates whether additional help is needed.",
+FINAL_SERVICE_CHECK: Object.freeze({
 
-        result:
-            "The conversation is ready to close or address a new customer need.",
+    objective:
+        "After confirming that the personalized quotation is already being prepared, " +
+        "give the customer one final opportunity to request additional assistance " +
+        "before closing the conversation.",
 
-        nextStage:
-            "CLOSE"
-    }),
+    completion:
+        "The customer indicates whether any additional assistance is needed after " +
+        "being informed that the quotation is being prepared.",
+
+    result:
+        "The customer understands that North Crescent is already working on the " +
+        "personalized quotation and the conversation is ready to close unless the " +
+        "customer requests additional assistance.",
+
+    communication:
+        "After the customer has explicitly confirmed the request, communicate the " +
+        "mandatory message: \"A continuación, nuestro equipo ya está trabajando " +
+        "para enviarle su cotización en el transcurso de la siguiente hora.\" " +
+        "Then warmly ask whether there is anything else North Crescent can help " +
+        "with before closing. Do not reopen the quotation process, repeat discovery, " +
+        "or request information that has already been confirmed.",
+
+    preferredQuestion:
+        "Y antes de dejarlo por ahora, [NOMBRE], ¿hay algo más en lo cual le pueda ayudar?",
+
+    nextStage:
+        "CLOSE"
+}),
 
 
     CLOSE: Object.freeze({
 
-        objective:
-            "Close the conversation professionally and warmly.",
+    objective:
+        "Close the conversation with warmth, confidence and professionalism, " +
+        "leaving the customer with a clear sense of trust, reassurance and confidence " +
+        "in North Crescent Facility Solutions.",
 
-        completion:
-            "The customer has no additional request.",
+    completion:
+        "The customer has no additional request and the conversation can be " +
+        "closed with a positive and reassuring final impression.",
 
-        result:
-            "The current conversation is professionally closed.",
+    result:
+        "The customer leaves the conversation feeling heard, supported and confident " +
+        "that North Crescent Facility Solutions is handling their request with care, " +
+        "professionalism and attention to detail.",
 
-        nextStage:
-            null
-    })
+    communication:
+        "Close warmly and professionally. Thank the customer for choosing or " +
+        "considering North Crescent Facility Solutions and reinforce confidence " +
+        "that their request is being handled with care, reliability and professional " +
+        "attention. End by clearly mentioning North Crescent Facility Solutions " +
+        "and leave the customer with a reassuring message that strengthens trust " +
+        "in the company and its service.",
+
+    preferredClosing:
+        "Perfecto, [NOMBRE]. Ha sido un placer ayudarle. Gracias por confiar en " +
+        "North Crescent Facility Solutions. Puede tener la tranquilidad de que " +
+        "su solicitud está siendo atendida con el profesionalismo, cuidado y " +
+        "atención que merece. Será un placer ayudarle nuevamente.",
+
+    nextStage:
+        null
+})
 });
 
 
