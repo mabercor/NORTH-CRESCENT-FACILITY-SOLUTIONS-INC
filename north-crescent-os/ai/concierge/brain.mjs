@@ -5365,10 +5365,18 @@ case "PREPARE_FINAL_SUMMARY":
                 type:
                     "CLOSE",
 
-                communication:
-                    getClosingContext(
-                        leadProfile
-                    ),
+      communication:
+    {
+        message:
+            "Thank you for trusting North Crescent Facility Solutions. " +
+            "We sincerely appreciate the opportunity to assist you. " +
+            "Our team will stay in contact and take care of the next steps " +
+            "with professionalism, care, and attention to detail. " +
+            "If you need anything else, please do not hesitate to contact us. " +
+            "We are here to support you and make the process simple and stress-free. " +
+            "Thank you again for choosing North Crescent Facility Solutions. " +
+            "We take care of your spaces, so you can focus on your success."
+    },
 
                 commercial,
 
