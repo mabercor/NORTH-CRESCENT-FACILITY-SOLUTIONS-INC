@@ -973,7 +973,58 @@ body[data-page="cleaning-concierge"] .concierge-start-button:focus-visible{
         0 12px 24px rgba(30,58,95,.18);
 }
 
+/* =========================================================
+   CONCIERGE PHONE PREVIEW — MOBILE
+   ========================================================= */
 
+@media (max-width:600px){
+
+  body[data-page="cleaning-concierge"] .concierge-chat-preview{
+    position:absolute;
+
+    top:18px;
+    right:10px;
+
+    width:82px;
+    max-width:82px;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    transform:none;
+
+    opacity:.96;
+  }
+
+
+  body[data-page="cleaning-concierge"] .concierge-chat-window{
+    width:100%;
+
+    aspect-ratio:9 / 19.5;
+
+    padding:4px;
+
+    border-width:1.5px;
+
+    border-radius:23px;
+
+    transform:rotate(1deg);
+
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.55) inset,
+      0 0 0 2px rgba(5,15,24,.72),
+      0 0 0 3px rgba(255,255,255,.07),
+      0 7px 16px rgba(12,28,45,.17),
+      0 15px 30px rgba(20,42,69,.12);
+  }
+
+
+  body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-window{
+    isolation:isolate;
+  }
+
+}
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
