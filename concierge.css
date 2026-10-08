@@ -978,7 +978,12 @@ body[data-page="cleaning-concierge"] .concierge-chat-time{
     font-size:.48rem;
     font-weight:600;
 }
-
+body[data-page="cleaning-concierge"] .concierge-chat-seen{
+    margin-left:4px;
+    color:#4A9B8C;
+    font-weight:800;
+    letter-spacing:-.08em;
+}
 
 /* ---------------------------------------------------------
    TYPING INDICATOR
