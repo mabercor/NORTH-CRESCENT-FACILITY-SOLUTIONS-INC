@@ -1677,31 +1677,240 @@ body[data-page="cleaning-concierge"] .quick-start-label{
   font-weight:700;
 }
 
+/* =========================================================
+   QUICK ACTIONS — PREMIUM SERVICE SHORTCUTS
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .quick-action-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:7px;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
 }
+
+
+/* =========================================================
+   QUICK ACTION BUTTON
+   ========================================================= */
 
 body[data-page="cleaning-concierge"] .quick-action-button{
-  min-height:36px;
-  padding:7px 8px;
-  border:1px solid var(--nc-border);
-  border-radius:10px;
-  background:#fff;
-  color:var(--nc-navy);
-  font-size:.62rem;
-  font-weight:600;
-  line-height:1.25;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:48px;
+    padding:9px 10px;
+
+    border:1px solid rgba(30,58,95,.10);
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98) 0%,
+            rgba(250,252,253,.98) 55%,
+            rgba(245,249,250,.96) 100%
+        );
+
+    color:#1E3A5F;
+
+    font-size:.64rem;
+    font-weight:700;
+    line-height:1.22;
+    letter-spacing:.005em;
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.95) inset,
+        0 4px 10px rgba(20,42,69,.045),
+        0 8px 18px rgba(20,42,69,.035);
+
+    overflow:hidden;
+    isolation:isolate;
+
+    cursor:pointer;
+
+    transition:
+        transform .25s cubic-bezier(.2,.8,.2,1),
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease,
+        color .25s ease;
 }
 
-body[data-page="cleaning-concierge"] .quick-action-button:hover{
-  border-color:rgba(74,155,140,.35);
-  background:var(--nc-teal-soft);
+
+/* =========================================================
+   PREMIUM TOP LIGHT
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .quick-action-button::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:12%;
+
+    width:76%;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(74,155,140,.34),
+            transparent
+        );
+
+    opacity:.55;
+
+    transition:
+        width .3s ease,
+        opacity .3s ease;
 }
+
+
+/* =========================================================
+   TEAL ACCENT
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .quick-action-button::after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    width:0;
+    height:2px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1E3A5F,
+            #4A9B8C
+        );
+
+    transform:translateX(-50%);
+
+    transition:
+        width .3s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
 
 body[data-page="cleaning-concierge"] .quick-action-icon{
-  margin-right:3px;
+    position:relative;
+    z-index:2;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-right:5px;
+
+    font-size:1rem;
+    line-height:1;
+
+    transform:translateY(0) scale(1);
+
+    filter:saturate(.92);
+
+    transition:
+        transform .25s cubic-bezier(.2,.8,.2,1),
+        filter .25s ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .quick-action-button:hover{
+    transform:translateY(-3px);
+
+    border-color:rgba(74,155,140,.25);
+
+    color:#173451;
+
+    background:
+        linear-gradient(
+            145deg,
+            #FFFFFF 0%,
+            #F8FCFB 55%,
+            #F1F8F6 100%
+        );
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.98) inset,
+        0 8px 16px rgba(20,42,69,.07),
+        0 14px 26px rgba(74,155,140,.075);
+}
+
+
+body[data-page="cleaning-concierge"] .quick-action-button:hover::before{
+    width:88%;
+    opacity:.9;
+}
+
+
+body[data-page="cleaning-concierge"] .quick-action-button:hover::after{
+    width:42%;
+}
+
+
+body[data-page="cleaning-concierge"] .quick-action-button:hover .quick-action-icon{
+    transform:translateY(-1px) scale(1.08);
+
+    filter:saturate(1.08);
+}
+
+
+/* =========================================================
+   ACTIVE — MICRO PRESS
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .quick-action-button:active{
+    transform:translateY(-1px) scale(.985);
+
+    box-shadow:
+        0 2px 7px rgba(20,42,69,.07);
+}
+
+
+/* =========================================================
+   KEYBOARD FOCUS
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .quick-action-button:focus-visible{
+    outline:none;
+
+    border-color:rgba(74,155,140,.38);
+
+    box-shadow:
+        0 0 0 3px rgba(74,155,140,.14),
+        0 8px 18px rgba(20,42,69,.07);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    body[data-page="cleaning-concierge"] .quick-action-button,
+    body[data-page="cleaning-concierge"] .quick-action-button::before,
+    body[data-page="cleaning-concierge"] .quick-action-button::after,
+    body[data-page="cleaning-concierge"] .quick-action-icon{
+        transition:none;
+    }
+
 }
 
 /* =========================================================
