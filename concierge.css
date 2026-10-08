@@ -1108,48 +1108,124 @@ body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-ava
 
 
 /* ---------------------------------------------------------
-   CHAT IDENTITY
+   CHAT IDENTITY — PREMIUM CONTRAST FRAME
    --------------------------------------------------------- */
 
 body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-identity{
+    position:relative;
+
     display:flex;
     flex-direction:column;
     align-items:flex-start;
     justify-content:center;
 
-    gap:2px;
-
     min-width:0;
+
+    gap:3px;
+
+    padding:7px 12px 7px 11px;
+
+    border:1px solid rgba(255,255,255,.24);
+    border-left:2px solid rgba(116,213,183,.72);
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.12) 0%,
+            rgba(255,255,255,.055) 52%,
+            rgba(74,155,140,.10) 100%
+        );
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.20) inset,
+        0 -1px 0 rgba(0,0,0,.12) inset,
+        0 5px 12px rgba(0,0,0,.13),
+        0 0 12px rgba(74,155,140,.07);
+
+    isolation:isolate;
+    overflow:hidden;
 }
 
 
+/* ---------------------------------------------------------
+   IDENTITY — GLASS REFLECTION
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-identity::before{
+    content:"";
+
+    position:absolute;
+
+    top:1px;
+    left:8px;
+    right:8px;
+
+    height:9px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,0)
+        );
+
+    opacity:.65;
+
+    pointer-events:none;
+}
+
+
+/* ---------------------------------------------------------
+   IDENTITY — NAME
+   --------------------------------------------------------- */
+
 body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-identity strong{
+    position:relative;
+
     display:block;
+
+    max-width:100%;
 
     overflow:hidden;
 
-    color:#fff;
+    color:#FFFFFF;
 
     font-size:.72rem;
     font-weight:750;
 
     line-height:1.15;
+
     white-space:nowrap;
     text-overflow:ellipsis;
+
+    text-shadow:
+        0 1px 3px rgba(0,0,0,.28);
 }
 
 
+/* ---------------------------------------------------------
+   IDENTITY — ONLINE STATUS
+   --------------------------------------------------------- */
+
 body[data-page="cleaning-concierge"] .concierge-chat-preview .concierge-chat-identity span{
+    position:relative;
+
     display:flex;
     align-items:center;
+
     gap:5px;
 
-    color:rgba(255,255,255,.72);
+    color:rgba(255,255,255,.78);
 
     font-size:.58rem;
     font-weight:600;
-}
 
+    line-height:1;
+}
 
 /* ---------------------------------------------------------
    ONLINE INDICATOR
