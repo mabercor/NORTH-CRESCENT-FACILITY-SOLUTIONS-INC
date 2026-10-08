@@ -1815,43 +1815,80 @@ body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-messages{
     }
 }
 /* =========================================================
-   CONCIERGE HEADER — MATCH MAIN WEBSITE SCALE
+   PREMIUM BRAND NAME
    ========================================================= */
 
-body[data-page="cleaning-concierge"] .header-inner{
-    height:88px !important;
-    min-height:88px !important;
-}
-
-body[data-page="cleaning-concierge"] .brand-logo{
-    height:66px !important;
-    width:66px !important;
-    max-height:66px !important;
-}
-
 body[data-page="cleaning-concierge"] .brand-name{
-    font-size:1.12rem !important;
+    position:relative;
+    display:inline-block;
+
+    color:var(--nc-navy);
+
+    font-size:1.28rem;
+    font-weight:800;
+
+    letter-spacing:.015em;
+    text-transform:uppercase;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.95);
+
+    transition:
+        color .3s ease,
+        transform .3s ease,
+        text-shadow .3s ease;
 }
+
+
+/* =========================================================
+   PREMIUM BRAND HOVER
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .brand:hover .brand-name{
+    color:var(--nc-teal);
+
+    transform:translateY(-1px);
+
+    text-shadow:
+        0 2px 8px rgba(74,155,140,.18);
+}
+
+
+/* =========================================================
+   BRAND SUBTITLE
+   ========================================================= */
 
 body[data-page="cleaning-concierge"] .brand-subtitle{
-    font-size:.68rem !important;
+    display:block;
+
+    color:#5B6F86;
+
+    font-size:.72rem;
+    font-weight:700;
+
+    letter-spacing:.075em;
+    line-height:1.15;
+
+    white-space:nowrap;
+
+    text-rendering:geometricPrecision;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.9);
+
+    transition:
+        color .3s ease,
+        transform .3s ease;
 }
 
-body[data-page="cleaning-concierge"] .main-navigation{
-    gap:8px !important;
-}
 
-body[data-page="cleaning-concierge"] .main-navigation > a{
-    min-height:44px !important;
-    padding:8px 14px !important;
-    font-size:.86rem !important;
-}
+/* =========================================================
+   BRAND SUBTITLE HOVER
+   ========================================================= */
 
-body[data-page="cleaning-concierge"] .main-navigation .nav-cta{
-    padding:12px 22px !important;
-    font-size:.86rem !important;
+body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
+    color:var(--nc-teal);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* =========================================================
