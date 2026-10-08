@@ -2072,3 +2072,143 @@ body[data-page="cleaning-concierge"].concierge-embed-mode
 /* =========================================================
    END — SECTION 3
    ========================================================= */
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   SECTION 4 — INPUT / COMPOSER
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-input-area{
+    flex:0 0 auto;
+
+    width:100%;
+
+    position:relative;
+    z-index:5;
+
+    background:#fff;
+
+    border-top:1px solid rgba(30,58,95,.08);
+}
+
+
+/* ---------------------------------------------------------
+   FORM
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] #conciergeMessageForm{
+    width:100%;
+}
+
+
+/* ---------------------------------------------------------
+   INPUT
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] #conciergeMessageInput{
+    max-height:140px;
+
+    overflow-y:auto;
+
+    resize:none;
+
+    box-sizing:border-box;
+}
+
+
+/* ---------------------------------------------------------
+   SEND BUTTON
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] #conciergeSendButton{
+    flex:0 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   EMBED MODE
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode
+.concierge-input-area{
+    flex:0 0 auto;
+
+    position:relative;
+    z-index:5;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   END — SECTION 4
+   ========================================================= */
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   SECTION 5 — RESPONSIVE
+   ========================================================= */
+
+@media (max-width:600px){
+
+    body[data-page="cleaning-concierge"] .concierge-chat-card{
+        width:100%;
+
+        height:calc(100vh - 20px);
+        min-height:480px;
+        max-height:calc(100vh - 20px);
+
+        border-radius:16px;
+
+        overflow:hidden;
+    }
+
+
+    body[data-page="cleaning-concierge"] .concierge-messages{
+        flex:1 1 auto;
+
+        min-height:0;
+        height:100%;
+        max-height:none;
+
+        padding:13px;
+
+        overflow-x:hidden;
+        overflow-y:auto;
+
+        -webkit-overflow-scrolling:touch;
+    }
+
+
+    body[data-page="cleaning-concierge"] .concierge-input-area{
+        flex:0 0 auto;
+    }
+
+
+    body[data-page="cleaning-concierge"] #conciergeMessageInput{
+        max-height:120px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width:380px){
+
+    body[data-page="cleaning-concierge"] .concierge-chat-card{
+        min-height:450px;
+    }
+
+
+    body[data-page="cleaning-concierge"] .concierge-messages{
+        padding:10px;
+    }
+
+}
+
+
+/* =========================================================
+   END — SECTION 5
+   ========================================================= */
+
