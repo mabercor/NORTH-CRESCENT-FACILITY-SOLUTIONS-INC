@@ -2697,7 +2697,8 @@ body[data-page="cleaning-concierge"] .concierge-support-grid{
 }
 
 /* =========================================================
-   SUPPORT CARDS — NORTH CRESCENT PREMIUM SYSTEM
+   SUPPORT CARDS — NORTH CRESCENT
+   TYPOGRAPHY & ALIGNMENT SYSTEM
    ========================================================= */
 
 body[data-page="cleaning-concierge"] .concierge-support-card{
@@ -2722,6 +2723,8 @@ body[data-page="cleaning-concierge"] .concierge-support-card{
 
   color:#263449;
 
+  text-align:left;
+
   box-shadow:
     0 1px 0 rgba(255,255,255,.98) inset,
     0 8px 18px rgba(30,58,95,.07),
@@ -2738,7 +2741,10 @@ body[data-page="cleaning-concierge"] .concierge-support-card{
 }
 
 
-/* PREMIUM TOP ACCENT */
+/* =========================================================
+   PREMIUM TOP ACCENT
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-support-card::before{
   content:"";
 
@@ -2767,7 +2773,10 @@ body[data-page="cleaning-concierge"] .concierge-support-card::before{
 }
 
 
-/* SOFT PREMIUM LIGHT */
+/* =========================================================
+   SOFT PREMIUM LIGHT
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-support-card::after{
   content:"";
 
@@ -2792,7 +2801,10 @@ body[data-page="cleaning-concierge"] .concierge-support-card::after{
 }
 
 
-/* HOVER */
+/* =========================================================
+   HOVER
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-support-card:hover{
   transform:translateY(-5px);
 
@@ -2820,51 +2832,49 @@ body[data-page="cleaning-concierge"] .concierge-support-card:hover::before{
 }
 
 
-/* MAIN HEADING */
-body[data-page="cleaning-concierge"] .concierge-support-card h2{
-  margin:4px 0 0;
+/* =========================================================
+   UNIFIED TITLE SYSTEM
+   ALL SUPPORT CARD TITLES USE THE SAME STYLE
+   ========================================================= */
 
-  color:#173451;
-
-  font-size:1.12rem;
-  font-weight:800;
-  line-height:1.28;
-  letter-spacing:-.018em;
-
-  text-wrap:balance;
-}
-
-
-/* SECONDARY HEADING */
+body[data-page="cleaning-concierge"] .concierge-support-card h2,
 body[data-page="cleaning-concierge"] .concierge-support-card h3{
   margin:4px 0 11px;
 
   color:#173451;
 
-  font-size:.96rem;
+  font-size:1rem;
   font-weight:800;
   line-height:1.3;
-  letter-spacing:-.012em;
+  letter-spacing:-.018em;
 
+  text-align:left;
   text-wrap:balance;
 }
 
 
-/* BODY COPY */
+/* =========================================================
+   BODY COPY
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-support-card p{
-  margin:10px 0 0;
+  margin:0;
 
   color:#52677D;
 
   font-size:.76rem;
   font-weight:500;
-  line-height:1.65;
+  line-height:1.62;
 
+  text-align:left;
   text-wrap:pretty;
 }
 
 
-/* EYEBROW */
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .section-eyebrow{
   display:inline-flex;
   align-items:center;
@@ -2892,11 +2902,15 @@ body[data-page="cleaning-concierge"] .section-eyebrow{
   letter-spacing:.13em;
   line-height:1;
 
+  text-align:left;
   text-transform:uppercase;
 }
 
 
-/* HELP LIST */
+/* =========================================================
+   HELP LIST
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-help-list{
   display:flex;
   flex-direction:column;
@@ -2909,7 +2923,10 @@ body[data-page="cleaning-concierge"] .concierge-help-list{
 }
 
 
-/* HELP ITEM */
+/* =========================================================
+   HELP ITEM
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-help-list li{
   display:flex;
   align-items:flex-start;
@@ -2922,10 +2939,15 @@ body[data-page="cleaning-concierge"] .concierge-help-list li{
   font-size:.72rem;
   font-weight:500;
   line-height:1.4;
+
+  text-align:left;
 }
 
 
-/* CHECK MARK */
+/* =========================================================
+   CHECK MARK
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-help-list li span{
   display:inline-flex;
   align-items:center;
@@ -2949,12 +2971,18 @@ body[data-page="cleaning-concierge"] .concierge-help-list li span{
 }
 
 
-/* HUMAN SUPPORT */
+/* =========================================================
+   HUMAN SUPPORT
+   ICON + TEXT NOW FOLLOW THE SAME GRID SYSTEM
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-human-support{
-  display:flex;
-  flex-direction:row;
-  align-items:flex-start;
-  gap:13px;
+  display:grid;
+
+  grid-template-columns:42px minmax(0,1fr);
+
+  align-items:start;
+  column-gap:13px;
 
   background:
     linear-gradient(
@@ -2966,13 +2994,17 @@ body[data-page="cleaning-concierge"] .concierge-human-support{
 }
 
 
-/* HUMAN SUPPORT ICON */
+/* =========================================================
+   HUMAN SUPPORT ICON
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .human-support-icon{
+  grid-column:1;
+  grid-row:1 / span 2;
+
   display:flex;
   align-items:center;
   justify-content:center;
-
-  flex:0 0 42px;
 
   width:42px;
   height:42px;
@@ -2999,6 +3031,23 @@ body[data-page="cleaning-concierge"] .human-support-icon{
     transform .28s ease,
     box-shadow .28s ease;
 }
+
+
+/* =========================================================
+   HUMAN SUPPORT TEXT COLUMN
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-human-support > div:last-child{
+  grid-column:2;
+  min-width:0;
+
+  text-align:left;
+}
+
+
+/* =========================================================
+   HUMAN SUPPORT HOVER
+   ========================================================= */
 
 body[data-page="cleaning-concierge"] .concierge-human-support:hover .human-support-icon{
   transform:translateY(-2px) rotate(-2deg);
