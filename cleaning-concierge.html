@@ -2336,27 +2336,76 @@
 
         (function () {
 
-            "use strict";
-
+            "use strict"; 
 
             /* =====================================================
-               CONFIGURATION
-               ===================================================== */
+   CONFIGURATION
+   ===================================================== */
 
-            const CONFIG =
-                window.NORTH_CRESCENT_CONCIERGE;
+const CONFIG =
+    window.NORTH_CRESCENT_CONCIERGE;
 
 
-            if (!CONFIG) {
+if (!CONFIG) {
 
-                console.error(
-                    "North Crescent Concierge configuration is missing."
+    console.error(
+        "North Crescent Concierge configuration is missing."
+    );
+
+    return;
+}
+
+
+/* =====================================================
+   CONCIERGE INACTIVITY TIMEOUT
+   3 MINUTES
+   ===================================================== */
+
+const INACTIVITY_TIMEOUT = 3 * 60 * 1000;
+
+let inactivityTimer = null;
+/* =====================================================
+   CONCIERGE INACTIVITY TIMER
+   ===================================================== */
+
+function resetInactivityTimer() {
+
+    if (inactivityTimer) {
+
+        clearTimeout(
+            inactivityTimer
+        );
+
+    }
+
+
+    inactivityTimer =
+        setTimeout(
+            function () {
+
+                localStorage.removeItem(
+                    CONFIG.storage.conversationId
                 );
 
-                return;
+                localStorage.removeItem(
+                    CONFIG.storage.messages
+                );
 
-            }
+                localStorage.removeItem(
+                    CONFIG.storage.email
+                );
 
+                localStorage.removeItem(
+                    "north_crescent_concierge_lead_profile"
+                );
+
+                window.location.reload();
+
+            },
+            INACTIVITY_TIMEOUT
+        );
+
+}
 
             /* =====================================================
                DOM ELEMENTS
@@ -2981,6 +3030,7 @@ localStorage.setItem(
                             state.source || "direct"
                     }
                 );
+                resetInactivityTimer();
 
             }
 
@@ -3662,6 +3712,7 @@ function loadLeadProfile() {
 
                 state.isSending =
                     true;
+                resetInactivityTimer();
 
 
                 state.lastFailedMessage =
@@ -3954,14 +4005,15 @@ restoreChatScrollPosition();
             }
 
 
-            if (messageInput) {
-
-                messageInput.addEventListener(
-                    "input",
-                    updateCharacterCount
-                );
-
-            }
+           if (messageInput) {
+    messageInput.addEventListener(
+        "input",
+        function () {
+            updateCharacterCount();
+            resetInactivityTimer();
+        }
+    );
+}
 
 
             /* =====================================================
