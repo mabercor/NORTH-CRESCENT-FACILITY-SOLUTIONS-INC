@@ -2004,4 +2004,71 @@ body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-messages{
 /* =========================================================
    END — SECTION 1
    ========================================================= */
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   SECTION 3 — MESSAGE AREA
+   ========================================================= */
 
+body[data-page="cleaning-concierge"] .concierge-messages{
+    flex:1 1 auto;
+
+    min-width:0;
+    min-height:0;
+
+    height:100%;
+    max-height:none;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:18px;
+
+    scroll-behavior:smooth;
+    overscroll-behavior:contain;
+
+    -webkit-overflow-scrolling:touch;
+}
+
+
+/* ---------------------------------------------------------
+   MESSAGE CONTENT
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-messages
+.chat-message{
+    flex:0 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   TYPING INDICATOR
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-messages
+.concierge-typing-message{
+    flex:0 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   EMBED MODE
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode
+.concierge-messages{
+    flex:1 1 auto;
+
+    min-height:0;
+    height:100%;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+/* =========================================================
+   END — SECTION 3
+   ========================================================= */
