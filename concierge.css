@@ -648,6 +648,10 @@ max-width:300px;
 body[data-page="cleaning-concierge"] .concierge-chat-window{
     position:relative;
     width:100%;
+   aspect-ratio:9 / 19.5;
+height:auto;
+display:flex;
+flex-direction:column;
 
     padding:7px;
 
@@ -949,7 +953,8 @@ body[data-page="cleaning-concierge"] .concierge-chat-body{
     flex-direction:column;
 
    gap:8px;
-min-height:195px;
+flex:1;
+min-height:0;
 padding:12px 13px 13px;
 
     background:
