@@ -620,15 +620,18 @@ body[data-page="cleaning-concierge"] .concierge-privacy-note{
    EMAIL GATE — CONCIERGE CHAT PREVIEW
    STEP 3 — PREMIUM VISUAL CHAT
    ========================================================= */
+/* ---------------------------------------------------------
+   CHAT PREVIEW — REFINED PROPORTION
+   --------------------------------------------------------- */
 
 body[data-page="cleaning-concierge"] .concierge-chat-preview{
     position:absolute;
 
-    top:72px;
-    right:38px;
+    top:78px;
+    right:42px;
 
-    width:35%;
-    max-width:340px;
+    width:31%;
+    max-width:300px;
 
     z-index:2;
 
@@ -637,7 +640,6 @@ body[data-page="cleaning-concierge"] .concierge-chat-preview{
     animation:
         ncPreviewFloat 6s ease-in-out infinite;
 }
-
 
 /* ---------------------------------------------------------
    CHAT WINDOW
@@ -1111,12 +1113,11 @@ body[data-page="cleaning-concierge"] .concierge-chat-preview::after{
     body[data-page="cleaning-concierge"] .concierge-card-header,
     body[data-page="cleaning-concierge"] .concierge-welcome-message,
     body[data-page="cleaning-concierge"] .concierge-email-form{
-        width:60%;
-        max-width:560px;
+        width:62%;
+        max-width:590px;
     }
 
 }
-
 
 /* ---------------------------------------------------------
    REDUCED MOTION
