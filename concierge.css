@@ -1957,38 +1957,93 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-logo{
 
 
 /* =========================================================
-   BRAND TEXT
+   PREMIUM BRAND NAME
    ========================================================= */
 
-body[data-page="cleaning-concierge"] .brand-text{
-    display:flex;
-    flex-direction:column;
-
-    line-height:1.08;
-}
-
 body[data-page="cleaning-concierge"] .brand-name{
+    position:relative;
+
+    display:inline-block;
+
     color:var(--nc-navy);
 
-    font-size:1.08rem;
+    font-size:1.28rem;
     font-weight:700;
 
-    letter-spacing:-.018em;
+    letter-spacing:-.022em;
+
+    background:
+        linear-gradient(
+            110deg,
+            #1E3A5F 0%,
+            #1E3A5F 38%,
+            #4A9B8C 50%,
+            #1E3A5F 62%,
+            #1E3A5F 100%
+        );
+
+    background-size:220% 100%;
+    background-position:100% 0;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:ncBrandShine 6s ease-in-out infinite;
+
+    transition:
+        filter .3s ease,
+        transform .3s ease;
 }
 
-body[data-page="cleaning-concierge"] .brand-subtitle{
-    margin-top:4px;
 
-    color:var(--nc-muted);
+/* =========================================================
+   PREMIUM BRAND HOVER
+   ========================================================= */
 
-    font-size:.61rem;
-    font-weight:600;
+body[data-page="cleaning-concierge"] .brand:hover .brand-name{
+    transform:translateY(-1px);
 
-    letter-spacing:.075em;
-
-    text-transform:uppercase;
+    filter:
+        drop-shadow(0 4px 8px rgba(74,155,140,.16));
 }
 
+
+/* =========================================================
+   BRAND SHINE ANIMATION
+   ========================================================= */
+
+@keyframes ncBrandShine{
+
+    0%{
+        background-position:100% 0;
+    }
+
+    35%{
+        background-position:100% 0;
+    }
+
+    65%{
+        background-position:0% 0;
+    }
+
+    100%{
+        background-position:0% 0;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    body[data-page="cleaning-concierge"] .brand-name{
+        animation:none;
+    }
+}
 
 /* =========================================================
    DESKTOP NAVIGATION
