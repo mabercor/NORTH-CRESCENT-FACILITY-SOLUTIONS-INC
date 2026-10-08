@@ -2212,3 +2212,65 @@ body[data-page="cleaning-concierge"].concierge-embed-mode
    END — SECTION 5
    ========================================================= */
 
+
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   SECTION 6 — INPUT ALWAYS VISIBLE
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-chat-card{
+    height:calc(100vh - 90px);
+    min-height:560px;
+    max-height:calc(100vh - 90px);
+
+    overflow:hidden;
+}
+
+
+body[data-page="cleaning-concierge"] .concierge-messages{
+    flex:1 1 auto;
+
+    min-height:0;
+    height:auto;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+body[data-page="cleaning-concierge"] .concierge-input-area{
+    flex:0 0 auto;
+
+    position:sticky;
+    bottom:0;
+
+    z-index:20;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:600px){
+
+    body[data-page="cleaning-concierge"] .concierge-chat-card{
+        height:calc(100vh - 20px);
+        min-height:480px;
+        max-height:calc(100vh - 20px);
+    }
+
+    body[data-page="cleaning-concierge"] .concierge-input-area{
+        position:sticky;
+        bottom:0;
+        z-index:20;
+    }
+
+}
+
+
+/* =========================================================
+   END — SECTION 6
+   ========================================================= */
