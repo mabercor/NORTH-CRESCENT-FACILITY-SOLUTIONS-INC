@@ -297,19 +297,108 @@ body[data-page="cleaning-concierge"] .trust-icon{
 }
 
 
+
 /* =========================================================
-   EMAIL GATE
+   EMAIL GATE — PREMIUM CARD
+   STEP 1 — MAIN SURFACE
    ========================================================= */
 
 body[data-page="cleaning-concierge"] .concierge-entry-card{
-  width:100%;
-  max-width:560px;
-  margin:0 auto;
-  padding:22px 24px;
-  border:1px solid rgba(30,58,95,.09);
-  border-radius:20px;
-  background:#fff;
-  box-shadow:0 16px 38px rgba(20,42,69,.10);
+    position:relative;
+
+    width:100%;
+    max-width:920px;
+
+    margin:0 auto;
+    padding:34px 38px;
+
+    border:1px solid rgba(30,58,95,.10);
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at 8% 0%,
+            rgba(74,155,140,.055),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 94% 8%,
+            rgba(30,58,95,.055),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #FFFFFF 0%,
+            #FCFDFE 58%,
+            #F8FAFC 100%
+        );
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.95) inset,
+        0 0 0 1px rgba(255,255,255,.65),
+        0 18px 45px rgba(20,42,69,.08),
+        0 35px 75px rgba(20,42,69,.055);
+
+    overflow:hidden;
+
+    isolation:isolate;
+}
+
+
+/* ---------------------------------------------------------
+   PREMIUM CARD LIGHT
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-entry-card::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:8%;
+    right:8%;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(74,155,140,.18) 25%,
+            rgba(255,255,255,.95) 50%,
+            rgba(30,58,95,.12) 75%,
+            transparent 100%
+        );
+
+    pointer-events:none;
+}
+
+
+/* ---------------------------------------------------------
+   PREMIUM CARD DEPTH
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-entry-card::after{
+    content:"";
+
+    position:absolute;
+    width:240px;
+    height:240px;
+
+    right:-150px;
+    bottom:-165px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(74,155,140,.075) 0%,
+            rgba(74,155,140,.025) 38%,
+            transparent 72%
+        );
+
+    pointer-events:none;
+    z-index:-1;
 }
 body[data-page="cleaning-concierge"] .concierge-entry-title{
   margin:3px 0 0;
