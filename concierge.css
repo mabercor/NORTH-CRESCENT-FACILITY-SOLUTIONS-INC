@@ -1026,6 +1026,21 @@ body[data-page="cleaning-concierge"] .concierge-start-button:focus-visible{
 
 }
 /* =========================================================
+   MOBILE FIX — DECORATIVE PHONE PREVIEW
+   North Crescent Cleaning Concierge
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+
+    body[data-page="cleaning-concierge"] .concierge-chat-preview {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+}
+/* =========================================================
    REDUCED MOTION
    ========================================================= */
 
@@ -4028,9 +4043,6 @@ body[data-page="cleaning-concierge"] .service-area-list span:hover::before{
 
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 
 /* =========================================================
    FOOTER — NORTH CRESCENT PREMIUM FOUNDATION
