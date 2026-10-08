@@ -641,40 +641,96 @@ body[data-page="cleaning-concierge"] .concierge-chat-preview{
         ncPreviewFloat 6s ease-in-out infinite;
 }
 
-/* ---------------------------------------------------------
-   CHAT WINDOW
-   --------------------------------------------------------- */
+/* =========================================================
+   CONCIERGE CHAT PREVIEW
+   STEP 4 — PREMIUM PHONE FRAME
+   ========================================================= */
 
 body[data-page="cleaning-concierge"] .concierge-chat-window{
     position:relative;
-
     width:100%;
 
-    border:1px solid rgba(255,255,255,.72);
-    border-radius:24px;
+    padding:7px;
+
+    border:2px solid #16283B;
+    border-radius:38px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.96) 0%,
-            rgba(247,251,252,.94) 58%,
-            rgba(237,247,246,.90) 100%
+            #0B1826 0%,
+            #20384D 28%,
+            #0A1724 58%,
+            #314A5C 82%,
+            #0A1724 100%
         );
 
     box-shadow:
-        0 2px 0 rgba(255,255,255,.95) inset,
-        0 18px 40px rgba(20,42,69,.12),
-        0 30px 70px rgba(20,42,69,.08);
+        0 2px 0 rgba(255,255,255,.55) inset,
+        0 0 0 1px rgba(255,255,255,.12),
+        0 8px 18px rgba(12,28,45,.22),
+        0 24px 55px rgba(20,42,69,.20),
+        0 40px 80px rgba(20,42,69,.12);
 
     overflow:hidden;
 
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
     transform:rotate(1.2deg);
+
+    isolation:isolate;
 }
+/* =========================================================
+   PREMIUM PHONE — INNER SCREEN EDGE
+   STEP 8
+   ========================================================= */
 
+body[data-page="cleaning-concierge"] .concierge-chat-window{
+    box-shadow:
+        0 2px 0 rgba(255,255,255,.55) inset,
+        0 0 0 3px rgba(5,15,24,.75),
+        0 0 0 4px rgba(255,255,255,.08),
+        0 8px 18px rgba(12,28,45,.22),
+        0 24px 55px rgba(20,42,69,.20),
+        0 40px 80px rgba(20,42,69,.12);
+}
+/* =========================================================
+   PREMIUM PHONE — TOP SPEAKER / CAMERA
+   STEP 5
+   ========================================================= */
 
+body[data-page="cleaning-concierge"] .concierge-chat-window::after{
+    content:"";
+
+    position:absolute;
+    top:12px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:92px;
+    height:24px;
+
+    border-radius:999px;
+
+    background:
+        radial-gradient(
+            circle at 72% 50%,
+            #16354C 0 4px,
+            #07111B 5px 7px,
+            transparent 8px
+        ),
+        linear-gradient(
+            180deg,
+            #02070B 0%,
+            #101E2A 100%
+        );
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.45),
+        0 1px 0 rgba(255,255,255,.10) inset;
+
+    z-index:20;
+
+    pointer-events:none;
+}
 /* ---------------------------------------------------------
    CHAT WINDOW LIGHT
    --------------------------------------------------------- */
@@ -703,7 +759,18 @@ body[data-page="cleaning-concierge"] .concierge-chat-window::before{
     pointer-events:none;
 }
 
+/* =========================================================
+   PREMIUM PHONE — SCREEN BEZEL
+   STEP 6
+   ========================================================= */
 
+body[data-page="cleaning-concierge"] .concierge-chat-topbar{
+    border-radius:30px 30px 0 0;
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.18) inset,
+        0 -1px 0 rgba(0,0,0,.16);
+}
 /* ---------------------------------------------------------
    CHAT TOP BAR
    --------------------------------------------------------- */
@@ -731,6 +798,11 @@ body[data-page="cleaning-concierge"] .concierge-chat-topbar{
 
     box-shadow:
         0 1px 0 rgba(255,255,255,.15) inset;
+   border-radius:30px 30px 0 0;
+
+box-shadow:
+    0 1px 0 rgba(255,255,255,.18) inset,
+    0 -1px 0 rgba(0,0,0,.16);
 }
 
 
@@ -892,7 +964,35 @@ body[data-page="cleaning-concierge"] .concierge-chat-body{
         );
 }
 
+/* =========================================================
+   PREMIUM PHONE — HOME INDICATOR
+   STEP 7
+   ========================================================= */
 
+body[data-page="cleaning-concierge"] .concierge-chat-body::after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:7px;
+
+    width:58px;
+    height:4px;
+
+    transform:translateX(-50%);
+
+    border-radius:999px;
+
+    background:#20384D;
+
+    opacity:.72;
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.75);
+    
+    pointer-events:none;
+}
 /* ---------------------------------------------------------
    MESSAGE ROW
    --------------------------------------------------------- */
