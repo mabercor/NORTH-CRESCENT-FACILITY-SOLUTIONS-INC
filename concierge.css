@@ -627,11 +627,10 @@ body[data-page="cleaning-concierge"] .concierge-privacy-note{
 body[data-page="cleaning-concierge"] .concierge-chat-preview{
     position:absolute;
 
-    top:78px;
-    right:42px;
-
-    width:31%;
-    max-width:300px;
+    top:62px;
+right:42px;
+width:31%;
+max-width:300px;
 
     z-index:2;
 
@@ -950,8 +949,8 @@ body[data-page="cleaning-concierge"] .concierge-chat-body{
     flex-direction:column;
 
    gap:8px;
-min-height:225px;
-padding:14px 13px 15px;
+min-height:195px;
+padding:12px 13px 13px;
 
     background:
         radial-gradient(
@@ -977,7 +976,7 @@ body[data-page="cleaning-concierge"] .concierge-chat-body::after{
     position:absolute;
 
     left:50%;
-    bottom:7px;
+    bottom:9px;
 
     width:58px;
     height:4px;
