@@ -333,7 +333,44 @@ body[data-page="cleaning-concierge"] .concierge-side-card{
   background:#fff;
   box-shadow:var(--nc-shadow-soft);
 }
+/* =========================================================
+   CONCIERGE ENTRY LAYOUT — MOBILE
+   ========================================================= */
 
+@media (max-width: 900px){
+
+  body[data-page="cleaning-concierge"] .concierge-entry-layout{
+    grid-template-columns:1fr;
+    gap:18px;
+    width:100%;
+    max-width:560px;
+    padding:20px 16px 30px;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-entry-center{
+    grid-column:1;
+    grid-row:1;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-left-column{
+    grid-column:1;
+    grid-row:2;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-right-column{
+    grid-column:1;
+    grid-row:3;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-side-column{
+    gap:14px;
+  }
+
+  body[data-page="cleaning-concierge"] .concierge-side-card{
+    min-height:120px;
+  }
+
+}
 /* =========================================================
    EMAIL GATE
    ========================================================= */
