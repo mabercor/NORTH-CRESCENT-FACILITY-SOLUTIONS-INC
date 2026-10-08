@@ -1850,5 +1850,158 @@ body[data-page="cleaning-concierge"] .main-navigation .nav-cta{
     padding:12px 22px !important;
     font-size:.86rem !important;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   SECTION 1 — CHAT CONTAINER FOUNDATION
+   ========================================================= */
 
+/* ---------------------------------------------------------
+   MAIN CHAT CARD
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-chat-card{
+    display:flex;
+    flex-direction:column;
+
+    width:100%;
+
+    height:680px;
+    min-height:680px;
+    max-height:680px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(30,58,95,.09);
+    border-radius:20px;
+
+    background:#fff;
+    box-shadow:var(--nc-shadow-soft);
+}
+
+
+/* ---------------------------------------------------------
+   FIXED CHAT HEADER
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-chat-header{
+    flex:0 0 auto;
+
+    position:relative;
+    z-index:2;
+
+    background:#fff;
+}
+
+
+/* ---------------------------------------------------------
+   FIXED CONTEXT BAR
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-context-bar{
+    flex:0 0 auto;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* ---------------------------------------------------------
+   MESSAGE VIEWPORT
+   IMPORTANT:
+   THIS IS THE ONLY AREA THAT WILL SCROLL
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-messages{
+    flex:1 1 auto;
+
+    width:100%;
+
+    min-height:0;
+    height:auto;
+    max-height:none;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    padding:18px;
+
+    background:#FBFCFD;
+
+    overscroll-behavior:contain;
+    scroll-behavior:smooth;
+
+    scrollbar-width:thin;
+}
+
+
+/* ---------------------------------------------------------
+   MESSAGE SCROLLBAR
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-messages::-webkit-scrollbar{
+    width:6px;
+}
+
+body[data-page="cleaning-concierge"] .concierge-messages::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+body[data-page="cleaning-concierge"] .concierge-messages::-webkit-scrollbar-thumb{
+    background:rgba(30,58,95,.16);
+    border-radius:999px;
+}
+
+body[data-page="cleaning-concierge"] .concierge-messages::-webkit-scrollbar-thumb:hover{
+    background:rgba(30,58,95,.28);
+}
+
+
+/* ---------------------------------------------------------
+   FIXED INPUT AREA
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-input-area{
+    flex:0 0 auto;
+
+    position:relative;
+    z-index:2;
+
+    background:#fff;
+}
+
+
+/* =========================================================
+   EMBED MODE
+   ========================================================= */
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-chat-card{
+    display:flex;
+    flex-direction:column;
+
+    width:100%;
+
+    height:100vh;
+    min-height:100vh;
+    max-height:100vh;
+
+    overflow:hidden;
+}
+
+
+body[data-page="cleaning-concierge"].concierge-embed-mode .concierge-messages{
+    flex:1 1 auto;
+
+    min-height:0;
+    height:auto;
+    max-height:none;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+/* =========================================================
+   END — SECTION 1
+   ========================================================= */
 
