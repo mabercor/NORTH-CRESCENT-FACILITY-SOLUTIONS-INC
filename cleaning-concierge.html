@@ -3378,51 +3378,90 @@ function loadLeadProfile() {
             }
 
 
-            function loadMessages() {
+           function loadMessages() {
 
-                try {
+    try {
 
-                    const stored =
-                        localStorage.getItem(
-                            CONFIG.storage.messages
-                        );
-
-
-                    if (!stored) {
-                        return;
-                    }
+        const stored =
+            localStorage.getItem(
+                CONFIG.storage.messages
+            );
 
 
-                    const parsed =
-                        JSON.parse(
-                            stored
-                        );
+        if (!stored) {
+            return;
+        }
 
 
-                    if (
-                        !Array.isArray(parsed)
-                    ) {
-                        return;
-                    }
+        const parsed =
+            JSON.parse(stored);
 
 
-                    state.messages =
-                        parsed.slice(
-                            -CONFIG.concierge
-                                .maxConversationMessages
-                        );
+        if (!Array.isArray(parsed)) {
+            return;
+        }
 
-                } catch (error) {
 
-                    console.warn(
-                        "Unable to restore Concierge messages.",
-                        error
+        state.messages =
+            parsed.slice(
+                -CONFIG.concierge.maxConversationMessages
+            );
+
+
+        if (!messagesContainer) {
+            return;
+        }
+
+
+        messagesContainer.innerHTML = "";
+
+
+        state.messages.forEach(
+            function (message) {
+
+                if (
+                    !message ||
+                    !message.role ||
+                    !message.content
+                ) {
+                    return;
+                }
+
+
+                if (message.role === "user") {
+
+                    addUserMessage(
+                        message.content
+                    );
+
+                }
+
+
+                if (message.role === "assistant") {
+
+                    addConciergeMessage(
+                        message.content
                     );
 
                 }
 
             }
+        );
 
+
+        restoreChatScrollPosition();
+
+
+    } catch (error) {
+
+        console.warn(
+            "Unable to restore Concierge messages.",
+            error
+        );
+
+    }
+
+}
 
             /* =====================================================
                BUILD API PAYLOAD
@@ -3800,9 +3839,11 @@ if (
 
                     if (messageInput) {
 
-                        messageInput.focus();
+    messageInput.focus();
 
-                    }
+}
+
+restoreChatScrollPosition();
 
                 }
 
@@ -4503,19 +4544,33 @@ document
             updateServiceContextUI();
 
 
-            /* =====================================================
-               RESTORE MESSAGE HISTORY
-               ===================================================== */
+           /* =====================================================
+   RESTORE MESSAGE HISTORY
+   ===================================================== */
 
-            loadMessages();
+loadMessages();
 
 
-            /* =====================================================
-               INITIAL CHARACTER COUNT
-               ===================================================== */
+/* =====================================================
+   RESTORE EXISTING CONVERSATION
+   ===================================================== */
 
-            updateCharacterCount();
+if (
+    state.email &&
+    state.messages &&
+    state.messages.length > 0
+) {
 
+    startConversation();
+
+}
+
+
+/* =====================================================
+   INITIAL CHARACTER COUNT
+   ===================================================== */
+
+updateCharacterCount();
 
             /* =====================================================
                PAGE VISIBILITY TRACKING
