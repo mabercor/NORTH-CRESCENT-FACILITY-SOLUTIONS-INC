@@ -331,7 +331,9 @@ body[data-page="cleaning-concierge"] .mobile-menu-toggle span{
   border-radius:2px;
   background:var(--nc-navy);
 }
-
+body[data-page="cleaning-concierge"] .mobile-menu-toggle{
+  display:none;
+}
 
 /* =========================================================
    HERO
