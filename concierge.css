@@ -400,13 +400,78 @@ body[data-page="cleaning-concierge"] .concierge-entry-card::after{
     pointer-events:none;
     z-index:-1;
 }
+/* =========================================================
+   EMAIL GATE — PREMIUM TITLE
+   STEP 2 — VISUAL FOCUS
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-entry-title{
-  margin:3px 0 0;
-  color:#1E3A5F;
-  font-size:1.05rem;
-  line-height:1.25;
-  font-weight:700;
-  letter-spacing:-.015em;
+    position:relative;
+
+    display:block;
+
+    margin:5px 0 0;
+    max-width:680px;
+
+    color:#1E3A5F;
+
+    font-size:clamp(1.35rem, 2vw, 1.72rem);
+    line-height:1.16;
+
+    font-weight:800;
+    letter-spacing:-.028em;
+
+    text-wrap:balance;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.95);
+
+    transition:
+        color .3s ease,
+        transform .3s ease,
+        text-shadow .3s ease;
+}
+
+
+/* ---------------------------------------------------------
+   TITLE ACCENT
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-entry-title::before{
+    content:"";
+
+    display:block;
+
+    width:34px;
+    height:3px;
+
+    margin-bottom:10px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4A9B8C 0%,
+            #1E3A5F 100%
+        );
+
+    box-shadow:
+        0 3px 10px rgba(74,155,140,.18);
+}
+
+
+/* ---------------------------------------------------------
+   TITLE HOVER
+   --------------------------------------------------------- */
+
+body[data-page="cleaning-concierge"] .concierge-card-header:hover .concierge-entry-title{
+    color:#173451;
+
+    transform:translateY(-1px);
+
+    text-shadow:
+        0 2px 10px rgba(30,58,95,.08);
 }
 
 body[data-page="cleaning-concierge"] .concierge-card-header{
