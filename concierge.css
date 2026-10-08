@@ -2696,80 +2696,317 @@ body[data-page="cleaning-concierge"] .concierge-support-grid{
   margin:0 auto;
 }
 
+/* =========================================================
+   SUPPORT CARDS — NORTH CRESCENT PREMIUM SYSTEM
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .concierge-support-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
   min-width:0;
-  padding:16px;
-  border:1px solid rgba(30,58,95,.08);
-  border-radius:15px;
-  background:#fff;
-  box-shadow:var(--nc-shadow-soft);
+  min-height:250px;
+
+  padding:24px 23px 22px;
+
+  border:1px solid rgba(30,58,95,.14);
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #FFFFFF 0%,
+      #FFFFFF 58%,
+      #F4F9F8 100%
+    );
+
+  color:#263449;
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.98) inset,
+    0 8px 18px rgba(30,58,95,.07),
+    0 20px 42px rgba(30,58,95,.09);
+
+  overflow:hidden;
+  isolation:isolate;
+
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    border-color .28s ease,
+    box-shadow .28s ease,
+    background .28s ease;
 }
 
+
+/* PREMIUM TOP ACCENT */
+body[data-page="cleaning-concierge"] .concierge-support-card::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:22px;
+
+  width:48px;
+  height:3px;
+
+  border-radius:0 0 999px 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1E3A5F 0%,
+      #4A9B8C 100%
+    );
+
+  box-shadow:
+    0 3px 10px rgba(74,155,140,.20);
+
+  transition:
+    width .28s ease,
+    box-shadow .28s ease;
+}
+
+
+/* SOFT PREMIUM LIGHT */
+body[data-page="cleaning-concierge"] .concierge-support-card::after{
+  content:"";
+
+  position:absolute;
+  top:-95px;
+  right:-95px;
+
+  width:200px;
+  height:200px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(74,155,140,.09) 0%,
+      rgba(74,155,140,0) 70%
+    );
+
+  pointer-events:none;
+  z-index:-1;
+}
+
+
+/* HOVER */
+body[data-page="cleaning-concierge"] .concierge-support-card:hover{
+  transform:translateY(-5px);
+
+  border-color:rgba(74,155,140,.30);
+
+  background:
+    linear-gradient(
+      145deg,
+      #FFFFFF 0%,
+      #FFFFFF 50%,
+      #F1F8F6 100%
+    );
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.98) inset,
+    0 12px 25px rgba(30,58,95,.09),
+    0 26px 52px rgba(30,58,95,.12);
+}
+
+body[data-page="cleaning-concierge"] .concierge-support-card:hover::before{
+  width:70px;
+
+  box-shadow:
+    0 4px 13px rgba(74,155,140,.28);
+}
+
+
+/* MAIN HEADING */
 body[data-page="cleaning-concierge"] .concierge-support-card h2{
-  margin:0;
-  color:var(--nc-navy);
-  font-size:.9rem;
-  line-height:1.3;
+  margin:4px 0 0;
+
+  color:#173451;
+
+  font-size:1.12rem;
+  font-weight:800;
+  line-height:1.28;
+  letter-spacing:-.018em;
+
+  text-wrap:balance;
 }
 
+
+/* SECONDARY HEADING */
 body[data-page="cleaning-concierge"] .concierge-support-card h3{
-  margin:0 0 8px;
-  color:var(--nc-navy);
-  font-size:.75rem;
+  margin:4px 0 11px;
+
+  color:#173451;
+
+  font-size:.96rem;
+  font-weight:800;
   line-height:1.3;
+  letter-spacing:-.012em;
+
+  text-wrap:balance;
 }
 
+
+/* BODY COPY */
 body[data-page="cleaning-concierge"] .concierge-support-card p{
-  margin:7px 0 0;
-  color:var(--nc-soft);
-  font-size:.64rem;
-  line-height:1.55;
+  margin:10px 0 0;
+
+  color:#52677D;
+
+  font-size:.76rem;
+  font-weight:500;
+  line-height:1.65;
+
+  text-wrap:pretty;
 }
 
+
+/* EYEBROW */
 body[data-page="cleaning-concierge"] .section-eyebrow{
-  display:block;
-  margin-bottom:6px;
-  color:var(--nc-teal-dark);
-  font-size:.56rem;
-  font-weight:700;
-  letter-spacing:.12em;
+  display:inline-flex;
+  align-items:center;
+
+  width:max-content;
+  max-width:100%;
+
+  margin:0 0 9px;
+  padding:5px 9px;
+
+  border:1px solid rgba(74,155,140,.22);
+  border-radius:999px;
+
+  color:#216F65;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(74,155,140,.12),
+      rgba(74,155,140,.045)
+    );
+
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  line-height:1;
+
   text-transform:uppercase;
 }
 
+
+/* HELP LIST */
 body[data-page="cleaning-concierge"] .concierge-help-list{
+  display:flex;
+  flex-direction:column;
+
   margin:0;
   padding:0;
+
   list-style:none;
+  gap:7px;
 }
 
+
+/* HELP ITEM */
 body[data-page="cleaning-concierge"] .concierge-help-list li{
   display:flex;
   align-items:flex-start;
-  gap:7px;
-  margin:6px 0;
-  color:var(--nc-soft);
-  font-size:.62rem;
-  line-height:1.35;
+  gap:8px;
+
+  margin:0;
+
+  color:#52677D;
+
+  font-size:.72rem;
+  font-weight:500;
+  line-height:1.4;
 }
 
+
+/* CHECK MARK */
 body[data-page="cleaning-concierge"] .concierge-help-list li span{
-  flex:0 0 auto;
-  color:var(--nc-teal-dark);
-  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  flex:0 0 18px;
+
+  width:18px;
+  height:18px;
+
+  border:1px solid rgba(74,155,140,.24);
+  border-radius:50%;
+
+  color:#267B6F;
+
+  background:rgba(74,155,140,.09);
+
+  font-size:.64rem;
+  font-weight:900;
+  line-height:1;
 }
 
+
+/* HUMAN SUPPORT */
 body[data-page="cleaning-concierge"] .concierge-human-support{
   display:flex;
+  flex-direction:row;
   align-items:flex-start;
-  gap:9px;
-  background:linear-gradient(135deg,#F5FBF9,#fff);
+  gap:13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #FFFFFF 0%,
+      #F8FCFB 58%,
+      #EDF7F4 100%
+    );
 }
 
+
+/* HUMAN SUPPORT ICON */
 body[data-page="cleaning-concierge"] .human-support-icon{
-  flex:0 0 auto;
-  font-size:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex:0 0 42px;
+
+  width:42px;
+  height:42px;
+
+  margin-top:1px;
+
+  border:1px solid rgba(74,155,140,.24);
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #FFFFFF 0%,
+      rgba(74,155,140,.12) 100%
+    );
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.98) inset,
+    0 7px 15px rgba(30,58,95,.08);
+
+  font-size:1.15rem;
+
+  transition:
+    transform .28s ease,
+    box-shadow .28s ease;
 }
 
+body[data-page="cleaning-concierge"] .concierge-human-support:hover .human-support-icon{
+  transform:translateY(-2px) rotate(-2deg);
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.98) inset,
+    0 10px 20px rgba(30,58,95,.11);
+}
 /* =========================================================
    INFORMATION / SERVICE PREVIEW / AREA
    ========================================================= */
