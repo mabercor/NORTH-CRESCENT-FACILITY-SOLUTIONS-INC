@@ -3176,33 +3176,66 @@ localStorage.setItem(
             }
 
 
-            /* =====================================================
-               SCROLL CHAT
-               ===================================================== */
+          /* =====================================================
+   SCROLL CHAT
+   SECTION 2 — AUTO POSITION
+   ===================================================== */
 
-            function scrollMessagesToBottom() {
+function scrollMessagesToBottom(
+    behavior = "smooth"
+) {
 
-                if (!messagesContainer) {
-                    return;
+    if (!messagesContainer) {
+        return;
+    }
+
+
+    requestAnimationFrame(
+        function () {
+
+            requestAnimationFrame(
+                function () {
+
+                    const bottom =
+                        messagesContainer.scrollHeight;
+
+
+                    messagesContainer.scrollTo({
+                        top: bottom,
+                        behavior: behavior
+                    });
+
                 }
+            );
+
+        }
+    );
+
+}
 
 
-                requestAnimationFrame(
-                    function () {
+/* =====================================================
+   RESTORE CHAT TO BOTTOM
+   Used after the chat layout is rendered/restored.
+   ===================================================== */
 
-                        messagesContainer.scrollTo({
-                            top:
-                                messagesContainer.scrollHeight,
+function restoreChatScrollPosition() {
 
-                            behavior:
-                                "smooth"
-                        });
+    if (!messagesContainer) {
+        return;
+    }
 
-                    }
-                );
 
-            }
+    requestAnimationFrame(
+        function () {
 
+            messagesContainer.scrollTop =
+                messagesContainer.scrollHeight;
+
+        }
+    );
+
+}
 
             /* =====================================================
                TYPING INDICATOR
