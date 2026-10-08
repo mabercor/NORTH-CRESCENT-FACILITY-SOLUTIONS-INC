@@ -1851,7 +1851,9 @@ body[data-page="cleaning-concierge"] .main-navigation .nav-cta{
     padding:12px 22px !important;
     font-size:.86rem !important;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* =========================================================
    NORTH CRESCENT CLEANING CONCIERGE
    BLOCK 1 — PREMIUM HEADER
@@ -1859,18 +1861,29 @@ body[data-page="cleaning-concierge"] .main-navigation .nav-cta{
    No HTML / JS / logic changes
    ========================================================= */
 
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 body[data-page="cleaning-concierge"] .site-header{
     position:sticky;
     top:0;
     z-index:100;
 
-    background:rgba(255,255,255,.94);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.98) 0%,
+            rgba(255,255,255,.94) 55%,
+            rgba(247,250,252,.82) 100%
+        );
 
-    border-bottom:1px solid rgba(30,58,95,.08);
+    border-bottom:1px solid rgba(30,58,95,.06);
 
     box-shadow:
-        0 1px 0 rgba(255,255,255,.90),
-        0 8px 28px rgba(20,42,69,.07);
+        0 1px 0 rgba(255,255,255,.95),
+        0 10px 30px rgba(20,42,69,.055);
 
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
@@ -1988,6 +2001,27 @@ body[data-page="cleaning-concierge"] .main-navigation{
     gap:4px;
 
     margin-left:auto;
+
+    /* Premium navigation surface */
+    padding:5px 6px;
+
+    border:1px solid rgba(30,58,95,.07);
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(238,243,246,.88) 0%,
+            rgba(247,250,252,.72) 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.95),
+        0 5px 18px rgba(20,42,69,.055);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
 
@@ -2416,5 +2450,4 @@ body[data-page="cleaning-concierge"] .mobile-navigation .mobile-nav-cta:hover{
         animation:none !important;
     }
 }
-
 
