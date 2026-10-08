@@ -332,13 +332,6 @@ body[data-page="cleaning-concierge"] .mobile-menu-toggle span{
   background:var(--nc-navy);
 }
 
-body[data-page="cleaning-concierge"] .mobile-navigation{
-  display:none !important;
-}
-
-body[data-page="cleaning-concierge"] .mobile-navigation.mobile-navigation-open{
-  display:flex !important;
-}
 
 /* =========================================================
    HERO
@@ -3158,9 +3151,14 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     display:none;
   }
 
+   
+
   body[data-page="cleaning-concierge"] .mobile-menu-toggle{
     display:block;
   }
+   body[data-page="cleaning-concierge"] .mobile-navigation.mobile-navigation-open{
+  display:flex !important;
+}
 
   body[data-page="cleaning-concierge"] .mobile-navigation{
     position:absolute;
