@@ -297,6 +297,44 @@ body[data-page="cleaning-concierge"] .trust-icon{
 }
 
 /* =========================================================
+   CONCIERGE ENTRY LAYOUT
+   Side cards + central email gate
+   ========================================================= */
+
+body[data-page="cleaning-concierge"] .concierge-entry-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(480px,560px) minmax(0,1fr);
+  align-items:center;
+  gap:24px;
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding:24px 24px 36px;
+}
+
+body[data-page="cleaning-concierge"] .concierge-entry-center{
+  width:100%;
+  min-width:0;
+}
+
+body[data-page="cleaning-concierge"] .concierge-side-column{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  width:100%;
+}
+
+body[data-page="cleaning-concierge"] .concierge-side-card{
+  width:100%;
+  min-height:145px;
+  padding:18px;
+  border:1px solid rgba(30,58,95,.08);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:var(--nc-shadow-soft);
+}
+
+/* =========================================================
    EMAIL GATE
    ========================================================= */
 
