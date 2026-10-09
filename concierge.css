@@ -5886,3 +5886,26 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
   }
 
 }
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   MOBILE — MESSAGE COMPOSER WIDTH
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-input-area {
+
+    width: calc(100% - 20px) !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    border-radius: 12px 12px 0 0 !important;
+
+    box-sizing: border-box !important;
+
+  }
+
+}
