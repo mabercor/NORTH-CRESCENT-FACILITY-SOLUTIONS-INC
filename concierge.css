@@ -5736,3 +5736,20 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
     }
 
 }
+/* =========================================================
+   MOBILE CHAT — VISIBLE VIEWPORT ADJUSTMENT
+   STEP 2A
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active {
+
+    top: var(--nc-chat-viewport-top, 0px);
+
+    height: var(--nc-chat-viewport-height, 100dvh);
+
+  }
+
+}
