@@ -5753,3 +5753,48 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
   }
 
 }
+
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   MOBILE KEYBOARD — FIXED MESSAGE COMPOSER
+   STEP 3A
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-input-area {
+
+    position: fixed !important;
+
+    top: var(--nc-chat-composer-top, auto) !important;
+    bottom: auto !important;
+
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    z-index: 10001 !important;
+
+    background: #FFFFFF;
+
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    box-sizing: border-box;
+
+  }
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-messages {
+
+    padding-bottom: 24px;
+
+  }
+
+}
