@@ -4873,7 +4873,136 @@ updateCharacterCount();
 
     </script>
 
+<script>
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   MOBILE KEYBOARD VISIBILITY FIX
+   ========================================================= */
 
+(function () {
+
+    "use strict";
+
+    const chat = document.getElementById(
+        "conciergeChatSection"
+    );
+
+    if (!chat) return;
+
+    const composer = chat.querySelector(
+        ".concierge-input-area"
+    );
+
+    if (!composer) return;
+
+    const root = document.documentElement;
+
+    let frame = null;
+
+    function updateVisibleArea() {
+
+        if (!window.matchMedia("(max-width: 600px)").matches) {
+            return;
+        }
+
+        if (!chat.classList.contains("concierge-chat-active")) {
+            return;
+        }
+
+        const viewport = window.visualViewport;
+
+        const height = viewport
+            ? viewport.height
+            : window.innerHeight;
+
+        const offsetTop = viewport
+            ? viewport.offsetTop
+            : 0;
+
+        const composerHeight =
+            composer.getBoundingClientRect().height;
+
+        const composerTop =
+            offsetTop + height - composerHeight;
+
+        root.style.setProperty(
+            "--nc-chat-viewport-height",
+            Math.round(height) + "px"
+        );
+
+        root.style.setProperty(
+            "--nc-chat-viewport-top",
+            Math.round(offsetTop) + "px"
+        );
+
+        root.style.setProperty(
+            "--nc-chat-composer-top",
+            Math.max(0, Math.round(composerTop)) + "px"
+        );
+
+    }
+
+    function scheduleUpdate() {
+
+        if (frame !== null) {
+            cancelAnimationFrame(frame);
+        }
+
+        frame = requestAnimationFrame(function () {
+
+            frame = null;
+
+            updateVisibleArea();
+
+        });
+
+    }
+
+    window.addEventListener(
+        "resize",
+        scheduleUpdate,
+        { passive: true }
+    );
+
+    window.addEventListener(
+        "orientationchange",
+        scheduleUpdate,
+        { passive: true }
+    );
+
+    if (window.visualViewport) {
+
+        window.visualViewport.addEventListener(
+            "resize",
+            scheduleUpdate,
+            { passive: true }
+        );
+
+        window.visualViewport.addEventListener(
+            "scroll",
+            scheduleUpdate,
+            { passive: true }
+        );
+
+    }
+
+    const observer = window.ResizeObserver
+        ? new ResizeObserver(scheduleUpdate)
+        : null;
+
+    if (observer) {
+        observer.observe(composer);
+    }
+
+    chat.addEventListener(
+        "transitionend",
+        scheduleUpdate
+    );
+
+    updateVisibleArea();
+
+})();
+</script>
 
     <!-- =========================================================
          FINAL DOCUMENT CLOSE
