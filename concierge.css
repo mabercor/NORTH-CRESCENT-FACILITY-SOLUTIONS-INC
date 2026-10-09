@@ -5798,3 +5798,91 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
   }
 
 }
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   MOBILE CHAT — MESSAGE / INPUT LAYOUT CORRECTION
+   STEP 4
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* CHAT CARD: USE THE VISIBLE SCREEN HEIGHT */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-chat-card {
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    height: var(--nc-chat-viewport-height, 100dvh) !important;
+
+    min-height: 0 !important;
+    max-height: none !important;
+
+    overflow: hidden !important;
+
+  }
+
+
+  /* MESSAGES: USE ONLY THE SPACE ABOVE THE INPUT */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-messages {
+
+    position: relative !important;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1 1 0% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+  }
+
+
+  /* INPUT: RETURN IT TO THE CHAT'S NORMAL LAYOUT */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-input-area {
+
+    position: relative !important;
+
+    top: auto !important;
+    bottom: auto !important;
+
+    left: auto !important;
+    right: auto !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    flex: 0 0 auto !important;
+
+    margin: 0 !important;
+
+    z-index: 2 !important;
+
+    box-sizing: border-box;
+
+    background: #FFFFFF;
+
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  }
+
+}
