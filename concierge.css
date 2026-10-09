@@ -5521,4 +5521,218 @@ body[data-page="cleaning-concierge"] .brand-subtitle{
 body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
     color:var(--nc-teal);
 }
+/* =========================================================
+   NORTH CRESCENT CONCIERGE
+   MOBILE FULLSCREEN CHAT — STEP 1
+   CSS ONLY — EXISTING CHAT STATE
+   ========================================================= */
 
+@media (max-width: 600px) {
+
+  /* -------------------------------------------------------
+     1. LOCK THE PAGE WHEN THE CHAT IS ACTIVE
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) {
+    height: var(--nc-chat-viewport-height, 100dvh);
+    min-height: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+
+  /* -------------------------------------------------------
+     2. HIDE CONTENT OUTSIDE THE ACTIVE CHAT
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .site-header,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .concierge-hero,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .concierge-support-info,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .concierge-information-notice,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .concierge-service-preview,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .concierge-service-area,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .site-footer,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) #floatingConciergeButton,
+
+  body[data-page="cleaning-concierge"]:has(
+    #conciergeChatSection.concierge-chat-active
+  ) .floating-concierge-button {
+
+    display: none !important;
+
+  }
+
+
+  /* -------------------------------------------------------
+     3. MAKE THE CHAT SECTION FILL THE SCREEN
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--nc-chat-viewport-height, 100dvh);
+
+    min-height: 0;
+    max-height: none;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    overflow: hidden;
+
+    background: #F7FAFC;
+
+    z-index: 9999;
+
+  }
+
+
+  /* -------------------------------------------------------
+     4. REMOVE THE OUTER CONTAINER SPACING
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active .container {
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: none;
+
+    height: 100%;
+    min-height: 0;
+
+    margin: 0;
+    padding: 0;
+
+  }
+
+
+  /* -------------------------------------------------------
+     5. LET THE CHAT LAYOUT USE ALL AVAILABLE HEIGHT
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-chat-layout {
+
+    display: flex;
+    flex: 1 1 auto;
+
+    flex-direction: column;
+
+    width: 100%;
+    max-width: none;
+
+    height: 100%;
+    min-height: 0;
+
+    margin: 0;
+    padding: 0;
+
+  }
+
+
+  /* -------------------------------------------------------
+     6. REMOVE THE CARD'S FIXED MINIMUM HEIGHT
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-chat-card {
+
+    display: flex;
+    flex: 1 1 auto;
+
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 0;
+    max-height: none;
+
+    margin: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    box-shadow: none;
+
+    overflow: hidden;
+
+  }
+
+
+  /* -------------------------------------------------------
+     7. GIVE THE MESSAGES THE REMAINING SPACE
+     ------------------------------------------------------- */
+
+  body[data-page="cleaning-concierge"]
+  #conciergeChatSection.concierge-chat-active
+  .concierge-messages {
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+    max-height: none;
+
+    padding: 12px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+  }
+
+}
+/* =========================================================
+   MOBILE FIX — DECORATIVE CHAT PHONE
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+
+    body[data-page="cleaning-concierge"] .concierge-chat-preview {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+}
