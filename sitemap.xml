@@ -103,6 +103,17 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://northcrescentcleaning.com/fr/airbnb-cleaning-moncton.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://northcrescentcleaning.com/airbnb-cleaning-moncton.html"/>
 </url>
+<!-- SEASONAL SNOW REMOVAL -->
+
+<url>
+    <loc>https://northcrescentcleaning.com/snow-removal-moncton.html</loc>
+    <xhtml:link rel="alternate"
+                 hreflang="en"
+                 href="https://northcrescentcleaning.com/snow-removal-moncton.html"/>
+    <xhtml:link rel="alternate"
+                 hreflang="x-default"
+                 href="https://northcrescentcleaning.com/snow-removal-moncton.html"/>
+</url>
 
 <!-- LEGAL (ENGLISH ONLY) -->
 
