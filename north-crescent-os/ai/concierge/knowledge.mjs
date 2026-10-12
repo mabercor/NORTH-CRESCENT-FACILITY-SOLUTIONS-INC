@@ -5,7 +5,30 @@ export const CONCIERGE_KNOWLEDGE = Object.freeze({
     // ============================================================
 
     companyInfo: Object.freeze({
+        // ============================================================
+        // 1.1. PRICE INQUIRY POLICY — ALL SERVICES
+        // ============================================================
 
+        priceInquiryPolicy: Object.freeze({
+
+            appliesTo:
+                "All North Crescent Facility Solutions services.",
+
+            trigger:
+                "Whenever a customer asks about prices, costs, rates, budgets, estimates, quotes, or how much a service costs.",
+
+            mandatoryResponse:
+                "Absolutely! 😊 We’ll help you get your quote as soon as possible. We just need a few details to personalize it.\n\n🏡 Tell us, [Customer Name], a little about your property. Please describe its size, features, and any important details we should know. 💙",
+
+            rules: Object.freeze([
+                "Always use the mandatory response when a customer asks about pricing.",
+                "Do not provide price figures, rates, or cost estimates in the initial pricing response.",
+                "Request the property details needed to prepare a personalized quote.",
+                "Use the customer's name when it is available.",
+                "Do not invent missing information or promise a specific delivery time."
+            ])
+
+        }),
         
 
        // ============================================================
@@ -387,8 +410,7 @@ officialWebsite: Object.freeze({
 faq: Object.freeze({
 
     cost:
-        "Residential cleaning costs depend on the size of the home, the type of cleaning required, the condition of the home, and the desired service frequency. North Crescent provides customized quotes based on the specific needs of each home.",
-
+    "When a customer asks about residential cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     serviceAreas:
         "North Crescent provides residential cleaning services throughout Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook, and surrounding communities across Southeast New Brunswick.",
 
@@ -472,9 +494,8 @@ officialPage:
     // FAQ
 faq: Object.freeze({
 
-    cost:
-        "Commercial cleaning costs depend on the size of your facility, cleaning frequency, service requirements, and operational complexity. We provide customized quotes based on your specific facility and needs, rather than a one-size-fits-all solution.",
-
+   cost:
+    "When a customer asks about commercial cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     frequency:
         "Cleaning frequency depends on the facility, daily traffic, type of business, and operational needs. Some businesses require daily service, while others may benefit from weekly, bi-weekly, or customized schedules.",
 
@@ -563,8 +584,7 @@ includes: Object.freeze([
 faq: Object.freeze({
 
     cost:
-        "Office cleaning costs depend on the size of the office, number of workstations, cleaning frequency, facility layout, and service requirements. North Crescent provides customized quotes based on the specific needs of each workplace.",
-
+    "When a customer asks about office cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     includedServices:
         "Office cleaning programs can include workstation cleaning, dusting, vacuuming, floor care, restroom sanitation, kitchen and breakroom cleaning, waste removal, high-touch surface cleaning, interior glass cleaning, and other services based on the office's specific requirements.",
 
@@ -668,8 +688,7 @@ faq: Object.freeze({
         "Deep cleaning can be helpful when your home needs a fresh start, after a busy period, before guests arrive, during seasonal changes, or when routine cleaning is no longer enough. It can also be used to reset a home before beginning recurring cleaning services.",
 
     cost:
-        "Deep cleaning pricing depends on factors such as the size and condition of the property, the areas requiring attention, and the level of detail needed. Each space is assessed individually so the service can be planned around the actual cleaning needs.",
-
+    "When a customer asks about deep cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     duration:
         "The time required depends on the size, condition, layout, and amount of detail involved. A property with significant buildup may require more time than one that has been regularly maintained.",
 
@@ -772,9 +791,8 @@ faq: Object.freeze({
     residentialProjects:
         "Absolutely. Post-construction and post-renovation cleaning is available for newly built homes, residential renovations, condominiums, apartments, and other residential properties.",
 
-    cost:
-        "Pricing depends on the size of the property, project scope, amount of construction dust and debris, condition of the space, and level of detail required. Customized, no-obligation estimates are provided based on the specific requirements of each project.",
-
+   cost:
+    "When a customer asks about post-construction cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     duration:
         "Completion time depends on the size, condition, and complexity of the property. Smaller residential projects may require a few hours, while larger commercial or multi-stage projects may require one or more days. A realistic timeframe is communicated before work begins.",
 
@@ -875,9 +893,8 @@ janitorial: Object.freeze({
     // FAQ
 faq: Object.freeze({
 
-    cost:
-        "Janitorial service costs depend on facility size, cleaning frequency, occupancy levels, service requirements, and operational complexity. North Crescent provides customized cleaning programs based on the specific needs of each facility.",
-
+   cost:
+    "When a customer asks about janitorial service prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
     frequency:
         "Cleaning frequency depends on foot traffic, facility usage, employee count, industry requirements, and the type of environment. Some facilities require daily service, while others may benefit from several visits per week or a customized schedule.",
 
@@ -1089,8 +1106,8 @@ faq: Object.freeze({
     customizedService:
         "Yes. The service can be adapted to the property's condition and the client's priorities. Specific areas requiring additional attention can be discussed when planning the service.",
 
-    pricing:
-        "Pricing depends on factors such as property size, condition, layout, and the level of cleaning required. A customized quote can be prepared based on the specific requirements of the property.",
+  pricing:
+    "When a customer asks about Airbnb cleaning prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote.",
 
     serviceAreas:
         "North Crescent Facility Solutions serves clients throughout Moncton, Dieppe, Riverview, Shediac, and surrounding communities across Southeast New Brunswick.",
@@ -1138,6 +1155,80 @@ includes: Object.freeze([
        ])
 
     })
+
+        // ============================================================
+// SNOW REMOVAL — SEASONAL SERVICES
+// ============================================================
+
+snowRemoval: Object.freeze({
+
+    // ADN DEL SERVICIO
+    ADN:
+        "Professional seasonal snow removal services in Moncton, New Brunswick, designed to provide reliable winter access, structured service coordination, and greater peace of mind throughout the winter season. North Crescent Facility Solutions focuses on responsibility, communication, and dependable operational support. More than snow removal — a better way to manage winter.",
+
+    // FUENTE OFICIAL
+    officialPage:
+        "https://northcrescentcleaning.com/snow-removal-moncton",
+
+   // FAQ
+faq: Object.freeze({
+
+    whatIsSnowRemoval:
+        "Enjoy greater peace of mind this winter with North Crescent Facility Solutions. Our seasonal Snow Removal service helps keep your property's designated access areas clear and accessible, with organized service coordination, reliable communication, and a plan tailored to your winter needs.",
+
+    serviceSeason:
+        "Our 2026–2027 winter service season runs from November 15, 2026, through April 15, 2027, subject to your selected plan and service agreement. Our goal is to provide dependable winter support throughout your contracted season, so you can focus on what matters while we help manage the snow.",
+
+    regularVisits:
+        "All seasonal plans include regular snow removal visits throughout the contracted service period, with no predetermined limit on regular visits. A regular visit is triggered when snowfall accumulation reaches 5 cm or more in the designated service area, subject to your selected plan and service agreement. Service is generally performed after the qualifying snowfall event has ended and, where reasonably practicable, after the municipal snowplow has passed on the street serving your property. A temporary pause in snowfall does not automatically mean the event has ended or trigger a separate visit. You do not need to request each qualifying regular visit individually. Exact arrival times depend on weather, route planning, property access, and safe operating conditions.",
+
+    extraordinaryVisits:
+        "Your seasonal service also includes five (5) Extraordinary Service Visits per contracted season. These additional visits are intended for situations when you need snow removal outside the regular service sequence, such as requesting an earlier visit while snowfall is ongoing or before the municipal snowplow has passed. Simply contact our team through the designated communication channel to submit your request. All requests are subject to availability, weather, site access, and safe operating conditions. Immediate attendance or a specific arrival time cannot be guaranteed. Once the five included visits have been used, any additional Extraordinary Service Visit is subject to the applicable contractual charge and your approval before service. These additional charges do not apply to regular seasonal visits.",
+
+    essentialPlan:
+        "The Essential plan provides dependable seasonal driveway snow clearing for qualifying snowfall events, standard dispatch, basic snow placement, and ice condition assessment. It is designed for customers looking for essential winter access support. Ice treatment is available separately when requested and agreed upon.",
+
+    standardPlan:
+        "The Standard plan includes everything in Essential, plus clearing of the main entrance, designated walkways, and front steps. You also receive priority dispatch, post-storm inspections, service communication and confirmation, seasonal service records, and preferential pricing for ice treatment. Ice treatment is not included in this plan.",
+
+    premiumPlan:
+        "The Premium plan includes everything in Standard, plus ice treatment for designated areas, enhanced service priority, improved winter communication, strategic snow placement, detailed seasonal service records, and priority customer support. It is designed for customers who want a more comprehensive level of winter service and additional peace of mind.",
+
+    iceTreatment:
+        "Ice management is an important part of winter property care. Ice treatment is included in the Premium plan for designated areas. For Essential and Standard, it is available separately when agreed upon. Because freezing rain, refreezing, and changing temperatures can create new hazards, no service can guarantee completely ice-free surfaces at all times.",
+
+    serviceAreas:
+        "We proudly provide seasonal Snow Removal services in Moncton, Dieppe, and Riverview, New Brunswick. Service in nearby communities may be available depending on location, route planning, and operational capacity. Tell us where your property is located, and our team can confirm service availability.",
+
+    arrivalTime:
+        "Our team coordinates service around snowfall conditions, municipal snowplow activity, route planning, and operational safety. We work to provide dependable service within the applicable service sequence; however, exact arrival times cannot be guaranteed. Weather conditions, access restrictions, and changing site conditions may affect scheduling.",
+
+    pricing:
+        "When a customer asks about snow removal prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote."
+
+}),
+
+    // INCLUDES
+    includes: Object.freeze([
+
+        "Seasonal snow removal service",
+        "Driveway snow clearing for qualifying service events",
+        "Regular service triggered by the agreed snowfall threshold",
+        "Basic snow placement according to the selected plan",
+        "Ice condition assessment",
+        "Main entrance and walkway clearing under the Standard and Premium plans",
+        "Front step clearing under the Standard and Premium plans",
+        "Priority dispatch according to the selected plan",
+        "Post-storm inspection under the Standard and Premium plans",
+        "Service communication and confirmation",
+        "Seasonal service records according to the selected plan",
+        "Ice treatment included in the Premium plan for designated areas",
+        "Enhanced winter communication under the Premium plan",
+        "Strategic snow placement under the Premium plan"
+
+    ])
+
+}),
 
 }),
 
