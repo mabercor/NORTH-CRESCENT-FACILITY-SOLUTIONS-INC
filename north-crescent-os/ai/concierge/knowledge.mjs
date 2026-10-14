@@ -1154,7 +1154,7 @@ includes: Object.freeze([
 
        ])
 
-    })
+    }),
 
         // ============================================================
 // SNOW REMOVAL — SEASONAL SERVICES
@@ -1173,58 +1173,62 @@ snowRemoval: Object.freeze({
    // FAQ
 faq: Object.freeze({
 
-    whatIsSnowRemoval:
-        "Enjoy greater peace of mind this winter with North Crescent Facility Solutions. Our seasonal Snow Removal service helps keep your property's designated access areas clear and accessible, with organized service coordination, reliable communication, and a plan tailored to your winter needs.",
-
+        whatIsSnowRemoval:
+        "North Crescent Facility Solutions Inc. provides professional seasonal Snow Removal services in Moncton, New Brunswick. Our service helps maintain accessible areas around your property through organized snow clearing, reliable communication, and responsible winter service coordination. We tailor our approach to the property's needs and the applicable service agreement, helping you enjoy greater peace of mind throughout the winter.",
+    
     serviceSeason:
         "Our 2026–2027 winter service season runs from November 15, 2026, through April 15, 2027, subject to your selected plan and service agreement. Our goal is to provide dependable winter support throughout your contracted season, so you can focus on what matters while we help manage the snow.",
 
-    regularVisits:
-        "All seasonal plans include regular snow removal visits throughout the contracted service period, with no predetermined limit on regular visits. A regular visit is triggered when snowfall accumulation reaches 5 cm or more in the designated service area, subject to your selected plan and service agreement. Service is generally performed after the qualifying snowfall event has ended and, where reasonably practicable, after the municipal snowplow has passed on the street serving your property. A temporary pause in snowfall does not automatically mean the event has ended or trigger a separate visit. You do not need to request each qualifying regular visit individually. Exact arrival times depend on weather, route planning, property access, and safe operating conditions.",
-
+       regularVisits:
+        "Regular Snow Removal visits are triggered when snowfall accumulation reaches 5 cm or more in the designated service area, subject to the service agreement. Regular visits continue throughout the contracted service period without a predetermined visit limit. Service generally takes place after the qualifying snowfall event has ended and, where reasonably practicable, after the municipal snowplow has passed. Scheduling depends on weather conditions, route planning, property access, and operational safety. Customers do not need to request each qualifying regular visit individually.",
+    
     extraordinaryVisits:
-        "Your seasonal service also includes five (5) Extraordinary Service Visits per contracted season. These additional visits are intended for situations when you need snow removal outside the regular service sequence, such as requesting an earlier visit while snowfall is ongoing or before the municipal snowplow has passed. Simply contact our team through the designated communication channel to submit your request. All requests are subject to availability, weather, site access, and safe operating conditions. Immediate attendance or a specific arrival time cannot be guaranteed. Once the five included visits have been used, any additional Extraordinary Service Visit is subject to the applicable contractual charge and your approval before service. These additional charges do not apply to regular seasonal visits.",
-
-    essentialPlan:
-        "The Essential plan provides dependable seasonal driveway snow clearing for qualifying snowfall events, standard dispatch, basic snow placement, and ice condition assessment. It is designed for customers looking for essential winter access support. Ice treatment is available separately when requested and agreed upon.",
-
-    standardPlan:
-        "The Standard plan includes everything in Essential, plus clearing of the main entrance, designated walkways, and front steps. You also receive priority dispatch, post-storm inspections, service communication and confirmation, seasonal service records, and preferential pricing for ice treatment. Ice treatment is not included in this plan.",
-
-    premiumPlan:
-        "The Premium plan includes everything in Standard, plus ice treatment for designated areas, enhanced service priority, improved winter communication, strategic snow placement, detailed seasonal service records, and priority customer support. It is designed for customers who want a more comprehensive level of winter service and additional peace of mind.",
-
-    iceTreatment:
-        "Ice management is an important part of winter property care. Ice treatment is included in the Premium plan for designated areas. For Essential and Standard, it is available separately when agreed upon. Because freezing rain, refreezing, and changing temperatures can create new hazards, no service can guarantee completely ice-free surfaces at all times.",
-
+        "Each seasonal plan includes five (5) Extraordinary Service Visits per contracted season, separate from regular visits triggered by snowfall accumulation of 5 cm or more. Additional extraordinary visits may incur charges requiring customer approval. Requests are subject to availability, weather conditions, site access, and operational safety. Immediate attendance is not guaranteed.",
+       serviceOverview:
+        "Our seasonal Snow Removal service helps keep your property's designated access areas clear and accessible throughout the winter. Service is coordinated according to snowfall conditions, operational safety, property access, and the applicable service agreement. Our team focuses on dependable service, clear communication, and responsible winter property care. Contact us to discuss your property's needs and determine the most suitable service arrangement.",
+    
+        iceTreatment:
+        "Ice conditions can create hazards throughout the winter. Our Snow Removal service focuses on helping maintain accessible designated areas. Ice treatment may be discussed separately according to the property's needs, service availability, and the applicable service agreement. Changing weather conditions can create new hazards, so completely ice-free surfaces cannot be guaranteed at all times.",
+    
     serviceAreas:
-        "We proudly provide seasonal Snow Removal services in Moncton, Dieppe, and Riverview, New Brunswick. Service in nearby communities may be available depending on location, route planning, and operational capacity. Tell us where your property is located, and our team can confirm service availability.",
+        "We proudly provide seasonal Snow Removal services in Moncton, New Brunswick. Service in nearby communities may be available depending on location, route planning, and operational capacity. Tell us where your property is located, and our team can confirm service availability.",
 
     arrivalTime:
         "Our team coordinates service around snowfall conditions, municipal snowplow activity, route planning, and operational safety. We work to provide dependable service within the applicable service sequence; however, exact arrival times cannot be guaranteed. Weather conditions, access restrictions, and changing site conditions may affect scheduling.",
 
+        snowPlacement:
+        "Removed snow is placed in reasonably suitable areas within the designated service area, considering available space, property features, and operational safety. Snow placement does not include hauling snow off-site unless expressly included in the approved Commercial Proposal or separately authorized.",
+
+    propertyAccess:
+        "The customer is responsible for providing reasonable access to designated service areas and notifying North Crescent of parked vehicles, locked gates, hidden obstacles, or known hazards that may affect service delivery.",
+        weatherConditions:
+        "Snow Removal and Ice Treatment services depend on weather conditions and operational safety. Severe storms, freezing rain, extreme temperatures, restricted access, and hazardous conditions may affect service timing or performance. Exact arrival times cannot be guaranteed.",
+
+    serviceCompletion:
+        "After a completed visit, additional snowfall, drifting snow, municipal snowplow operations, melting, or refreezing may create new snow or ice conditions. A completed visit does not automatically trigger another visit.",
+
+    additionalServices:
+        "Services outside the approved scope require a separate arrangement and are subject to operational availability. Any applicable additional charges must be communicated and approved by the customer before the additional work proceeds.",
+        extraordinaryVisits:
+        "Each seasonal plan includes five (5) Extraordinary Service Visits per contracted season. These visits are separate from regular visits triggered by snowfall accumulation of 5 cm or more. Requests are subject to availability, weather conditions, site access, and operational safety. Immediate attendance cannot be guaranteed. Once the five included visits have been used, additional extraordinary visits may involve charges that must be approved by the customer before service.",
+    
     pricing:
         "When a customer asks about snow removal prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote."
 
 }),
 
-    // INCLUDES
+       // INCLUDES
     includes: Object.freeze([
 
-        "Seasonal snow removal service",
-        "Driveway snow clearing for qualifying service events",
-        "Regular service triggered by the agreed snowfall threshold",
-        "Basic snow placement according to the selected plan",
-        "Ice condition assessment",
-        "Main entrance and walkway clearing under the Standard and Premium plans",
-        "Front step clearing under the Standard and Premium plans",
-        "Priority dispatch according to the selected plan",
-        "Post-storm inspection under the Standard and Premium plans",
-        "Service communication and confirmation",
-        "Seasonal service records according to the selected plan",
-        "Ice treatment included in the Premium plan for designated areas",
-        "Enhanced winter communication under the Premium plan",
-        "Strategic snow placement under the Premium plan"
+        "Seasonal snow removal service throughout the contracted service period",
+        "Snow clearing when snowfall reaches the applicable service threshold",
+        "Clearing of designated property access areas according to the service agreement",
+        "Snow placement based on property conditions and operational safety",
+        "Winter property care and ice condition assessment",
+        "Service coordination based on weather and site accessibility",
+        "Customer communication and service confirmation",
+        "Seasonal service records, where applicable",
+        "Additional winter services subject to availability and customer approval"
 
     ])
 
