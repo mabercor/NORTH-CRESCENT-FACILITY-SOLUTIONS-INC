@@ -1209,9 +1209,7 @@ faq: Object.freeze({
 
     additionalServices:
         "Services outside the approved scope require a separate arrangement and are subject to operational availability. Any applicable additional charges must be communicated and approved by the customer before the additional work proceeds.",
-        extraordinaryVisits:
-        "Each seasonal plan includes five (5) Extraordinary Service Visits per contracted season. These visits are separate from regular visits triggered by snowfall accumulation of 5 cm or more. Requests are subject to availability, weather conditions, site access, and operational safety. Immediate attendance cannot be guaranteed. Once the five included visits have been used, additional extraordinary visits may involve charges that must be approved by the customer before service.",
-    
+      
     pricing:
         "When a customer asks about snow removal prices, costs, rates, or quotes, always use the mandatory response defined in companyInfo.priceInquiryPolicy. Do not provide prices or estimates. Ask the customer to describe the property's size, features, and any important details needed to prepare a personalized quote."
 
