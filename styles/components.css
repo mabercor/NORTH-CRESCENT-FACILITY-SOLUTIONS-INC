@@ -87,8 +87,46 @@ header nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 26px;
     min-width: 0;
+}
+
+header nav > a,
+header nav .menu-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 0;
+    color: var(--nc-navy);
+    font-family: var(--nc-font);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header nav > a:not(.btn)::after,
+header nav .menu-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    left: 0;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--nc-teal);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--nc-transition);
+}
+
+header nav > a:not(.btn):hover::after,
+header nav .menu-link:hover::after,
+header nav > a.active::after,
+header nav .menu-link.active::after {
+    transform: scaleX(1);
 }
 
 header nav > a,
