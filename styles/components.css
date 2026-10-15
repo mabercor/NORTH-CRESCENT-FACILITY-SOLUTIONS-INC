@@ -491,11 +491,22 @@ header .hamburger {
    1.1 GLOBAL CONTAINER
 ========================================= */
 
+/* =========================================
+   GLOBAL CONTAINER — SPACING & ALIGNMENT
+========================================= */
+
 .container {
     width: 100%;
     max-width: var(--nc-container);
     margin-inline: auto;
-    padding-inline: 24px;
+    padding-inline: 32px;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+    .container {
+        padding-inline: 20px;
+    }
 }
 body {
     font-family: var(--nc-font);
@@ -683,8 +694,10 @@ a {
 .card .image-frame img {
     display: block;
     width: 100%;
-    height: 190px;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    object-position: center;
     transition: transform 350ms ease;
 }
 
@@ -800,9 +813,7 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .card .image-frame img {
-        height: 210px;
-    }
+  
 
     .btn {
         padding: 10px 16px;
