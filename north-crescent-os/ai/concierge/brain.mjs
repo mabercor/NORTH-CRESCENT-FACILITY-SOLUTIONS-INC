@@ -1357,7 +1357,7 @@ export function buildConversationUnderstanding(
         buildFoundation({
             conversationHistory,
             leadProfile:
-    resolvedLeadProfile
+   
         });
 
     const understanding =
@@ -5565,19 +5565,38 @@ const correctedLeadProfile =
 const currentMessageNormalized =
     normalizeText(currentCustomerMessage);
 
+const conversationTextNormalized =
+    normalizeText(
+        effectiveConversationHistory
+            .map(message =>
+                isObject(message)
+                    ? cleanValue(message.content)
+                    : ""
+            )
+            .join(" ")
+    );
+
 const requestsSnowRemoval =
     /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i
-        .test(currentMessageNormalized);
+        .test(currentMessageNormalized) ||
+    /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i
+        .test(conversationTextNormalized);
 
 const resolvedLeadProfile =
     requestsSnowRemoval
         ? normalizeLeadProfile({
             ...correctedLeadProfile,
             serviceType:
-                correctedLeadProfile.serviceType ||
-                "Snow Removal"
+                         "Snow Removal"
         })
         : correctedLeadProfile;
+   const foundation =
+    buildFoundation({
+        conversationHistory:
+            effectiveConversationHistory,
+        leadProfile:
+            resolvedLeadProfile
+    });
 
 
     /*
