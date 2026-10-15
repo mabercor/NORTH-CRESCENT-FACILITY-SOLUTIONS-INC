@@ -5564,22 +5564,29 @@ const correctedLeadProfile =
 const currentMessageNormalized =
     normalizeText(currentCustomerMessage);
 
-const conversationTextNormalized =
+const customerConversationTextNormalized =
     normalizeText(
         effectiveConversationHistory
+            .filter(message =>
+                isObject(message) &&
+                normalizeText(message.role) === "user"
+            )
             .map(message =>
-                isObject(message)
-                    ? cleanValue(message.content)
-                    : ""
+                cleanValue(message.content)
             )
             .join(" ")
     );
 
+const snowRemovalPattern =
+    /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i;
+
 const requestsSnowRemoval =
-    /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i
-        .test(currentMessageNormalized) ||
-    /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i
-        .test(conversationTextNormalized);
+    snowRemovalPattern.test(
+        currentMessageNormalized
+    ) ||
+    snowRemovalPattern.test(
+        customerConversationTextNormalized
+    );
 
 const resolvedLeadProfile =
     requestsSnowRemoval
