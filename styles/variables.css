@@ -1,0 +1,46 @@
+/* =========================================
+   NORTH CRESCENT
+   DESIGN SYSTEM — VARIABLES
+========================================= */
+
+:root {
+    /* BRAND */
+    --nc-navy: #0B2D48;
+    --nc-primary: #104C70;
+    --nc-teal: #08A99D;
+    --nc-teal-light: #35C8B9;
+
+    /* TEXT */
+    --nc-text: #102D49;
+    --nc-text-secondary: #526B86;
+    --nc-white: #FFFFFF;
+
+    /* BACKGROUNDS */
+    --nc-background: #F3F7FA;
+    --nc-surface: #FFFFFF;
+    --nc-footer: #08263E;
+
+    /* TYPOGRAPHY */
+    --nc-font: "Poppins", sans-serif;
+
+    --nc-heading-xl: clamp(2.4rem, 4vw, 3.5rem);
+    --nc-heading-lg: clamp(1.8rem, 3vw, 2.4rem);
+    --nc-heading-md: 1.25rem;
+    --nc-text-size: 0.95rem;
+    --nc-text-small: 0.8rem;
+
+    /* LAYOUT */
+    --nc-container: 1200px;
+    --nc-section-gap: 44px;
+    --nc-content-gap: 20px;
+
+    /* CARDS */
+    --nc-card-radius: 9px;
+    --nc-card-shadow: 0 5px 18px rgb(16 45 73 / 6%);
+
+    /* BUTTONS */
+    --nc-button-radius: 8px;
+
+    /* EFFECTS */
+    --nc-transition: 0.25s ease;
+}
