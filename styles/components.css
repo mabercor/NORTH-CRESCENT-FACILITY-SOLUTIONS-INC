@@ -1193,9 +1193,6 @@ a {
 }
 /* =========================================
    6. RELATED SERVICES
-========================================= */
-/* =========================================
-   6. RELATED SERVICES
    SIGNATURE PREMIUM NAVIGATION
 ========================================= */
 
@@ -1211,15 +1208,15 @@ a {
     position: relative;
     isolation: isolate;
 
-    display: grid;
-    grid-template-columns: 32px minmax(0, 1fr);
-    align-items: start;
-    column-gap: 12px;
-    row-gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
 
     min-width: 0;
-    min-height: 100px;
-    padding: 20px;
+    min-height: 170px;
+    padding: 22px 18px;
 
     overflow: hidden;
 
@@ -1236,6 +1233,7 @@ a {
         ) border-box;
 
     color: var(--nc-text);
+    text-align: center;
     text-decoration: none;
 
     box-shadow:
@@ -1256,7 +1254,7 @@ a {
     z-index: -1;
 
     background: radial-gradient(
-        ellipse at 0% 50%,
+        ellipse at 50% 0%,
         rgb(8 169 157 / 13%),
         transparent 68%
     );
@@ -1273,62 +1271,53 @@ a {
 .related-services-grid > a::after {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
 
-    width: 3px;
+    width: 100%;
+    height: 3px;
 
-    border-radius: 12px 0 0 12px;
+    border-radius: 12px 12px 0 0;
 
     background: linear-gradient(
-        180deg,
+        90deg,
+        var(--nc-primary),
         var(--nc-teal-light),
-        var(--nc-teal),
-        var(--nc-primary)
+        var(--nc-teal)
     );
 
     content: "";
-    transform: scaleY(0);
+    transform: scaleX(0);
     transform-origin: center;
 
-    transition: transform 350ms cubic-bezier(.2, .7, .2, 1);
+    transition: transform 350ms ease;
 }
 
-/* ICONS */
+/* ICON */
 
 .related-services-grid > a > :first-child {
-    position: relative;
-    grid-column: 1;
-    grid-row: 1 / span 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    min-width: 32px;
-    min-height: 32px;
+    flex: 0 0 auto;
+    margin: 0 0 2px;
 
     transition:
         transform 350ms cubic-bezier(.2, .7, .2, 1),
         filter 350ms ease;
 }
 
-/* TEXT HIERARCHY */
+/* SERVICE TITLE */
 
 .related-services-grid > a strong,
 .related-services-grid > a h3 {
-    grid-column: 2;
-    align-self: center;
-
+    display: block;
+    width: 100%;
     min-width: 0;
     margin: 0;
 
     color: var(--nc-navy);
     font-family: var(--nc-font);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.4;
+    text-align: center;
 
     overflow-wrap: break-word;
     word-break: normal;
@@ -1336,12 +1325,11 @@ a {
     transition: color 300ms ease;
 }
 
-/* DESCRIPTIONS */
+/* SERVICE DESCRIPTION */
 
 .related-services-grid > a span {
-    grid-column: 2;
-
     display: block;
+    width: 100%;
     min-width: 0;
     margin: 0;
 
@@ -1349,6 +1337,7 @@ a {
     font-family: var(--nc-font);
     font-size: 13px;
     line-height: 1.6;
+    text-align: center;
 
     overflow-wrap: break-word;
     word-break: normal;
@@ -1380,11 +1369,11 @@ a {
     }
 
     .related-services-grid > a:hover::after {
-        transform: scaleY(1);
+        transform: scaleX(1);
     }
 
     .related-services-grid > a:hover > :first-child {
-        transform: translateX(2px) scale(1.05);
+        transform: translateY(-2px) scale(1.06);
         filter: saturate(1.2);
     }
 
@@ -1419,15 +1408,14 @@ a {
     }
 
     .related-services-grid > a {
-        min-height: 76px;
-        padding: 16px;
-        column-gap: 12px;
-        row-gap: 6px;
+        min-height: 145px;
+        padding: 20px 16px;
+        gap: 8px;
     }
 
     .related-services-grid > a strong,
     .related-services-grid > a h3 {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .related-services-grid > a span {
@@ -1453,7 +1441,6 @@ a {
         transform: none !important;
     }
 }
-
 /* =========================================
    7. FAQ — SIGNATURE PREMIUM EXPERIENCE
 ========================================= */
