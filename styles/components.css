@@ -557,22 +557,33 @@ a {
 
 /* HERO — CENTERED ACTIONS AND BENEFITS */
 
+/* HERO — CENTERED CTA GROUP */
+
 .hero .btn-group {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-}
 
+    width: 100%;
+    margin-inline: auto;
+    text-align: center;
+}
 .hero .hero-benefits {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+
     margin: 12px auto 0;
+    padding-inline: 12px;
+
     color: #4A9B8C;
     font-size: 13px;
     font-weight: 600;
     line-height: 1.8;
     text-align: center;
-    max-width: 100%;
+    box-sizing: border-box;
 }
 /* =========================================
    3. BUTTONS — SIGNATURE PREMIUM
@@ -1201,16 +1212,18 @@ a {
     isolation: isolate;
 
     display: grid;
-    grid-template-columns: 28px minmax(0, 1fr);
+    grid-template-columns: 32px minmax(0, 1fr);
     align-items: center;
     column-gap: 12px;
-    row-gap: 5px;
+    row-gap: 8px;
 
     min-width: 0;
-    min-height: 88px;
-    padding: 18px;
+    min-height: 100px;
+    padding: 18px 20px;
 
     overflow: hidden;
+
+}
 
     border: 1px solid transparent;
     border-radius: 12px;
