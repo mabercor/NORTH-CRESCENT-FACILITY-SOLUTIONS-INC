@@ -2318,6 +2318,30 @@ function resolveFinalStage(
         normalizeText(
             lastAssistantMessage?.content || ""
         );
+   /*
+ * -----------------------------------------------------
+ * PREVENT REOPENING A CONFIRMED REQUEST
+ * -----------------------------------------------------
+ */
+
+const assistantAlreadyConfirmedProcessing =
+    assistantText.includes("processing your request") ||
+    assistantText.includes("preparing your quote") ||
+    assistantText.includes("preparing your personalized quote") ||
+    assistantText.includes("quote will be sent") ||
+    assistantText.includes("working on preparing your quote");
+
+const customerAcknowledgedProcessing =
+    /^(ok|okay|ok thanks|okay thanks|thanks|thank you|got it|perfect|great|sounds good|all right|alright|understood)[.! ]*$/.test(
+        normalizeText(message)
+    );
+
+if (
+    assistantAlreadyConfirmedProcessing &&
+    customerAcknowledgedProcessing
+) {
+    return "FINAL_SERVICE_CHECK";
+}
 
 
     const customerHasNoMoreDetails =
@@ -3841,15 +3865,8 @@ case "CONFIRM_EMAIL":
 
 
         case "REQUEST_PHONE":
-
-    return (
-        "Request the best phone number for customer communication and follow-up. " +
-        "If a phone number has already been provided, ask the customer to " +
-        "confirm that it is correct before continuing. Never assume a phone " +
-        "number is confirmed simply because it exists. After the customer " +
-        "confirms it, acknowledge the confirmation and continue toward the next " +
-        "commercial stage."
-    );
+return ( "Request the best phone number for customer communication and follow-up. " + "If a phone number has already been provided, ask the customer to " + "confirm that it is correct before continuing. Never assume a phone " + "number is confirmed simply because it exists. After the customer " + "confirms the phone number, acknowledge it briefly. Then invite the " + "customer to share any additional property characteristics that may " + "help North Crescent prepare a more accurate snow removal quotation, " + "such as driveway dimensions, parking spaces, sidewalks, front steps, " + "or other areas requiring snow removal. Ask only for details that " + "have not already been provided. If sufficient property information " + "is already available, continue to the next stage without repeating " + "questions." );
+          
 
 
        
