@@ -950,12 +950,14 @@ function isExplicitConfirmation(
     "es correcto",
     "está correcto",
     "esta correcto",
-    "todo está correcto",
-    "todo esta correcto",
-    "confirmado"
+    "all correct",
+    "all good"
 ];
-}
 
+    return validConfirmations.some(
+        confirmation => text === normalizeText(confirmation)
+    );
+}
 
 /* =========================================================
    PREVIOUS ASSISTANT CONFIRMATION REQUEST
@@ -982,7 +984,8 @@ function assistantRequestedConfirmation(
         "please confirm",
         "can you confirm",
         "confirm the details",
-        "confirm everything",
+        "confirm everything", 
+        "is all this information correct",
 
         "est-ce que tout est correct",
         "tout est-il correct",
@@ -1102,6 +1105,16 @@ function isQuoteRequest(
         "looking for a cleaning company",
         "can you clean",
         "can you provide cleaning",
+               "i need snow removal",
+        "i need snow removal service",
+        "i need seasonal snow removal",
+        "i need snow clearing",
+        "i need snow plowing",
+        "i need winter maintenance",
+        "looking for snow removal",
+        "looking for a snow removal service",
+        "can you remove snow",
+        "do you offer snow removal",
 
         "je veux une soumission",
         "j'ai besoin d'une soumission",
@@ -1343,7 +1356,8 @@ export function buildConversationUnderstanding(
     const foundation =
         buildFoundation({
             conversationHistory,
-            leadProfile
+            leadProfile:
+    resolvedLeadProfile
         });
 
     const understanding =
@@ -1587,13 +1601,14 @@ RESOLVE_SERVICE: Object.freeze({
         "If the service is already clear, do not repeat the same question or ask " +
         "the customer to confirm information they have already provided.",
 
-   preferredConfirmation:
-    "Perfect, [NAME]. To better understand your request and avoid asking you " +
-    "several questions separately, could you briefly describe your property " +
-    "and what you need? You can include, for example, how many bedrooms and " +
-    "bathrooms it has, the approximate size, how many levels it has, the type " +
-    "of flooring, the type of cleaning you are looking for, and any other " +
-    "details you consider important.",
+       preferredConfirmation:
+        "Perfect, [NAME]. To help us better understand your needs, " +
+        "please tell us a little about your property and the service " +
+        "you are looking for. For example, you can describe the type " +
+        "of property, its approximate size, the areas that need attention, " +
+        "and any specific concerns or details you would like us to know. " +
+        "There is no need to answer each point separately. Simply describe " +
+        "your property and what you need in your own words.",
 
     nextStage:
         "UNDERSTAND_PROPERTY"
@@ -2117,14 +2132,12 @@ function isServiceResolved(
 function isPropertyUnderstandingComplete(leadProfile = {}) {
     const profile = normalizeLeadProfile(leadProfile);
 
-    return Boolean(
+        return Boolean(
         profile.serviceAddress &&
         profile.city &&
         (
             profile.squareFootage ||
-            profile.bedrooms ||
-            profile.bathrooms ||
-            profile.propertyType
+            profile.operationalSummary
         )
     );
 }
@@ -3790,17 +3803,19 @@ function getCommercialPurpose(
             );
 
 
-       case "RELEVANT_DISCOVERY":
+               case "RELEVANT_DISCOVERY":
 
-    return (
-        "Guide the customer through a natural, open-ended discovery. " +
-        "First invite the customer to describe their space and what " +
-        "they would like the team to consider. Then allow one relevant " +
-        "follow-up about any specific details they want addressed during " +
-        "the cleaning. Do not turn discovery into a questionnaire. " +
-        "After relevant discovery is captured, direct the customer toward " +
-        "continuing with their personalized quote."
-    );
+            return (
+                "Review the customer's conversation and use all relevant " +
+                "property and service details already provided. Do not ask " +
+                "the customer to describe their property or repeat details " +
+                "already shared. If an important detail is still missing, " +
+                "ask only one specific, relevant follow-up question that " +
+                "materially helps prepare the personalized quote. If no " +
+                "important information is missing, acknowledge what the " +
+                "customer shared and continue toward email verification " +
+                "and the personalized quote process."
+            );
 
 case "CONFIRM_EMAIL":
 
@@ -3901,7 +3916,7 @@ case "CONFIRM_EMAIL":
         communication:
             {
                 question:
-                    "¿Está toda esta información correcta?"
+                   "Is all this information correct?"
             },
 
         commercial,
@@ -5153,8 +5168,8 @@ function evaluateCurrentConfirmation(
         return false;
     }
 
-    return Boolean(
-        /¿Está toda esta información correcta\?/i.test(
+       return Boolean(
+        /Is all this information correct\?/i.test(
             assistantText
         )
     );
@@ -5225,7 +5240,7 @@ function getFinalServiceCheckContext(
             name,
 
         question:
-            `Y antes de dejarlo por ahora, ${name}, ¿hay algo más en lo cual le pueda ayudar?`,
+    "Before I let you go for now, is there anything else I can help you with?",
 
         nextStage:
             "CLOSE"
@@ -5313,7 +5328,7 @@ case "PREPARE_FINAL_SUMMARY":
                     "Present the complete factual summary and ask for explicit confirmation.",
 
                 confirmationQuestion:
-                    "¿Está toda esta información correcta?"
+                    "Is all this information correct?"
             },
 
         commercial,
@@ -5547,13 +5562,22 @@ const correctedLeadProfile =
             leadProfile
         );
 
-const foundation =
-    buildFoundation({
-        conversationHistory:
-            effectiveConversationHistory,
-        leadProfile:
-            correctedLeadProfile
-    });
+const currentMessageNormalized =
+    normalizeText(currentCustomerMessage);
+
+const requestsSnowRemoval =
+    /\b(snow removal|snow removal service|seasonal snow removal|snow clearing|snow plowing|snow shoveling|winter maintenance|remove snow)\b/i
+        .test(currentMessageNormalized);
+
+const resolvedLeadProfile =
+    requestsSnowRemoval
+        ? normalizeLeadProfile({
+            ...correctedLeadProfile,
+            serviceType:
+                correctedLeadProfile.serviceType ||
+                "Snow Removal"
+        })
+        : correctedLeadProfile;
 
 
     /*
