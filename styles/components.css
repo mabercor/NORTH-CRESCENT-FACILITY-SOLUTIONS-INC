@@ -4,7 +4,432 @@
    Visual reference: Approved design
 ========================================= */
 
+/* =========================================
+   NORTH CRESCENT — HEADER & NAVIGATION
+========================================= */
 
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: var(--nc-white);
+    border-bottom: 1px solid rgb(16 45 73 / 8%);
+    box-shadow: 0 3px 16px rgb(16 45 73 / 5%);
+}
+
+header,
+header * {
+    box-sizing: border-box;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1440px;
+    min-height: 78px;
+    margin-inline: auto;
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+.logo-container > a {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo-container img {
+    display: block;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+.brand-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--nc-navy);
+    font-family: var(--nc-font);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.brand-title span {
+    color: var(--nc-text-secondary);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+    min-width: 0;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-width: 0;
+}
+
+header nav > a,
+header nav .menu-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0;
+    color: var(--nc-navy);
+    font-family: var(--nc-font);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header nav > a:not(.btn)::after,
+header nav .menu-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    background: var(--nc-teal);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--nc-transition);
+}
+
+header nav > a:not(.btn):hover::after,
+header nav .menu-link:hover::after,
+header nav > a.active::after,
+header nav .menu-link.active::after {
+    transform: scaleX(1);
+}
+
+header nav > a:hover,
+header nav .menu-link:hover,
+header nav > a.active,
+header nav .menu-link.active {
+    color: var(--nc-primary);
+}
+
+header .dropdown {
+    position: relative;
+    flex-shrink: 0;
+}
+
+header .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    z-index: 1010;
+    display: none;
+    flex-direction: column;
+    width: max-content;
+    min-width: 245px;
+    max-width: 320px;
+    padding: 10px;
+    border: 1px solid rgb(16 45 73 / 8%);
+    border-radius: 12px;
+    background: var(--nc-white);
+    box-shadow: 0 16px 38px rgb(16 45 73 / 14%);
+}
+
+header .dropdown:hover > .dropdown-menu,
+header .dropdown:focus-within > .dropdown-menu,
+header .dropdown.open > .dropdown-menu {
+    display: flex;
+}
+
+header .dropdown-menu a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 7px;
+    color: var(--nc-text);
+    font-family: var(--nc-font);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.45;
+    text-decoration: none;
+    white-space: normal;
+    transition:
+        background-color var(--nc-transition),
+        color var(--nc-transition);
+}
+
+header .dropdown-menu a:hover,
+header .dropdown-menu a:focus-visible {
+    background: rgb(8 169 157 / 10%);
+    color: var(--nc-primary);
+}
+
+header nav > a.btn.btn-primary {
+    justify-content: center;
+    min-height: 42px;
+    padding: 11px 18px;
+    border: 1px solid var(--nc-teal);
+    border-radius: var(--nc-button-radius);
+    background: var(--nc-teal);
+    color: var(--nc-white);
+    text-decoration: none;
+}
+
+header nav > a.btn.btn-primary:hover {
+    background: var(--nc-primary);
+    border-color: var(--nc-primary);
+    color: var(--nc-white);
+}
+
+header nav > a.btn.btn-primary::after {
+    display: none;
+}
+
+header .lang-switch {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+}
+
+header .lang-switch::before {
+    display: none;
+}
+
+header .lang-switch a {
+    flex: initial;
+    padding: 5px 0;
+    color: var(--nc-navy);
+    font-family: var(--nc-font);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+header .lang-switch a.active {
+    color: var(--nc-teal);
+}
+
+header .lang-switch a:hover {
+    color: var(--nc-teal);
+}
+
+header .hamburger {
+    display: none;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+    .header-inner {
+        gap: 16px;
+        padding-inline: 20px;
+    }
+
+    .brand-title {
+        font-size: 12px;
+    }
+
+    .brand-title span {
+        font-size: 8px;
+    }
+
+    .nav-wrapper {
+        gap: 16px;
+    }
+
+    header nav {
+        gap: 15px;
+    }
+
+    header nav > a,
+    header nav .menu-link {
+        font-size: 11px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    header {
+        position: sticky;
+    }
+
+    .header-inner {
+        min-height: 72px;
+        padding: 8px 16px;
+        gap: 12px;
+    }
+
+    .logo-container {
+        gap: 9px;
+        min-width: 0;
+    }
+
+    .logo-container img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brand-title {
+        font-size: 11px;
+        white-space: normal;
+    }
+
+    .brand-title span {
+        font-size: 7px;
+    }
+
+    .nav-wrapper {
+        gap: 12px;
+        margin-left: auto;
+    }
+
+    header .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 38px;
+        height: 38px;
+        padding: 5px;
+        cursor: pointer;
+        z-index: 1101;
+    }
+
+    header .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 3px 0;
+        border-radius: 3px;
+        background: var(--nc-navy);
+        transition:
+            transform var(--nc-transition),
+            opacity var(--nc-transition);
+    }
+
+    header .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    header .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    header .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    header nav {
+        position: fixed;
+        top: 72px;
+        right: 0;
+        bottom: 0;
+        z-index: 1100;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 5px;
+        width: min(86vw, 340px);
+        height: calc(100dvh - 72px);
+        padding: 22px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: var(--nc-white);
+        box-shadow: -12px 15px 30px rgb(16 45 73 / 12%);
+        visibility: hidden;
+        transform: translateX(100%);
+        transition:
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    header nav.active {
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    header nav > a,
+    header nav .menu-link {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 4px;
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    header nav > a:not(.btn)::after,
+    header nav .menu-link::after {
+        display: none;
+    }
+
+    header .dropdown {
+        width: 100%;
+    }
+
+    header .dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        padding: 5px 0 8px 12px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    header .dropdown.open > .dropdown-menu {
+        display: flex;
+    }
+
+    header .dropdown-menu a {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    header nav > a.btn.btn-primary {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    header .lang-switch {
+        gap: 6px;
+    }
+
+    header .lang-switch a {
+        font-size: 10px;
+    }
+}
 /* =========================================
    1. GLOBAL COMPONENT BEHAVIOR
 ========================================= */
