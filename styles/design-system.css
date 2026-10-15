@@ -1,0 +1,33 @@
+/* =========================================
+   NORTH CRESCENT FACILITY SOLUTIONS
+   DESIGN SYSTEM
+   Version: 1.0
+========================================= */
+
+/*
+   ARCHITECTURE
+
+   variables.css
+   Central visual variables.
+
+   components.css
+   Reusable visual components.
+
+   IMPORTANT
+   This system remains independent until
+   integration with the existing website.
+*/
+
+
+/* =========================================
+   1. DESIGN TOKENS
+========================================= */
+
+@import url("./variables.css");
+
+
+/* =========================================
+   2. VISUAL COMPONENTS
+========================================= */
+
+@import url("./components.css");
