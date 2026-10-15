@@ -913,39 +913,47 @@ function isExplicitConfirmation(
         return false;
     }
 
-    const validConfirmations = [
+   const validConfirmations = [
 
-        "yes",
-        "yes everything is correct",
-        "correct",
-        "that's right",
-        "looks good",
-        "confirmed",
+    // English
+    "yes",
+    "yes everything is correct",
+    "yes everything is right",
+    "everything is correct",
+    "everything looks correct",
+    "everything looks good",
+    "that's correct",
+    "that's right",
+    "that is correct",
+    "that is right",
+    "looks good",
+    "looks correct",
+    "correct",
+    "confirmed",
+    "i confirm",
+    "i confirm everything is correct",
+    "all correct",
+    "all good",
 
-        "oui",
-        "oui tout est correct",
-        "c'est exact",
-        "tout est correct",
+    // French
+    "oui",
+    "oui tout est correct",
+    "c'est exact",
+    "tout est correct",
 
-        "sí",
-        "si",
-        "sí todo está correcto",
-        "si todo esta correcto",
-        "correcto",
-        "es correcto",
-        "está correcto",
-        "esta correcto",
-        "todo está correcto",
-        "todo esta correcto",
-        "confirmado"
-    ];
-
-    return validConfirmations.some(
-        confirmation =>
-            normalizeText(
-                confirmation
-            ) === text
-    );
+    // Spanish
+    "sí",
+    "si",
+    "sí todo está correcto",
+    "si todo esta correcto",
+    "correcto",
+    "es correcto",
+    "está correcto",
+    "esta correcto",
+    "todo está correcto",
+    "todo esta correcto",
+    "confirmado"
+];
 }
 
 
@@ -2331,63 +2339,22 @@ const assistantAskedForFinalQuestions =
             )
         )
     );
-    /*
+        /*
      * -----------------------------------------------------
      * EXPLICIT CONFIRMATION
      * -----------------------------------------------------
      *
-     * The customer has confirmed the final summary.
+     * The customer explicitly confirms the final summary.
      */
-if (
-    hasEmail(
-        profile,
-        conversationHistory
-    ) &&
-    hasPhone(
-        profile
-    )
-) {
-
-    const finalStage =
-        resolveFinalStage({
-            currentMessage:
-                understanding.currentMessage,
-
-            conversationHistory
-        });
 
     if (
-        finalStage === "PROCESSING" ||
-        finalStage === "FINAL_SERVICE_CHECK" ||
-        finalStage === "CLOSE" ||
-        finalStage === "EXPLICIT_CONFIRMATION"
+        isCurrentConfirmation(
+            message,
+            history
+        )
     ) {
-
-        return finalStage;
+        return "PROCESSING";
     }
-
-    const hasFinalSummaryAlreadyBeenPresented =
-        conversationHistory.some(
-            message =>
-                isObject(message) &&
-                normalizeText(message.role) ===
-                    "assistant" &&
-                normalizeText(
-                    message.content
-                ).includes(
-                    "resumen"
-                )
-        );
-
-    if (
-        hasFinalSummaryAlreadyBeenPresented
-    ) {
-
-        return "EXPLICIT_CONFIRMATION";
-    }
-
-    return "FINAL_SUMMARY";
-}
     /*
      * -----------------------------------------------------
      * FINAL QUESTION CHECK
@@ -3359,9 +3326,9 @@ function getNewRequestAction(
 /**
  * Confirmation is valid only when:
  *
- * - current message is an explicit confirmation
- * - previous assistant message requested confirmation
- * - the current request is complete enough to process
+ * - The current message is an explicit confirmation.
+ * - The previous assistant message requested confirmation.
+ * - The request is complete enough to process.
  */
 function getConfirmationAction(
     {
@@ -3388,39 +3355,65 @@ function getConfirmationAction(
         return "";
     }
 
-    const lastAssistantMessage =
-        [...conversationHistory]
+    const history =
+        getMessages(
+            conversationHistory
+        );
+
+    const currentUserMessage =
+        [...history]
             .reverse()
             .find(
                 message =>
-                    message?.role === "assistant"
+                    isObject(message) &&
+                    normalizeText(message.role) ===
+                        "user"
             );
 
-    const assistantText =
-        cleanValue(
-            lastAssistantMessage?.content
-        );
-
     if (
-        !assistantText
+        !currentUserMessage ||
+        !isExplicitConfirmation(
+            currentUserMessage.content
+        )
     ) {
         return "";
     }
 
-      const requestedExplicitConfirmation =
-    /¿Está toda esta información correcta\?/i.test(
-        assistantText
-    );
+    const currentUserIndex =
+        history.indexOf(
+            currentUserMessage
+        );
 
-if (
-    !requestedExplicitConfirmation
-) {
-    return "";
-}
+    const previousAssistantMessage =
+        history
+            .slice(
+                0,
+                currentUserIndex
+            )
+            .reverse()
+            .find(
+                message =>
+                    isObject(message) &&
+                    normalizeText(message.role) ===
+                        "assistant"
+            );
+
+    const assistantText =
+        cleanValue(
+            previousAssistantMessage?.content
+        );
+
+    if (
+        !assistantText ||
+        !/Is all this information correct\?/i.test(
+            assistantText
+        )
+    ) {
+        return "";
+    }
 
     return "PROCESS_CONFIRMED_REQUEST";
 }
-
 
 /* =========================================================
    MAIN PROGRESSION DECISION
@@ -3520,119 +3513,8 @@ export function determineProgressionAction(
 
         return confirmationAction;
     }
-   /*
- * -----------------------------------------------------
- * 4.5. POST-CONFIRMATION PROGRESSION
- * -----------------------------------------------------
- *
- * If the customer already confirmed the request and
- * the Concierge has already communicated that the
- * request is being processed, do not restart the
- * final summary.
- */
-const history =
-    getMessages(
-        conversationHistory
-    );
 
-const currentUserIndex =
-    [...history]
-        .map(
-            (message, index) =>
-                ({
-                    message,
-                    index
-                })
-        )
-        .reverse()
-        .find(
-            entry =>
-                isObject(entry.message) &&
-                normalizeText(entry.message.role) ===
-                    "user"
-        )
-        ?.index ?? -1;
-
-const previousAssistantMessage =
-    currentUserIndex > 0
-        ? [...history]
-            .slice(
-                0,
-                currentUserIndex
-            )
-            .reverse()
-            .find(
-                message =>
-                    isObject(message) &&
-                    normalizeText(message.role) ===
-                        "assistant"
-            )
-        : null;
-
-const previousUserMessage =
-    currentUserIndex > 0
-        ? [...history]
-            .slice(
-                0,
-                currentUserIndex
-            )
-            .reverse()
-            .find(
-                message =>
-                    isObject(message) &&
-                    normalizeText(message.role) ===
-                        "user"
-            )
-        : null;
-
-const hasAlreadyProcessedConfirmedRequest =
-    Boolean(
-        previousUserMessage &&
-        previousAssistantMessage &&
-        isExplicitConfirmation(
-            previousUserMessage.content
-        )
-    );
-
-if (
-    hasAlreadyProcessedConfirmedRequest
-) {
-
-    return "FINAL_SERVICE_CHECK";
-}
-
-const hasProcessedConfirmationInConversation =
-    history.some(
-        (message, index) =>
-            isObject(message) &&
-            normalizeText(message.role) ===
-                "user" &&
-            isExplicitConfirmation(
-                message.content
-            ) &&
-            history
-                .slice(
-                    index + 1
-                )
-                .some(
-                    followingMessage =>
-                        isObject(
-                            followingMessage
-                        ) &&
-                        normalizeText(
-                            followingMessage.role
-                        ) ===
-                            "assistant"
-                )
-    );
-
-if (
-    hasProcessedConfirmationInConversation
-) {
-
-    return "FINAL_SERVICE_CHECK";
-}
-
+   
     /*
      * -----------------------------------------------------
      * 5. COMMERCIAL PROGRESSION
@@ -4003,8 +3885,8 @@ case "CONFIRM_EMAIL":
         "date, and relevant priorities or special details. Do not invent, assume, " +
         "or add information that the customer has not provided. The summary should " +
         "make the customer feel understood and confident that North Crescent has " +
-        "correctly understood what they need. End by asking: \"¿Está toda esta " +
-        "información correcta?\""
+        "correctly understood what they need. End by asking exactly: " +
+        "\"Is all this information correct?\""
     );
 
           case "REQUEST_EXPLICIT_CONFIRMATION":
@@ -4040,20 +3922,21 @@ case "CONFIRM_EMAIL":
     );
           
 
-
         case "PROCESS_CONFIRMED_REQUEST":
 
-    return (
-        "Thank the customer warmly for providing and confirming all the details. " +
-        "Acknowledge that their request has been fully understood and confirmed. " +
-        "Clearly communicate that the request is now moving forward and that the " +
-        "team is already working on preparing the quotation. The following message " +
-        "is mandatory and must be communicated exactly as written: " +
-        "\"A continuación, nuestro equipo ya está trabajando para enviarle su " +
-        "cotización en el transcurso de la siguiente hora.\" " +
-        "After communicating this, ask: \"Y antes de dejarlo por ahora, [NOMBRE], " +
-        "¿hay algo más en lo cual le pueda ayudar?\""
-    );
+            return (
+                "Thank the customer warmly for providing and confirming " +
+                "the details. Acknowledge that North Crescent has understood " +
+                "their request and that the request is moving forward. " +
+                "Communicate the following mandatory message exactly as written: " +
+                "\"Our team is already working on preparing your quote and " +
+                "will send it to you within the next hour.\" " +
+                "Then ask exactly: " +
+                "\"Before I let you go for now, is there anything else I can help you with?\" " +
+                "Use natural, professional Canadian English. " +
+                "Do not change the mandatory message or invent additional " +
+                "prices, availability, or service details."
+            );
 
         case "CLOSE":
 
@@ -5438,26 +5321,14 @@ case "PREPARE_FINAL_SUMMARY":
         nextAction:
             "REQUEST_EXPLICIT_CONFIRMATION"
     });
-          case "REQUEST_EXPLICIT_CONFIRMATION":
+                case "REQUEST_EXPLICIT_CONFIRMATION":
 
-    return Object.freeze({
-
-        action,
-
-        type:
-            "EXPLICIT_CONFIRMATION",
-
-        communication:
-            {
-                question:
-                    "¿Está toda esta información correcta?"
-            },
-
-        commercial,
-
-        nextAction:
-            "PROCESS_CONFIRMED_REQUEST"
-    });
+            return (
+                "Ask the customer to review the final summary " +
+                "and confirm whether all the information is correct. " +
+                "End by asking exactly: " +
+                "\"Is all this information correct?\""
+            );
 
 
         case "PROCESS_CONFIRMED_REQUEST":
