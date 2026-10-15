@@ -1353,13 +1353,12 @@ export function buildConversationUnderstanding(
     } = {}
 ) {
 
-    const foundation =
-        buildFoundation({
-            conversationHistory,
-            leadProfile:
+   const foundation =
+    buildFoundation({
+        conversationHistory,
+        leadProfile
+    });
    
-        });
-
     const understanding =
         understandCurrentMessage({
             currentMessage:
