@@ -654,7 +654,7 @@ a {
 
 
 /* =========================================
-   5. SERVICE CARDS
+   5. SERVICE CARDS — PREMIUM DESIGN
 ========================================= */
 
 .grid.grid-3 {
@@ -670,23 +670,73 @@ a {
     text-decoration: none;
 }
 
+/* Premium card */
 .card {
+    position: relative;
+    isolation: isolate;
     overflow: hidden;
-    border: 1px solid rgb(16 45 73 / 5%);
+    padding: 20px;
+
+    border: 1px solid rgb(16 45 73 / 8%);
     border-radius: var(--nc-card-radius);
-    background: var(--nc-surface);
-    box-shadow: var(--nc-card-shadow);
+
+    background: linear-gradient(
+        145deg,
+        #FFFFFF 0%,
+        #F8FBFD 100%
+    );
+
+    box-shadow:
+        0 2px 6px rgb(16 45 73 / 3%),
+        0 8px 24px rgb(16 45 73 / 5%);
+
     transition:
-        box-shadow var(--nc-transition),
-        transform var(--nc-transition);
+        transform 300ms ease,
+        box-shadow 300ms ease,
+        border-color 300ms ease;
 }
 
-.card:hover {
-    box-shadow: 0 10px 26px rgb(16 45 73 / 12%);
-    transform: translateY(-3px);
+/* Teal accent */
+.card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--nc-primary),
+        var(--nc-teal),
+        var(--nc-teal-light)
+    );
+
+    content: "";
+    opacity: 0;
+    transition: opacity 300ms ease;
 }
 
+/* Premium hover */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-6px);
+        border-color: rgb(8 169 157 / 30%);
+
+        box-shadow:
+            0 8px 20px rgb(16 45 73 / 7%),
+            0 20px 45px rgb(16 45 73 / 12%);
+    }
+
+    .card:hover::before {
+        opacity: 1;
+    }
+}
+
+/* Image frame */
 .card .image-frame {
+    margin: -20px -20px 20px;
     overflow: hidden;
     background: #E8EEF3;
 }
@@ -698,33 +748,80 @@ a {
     aspect-ratio: 4 / 3;
     object-fit: contain;
     object-position: center;
-    transition: transform 350ms ease;
+
+    transition:
+        transform 450ms ease,
+        filter 450ms ease;
 }
 
-.card:hover .image-frame img {
-    transform: scale(1.035);
+@media (hover: hover) and (pointer: fine) {
+    .card:hover .image-frame img {
+        transform: scale(1.025);
+        filter: saturate(1.04);
+    }
 }
 
+/* Card headings */
 .card h3 {
-    color: var(--nc-text);
+    color: var(--nc-navy);
     font-family: var(--nc-font);
     font-size: 1rem;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.4;
+
+    transition: color 250ms ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
+    .card:hover h3 {
+        color: var(--nc-primary);
+    }
+}
+
+/* Card descriptions */
 .card p {
     color: var(--nc-text-secondary);
     font-size: var(--nc-text-small);
-    line-height: 1.55;
+    line-height: 1.65;
 }
 
+/* Learn more */
 .card .service-link {
+    display: inline-block;
+    margin-top: 8px;
+
     color: var(--nc-primary);
     font-size: var(--nc-text-small);
     font-weight: 700;
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+    .grid.grid-3 > a > .card,
+    .grid.grid-3 > .card {
+        padding: 16px;
+    }
+
+    .card .image-frame {
+        margin: -16px -16px 16px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .card::before,
+    .card h3,
+    .card .image-frame img {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .card:hover,
+    .card:hover .image-frame img {
+        transform: none !important;
+    }
+}
 
 /* =========================================
    6. RELATED SERVICES
