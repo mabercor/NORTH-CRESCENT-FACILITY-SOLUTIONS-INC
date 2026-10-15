@@ -1669,10 +1669,9 @@ a {
 ============================================ */
 
 .float-container {
-    position: fixed;
-    left: 24px;
-    bottom: 30px;
-    z-index: 1200;
+  right: 28px;
+bottom: 100px;
+left: auto;
 
     display: flex;
     flex-direction: column;
@@ -1904,14 +1903,13 @@ a {
 
 @media (max-width: 600px) {
 
-    .float-container {
+     .float-container {
         left: 12px;
         bottom: 18px;
         gap: 12px;
         padding: 10px 9px;
         border-radius: 25px;
     }
-
     .float-container .float-btn {
         width: 49px;
         height: 49px;
