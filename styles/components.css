@@ -1212,13 +1212,15 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 6px;
 
+    width: 100%;
     min-width: 0;
-    min-height: 170px;
-    padding: 22px 18px;
+    min-height: 110px;
+    padding: 13px 14px;
 
     overflow: hidden;
+    box-sizing: border-box;
 
     border: 1px solid transparent;
     border-radius: 12px;
@@ -1314,9 +1316,9 @@ a {
 
     color: var(--nc-navy);
     font-family: var(--nc-font);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.35;
     text-align: center;
 
     overflow-wrap: break-word;
@@ -1335,8 +1337,8 @@ a {
 
     color: var(--nc-text-secondary);
     font-family: var(--nc-font);
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.5;
     text-align: center;
 
     overflow-wrap: break-word;
@@ -1347,7 +1349,7 @@ a {
 
 @media (hover: hover) and (pointer: fine) {
     .related-services-grid > a:hover {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
 
         background:
             linear-gradient(#FFFFFF, #FBFEFE) padding-box,
@@ -1373,7 +1375,7 @@ a {
     }
 
     .related-services-grid > a:hover > :first-child {
-        transform: translateY(-2px) scale(1.06);
+        transform: translateY(-2px) scale(1.05);
         filter: saturate(1.2);
     }
 
@@ -1408,18 +1410,20 @@ a {
     }
 
     .related-services-grid > a {
-        min-height: 145px;
-        padding: 20px 16px;
-        gap: 8px;
+        min-height: 105px;
+        padding: 14px 12px;
+        gap: 6px;
     }
 
     .related-services-grid > a strong,
     .related-services-grid > a h3 {
-        font-size: 15px;
+        font-size: 14px;
+        line-height: 1.4;
     }
 
     .related-services-grid > a span {
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.5;
     }
 }
 
