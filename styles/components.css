@@ -535,48 +535,16 @@ a {
     isolation: isolate;
     overflow: hidden;
     color: var(--nc-white);
+
     background:
         linear-gradient(
-            110deg,
-            rgb(8 38 62 / 96%) 0%,
-            rgb(11 45 72 / 88%) 55%,
-            rgb(11 45 72 / 72%) 100%
+            100deg,
+            rgb(8 38 62 / 92%) 0%,
+            rgb(11 45 72 / 82%) 55%,
+            rgb(11 45 72 / 68%) 100%
         ),
-        var(--nc-navy);
-}
-
-.hero h1 {
-    max-width: 850px;
-    margin-inline: auto;
-    color: var(--nc-white);
-    font-family: var(--nc-font);
-    font-size: var(--nc-heading-xl);
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
-}
-
-.hero h1 span {
-    color: var(--nc-teal-light);
-}
-
-.hero p {
-    line-height: 1.65;
-}
-
-.hero .badge {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 6px 13px;
-    border: 1px solid rgb(53 200 185 / 30%);
-    border-radius: 30px;
-    background: rgb(8 169 157 / 15%);
-    color: var(--nc-teal-light);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+        url("https://raw.githubusercontent.com/mabercor/NORTH-CRESCENT-FACILITY-SOLUTIONS-INC/main/images/services-og.webp")
+        center / cover no-repeat;
 }
 
 
