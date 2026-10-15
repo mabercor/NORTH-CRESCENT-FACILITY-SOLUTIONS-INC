@@ -555,7 +555,25 @@ a {
         center / cover no-repeat;
 }
 
+/* HERO — CENTERED ACTIONS AND BENEFITS */
 
+.hero .btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero .hero-benefits {
+    margin: 12px auto 0;
+    color: #4A9B8C;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 100%;
+}
 /* =========================================
    3. BUTTONS — SIGNATURE PREMIUM
 ========================================= */
