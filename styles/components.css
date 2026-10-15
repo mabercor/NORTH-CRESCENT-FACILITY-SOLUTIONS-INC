@@ -56,23 +56,29 @@ header * {
     border-radius: 0;
 }
 
+/* =========================================
+   BRAND IDENTITY — PREMIUM HEADER
+========================================= */
+
 .brand-title {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     color: var(--nc-navy);
     font-family: var(--nc-font);
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -0.35px;
     white-space: nowrap;
 }
 
 .brand-title span {
     color: var(--nc-text-secondary);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+    line-height: 1.4;
 }
 
 .nav-wrapper {
@@ -341,9 +347,11 @@ header .hamburger {
     }
 
     .logo-container {
-        gap: 9px;
-        min-width: 0;
-    }
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 16px;
+}
 
     .logo-container img {
         width: 48px;
@@ -1937,5 +1945,54 @@ a {
     .float-container .float-btn:hover,
     .float-container .float-btn:active {
         transform: none !important;
+    }
+}
+/* =========================================
+   RESPONSIVE BRAND IDENTITY
+========================================= */
+
+@media (min-width: 1101px) {
+    .brand-title {
+        font-size: 20px;
+    }
+
+    .brand-title span {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    .brand-title {
+        font-size: 15px;
+    }
+
+    .brand-title span {
+        font-size: 9px;
+        letter-spacing: 1.1px;
+    }
+
+    .logo-container {
+        gap: 10px;
+    }
+
+    .header-inner {
+        padding-inline: 20px;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 13px;
+        line-height: 1.2;
+    }
+
+    .brand-title span {
+        font-size: 8px;
+        letter-spacing: 0.8px;
+    }
+
+    .logo-container {
+        gap: 9px;
     }
 }
