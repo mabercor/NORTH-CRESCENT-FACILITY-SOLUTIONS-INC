@@ -572,7 +572,7 @@ a {
     justify-content: center;
     gap: 8px;
 
-    min-height: 44px;
+    min-height: 38px;
     padding: 11px 19px;
 
     border: 1px solid transparent;
@@ -779,7 +779,7 @@ a {
 
 @media (max-width: 600px) {
     .btn {
-        min-height: 40px;
+        min-height: 36px;
         padding: 10px 15px;
         font-size: 0.85rem;
     }
