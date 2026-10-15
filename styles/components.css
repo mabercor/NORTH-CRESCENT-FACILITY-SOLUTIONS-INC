@@ -487,7 +487,16 @@ header .hamburger {
 /* =========================================
    1. GLOBAL COMPONENT BEHAVIOR
 ========================================= */
+/* =========================================
+   1.1 GLOBAL CONTAINER
+========================================= */
 
+.container {
+    width: 100%;
+    max-width: var(--nc-container);
+    margin-inline: auto;
+    padding-inline: 24px;
+}
 body {
     font-family: var(--nc-font);
     color: var(--nc-text);
