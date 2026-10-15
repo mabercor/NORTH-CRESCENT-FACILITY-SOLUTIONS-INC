@@ -33,18 +33,29 @@ a {
 
 .hero {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
     color: var(--nc-white);
-    background-color: var(--nc-navy);
+    background:
+        linear-gradient(
+            110deg,
+            rgb(8 38 62 / 96%) 0%,
+            rgb(11 45 72 / 88%) 55%,
+            rgb(11 45 72 / 72%) 100%
+        ),
+        var(--nc-navy);
 }
 
 .hero h1 {
+    max-width: 850px;
+    margin-inline: auto;
     color: var(--nc-white);
     font-family: var(--nc-font);
     font-size: var(--nc-heading-xl);
     font-weight: 700;
-    line-height: 1.08;
+    line-height: 1.12;
     letter-spacing: -0.035em;
+    text-wrap: balance;
 }
 
 .hero h1 span {
@@ -59,13 +70,14 @@ a {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    padding: 5px 12px;
+    padding: 6px 13px;
+    border: 1px solid rgb(53 200 185 / 30%);
     border-radius: 30px;
-    background: var(--nc-teal);
-    color: var(--nc-white);
+    background: rgb(8 169 157 / 15%);
+    color: var(--nc-teal-light);
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
 }
 
 
@@ -96,7 +108,9 @@ a {
 
 .btn-primary {
     background: var(--nc-teal);
+    border-color: var(--nc-teal);
     color: var(--nc-white);
+    box-shadow: 0 5px 16px rgb(8 169 157 / 22%);
 }
 
 .btn-primary:hover {
@@ -106,8 +120,8 @@ a {
 }
 
 .btn-dark {
-    background: transparent;
-    border-color: var(--nc-white);
+    background: rgb(255 255 255 / 5%);
+    border-color: rgb(255 255 255 / 55%);
     color: var(--nc-white);
 }
 
