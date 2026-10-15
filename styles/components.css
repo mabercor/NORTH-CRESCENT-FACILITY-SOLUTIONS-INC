@@ -1,21 +1,15 @@
 /* =========================================
    NORTH CRESCENT
-   DESIGN SYSTEM — HEADER & HERO
+   DESIGN SYSTEM — COMPONENTS
+   Visual reference: Approved design
 ========================================= */
 
 
 /* =========================================
-   1. BASE
+   1. GLOBAL COMPONENT BEHAVIOR
 ========================================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 body {
-    margin: 0;
     font-family: var(--nc-font);
     color: var(--nc-text);
     background: var(--nc-background);
@@ -26,250 +20,72 @@ img {
 }
 
 a {
-    text-decoration: none;
-}
-
-.container {
-    width: min(1200px, calc(100% - 40px));
-    margin-inline: auto;
-}
-
-
-/* =========================================
-   2. HEADER
-========================================= */
-
-header {
-    position: relative;
-    z-index: 1000;
-    background: var(--nc-white);
-    border-bottom: 1px solid #E6EDF2;
-    box-shadow: 0 3px 12px rgb(11 45 72 / 5%);
-}
-
-header .header-inner {
-    min-height: 88px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-.logo-container img {
-    display: block;
-    width: 62px;
-    height: 62px;
-    object-fit: contain;
-}
-
-.brand-title {
-    color: var(--nc-navy);
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0.04em;
-}
-
-.brand-title span {
-    display: block;
-    color: var(--nc-teal);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-}
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-}
-
-#nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 23px;
-}
-
-#nav-menu > a,
-#nav-menu .menu-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 0;
-    color: var(--nc-text);
-    font-size: 13px;
-    font-weight: 500;
-    white-space: nowrap;
-    transition: color var(--nc-transition);
-}
-
-#nav-menu > a:hover,
-#nav-menu .menu-link:hover,
-#nav-menu .menu-link.active {
-    color: var(--nc-teal);
-}
-
-#nav-menu > .btn-primary {
-    padding: 11px 20px;
-    color: var(--nc-white);
-}
-
-.lang-switch {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.lang-switch a {
-    color: var(--nc-text-secondary);
-}
-
-.lang-switch a:hover {
-    color: var(--nc-teal);
+    transition:
+        color var(--nc-transition),
+        background-color var(--nc-transition),
+        border-color var(--nc-transition);
 }
 
 
 /* =========================================
-   3. DROPDOWN
-========================================= */
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    z-index: 1100;
-    display: none;
-    min-width: 230px;
-    padding: 8px;
-    border: 1px solid #E6EDF2;
-    border-radius: 10px;
-    background: var(--nc-white);
-    box-shadow: 0 12px 30px rgb(11 45 72 / 12%);
-}
-
-.dropdown:hover .dropdown-menu,
-.dropdown.open .dropdown-menu,
-.dropdown.active .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 12px;
-    border-radius: 6px;
-    color: var(--nc-text);
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-.dropdown-menu a:hover {
-    background: var(--nc-background);
-    color: var(--nc-teal);
-}
-
-.hamburger {
-    display: none;
-}
-
-
-/* =========================================
-   4. HERO
+   2. HERO
 ========================================= */
 
 .hero {
     position: relative;
-    isolation: isolate;
     overflow: hidden;
-    padding: 88px 0 82px;
-    background:
-        linear-gradient(
-            110deg,
-            rgb(8 38 62 / 97%) 0%,
-            rgb(11 45 72 / 91%) 58%,
-            rgb(16 76 112 / 78%) 100%
-        ),
-        var(--nc-navy);
     color: var(--nc-white);
-}
-
-.hero .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
+    background-color: var(--nc-navy);
 }
 
 .hero h1 {
-    max-width: 850px;
-    margin: 22px 0;
     color: var(--nc-white);
+    font-family: var(--nc-font);
     font-size: var(--nc-heading-xl);
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.08;
     letter-spacing: -0.035em;
 }
 
-.hero .hero-sub {
-    max-width: 680px;
-    margin: 0;
-    color: rgb(255 255 255 / 85%);
-    font-size: 16px;
-    line-height: 1.8;
+.hero h1 span {
+    color: var(--nc-teal-light);
+}
+
+.hero p {
+    line-height: 1.65;
 }
 
 .hero .badge {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    margin: 0 8px 8px 0;
-    padding: 7px 13px;
-    border: 1px solid rgb(53 200 185 / 35%);
+    padding: 5px 12px;
     border-radius: 30px;
-    background: rgb(8 169 157 / 12%);
-    color: var(--nc-teal-light);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-}
-
-.hero .divider {
-    width: 58px;
-    height: 4px;
-    margin: 24px 0;
-    border-radius: 4px;
     background: var(--nc-teal);
+    color: var(--nc-white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
 }
 
-.hero .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-}
+
+/* =========================================
+   3. BUTTONS
+========================================= */
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    padding: 12px 22px;
+    gap: 8px;
+    min-height: 42px;
+    padding: 11px 22px;
     border: 1px solid transparent;
     border-radius: var(--nc-button-radius);
     font-family: var(--nc-font);
-    font-size: 13px;
+    font-size: 0.88rem;
     font-weight: 600;
-    line-height: 1.4;
+    text-decoration: none;
     cursor: pointer;
     transition:
         background-color var(--nc-transition),
@@ -284,203 +100,210 @@ header .header-inner {
 }
 
 .btn-primary:hover {
-    background: var(--nc-teal-light);
-    color: var(--nc-navy);
-    transform: translateY(-2px);
+    background: var(--nc-primary);
+    color: var(--nc-white);
+    transform: translateY(-1px);
 }
 
-.hero .btn-dark {
-    border-color: rgb(255 255 255 / 45%);
+.btn-dark {
     background: transparent;
+    border-color: var(--nc-white);
     color: var(--nc-white);
 }
 
-.hero .btn-dark:hover {
-    border-color: var(--nc-white);
+.btn-dark:hover {
     background: var(--nc-white);
     color: var(--nc-navy);
 }
 
-.hero p:last-child {
-    color: var(--nc-teal-light);
-    font-size: 12px;
-    line-height: 1.8;
+
+/* =========================================
+   4. SECTION HEADINGS
+========================================= */
+
+.section-title,
+.section-box > h2 {
+    color: var(--nc-text);
+    font-family: var(--nc-font);
+    font-size: var(--nc-heading-lg);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.divider {
+    width: 52px;
+    height: 3px;
+    margin: 16px auto;
+    border-radius: 3px;
+    background: var(--nc-teal);
 }
 
 
 /* =========================================
-   5. RESPONSIVE
+   5. SERVICE CARDS
 ========================================= */
 
-@media (max-width: 1050px) {
+.grid.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--nc-content-gap);
+}
 
-    header .header-inner {
-        gap: 16px;
+.grid.grid-3 > a,
+.grid.grid-3 > .card {
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.card {
+    overflow: hidden;
+    border: 1px solid rgb(16 45 73 / 5%);
+    border-radius: var(--nc-card-radius);
+    background: var(--nc-surface);
+    box-shadow: var(--nc-card-shadow);
+    transition:
+        box-shadow var(--nc-transition),
+        transform var(--nc-transition);
+}
+
+.card:hover {
+    box-shadow: 0 10px 26px rgb(16 45 73 / 12%);
+    transform: translateY(-3px);
+}
+
+.card .image-frame {
+    overflow: hidden;
+    background: #E8EEF3;
+}
+
+.card .image-frame img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    transition: transform 350ms ease;
+}
+
+.card:hover .image-frame img {
+    transform: scale(1.035);
+}
+
+.card h3 {
+    color: var(--nc-text);
+    font-family: var(--nc-font);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.card p {
+    color: var(--nc-text-secondary);
+    font-size: var(--nc-text-small);
+    line-height: 1.55;
+}
+
+.card .service-link {
+    color: var(--nc-primary);
+    font-size: var(--nc-text-small);
+    font-weight: 700;
+}
+
+
+/* =========================================
+   6. RELATED SERVICES
+========================================= */
+
+.related-services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.related-services-grid > a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid rgb(16 45 73 / 5%);
+    border-radius: var(--nc-card-radius);
+    background: var(--nc-surface);
+    color: var(--nc-text);
+    text-decoration: none;
+    box-shadow: var(--nc-card-shadow);
+    transition:
+        transform var(--nc-transition),
+        box-shadow var(--nc-transition);
+}
+
+.related-services-grid > a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgb(16 45 73 / 10%);
+}
+
+
+/* =========================================
+   7. FAQ
+========================================= */
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 20px;
+}
+
+.faq-card {
+    padding: 18px;
+    border: 1px solid #DCE5ED;
+    border-radius: var(--nc-card-radius);
+    background: var(--nc-surface);
+}
+
+.faq-card h3 {
+    color: var(--nc-text);
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.faq-card p {
+    color: var(--nc-text-secondary);
+    font-size: var(--nc-text-small);
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   8. RESPONSIVE COMPONENTS
+========================================= */
+
+@media (max-width: 900px) {
+
+    .grid.grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    #nav-menu {
-        gap: 14px;
-    }
-
-    .nav-wrapper {
-        gap: 14px;
-    }
-
-    .brand-title {
-        font-size: 11px;
-    }
-
-    .logo-container img {
-        width: 52px;
-        height: 52px;
+    .related-services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
-    header .header-inner {
-        min-height: 76px;
+    .grid.grid-3,
+    .related-services-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
     }
 
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 42px;
-        height: 42px;
-        padding: 8px;
-        border: 1px solid #E6EDF2;
-        border-radius: 8px;
-        cursor: pointer;
+    .card .image-frame img {
+        height: 210px;
     }
 
-    .hamburger span {
-        display: block;
-        width: 100%;
-        height: 2px;
-        border-radius: 2px;
-        background: var(--nc-navy);
-    }
-
-    .nav-wrapper {
-        gap: 12px;
-    }
-
-    #nav-menu {
-        position: fixed;
-        top: 76px;
-        right: 0;
-        bottom: 0;
-        z-index: 1200;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        width: min(320px, 86vw);
-        padding: 24px;
-        overflow-y: auto;
-        background: var(--nc-white);
-        box-shadow: -10px 0 30px rgb(11 45 72 / 10%);
-        transform: translateX(105%);
-        visibility: hidden;
-        transition:
-            transform var(--nc-transition),
-            visibility var(--nc-transition);
-    }
-
-    #nav-menu.active {
-        transform: translateX(0);
-        visibility: visible;
-    }
-
-    #nav-menu > a,
-    #nav-menu .menu-link {
-        width: 100%;
-        padding: 12px;
-    }
-
-    #nav-menu > .btn-primary {
-        justify-content: center;
-    }
-
-    .dropdown-menu {
-        position: static;
-        display: none;
-        width: 100%;
-        min-width: 0;
-        padding: 5px;
-        border: 0;
-        box-shadow: none;
-    }
-
-    .dropdown:hover .dropdown-menu {
-        display: none;
-    }
-
-    .dropdown.open .dropdown-menu,
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-
-    .hero {
-        padding: 64px 0;
-    }
-
-    .hero h1 {
-        font-size: clamp(2rem, 8vw, 2.8rem);
-    }
-
-    .hero .hero-sub {
-        font-size: 14px;
-    }
-
-}
-
-@media (max-width: 480px) {
-
-    .container {
-        width: calc(100% - 32px);
-    }
-
-    .brand-title {
-        font-size: 10px;
-    }
-
-    .brand-title span {
-        font-size: 9px;
-    }
-
-    .logo-container {
-        gap: 8px;
-    }
-
-    .logo-container img {
-        width: 44px;
-        height: 44px;
-    }
-
-    .lang-switch {
-        gap: 5px;
-        font-size: 11px;
-    }
-
-    .hero {
-        padding: 52px 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero .btn-group {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .hero .btn-group .btn {
-        width: 100%;
+    .btn {
+        padding: 10px 16px;
     }
 
 }
