@@ -78,17 +78,19 @@ header * {
 .nav-wrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 24px;
+    justify-content: space-between;
+    flex: 1;
     min-width: 0;
+    gap: 28px;
 }
 
 header nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 26px;
+    justify-content: space-evenly;
+    flex: 1;
     min-width: 0;
+    gap: 24px;
 }
 
 header nav > a,
@@ -224,20 +226,34 @@ header .dropdown-menu a:focus-visible {
 }
 
 header nav > a.btn.btn-primary {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    min-height: 42px;
-    padding: 11px 18px;
+    min-height: 46px;
+    padding: 12px 24px;
     border: 1px solid var(--nc-teal);
-    border-radius: var(--nc-button-radius);
+    border-radius: 8px;
     background: var(--nc-teal);
     color: var(--nc-white);
+    font-family: var(--nc-font);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
     text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgb(8 169 157 / 20%);
+    transition:
+        background-color var(--nc-transition),
+        box-shadow var(--nc-transition),
+        transform var(--nc-transition);
 }
 
 header nav > a.btn.btn-primary:hover {
     background: var(--nc-primary);
     border-color: var(--nc-primary);
     color: var(--nc-white);
+    box-shadow: 0 6px 16px rgb(16 76 112 / 24%);
+    transform: translateY(-2px);
 }
 
 header nav > a.btn.btn-primary::after {
