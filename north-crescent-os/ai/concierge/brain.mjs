@@ -934,6 +934,12 @@ function isExplicitConfirmation(
     "i confirm everything is correct",
     "all correct",
     "all good",
+          "yes is correct",
+    "yes all is correct",
+    "all is correct",
+    "yes all correct",
+    "everything is right",
+    "yes everything is right",
 
     // French
     "oui",
