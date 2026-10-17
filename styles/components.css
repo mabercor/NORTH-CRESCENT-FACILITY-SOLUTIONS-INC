@@ -110,109 +110,85 @@ header * {
 }
 
 
-/* =========================================
-   BRAND TYPOGRAPHY — PREMIUM LIGHT EFFECT
-========================================= */
+/* =====================================================
+   BRAND TITLE — PREMIUM SHINE EFFECT
+   NORTH CRESCENT FACILITY SOLUTIONS
+===================================================== */
 
-.logo-container .brand-title {
-    display: inline-block;
+.brand-title {
     position: relative;
-
-    color: #0B2D48;
-    -webkit-text-fill-color: #0B2D48;
+    display: inline-block;
 
     font-family: var(--nc-font);
     font-size: 20px;
     font-weight: 800;
     line-height: 1.2;
-    letter-spacing: -0.5px;
+    letter-spacing: 1px;
 
-    /* Azul visible con reflejo integrado */
+    /* PREMIUM SHINE */
     background: linear-gradient(
         110deg,
-        #0B2D48 0%,
-        #174C70 32%,
-        #35C8B9 44%,
-        #FFFFFF 49%,
-        #B8FFF7 52%,
-        #174C70 62%,
-        #0B2D48 100%
+        #1E3A5F 0%,
+        #1E3A5F 40%,
+        #4A9B8C 50%,
+        #1E3A5F 60%,
+        #1E3A5F 100%
     );
 
     background-size: 250% 100%;
-    background-position: 100% 0;
+    background-position: 150% center;
 
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-    filter: drop-shadow(0 1px 1px rgb(11 45 72 / 15%));
-
-    transition: filter 350ms ease;
+    animation: brandShine 5s linear infinite;
 }
 
-/* SUBTITLE */
+/* FACILITY SOLUTIONS — ALWAYS GREEN */
 
-.logo-container .brand-title span {
+.brand-title span {
     display: block;
+
     margin-top: 4px;
 
-    color: #4A6988;
-    -webkit-text-fill-color: #4A6988;
-
     font-family: var(--nc-font);
-    font-size: 11px;
+    font-size: 0.75em;
     font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 1.6px;
+    letter-spacing: 2px;
 
-    transition:
-        color 350ms ease,
-        letter-spacing 350ms ease;
+    color: #08A99D;
+    -webkit-text-fill-color: #08A99D;
+
+    animation: none;
 }
 
-/* REFLECTION ON HOVER */
+/* SHINE ANIMATION */
 
-@media (hover: hover) and (pointer: fine) {
-    .logo-container:hover .brand-title {
-        animation: ncBrandReflection 1.2s ease-in-out forwards;
-
-        filter: drop-shadow(
-            0 2px 3px rgb(11 45 72 / 20%)
-        );
+@keyframes brandShine {
+    0% {
+        background-position: 150% center;
     }
 
-    .logo-container:hover .brand-title span {
-        color: #078F87;
-        -webkit-text-fill-color: #078F87;
-        letter-spacing: 1.9px;
-    }
-}
-
-/* LIGHT SWEEP */
-
-@keyframes ncBrandReflection {
-    from {
-        background-position: 100% 0;
-    }
-
-    to {
-        background-position: 0 0;
+    100% {
+        background-position: -150% center;
     }
 }
 
 /* ACCESSIBILITY */
 
 @media (prefers-reduced-motion: reduce) {
-    .logo-container:hover .brand-title {
+    .brand-title {
         animation: none;
+        background-position: center;
     }
 
-    .logo-container .brand-title,
-    .logo-container .brand-title span {
-        transition: none;
+    .brand-title span {
+        color: #08A99D;
+        -webkit-text-fill-color: #08A99D;
     }
 }
-
 /* ACCESSIBILITY */
 
 @media (prefers-reduced-motion: reduce) {
