@@ -492,12 +492,7 @@ header .hamburger {
         font-size: 10px;
     }
 }
-/* =========================================
-   1. GLOBAL COMPONENT BEHAVIOR
-========================================= */
-/* =========================================
-   1.1 GLOBAL CONTAINER
-========================================= */
+
 
 /* =========================================
    GLOBAL CONTAINER — SPACING & ALIGNMENT
@@ -551,7 +546,7 @@ a {
             rgb(11 45 72 / 82%) 55%,
             rgb(11 45 72 / 68%) 100%
         ),
-        url("https://raw.githubusercontent.com/mabercor/NORTH-CRESCENT-FACILITY-SOLUTIONS-INC/main/images/service-cleaning.webp")
+        url("https://raw.githubusercontent.com/mabercor/NORTH-CRESCENT-FACILITY-SOLUTIONS-INC/main/images/service-cleanin-moncton-nb.WEBP")
         center / cover no-repeat;
 }
 
