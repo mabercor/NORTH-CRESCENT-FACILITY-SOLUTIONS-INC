@@ -941,7 +941,7 @@
 
   <small>Residential Winter Maintenance</small>
 
-</a>
+<a href="/services.html" class="btn btn-primary">
 
         <a href="/services.html">
 
@@ -1424,6 +1424,175 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("menu-open");
   }
 });
+ <!-- HERO CAROUSEL SCRIPT -->
+<script>
+(() => {
+    const carousel = document.getElementById("hero-carousel");
+
+    if (!carousel || carousel.dataset.initialized === "true") {
+        return;
+    }
+
+    carousel.dataset.initialized = "true";
+
+    const slides = Array.from(
+        carousel.querySelectorAll(".hero-slide")
+    );
+
+    const dots = Array.from(
+        carousel.querySelectorAll(".hero-carousel-dot")
+    );
+
+    const previousButton = carousel.querySelector(
+        ".hero-carousel-prev"
+    );
+
+    const nextButton = carousel.querySelector(
+        ".hero-carousel-next"
+    );
+
+    if (slides.length < 2 || dots.length !== slides.length) {
+        return;
+    }
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    let currentIndex = slides.findIndex(
+        slide => slide.classList.contains("is-active")
+    );
+
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    }
+
+    let timer = null;
+    let touchStartX = 0;
+
+    function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            const active = i === currentIndex;
+
+            slide.classList.toggle("is-active", active);
+
+            if (active) {
+                slide.setAttribute("aria-current", "true");
+            } else {
+                slide.removeAttribute("aria-current");
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            const active = i === currentIndex;
+
+            dot.classList.toggle("is-active", active);
+
+            if (active) {
+                dot.setAttribute("aria-current", "true");
+            } else {
+                dot.removeAttribute("aria-current");
+            }
+        });
+    }
+
+    function stopAutoplay() {
+        if (timer !== null) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+
+        if (
+            reducedMotion.matches ||
+            document.hidden ||
+            carousel.matches(":hover") ||
+            carousel.contains(document.activeElement)
+        ) {
+            return;
+        }
+
+        timer = window.setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    previousButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+        restartAutoplay();
+    });
+
+    nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+        restartAutoplay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            restartAutoplay();
+        });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+    carousel.addEventListener("focusin", stopAutoplay);
+
+    carousel.addEventListener("focusout", event => {
+        if (!carousel.contains(event.relatedTarget)) {
+            startAutoplay();
+        }
+    });
+
+    carousel.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", event => {
+        const touchEndX = event.changedTouches[0].clientX;
+        const difference = touchEndX - touchStartX;
+
+        if (Math.abs(difference) < 50) {
+            return;
+        }
+
+        showSlide(
+            difference < 0
+                ? currentIndex + 1
+                : currentIndex - 1
+        );
+
+        restartAutoplay();
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    if (typeof reducedMotion.addEventListener === "function") {
+        reducedMotion.addEventListener("change", restartAutoplay);
+    }
+
+    showSlide(currentIndex);
+    startAutoplay();
+})();
+</script>
+<!-- END HERO CAROUSEL SCRIPT -->
 </script>
 <script src="/concierge/concierge-widget.js" defer></script>
  
