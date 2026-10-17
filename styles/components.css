@@ -1184,18 +1184,29 @@ a {
 
 /* PREMIUM HOVER */
 
+/* PREMIUM CARD INTERACTION */
+
 @media (hover: hover) and (pointer: fine) {
 
     .services-overview-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-4px);
 
-        border-color: rgb(8 169 157 / 34%);
+        border-color: rgb(8 169 157 / 38%);
 
         box-shadow:
-            0 5px 12px rgb(11 45 72 / 5%),
+            0 8px 18px rgb(11 45 72 / 5%),
             0 18px 38px rgb(11 45 72 / 9%),
-            0 28px 55px rgb(8 169 157 / 7%);
+            0 0 24px rgb(8 169 157 / 7%);
     }
+
+    .services-overview-card:hover .services-overview-icon {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 18px rgb(8 169 157 / 16%),
+            inset 0 1px 0 #FFFFFF;
+    }
+}
 
     .services-overview-card:hover::before {
         opacity: 1;
@@ -1269,32 +1280,43 @@ a {
 
 /* SERVICE TITLES */
 
+/* PREMIUM SERVICE TITLES */
+
 .services-overview-card h3 {
-    margin: 0 0 13px;
+    margin: 0 0 16px;
 
     color: #0B2D48;
 
-    font-family: var(--nc-font);
-    font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
     font-weight: 700;
 
     line-height: 1.4;
     letter-spacing: -0.025em;
 
     text-wrap: balance;
+
+    -webkit-font-smoothing: antialiased;
 }
 
-/* SERVICE DESCRIPTIONS */
+
+/* SERVICE DESCRIPTION — HIGH LEGIBILITY */
 
 .services-overview-description {
-    margin: 0 0 22px;
+    margin: 0 0 24px;
 
-    color: #526B86;
+    color: #29445E;
 
-    font-size: 0.94rem;
-    line-height: 1.75;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.96rem;
+    font-weight: 400;
 
-    overflow-wrap: anywhere;
+    line-height: 1.8;
+    letter-spacing: 0;
+
+    opacity: 1;
+
+    text-wrap: pretty;
 }
 
 /* SERVICE LIST */
@@ -1330,12 +1352,12 @@ a {
     overflow-wrap: anywhere;
 }
 
-/* TEAL BULLET */
+/* SIGNATURE TEAL SERVICE MARKERS */
 
 .services-list li::before {
     position: absolute;
 
-    top: 0.65em;
+    top: 0.68em;
     left: 1px;
 
     width: 6px;
@@ -1346,7 +1368,7 @@ a {
     background: #08A99D;
 
     box-shadow:
-        0 0 0 3px rgb(8 169 157 / 9%);
+        0 0 0 3px rgb(8 169 157 / 12%);
 
     content: "";
 
@@ -1355,25 +1377,44 @@ a {
         box-shadow 220ms ease;
 }
 
-/* SERVICE LINKS */
+
+/* PREMIUM SERVICE LINKS */
 
 .services-list a {
-    color: inherit;
+    position: relative;
+
+    display: inline;
+
+    color: #173B59;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    line-height: 1.7;
 
     text-decoration: none;
+    text-decoration-thickness: 1px;
     text-underline-offset: 4px;
 
+    overflow-wrap: anywhere;
+
     transition:
-        color 220ms ease;
+        color 220ms ease,
+        text-decoration-color 220ms ease;
 }
 
-/* LINK INTERACTION */
+
+/* PREMIUM LINK INTERACTION */
 
 .services-list a:hover,
 .services-list a:focus-visible {
-    color: #079D94;
+    color: #008F86;
 
     text-decoration: underline;
+    text-decoration-color: #08A99D;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
 }
 
 /* BULLET INTERACTION */
@@ -1457,22 +1498,27 @@ a {
     }
 }
 
-/* MOBILE */
+/* =========================================
+   SERVICES OVERVIEW — PREMIUM MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
     .services-overview {
-        padding-block: 28px;
+        padding-block: 30px;
     }
 
     .services-overview-grid {
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
     }
+
+    /* SERVICE CARDS */
 
     .services-overview-card {
         padding: 24px 18px;
-
-        border-radius: 15px;
+        border-radius: 16px;
+        background: #FFFFFF;
     }
 
     .services-overview-card::after {
@@ -1480,12 +1526,12 @@ a {
         right: 18px;
     }
 
+    /* ICON */
+
     .services-overview-icon {
         width: 48px;
         height: 48px;
-
         margin-bottom: 18px;
-
         border-radius: 14px;
     }
 
@@ -1494,35 +1540,93 @@ a {
         height: 25px;
     }
 
+    /* TITLES */
+
     .services-overview-card h3 {
-        font-size: 1.12rem;
-        line-height: 1.4;
+        margin-bottom: 14px;
+        color: #0B2D48;
+        font-family: "Poppins", sans-serif;
+        font-size: 1.18rem;
+        font-weight: 700;
+        line-height: 1.45;
+        letter-spacing: -0.015em;
+        text-wrap: balance;
     }
+
+    /* DESCRIPTIONS */
 
     .services-overview-description {
-        margin-bottom: 18px;
-
-        font-size: 0.91rem;
-        line-height: 1.7;
+        margin-bottom: 20px;
+        color: #29445E;
+        font-size: 0.96rem;
+        font-weight: 400;
+        line-height: 1.75;
+        opacity: 1;
     }
+
+    /* SERVICE LIST */
 
     .services-list {
         grid-template-columns: minmax(0, 1fr);
-        gap: 10px;
+        gap: 12px;
     }
 
     .services-list li {
-        font-size: 0.9rem;
-        line-height: 1.55;
+        padding-left: 19px;
+        color: #173B59;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        overflow-wrap: anywhere;
     }
 
+    /* PREMIUM LINKS */
+
+    .services-list a {
+        color: #173B59;
+        font-size: 0.96rem;
+        font-weight: 500;
+        line-height: 1.65;
+        text-decoration: none;
+        text-underline-offset: 4px;
+
+        transition:
+            color 220ms ease,
+            text-decoration-color 220ms ease;
+    }
+
+    .services-list a:hover,
+    .services-list a:focus-visible {
+        color: #008F86;
+        text-decoration: underline;
+        text-decoration-color: #08A99D;
+        text-decoration-thickness: 2px;
+    }
+
+    /* TEAL SERVICE INDICATORS */
+
+    .services-list li::before {
+        top: 0.7em;
+        left: 2px;
+        width: 6px;
+        height: 6px;
+        background: #08A99D;
+        box-shadow: 0 0 0 3px rgb(8 169 157 / 12%);
+    }
+
+    /* MAIN BUTTON */
+
     .services-overview-cta {
-        margin-top: 22px;
+        margin-top: 24px;
     }
 
     .services-overview-cta .btn-primary {
         width: 100%;
-        padding-inline: 14px;
+        max-width: 100%;
+        padding: 13px 14px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: normal;
+        text-align: center;
     }
 }
 
