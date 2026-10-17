@@ -609,6 +609,7 @@ header .hamburger {
 ========================================= */
 
 .container {
+    box-sizing: border-box;
     width: 100%;
     max-width: var(--nc-container);
     margin-inline: auto;
@@ -1823,6 +1824,7 @@ a {
 ========================================= */
 
 .section-box {
+    box-sizing: border-box;
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
