@@ -713,10 +713,12 @@ a {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     align-items: center;
-    gap: clamp(28px, 5vw, 64px);
+    gap: clamp(24px, 3vw, 44px);
+    width: 100%;
     max-width: 1440px;
     margin-inline: auto;
-    padding-block: clamp(48px, 7vw, 88px);
+    padding: 48px 24px;
+    box-sizing: border-box;
 }
 
 .hero-text {
@@ -986,7 +988,7 @@ a {
     .hero-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 32px;
-        padding-block: 52px;
+        padding: 36px 20px;
     }
 
     .hero-text {
@@ -1221,7 +1223,7 @@ a {
     }
 
     .services-overview-card {
-        padding: 22px 18px;
+       padding: 28px 14px;
         border-radius: 15px;
     }
 
