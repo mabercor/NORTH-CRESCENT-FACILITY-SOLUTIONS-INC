@@ -111,11 +111,12 @@ header * {
 
 
 /* =========================================
-   BRAND TYPOGRAPHY — PREMIUM SIGNATURE
+   BRAND TYPOGRAPHY — LUXURY LIGHT REFLECTION
 ========================================= */
 
 .brand-title {
     position: relative;
+    display: inline-block;
 
     color: #0B2D48;
     font-family: var(--nc-font);
@@ -126,19 +127,19 @@ header * {
 
     background: linear-gradient(
         180deg,
-        #174C70 0%,
+        #3D7193 0%,
+        #174C70 18%,
         #0B2D48 48%,
-        #061D32 100%
+        #061D32 78%,
+        #285776 100%
     );
 
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    text-shadow: 0 1px 0 rgb(255 255 255 / 35%);
-
     filter: drop-shadow(
-        0 1px 0 rgb(11 45 72 / 10%)
+        0 1px 1px rgb(11 45 72 / 18%)
     );
 
     transition:
@@ -146,9 +147,10 @@ header * {
         letter-spacing 350ms ease;
 }
 
-/* FACILITY SOLUTIONS */
+/* SUBTITLE — FACILITY SOLUTIONS */
 
 .brand-title span {
+    position: relative;
     display: block;
 
     margin-top: 4px;
@@ -167,23 +169,67 @@ header * {
         letter-spacing 350ms ease;
 }
 
-/* PREMIUM INTERACTION */
+/* LIGHT REFLECTION */
+
+.logo-container .brand-title::after {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 35%,
+        rgb(255 255 255 / 0%) 42%,
+        rgb(255 255 255 / 95%) 49%,
+        rgb(255 255 255 / 35%) 53%,
+        transparent 61%,
+        transparent 100%
+    );
+
+    background-size: 250% 100%;
+    background-position: 100% 0;
+
+    content: "";
+    pointer-events: none;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+}
+
+/* ANIMATED PREMIUM REFLECTION */
 
 @media (hover: hover) and (pointer: fine) {
-
     .logo-container:hover .brand-title {
         filter:
-            drop-shadow(
-                0 2px 3px rgb(11 45 72 / 16%)
-            );
+            drop-shadow(0 2px 3px rgb(11 45 72 / 20%));
 
         letter-spacing: -0.25px;
+    }
+
+    .logo-container:hover .brand-title::after {
+        opacity: 1;
+        animation: brandLightSweep 1.1s ease-in-out forwards;
     }
 
     .logo-container:hover .brand-title span {
         color: #078F87;
         -webkit-text-fill-color: #078F87;
-        letter-spacing: 2px;
+        letter-spacing: 1.9px;
+    }
+}
+
+/* LIGHT MOVEMENT */
+
+@keyframes brandLightSweep {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
     }
 }
 
@@ -198,10 +244,13 @@ header * {
 /* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
-
     .brand-title,
     .brand-title span {
         transition: none;
+    }
+
+    .logo-container:hover .brand-title::after {
+        animation: none;
     }
 }
 
