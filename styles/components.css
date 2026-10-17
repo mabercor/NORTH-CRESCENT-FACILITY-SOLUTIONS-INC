@@ -112,25 +112,83 @@ header * {
    BRAND IDENTITY — PREMIUM HEADER
 ========================================= */
 
+/* =========================================
+   BRAND TYPOGRAPHY — PREMIUM SIGNATURE
+========================================= */
+
 .brand-title {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    color: var(--nc-navy);
+    position: relative;
+
+    color: #0B2D48;
     font-family: var(--nc-font);
     font-size: 20px;
     font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.35px;
-    white-space: nowrap;
+    line-height: 1.2;
+    letter-spacing: -0.45px;
+
+    background: linear-gradient(
+        180deg,
+        #174C70 0%,
+        #0B2D48 48%,
+        #061D32 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 1px 0 rgb(11 45 72 / 10%));
+
+    transition:
+        filter 350ms ease,
+        letter-spacing 350ms ease;
 }
 
+/* FACILITY SOLUTIONS */
+
 .brand-title span {
-    color: var(--nc-text-secondary);
+    display: block;
+
+    margin-top: 4px;
+
+    color: #4A6988;
+    font-family: var(--nc-font);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1.7px;
     line-height: 1.4;
+    letter-spacing: 1.8px;
+
+    -webkit-text-fill-color: #4A6988;
+
+    transition:
+        color 350ms ease,
+        letter-spacing 350ms ease;
+}
+
+/* PREMIUM INTERACTION */
+
+@media (hover: hover) and (pointer: fine) {
+    .logo-container:hover .brand-title {
+        filter:
+            drop-shadow(0 2px 3px rgb(11 45 72 / 16%));
+
+        letter-spacing: -0.25px;
+    }
+
+    .logo-container:hover .brand-title span {
+        color: #078F87;
+        -webkit-text-fill-color: #078F87;
+        letter-spacing: 2px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-title,
+    .brand-title span {
+        transition: none;
+    }
 }
 
 .nav-wrapper {
