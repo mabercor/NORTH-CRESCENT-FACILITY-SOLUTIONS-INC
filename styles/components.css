@@ -1828,6 +1828,72 @@ a {
     }
 }
 /* =========================================
+   SPECIALIZED SERVICES SECTION
+   Shared Section Component
+========================================= */
+
+.section-box {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: clamp(28px, 4vw, 48px);
+    border: 1px solid rgb(16 76 112 / 10%);
+    border-radius: 20px;
+    background: var(--nc-white, #ffffff);
+    box-shadow: 0 12px 36px rgb(11 45 72 / 6%);
+}
+
+.section-box h2 {
+    margin: 0 0 20px;
+    color: var(--nc-navy, #0B2D48);
+    font-family: var(--nc-font, "Poppins", sans-serif);
+    font-size: clamp(1.65rem, 3vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+.section-box .divider {
+    width: 64px;
+    height: 4px;
+    margin: 0 auto 28px;
+    border-radius: 4px;
+    background: var(--nc-teal, #08A99D);
+}
+
+.section-box > p {
+    max-width: 900px;
+    margin-inline: auto;
+    color: var(--nc-text, #334155);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .section-box {
+        padding: 28px 20px;
+        border-radius: 16px;
+    }
+
+    .section-box h2 {
+        font-size: clamp(1.5rem, 6vw, 1.9rem);
+    }
+
+    .section-box > p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-box {
+        padding: 24px 16px;
+    }
+}
+
+/* =========================================
    6. RELATED SERVICES
    SIGNATURE PREMIUM NAVIGATION
 ========================================= */
