@@ -3144,3 +3144,13 @@ header nav > a.concierge-nav-link:hover .concierge-nav-icon {
         transition: none;
     }
 }
+/* NORTH CRESCENT — MOBILE SECTION ALIGNMENT */
+
+@media (max-width: 600px) {
+    .section-box {
+        width: 100%;
+        max-width: 100%;
+        margin-inline: auto;
+        box-sizing: border-box;
+    }
+}
