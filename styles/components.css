@@ -651,7 +651,7 @@ a {
     isolation: isolate;
     overflow: hidden;
     width: calc(100% - 60px);
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 16px auto 0;
     box-sizing: border-box;
     border-radius: 18px;
