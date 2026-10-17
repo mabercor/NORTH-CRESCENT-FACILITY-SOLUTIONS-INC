@@ -108,9 +108,7 @@ header * {
         transform: none;
     }
 }
-/* =========================================
-   BRAND IDENTITY — PREMIUM HEADER
-========================================= */
+
 
 /* =========================================
    BRAND TYPOGRAPHY — PREMIUM SIGNATURE
@@ -124,7 +122,7 @@ header * {
     font-size: 20px;
     font-weight: 800;
     line-height: 1.2;
-    letter-spacing: -0.45px;
+    letter-spacing: -0.5px;
 
     background: linear-gradient(
         180deg,
@@ -137,7 +135,11 @@ header * {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    filter: drop-shadow(0 1px 0 rgb(11 45 72 / 10%));
+    text-shadow: 0 1px 0 rgb(255 255 255 / 35%);
+
+    filter: drop-shadow(
+        0 1px 0 rgb(11 45 72 / 10%)
+    );
 
     transition:
         filter 350ms ease,
@@ -156,7 +158,7 @@ header * {
     font-size: 11px;
     font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 1.8px;
+    letter-spacing: 1.6px;
 
     -webkit-text-fill-color: #4A6988;
 
@@ -168,9 +170,12 @@ header * {
 /* PREMIUM INTERACTION */
 
 @media (hover: hover) and (pointer: fine) {
+
     .logo-container:hover .brand-title {
         filter:
-            drop-shadow(0 2px 3px rgb(11 45 72 / 16%));
+            drop-shadow(
+                0 2px 3px rgb(11 45 72 / 16%)
+            );
 
         letter-spacing: -0.25px;
     }
@@ -179,6 +184,24 @@ header * {
         color: #078F87;
         -webkit-text-fill-color: #078F87;
         letter-spacing: 2px;
+    }
+}
+
+/* KEYBOARD ACCESSIBILITY */
+
+.logo-container a:focus-visible {
+    outline: 2px solid #08A99D;
+    outline-offset: 5px;
+    border-radius: 5px;
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .brand-title,
+    .brand-title span {
+        transition: none;
     }
 }
 
