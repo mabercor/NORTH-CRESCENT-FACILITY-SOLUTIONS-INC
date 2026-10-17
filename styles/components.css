@@ -649,13 +649,11 @@ a {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    width: 100%;
-    max-width: 1200px;
+    width: calc(100% - 32px);
+    max-width: 1100px;
     margin: 16px auto 0;
     border-radius: 18px;
     color: var(--nc-white);
-    box-sizing: border-box;
-}
 
     background:
         linear-gradient(
@@ -675,7 +673,6 @@ a {
         border-radius: 12px;
     }
 }
-
 /* HERO — CENTERED ACTIONS AND BENEFITS */
 
 /* HERO — CENTERED CTA GROUP */
