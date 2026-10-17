@@ -649,11 +649,13 @@ a {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    width: calc(100% - 32px);
+    width: 100%;
     max-width: 1200px;
     margin: 16px auto 0;
     border-radius: 18px;
     color: var(--nc-white);
+    box-sizing: border-box;
+}
 
     background:
         linear-gradient(
