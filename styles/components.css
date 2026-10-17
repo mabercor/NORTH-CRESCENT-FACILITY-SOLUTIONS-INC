@@ -55,7 +55,59 @@ header * {
     object-fit: contain;
     border-radius: 0;
 }
+/* =========================================
+   BRAND LOGO — PREMIUM INTERACTION
+========================================= */
 
+.logo-container {
+    position: relative;
+    isolation: isolate;
+}
+
+/* LOGO IMAGE */
+
+.logo-container img {
+    display: block;
+    height: auto;
+    transform-origin: center;
+    filter: drop-shadow(0 2px 3px rgb(11 45 72 / 10%));
+
+    transition:
+        transform 350ms cubic-bezier(.2, .75, .25, 1),
+        filter 350ms ease;
+}
+
+/* PREMIUM HOVER */
+
+@media (hover: hover) and (pointer: fine) {
+    .logo-container:hover img {
+        transform: translateY(-2px) scale(1.025);
+
+        filter:
+            drop-shadow(0 4px 5px rgb(11 45 72 / 15%))
+            drop-shadow(0 0 7px rgb(8 169 157 / 12%));
+    }
+}
+
+/* KEYBOARD ACCESSIBILITY */
+
+.logo-container a:focus-visible {
+    outline: 2px solid #08A99D;
+    outline-offset: 5px;
+    border-radius: 5px;
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-container img {
+        transition: none;
+    }
+
+    .logo-container:hover img {
+        transform: none;
+    }
+}
 /* =========================================
    BRAND IDENTITY — PREMIUM HEADER
 ========================================= */
