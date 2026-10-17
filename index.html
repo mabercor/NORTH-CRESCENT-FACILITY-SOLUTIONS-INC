@@ -447,19 +447,104 @@
       </p>
     </div>
 
-    <div class="hero-image">
-     <img src="/images/hero-company-cleaning.webp"
-     srcset="/images/hero-company-cleaning-768.webp 768w,
-             /images/hero-company-cleaning.webp 1536w"
-     sizes="(max-width: 767px) 100vw, 1060px"
-     alt="Commercial cleaning team working in Moncton NB"
-     width="1060"
-     height="707"
-     loading="eager"
-     fetchpriority="high"
-     decoding="async">
+   <!-- HERO IMAGE CAROUSEL -->
+<div class="hero-image hero-carousel" id="hero-carousel">
+
+    <div class="hero-carousel-track">
+
+        <!-- SLIDE 1: MAIN HERO -->
+        <div class="hero-slide is-active">
+            <img
+                src="/images/hero-company-cleaning.webp"
+                alt="Professional cleaning team serving Moncton, New Brunswick"
+                width="1060"
+                height="707"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 2: COMMERCIAL CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/commercial-cleaning-moncton-960.webp"
+                alt="Professional commercial cleaning services in Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 3: RESIDENTIAL CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/residential-cleaning-moncton-960.webp"
+                alt="Professional residential cleaning services"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 4: DEEP CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/deep-cleaning-moncton-960.webp"
+                alt="Detailed professional deep cleaning"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 5: OFFICE CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/office-cleaning-moncton-960.webp"
+                alt="Professional office cleaning services"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
     </div>
 
+    <!-- PREVIOUS / NEXT CONTROLS -->
+    <button
+        class="hero-carousel-arrow hero-carousel-prev"
+        type="button"
+        aria-label="Previous image">
+        &#10094;
+    </button>
+
+    <button
+        class="hero-carousel-arrow hero-carousel-next"
+        type="button"
+        aria-label="Next image">
+        &#10095;
+    </button>
+
+    <!-- SLIDE INDICATORS -->
+    <div class="hero-carousel-dots" aria-label="Choose an image">
+        <button type="button" class="hero-carousel-dot is-active"
+                aria-label="Show image 1" aria-current="true"></button>
+
+        <button type="button" class="hero-carousel-dot"
+                aria-label="Show image 2"></button>
+
+        <button type="button" class="hero-carousel-dot"
+                aria-label="Show image 3"></button>
+
+        <button type="button" class="hero-carousel-dot"
+                aria-label="Show image 4"></button>
+
+        <button type="button" class="hero-carousel-dot"
+                aria-label="Show image 5"></button>
+    </div>
+
+</div>
+<!-- END HERO IMAGE CAROUSEL -->
   </div>
 </section>
 
