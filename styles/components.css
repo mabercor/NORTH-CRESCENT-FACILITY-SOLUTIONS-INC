@@ -649,9 +649,9 @@ a {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    width: calc(100% - 40px);
-    max-width: 1440px;
-    margin: 20px auto 0;
+    width: calc(100% - 32px);
+    max-width: 1100px;
+    margin: 16px auto 0;
     border-radius: 18px;
     color: var(--nc-white);
 
