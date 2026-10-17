@@ -111,20 +111,16 @@
     "false"
   );
 
-  button.innerHTML = `
+   button.innerHTML = `
     <span
       class="nc-concierge-widget-icon"
       aria-hidden="true"
-    
+    >
+      💬
+    </span>
 
     <span class="nc-concierge-widget-label">
-      Chat with Us      <div class="concierge-chat-typing">
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                </div>
+      Chat with Us
     </span>
   `;
 
