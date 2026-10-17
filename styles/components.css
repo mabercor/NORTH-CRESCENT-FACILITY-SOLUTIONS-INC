@@ -643,10 +643,16 @@ a {
    2. HERO
 ========================================= */
 
+/* HERO — CONTROLLED WIDTH AND CENTERED BACKGROUND */
+
 .hero {
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    width: calc(100% - 40px);
+    max-width: 1440px;
+    margin: 20px auto 0;
+    border-radius: 18px;
     color: var(--nc-white);
 
     background:
@@ -658,6 +664,14 @@ a {
         ),
         url("https://raw.githubusercontent.com/mabercor/NORTH-CRESCENT-FACILITY-SOLUTIONS-INC/main/images/service-cleanin-moncton-nb.WEBP")
         center / cover no-repeat;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        border-radius: 12px;
+    }
 }
 
 /* HERO — CENTERED ACTIONS AND BENEFITS */
