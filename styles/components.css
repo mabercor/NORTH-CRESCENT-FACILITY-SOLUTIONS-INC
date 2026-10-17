@@ -189,14 +189,7 @@ header * {
         -webkit-text-fill-color: #08A99D;
     }
 }
-/* ACCESSIBILITY */
 
-@media (prefers-reduced-motion: reduce) {
-    .brand-title,
-    .brand-title span {
-        transition: none;
-    }
-}
 
 .nav-wrapper {
     display: flex;
