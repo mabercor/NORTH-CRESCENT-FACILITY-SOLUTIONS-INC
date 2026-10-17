@@ -988,7 +988,7 @@ a {
     .hero-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 32px;
-        padding: 36px 20px;
+        padding: 46px 
     }
 
     .hero-text {
@@ -1223,7 +1223,7 @@ a {
     }
 
     .services-overview-card {
-       padding: 28px 14px;
+       padding: 32px 16px;
         border-radius: 15px;
     }
 
