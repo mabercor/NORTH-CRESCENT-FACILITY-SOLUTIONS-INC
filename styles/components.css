@@ -3144,13 +3144,33 @@ header nav > a.concierge-nav-link:hover .concierge-nav-icon {
         transition: none;
     }
 }
-/* NORTH CRESCENT — MOBILE SECTION ALIGNMENT */
+/* NORTH CRESCENT — MOBILE SECTION ALIGNMENT FIX */
 
 @media (max-width: 600px) {
-    .section-box {
-        width: 100%;
-        max-width: 100%;
-        margin-inline: auto;
+
+    main > section.hero,
+    main > section:not(.hero) > .card {
+        width: calc(100% - 18px);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
         box-sizing: border-box;
     }
+
+    main > section.hero {
+        margin-top: 10px;
+    }
+
+    main > section:not(.hero) > .card {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    main > section:not(.hero) > .card > .section-box {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
 }
