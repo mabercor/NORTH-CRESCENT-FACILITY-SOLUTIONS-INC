@@ -651,7 +651,7 @@ a {
     isolation: isolate;
     overflow: hidden;
     width: calc(100% - 60px);
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 16px auto 0;
     box-sizing: border-box;
     border-radius: 18px;
@@ -2606,6 +2606,7 @@ a {
     font-size: clamp(1.65rem, 3vw, 2.35rem);
     font-weight: 700;
     line-height: 1.25;
+    text-align: center;
     text-wrap: balance;
 }
 
