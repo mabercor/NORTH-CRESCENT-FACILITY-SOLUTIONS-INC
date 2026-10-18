@@ -1217,7 +1217,226 @@ a {
         opacity: 1;
     }
 }
+/* =========================================================
+   NORTH CRESCENT — PREMIUM RESIDENTIAL SERVICE CARDS
+   Components: .service-links-grid / .service-card-mini
+   ========================================================= */
 
+/* 1. PREMIUM GRID */
+.service-links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+
+    width: 100%;
+    margin: 38px auto 0;
+
+    align-items: stretch;
+}
+
+/* 2. PREMIUM SERVICE CARD */
+.service-card-mini {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 255px;
+    padding: 28px 24px;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgb(74 155 140 / 9%),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #FFFFFF 0%,
+            #FBFDFE 55%,
+            #F4F9F9 100%
+        );
+
+    border: 1px solid #E1EAF0;
+    border-radius: 20px;
+
+    box-shadow:
+        0 2px 5px rgb(11 45 72 / 3%),
+        0 8px 20px rgb(11 45 72 / 5%),
+        0 18px 36px rgb(11 45 72 / 3%);
+
+    text-align: left;
+
+    transition:
+        transform 300ms cubic-bezier(.2, .8, .2, 1),
+        box-shadow 300ms ease,
+        border-color 300ms ease,
+        background 300ms ease;
+}
+
+/* 3. TEAL ACCENT */
+.service-card-mini::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+
+    height: 3px;
+
+    border-radius: 0 0 8px 8px;
+
+    background: linear-gradient(
+        90deg,
+        #1E3A5F 0%,
+        #4A9B8C 65%,
+        #76C9BB 100%
+    );
+
+    opacity: .8;
+
+    transform: scaleX(.45);
+    transform-origin: left;
+
+    transition:
+        transform 300ms ease,
+        opacity 300ms ease;
+}
+
+/* 4. CARD TITLE */
+.service-card-mini strong {
+    display: block;
+    width: 100%;
+
+    margin: 0 0 12px;
+
+    color: #1E3A5F;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: -.2px;
+
+    overflow-wrap: anywhere;
+}
+
+/* 5. CARD DESCRIPTION */
+.service-card-mini small {
+    display: block;
+    width: 100%;
+
+    margin: 0;
+
+    color: #52677A;
+
+    font-family: "Poppins", sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+/* 6. PREMIUM HOVER — DESKTOP */
+@media (hover: hover) and (pointer: fine) {
+
+    .service-card-mini:hover {
+        transform: translateY(-7px);
+
+        border-color: rgb(74 155 140 / 60%);
+
+        background:
+            radial-gradient(
+                circle at 100% 0%,
+                rgb(74 155 140 / 13%),
+                transparent 45%
+            ),
+            linear-gradient(
+                145deg,
+                #FFFFFF 0%,
+                #FFFFFF 55%,
+                #F1FAF8 100%
+            );
+
+        box-shadow:
+            0 4px 10px rgb(11 45 72 / 4%),
+            0 14px 28px rgb(11 45 72 / 7%),
+            0 25px 48px rgb(11 45 72 / 9%),
+            0 0 0 3px rgb(74 155 140 / 5%);
+    }
+
+    .service-card-mini:hover::before {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* 7. TABLETS */
+@media (max-width: 1000px) {
+
+    .service-links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .service-card-mini {
+        min-height: 230px;
+        padding: 25px 22px;
+        border-radius: 18px;
+    }
+}
+
+/* 8. MOBILE */
+@media (max-width: 600px) {
+
+    .service-links-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        margin-top: 28px;
+    }
+
+    .service-card-mini {
+        min-height: auto;
+        padding: 24px 22px;
+        border-radius: 16px;
+    }
+
+    .service-card-mini::before {
+        left: 20px;
+        right: 20px;
+    }
+
+    .service-card-mini strong {
+        font-size: .98rem;
+        margin-bottom: 9px;
+    }
+
+    .service-card-mini small {
+        font-size: .875rem;
+        line-height: 1.8;
+    }
+}
+
+/* 9. ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+
+    .service-card-mini,
+    .service-card-mini::before {
+        transition: none !important;
+    }
+
+    .service-card-mini:hover {
+        transform: none !important;
+    }
+}
 /* ICON CONTAINER */
 
 .services-overview-icon {
