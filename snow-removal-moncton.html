@@ -508,10 +508,162 @@ content="Professional seasonal residential snow removal in Moncton, Dieppe, Rive
         decoding="async">
 
     </div>
+ <!-- =========================================================
+     HERO IMAGE CAROUSEL — NORTH CRESCENT
+     10 IMAGES | AIRBNB AS MAIN IMAGE
+========================================================= -->
 
+<div class="hero-image hero-carousel" id="hero-carousel">
+
+    <div class="hero-carousel-track">
+
+        <!-- SLIDE 1:  SNOW REMOVAL — MAIN IMAGE -->
+        <div class="hero-slide is-active">
+            <img
+                src="/images/snow-removal-service-moncton-960.webp"
+                alt=" Professional seasonal snow removal services in Moncton"
+                width="960"
+                height="640"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 2: MAIN COMPANY IMAGE -->
+        <div class="hero-slide">
+            <img
+                src="/images/hero-company-cleaning.webp"
+                alt="Professional cleaning team serving Moncton, New Brunswick"
+                width="1060"
+                height="707"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+          <!-- SLIDE 3: SNOW REMOVAL -->
+        <div class="hero-slide">
+            <img
+                src="/images/snow-removal-service-960.webp"
+                alt="Professional seasonal snow removal services in Moncton, New Brunswick"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 4: SNOW REMOVAL -->
+        <div class="hero-slide">
+            <img
+                src="/images/snow-removal.jpg"
+                alt="Professional seasonal snow removal"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+          
+
+        <!-- SLIDE 5:  SNOW REMOVAL -->
+        <div class="hero-slide">
+            <img
+                src="/images/snow-removal-moncton.jpg"
+                alt="Seasonal snow removal"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+          </div>
+
+    <!-- PREVIOUS / NEXT CONTROLS -->
+    <button
+        class="hero-carousel-arrow hero-carousel-prev"
+        type="button"
+        aria-label="Previous image">
+        &#10094;
+    </button>
+
+    <button
+        class="hero-carousel-arrow hero-carousel-next"
+        type="button"
+        aria-label="Next image">
+        &#10095;
+    </button>
+
+    <!-- SLIDE INDICATORS -->
+    <div class="hero-carousel-dots" aria-label="Choose an image">
+
+        <button
+            type="button"
+            class="hero-carousel-dot is-active"
+            aria-label="Show image 1"
+            aria-current="true">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 2">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 3">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 4">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 5">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 6">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 7">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 8">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 9">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Show image 10">
+        </button>
+
+    </div>
+
+</div>
+
+<!-- END HERO IMAGE CAROUSEL -->
   </div>
 
 </section>
+      
 <!-- INTRODUCTION -->
 
 <section>
@@ -1168,10 +1320,11 @@ content="Professional seasonal residential snow removal in Moncton, Dieppe, Rive
         maintenance options from North Crescent Facility Solutions Inc.
       </p>
 
-      < <div class="faq-grid">
+       <div class="faq-grid">
 
         <!-- FAQ 1 -->
-<div class="faq-card">          <h3>What is included in seasonal snow removal service?</h3>
+<div class="faq-card">         
+      <h3>What is included in seasonal snow removal service?</h3>
           <p>
             Our seasonal snow removal service covers designated driveways,
             parking areas, main walkways, entrances, and front steps according
@@ -1307,7 +1460,7 @@ content="Professional seasonal residential snow removal in Moncton, Dieppe, Rive
         </div>
 
         <!-- FAQ 11 -->
-        <<div class="faq-card">
+        <div class="faq-card">
           <h3>Can I request snow removal if I am outside Moncton?</h3>
           <p>
             Seasonal snow removal may be available in nearby communities
@@ -1540,6 +1693,177 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
+        <!-- HERO CAROUSEL SCRIPT -->
+<script>
+(() => {
+    const carousel = document.getElementById("hero-carousel");
+
+    if (!carousel || carousel.dataset.initialized === "true") {
+        return;
+    }
+
+    carousel.dataset.initialized = "true";
+
+    const slides = Array.from(
+        carousel.querySelectorAll(".hero-slide")
+    );
+
+    const dots = Array.from(
+        carousel.querySelectorAll(".hero-carousel-dot")
+    );
+
+    const previousButton = carousel.querySelector(
+        ".hero-carousel-prev"
+    );
+
+    const nextButton = carousel.querySelector(
+        ".hero-carousel-next"
+    );
+
+    if (slides.length < 2 || dots.length !== slides.length) {
+        return;
+    }
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    let currentIndex = slides.findIndex(
+        slide => slide.classList.contains("is-active")
+    );
+
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    }
+
+    let timer = null;
+    let touchStartX = 0;
+
+    function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            const active = i === currentIndex;
+
+            slide.classList.toggle("is-active", active);
+
+            if (active) {
+                slide.setAttribute("aria-current", "true");
+            } else {
+                slide.removeAttribute("aria-current");
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            const active = i === currentIndex;
+
+            dot.classList.toggle("is-active", active);
+
+            if (active) {
+                dot.setAttribute("aria-current", "true");
+            } else {
+                dot.removeAttribute("aria-current");
+            }
+        });
+    }
+
+    function stopAutoplay() {
+        if (timer !== null) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+
+        if (
+            reducedMotion.matches ||
+            document.hidden ||
+            carousel.matches(":hover") ||
+            carousel.contains(document.activeElement)
+        ) {
+            return;
+        }
+
+        timer = window.setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    previousButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+        restartAutoplay();
+    });
+
+    nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+        restartAutoplay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            restartAutoplay();
+        });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+    carousel.addEventListener("focusin", stopAutoplay);
+
+    carousel.addEventListener("focusout", event => {
+        if (!carousel.contains(event.relatedTarget)) {
+            startAutoplay();
+        }
+    });
+
+    carousel.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", event => {
+        const touchEndX = event.changedTouches[0].clientX;
+        const difference = touchEndX - touchStartX;
+
+        if (Math.abs(difference) < 50) {
+            return;
+        }
+
+        showSlide(
+            difference < 0
+                ? currentIndex + 1
+                : currentIndex - 1
+        );
+
+        restartAutoplay();
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    if (typeof reducedMotion.addEventListener === "function") {
+        reducedMotion.addEventListener("change", restartAutoplay);
+    }
+
+    showSlide(currentIndex);
+    startAutoplay();
+})();
+</script>
+<!-- END HERO CAROUSEL SCRIPT -->
+      
 <script src="/concierge/concierge-widget.js" defer></script>
 
 </body>
