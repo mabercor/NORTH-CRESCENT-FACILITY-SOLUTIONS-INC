@@ -955,6 +955,8 @@
           <p>Your request will be reviewed by our team, and we will contact you to confirm.</p>
         </div>
 
+        <div class="booking-turnstile" id="booking-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+
         <div class="booking-review-actions">
 
           <button type="button" id="booking-review-back" class="booking-review-back">
@@ -972,6 +974,20 @@
 
         <p id="booking-review-feedback" class="booking-review-feedback" aria-live="polite"></p>
 
+      </section>
+
+      <!-- ===================================================
+           SUCCESS VIEW
+      ==================================================== -->
+
+      <section class="booking-success" id="booking-success" aria-labelledby="booking-success-title" hidden>
+        <span class="booking-success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <h2 id="booking-success-title" tabindex="-1">Request received</h2>
+        <p>Thank you. Our team will review your booking and contact you shortly to confirm the details.</p>
+        <p class="booking-success-email">A confirmation will be sent to <strong id="booking-success-email"></strong>.</p>
+        <a class="booking-success-link" href="/index.html">Back to home</a>
       </section>
 
     </div>
