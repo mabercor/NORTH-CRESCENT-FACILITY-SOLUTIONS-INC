@@ -207,32 +207,22 @@ body[data-page="booking"] .booking-page {
 
 body[data-page="booking"] .booking-flow {
 
-    position: relative;
+    grid-template-columns: minmax(0, 1fr);
 
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 0.9fr)
-        minmax(0, 1.1fr);
-
-   grid-template-areas:
-    "hero schedule"
-    "progress progress"
-    "customer customer"
-    "review review";
+    grid-template-areas:
+        "hero"
+        "schedule"
+        "progress"
+        "customer"
+        "review";
 
     align-items: start;
 
-    gap: 24px;
-
     width: 100%;
-    max-width: 1512px;
-
-    margin-inline: auto;
-
     min-width: 0;
-}
 
+    gap: 24px;
+}
 body[data-page="booking"] #booking-hero {
     grid-area: hero;
     min-width: 0;
@@ -442,7 +432,8 @@ body[data-page="booking"] .booking-hero {
     overflow: hidden;
 
     display: grid;
-    align-items: center;
+grid-area: hero;
+align-items: center;
 
     width: 100%;
     max-width: 1512px;
@@ -1136,7 +1127,36 @@ body[data-page="booking"] .booking-hero-content {
 
 
 @media (max-width: 760px) {
+@media (max-width: 760px) {
 
+    /* MAIN BOOKING LAYOUT — MOBILE */
+
+    body[data-page="booking"] .booking-flow {
+
+        grid-template-columns: minmax(0, 1fr);
+
+        grid-template-areas:
+            "hero"
+            "schedule"
+            "progress"
+            "customer"
+            "review";
+
+        gap: 24px;
+    }
+
+
+    /* HERO */
+
+    body[data-page="booking"] .booking-hero {
+
+        min-height: auto;
+
+        margin-top: 12px;
+        padding: clamp(20px, 2.2vw, 32px);
+
+        border-radius: 23px;
+    }
     body[data-page="booking"] .booking-hero {
 
         min-height: auto;
@@ -1270,13 +1290,15 @@ body[data-page="booking"] .booking-hero-content {
 body[data-page="booking"] .booking-progress {
 
     position: relative;
-    isolation: isolate;
+isolation: isolate;
 
-    width: 100%;
+grid-area: progress;
+
+width: 100%;
     max-width: 1240px;
 
-    margin: clamp(34px, 5vw, 62px) auto 0;
-    padding: clamp(20px, 3vw, 32px);
+margin: 0;
+   padding: clamp(20px, 3vw, 32px);
 
     border: 1px solid rgb(197 211 224 / 75%);
     border-radius: 24px;
@@ -2396,6 +2418,13 @@ body[data-page="booking"] .booking-schedule {
 
     position: relative;
 
+    grid-area: schedule;
+
+    min-width: 0;
+    width: 100%;
+
+    margin-top: 0;
+
     scroll-margin-top: 32px;
 }
 
@@ -3385,7 +3414,6 @@ body[data-page="booking"] .booking-time-card :focus-visible {
    PART 06 OF 06 — CUSTOMER, REVIEW & RESPONSIVE
    ============================================================ */
 
-
 /* ============================================================
    06.1 — CUSTOMER SECTION
    ============================================================ */
@@ -3395,7 +3423,13 @@ body[data-page="booking"] #booking-review {
 
     position: relative;
 
+    grid-area: customer;
+
     scroll-margin-top: 32px;
+}
+
+body[data-page="booking"] #booking-review {
+    grid-area: review;
 }
 
 
