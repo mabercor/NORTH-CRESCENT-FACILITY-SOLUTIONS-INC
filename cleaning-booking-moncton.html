@@ -836,23 +836,34 @@
               <label for="booking-address">Service address *</label>
             </div>
 
-            <div class="booking-field">
+            <div class="booking-field booking-field--notes">
               <span class="booking-field-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M6 3h12v18H6V3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M5.5 10v10h13V10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                  <path d="M9 14h6M9 17h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
                 </svg>
               </span>
-              <textarea id="booking-notes" name="notes" rows="1" maxlength="1000" placeholder=" "></textarea>
-              <label for="booking-notes">Additional details <span>(Optional)</span></label>
+              <textarea id="booking-notes" name="notes" rows="4" maxlength="1000" placeholder=" " aria-describedby="booking-notes-hint"></textarea>
+              <label for="booking-notes">Describe your property <span>(Recommended)</span></label>
+              <p class="booking-field-hint" id="booking-notes-hint">
+                Property type and size, number of rooms or bathrooms, pets, parking or access instructions, and anything we should focus on.
+              </p>
             </div>
 
-            <button type="button" id="booking-review-button" class="booking-review-button">
+            <div class="booking-details-actions">
+              <p class="booking-details-note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Our team reviews every request and contacts you to confirm.
+              </p>
+
+              <button type="button" id="booking-review-button" class="booking-review-button">
               <span>Review &amp; Confirm</span>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
+            </div>
 
           </div>
 
@@ -932,7 +943,7 @@
               <p class="booking-review-value" id="booking-review-address">Not provided</p>
             </div>
             <div class="booking-review-detail booking-review-notes" id="booking-review-notes-group" hidden>
-              <span class="booking-review-label">Additional details</span>
+              <span class="booking-review-label">Property details</span>
               <p class="booking-review-value" id="booking-review-notes"></p>
             </div>
           </div>
