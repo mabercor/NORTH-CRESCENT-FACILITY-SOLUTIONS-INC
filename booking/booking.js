@@ -84,13 +84,16 @@ function showStep(step) {
   if (![1, 2, 3, 4, 5].includes(step)) {
     return;
   }
+// STEP VISIBILITY — SERVICES AND CALENDAR
 
-  state.currentStep = step;
+elements.serviceSection.hidden = step !== 1;
 
-  elements.serviceSection.hidden = step !== 1;
-  elements.scheduleSection.hidden = step !== 2 && step !== 3;
-  elements.customerSection.hidden = step !== 4;
-  elements.reviewSection.hidden = step !== 5;
+// Keep the schedule section available during service selection.
+// The calendar itself is controlled separately below.
+elements.scheduleSection.hidden = step !== 1 && step !== 2 && step !== 3;
+
+elements.customerSection.hidden = step !== 4;
+elements.reviewSection.hidden = step !== 5;
 
   const calendarCard = elements.scheduleSection.querySelector(
     ".booking-calendar-card"
@@ -100,8 +103,8 @@ function showStep(step) {
     "booking-time-slots"
   );
 
- if (calendarCard) {
-  calendarCard.hidden = step !== 2;
+if (calendarCard) {
+    calendarCard.hidden = step !== 1 && step !== 2;
 }
 
 if (timeContainer) {
