@@ -294,10 +294,435 @@
     });
   </script>
 
- <!-- =============================================
-       SECCION DE EL NUEVO DICENO SEGUN LO ACORDADO Y VALIDADO SEGUN LA IMAGEN
-       ============================================= -->
+ <!-- =====================================================
+     NORTH CRESCENT BOOKING — SECTION 1
+     SERVICE SELECTION
+===================================================== -->
 
+<section class="booking-section booking-services" id="booking-services">
+
+  <div class="booking-section-heading">
+    <span class="booking-eyebrow">YOUR BOOKING</span>
+
+    <h1>How can we help you?</h1>
+
+    <p>
+      Choose the service that best fits your needs.
+    </p>
+  </div>
+
+  <fieldset class="booking-service-fieldset">
+
+    <legend class="booking-field-label">
+      Select your service
+    </legend>
+
+    <div class="booking-service-grid">
+
+      <!-- RESIDENTIAL CLEANING -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Residential Cleaning"
+          required
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">🏠</span>
+
+        <span class="booking-service-name">
+          Residential Cleaning
+        </span>
+
+        <span class="booking-service-description">
+          Professional cleaning for your home.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- COMMERCIAL CLEANING -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Commercial Cleaning"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">🏢</span>
+
+        <span class="booking-service-name">
+          Commercial Cleaning
+        </span>
+
+        <span class="booking-service-description">
+          Cleaning solutions for commercial spaces.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- DEEP CLEANING -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Deep Cleaning"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">✨</span>
+
+        <span class="booking-service-name">
+          Deep Cleaning
+        </span>
+
+        <span class="booking-service-description">
+          Detailed cleaning for a more thorough refresh.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- MOVE-IN / MOVE-OUT -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Move-In/Move-Out Cleaning"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">📦</span>
+
+        <span class="booking-service-name">
+          Move-In / Move-Out
+        </span>
+
+        <span class="booking-service-description">
+          Prepare a property for its next occupant.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- AIRBNB CLEANING -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Airbnb Cleaning"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">🛏️</span>
+
+        <span class="booking-service-name">
+          Airbnb Cleaning
+        </span>
+
+        <span class="booking-service-description">
+          Turnover cleaning for short-term rentals.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- JANITORIAL SERVICES -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Janitorial Services"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">🧹</span>
+
+        <span class="booking-service-name">
+          Janitorial Services
+        </span>
+
+        <span class="booking-service-description">
+          Ongoing cleaning and facility maintenance.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- POST-CONSTRUCTION -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Post-Construction Cleaning"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">🛠️</span>
+
+        <span class="booking-service-name">
+          Post-Construction
+        </span>
+
+        <span class="booking-service-description">
+          Cleaning after construction or renovation.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- SNOW REMOVAL -->
+      <label class="booking-service-card booking-service-snow">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Snow Removal"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">❄️</span>
+
+        <span class="booking-service-name">
+          Snow Removal
+        </span>
+
+        <span class="booking-service-description">
+          Seasonal snow clearing and winter property support.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+      <!-- JUNK REMOVAL -->
+      <label class="booking-service-card">
+        <input
+          type="radio"
+          name="serviceType"
+          value="Junk Removal"
+        >
+
+        <span class="booking-service-icon" aria-hidden="true">♻️</span>
+
+        <span class="booking-service-name">
+          Junk Removal
+        </span>
+
+        <span class="booking-service-description">
+          Removal of unwanted items and property debris.
+        </span>
+
+        <span class="booking-service-check" aria-hidden="true">✓</span>
+      </label>
+
+    </div>
+
+  </fieldset>
+
+</section>
+
+  <!-- =====================================================
+     NORTH CRESCENT BOOKING — SECTION 2
+     DATE & TIME SELECTION
+===================================================== -->
+
+<section class="booking-section booking-schedule" id="booking-schedule">
+
+  <div class="booking-section-heading">
+    <span class="booking-eyebrow">YOUR SCHEDULE</span>
+
+    <h2>Choose your preferred date and time</h2>
+
+    <p>
+      Select a date and a time window that works best for you.
+    </p>
+  </div>
+
+  <div class="booking-schedule-layout">
+
+    <!-- VISUAL CALENDAR -->
+    <div class="booking-calendar-card">
+
+      <div class="booking-calendar-header">
+
+        <button
+          type="button"
+          class="booking-calendar-nav"
+          id="booking-prev-month"
+          aria-label="Previous month"
+        >
+          &#8249;
+        </button>
+
+        <h3 id="booking-calendar-month" aria-live="polite"></h3>
+
+        <button
+          type="button"
+          class="booking-calendar-nav"
+          id="booking-next-month"
+          aria-label="Next month"
+        >
+          &#8250;
+        </button>
+
+      </div>
+
+      <div class="booking-calendar-weekdays" aria-hidden="true">
+        <span>Sun</span>
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+      </div>
+
+      <div
+        class="booking-calendar-days"
+        id="booking-calendar-days"
+        role="group"
+        aria-label="Choose a service date"
+      ></div>
+
+      <p
+        class="booking-calendar-note"
+        id="booking-calendar-note"
+        aria-live="polite"
+      >
+        Select your preferred service date.
+      </p>
+
+    </div>
+
+    <!-- TIME SELECTION -->
+    <div class="booking-time-card">
+
+      <div class="booking-time-heading">
+        <span class="booking-time-icon" aria-hidden="true">◷</span>
+
+        <div>
+          <h3>Preferred time</h3>
+          <p id="booking-time-description">
+            Choose a date to view the time windows.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="booking-time-slots"
+        id="booking-time-slots"
+        role="group"
+        aria-label="Choose a preferred time window"
+      >
+        <p class="booking-time-placeholder">
+          Your time options will appear here after you select a date.
+        </p>
+      </div>
+
+      <p
+        class="booking-time-feedback"
+        id="booking-time-feedback"
+        aria-live="polite"
+      ></p>
+
+    </div>
+
+  </div>
+
+  <!-- VALUES CAPTURED FOR THE BOOKING -->
+  <input
+    type="hidden"
+    name="serviceDate"
+    id="booking-selected-date"
+    value=""
+  >
+
+  <input
+    type="hidden"
+    name="timeSlot"
+    id="booking-selected-time"
+    value=""
+  >
+
+</section>
+<!-- SECTION 3: CUSTOMER DETAILS -->
+
+<section class="booking-section booking-customer" id="booking-customer">
+
+  <div class="booking-section-heading">
+    <span class="booking-eyebrow">ALMOST THERE</span>
+    <h2>Tell us a little about yourself</h2>
+    <p>Share your contact details so we can follow up on your booking request.</p>
+  </div>
+
+  <div class="booking-customer-card">
+
+    <div class="booking-form-grid">
+
+      <div class="booking-field">
+        <label for="booking-name">Full name <span>*</span></label>
+        <input
+          type="text"
+          id="booking-name"
+          name="clientName"
+          placeholder="Your full name"
+          autocomplete="name"
+          required
+        >
+      </div>
+
+      <div class="booking-field">
+        <label for="booking-email">Email address <span>*</span></label>
+        <input
+          type="email"
+          id="booking-email"
+          name="emailAddress"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="booking-field">
+        <label for="booking-phone">Phone number <span>*</span></label>
+        <input
+          type="tel"
+          id="booking-phone"
+          name="phoneNumber"
+          placeholder="Your phone number"
+          autocomplete="tel"
+          required
+        >
+      </div>
+
+      <div class="booking-field booking-field-full">
+        <label for="booking-address">Service address <span>*</span></label>
+        <input
+          type="text"
+          id="booking-address"
+          name="serviceAddress"
+          placeholder="Enter your property address"
+          autocomplete="street-address"
+          required
+        >
+        <small>Start typing your address to use address suggestions, if available.</small>
+      </div>
+
+      <div class="booking-field booking-field-full">
+        <label for="booking-notes">Additional details <span class="booking-optional">(Optional)</span></label>
+        <textarea
+          id="booking-notes"
+          name="notes"
+          rows="4"
+          maxlength="1000"
+          placeholder="Tell us about your property or any important service requirements."
+        ></textarea>
+      </div>
+
+    </div>
+
+    <div class="booking-customer-notice">
+      <span aria-hidden="true">✓</span>
+      <p>Your information will help us review your request and follow up with you.</p>
+    </div>
+
+  </div>
+
+</section>
   
 
   </main>
@@ -568,12 +993,8 @@ document.addEventListener("DOMContentLoaded", () => {
        CONCIERGE WIDGET
        REUSED FROM SERVICES.HTML
        ============================================= -->
-
-  <script
-    src="/concierge/concierge-widget.js"
-    defer
-  ></script>
-
+<script src="/concierge/concierge-widget.js" defer></script>
+ 
 
   <!-- =============================================
        BOOKING PAGE JAVASCRIPT
