@@ -294,37 +294,57 @@
     });
   </script>
   
-<main id="booking-main" class="booking-page">
- <!-- =====================================================
+<<main id="booking-main" class="booking-page">
+
+  <form id="booking-form" class="booking-flow">
+
+   <!-- =====================================================
      NORTH CRESCENT BOOKING — SECTION 1
-     SERVICE SELECTION
+     PREMIUM SERVICE SELECTION
 ===================================================== -->
 
-<section class="booking-section booking-services" id="booking-services">
+<section
+  class="booking-section booking-services"
+  id="booking-services"
+  aria-labelledby="booking-services-title"
+>
+
+  <!-- SECTION HEADING -->
 
   <div class="booking-section-heading">
 
-  <span class="booking-eyebrow">NORTH CRESCENT · YOUR BOOKING</span>
+    <span class="booking-eyebrow">
+      NORTH CRESCENT · YOUR BOOKING
+    </span>
 
-  <h1>How can we help you?</h1>
+    <h2 id="booking-services-title">
+      Choose Your Service
+    </h2>
 
-  <p>
-    Select the service you need to get started.
-    We’ll guide you through the next steps.
-  </p>
+    <p>
+      Select the service you need. We'll guide you through
+      the next steps to personalize your booking request.
+    </p>
 
-</div>
+  </div>
+
+
+  <!-- SERVICE SELECTION -->
 
   <fieldset class="booking-service-fieldset">
 
     <legend class="booking-field-label">
-      Select your service
+      Which service do you need?
     </legend>
+
 
     <div class="booking-service-grid">
 
+
       <!-- RESIDENTIAL CLEANING -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
@@ -332,186 +352,479 @@
           required
         >
 
-        <span class="booking-service-icon" aria-hidden="true">🏠</span>
-
-        <span class="booking-service-name">
-          Residential Cleaning
+        <span
+          class="booking-service-icon"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11L12 3L21 11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M5.5 10V21H18.5V10"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M9.5 21V14H14.5V21"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Professional cleaning for your home.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Residential Cleaning
+          </span>
+
+          <span class="booking-service-description">
+            Professional cleaning for your home.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span
+          class="booking-service-check"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- COMMERCIAL CLEANING -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Commercial Cleaning"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">🏢</span>
-
-        <span class="booking-service-name">
-          Commercial Cleaning
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 21V5L14 3V21"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M14 9H20V21H4"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M7 8H9M7 12H9M7 16H9M17 13H18M17 17H18"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Cleaning solutions for commercial spaces.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Commercial Cleaning
+          </span>
+
+          <span class="booking-service-description">
+            Professional care for commercial spaces.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- DEEP CLEANING -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Deep Cleaning"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">✨</span>
-
-        <span class="booking-service-name">
-          Deep Cleaning
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L13.8 8.2L20 10L13.8 11.8L12 18L10.2 11.8L4 10L10.2 8.2L12 2Z"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linejoin="round"/>
+            <path d="M19 15L20 18L23 19L20 20L19 23L18 20L15 19L18 18L19 15Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Detailed cleaning for a more thorough refresh.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Deep Cleaning
+          </span>
+
+          <span class="booking-service-description">
+            Detailed cleaning for a thorough refresh.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- MOVE-IN / MOVE-OUT -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Move-In/Move-Out Cleaning"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">📦</span>
-
-        <span class="booking-service-name">
-          Move-In / Move-Out
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L21 8V16L12 21L3 16V8L12 3Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M3.5 8.2L12 13L20.5 8.2M12 13V21"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Prepare a property for its next occupant.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Move-In / Move-Out
+          </span>
+
+          <span class="booking-service-description">
+            Prepare a property for its next occupant.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- AIRBNB CLEANING -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Airbnb Cleaning"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">🛏️</span>
-
-        <span class="booking-service-name">
-          Airbnb Cleaning
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11V21H21V11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M2 11L12 3L22 11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M6 15H18M6 18H18"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Turnover cleaning for short-term rentals.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Airbnb Cleaning
+          </span>
+
+          <span class="booking-service-description">
+            Turnover cleaning for short-term rentals.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- JANITORIAL SERVICES -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Janitorial Services"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">🧹</span>
-
-        <span class="booking-service-name">
-          Janitorial Services
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 3H19V21H5V3Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M9 7H15M9 11H15M9 15H13"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Ongoing cleaning and facility maintenance.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Janitorial Services
+          </span>
+
+          <span class="booking-service-description">
+            Ongoing cleaning and facility maintenance.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- POST-CONSTRUCTION -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Post-Construction Cleaning"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">🛠️</span>
-
-        <span class="booking-service-name">
-          Post-Construction
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 6L18 2L22 6L18 10L14 6Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+            <path d="M3 21L14.5 9.5M11 6L18 13"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+            <path d="M2 18L6 22"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Cleaning after construction or renovation.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Post-Construction
+          </span>
+
+          <span class="booking-service-description">
+            Cleaning after construction or renovation.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- SNOW REMOVAL -->
+
       <label class="booking-service-card booking-service-snow">
+
         <input
           type="radio"
           name="serviceType"
           value="Snow Removal"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">❄️</span>
-
-        <span class="booking-service-name">
-          Snow Removal
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2V22M3.34 7L20.66 17M3.34 17L20.66 7"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+            <path d="M8 4L12 7L16 4M8 20L12 17L16 20M3 12L7 8M3 12L7 16M21 12L17 8M21 12L17 16"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Seasonal snow clearing and winter property support.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Snow Removal
+          </span>
+
+          <span class="booking-service-description">
+            Seasonal snow clearing and winter property support.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
 
+
+
       <!-- JUNK REMOVAL -->
+
       <label class="booking-service-card">
+
         <input
           type="radio"
           name="serviceType"
           value="Junk Removal"
         >
 
-        <span class="booking-service-icon" aria-hidden="true">♻️</span>
-
-        <span class="booking-service-name">
-          Junk Removal
+        <span class="booking-service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 7H20M9 7V4H15V7M7 7L8 21H16L17 7"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M10 11V17M14 11V17"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
         </span>
 
-        <span class="booking-service-description">
-          Removal of unwanted items and property debris.
+        <span class="booking-service-content">
+
+          <span class="booking-service-name">
+            Junk Removal
+          </span>
+
+          <span class="booking-service-description">
+            Removal of unwanted items and property debris.
+          </span>
+
         </span>
 
-        <span class="booking-service-check" aria-hidden="true">✓</span>
+        <span class="booking-service-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12.5L10 17L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
       </label>
+
 
     </div>
 
@@ -519,27 +832,52 @@
 
 </section>
 
-  <!-- =====================================================
+<!-- =====================================================
      NORTH CRESCENT BOOKING — SECTION 2
-     DATE & TIME SELECTION
+     PREMIUM CALENDAR & TIME SELECTION
 ===================================================== -->
 
-<section class="booking-section booking-schedule" id="booking-schedule">
+<section
+  class="booking-section booking-schedule"
+  id="booking-schedule"
+  aria-labelledby="booking-schedule-title"
+>
+
+  <!-- SECTION HEADING -->
 
   <div class="booking-section-heading">
-    <span class="booking-eyebrow">YOUR SCHEDULE</span>
 
-    <h2>Choose your preferred date and time</h2>
+    <span class="booking-eyebrow">
+      YOUR SCHEDULE
+    </span>
+
+    <h2 id="booking-schedule-title">
+      Choose your preferred date and time
+    </h2>
 
     <p>
-      Select a date and a time window that works best for you.
+      Select your preferred date and choose an available
+      time window for your service.
     </p>
+
   </div>
+
+
+  <!-- CALENDAR + TIME SELECTION -->
 
   <div class="booking-schedule-layout">
 
-    <!-- VISUAL CALENDAR -->
-    <div class="booking-calendar-card">
+
+    <!-- ================================================
+         MONTHLY CALENDAR
+    ================================================= -->
+
+    <div
+      class="booking-calendar-card"
+      aria-labelledby="booking-calendar-month"
+    >
+
+      <!-- CALENDAR HEADER -->
 
       <div class="booking-calendar-header">
 
@@ -549,10 +887,16 @@
           id="booking-prev-month"
           aria-label="Previous month"
         >
-          &#8249;
+          <span aria-hidden="true">&#8249;</span>
         </button>
 
-        <h3 id="booking-calendar-month" aria-live="polite"></h3>
+        <h3
+          id="booking-calendar-month"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Loading calendar...
+        </h3>
 
         <button
           type="button"
@@ -560,12 +904,19 @@
           id="booking-next-month"
           aria-label="Next month"
         >
-          &#8250;
+          <span aria-hidden="true">&#8250;</span>
         </button>
 
       </div>
 
-      <div class="booking-calendar-weekdays" aria-hidden="true">
+
+      <!-- WEEKDAY LABELS -->
+
+      <div
+        class="booking-calendar-weekdays"
+        aria-hidden="true"
+      >
+
         <span>Sun</span>
         <span>Mon</span>
         <span>Tue</span>
@@ -573,7 +924,11 @@
         <span>Thu</span>
         <span>Fri</span>
         <span>Sat</span>
+
       </div>
+
+
+      <!-- DYNAMIC CALENDAR DAYS -->
 
       <div
         class="booking-calendar-days"
@@ -582,29 +937,144 @@
         aria-label="Choose a service date"
       ></div>
 
+
+      <!-- CALENDAR LEGEND -->
+
+      <div
+        class="booking-calendar-legend"
+        aria-label="Calendar availability legend"
+      >
+
+        <span class="booking-calendar-legend-item">
+          <i
+            class="is-selected"
+            aria-hidden="true"
+          ></i>
+          Selected
+        </span>
+
+        <span class="booking-calendar-legend-item">
+          <i
+            class="is-available"
+            aria-hidden="true"
+          ></i>
+          Available
+        </span>
+
+        <span class="booking-calendar-legend-item">
+          <i
+            class="is-unavailable"
+            aria-hidden="true"
+          ></i>
+          Unavailable
+        </span>
+
+      </div>
+
+
+      <!-- CALENDAR FEEDBACK -->
+
       <p
         class="booking-calendar-note"
         id="booking-calendar-note"
         aria-live="polite"
       >
-        Select your preferred service date.
+        Select a service first, then choose your preferred date.
       </p>
 
     </div>
 
-    <!-- TIME SELECTION -->
-    <div class="booking-time-card">
+
+
+    <!-- ================================================
+         TIME WINDOW SELECTION
+    ================================================= -->
+
+    <div
+      class="booking-time-card"
+      id="booking-time-card"
+      aria-labelledby="booking-time-title"
+    >
+
+      <!-- SELECTED DATE -->
 
       <div class="booking-time-heading">
-        <span class="booking-time-icon" aria-hidden="true">◷</span>
+
+        <span
+          class="booking-time-icon"
+          aria-hidden="true"
+        >
+          &#9719;
+        </span>
 
         <div>
-          <h3>Preferred time</h3>
+
+          <h3 id="booking-time-title">
+            Preferred time
+          </h3>
+
           <p id="booking-time-description">
-            Choose a date to view the time windows.
+            Choose a date to view the available time windows.
           </p>
+
         </div>
+
       </div>
+
+
+      <!-- CLEANING TIME WINDOWS -->
+
+      <div
+        class="booking-time-service booking-time-cleaning"
+        id="booking-cleaning-time-group"
+      >
+
+        <div class="booking-time-group-heading">
+
+          <span aria-hidden="true">&#10003;</span>
+
+          <div>
+
+            <h4>Cleaning Service</h4>
+
+            <p>
+              Standard 4-hour time windows
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SNOW REMOVAL TIME WINDOWS -->
+
+      <div
+        class="booking-time-service booking-time-snow"
+        id="booking-snow-time-group"
+      >
+
+        <div class="booking-time-group-heading">
+
+          <span aria-hidden="true">&#10052;</span>
+
+          <div>
+
+            <h4>Snow Removal Service</h4>
+
+            <p>
+              2-hour time windows
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DYNAMIC TIME OPTIONS -->
 
       <div
         class="booking-time-slots"
@@ -612,10 +1082,16 @@
         role="group"
         aria-label="Choose a preferred time window"
       >
+
         <p class="booking-time-placeholder">
-          Your time options will appear here after you select a date.
+          Select a service and date to view the available
+          time windows.
         </p>
+
       </div>
+
+
+      <!-- TIME SELECTION FEEDBACK -->
 
       <p
         class="booking-time-feedback"
@@ -627,7 +1103,13 @@
 
   </div>
 
-  <!-- VALUES CAPTURED FOR THE BOOKING -->
+
+
+  <!-- ================================================
+       BOOKING VALUES
+       PRESERVED FOR FORM SUBMISSION
+  ================================================= -->
+
   <input
     type="hidden"
     name="serviceDate"
@@ -643,22 +1125,49 @@
   >
 
 </section>
-<!-- SECTION 3: CUSTOMER DETAILS -->
+    
+<!-- =====================================================
+     NORTH CRESCENT BOOKING — SECTION 3
+     CUSTOMER DETAILS
+===================================================== -->
 
-<section class="booking-section booking-customer" id="booking-customer">
+<section
+  class="booking-section booking-customer"
+  id="booking-customer"
+  aria-labelledby="booking-customer-title"
+>
 
   <div class="booking-section-heading">
-    <span class="booking-eyebrow">ALMOST THERE</span>
-    <h2>Tell us a little about yourself</h2>
-    <p>Share your contact details so we can follow up on your booking request.</p>
+
+    <span class="booking-eyebrow">
+      ALMOST THERE
+    </span>
+
+    <h2 id="booking-customer-title">
+      Tell us a little about yourself
+    </h2>
+
+    <p>
+      Share your contact details so we can follow up
+      on your booking request.
+    </p>
+
   </div>
+
 
   <div class="booking-customer-card">
 
     <div class="booking-form-grid">
 
+
+      <!-- FULL NAME -->
+
       <div class="booking-field">
-        <label for="booking-name">Full name <span>*</span></label>
+
+        <label for="booking-name">
+          Full name <span aria-hidden="true">*</span>
+        </label>
+
         <input
           type="text"
           id="booking-name"
@@ -667,10 +1176,18 @@
           autocomplete="name"
           required
         >
+
       </div>
 
+
+      <!-- EMAIL ADDRESS -->
+
       <div class="booking-field">
-        <label for="booking-email">Email address <span>*</span></label>
+
+        <label for="booking-email">
+          Email address <span aria-hidden="true">*</span>
+        </label>
+
         <input
           type="email"
           id="booking-email"
@@ -679,10 +1196,18 @@
           autocomplete="email"
           required
         >
+
       </div>
 
+
+      <!-- PHONE NUMBER -->
+
       <div class="booking-field">
-        <label for="booking-phone">Phone number <span>*</span></label>
+
+        <label for="booking-phone">
+          Phone number <span aria-hidden="true">*</span>
+        </label>
+
         <input
           type="tel"
           id="booking-phone"
@@ -691,10 +1216,18 @@
           autocomplete="tel"
           required
         >
+
       </div>
 
+
+      <!-- SERVICE ADDRESS -->
+
       <div class="booking-field booking-field-full">
-        <label for="booking-address">Service address <span>*</span></label>
+
+        <label for="booking-address">
+          Service address <span aria-hidden="true">*</span>
+        </label>
+
         <input
           type="text"
           id="booking-address"
@@ -703,11 +1236,24 @@
           autocomplete="street-address"
           required
         >
-        <small>Start typing your address to use address suggestions, if available.</small>
+
+        <small>
+          Start typing your address to use address suggestions,
+          if available.
+        </small>
+
       </div>
 
+
+      <!-- ADDITIONAL DETAILS -->
+
       <div class="booking-field booking-field-full">
-        <label for="booking-notes">Additional details <span class="booking-optional">(Optional)</span></label>
+
+        <label for="booking-notes">
+          Additional details
+          <span class="booking-optional">(Optional)</span>
+        </label>
+
         <textarea
           id="booking-notes"
           name="notes"
@@ -715,55 +1261,35 @@
           maxlength="1000"
           placeholder="Tell us about your property or any important service requirements."
         ></textarea>
+
       </div>
 
+
     </div>
 
+
+    <!-- CUSTOMER NOTICE -->
+
     <div class="booking-customer-notice">
+
       <span aria-hidden="true">✓</span>
-      <p>Your information will help us review your request and follow up with you.</p>
+
+      <p>
+        Your information will help us review your request
+        and follow up with you.
+      </p>
+
     </div>
+
 
   </div>
 
 </section>
-  
 
- </main>
+  </form>
 
+</main>
 
-  <!-- =============================================
-       FLOATING CONTACT BAR
-       REUSED FROM SERVICES.HTML
-       ============================================= -->
-
-  <div class="float-container">
-
-    <a
-      href="tel:+14288880542"
-      class="float-btn float-dark"
-      aria-label="Call North Crescent Facility Solutions"
-    >
-      ☎
-    </a>
-
-    <a
-      href="sms:+14288880542"
-      class="float-btn float-whatsapp"
-      aria-label="Text North Crescent Facility Solutions"
-    >
-      💬
-    </a>
-
-    <a
-      href="/contact.html"
-      class="float-btn float-primary"
-      aria-label="Contact North Crescent Facility Solutions"
-    >
-      ✉️
-    </a>
-
-  </div>
 
 
   <!-- =============================================
