@@ -14,6 +14,9 @@
 
   document.addEventListener("DOMContentLoaded", initializeBooking);
 
+  /* Netlify function that verifies Turnstile and forwards to Make */
+  const BOOKING_ENDPOINT = "/.netlify/functions/booking";
+
   function initializeBooking() {
     const form = document.getElementById("booking-form");
 
@@ -35,7 +38,9 @@
       selectedTimeLabel: "",
       emailAddress: "",
       view: "select",
-      isSubmitting: false
+      isSubmitting: false,
+      turnstileToken: "",
+      turnstileWidgetId: null
     };
 
     const el = {
@@ -55,6 +60,8 @@
       timeSection: $("booking-time-card"),
       customerSection: $("booking-customer"),
       reviewSection: $("booking-review"),
+      successSection: $("booking-success"),
+      turnstileBox: $("booking-turnstile"),
 
       previousMonth: $("booking-prev-month"),
       nextMonth: $("booking-next-month"),
@@ -506,7 +513,15 @@
       };
 
       const firstOpen = [1, 2, 3, 4, 5].find(step => !done[step]);
-      const activeStep = state.view === "review" ? 5 : firstOpen;
+      const sent = state.view === "success";
+
+      if (sent) {
+        done[5] = true;
+      }
+
+      const activeStep = sent
+        ? null
+        : state.view === "review" ? 5 : firstOpen;
 
       el.progress?.querySelectorAll("[data-booking-step]").forEach(item => {
         const step = Number(item.dataset.bookingStep);
@@ -689,6 +704,14 @@
       el.selectView.hidden = view !== "select";
       el.reviewSection.hidden = view !== "review";
 
+      if (el.successSection) {
+        el.successSection.hidden = view !== "success";
+      }
+
+      if (view === "review") {
+        renderTurnstile();
+      }
+
       syncProgress();
       scrollToElement(el.stage);
     }
@@ -746,26 +769,129 @@
     }
 
     /* ---------------------------------------------------------
-       SUBMISSION — TEMPORARY PROTECTION
-       Prevents accidental submissions until the backend
-       integration with Make is configured.
+       TURNSTILE (rendered when the review view opens)
     --------------------------------------------------------- */
 
-    form.addEventListener("submit", event => {
+    function renderTurnstile() {
+      if (!el.turnstileBox || state.turnstileWidgetId !== null) return;
+
+      const siteKey = el.turnstileBox.dataset.sitekey;
+
+      const tryRender = (attempt = 0) => {
+        if (window.turnstile) {
+          state.turnstileWidgetId = window.turnstile.render(el.turnstileBox, {
+            sitekey: siteKey,
+            theme: "light",
+            callback: token => { state.turnstileToken = token; },
+            "expired-callback": () => { state.turnstileToken = ""; },
+            "error-callback": () => { state.turnstileToken = ""; }
+          });
+          return;
+        }
+
+        /* the Turnstile script loads async — wait for it */
+        if (attempt < 40) {
+          window.setTimeout(() => tryRender(attempt + 1), 250);
+        }
+      };
+
+      tryRender();
+    }
+
+    function resetTurnstile() {
+      state.turnstileToken = "";
+
+      if (window.turnstile && state.turnstileWidgetId !== null) {
+        window.turnstile.reset(state.turnstileWidgetId);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       SUBMISSION → Netlify function → Make
+    --------------------------------------------------------- */
+
+    function buildPayload() {
+      return {
+        serviceType: getSelectedService(),
+        serviceDate: state.selectedDate,
+        timeSlot: state.selectedTime,
+        timeLabel: formatTimeLabel(),
+        clientName: el.nameInput.value.trim(),
+        email: state.emailAddress,
+        phoneNumber: el.phoneInput.value.trim(),
+        serviceAddress: el.addressInput.value.trim(),
+        notes: el.notesInput ? el.notesInput.value.trim() : "",
+        pageUrl: window.location.href,
+        "cf-turnstile-response": state.turnstileToken
+      };
+    }
+
+    form.addEventListener("submit", async event => {
       event.preventDefault();
 
       if (state.isSubmitting) return;
 
       const feedback = $("booking-review-feedback");
+      const submitLabel = el.submitButton?.querySelector("span");
+      const say = text => { if (feedback) feedback.textContent = text; };
 
-      if (feedback) {
-        feedback.textContent =
-          "Your booking form is being prepared. Please contact our team to complete your request.";
+      /* Never send an incomplete booking */
+      const problems = findProblems();
+
+      if (problems.length > 0) {
+        showView("select");
+        reportProblems(problems);
+        return;
       }
 
-      console.info(
-        "[North Crescent Booking] Submission blocked: backend integration pending."
-      );
+      if (!state.turnstileToken) {
+        say("Please complete the security check before sending.");
+        return;
+      }
+
+      state.isSubmitting = true;
+      el.submitButton?.classList.add("is-sending");
+      el.submitButton?.setAttribute("aria-busy", "true");
+      if (submitLabel) submitLabel.textContent = "Sending...";
+      say("");
+
+      try {
+        const response = await fetch(BOOKING_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(buildPayload())
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const emailTarget = $("booking-success-email");
+
+        if (emailTarget) emailTarget.textContent = state.emailAddress;
+
+        showView("success");
+        el.successSection?.querySelector("h2")?.focus({ preventScroll: true });
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "booking_request_sent", {
+            service: getSelectedService()
+          });
+        }
+      } catch (error) {
+        console.error("[North Crescent Booking] Submission failed:", error);
+
+        resetTurnstile();
+
+        say(
+          "We could not send your request. Please try again, or call us at +1 (428) 888-0542."
+        );
+      } finally {
+        state.isSubmitting = false;
+        el.submitButton?.classList.remove("is-sending");
+        el.submitButton?.removeAttribute("aria-busy");
+        if (submitLabel) submitLabel.textContent = "Submit booking request";
+      }
     });
 
     /* ---------------------------------------------------------
