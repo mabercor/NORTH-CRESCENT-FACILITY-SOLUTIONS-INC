@@ -209,14 +209,68 @@ body[data-page="booking"] .booking-flow {
 
     position: relative;
 
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
+
+   grid-template-areas:
+    "hero schedule"
+    "progress progress"
+    "customer customer"
+    "review review";
+
+    align-items: start;
+
+    gap: 24px;
+
     width: 100%;
-    max-width: var(--booking-content-width);
+    max-width: 1512px;
 
     margin-inline: auto;
 
     min-width: 0;
 }
 
+body[data-page="booking"] #booking-hero {
+    grid-area: hero;
+    min-width: 0;
+    margin-top: 22px;
+}
+
+body[data-page="booking"] #booking-schedule {
+    grid-area: schedule;
+    min-width: 0;
+    margin-top: 22px;
+}
+
+body[data-page="booking"] #booking-progress {
+    grid-area: progress;
+}
+
+@media (max-width: 900px) {
+
+    body[data-page="booking"] .booking-flow {
+        grid-template-columns: minmax(0, 1fr);
+       grid-template-areas:
+    "hero"
+    "progress"
+    "schedule"
+    "customer"
+    "review";
+    }
+
+}
+body[data-page="booking"] #booking-customer {
+    grid-area: customer;
+    min-width: 0;
+}
+
+body[data-page="booking"] #booking-review {
+    grid-area: review;
+    min-width: 0;
+}
 
 /* ============================================================
    01.6 — SHARED BOOKING SECTIONS
@@ -395,9 +449,8 @@ body[data-page="booking"] .booking-hero {
 
 min-height: 0;
    
-    margin: 22px auto 0;
-
-    padding: clamp(38px, 6vw, 82px);
+margin: 22px 0 0;
+    padding: clamp(20px, 2.2vw, 32px);
 
     border: 1px solid rgb(255 255 255 / 14%);
     border-radius: clamp(22px, 3vw, 34px);
@@ -1062,14 +1115,17 @@ body[data-page="booking"] #booking-email-feedback:empty {
         padding: clamp(32px, 5vw, 56px);
     }
 
-    body[data-page="booking"] .booking-hero-content {
+body[data-page="booking"] .booking-hero-content {
 
-        grid-template-columns:
-            minmax(0, 1fr)
-            minmax(280px, 0.85fr);
+    grid-template-columns: minmax(0, 1fr);
 
-        gap: 30px;
-    }
+    grid-template-areas:
+        "intro"
+        "email"
+        "services";
+
+    gap: 20px;
+}
 
     body[data-page="booking"] .booking-hero-title {
 
@@ -1086,7 +1142,7 @@ body[data-page="booking"] #booking-email-feedback:empty {
         min-height: auto;
 
         margin-top: 12px;
-        padding: clamp(27px, 6vw, 42px);
+        padding: clamp(20px, 2.2vw, 32px);
 
         border-radius: 23px;
     }
