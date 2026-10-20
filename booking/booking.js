@@ -1,7 +1,12 @@
 /* =========================================================
    NORTH CRESCENT FACILITY SOLUTIONS
-   BOOKING ENGINE
-   File: /booking.js
+   BOOKING ENGINE — SINGLE-SCREEN VERSION
+   File: /booking/booking.js
+
+   Everything (service, date, time, details) lives on one
+   screen. Progress is derived from what the visitor has
+   completed, in any order. "Review & Confirm" opens the
+   summary view; "Back to details" returns to the screen.
    ========================================================= */
 
 (() => {
@@ -17,693 +22,214 @@
       return;
     }
 
+    const $ = id => document.getElementById(id);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const state = {
-      currentStep: 1,
-      currentMonth: new Date().getMonth(),
-      currentYear: new Date().getFullYear(),
+      currentMonth: today.getMonth(),
+      currentYear: today.getFullYear(),
       selectedDate: "",
       selectedTime: "",
+      selectedTimeLabel: "",
       emailAddress: "",
+      view: "select",
       isSubmitting: false
     };
 
-    const elements = {
+    const el = {
       form,
-      emailInput: document.getElementById("booking-start-email"),
-      emailButton: document.getElementById("booking-start-button"),
-      emailFeedback: document.getElementById("booking-email-feedback"),
 
-      progress: document.getElementById("booking-progress"),
+      emailCard: $("booking-email-card"),
+      emailInput: $("booking-start-email"),
+      emailButton: $("booking-start-button"),
+      emailFeedback: $("booking-email-feedback"),
 
-      serviceSection: document.getElementById("booking-services"),
-      scheduleSection: document.getElementById("booking-schedule"),
-      customerSection: document.getElementById("booking-customer"),
-      reviewSection: document.getElementById("booking-review"),
+      stage: $("booking-stage"),
+      progress: $("booking-progress"),
+      selectView: $("booking-select-view"),
 
-      previousMonth: document.getElementById("booking-prev-month"),
-      nextMonth: document.getElementById("booking-next-month"),
-      calendarMonth: document.getElementById("booking-calendar-month"),
-      calendarDays: document.getElementById("booking-calendar-days"),
+      serviceSection: $("booking-services"),
+      scheduleSection: $("booking-schedule"),
+      timeSection: $("booking-time-card"),
+      customerSection: $("booking-customer"),
+      reviewSection: $("booking-review"),
 
-      selectedDateInput: document.getElementById("booking-selected-date"),
-      selectedTimeInput: document.getElementById("booking-selected-time"),
+      previousMonth: $("booking-prev-month"),
+      nextMonth: $("booking-next-month"),
+      calendarMonth: $("booking-calendar-month"),
+      calendarDays: $("booking-calendar-days"),
+      calendarNote: $("booking-calendar-note"),
 
-      timeSlots: document.getElementById("booking-time-slots"),
-      timeFeedback: document.getElementById("booking-time-feedback"),
+      selectedDateInput: $("booking-selected-date"),
+      selectedTimeInput: $("booking-selected-time"),
 
-      reviewButton: document.getElementById("booking-review-button"),
-      reviewBackButton: document.getElementById("booking-review-back"),
-      submitButton: document.getElementById("booking-submit-button")
+      timeDate: $("booking-time-description"),
+      timeDateText: $("booking-time-date-text"),
+      timeEmpty: $("booking-time-empty"),
+      cleaningSlots: $("booking-cleaning-slots"),
+      snowSlots: $("booking-snow-slots"),
+      timeFeedback: $("booking-time-feedback"),
+
+      summary: $("booking-summary"),
+
+      nameInput: $("booking-name"),
+      phoneInput: $("booking-phone"),
+      addressInput: $("booking-address"),
+      notesInput: $("booking-notes"),
+      detailsFeedback: $("booking-details-feedback"),
+
+      reviewButton: $("booking-review-button"),
+      reviewBackButton: $("booking-review-back"),
+      submitButton: $("booking-submit-button")
     };
 
-    /*
-     * STEP 1 — INITIAL VALIDATION
-     */
-
     const requiredElements = [
-      elements.serviceSection,
-      elements.scheduleSection,
-      elements.customerSection,
-      elements.reviewSection,
-      elements.calendarDays,
-      elements.calendarMonth
+      el.serviceSection,
+      el.scheduleSection,
+      el.timeSection,
+      el.customerSection,
+      el.reviewSection,
+      el.calendarDays,
+      el.calendarMonth
     ];
 
     if (requiredElements.some(element => !element)) {
-      console.error(
-        "[North Crescent Booking] Required HTML elements are missing."
-      );
+      console.error("[North Crescent Booking] Required HTML elements are missing.");
       return;
     }
 
-/*
- * STEP 2 — BOOKING NAVIGATION
- */
+    const prefersReducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function showStep(step) {
-  if (![1, 2, 3, 4, 5].includes(step)) {
-    return;
-  }
-// STEP VISIBILITY — SERVICES AND CALENDAR
+    const isStacked = () => window.matchMedia("(max-width: 768px)").matches;
 
-elements.serviceSection.hidden = step !== 1;
+    function scrollToElement(target) {
+      if (!target) return;
 
-// Keep the schedule section available during service selection.
-// The calendar itself is controlled separately below.
-elements.scheduleSection.hidden = step !== 1 && step !== 2 && step !== 3;
-
-elements.customerSection.hidden = step !== 4;
-elements.reviewSection.hidden = step !== 5;
-
-  const calendarCard = elements.scheduleSection.querySelector(
-    ".booking-calendar-card"
-  );
-
-  const timeContainer = document.getElementById(
-    "booking-time-slots"
-  );
-
-if (calendarCard) {
-    calendarCard.hidden = step !== 1 && step !== 2;
-}
-
-if (timeContainer) {
-  timeContainer.hidden = step !== 3;
-}
-
-/* Control de visibilidad de los botones */
-
-const dateNextButton = document.getElementById(
-  "booking-date-next"
-);
-
-const timeNextButton = document.getElementById(
-  "booking-time-next"
-);
-
-if (dateNextButton) {
-  dateNextButton.hidden = step !== 2;
-}
-
-if (timeNextButton) {
-  timeNextButton.hidden = step !== 3;
-}
-
-  if (elements.progress) {
-    elements.progress
-      .querySelectorAll("[data-booking-step]")
-      .forEach(item => {
-        const itemStep = Number(item.dataset.bookingStep);
-
-        item.classList.toggle("is-active", itemStep === step);
-        item.classList.toggle("is-complete", itemStep < step);
-
-        if (itemStep === step) {
-          item.setAttribute("aria-current", "step");
-        } else {
-          item.removeAttribute("aria-current");
-        }
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start"
       });
-  }
+    }
 
-  const activeSection = {
-    1: elements.serviceSection,
-    2: elements.scheduleSection,
-    3: elements.scheduleSection,
-    4: elements.customerSection,
-    5: elements.reviewSection
-  }[step];
-
-  activeSection.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-/*
- * STEP 2A — SERVICE SELECTION
- */
-
-function getSelectedService() {
-  return elements.form.querySelector(
-    'input[name="serviceType"]:checked'
-  )?.value || "";
-}
-
-function validateSelectedService() {
-  const selectedService = getSelectedService();
-
-  if (!selectedService) {
-    alert("Please select a service before continuing.");
-    return false;
-  }
-
-  return true;
-}
-
-/*
- * STEP 2B — SERVICE NAVIGATION BUTTONS
- */
-
-function createNavigationButton(text, id, className) {
-  let button = document.getElementById(id);
-
-  if (button) {
-    return button;
-  }
-
-  button = document.createElement("button");
-  button.type = "button";
-  button.id = id;
-  button.className = className;
-  button.textContent = text;
-
-  return button;
-}
-
-const serviceNextButton = createNavigationButton(
-  "Continue to Date",
-  "booking-service-next",
-  "booking-navigation-button"
-);
-
-elements.serviceSection.appendChild(serviceNextButton);
-
-serviceNextButton.addEventListener("click", () => {
-  if (!validateSelectedService()) {
-    return;
-  }
-
-  showStep(2);
-});
-
-const dateNextButton = createNavigationButton(
-  "Continue to Time",
-  "booking-date-next",
-  "booking-navigation-button"
-);
-
-elements.scheduleSection.appendChild(dateNextButton);
-
-dateNextButton.addEventListener("click", () => {
-  if (!state.selectedDate) {
-    alert("Please select your preferred date.");
-    return;
-  }
-
-  updateTimeOptions();
-  showStep(3);
-});
-
-const timeNextButton = createNavigationButton(
-  "Continue to Your Details",
-  "booking-time-next",
-  "booking-navigation-button"
-);
-
-elements.scheduleSection.appendChild(timeNextButton);
-
-timeNextButton.addEventListener("click", () => {
-  if (!state.selectedTime) {
-    alert("Please select your preferred time.");
-    return;
-  }
-
-  showStep(4);
-});
-
-const customerBackButton = createNavigationButton(
-  "Back to Time",
-  "booking-customer-back",
-  "booking-navigation-button"
-);
-
-elements.customerSection.appendChild(customerBackButton);
-
-customerBackButton.addEventListener("click", () => {
-  showStep(3);
-});
-
-const reviewBackButton = elements.reviewBackButton;
-
-if (reviewBackButton) {
-  reviewBackButton.addEventListener("click", () => {
-    showStep(4);
-  });
-}
-    /*
-     * STEP 3 — EMAIL GATE
-     */
-
-    function validateEmail() {
-      if (!elements.emailInput) {
-        return false;
+    /* On phones the columns are stacked, so guide the visitor
+       to the next block after each choice. */
+    function nudgeTo(target) {
+      if (isStacked()) {
+        scrollToElement(target);
       }
+    }
 
-      const email = elements.emailInput.value.trim();
+    /* ---------------------------------------------------------
+       HELPERS
+    --------------------------------------------------------- */
 
-      const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!emailPattern.test(email)) {
-        if (elements.emailFeedback) {
-          elements.emailFeedback.textContent =
-            "Please enter a valid email address.";
+    function getSelectedService() {
+      return form.querySelector('input[name="serviceType"]:checked')?.value || "";
+    }
+
+    function isSnowRemoval() {
+      return /snow removal/i.test(getSelectedService());
+    }
+
+    function parseDateValue(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatLongDate(value) {
+      if (!value) return "";
+
+      return parseDateValue(value).toLocaleDateString("en-CA", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function formatTimeLabel() {
+      return state.selectedTimeLabel || state.selectedTime;
+    }
+
+    function digitsIn(value) {
+      return (value.match(/\d/g) || []).length;
+    }
+
+    function flash(element) {
+      if (!element) return;
+
+      element.classList.remove("is-attention");
+      void element.offsetWidth;
+      element.classList.add("is-attention");
+
+      window.setTimeout(() => element.classList.remove("is-attention"), 1600);
+    }
+
+    /* ---------------------------------------------------------
+       EMAIL
+    --------------------------------------------------------- */
+
+    function setEmailState(status, message) {
+      if (!el.emailCard) return;
+
+      el.emailCard.classList.toggle("is-valid", status === "valid");
+      el.emailCard.classList.toggle("is-invalid", status === "invalid");
+
+      if (el.emailFeedback) {
+        el.emailFeedback.textContent = message || "";
+      }
+    }
+
+    function validateEmail({ announce = true } = {}) {
+      if (!el.emailInput) return false;
+
+      const email = el.emailInput.value.trim();
+
+      if (!EMAIL_PATTERN.test(email)) {
+        state.emailAddress = "";
+
+        if (announce) {
+          setEmailState("invalid", "Please enter a valid email address.");
         }
 
-        elements.emailInput.focus();
         return false;
       }
 
       state.emailAddress = email;
-
-      if (elements.emailFeedback) {
-        elements.emailFeedback.textContent = "";
-      }
-
+      setEmailState("valid", "Thanks. We will send your confirmation here.");
       return true;
     }
 
     function startBooking() {
       if (!validateEmail()) {
+        el.emailInput.focus();
         return;
       }
 
-      showStep(1);
-
-      elements.serviceSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      nudgeTo(el.serviceSection);
     }
 
-    /*
-     * STEP 4 — CALENDAR
-     */
+    if (el.emailInput) {
+      el.emailInput.addEventListener("input", () => {
+        const email = el.emailInput.value.trim();
 
-    function renderCalendar() {
-      const year = state.currentYear;
-      const month = state.currentMonth;
-
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      elements.calendarMonth.textContent =
-        new Date(year, month, 1).toLocaleDateString("en-CA", {
-          month: "long",
-          year: "numeric"
-        });
-
-      elements.calendarDays.replaceChildren();
-      /*
- * Update calendar navigation controls.
- */
-
-if (elements.previousMonth) {
-  const today = new Date();
-
-  today.setDate(1);
-  today.setHours(0, 0, 0, 0);
-
-  const displayedMonth = new Date(
-    state.currentYear,
-    state.currentMonth,
-    1
-  );
-
-  elements.previousMonth.disabled =
-    displayedMonth.getTime() <= today.getTime();
-}
-
-      /*
-       * Empty cells before the first day of the month.
-       * This keeps the calendar aligned with weekdays.
-       */
-
-      for (let index = 0; index < firstDay; index++) {
-        const emptyCell = document.createElement("span");
-
-        emptyCell.className = "booking-calendar-empty";
-        emptyCell.setAttribute("aria-hidden", "true");
-
-        elements.calendarDays.appendChild(emptyCell);
-      }
-
-      /*
-       * Render every day in the selected month.
-       */
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(year, month, day);
-        date.setHours(0, 0, 0, 0);
-
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.className = "booking-calendar-day";
-        button.textContent = String(day);
-
-        const dateValue = [
-          year,
-          String(month + 1).padStart(2, "0"),
-          String(day).padStart(2, "0")
-        ].join("-");
-
-        button.dataset.date = dateValue;
-
-        const isPastDate = date < today;
-
-        button.disabled = isPastDate;
-
-        if (isPastDate) {
-          button.classList.add("is-disabled");
-        }
-
-        if (date.getTime() === today.getTime()) {
-          button.classList.add("is-today");
-        }
-
-        if (state.selectedDate === dateValue) {
-          button.classList.add("is-selected");
-          button.setAttribute("aria-pressed", "true");
+        if (EMAIL_PATTERN.test(email)) {
+          state.emailAddress = email;
+          setEmailState("valid", "");
         } else {
-          button.setAttribute("aria-pressed", "false");
+          state.emailAddress = "";
+          setEmailState(null, "");
         }
 
-        button.addEventListener("click", () => {
-          selectDate(dateValue);
-        });
-
-        elements.calendarDays.appendChild(button);
-      }
-    }
-
-    function selectDate(dateValue) {
-      state.selectedDate = dateValue;
-
-      if (elements.selectedDateInput) {
-        elements.selectedDateInput.value = dateValue;
-      }
-
-      renderCalendar();
-
-      if (elements.timeFeedback) {
-        elements.timeFeedback.textContent =
-          "Date selected. Please choose your preferred time.";
-      }
-    }
-
-    /*
- * STEP 6 — CONTROLLED CALENDAR NAVIGATION
- */
-
-function changeMonth(direction) {
-  const today = new Date();
-
-  today.setDate(1);
-  today.setHours(0, 0, 0, 0);
-
-  const targetMonth = new Date(
-    state.currentYear,
-    state.currentMonth + direction,
-    1
-  );
-
-  if (targetMonth < today) {
-    return;
-  }
-
-  state.currentMonth = targetMonth.getMonth();
-  state.currentYear = targetMonth.getFullYear();
-
-  renderCalendar();
-
-  if (elements.previousMonth) {
-    elements.previousMonth.disabled =
-      targetMonth.getTime() <= today.getTime();
-  }
-}
-
-    /*
- * STEP 4B — CUSTOMER VALIDATION
- */
-
-function validateCustomerDetails() {
-  const nameInput = document.getElementById("booking-name");
-  const phoneInput = document.getElementById("booking-phone");
-  const addressInput = document.getElementById("booking-address");
-
-  const requiredFields = [
-    {
-      element: nameInput,
-      message: "Please enter your full name."
-    },
-    {
-      element: phoneInput,
-      message: "Please enter your phone number."
-    },
-    {
-      element: addressInput,
-      message: "Please enter the service address."
-    }
-  ];
-
-  for (const field of requiredFields) {
-    if (!field.element || !field.element.value.trim()) {
-      alert(field.message);
-
-      if (field.element) {
-        field.element.focus();
-      }
-
-      return false;
-    }
-  }
-
-  if (!state.emailAddress) {
-    alert("Please enter your email address before continuing.");
-    return false;
-  }
-
-  return true;
-}
-
-    /*
- * STEP 8 — COMPLETE BOOKING VALIDATION
- */
-
-function validateBookingSelection() {
-  if (!getSelectedService()) {
-    alert("Please select a service.");
-    showStep(1);
-    return false;
-  }
-
-  if (!state.selectedDate) {
-    alert("Please select your preferred date.");
-    showStep(2);
-    return false;
-  }
-
-  if (!state.selectedTime) {
-    alert("Please select your preferred time.");
-    showStep(3);
-    return false;
-  }
-
-  return true;
-}
-/*
- * STEP 4C — POPULATE BOOKING REVIEW
- */
-
-function populateBookingReview() {
-  const name = document.getElementById("booking-name").value.trim();
-  const phone = document.getElementById("booking-phone").value.trim();
-  const address = document.getElementById("booking-address").value.trim();
-
-  const notesInput = document.getElementById("booking-notes");
-  const notes = notesInput ? notesInput.value.trim() : "";
-
-  const selectedService = getSelectedService();
-
-  const reviewFields = {
-    "booking-review-service": selectedService,
-    "booking-review-date": state.selectedDate,
-    "booking-review-time": state.selectedTime,
-    "booking-review-name": name,
-    "booking-review-email": state.emailAddress,
-    "booking-review-phone": phone,
-    "booking-review-address": address
-  };
-
-  Object.entries(reviewFields).forEach(([id, value]) => {
-    const element = document.getElementById(id);
-
-    if (element) {
-      element.textContent = value || "Not provided";
-    }
-  });
-
-  const notesGroup = document.getElementById(
-    "booking-review-notes-group"
-  );
-
-  const notesReview = document.getElementById(
-    "booking-review-notes"
-  );
-
-  if (notesGroup && notesReview) {
-    notesGroup.hidden = !notes;
-    notesReview.textContent = notes;
-  }
-}
-
-/*
- * STEP 4D — REVIEW BUTTON
- */
-
-if (elements.reviewButton) {
-  elements.reviewButton.addEventListener("click", () => {
-    if (!validateBookingSelection()) {
-      return;
-    }
-
-    if (!validateCustomerDetails()) {
-      return;
-    }
-
-    populateBookingReview();
-    showStep(5);
-  });
-}
-
-    /*
-     * STEP 5 — TIME SELECTION
-     */
-
-    function initializeTimeSelection() {
-      const timeInputs = elements.form.querySelectorAll(
-        'input[name="timeSlotOption"]'
-      );
-
-      timeInputs.forEach(input => {
-        input.addEventListener("change", () => {
-          if (!input.checked) {
-            return;
-          }
-
-          state.selectedTime = input.value;
-
-          if (elements.selectedTimeInput) {
-            elements.selectedTimeInput.value = input.value;
-          }
-
-          if (elements.timeFeedback) {
-            elements.timeFeedback.textContent =
-              "Time selected successfully.";
-          }
-        });
-      });
-    }
-    /*
-/*
- * STEP 5A — SERVICE CHANGE LISTENER
- */
-
-const serviceInputs = elements.form.querySelectorAll(
-  'input[name="serviceType"]'
-);
-
-const cleaningSlots = document.getElementById(
-  "booking-cleaning-slots"
-);
-
-const snowSlots = document.getElementById(
-  "booking-snow-slots"
-);
-
-function updateServiceTimeVisibility() {
-  const selectedService = getSelectedService();
-  const isSnowRemoval = /snow removal/i.test(selectedService);
-
-  if (cleaningSlots) {
-    cleaningSlots.hidden = !selectedService || isSnowRemoval;
-  }
-
-  if (snowSlots) {
-    snowSlots.hidden = !isSnowRemoval;
-  }
-
-  if (!selectedService || isSnowRemoval) {
-    if (cleaningSlots) {
-      cleaningSlots.querySelectorAll('input[type="radio"]')
-        .forEach(input => input.checked = false);
-    }
-  }
-
-  if (!isSnowRemoval && snowSlots) {
-    snowSlots.querySelectorAll('input[type="radio"]')
-      .forEach(input => input.checked = false);
-  }
-}
-
-serviceInputs.forEach(input => {
-  input.addEventListener("change", () => {
-    state.selectedTime = "";
-
-    if (elements.selectedTimeInput) {
-      elements.selectedTimeInput.value = "";
-    }
-
-    elements.form
-      .querySelectorAll('input[name="timeSlotOption"]')
-      .forEach(timeInput => {
-        timeInput.checked = false;
+        syncProgress();
       });
 
-    updateServiceTimeVisibility();
-
-    if (elements.timeFeedback) {
-      elements.timeFeedback.textContent = "";
-    }
-  });
-});
-
-updateServiceTimeVisibility();
-    /*
-     * STEP 6 — EVENT LISTENERS
-     */
-
-    if (elements.emailButton) {
-      elements.emailButton.addEventListener("click", startBooking);
-    }
-
-    if (elements.emailInput) {
-      elements.emailInput.addEventListener("keydown", event => {
+      el.emailInput.addEventListener("keydown", event => {
         if (event.key === "Enter") {
           event.preventDefault();
           startBooking();
@@ -711,56 +237,544 @@ updateServiceTimeVisibility();
       });
     }
 
-    if (elements.previousMonth) {
-      elements.previousMonth.addEventListener("click", () => {
-        changeMonth(-1);
+    if (el.emailButton) {
+      el.emailButton.addEventListener("click", startBooking);
+    }
+
+    /* ---------------------------------------------------------
+       CALENDAR
+    --------------------------------------------------------- */
+
+    function renderCalendar() {
+      const year = state.currentYear;
+      const month = state.currentMonth;
+
+      const firstWeekday = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysInPreviousMonth = new Date(year, month, 0).getDate();
+
+      el.calendarMonth.textContent = new Date(year, month, 1)
+        .toLocaleDateString("en-CA", { month: "long", year: "numeric" });
+
+      el.calendarDays.replaceChildren();
+
+      const firstOfCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+      if (el.previousMonth) {
+        el.previousMonth.disabled =
+          new Date(year, month, 1).getTime() <= firstOfCurrentMonth.getTime();
+      }
+
+      /* Always render 6 weeks so the card never changes height */
+
+      for (let cell = 0; cell < 42; cell++) {
+        const dayNumber = cell - firstWeekday + 1;
+
+        if (dayNumber < 1 || dayNumber > daysInMonth) {
+          const outside = document.createElement("span");
+
+          outside.className = "booking-calendar-outside";
+          outside.setAttribute("aria-hidden", "true");
+          outside.textContent = String(
+            dayNumber < 1 ? daysInPreviousMonth + dayNumber : dayNumber - daysInMonth
+          );
+
+          el.calendarDays.appendChild(outside);
+          continue;
+        }
+
+        const date = new Date(year, month, dayNumber);
+        date.setHours(0, 0, 0, 0);
+
+        const dateValue = [
+          year,
+          String(month + 1).padStart(2, "0"),
+          String(dayNumber).padStart(2, "0")
+        ].join("-");
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "booking-calendar-day";
+        button.textContent = String(dayNumber);
+        button.dataset.date = dateValue;
+        button.setAttribute("aria-label", formatLongDate(dateValue));
+
+        if (date < today) {
+          button.disabled = true;
+        }
+
+        if (date.getTime() === today.getTime()) {
+          button.classList.add("is-today");
+        }
+
+        const isSelected = state.selectedDate === dateValue;
+
+        button.classList.toggle("is-selected", isSelected);
+        button.setAttribute("aria-pressed", String(isSelected));
+
+        button.addEventListener("click", () => selectDate(dateValue));
+
+        el.calendarDays.appendChild(button);
+      }
+    }
+
+    function selectDate(dateValue) {
+      state.selectedDate = dateValue;
+
+      if (el.selectedDateInput) {
+        el.selectedDateInput.value = dateValue;
+      }
+
+      renderCalendar();
+
+      el.calendarDays
+        .querySelector(`[data-date="${dateValue}"]`)
+        ?.focus({ preventScroll: true });
+
+      if (el.calendarNote) {
+        el.calendarNote.textContent = `${formatLongDate(dateValue)} selected.`;
+      }
+
+      refreshSelection();
+      nudgeTo(el.timeSection);
+    }
+
+    function changeMonth(direction) {
+      const firstOfCurrentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+      const target = new Date(state.currentYear, state.currentMonth + direction, 1);
+
+      if (target < firstOfCurrentMonth) return;
+
+      state.currentMonth = target.getMonth();
+      state.currentYear = target.getFullYear();
+
+      renderCalendar();
+    }
+
+    if (el.previousMonth) {
+      el.previousMonth.addEventListener("click", () => changeMonth(-1));
+    }
+
+    if (el.nextMonth) {
+      el.nextMonth.addEventListener("click", () => changeMonth(1));
+    }
+
+    /* ---------------------------------------------------------
+       SERVICE
+    --------------------------------------------------------- */
+
+    form.querySelectorAll('input[name="serviceType"]').forEach(input => {
+      input.addEventListener("change", () => {
+        /* Time windows depend on the service, so start fresh */
+        clearSelectedTime();
+        refreshSelection();
+        nudgeTo(el.scheduleSection);
+      });
+    });
+
+    /* ---------------------------------------------------------
+       TIME
+    --------------------------------------------------------- */
+
+    function clearSelectedTime() {
+      state.selectedTime = "";
+      state.selectedTimeLabel = "";
+
+      if (el.selectedTimeInput) {
+        el.selectedTimeInput.value = "";
+      }
+
+      form.querySelectorAll('input[name="timeSlotOption"]').forEach(input => {
+        input.checked = false;
       });
     }
 
-    if (elements.nextMonth) {
-      elements.nextMonth.addEventListener("click", () => {
-        changeMonth(1);
+    form.querySelectorAll('input[name="timeSlotOption"]').forEach(input => {
+      input.addEventListener("change", () => {
+        if (!input.checked) return;
+
+        state.selectedTime = input.value;
+
+        state.selectedTimeLabel = input
+          .closest(".booking-time-option")
+          .querySelector(".booking-time-option-label")
+          .textContent
+          .replace(/\s+/g, " ")
+          .trim();
+
+        if (el.selectedTimeInput) {
+          el.selectedTimeInput.value = input.value;
+        }
+
+        if (el.timeFeedback) {
+          el.timeFeedback.textContent = `${state.selectedTimeLabel} selected.`;
+        }
+
+        refreshSelection();
+        nudgeTo(el.customerSection);
+      });
+    });
+
+    function updateTimePanel() {
+      const service = getSelectedService();
+      const snow = isSnowRemoval();
+      const hasDate = Boolean(state.selectedDate);
+
+      if (el.timeDateText) {
+        el.timeDateText.textContent = hasDate
+          ? formatLongDate(state.selectedDate)
+          : "Pick a date to continue";
+      }
+
+      if (el.timeDate) {
+        el.timeDate.classList.toggle("is-empty", !hasDate);
+      }
+
+      const ready = Boolean(service) && hasDate;
+
+      if (el.timeEmpty) {
+        el.timeEmpty.hidden = ready;
+
+        if (!service && !hasDate) {
+          el.timeEmpty.textContent =
+            "Choose a service and a date to see the available time windows.";
+        } else if (!service) {
+          el.timeEmpty.textContent =
+            "Choose a service to see its available time windows.";
+        } else {
+          el.timeEmpty.textContent =
+            "Choose a date to see the available time windows.";
+        }
+      }
+
+      if (el.cleaningSlots) el.cleaningSlots.hidden = !ready || snow;
+      if (el.snowSlots) el.snowSlots.hidden = !ready || !snow;
+    }
+
+    /* ---------------------------------------------------------
+       LIVE SELECTION SUMMARY
+    --------------------------------------------------------- */
+
+    function updateSummary() {
+      if (!el.summary) return;
+
+      const rows = {
+        service: getSelectedService(),
+        date: state.selectedDate ? formatLongDate(state.selectedDate) : "",
+        time: state.selectedTime ? formatTimeLabel() : ""
+      };
+
+      let anyVisible = false;
+
+      Object.entries(rows).forEach(([key, value]) => {
+        const row = el.summary.querySelector(`[data-summary="${key}"]`);
+        const text = $(`booking-summary-${key}`);
+
+        if (!row || !text) return;
+
+        row.hidden = !value;
+        text.textContent = value;
+
+        if (value) anyVisible = true;
+      });
+
+      el.summary.hidden = !anyVisible;
+    }
+
+    /* ---------------------------------------------------------
+       PROGRESS
+    --------------------------------------------------------- */
+
+    function detailsAreComplete() {
+      return Boolean(
+        state.emailAddress &&
+        el.nameInput.value.trim() &&
+        digitsIn(el.phoneInput.value) >= 10 &&
+        el.addressInput.value.trim()
+      );
+    }
+
+    function syncProgress() {
+      const done = {
+        1: Boolean(getSelectedService()),
+        2: Boolean(state.selectedDate),
+        3: Boolean(state.selectedTime),
+        4: detailsAreComplete(),
+        5: false
+      };
+
+      const firstOpen = [1, 2, 3, 4, 5].find(step => !done[step]);
+      const activeStep = state.view === "review" ? 5 : firstOpen;
+
+      el.progress?.querySelectorAll("[data-booking-step]").forEach(item => {
+        const step = Number(item.dataset.bookingStep);
+
+        item.classList.toggle("is-complete", done[step]);
+        item.classList.toggle("is-active", step === activeStep);
+
+        if (step === activeStep) {
+          item.setAttribute("aria-current", "step");
+        } else {
+          item.removeAttribute("aria-current");
+        }
+      });
+
+      if (el.reviewButton) {
+        const ready = done[1] && done[2] && done[3] && done[4];
+        const wasReady = el.reviewButton.classList.contains("is-ready");
+
+        el.reviewButton.classList.toggle("is-ready", ready);
+
+        /* restart the one-time glow if it became ready again */
+        if (ready && !wasReady && !prefersReducedMotion) {
+          el.reviewButton.style.animation = "none";
+          void el.reviewButton.offsetWidth;
+          el.reviewButton.style.animation = "";
+        }
+      }
+    }
+
+    function refreshSelection() {
+      updateTimePanel();
+      updateSummary();
+      syncProgress();
+    }
+
+    /* ---------------------------------------------------------
+       DETAILS — VALIDATION
+    --------------------------------------------------------- */
+
+    function setFieldInvalid(input, invalid) {
+      input.closest(".booking-field")?.classList.toggle("is-invalid", invalid);
+      input.setAttribute("aria-invalid", String(invalid));
+    }
+
+    [el.nameInput, el.phoneInput, el.addressInput].forEach(input => {
+      input.addEventListener("input", () => {
+        if (input.value.trim()) {
+          setFieldInvalid(input, false);
+        }
+
+        if (el.detailsFeedback) {
+          el.detailsFeedback.textContent = "";
+        }
+
+        syncProgress();
+      });
+    });
+
+    /* Notes grow with their content (up to the CSS max-height) */
+    if (el.notesInput) {
+      el.notesInput.addEventListener("input", () => {
+        el.notesInput.style.height = "auto";
+        el.notesInput.style.height = `${el.notesInput.scrollHeight}px`;
       });
     }
 
-    initializeTimeSelection();
-    /*
- * STEP 9 — TEMPORARY FORM SUBMISSION PROTECTION
- *
- * Prevent accidental submissions until the backend
- * integration with Make is configured.
- */
+    function findProblems() {
+      const problems = [];
 
-elements.form.addEventListener("submit", event => {
-  event.preventDefault();
+      if (!getSelectedService()) {
+        problems.push({
+          label: "a service",
+          target: el.serviceSection,
+          focus: form.querySelector('input[name="serviceType"]')
+        });
+      }
 
-  if (state.isSubmitting) {
-    return;
-  }
+      if (!state.selectedDate) {
+        problems.push({
+          label: "a date",
+          target: el.scheduleSection,
+          focus: el.calendarDays.querySelector(".booking-calendar-day:not(:disabled)")
+        });
+      }
 
-  const feedback = document.getElementById(
-    "booking-review-feedback"
-  );
+      if (!state.selectedTime) {
+        problems.push({
+          label: "a time",
+          target: el.timeSection,
+          focus: null
+        });
+      }
 
-  if (feedback) {
-    feedback.textContent =
-      "Your booking form is being prepared. Please contact our team to complete your request.";
-  }
+      if (!state.emailAddress) {
+        problems.push({
+          label: "a valid email",
+          target: el.emailCard,
+          focus: el.emailInput,
+          isEmail: true
+        });
+      }
 
-  console.info(
-    "[North Crescent Booking] Submission blocked: backend integration pending."
-  );
-});
+      if (!el.nameInput.value.trim()) {
+        problems.push({
+          label: "your full name",
+          target: el.customerSection,
+          focus: el.nameInput,
+          field: el.nameInput
+        });
+      }
 
-    /*
-     * STEP 7 — INITIALIZE
-     */
+      if (digitsIn(el.phoneInput.value) < 10) {
+        problems.push({
+          label: "a phone number with area code",
+          target: el.customerSection,
+          focus: el.phoneInput,
+          field: el.phoneInput
+        });
+      }
+
+      if (!el.addressInput.value.trim()) {
+        problems.push({
+          label: "the service address",
+          target: el.customerSection,
+          focus: el.addressInput,
+          field: el.addressInput
+        });
+      }
+
+      return problems;
+    }
+
+    function joinList(items) {
+      if (items.length <= 1) return items.join("");
+      return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+    }
+
+    function reportProblems(problems) {
+      const panels = new Set();
+
+      [el.nameInput, el.phoneInput, el.addressInput].forEach(input => {
+        setFieldInvalid(input, false);
+      });
+
+      problems.forEach(problem => {
+        if (problem.field) setFieldInvalid(problem.field, true);
+
+        if (problem.isEmail) {
+          setEmailState("invalid", "Please enter a valid email address.");
+        }
+
+        panels.add(problem.target);
+      });
+
+      panels.forEach(panel => {
+        if (panel !== el.emailCard) flash(panel);
+      });
+
+      if (el.detailsFeedback) {
+        el.detailsFeedback.textContent =
+          `Please add ${joinList(problems.map(problem => problem.label))} to continue.`;
+      }
+
+      const first = problems[0];
+
+      scrollToElement(first.target);
+
+      if (first.focus) {
+        window.setTimeout(() => first.focus.focus({ preventScroll: true }), 350);
+      }
+    }
+
+    /* ---------------------------------------------------------
+       VIEWS — SELECT ↔ REVIEW
+    --------------------------------------------------------- */
+
+    function showView(view) {
+      state.view = view;
+
+      el.selectView.hidden = view !== "select";
+      el.reviewSection.hidden = view !== "review";
+
+      syncProgress();
+      scrollToElement(el.stage);
+    }
+
+    function populateBookingReview() {
+      const notes = el.notesInput ? el.notesInput.value.trim() : "";
+
+      const fields = {
+        "booking-review-service": getSelectedService(),
+        "booking-review-date": formatLongDate(state.selectedDate),
+        "booking-review-time": formatTimeLabel(),
+        "booking-review-name": el.nameInput.value.trim(),
+        "booking-review-email": state.emailAddress,
+        "booking-review-phone": el.phoneInput.value.trim(),
+        "booking-review-address": el.addressInput.value.trim()
+      };
+
+      Object.entries(fields).forEach(([id, value]) => {
+        const target = $(id);
+
+        if (target) target.textContent = value || "Not provided";
+      });
+
+      const notesGroup = $("booking-review-notes-group");
+      const notesReview = $("booking-review-notes");
+
+      if (notesGroup && notesReview) {
+        notesGroup.hidden = !notes;
+        notesReview.textContent = notes;
+      }
+
+      const feedback = $("booking-review-feedback");
+
+      if (feedback) feedback.textContent = "";
+    }
+
+    if (el.reviewButton) {
+      el.reviewButton.addEventListener("click", () => {
+        const problems = findProblems();
+
+        if (problems.length > 0) {
+          reportProblems(problems);
+          return;
+        }
+
+        if (el.detailsFeedback) el.detailsFeedback.textContent = "";
+
+        populateBookingReview();
+        showView("review");
+      });
+    }
+
+    if (el.reviewBackButton) {
+      el.reviewBackButton.addEventListener("click", () => showView("select"));
+    }
+
+    /* ---------------------------------------------------------
+       SUBMISSION — TEMPORARY PROTECTION
+       Prevents accidental submissions until the backend
+       integration with Make is configured.
+    --------------------------------------------------------- */
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (state.isSubmitting) return;
+
+      const feedback = $("booking-review-feedback");
+
+      if (feedback) {
+        feedback.textContent =
+          "Your booking form is being prepared. Please contact our team to complete your request.";
+      }
+
+      console.info(
+        "[North Crescent Booking] Submission blocked: backend integration pending."
+      );
+    });
+
+    /* ---------------------------------------------------------
+       INITIALIZE
+    --------------------------------------------------------- */
 
     renderCalendar();
-    showStep(1);
+    refreshSelection();
 
-    console.info(
-      "[North Crescent Booking] Initialization complete."
-    );
+    console.info("[North Crescent Booking] Initialization complete.");
   }
 })();
