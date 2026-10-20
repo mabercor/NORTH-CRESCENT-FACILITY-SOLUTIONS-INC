@@ -393,8 +393,8 @@ body[data-page="booking"] .booking-hero {
     width: 100%;
     max-width: 1512px;
 
-    min-height: clamp(410px, 43vw, 570px);
-
+min-height: 0;
+   
     margin: 22px auto 0;
 
     padding: clamp(38px, 6vw, 82px);
@@ -502,12 +502,16 @@ body[data-page="booking"] .booking-hero-content {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.12fr)
-        minmax(300px, 0.88fr);
+        minmax(0, 0.85fr)
+        minmax(0, 1.15fr);
 
-    align-items: center;
+    grid-template-areas:
+        "intro intro"
+        "email services";
 
-    gap: clamp(34px, 5vw, 76px);
+    align-items: start;
+
+    gap: 28px 32px;
 
     width: 100%;
     max-width: 1320px;
@@ -518,8 +522,10 @@ body[data-page="booking"] .booking-hero-content {
 
 body[data-page="booking"] .booking-hero-copy {
 
+    grid-area: intro;
+
     min-width: 0;
-    max-width: 740px;
+    max-width: 100%;
 }
 
 
@@ -706,6 +712,7 @@ body[data-page="booking"] .booking-email-card {
     isolation: isolate;
 
     min-width: 0;
+   grid-area: email;
 
     padding: clamp(24px, 3vw, 35px);
 
@@ -1090,12 +1097,17 @@ body[data-page="booking"] #booking-email-feedback:empty {
         border-radius: 23px;
     }
 
-    body[data-page="booking"] .booking-hero-content {
+  body[data-page="booking"] .booking-hero-content {
 
-        grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
 
-        gap: 34px;
-    }
+    grid-template-areas:
+        "intro"
+        "email"
+        "services";
+
+    gap: 24px;
+}
 
     body[data-page="booking"] .booking-hero-copy {
 
@@ -1656,6 +1668,8 @@ body[data-page="booking"] .booking-services {
 
     position: relative;
 
+    grid-area: services;
+
     scroll-margin-top: 32px;
 }
 
@@ -1678,7 +1692,6 @@ body[data-page="booking"] .booking-service-fieldset {
 /* ============================================================
    04.3 — SERVICE GRID
    ============================================================ */
-
 body[data-page="booking"] .booking-service-grid {
 
     display: grid;
@@ -1687,14 +1700,13 @@ body[data-page="booking"] .booking-service-grid {
 
     align-items: stretch;
 
-    gap: clamp(16px, 2vw, 24px);
+    gap: 12px;
 
     width: 100%;
-    max-width: 1240px;
+    max-width: 100%;
 
     margin-inline: auto;
 }
-
 
 /* ============================================================
    04.4 — SERVICE CARD FOUNDATION
@@ -1708,13 +1720,13 @@ body[data-page="booking"] .booking-service-card {
 
     display: flex;
 
-    align-items: flex-start;
-    gap: 17px;
+   align-items: center;
+    gap: 10px;
 
     min-width: 0;
-    min-height: 158px;
+    min-height: 90px;
 
-    padding: clamp(20px, 2.4vw, 29px);
+padding: 16px;
 
     border: 1px solid #DCE5ED;
     border-radius: 21px;
@@ -1891,6 +1903,10 @@ body[data-page="booking"] .booking-service-content {
 }
 
 
+/* ============================================================
+   04.5 — SERVICE NAME TYPOGRAPHY
+   ============================================================ */
+
 body[data-page="booking"] .booking-service-name {
 
     display: block;
@@ -1901,7 +1917,7 @@ body[data-page="booking"] .booking-service-name {
 
     font-family: var(--booking-font);
 
-    font-size: 1rem;
+    font-size: 0.92rem;
     font-weight: 700;
 
     line-height: 1.45;
@@ -1911,7 +1927,6 @@ body[data-page="booking"] .booking-service-name {
 
     transition: color var(--booking-transition);
 }
-
 
 body[data-page="booking"] .booking-service-description {
 
@@ -1940,14 +1955,14 @@ body[data-page="booking"] .booking-service-check {
 
     position: absolute;
 
-    top: 14px;
-    right: 14px;
-
+    top: 10px;
+right: 10px;
+   
     display: grid;
     place-items: center;
 
-    width: 25px;
-    height: 25px;
+   width: 22px;
+height: 22px;
 
     border: 1px solid #D8E2EA;
     border-radius: 50%;
