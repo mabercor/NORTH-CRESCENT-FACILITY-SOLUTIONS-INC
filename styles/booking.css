@@ -2433,16 +2433,15 @@ body[data-page="booking"] .booking-schedule-layout {
 
     display: grid;
 
-    grid-template-columns:
-        minmax(0, 1.12fr)
-        minmax(300px, 0.88fr);
+    /* Calendar first, Preferred Time underneath */
+    grid-template-columns: minmax(0, 1fr);
 
-    align-items: stretch;
+    align-items: start;
 
-    gap: clamp(20px, 3vw, 30px);
+    gap: 28px;
 
     width: 100%;
-    max-width: 1240px;
+    max-width: 1000px;
 
     margin-inline: auto;
 }
@@ -3012,19 +3011,41 @@ body[data-page="booking"] #booking-snow-slots {
     border: 0;
 }
 
-
 body[data-page="booking"] #booking-time-slots {
 
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 11px;
+    align-items: stretch;
+
+    gap: 14px;
 
     width: 100%;
     min-width: 0;
 }
 
+
+/* TABLET */
+@media (max-width: 900px) {
+
+    body[data-page="booking"] #booking-time-slots {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 480px) {
+
+    body[data-page="booking"] #booking-time-slots {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+}
 
 /* ============================================================
    05.13 — TIME SLOT OPTIONS
