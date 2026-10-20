@@ -1,0 +1,794 @@
+<main>
+  <!-- BOOKING PAGE -->
+  <section class="booking-hero">
+    <div class="booking-container">
+
+      <div class="booking-hero-content">
+        <span class="booking-eyebrow">NORTH CRESCENT FACILITY SOLUTIONS</span>
+
+        <h1>
+          Book Your Cleaning Service
+          <span>With Confidence.</span>
+        </h1>
+
+        <p>
+          Tell us about your property and preferred schedule.
+          Our team will review your request and contact you to confirm
+          the service details.
+        </p>
+
+        <div class="booking-trust-points">
+          <span>✓ Professional Service</span>
+          <span>✓ Secure Request</span>
+          <span>✓ Personalised Attention</span>
+        </div>
+      </div>
+
+      <div class="booking-trust-card">
+        <div class="booking-trust-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3L20 6V11.5C20 16.2 16.8 19.7 12 21C7.2 19.7 4 16.2 4 11.5V6L12 3Z"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linejoin="round"/>
+            <path d="M8.5 12L10.8 14.3L15.7 9.5"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h2>A Service Request Designed Around You</h2>
+
+        <p>
+          Share your service requirements and preferred appointment details.
+          We will review your information before confirming your booking.
+        </p>
+
+        <div class="booking-trust-divider"></div>
+
+        <div class="booking-trust-detail">
+          <span class="booking-detail-number">01</span>
+          <div>
+            <strong>Submit your request</strong>
+            <p>Provide your property and service details.</p>
+          </div>
+        </div>
+
+        <div class="booking-trust-detail">
+          <span class="booking-detail-number">02</span>
+          <div>
+            <strong>Our team reviews it</strong>
+            <p>We verify the information and requested schedule.</p>
+          </div>
+        </div>
+
+        <div class="booking-trust-detail">
+          <span class="booking-detail-number">03</span>
+          <div>
+            <strong>Receive confirmation</strong>
+            <p>Your appointment is confirmed directly by our team.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="booking-section" id="booking-form">
+    <div class="booking-container">
+
+      <div class="booking-section-heading">
+        <span class="booking-eyebrow">BOOKING DETAILS</span>
+        <h2>Let's Plan Your Service</h2>
+        <p>
+          Complete the form below so we can understand your needs
+          and review your preferred appointment.
+        </p>
+      </div>
+
+      <form id="booking-request-form"
+            class="booking-form"
+            action="/.netlify/functions/booking-request"
+            method="POST">
+
+        <!-- SERVICE SELECTION -->
+        <div class="booking-form-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">01</span>
+            <div>
+              <h3>Select Your Service</h3>
+              <p>Choose the service that best matches your needs.</p>
+            </div>
+          </div>
+
+          <div class="booking-field">
+            <label for="serviceType">Service Type <span>*</span></label>
+
+            <select id="serviceType"
+                    name="serviceType"
+                    required>
+              <option value="">Select a cleaning service</option>
+              <option value="Residential Cleaning">Residential Cleaning</option>
+              <option value="Deep Cleaning">Deep Cleaning</option>
+              <option value="Move-In/Move-Out Cleaning">Move-In / Move-Out Cleaning</option>
+              <option value="Commercial Cleaning">Commercial Cleaning</option>
+              <option value="Office Cleaning">Office Cleaning</option>
+              <option value="Janitorial Services">Janitorial Services</option>
+              <option value="Airbnb Cleaning">Airbnb / Short-Term Rental Cleaning</option>
+              <option value="Post-Construction Cleaning">Post-Construction Cleaning</option>
+              <option value="Snow Removal">Snow Removal</option>
+              <option value="Other">Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="propertyType">Property Type <span>*</span></label>
+
+              <select id="propertyType"
+                      name="propertyType"
+                      required>
+                <option value="">Select property type</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Condominium">Condominium</option>
+                <option value="Office">Office</option>
+                <option value="Retail Space">Retail Space</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Rental Property">Rental Property</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="booking-field">
+              <label for="propertySize">Approximate Property Size</label>
+
+              <select id="propertySize"
+                      name="propertySize">
+                <option value="">Select size (optional)</option>
+                <option value="Under 1,000 sq. ft.">Under 1,000 sq. ft.</option>
+                <option value="1,000–1,999 sq. ft.">1,000–1,999 sq. ft.</option>
+                <option value="2,000–2,999 sq. ft.">2,000–2,999 sq. ft.</option>
+                <option value="3,000–4,999 sq. ft.">3,000–4,999 sq. ft.</option>
+                <option value="5,000+ sq. ft.">5,000+ sq. ft.</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="booking-field">
+            <label for="serviceFrequency">Service Frequency</label>
+
+            <select id="serviceFrequency"
+                    name="serviceFrequency">
+              <option value="">Select frequency (optional)</option>
+              <option value="One-Time">One-Time Service</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Bi-Weekly">Every Two Weeks</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Custom Schedule">Custom Schedule</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- SECTION 2 CONTINUES IN THE NEXT CODE BLOCK -->
+                <!-- CLIENT INFORMATION -->
+        <div class="booking-form-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">02</span>
+            <div>
+              <h3>Your Information</h3>
+              <p>Tell us how we can reach you regarding your request.</p>
+            </div>
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="clientName">Full Name <span>*</span></label>
+              <input
+                type="text"
+                id="clientName"
+                name="clientName"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                maxlength="120"
+                required>
+            </div>
+
+            <div class="booking-field">
+              <label for="companyName">Company Name</label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                placeholder="Enter your company name"
+                autocomplete="organization"
+                maxlength="150">
+            </div>
+
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="emailAddress">Email Address <span>*</span></label>
+              <input
+                type="email"
+                id="emailAddress"
+                name="emailAddress"
+                placeholder="you@example.com"
+                autocomplete="email"
+                maxlength="254"
+                required>
+            </div>
+
+            <div class="booking-field">
+              <label for="phoneNumber">Phone Number <span>*</span></label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Enter your phone number"
+                autocomplete="tel"
+                maxlength="30"
+                required>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PROPERTY ADDRESS -->
+        <div class="booking-form-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">03</span>
+            <div>
+              <h3>Service Location</h3>
+              <p>Where would you like us to provide the service?</p>
+            </div>
+          </div>
+
+          <div class="booking-field">
+            <label for="serviceAddress">Street Address <span>*</span></label>
+            <input
+              type="text"
+              id="serviceAddress"
+              name="serviceAddress"
+              placeholder="Enter the property street address"
+              autocomplete="street-address"
+              maxlength="250"
+              required>
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="serviceCity">City <span>*</span></label>
+              <input
+                type="text"
+                id="serviceCity"
+                name="serviceCity"
+                placeholder="e.g. Moncton"
+                autocomplete="address-level2"
+                maxlength="100"
+                required>
+            </div>
+
+            <div class="booking-field">
+              <label for="serviceProvince">Province <span>*</span></label>
+              <select
+                id="serviceProvince"
+                name="serviceProvince"
+                autocomplete="address-level1"
+                required>
+                <option value="New Brunswick" selected>New Brunswick</option>
+                <option value="Nova Scotia">Nova Scotia</option>
+                <option value="Prince Edward Island">Prince Edward Island</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="postalCode">Postal Code <span>*</span></label>
+              <input
+                type="text"
+                id="postalCode"
+                name="postalCode"
+                placeholder="e.g. E1C 1A1"
+                autocomplete="postal-code"
+                maxlength="12"
+                required>
+            </div>
+
+            <div class="booking-field">
+              <label for="unitNumber">Unit / Apartment Number</label>
+              <input
+                type="text"
+                id="unitNumber"
+                name="unitNumber"
+                placeholder="Optional"
+                maxlength="30">
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- SECTION 3 CONTINUES IN THE NEXT CODE BLOCK -->
+                <!-- PREFERRED APPOINTMENT -->
+        <div class="booking-form-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">04</span>
+            <div>
+              <h3>Preferred Appointment</h3>
+              <p>Select your preferred date and time. Your appointment is not confirmed until our team contacts you.</p>
+            </div>
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="preferredDate">Preferred Date <span>*</span></label>
+              <input
+                type="date"
+                id="preferredDate"
+                name="preferredDate"
+                required>
+            </div>
+
+            <div class="booking-field">
+              <label for="preferredTime">Preferred Time <span>*</span></label>
+              <select
+                id="preferredTime"
+                name="preferredTime"
+                required>
+                <option value="">Select preferred time</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+                <option value="Flexible">Flexible</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="booking-field">
+            <label for="alternativeDate">Alternative Date</label>
+            <input
+              type="date"
+              id="alternativeDate"
+              name="alternativeDate">
+            <small>If your preferred date is unavailable, we can review this alternative.</small>
+          </div>
+
+        </div>
+
+        <!-- ADDITIONAL SERVICE DETAILS -->
+        <div class="booking-form-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">05</span>
+            <div>
+              <h3>Additional Details</h3>
+              <p>Help us understand your property and service requirements.</p>
+            </div>
+          </div>
+
+          <div class="booking-field-grid">
+
+            <div class="booking-field">
+              <label for="bedrooms">Number of Bedrooms</label>
+              <select id="bedrooms" name="bedrooms">
+                <option value="">Select (optional)</option>
+                <option value="Studio">Studio</option>
+                <option value="1">1 bedroom</option>
+                <option value="2">2 bedrooms</option>
+                <option value="3">3 bedrooms</option>
+                <option value="4">4 bedrooms</option>
+                <option value="5+">5+ bedrooms</option>
+                <option value="Not Applicable">Not applicable</option>
+              </select>
+            </div>
+
+            <div class="booking-field">
+              <label for="bathrooms">Number of Bathrooms</label>
+              <select id="bathrooms" name="bathrooms">
+                <option value="">Select (optional)</option>
+                <option value="1">1 bathroom</option>
+                <option value="2">2 bathrooms</option>
+                <option value="3">3 bathrooms</option>
+                <option value="4">4 bathrooms</option>
+                <option value="5+">5+ bathrooms</option>
+                <option value="Not Applicable">Not applicable</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="booking-field">
+            <label for="specialRequests">Service Details or Special Requests</label>
+            <textarea
+              id="specialRequests"
+              name="specialRequests"
+              rows="5"
+              maxlength="2000"
+              placeholder="Tell us about your priorities, property features, access instructions, or any specific areas requiring attention."></textarea>
+          </div>
+
+          <div class="booking-field">
+            <label for="referralSource">How Did You Find Us?</label>
+            <select id="referralSource" name="referralSource">
+              <option value="">Select an option (optional)</option>
+              <option value="Google Search">Google Search</option>
+              <option value="Google Business Profile">Google Business Profile</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Instagram">Instagram</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Referral">Friend or Referral</option>
+              <option value="Returning Customer">Returning Customer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- REQUEST REVIEW AND SECURITY -->
+        <div class="booking-form-card booking-submit-card">
+
+          <div class="booking-card-heading">
+            <span class="booking-step-number">06</span>
+            <div>
+              <h3>Review Your Request</h3>
+              <p>Check your information before submitting.</p>
+            </div>
+          </div>
+
+          <label class="booking-consent">
+            <input
+              type="checkbox"
+              id="bookingConsent"
+              name="bookingConsent"
+              value="yes"
+              required>
+            <span>
+              I confirm that the information provided is accurate and agree
+              that North Crescent Facility Solutions Inc. may contact me
+              regarding this service request.
+            </span>
+          </label>
+
+          <p class="booking-disclaimer">
+            <strong>Please note:</strong> Submitting this form sends a service
+            request only. Your preferred date and time are not guaranteed.
+            Your appointment is confirmed only after our team contacts you
+            and confirms the arrangements.
+          </p>
+
+          <!-- Replace with your actual Cloudflare Turnstile site key -->
+          <div class="booking-security">
+            <div
+              class="cf-turnstile"
+              data-sitekey="YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY"
+              data-theme="light">
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="booking-submit-button"
+            class="btn btn-primary booking-submit-button">
+            Submit Booking Request
+          </button>
+
+          <p
+            id="booking-form-status"
+            class="booking-form-status"
+            role="status"
+            aria-live="polite">
+          </p>
+
+          <div class="booking-security-note">
+            <span aria-hidden="true">🔒</span>
+            Your information is submitted securely and used to process your
+            service request.
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </section>
+</main>
+<!-- FOOTER -->
+<footer class="booking-footer">
+  <div class="booking-container">
+
+    <div class="booking-footer-grid">
+
+      <div class="booking-footer-brand">
+        <a href="/index.html" class="booking-footer-logo">
+          <img
+            src="/images/logo.webp"
+            alt="North Crescent Facility Solutions Inc."
+            width="60"
+            height="60"
+            loading="lazy">
+          <span>
+            <strong>NORTH CRESCENT</strong>
+            <small>FACILITY SOLUTIONS</small>
+          </span>
+        </a>
+
+        <p>
+          Professional cleaning and facility services designed around
+          your property, your needs, and your peace of mind.
+        </p>
+
+        <p class="booking-footer-tagline">
+          We take care of your spaces, so you can focus on your success and well-being.
+        </p>
+      </div>
+
+      <div class="booking-footer-links">
+        <h3>Quick Links</h3>
+        <a href="/index.html">Home</a>
+        <a href="/services.html">Our Services</a>
+        <a href="/process.html">Our Process</a>
+        <a href="/reviews.html">Client Reviews</a>
+        <a href="/contact.html">Contact Us</a>
+      </div>
+
+      <div class="booking-footer-services">
+        <h3>Our Services</h3>
+        <a href="/services.html">Residential Cleaning</a>
+        <a href="/services.html">Commercial Cleaning</a>
+        <a href="/services.html">Deep Cleaning</a>
+        <a href="/services.html">Move-In / Move-Out Cleaning</a>
+        <a href="/services.html">Post-Construction Cleaning</a>
+        <a href="/services.html">Snow Removal</a>
+      </div>
+
+      <div class="booking-footer-contact">
+        <h3>Get in Touch</h3>
+        <p>Moncton, New Brunswick, Canada</p>
+        <p>
+          <a href="/contact.html">Contact Our Team</a>
+        </p>
+        <a href="/cleaning-booking-moncton.html" class="booking-footer-cta">
+          Request a Booking
+        </a>
+      </div>
+
+    </div>
+
+    <div class="booking-footer-bottom">
+      <p>
+        &copy; <span id="booking-current-year"></span>
+        North Crescent Facility Solutions Inc. All rights reserved.
+      </p>
+
+      <div class="booking-footer-legal">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- BOOKING PAGE JAVASCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  const bookingForm = document.getElementById("booking-request-form");
+  const submitButton = document.getElementById("booking-submit-button");
+  const statusMessage = document.getElementById("booking-form-status");
+  const currentYear = document.getElementById("booking-current-year");
+  const preferredDate = document.getElementById("preferredDate");
+  const alternativeDate = document.getElementById("alternativeDate");
+
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
+
+  // Prevent selecting dates in the past.
+  const today = new Date();
+  const localToday = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0")
+  ].join("-");
+
+  if (preferredDate) {
+    preferredDate.min = localToday;
+  }
+
+  if (alternativeDate) {
+    alternativeDate.min = localToday;
+  }
+
+  // Keep the alternative date on or after the preferred date.
+  if (preferredDate && alternativeDate) {
+    preferredDate.addEventListener("change", function () {
+      alternativeDate.min = preferredDate.value || localToday;
+
+      if (
+        alternativeDate.value &&
+        preferredDate.value &&
+        alternativeDate.value < preferredDate.value
+      ) {
+        alternativeDate.value = "";
+      }
+    });
+  }
+
+  // Booking form submission.
+  if (bookingForm) {
+    bookingForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
+        return;
+      }
+
+      if (submitButton.disabled) {
+        return;
+      }
+
+      const formData = new FormData(bookingForm);
+      const bookingData = Object.fromEntries(formData.entries());
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting Request...";
+
+      if (statusMessage) {
+        statusMessage.textContent = "";
+        statusMessage.classList.remove("is-success", "is-error");
+      }
+
+      try {
+        const response = await fetch(
+          "/.netlify/functions/booking-request",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(bookingData)
+          }
+        );
+
+        const result = await response.json().catch(function () {
+          return {};
+        });
+
+        if (!response.ok || result.success !== true) {
+          throw new Error(
+            result.message ||
+            "We could not submit your request. Please try again."
+          );
+        }
+
+        if (statusMessage) {
+          statusMessage.textContent =
+            result.message ||
+            "Your service request has been received. Our team will contact you to review and confirm your appointment.";
+
+          statusMessage.classList.add("is-success");
+        }
+
+        bookingForm.reset();
+
+        if (preferredDate) {
+          preferredDate.min = localToday;
+        }
+
+        if (alternativeDate) {
+          alternativeDate.min = localToday;
+        }
+
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+
+      } catch (error) {
+        if (statusMessage) {
+          statusMessage.textContent =
+            error.message ||
+            "Something went wrong. Please try again or contact our team.";
+
+          statusMessage.classList.add("is-error");
+        }
+
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Booking Request";
+      }
+    });
+  }
+
+  // Mobile navigation.
+  const menuToggle = document.getElementById("menu-toggle");
+  const navMenu = document.getElementById("nav-menu");
+  const menuOverlay = document.querySelector(".menu-overlay");
+
+  function closeBookingMenu() {
+    if (!menuToggle || !navMenu) return;
+
+    menuToggle.setAttribute("aria-expanded", "false");
+    navMenu.classList.remove("active");
+    menuToggle.classList.remove("active");
+
+    if (menuOverlay) {
+      menuOverlay.classList.remove("active");
+    }
+
+    document.body.classList.remove("menu-open");
+  }
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", function () {
+      const isOpen =
+        menuToggle.getAttribute("aria-expanded") === "true";
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(!isOpen)
+      );
+
+      navMenu.classList.toggle("active", !isOpen);
+      menuToggle.classList.toggle("active", !isOpen);
+
+      if (menuOverlay) {
+        menuOverlay.classList.toggle("active", !isOpen);
+      }
+
+      document.body.classList.toggle("menu-open", !isOpen);
+    });
+
+    if (menuOverlay) {
+      menuOverlay.addEventListener("click", closeBookingMenu);
+    }
+
+    navMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeBookingMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeBookingMenu();
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>
+
+        
