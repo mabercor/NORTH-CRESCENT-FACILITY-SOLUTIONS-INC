@@ -494,6 +494,10 @@ body[data-page="booking"] .booking-hero::after {
    02.3 — HERO CONTENT
    ============================================================ */
 
+/* ============================================================
+   02.3 — HERO CONTENT
+   ============================================================ */
+
 body[data-page="booking"] .booking-hero-content {
 
     position: relative;
@@ -511,7 +515,7 @@ body[data-page="booking"] .booking-hero-content {
 
     align-items: start;
 
-    gap: 28px 32px;
+    gap: 24px 32px;
 
     width: 100%;
     max-width: 1320px;
