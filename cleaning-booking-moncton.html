@@ -294,40 +294,257 @@
     });
   </script>
   
-<<main id="booking-main" class="booking-page">
+<!-- =========================================================
+     NORTH CRESCENT FACILITY SOLUTIONS
+     PREMIUM BOOKING EXPERIENCE
+     MAIN CONTAINER + BOOKING FORM
+========================================================= -->
 
-  <form id="booking-form" class="booking-flow">
+<main id="booking-main" class="booking-page">
+<!-- =========================================================
+     BOOKING HERO — EMAIL ENTRY
+     NORTH CRESCENT FACILITY SOLUTIONS
+========================================================= -->
 
-   <!-- =====================================================
-     NORTH CRESCENT BOOKING — SECTION 1
-     PREMIUM SERVICE SELECTION
-===================================================== -->
+<section class="booking-hero" id="booking-hero">
 
-<section
-  class="booking-section booking-services"
-  id="booking-services"
-  aria-labelledby="booking-services-title"
->
+  <div class="booking-hero-content">
 
-  <!-- SECTION HEADING -->
+    <div class="booking-hero-copy">
 
-  <div class="booking-section-heading">
+      <span class="booking-hero-eyebrow">
+        BOOK YOUR CLEANING SERVICE
+      </span>
 
-    <span class="booking-eyebrow">
-      NORTH CRESCENT · YOUR BOOKING
-    </span>
+      <h1 class="booking-hero-title">
+        Choose <span>your service</span>
+      </h1>
 
-    <h2 id="booking-services-title">
-      Choose Your Service
-    </h2>
+      <div class="booking-hero-benefits">
 
-    <p>
-      Select the service you need. We'll guide you through
-      the next steps to personalize your booking request.
-    </p>
+        <div class="booking-hero-benefit">
+          <span class="booking-benefit-icon" aria-hidden="true">
+            ✓
+          </span>
+          <span>Professional<br>&amp; Reliable</span>
+        </div>
+
+        <div class="booking-hero-benefit">
+          <span class="booking-benefit-icon" aria-hidden="true">
+            ▦
+          </span>
+          <span>Easy<br>Booking</span>
+        </div>
+
+        <div class="booking-hero-benefit">
+          <span class="booking-benefit-icon" aria-hidden="true">
+            ⌂
+          </span>
+          <span>Greater Moncton<br>&amp; Surrounding Areas</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- EMAIL ENTRY CARD -->
+
+    <div class="booking-email-card">
+
+      <span class="booking-email-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="18" height="14" rx="2"
+                stroke="currentColor" stroke-width="1.8"/>
+          <path d="M4 7L12 13L20 7"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+
+      <div class="booking-email-content">
+
+        <label for="booking-start-email">
+          Start your booking
+        </label>
+
+        <div class="booking-email-input-wrap">
+
+          <input
+            type="email"
+            id="booking-start-email"
+            name="bookingStartEmail"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            maxlength="254"
+            required
+            aria-describedby="booking-email-feedback"
+          >
+
+          <button
+            type="button"
+            id="booking-start-button"
+            class="booking-email-submit"
+            aria-label="Continue to service selection"
+          >
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M12 5L19 12L12 19"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+        </div>
+
+        <p
+          id="booking-email-feedback"
+          class="booking-email-feedback"
+          aria-live="polite"
+        ></p>
+
+      </div>
+
+    </div>
 
   </div>
 
+</section>
+
+  
+  <form
+    id="booking-form"
+    class="booking-flow"
+    novalidate
+  >
+<!-- =========================================================
+     BOOKING PROGRESS
+     FIVE-STEP PREMIUM INDICATOR
+     NORTH CRESCENT FACILITY SOLUTIONS
+========================================================= -->
+
+<nav
+  class="booking-progress"
+  id="booking-progress"
+  aria-label="Booking progress"
+>
+
+  <ol class="booking-progress-list">
+
+    <!-- STEP 1: SERVICE -->
+
+    <li
+      class="booking-progress-step is-active"
+      data-booking-step="1"
+      aria-current="step"
+    >
+
+      <span class="booking-progress-number">1</span>
+
+      <span class="booking-progress-label">
+        Service
+      </span>
+
+    </li>
+
+
+    <!-- STEP 2: DATE -->
+
+    <li
+      class="booking-progress-step"
+      data-booking-step="2"
+    >
+
+      <span class="booking-progress-number">2</span>
+
+      <span class="booking-progress-label">
+        Date
+      </span>
+
+    </li>
+
+
+    <!-- STEP 3: TIME -->
+
+    <li
+      class="booking-progress-step"
+      data-booking-step="3"
+    >
+
+      <span class="booking-progress-number">3</span>
+
+      <span class="booking-progress-label">
+        Time
+      </span>
+
+    </li>
+
+
+    <!-- STEP 4: CUSTOMER DETAILS -->
+
+    <li
+      class="booking-progress-step"
+      data-booking-step="4"
+    >
+
+      <span class="booking-progress-number">4</span>
+
+      <span class="booking-progress-label">
+        Your Details
+      </span>
+
+    </li>
+
+
+    <!-- STEP 5: CONFIRMATION -->
+
+    <li
+      class="booking-progress-step"
+      data-booking-step="5"
+    >
+
+      <span class="booking-progress-number">5</span>
+
+      <span class="booking-progress-label">
+        Confirmation
+      </span>
+
+    </li>
+
+  </ol>
+
+</nav>
+    <!-- =====================================================
+         SECTION 1 — SERVICE SELECTION
+    ====================================================== -->
+
+    <section
+      class="booking-section booking-services"
+      id="booking-services"
+      aria-labelledby="booking-services-title"
+    >
+
+      <!-- SECTION HEADER -->
+
+      <header class="booking-section-heading">
+
+        <span class="booking-eyebrow">
+          NORTH CRESCENT · YOUR BOOKING
+        </span>
+
+        <h2 id="booking-services-title">
+          Choose Your Service
+        </h2>
+
+        <p>
+          Select the service you need. We'll guide you through
+          the next steps to personalize your booking request.
+        </p>
+
+      </header>
+
+      <!-- SERVICE OPTIONS CONTINUE BELOW -->
 
   <!-- SERVICE SELECTION -->
 
@@ -1074,22 +1291,277 @@
       </div>
 
 
-      <!-- DYNAMIC TIME OPTIONS -->
+      <!-- =====================================================
+     BOOKING TIME OPTIONS
+     SELECTABLE TIME WINDOWS
+====================================================== -->
 
-      <div
-        class="booking-time-slots"
-        id="booking-time-slots"
-        role="group"
-        aria-label="Choose a preferred time window"
-      >
+<div
+  class="booking-time-slots"
+  id="booking-time-slots"
+  aria-live="polite"
+>
 
-        <p class="booking-time-placeholder">
-          Select a service and date to view the available
-          time windows.
-        </p>
+  <!-- CLEANING SERVICE TIME WINDOWS -->
 
-      </div>
+  <fieldset
+    class="booking-time-options-group"
+    id="booking-cleaning-slots"
+  >
 
+    <legend class="booking-time-options-title">
+      Cleaning Service
+      <span>4-hour time windows</span>
+    </legend>
+
+    <div class="booking-time-options-grid">
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="08:00-12:00"
+          data-duration="4"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            8:00 AM – 12:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="12:00-16:00"
+          data-duration="4"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            12:00 PM – 4:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="16:00-20:00"
+          data-duration="4"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            4:00 PM – 8:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="08:00-12:00-next-day"
+          data-duration="4"
+          data-next-day="true"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            8:00 AM – 12:00 PM
+            <small>Next day</small>
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+    </div>
+
+  </fieldset>
+
+
+  <!-- SNOW REMOVAL TIME WINDOWS -->
+
+  <fieldset
+    class="booking-time-options-group"
+    id="booking-snow-slots"
+  >
+
+    <legend class="booking-time-options-title">
+      Snow Removal Service
+      <span>2-hour time windows</span>
+    </legend>
+
+    <div class="booking-time-options-grid">
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="08:00-10:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            8:00 AM – 10:00 AM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="10:00-12:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            10:00 AM – 12:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="12:00-14:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            12:00 PM – 2:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="14:00-16:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            2:00 PM – 4:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="16:00-18:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            4:00 PM – 6:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+      <label class="booking-time-option">
+
+        <input
+          type="radio"
+          name="timeSlotOption"
+          value="18:00-20:00"
+          data-duration="2"
+        >
+
+        <span class="booking-time-option-content">
+          <span class="booking-time-option-label">
+            6:00 PM – 8:00 PM
+          </span>
+
+          <span
+            class="booking-time-option-indicator"
+            aria-hidden="true"
+          ></span>
+        </span>
+
+      </label>
+
+    </div>
+
+  </fieldset>
+
+</div>
 
       <!-- TIME SELECTION FEEDBACK -->
 
@@ -1126,10 +1598,10 @@
 
 </section>
     
-<!-- =====================================================
-     NORTH CRESCENT BOOKING — SECTION 3
-     CUSTOMER DETAILS
-===================================================== -->
+<!-- =========================================================
+     SECTION 3 — CUSTOMER DETAILS
+     NORTH CRESCENT PREMIUM BOOKING
+========================================================= -->
 
 <section
   class="booking-section booking-customer"
@@ -1137,35 +1609,55 @@
   aria-labelledby="booking-customer-title"
 >
 
-  <div class="booking-section-heading">
+  <!-- SECTION HEADER -->
 
-    <span class="booking-eyebrow">
-      ALMOST THERE
+  <div class="booking-customer-heading">
+
+    <span class="booking-step-number" aria-hidden="true">
+      4
     </span>
 
-    <h2 id="booking-customer-title">
-      Tell us a little about yourself
-    </h2>
+    <div class="booking-customer-heading-copy">
 
-    <p>
-      Share your contact details so we can follow up
-      on your booking request.
-    </p>
+      <h2 id="booking-customer-title">
+        Your details
+      </h2>
+
+      <p>
+        Tell us how to contact you about your booking request.
+      </p>
+
+    </div>
 
   </div>
 
 
+  <!-- CUSTOMER INFORMATION -->
+
   <div class="booking-customer-card">
 
     <div class="booking-form-grid">
-
 
       <!-- FULL NAME -->
 
       <div class="booking-field">
 
         <label for="booking-name">
-          Full name <span aria-hidden="true">*</span>
+          <span class="booking-field-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="4"
+                      stroke="currentColor" stroke-width="1.8"/>
+              <path d="M4 21V19C4 15.7 7 14 12 14
+                       C17 14 20 15.7 20 19V21H4Z"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <span>
+            Full name <span aria-hidden="true">*</span>
+          </span>
         </label>
 
         <input
@@ -1180,32 +1672,28 @@
       </div>
 
 
-      <!-- EMAIL ADDRESS -->
-
-      <div class="booking-field">
-
-        <label for="booking-email">
-          Email address <span aria-hidden="true">*</span>
-        </label>
-
-        <input
-          type="email"
-          id="booking-email"
-          name="emailAddress"
-          placeholder="you@example.com"
-          autocomplete="email"
-          required
-        >
-
-      </div>
-
-
       <!-- PHONE NUMBER -->
 
       <div class="booking-field">
 
         <label for="booking-phone">
-          Phone number <span aria-hidden="true">*</span>
+          <span class="booking-field-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 3H4C3.4 3 3 3.5 3 4
+                       C3 13.4 10.6 21 20 21
+                       C20.5 21 21 20.6 21 20V17
+                       L16.5 14.8L14 17.3
+                       C11 16 8 13 6.7 10L9.2 7.5L7 3Z"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <span>
+            Phone number <span aria-hidden="true">*</span>
+          </span>
         </label>
 
         <input
@@ -1222,48 +1710,69 @@
 
       <!-- SERVICE ADDRESS -->
 
-      <div class="booking-field booking-field-full">
+      <div class="booking-field">
 
         <label for="booking-address">
-          Service address <span aria-hidden="true">*</span>
+          <span class="booking-field-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 10C20 15 12 22 12 22
+                       S4 15 4 10A8 8 0 1 1 20 10Z"
+                    stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="10" r="2.5"
+                      stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </span>
+
+          <span>
+            Service address <span aria-hidden="true">*</span>
+          </span>
         </label>
 
         <input
           type="text"
           id="booking-address"
           name="serviceAddress"
-          placeholder="Enter your property address"
+          placeholder="Property address"
           autocomplete="street-address"
           required
         >
-
-        <small>
-          Start typing your address to use address suggestions,
-          if available.
-        </small>
 
       </div>
 
 
       <!-- ADDITIONAL DETAILS -->
 
-      <div class="booking-field booking-field-full">
+      <div class="booking-field">
 
         <label for="booking-notes">
-          Additional details
-          <span class="booking-optional">(Optional)</span>
+          <span class="booking-field-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 3H18V21H6V3Z"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linejoin="round"/>
+              <path d="M9 8H15M9 12H15M9 16H13"
+                    stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round"/>
+            </svg>
+          </span>
+
+          <span>
+            Additional details
+            <span class="booking-optional">(Optional)</span>
+          </span>
         </label>
 
         <textarea
           id="booking-notes"
           name="notes"
-          rows="4"
+          rows="1"
           maxlength="1000"
-          placeholder="Tell us about your property or any important service requirements."
+          placeholder="Additional requirements"
         ></textarea>
 
       </div>
-
 
     </div>
 
@@ -1281,11 +1790,324 @@
 
     </div>
 
+  </div>
+
+
+  <!-- REVIEW ACTION -->
+
+  <div class="booking-customer-actions">
+
+    <button
+      type="button"
+      id="booking-review-button"
+      class="booking-review-button"
+    >
+      <span>Review &amp; Confirm</span>
+
+      <svg viewBox="0 0 24 24" fill="none"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true">
+        <path d="M5 12H19M12 5L19 12L12 19"
+              stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+
+    </button>
 
   </div>
 
 </section>
+<!-- =========================================================
+     BOOKING REVIEW
+     RESERVATION SUMMARY
+     NORTH CRESCENT FACILITY SOLUTIONS
+========================================================= -->
 
+<section
+  class="booking-section booking-review"
+  id="booking-review"
+  aria-labelledby="booking-review-title"
+  hidden
+>
+
+  <!-- SECTION HEADING -->
+
+  <header class="booking-section-heading">
+
+    <span class="booking-eyebrow">
+      FINAL REVIEW
+    </span>
+
+    <h2 id="booking-review-title">
+      Review Your Booking
+    </h2>
+
+    <p>
+      Please review your selected service, schedule and contact
+      information before submitting your request.
+    </p>
+
+  </header>
+
+
+  <!-- RESERVATION SUMMARY CARD -->
+
+  <div class="booking-review-card">
+
+    <!-- SELECTED SERVICE -->
+
+    <div class="booking-review-group">
+
+      <div class="booking-review-group-heading">
+
+        <span class="booking-review-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 11L12 3L21 11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M5.5 10V21H18.5V10"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
+        <h3>Selected Service</h3>
+
+      </div>
+
+      <p
+        class="booking-review-value"
+        id="booking-review-service"
+      >
+        Not selected
+      </p>
+
+    </div>
+
+
+    <!-- DATE AND TIME -->
+
+    <div class="booking-review-group">
+
+      <div class="booking-review-group-heading">
+
+        <span class="booking-review-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="18" height="16" rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.8"/>
+            <path d="M7 3V7M17 3V7M3 10H21"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"/>
+          </svg>
+        </span>
+
+        <h3>Date &amp; Time</h3>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Service date
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-date"
+        >
+          Not selected
+        </p>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Preferred time
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-time"
+        >
+          Not selected
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- CUSTOMER INFORMATION -->
+
+    <div class="booking-review-group">
+
+      <div class="booking-review-group-heading">
+
+        <span class="booking-review-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4"
+                    stroke="currentColor"
+                    stroke-width="1.8"/>
+            <path d="M4 21V19C4 15.7 7 14 12 14
+                     C17 14 20 15.7 20 19V21H4Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+
+        <h3>Your Details</h3>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Full name
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-name"
+        >
+          Not provided
+        </p>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Email address
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-email"
+        >
+          Not provided
+        </p>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Phone number
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-phone"
+        >
+          Not provided
+        </p>
+
+      </div>
+
+      <div class="booking-review-detail">
+
+        <span class="booking-review-label">
+          Service address
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-address"
+        >
+          Not provided
+        </p>
+
+      </div>
+
+      <div
+        class="booking-review-notes"
+        id="booking-review-notes-group"
+        hidden
+      >
+
+        <span class="booking-review-label">
+          Additional details
+        </span>
+
+        <p
+          class="booking-review-value"
+          id="booking-review-notes"
+        ></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- REVIEW NOTICE -->
+
+  <div class="booking-review-notice">
+
+    <span aria-hidden="true">✓</span>
+
+    <p>
+      Please check that your information is correct.
+      Your booking request will be reviewed by our team.
+    </p>
+
+  </div>
+
+
+  <!-- CONFIRMATION ACTIONS -->
+
+  <div class="booking-review-actions">
+
+    <button
+      type="button"
+      id="booking-review-back"
+      class="booking-review-back"
+    >
+      Back to Details
+    </button>
+
+    <button
+      type="submit"
+      id="booking-submit-button"
+      class="booking-review-submit"
+    >
+
+      <span>Submit Booking Request</span>
+
+      <svg viewBox="0 0 24 24" fill="none"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true">
+        <path d="M5 12H19M12 5L19 12L12 19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+
+    </button>
+
+  </div>
+
+  <p
+    id="booking-review-feedback"
+    class="booking-review-feedback"
+    aria-live="polite"
+  ></p>
+
+</section>
+      
   </form>
 
 </main>
