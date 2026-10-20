@@ -630,12 +630,46 @@ if (elements.reviewButton) {
       });
     }
     /*
+/*
  * STEP 5A — SERVICE CHANGE LISTENER
  */
 
 const serviceInputs = elements.form.querySelectorAll(
   'input[name="serviceType"]'
 );
+
+const cleaningSlots = document.getElementById(
+  "booking-cleaning-slots"
+);
+
+const snowSlots = document.getElementById(
+  "booking-snow-slots"
+);
+
+function updateServiceTimeVisibility() {
+  const selectedService = getSelectedService();
+  const isSnowRemoval = /snow removal/i.test(selectedService);
+
+  if (cleaningSlots) {
+    cleaningSlots.hidden = !selectedService || isSnowRemoval;
+  }
+
+  if (snowSlots) {
+    snowSlots.hidden = !isSnowRemoval;
+  }
+
+  if (!selectedService || isSnowRemoval) {
+    if (cleaningSlots) {
+      cleaningSlots.querySelectorAll('input[type="radio"]')
+        .forEach(input => input.checked = false);
+    }
+  }
+
+  if (!isSnowRemoval && snowSlots) {
+    snowSlots.querySelectorAll('input[type="radio"]')
+      .forEach(input => input.checked = false);
+  }
+}
 
 serviceInputs.forEach(input => {
   input.addEventListener("change", () => {
@@ -651,7 +685,7 @@ serviceInputs.forEach(input => {
         timeInput.checked = false;
       });
 
-    updateTimeOptions();
+    updateServiceTimeVisibility();
 
     if (elements.timeFeedback) {
       elements.timeFeedback.textContent = "";
@@ -659,6 +693,7 @@ serviceInputs.forEach(input => {
   });
 });
 
+updateServiceTimeVisibility();
     /*
      * STEP 6 — EVENT LISTENERS
      */
