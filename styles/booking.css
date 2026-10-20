@@ -1,1749 +1,1553 @@
 /* =========================================================
-   NORTH CRESCENT FACILITY SOLUTIONS INC.
-   BOOKING PAGE — PREMIUM EXPERIENCE
-   PART 1 OF 4
-   PREMIUM FOUNDATION & HERO
+   NORTH CRESCENT BOOKING
+   PART 1 — PREMIUM SERVICE SELECTION
+   Brand: Navy #1E3A5F | Teal #4A9B8C
 ========================================================= */
 
+/* ---------- SECTION FOUNDATION ---------- */
 
-/* =========================================================
-   01. BOOKING PAGE FOUNDATION
-========================================================= */
-
-body:has(.booking-form-card) {
-    background:
-        radial-gradient(
-            circle at 8% 12%,
-            rgb(8 169 157 / 5%),
-            transparent 28rem
-        ),
-        radial-gradient(
-            circle at 92% 35%,
-            rgb(16 76 112 / 5%),
-            transparent 32rem
-        ),
-        var(--nc-background);
-
-    color: var(--nc-text);
-    font-family: var(--nc-font);
-    -webkit-font-smoothing: antialiased;
+.booking-section {
+  position: relative;
+  width: min(1240px, calc(100% - 40px));
+  margin: 48px auto;
+  padding: clamp(26px, 4vw, 48px);
+  isolation: isolate;
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #ffffff 0%, #f7fafc 100%);
+  border: 1px solid rgba(30, 58, 95, 0.10);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 60px rgba(30, 58, 95, 0.08),
+    0 5px 16px rgba(30, 58, 95, 0.04);
 }
 
-
-/* Smooth scrolling */
-
-html:has(.booking-form-card) {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+.booking-section *,
+.booking-section *::before,
+.booking-section *::after {
+  box-sizing: border-box;
 }
 
+/* ---------- PREMIUM SECTION HEADING ---------- */
 
-/* Main booking content */
-
-body:has(.booking-form-card) main {
-    position: relative;
-    isolation: isolate;
+.booking-section-heading {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 36px;
+  text-align: center;
 }
 
-
-/* Booking sections */
-
-body:has(.booking-form-card) main > section {
-    position: relative;
+.booking-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 15px;
+  padding: 9px 17px;
+  color: #1e3a5f;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    135deg,
+    rgba(74, 155, 140, 0.16),
+    rgba(74, 155, 140, 0.06)
+  );
+  border: 1px solid rgba(74, 155, 140, 0.28);
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(74, 155, 140, 0.08);
 }
 
-
-/* Accessible focus */
-
-body:has(.booking-form-card) :focus-visible {
-    outline: 3px solid var(--nc-teal);
-    outline-offset: 4px;
+.booking-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: #4a9b8c;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(74, 155, 140, 0.13);
 }
 
-
-/* Reduced motion accessibility */
-
-@media (prefers-reduced-motion: reduce) {
-    html:has(.booking-form-card) {
-        scroll-behavior: auto;
-    }
-
-    body:has(.booking-form-card) *,
-    body:has(.booking-form-card) *::before,
-    body:has(.booking-form-card) *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+.booking-section-heading h1,
+.booking-section-heading h2 {
+  margin: 0 0 14px;
+  color: #1e3a5f;
+  font-size: clamp(27px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1.1px;
 }
 
-
-/* =========================================================
-   02. PREMIUM BOOKING HERO
-========================================================= */
-
-body:has(.booking-form-card) .hero {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    width: calc(100% - 48px);
-    max-width: var(--nc-container);
-
-    margin: 24px auto 42px;
-    padding: clamp(36px, 6vw, 76px);
-
-    border: 1px solid rgb(255 255 255 / 75%);
-    border-radius: 24px;
-
-    background:
-        radial-gradient(
-            ellipse at 90% 10%,
-            rgb(53 200 185 / 24%),
-            transparent 38%
-        ),
-        radial-gradient(
-            ellipse at 0% 100%,
-            rgb(8 169 157 / 13%),
-            transparent 42%
-        ),
-        linear-gradient(
-            135deg,
-            #FFFFFF 0%,
-            #F7FBFD 48%,
-            #EDF7F8 100%
-        );
-
-    box-shadow:
-        0 24px 65px rgb(11 45 72 / 9%),
-        0 8px 22px rgb(11 45 72 / 5%),
-        inset 0 1px 0 rgb(255 255 255 / 95%);
-
-    transition:
-        box-shadow var(--nc-transition),
-        border-color var(--nc-transition);
+.booking-section-heading p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
+/* ---------- SERVICE FIELDSET ---------- */
 
-/* Ambient lighting */
-
-body:has(.booking-form-card) .hero::before {
-    content: "";
-
-    position: absolute;
-z-index: 0;
-    top: -150px;
-    right: -120px;
-
-    width: 360px;
-    height: 360px;
-
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgb(8 169 157 / 15%) 0%,
-        rgb(8 169 157 / 5%) 42%,
-        transparent 72%
-    );
-
-    filter: blur(8px);
-    pointer-events: none;
+.booking-service-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-
-/* Premium accent line */
-
-body:has(.booking-form-card) .hero::after {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    left: clamp(24px, 5vw, 64px);
-
-    width: 92px;
-    height: 4px;
-
-    border-radius: 0 0 8px 8px;
-
-    background: linear-gradient(
-        90deg,
-        var(--nc-teal),
-        var(--nc-teal-light)
-    );
-
-    box-shadow: 0 3px 12px rgb(8 169 157 / 30%);
-
-    pointer-events: none;
+.booking-field-label {
+  margin-bottom: 20px;
+  color: #1e3a5f;
+  font-size: 15px;
+  font-weight: 700;
 }
 
+/* ---------- PREMIUM SERVICE GRID ---------- */
 
-/* Hero content */
-
-body:has(.booking-form-card) .hero-content {
-    position: relative;
-    z-index: 1;
-
-    width: 100%;
-    max-width: 100%;
-
-    margin: 0 auto;
+.booking-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
+/* ---------- SERVICE CARDS ---------- */
 
-/* Hero heading */
+.booking-service-card {
+  --card-accent: #4a9b8c;
 
-body:has(.booking-form-card) .hero h1 {
-    max-width: 900px;
-
-    margin: 0 0 22px;
-
-    color: var(--nc-navy);
-
-    font-family: var(--nc-font);
-    font-size: var(--nc-heading-xl);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.045em;
-
-    text-wrap: balance;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 205px;
+  padding: 26px 23px 24px;
+  overflow: hidden;
+  cursor: pointer;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(74, 155, 140, 0.07),
+      transparent 43%
+    ),
+    #ffffff;
+  border: 1px solid rgba(30, 58, 95, 0.13);
+  border-radius: 21px;
+  box-shadow:
+    0 5px 14px rgba(30, 58, 95, 0.04),
+    0 1px 3px rgba(30, 58, 95, 0.03);
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms ease,
+    box-shadow 260ms ease,
+    background 260ms ease;
 }
 
+/* Accent line */
 
-/* Highlighted heading */
-
-body:has(.booking-form-card) .hero h1 span {
-    color: var(--nc-teal);
-
-    background: linear-gradient(
-        100deg,
-        var(--nc-teal),
-        var(--nc-teal-light)
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.booking-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 22px;
+  right: 22px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #4a9b8c,
+    #8bc7ba,
+    #4a9b8c
+  );
+  border-radius: 0 0 8px 8px;
+  transform: scaleX(0.25);
+  transform-origin: left;
+  opacity: 0.35;
+  transition:
+    transform 260ms ease,
+    opacity 260ms ease;
 }
 
+/* Decorative corner */
 
-/* Hero subtitle */
-
-body:has(.booking-form-card) .hero .hero-sub {
-    max-width: 720px;
-
-    margin: 0 0 26px;
-
-    color: var(--nc-text-secondary);
-
-    font-size: clamp(1rem, 1.4vw, 1.12rem);
-    font-weight: 400;
-    line-height: 1.85;
-
-    text-wrap: pretty;
+.booking-service-card::after {
+  content: "";
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 105px;
+  height: 105px;
+  background: rgba(74, 155, 140, 0.055);
+  border-radius: 50%;
+  pointer-events: none;
+  transition:
+    transform 300ms ease,
+    background 300ms ease;
 }
 
+/* ---------- SERVICE ICON ---------- */
 
-/* Premium badge */
-
-body:has(.booking-form-card) .hero .badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-
-    max-width: 100%;
-    margin-bottom: 24px;
-    padding: 10px 17px;
-
-    border: 1px solid rgb(8 169 157 / 23%);
-    border-radius: 999px;
-
-    background: rgb(255 255 255 / 82%);
-
-    box-shadow:
-        0 5px 16px rgb(11 45 72 / 5%),
-        inset 0 1px 0 rgb(255 255 255 / 95%);
-
-    color: var(--nc-primary);
-
-    font-size: 0.82rem;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: 0.025em;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+.booking-service-icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 55px;
+  height: 55px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #edf6f4
+  );
+  border: 1px solid rgba(74, 155, 140, 0.20);
+  border-radius: 16px;
+  box-shadow:
+    0 6px 15px rgba(30, 58, 95, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    transform 260ms ease,
+    background 260ms ease,
+    box-shadow 260ms ease;
 }
 
+/* ---------- SERVICE TEXT ---------- */
 
-/* Hero benefits */
-
-body:has(.booking-form-card) .hero .hero-benefits {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 24px;
-
-    margin-top: 26px;
+.booking-service-name {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 9px;
+  color: #1e3a5f;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  transition: color 220ms ease;
 }
 
-
-/* Individual benefits */
-
-body:has(.booking-form-card) .hero .hero-benefits > * {
-    color: var(--nc-text-secondary);
-
-    font-size: 0.9rem;
-    font-weight: 500;
-    line-height: 1.65;
+.booking-service-description {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.75;
 }
 
+/* ---------- RADIO INPUT ---------- */
 
-/* Hero entrance animation */
-
-@keyframes ncBookingHeroReveal {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.booking-service-card input[type="radio"] {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #4a9b8c;
 }
 
-body:has(.booking-form-card) .hero-content {
-    animation: ncBookingHeroReveal 650ms ease-out both;
+/* ---------- SELECTION INDICATOR ---------- */
+
+.booking-service-check {
+  position: absolute;
+  right: 17px;
+  bottom: 17px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  background: #4a9b8c;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(74, 155, 140, 0.28);
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
-
-/* =========================================================
-   END OF PART 1 OF 4
-   NEXT: PREMIUM BOOKING CARDS & FORM LAYOUT
-========================================================= */
-/* =========================================================
-   NORTH CRESCENT FACILITY SOLUTIONS INC.
-   BOOKING PAGE — PREMIUM EXPERIENCE
-
-   PART 2 OF 4
-   PREMIUM BOOKING CARDS & FORM LAYOUT
-========================================================= */
-
-
-/* =========================================================
-   03. BOOKING FORM SECTION
-========================================================= */
-
-body:has(.booking-form-card) .booking-form-section {
-    position: relative;
-    width: 100%;
-    max-width: var(--nc-container);
-    margin: 0 auto;
-    padding: 0 24px 56px;
-}
-
-
-/* Form introduction */
-
-body:has(.booking-form-card) .booking-intro {
-    max-width: 780px;
-    margin: 0 auto 36px;
-    text-align: center;
-}
-
-body:has(.booking-form-card) .booking-intro h2 {
-    margin: 0 0 14px;
-    color: var(--nc-navy);
-    font-family: var(--nc-font);
-    font-size: var(--nc-heading-lg);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.035em;
-}
-
-body:has(.booking-form-card) .booking-intro p {
-    margin: 0;
-    color: var(--nc-text-secondary);
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-
-/* =========================================================
-   04. PREMIUM BOOKING CARDS
-========================================================= */
-
-body:has(.booking-form-card) .booking-form-card {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    width: 100%;
-    min-width: 0;
-    margin: 0 0 26px;
-    padding: clamp(24px, 3.5vw, 38px);
-
-    border: 1px solid rgb(16 76 112 / 10%);
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgb(255 255 255 / 100%) 0%,
-            rgb(250 253 254 / 98%) 100%
-        );
-
-    box-shadow:
-        0 12px 35px rgb(11 45 72 / 5%),
-        0 3px 10px rgb(11 45 72 / 3%),
-        inset 0 1px 0 rgb(255 255 255 / 100%);
-
-    transition:
-        transform 280ms ease,
-        box-shadow 280ms ease,
-        border-color 280ms ease;
-}
-
-
-/* Teal accent along the card edge */
-
-body:has(.booking-form-card) .booking-form-card::before {
-    content: "";
-    position: absolute;
-   z-index: 0;
-
-    top: 0;
-    left: 0;
-
-    width: 4px;
-    height: 100%;
-
-    border-radius: 20px 0 0 20px;
-
-    background: linear-gradient(
-        180deg,
-        var(--nc-teal-light),
-        var(--nc-primary)
-    );
-
-    opacity: 0.8;
-    transition: opacity 280ms ease;
-}
-
-
-/* Subtle light reflection */
-
-body:has(.booking-form-card) .booking-form-card::after {
-    content: "";
-    position: absolute;
-   z-index: 0;
-
-    top: -100px;
-    right: -100px;
-
-    width: 220px;
-    height: 220px;
-
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgb(8 169 157 / 5%),
-        transparent 70%
-    );
-
-    pointer-events: none;
-}
-
-
-/* Card hover interaction */
+/* ---------- HOVER INTERACTION ---------- */
 
 @media (hover: hover) and (pointer: fine) {
-    body:has(.booking-form-card) .booking-form-card:hover {
-        transform: translateY(-3px);
-
-        border-color: rgb(8 169 157 / 25%);
-
-        box-shadow:
-            0 20px 48px rgb(11 45 72 / 8%),
-            0 6px 16px rgb(11 45 72 / 4%),
-            inset 0 1px 0 rgb(255 255 255 / 100%);
-    }
-
-    body:has(.booking-form-card) .booking-form-card:hover::before {
-        opacity: 1;
-    }
-}
-/* Keep decorative effects visible inside the booking card */
-body:has(.booking-form-card) .booking-form-card > * {
-    position: relative;
-    z-index: 1;
-}
-
-/* =========================================================
-   05. CARD HEADINGS
-========================================================= */
-
-body:has(.booking-form-card) .booking-card-heading {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-
-    margin: 0 0 28px;
-    padding: 0 0 22px;
-
-    border-bottom: 1px solid rgb(16 76 112 / 10%);
-}
-
-
-/* Heading icon */
-
-body:has(.booking-form-card) .booking-card-heading > :first-child {
-    flex-shrink: 0;
-}
-
-
-/* Card title */
-
-body:has(.booking-form-card) .booking-card-heading h2,
-body:has(.booking-form-card) .booking-card-heading h3 {
-    margin: 0;
-
-    color: var(--nc-navy);
-
-    font-family: var(--nc-font);
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
-    font-weight: 750;
-    line-height: 1.35;
-    letter-spacing: -0.02em;
-}
-
-
-/* Supporting text */
-
-body:has(.booking-form-card) .booking-card-heading p {
-    margin: 7px 0 0;
-
-    color: var(--nc-text-secondary);
-
-    font-size: 0.9rem;
-    font-weight: 400;
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   06. FORM FIELD GRID
-========================================================= */
-
-body:has(.booking-form-card) .booking-field-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-
-    width: 100%;
-    min-width: 0;
-    margin-bottom: 24px;
-}
-
-
-/* Three-column layout when explicitly requested */
-
-body:has(.booking-form-card) .booking-field-grid.booking-field-grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-
-/* Individual field wrapper */
-
-body:has(.booking-form-card) .booking-field {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-
-    min-width: 0;
-    margin-bottom: 23px;
-}
-
-
-/* Remove extra spacing for fields inside grids */
-
-body:has(.booking-form-card) .booking-field-grid .booking-field {
-    margin-bottom: 0;
-}
-
-
-/* =========================================================
-   07. FIELD LABELS
-========================================================= */
-
-body:has(.booking-form-card) .booking-field label,
-body:has(.booking-form-card) .booking-field > label {
-    display: block;
-
-    margin: 0;
-
-    color: var(--nc-text);
-
-    font-family: var(--nc-font);
-    font-size: 0.91rem;
-    font-weight: 650;
-    line-height: 1.55;
-}
-
-
-/* Required field indicator */
-
-body:has(.booking-form-card) .booking-field label .required,
-body:has(.booking-form-card) .booking-field .required {
-    color: #C24141;
-    font-weight: 700;
-}
-
-
-/* Supporting field description */
-
-body:has(.booking-form-card) .booking-field small,
-body:has(.booking-form-card) .booking-field .field-hint {
-    display: block;
-
-    margin-top: 2px;
-
-    color: var(--nc-text-secondary);
-
-    font-size: 0.8rem;
-    font-weight: 400;
-    line-height: 1.65;
-}
-
-
-/* =========================================================
-   08. PREMIUM INPUTS & SELECTS
-========================================================= */
-
-body:has(.booking-form-card) .booking-field input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]),
-body:has(.booking-form-card) .booking-field select,
-body:has(.booking-form-card) .booking-field textarea {
-    display: block;
-
-    width: 100%;
-    min-width: 0;
-    min-height: 52px;
-
-    margin: 0;
-    padding: 13px 16px;
-
-    border: 1px solid #D8E3EC;
-    border-radius: 11px;
-
-    background-color: #FFFFFF;
-
-    color: var(--nc-text);
-
-    font-family: var(--nc-font);
-    font-size: 0.94rem;
-    font-weight: 450;
-    line-height: 1.55;
-
+  .booking-service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(74, 155, 140, 0.55);
     box-shadow:
-        0 2px 5px rgb(11 45 72 / 2%),
-        inset 0 1px 2px rgb(11 45 72 / 2%);
+      0 18px 35px rgba(30, 58, 95, 0.10),
+      0 5px 12px rgba(74, 155, 140, 0.08);
+  }
 
-    transition:
-        border-color 220ms ease,
-        box-shadow 220ms ease,
-        background-color 220ms ease;
-}
-
-
-/* Textarea */
-
-body:has(.booking-form-card) .booking-field textarea {
-    min-height: 135px;
-    resize: vertical;
-}
-
-
-/* Placeholder */
-
-body:has(.booking-form-card) .booking-field input::placeholder,
-body:has(.booking-form-card) .booking-field textarea::placeholder {
-    color: #8799AA;
+  .booking-service-card:hover::before {
+    transform: scaleX(1);
     opacity: 1;
+  }
+
+  .booking-service-card:hover::after {
+    transform: scale(1.3);
+    background: rgba(74, 155, 140, 0.10);
+  }
+
+  .booking-service-card:hover .booking-service-icon {
+    transform: translateY(-3px) rotate(-3deg);
+    box-shadow: 0 10px 20px rgba(30, 58, 95, 0.10);
+  }
 }
 
+/* ---------- SELECTED CARD: PREMIUM ACTIVE STATE ---------- */
 
-/* Select pointer */
-
-body:has(.booking-form-card) .booking-field select {
-    cursor: pointer;
+.booking-service-card:has(input[type="radio"]:checked) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(74, 155, 140, 0.17),
+      transparent 48%
+    ),
+    linear-gradient(145deg, #ffffff, #f0f8f6);
+  border: 2px solid #4a9b8c;
+  padding: 25px 22px 23px;
+  box-shadow:
+    0 15px 35px rgba(74, 155, 140, 0.15),
+    0 4px 12px rgba(30, 58, 95, 0.06),
+    inset 0 0 0 3px rgba(74, 155, 140, 0.055);
 }
 
-
-/* Focused fields */
-
-body:has(.booking-form-card) .booking-field input:not([type="checkbox"]):not([type="radio"]):focus,
-body:has(.booking-form-card) .booking-field select:focus,
-body:has(.booking-form-card) .booking-field textarea:focus {
-    border-color: var(--nc-teal);
-
-    background-color: #FFFFFF;
-
-    box-shadow:
-        0 0 0 4px rgb(8 169 157 / 12%),
-        0 5px 16px rgb(11 45 72 / 5%);
-
-    outline: none;
+.booking-service-card:has(input[type="radio"]:checked)::before {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
-
-/* Valid fields */
-
-body:has(.booking-form-card) .booking-field input:required:valid:not(:placeholder-shown),
-body:has(.booking-form-card) .booking-field textarea:required:valid:not(:placeholder-shown) {
-    border-color: rgb(8 169 157 / 55%);
+.booking-service-card:has(input[type="radio"]:checked)::after {
+  transform: scale(1.3);
+  background: rgba(74, 155, 140, 0.12);
 }
 
-
-/* Disabled fields */
-
-body:has(.booking-form-card) .booking-field input:disabled,
-body:has(.booking-form-card) .booking-field select:disabled,
-body:has(.booking-form-card) .booking-field textarea:disabled {
-    background: #F0F4F7;
-    color: #8292A2;
-    cursor: not-allowed;
+.booking-service-card:has(input[type="radio"]:checked) .booking-service-icon {
+  color: #1e3a5f;
+  background: linear-gradient(145deg, #dff2ed, #ffffff);
+  border-color: rgba(74, 155, 140, 0.45);
+  box-shadow:
+    0 8px 18px rgba(74, 155, 140, 0.15),
+    inset 0 1px 0 #ffffff;
 }
 
-
-/* =========================================================
-   09. PREMIUM OPTION CARDS
-========================================================= */
-
-body:has(.booking-form-card) .booking-options-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-
-    width: 100%;
-    min-width: 0;
+.booking-service-card:has(input[type="radio"]:checked) .booking-service-name {
+  color: #245f56;
 }
 
-
-/* Option card */
-
-body:has(.booking-form-card) .booking-option {
-    position: relative;
-    isolation: isolate;
-
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-
-    min-width: 0;
-    min-height: 86px;
-
-    padding: 19px;
-
-    border: 1px solid #DCE6EE;
-    border-radius: 14px;
-
-    background: linear-gradient(
-        145deg,
-        #FFFFFF,
-        #F9FCFD
-    );
-
-    box-shadow: 0 4px 12px rgb(11 45 72 / 3%);
-
-    cursor: pointer;
-
-    transition:
-        transform 220ms ease,
-        border-color 220ms ease,
-        box-shadow 220ms ease,
-        background-color 220ms ease;
+.booking-service-card:has(input[type="radio"]:checked) .booking-service-check {
+  opacity: 1;
+  transform: scale(1);
 }
 
+/* ---------- KEYBOARD ACCESSIBILITY ---------- */
 
-/* Option hover */
-
-@media (hover: hover) and (pointer: fine) {
-    body:has(.booking-form-card) .booking-option:hover {
-        transform: translateY(-2px);
-
-        border-color: rgb(8 169 157 / 55%);
-
-        box-shadow:
-            0 10px 24px rgb(11 45 72 / 7%),
-            0 0 0 3px rgb(8 169 157 / 5%);
-    }
+.booking-service-card:has(input[type="radio"]:focus-visible) {
+  outline: 3px solid rgba(74, 155, 140, 0.55);
+  outline-offset: 4px;
 }
 
+/* ---------- SNOW REMOVAL HIGHLIGHT ---------- */
 
-/* Option text */
-
-body:has(.booking-form-card) .booking-option label {
-    min-width: 0;
-
-    color: var(--nc-text);
-
-    font-size: 0.91rem;
-    font-weight: 600;
-    line-height: 1.6;
-
-    cursor: pointer;
+.booking-service-snow {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(93, 157, 219, 0.12),
+      transparent 48%
+    ),
+    #ffffff;
 }
 
-
-/* Option controls */
-
-body:has(.booking-form-card) .booking-option input[type="checkbox"],
-body:has(.booking-form-card) .booking-option input[type="radio"] {
-    flex-shrink: 0;
-
-    width: 19px;
-    height: 19px;
-
-    margin: 2px 0 0;
-
-    accent-color: var(--nc-teal);
-
-    cursor: pointer;
+.booking-service-snow .booking-service-icon {
+  background: linear-gradient(145deg, #edf5ff, #ffffff);
+  border-color: rgba(93, 157, 219, 0.25);
 }
 
-
-/* Selected option */
-
-body:has(.booking-form-card) .booking-option:has(input:checked) {
-    border-color: var(--nc-teal);
-
-    background: linear-gradient(
-        135deg,
-        rgb(8 169 157 / 8%),
-        rgb(53 200 185 / 4%)
-    );
-
-    box-shadow:
-        0 0 0 2px rgb(8 169 157 / 9%),
-        0 8px 22px rgb(11 45 72 / 5%);
+.booking-service-snow:has(input[type="radio"]:checked) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(93, 157, 219, 0.18),
+      transparent 48%
+    ),
+    linear-gradient(145deg, #ffffff, #f1f7ff);
+  border-color: #5d9ddb;
 }
 
-
-/* Keyboard focus inside option cards */
-
-body:has(.booking-form-card) .booking-option:has(input:focus-visible) {
-    outline: 3px solid var(--nc-teal);
-    outline-offset: 3px;
-}
-
-
-/* =========================================================
-   10. RESPONSIVE BOOKING LAYOUT
-========================================================= */
+/* ---------- TABLET ---------- */
 
 @media (max-width: 900px) {
-    body:has(.booking-form-card) .booking-form-section {
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-    body:has(.booking-form-card) .booking-form-card {
-        padding: 28px;
-        border-radius: 17px;
-    }
-
-    body:has(.booking-form-card) .booking-field-grid.booking-field-grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-
-@media (max-width: 640px) {
-    body:has(.booking-form-card) .booking-form-section {
-        padding-right: 14px;
-        padding-left: 14px;
-        padding-bottom: 36px;
-    }
-
-    body:has(.booking-form-card) .booking-form-card {
-        margin-bottom: 19px;
-        padding: 23px 19px;
-
-        border-radius: 15px;
-    }
-
-    body:has(.booking-form-card) .booking-card-heading {
-        gap: 12px;
-        margin-bottom: 23px;
-        padding-bottom: 18px;
-    }
-
-    body:has(.booking-form-card) .booking-field-grid,
-    body:has(.booking-form-card) .booking-field-grid.booking-field-grid-3,
-    body:has(.booking-form-card) .booking-options-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 18px;
-    }
-
-    body:has(.booking-form-card) .booking-field {
-        margin-bottom: 19px;
-    }
-
-    body:has(.booking-form-card) .booking-field-grid .booking-field {
-        margin-bottom: 0;
-    }
-
-    body:has(.booking-form-card) .booking-field input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]),
-    body:has(.booking-form-card) .booking-field select,
-    body:has(.booking-form-card) .booking-field textarea {
-        font-size: 16px;
-    }
-
-    body:has(.booking-form-card) .booking-option {
-        min-height: 74px;
-        padding: 16px;
-    }
-}
-
-
-/* =========================================================
-   END OF PART 2 OF 4
-
-   NEXT:
-   PART 3 — PREMIUM NOTICES, VALIDATION & FORM FEEDBACK
-========================================================= */
-
-/* =========================================================
-   NORTH CRESCENT FACILITY SOLUTIONS INC.
-   BOOKING PAGE — PREMIUM EXPERIENCE
-
-   PART 3 OF 4
-   PREMIUM NOTICES, VALIDATION & FORM FEEDBACK
-========================================================= */
-
-
-/* =========================================================
-   11. PREMIUM BOOKING NOTICES
-========================================================= */
-
-body:has(.booking-form-card) .booking-notice {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-
-    width: 100%;
-    margin: 24px 0;
-    padding: 21px 23px;
-
-    border: 1px solid rgb(16 76 112 / 12%);
-    border-left: 4px solid var(--nc-teal);
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgb(8 169 157 / 7%),
-            rgb(255 255 255 / 96%) 75%
-        );
-
-    box-shadow:
-        0 7px 20px rgb(11 45 72 / 4%),
-        inset 0 1px 0 rgb(255 255 255 / 95%);
-
-    color: var(--nc-text);
-
-    font-size: 0.91rem;
-    line-height: 1.75;
-
-    transition:
-        border-color 220ms ease,
-        box-shadow 220ms ease,
-        transform 220ms ease;
-}
-
-
-/* Notice hover */
-
-@media (hover: hover) and (pointer: fine) {
-    body:has(.booking-form-card) .booking-notice:hover {
-        transform: translateY(-2px);
-
-        border-color: rgb(8 169 157 / 30%);
-
-        box-shadow:
-            0 12px 28px rgb(11 45 72 / 7%),
-            inset 0 1px 0 rgb(255 255 255 / 95%);
-    }
-}
-
-
-/* Notice headings */
-
-body:has(.booking-form-card) .booking-notice strong {
-    color: var(--nc-navy);
-    font-weight: 750;
-}
-
-
-/* Notice paragraphs */
-
-body:has(.booking-form-card) .booking-notice p {
-    margin: 0;
-    color: inherit;
-    line-height: inherit;
-}
-
-
-/* =========================================================
-   12. PREMIUM CONSENT SECTION
-========================================================= */
-
-body:has(.booking-form-card) .booking-consent {
-    position: relative;
-
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-
-    margin: 25px 0;
-    padding: 19px 21px;
-
-    border: 1px solid #DCE6EE;
-    border-radius: 13px;
-
-    background: linear-gradient(
-        135deg,
-        #FFFFFF,
-        #F7FAFC
-    );
-
-    box-shadow: 0 4px 14px rgb(11 45 72 / 3%);
-
-    transition:
-        border-color 220ms ease,
-        background-color 220ms ease,
-        box-shadow 220ms ease;
-}
-
-
-/* Consent checkbox */
-
-body:has(.booking-form-card) .booking-consent input[type="checkbox"] {
-    flex: 0 0 auto;
-
-    width: 20px;
-    height: 20px;
-
-    margin: 3px 0 0;
-
-    accent-color: var(--nc-teal);
-    cursor: pointer;
-}
-
-
-/* Consent text */
-
-body:has(.booking-form-card) .booking-consent label {
-    display: block;
-
-    min-width: 0;
-
-    color: var(--nc-text-secondary);
-
-    font-size: 0.88rem;
-    line-height: 1.8;
-
-    cursor: pointer;
-}
-
-
-/* Consent links */
-
-body:has(.booking-form-card) .booking-consent a {
-    color: var(--nc-primary);
-    font-weight: 650;
-    text-decoration: underline;
-    text-decoration-color: rgb(8 169 157 / 50%);
-    text-underline-offset: 3px;
-
-    transition:
-        color 200ms ease,
-        text-decoration-color 200ms ease;
-}
-
-body:has(.booking-form-card) .booking-consent a:hover {
-    color: var(--nc-teal);
-    text-decoration-color: var(--nc-teal);
-}
-
-
-/* Consent selected state */
-
-body:has(.booking-form-card) .booking-consent:has(input:checked) {
-    border-color: rgb(8 169 157 / 45%);
-
-    background: linear-gradient(
-        135deg,
-        rgb(8 169 157 / 6%),
-        #FFFFFF
-    );
-
-    box-shadow: 0 5px 18px rgb(8 169 157 / 6%);
-}
-
-
-/* =========================================================
-   13. FORM VALIDATION FEEDBACK
-========================================================= */
-
-
-/* Invalid fields */
-
-body:has(.booking-form-card) .booking-field input:user-invalid,
-body:has(.booking-form-card) .booking-field select:user-invalid,
-body:has(.booking-form-card) .booking-field textarea:user-invalid {
-    border-color: #C24141;
-
-    box-shadow:
-        0 0 0 3px rgb(194 65 65 / 9%);
-}
-
-
-/* Invalid fields after submission attempt */
-
-body:has(.booking-form-card) .booking-field input:invalid:not(:placeholder-shown),
-body:has(.booking-form-card) .booking-field textarea:invalid:not(:placeholder-shown) {
-    border-color: #C24141;
-}
-
-
-/* Required fields */
-
-body:has(.booking-form-card) .booking-field input:required,
-body:has(.booking-form-card) .booking-field select:required,
-body:has(.booking-form-card) .booking-field textarea:required {
-    scroll-margin-top: 110px;
-}
-
-
-/* Validation messages */
-
-body:has(.booking-form-card) .booking-error,
-body:has(.booking-form-card) .field-error,
-body:has(.booking-form-card) [data-field-error] {
-    display: block;
-
-    margin-top: 7px;
-
-    color: #B42318;
-
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1.6;
-}
-
-
-/* Visually hidden but accessible text */
-
-body:has(.booking-form-card) .booking-sr-only {
-    position: absolute !important;
-
-    width: 1px !important;
-    height: 1px !important;
-
-    padding: 0 !important;
-    margin: -1px !important;
-
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-
-    white-space: nowrap !important;
-    border: 0 !important;
-}
-
-
-/* =========================================================
-   14. FORM STATUS MESSAGES
-========================================================= */
-
-body:has(.booking-form-card) .booking-form-status {
-    display: block;
-
-    width: 100%;
-    margin: 22px 0;
-    padding: 18px 21px;
-
-    border: 1px solid transparent;
-    border-radius: 13px;
-
-    font-size: 0.92rem;
-    font-weight: 500;
-    line-height: 1.75;
-
-    overflow-wrap: anywhere;
-
-    transition:
-        opacity 220ms ease,
-        transform 220ms ease,
-        box-shadow 220ms ease;
-}
-
-
-/* Empty status */
-
-body:has(.booking-form-card) .booking-form-status:empty {
-    display: none;
-}
-
-
-/* Success state */
-
-body:has(.booking-form-card) .booking-form-status.is-success {
-    border-color: #A7E4CE;
-
-    background: linear-gradient(
-        135deg,
-        #EDFCF5,
-        #FFFFFF
-    );
-
-    color: #176B4D;
-
-    box-shadow: 0 7px 22px rgb(23 107 77 / 6%);
-}
-
-
-/* Error state */
-
-body:has(.booking-form-card) .booking-form-status.is-error {
-    border-color: #F0B8B4;
-
-    background: linear-gradient(
-        135deg,
-        #FFF3F2,
-        #FFFFFF
-    );
-
-    color: #A12622;
-
-    box-shadow: 0 7px 22px rgb(161 38 34 / 6%);
-}
-
-
-/* Informational state */
-
-body:has(.booking-form-card) .booking-form-status.is-info {
-    border-color: #B8D9EF;
-
-    background: linear-gradient(
-        135deg,
-        #EFF8FF,
-        #FFFFFF
-    );
-
-    color: #175985;
-
-    box-shadow: 0 7px 22px rgb(23 89 133 / 6%);
-}
-
-
-/* =========================================================
-   15. SECURITY & TURNSTILE AREA
-========================================================= */
-
-body:has(.booking-form-card) .booking-security {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    width: 100%;
-    margin: 24px auto;
-    padding: 19px;
-
-    border: 1px solid rgb(16 76 112 / 9%);
-    border-radius: 14px;
-
-    background: rgb(243 247 250 / 75%);
-
-    color: var(--nc-text-secondary);
-
-    font-size: 0.82rem;
-    line-height: 1.7;
-
-    text-align: center;
-}
-
-
-/* Turnstile widget container */
-
-body:has(.booking-form-card) .cf-turnstile {
-    display: flex;
-    justify-content: center;
-
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-}
-
-
-/* Prevent CAPTCHA overflow on narrow screens */
-
-body:has(.booking-form-card) .cf-turnstile iframe {
-    max-width: 100%;
-}
-
-
-/* =========================================================
-   16. SUBMISSION FEEDBACK
-========================================================= */
-
-body:has(.booking-form-card) .booking-submit-section {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  .booking-section {
+    width: calc(100% - 32px);
+    padding: 30px 24px;
+    border-radius: 24px;
+  }
+
+  .booking-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
+  }
 
-    width: 100%;
-    margin-top: 30px;
-    padding-top: 27px;
+  .booking-service-card {
+    min-height: 195px;
+    padding: 23px 20px;
+  }
 
-    border-top: 1px solid rgb(16 76 112 / 10%);
+  .booking-service-card:has(input[type="radio"]:checked) {
+    padding: 22px 19px;
+  }
 }
 
+/* ---------- MOBILE ---------- */
 
-/* Submission note */
+@media (max-width: 560px) {
+  .booking-section {
+    width: calc(100% - 20px);
+    margin: 24px auto;
+    padding: 25px 16px;
+    border-radius: 20px;
+  }
 
-body:has(.booking-form-card) .booking-submit-note {
+  .booking-section-heading {
+    margin-bottom: 27px;
+  }
+
+  .booking-section-heading h1,
+  .booking-section-heading h2 {
+    font-size: clamp(25px, 7vw, 32px);
+    letter-spacing: -0.6px;
+  }
+
+  .booking-section-heading p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .booking-eyebrow {
+    margin-bottom: 12px;
+    padding: 8px 13px;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+  }
+
+  .booking-service-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .booking-service-card {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 15px;
+    align-items: center;
+    min-height: 116px;
+    padding: 20px 45px 20px 17px;
+    border-radius: 17px;
+  }
+
+  .booking-service-card:has(input[type="radio"]:checked) {
+    padding: 19px 44px 19px 16px;
+  }
+
+  .booking-service-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 50px;
+    height: 50px;
     margin: 0;
+    font-size: 23px;
+    border-radius: 14px;
+  }
 
-    color: var(--nc-text-secondary);
+  .booking-service-name {
+    grid-column: 2;
+    align-self: end;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
 
-    font-size: 0.84rem;
-    line-height: 1.75;
+  .booking-service-description {
+    grid-column: 2;
+    align-self: start;
+    font-size: 12px;
+    line-height: 1.6;
+  }
 
-    text-align: center;
+  .booking-service-card input[type="radio"] {
+    top: 15px;
+    right: 13px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .booking-service-check {
+    right: 12px;
+    bottom: 12px;
+    width: 23px;
+    height: 23px;
+    font-size: 12px;
+  }
 }
 
-
-/* Submission button feedback */
-
-body:has(.booking-form-card) .booking-submit-section button:disabled,
-body:has(.booking-form-card) .booking-submit-section input[type="submit"]:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-
-/* =========================================================
-   17. RESPONSIVE NOTICES & FEEDBACK
-========================================================= */
-
-@media (max-width: 640px) {
-    body:has(.booking-form-card) .booking-notice {
-        gap: 12px;
-        margin: 20px 0;
-        padding: 17px;
-        font-size: 0.88rem;
-    }
-
-    body:has(.booking-form-card) .booking-consent {
-        gap: 11px;
-        margin: 21px 0;
-        padding: 16px;
-    }
-
-    body:has(.booking-form-card) .booking-consent label {
-        font-size: 0.84rem;
-    }
-
-    body:has(.booking-form-card) .booking-form-status {
-        margin: 18px 0;
-        padding: 15px 16px;
-        font-size: 0.88rem;
-    }
-
-    body:has(.booking-form-card) .booking-security {
-        padding: 15px 10px;
-    }
-
-    body:has(.booking-form-card) .booking-submit-section {
-        margin-top: 24px;
-        padding-top: 22px;
-    }
-}
-
-
-/* =========================================================
-   END OF PART 3 OF 4
-
-   NEXT:
-   PART 4 — PREMIUM SUBMISSION EXPERIENCE & FINAL POLISH
-========================================================= */
-/* =========================================================
-   NORTH CRESCENT FACILITY SOLUTIONS INC.
-   BOOKING PAGE — PREMIUM EXPERIENCE
-
-   PART 4 OF 4
-   PREMIUM INTERACTIONS, SUBMISSION & FINAL POLISH
-========================================================= */
-
-
-/* =========================================================
-   18. PREMIUM FORM SUBMISSION AREA
-========================================================= */
-
-body:has(.booking-form-card) .booking-submit-section {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgb(8 169 157 / 4%),
-            rgb(255 255 255 / 85%) 55%,
-            rgb(16 76 112 / 4%)
-        );
-}
-
-
-/* Decorative submission accent */
-
-body:has(.booking-form-card) .booking-submit-section::before {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    left: 50%;
-
-    width: min(180px, 45%);
-    height: 3px;
-
-    border-radius: 0 0 8px 8px;
-
-    background: linear-gradient(
-        90deg,
-        var(--nc-teal),
-        var(--nc-teal-light)
-    );
-
-    transform: translateX(-50%);
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   19. PREMIUM BUTTON INTERACTIONS
-   Reuses existing design-system button components
-========================================================= */
-
-body:has(.booking-form-card) .booking-submit-section .btn,
-body:has(.booking-form-card) .booking-submit-section button,
-body:has(.booking-form-card) .booking-submit-section input[type="submit"] {
-    position: relative;
-    isolation: isolate;
-
-    transition:
-        transform 220ms ease,
-        box-shadow 220ms ease,
-        filter 220ms ease,
-        opacity 220ms ease;
-}
-
-
-/* Hover feedback */
-
-@media (hover: hover) and (pointer: fine) {
-    body:has(.booking-form-card) .booking-submit-section .btn:not(:disabled):hover,
-    body:has(.booking-form-card) .booking-submit-section button:not(:disabled):hover,
-    body:has(.booking-form-card) .booking-submit-section input[type="submit"]:not(:disabled):hover {
-        transform: translateY(-2px);
-        filter: brightness(1.04);
-    }
-}
-
-
-/* Active feedback */
-
-body:has(.booking-form-card) .booking-submit-section .btn:not(:disabled):active,
-body:has(.booking-form-card) .booking-submit-section button:not(:disabled):active,
-body:has(.booking-form-card) .booking-submit-section input[type="submit"]:not(:disabled):active {
-    transform: translateY(0) scale(0.99);
-}
-
-
-/* Disabled submission */
-
-body:has(.booking-form-card) .booking-submit-section .btn:disabled,
-body:has(.booking-form-card) .booking-submit-section button:disabled,
-body:has(.booking-form-card) .booking-submit-section input[type="submit"]:disabled {
-    opacity: 0.6;
-    filter: grayscale(0.15);
-    cursor: not-allowed;
-    transform: none;
-}
-
-
-/* =========================================================
-   20. LOADING STATE
-   Activate by adding .is-loading to the form
-========================================================= */
-
-body:has(.booking-form-card) form.is-loading {
-    cursor: progress;
-}
-
-
-/* Loading submit button */
-
-body:has(.booking-form-card) form.is-loading .booking-submit-section button[type="submit"],
-body:has(.booking-form-card) form.is-loading .booking-submit-section input[type="submit"] {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-
-/* Loading spinner */
-
-body:has(.booking-form-card) form.is-loading .booking-submit-section button[type="submit"]::after,
-body:has(.booking-form-card) form.is-loading .booking-submit-section input[type="submit"]::after {
-    content: "";
-
-    display: inline-block;
-
-    width: 15px;
-    height: 15px;
-
-    margin-left: 10px;
-
-    vertical-align: -2px;
-
-    border: 2px solid currentColor;
-    border-right-color: transparent;
-    border-radius: 50%;
-
-    animation: ncBookingSpinner 700ms linear infinite;
-}
-
-
-@keyframes ncBookingSpinner {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* =========================================================
-   21. PREMIUM CARD ENTRY EFFECTS
-========================================================= */
-
-@keyframes ncBookingCardReveal {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Enable only when JavaScript adds this class */
-
-body:has(.booking-form-card) .booking-form-card.is-visible {
-    animation: ncBookingCardReveal 450ms ease-out both;
-}
-
-
-/* =========================================================
-   22. DATE & TIME CONTROLS
-========================================================= */
-
-body:has(.booking-form-card) .booking-field input[type="date"],
-body:has(.booking-form-card) .booking-field input[type="time"],
-body:has(.booking-form-card) .booking-field input[type="datetime-local"] {
-    min-height: 52px;
-    cursor: pointer;
-}
-
-
-/* Keep native date/time icons visible */
-
-body:has(.booking-form-card) .booking-field input[type="date"]::-webkit-calendar-picker-indicator,
-body:has(.booking-form-card) .booking-field input[type="time"]::-webkit-calendar-picker-indicator,
-body:has(.booking-form-card) .booking-field input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-
-/* =========================================================
-   23. FILE UPLOAD CONTROLS
-========================================================= */
-
-body:has(.booking-form-card) .booking-field input[type="file"] {
-    display: block;
-
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-
-    padding: 12px;
-
-    border: 1px dashed #B9CBD9;
-    border-radius: 11px;
-
-    background: #F8FBFD;
-
-    color: var(--nc-text-secondary);
-
-    font-family: var(--nc-font);
-    font-size: 0.85rem;
-
-    cursor: pointer;
-
-    transition:
-        border-color 220ms ease,
-        background-color 220ms ease;
-}
-
-
-body:has(.booking-form-card) .booking-field input[type="file"]:hover {
-    border-color: var(--nc-teal);
-    background: rgb(8 169 157 / 4%);
-}
-
-
-/* =========================================================
-   24. FORM DIVIDERS
-========================================================= */
-
-body:has(.booking-form-card) .booking-field hr,
-body:has(.booking-form-card) .booking-form-card hr {
-    width: 100%;
-    height: 1px;
-
-    margin: 24px 0;
-
-    border: 0;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgb(16 76 112 / 16%),
-        transparent
-    );
-}
-
-
-/* =========================================================
-   25. MOBILE FINISHING DETAILS
-========================================================= */
-
-@media (max-width: 640px) {
-    body:has(.booking-form-card) .hero {
-        width: calc(100% - 20px);
-        margin: 12px auto 28px;
-        padding: 34px 22px;
-
-        border-radius: 18px;
-    }
-
-    body:has(.booking-form-card) .hero::before {
-        top: -100px;
-        right: -150px;
-
-        width: 260px;
-        height: 260px;
-    }
-
-    body:has(.booking-form-card) .hero::after {
-        left: 22px;
-        width: 70px;
-    }
-
-    body:has(.booking-form-card) .hero h1 {
-        font-size: clamp(2rem, 8vw, 2.7rem);
-        line-height: 1.16;
-        letter-spacing: -0.035em;
-        overflow-wrap: break-word;
-    }
-
-    body:has(.booking-form-card) .hero .hero-sub {
-        font-size: 0.96rem;
-        line-height: 1.75;
-    }
-
-    body:has(.booking-form-card) .hero .badge {
-        padding: 9px 13px;
-        font-size: 0.76rem;
-        white-space: normal;
-    }
-
-    body:has(.booking-form-card) .hero .hero-benefits {
-        gap: 10px 16px;
-        margin-top: 22px;
-    }
-
-    body:has(.booking-form-card) .hero .hero-benefits > * {
-        font-size: 0.84rem;
-    }
-
-    body:has(.booking-form-card) .booking-submit-section {
-        padding-right: 14px;
-        padding-left: 14px;
-    }
-}
-
-
-/* =========================================================
-   26. TABLET FINISHING DETAILS
-========================================================= */
-
-@media (min-width: 641px) and (max-width: 1024px) {
-    body:has(.booking-form-card) .hero {
-        width: calc(100% - 32px);
-        padding: clamp(32px, 5vw, 56px);
-    }
-
-    body:has(.booking-form-card) .hero h1 {
-        font-size: clamp(2.3rem, 4.5vw, 3.2rem);
-    }
-}
-
-
-/* =========================================================
-   27. MOTION ACCESSIBILITY
-========================================================= */
+/* ---------- REDUCED MOTION ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-    body:has(.booking-form-card) .booking-form-card.is-visible,
-    body:has(.booking-form-card) form.is-loading .booking-submit-section button[type="submit"]::after {
-        animation: none !important;
-    }
+  .booking-service-card,
+  .booking-service-card::before,
+  .booking-service-card::after,
+  .booking-service-icon,
+  .booking-service-check,
+  .booking-service-name {
+    transition: none !important;
+  }
+}
+/* =========================================================
+   NORTH CRESCENT BOOKING
+   PART 2 — PREMIUM CALENDAR & TIME SELECTION
+========================================================= */
+
+.booking-schedule-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 24px;
+  align-items: stretch;
 }
 
+/* ---------- CALENDAR CARD ---------- */
+
+.booking-calendar-card,
+.booking-time-card {
+  position: relative;
+  min-width: 0;
+  padding: clamp(20px, 3vw, 30px);
+  background: linear-gradient(145deg, #ffffff, #f8fbfc);
+  border: 1px solid rgba(30, 58, 95, 0.12);
+  border-radius: 23px;
+  box-shadow:
+    0 14px 34px rgba(30, 58, 95, 0.07),
+    0 3px 9px rgba(30, 58, 95, 0.03);
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+
+.booking-calendar-card:hover,
+.booking-time-card:hover {
+  border-color: rgba(74, 155, 140, 0.35);
+  box-shadow:
+    0 18px 40px rgba(30, 58, 95, 0.09),
+    0 5px 14px rgba(74, 155, 140, 0.06);
+}
+
+/* ---------- CALENDAR HEADER ---------- */
+
+.booking-calendar-header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.booking-calendar-header h3 {
+  margin: 0;
+  color: #1e3a5f;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.4px;
+}
+
+/* ---------- MONTH NAVIGATION ---------- */
+
+.booking-calendar-nav {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  color: #1e3a5f;
+  font-family: inherit;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 95, 0.13);
+  border-radius: 13px;
+  box-shadow: 0 3px 9px rgba(30, 58, 95, 0.05);
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.booking-calendar-nav:hover:not(:disabled) {
+  color: #ffffff;
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 15px rgba(30, 58, 95, 0.18);
+}
+
+.booking-calendar-nav:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.booking-calendar-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------- WEEKDAY LABELS ---------- */
+
+.booking-calendar-weekdays,
+.booking-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.booking-calendar-weekdays {
+  margin-bottom: 12px;
+}
+
+.booking-calendar-weekdays span {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  color: #718096;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ---------- CALENDAR DAY BUTTONS ---------- */
+
+.booking-calendar-days button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  color: #1e3a5f;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.booking-calendar-days button:hover:not(:disabled) {
+  color: #245f56;
+  background: #edf7f4;
+  border-color: rgba(74, 155, 140, 0.35);
+  transform: translateY(-2px);
+}
+
+.booking-calendar-days button:focus-visible {
+  outline: 3px solid rgba(74, 155, 140, 0.45);
+  outline-offset: 2px;
+}
+
+.booking-calendar-days button:disabled {
+  color: #c3ccd6;
+  cursor: not-allowed;
+  background: #f5f7f9;
+  opacity: 0.65;
+}
+
+/* ---------- SELECTED DATE ---------- */
+
+.booking-calendar-days button.is-selected,
+.booking-calendar-days button[aria-pressed="true"] {
+  color: #ffffff;
+  font-weight: 700;
+  background: linear-gradient(145deg, #1e3a5f, #2d597e);
+  border-color: #1e3a5f;
+  box-shadow:
+    0 7px 16px rgba(30, 58, 95, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.booking-calendar-days button.is-selected:hover,
+.booking-calendar-days button[aria-pressed="true"]:hover {
+  color: #ffffff;
+  background: linear-gradient(145deg, #245078, #1e3a5f);
+}
+
+/* ---------- TODAY INDICATOR ---------- */
+
+.booking-calendar-days button.is-today:not(.is-selected) {
+  color: #245f56;
+  font-weight: 700;
+  border-color: #4a9b8c;
+}
+
+.booking-calendar-note {
+  min-height: 22px;
+  margin: 22px 0 0;
+  padding-top: 15px;
+  color: #718096;
+  font-size: 12px;
+  line-height: 1.6;
+  border-top: 1px solid rgba(30, 58, 95, 0.09);
+}
+
+/* ---------- TIME CARD HEADER ---------- */
+
+.booking-time-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.booking-time-icon {
+  display: grid;
+  flex: 0 0 48px;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #245f56;
+  font-size: 26px;
+  background: linear-gradient(145deg, #e6f4f0, #ffffff);
+  border: 1px solid rgba(74, 155, 140, 0.24);
+  border-radius: 15px;
+  box-shadow: 0 5px 14px rgba(74, 155, 140, 0.10);
+}
+
+.booking-time-heading h3 {
+  margin: 0 0 5px;
+  color: #1e3a5f;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.booking-time-heading p {
+  margin: 0;
+  color: #718096;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- TIME SLOT GRID ---------- */
+
+.booking-time-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.booking-time-slots button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 52px;
+  padding: 12px 10px;
+  color: #1e3a5f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid rgba(30, 58, 95, 0.14);
+  border-radius: 13px;
+  box-shadow: 0 3px 8px rgba(30, 58, 95, 0.03);
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.booking-time-slots button::before {
+  content: "";
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  background: #4a9b8c;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(74, 155, 140, 0.10);
+}
+
+.booking-time-slots button:hover {
+  color: #245f56;
+  background: #f0f8f6;
+  border-color: #4a9b8c;
+  box-shadow: 0 7px 16px rgba(74, 155, 140, 0.10);
+  transform: translateY(-2px);
+}
+
+.booking-time-slots button:focus-visible {
+  outline: 3px solid rgba(74, 155, 140, 0.40);
+  outline-offset: 3px;
+}
+
+/* ---------- SELECTED TIME SLOT ---------- */
+
+.booking-time-slots button.is-selected,
+.booking-time-slots button[aria-pressed="true"] {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1e3a5f, #2b5575);
+  border-color: #1e3a5f;
+  box-shadow:
+    0 8px 18px rgba(30, 58, 95, 0.19),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.booking-time-slots button.is-selected::before,
+.booking-time-slots button[aria-pressed="true"]::before {
+  background: #9be0cf;
+  box-shadow: 0 0 0 3px rgba(155, 224, 207, 0.16);
+}
+
+/* ---------- EMPTY STATE ---------- */
+
+.booking-time-placeholder {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 26px 18px;
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+  background: #f7fafc;
+  border: 1px dashed rgba(30, 58, 95, 0.20);
+  border-radius: 15px;
+}
+
+.booking-time-feedback {
+  min-height: 20px;
+  margin: 18px 0 0;
+  color: #245f56;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- RESPONSIVE: TABLET ---------- */
+
+@media (max-width: 900px) {
+  .booking-schedule-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .booking-calendar-card,
+  .booking-time-card {
+    border-radius: 20px;
+  }
+
+  .booking-calendar-days,
+  .booking-calendar-weekdays {
+    gap: 9px;
+  }
+
+  .booking-calendar-days button {
+    max-width: 56px;
+    justify-self: center;
+  }
+}
+
+/* ---------- RESPONSIVE: MOBILE ---------- */
+
+@media (max-width: 560px) {
+  .booking-calendar-card,
+  .booking-time-card {
+    padding: 19px 15px;
+  }
+
+  .booking-calendar-header {
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .booking-calendar-header h3 {
+    font-size: 17px;
+  }
+
+  .booking-calendar-nav {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .booking-calendar-weekdays,
+  .booking-calendar-days {
+    gap: 4px;
+  }
+
+  .booking-calendar-weekdays span {
+    font-size: 9px;
+  }
+
+  .booking-calendar-days button {
+    max-width: none;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+
+  .booking-calendar-note {
+    margin-top: 17px;
+    padding-top: 13px;
+  }
+
+  .booking-time-slots {
+    gap: 9px;
+  }
+
+  .booking-time-slots button {
+    min-height: 48px;
+    padding: 10px 7px;
+    gap: 7px;
+    font-size: 11px;
+    border-radius: 11px;
+  }
+
+  .booking-time-heading h3 {
+    font-size: 17px;
+  }
+
+  .booking-time-icon {
+    flex-basis: 43px;
+    width: 43px;
+    height: 43px;
+  }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-calendar-nav,
+  .booking-calendar-days button,
+  .booking-time-slots button,
+  .booking-calendar-card,
+  .booking-time-card {
+    transition: none !important;
+  }
+}
+/* =========================================================
+   NORTH CRESCENT BOOKING
+   PART 3 — PREMIUM CUSTOMER DETAILS
+========================================================= */
+
+.booking-customer {
+  position: relative;
+}
+
+/* ---------- CUSTOMER FORM CARD ---------- */
+
+.booking-customer-card {
+  position: relative;
+  padding: clamp(22px, 4vw, 38px);
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(74, 155, 140, 0.07),
+      transparent 36%
+    ),
+    linear-gradient(145deg, #ffffff, #f8fbfc);
+  border: 1px solid rgba(30, 58, 95, 0.12);
+  border-radius: 24px;
+  box-shadow:
+    0 16px 38px rgba(30, 58, 95, 0.07),
+    0 4px 12px rgba(30, 58, 95, 0.03);
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.booking-customer-card:hover {
+  border-color: rgba(74, 155, 140, 0.32);
+  box-shadow:
+    0 20px 45px rgba(30, 58, 95, 0.09),
+    0 5px 16px rgba(74, 155, 140, 0.05);
+}
+
+/* ---------- FORM GRID ---------- */
+
+.booking-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.booking-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 9px;
+}
+
+.booking-field-full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- FIELD LABELS ---------- */
+
+.booking-field label {
+  display: block;
+  color: #1e3a5f;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.booking-field label > span:not(.booking-optional) {
+  color: #d9534f;
+  font-weight: 700;
+}
+
+.booking-field .booking-optional {
+  color: #8492a6;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ---------- INPUTS & TEXTAREA ---------- */
+
+.booking-field input,
+.booking-field textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 15px 17px;
+  color: #1e3a5f;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  background: #ffffff;
+  border: 1px solid #dce5ed;
+  border-radius: 13px;
+  outline: none;
+  box-shadow:
+    0 3px 9px rgba(30, 58, 95, 0.025),
+    inset 0 1px 2px rgba(30, 58, 95, 0.015);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+.booking-field input {
+  min-height: 54px;
+}
+
+.booking-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.booking-field input::placeholder,
+.booking-field textarea::placeholder {
+  color: #9aa8b8;
+  opacity: 1;
+}
+
+/* ---------- INTERACTIVE FOCUS ---------- */
+
+.booking-field input:hover,
+.booking-field textarea:hover {
+  border-color: #a9c9c3;
+  background: #fcfefe;
+}
+
+.booking-field input:focus,
+.booking-field textarea:focus {
+  background: #ffffff;
+  border-color: #4a9b8c;
+  box-shadow:
+    0 0 0 4px rgba(74, 155, 140, 0.12),
+    0 8px 20px rgba(30, 58, 95, 0.055);
+}
+
+.booking-field input:focus-visible,
+.booking-field textarea:focus-visible {
+  outline: 2px solid rgba(74, 155, 140, 0.25);
+  outline-offset: 2px;
+}
+
+/* ---------- VALIDATION STATES ---------- */
+
+.booking-field input:required:valid:not(:placeholder-shown),
+.booking-field textarea:required:valid:not(:placeholder-shown) {
+  border-color: rgba(74, 155, 140, 0.65);
+}
+
+.booking-field input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: #d9534f;
+  box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.07);
+}
+
+/* ---------- ADDRESS HELPER ---------- */
+
+.booking-field small {
+  display: block;
+  color: #718096;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ---------- CUSTOMER NOTICE ---------- */
+
+.booking-customer-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(74, 155, 140, 0.11),
+    rgba(74, 155, 140, 0.045)
+  );
+  border: 1px solid rgba(74, 155, 140, 0.20);
+  border-radius: 15px;
+}
+
+.booking-customer-notice > span {
+  display: grid;
+  flex: 0 0 27px;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(145deg, #4a9b8c, #34796e);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(74, 155, 140, 0.20);
+}
+
+.booking-customer-notice p {
+  margin: 3px 0 0;
+  color: #36556b;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 760px) {
+  .booking-form-grid {
+    gap: 20px;
+  }
+
+  .booking-customer-card {
+    padding: 26px 22px;
+    border-radius: 20px;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 560px) {
+  .booking-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 19px;
+  }
+
+  .booking-field-full {
+    grid-column: auto;
+  }
+
+  .booking-customer-card {
+    padding: 21px 16px;
+    border-radius: 18px;
+  }
+
+  .booking-field input {
+    min-height: 51px;
+    padding: 13px 14px;
+    font-size: 14px;
+  }
+
+  .booking-field textarea {
+    min-height: 115px;
+    padding: 13px 14px;
+  }
+
+  .booking-customer-notice {
+    gap: 11px;
+    margin-top: 22px;
+    padding: 15px;
+  }
+
+  .booking-customer-notice p {
+    font-size: 12px;
+  }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-customer-card,
+  .booking-field input,
+  .booking-field textarea {
+    transition: none !important;
+  }
+}
 
 /* =========================================================
-   END OF PART 4 OF 4
-   NORTH CRESCENT BOOKING.CSS
+   NORTH CRESCENT BOOKING
+   PART 4 — PREMIUM SUMMARY, ACTIONS & RESPONSIVE FINISH
 ========================================================= */
+
+/* ---------- BOOKING SUMMARY ---------- */
+
+.booking-summary {
+  position: relative;
+  padding: clamp(24px, 4vw, 38px);
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(74, 155, 140, 0.28),
+      transparent 42%
+    ),
+    linear-gradient(135deg, #1e3a5f 0%, #142a46 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow:
+    0 22px 48px rgba(30, 58, 95, 0.20),
+    0 5px 15px rgba(30, 58, 95, 0.10);
+}
+
+.booking-summary h2,
+.booking-summary h3 {
+  color: #ffffff;
+}
+
+.booking-summary h2 {
+  margin: 0 0 10px;
+  font-size: clamp(23px, 3vw, 30px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.booking-summary > p {
+  margin: 0 0 26px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------- SUMMARY DETAILS ---------- */
+
+.booking-summary-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.booking-summary-item {
+  min-width: 0;
+  padding: 17px 18px;
+  background: rgba(255, 255, 255, 0.075);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.booking-summary-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(155, 224, 207, 0.45);
+  transform: translateY(-2px);
+}
+
+.booking-summary-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #a8dcd0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.booking-summary-value {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+/* ---------- CONFIRMATION NOTICE ---------- */
+
+.booking-confirmation-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+}
+
+.booking-confirmation-notice > span {
+  display: grid;
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  color: #1e3a5f;
+  font-size: 13px;
+  font-weight: 700;
+  background: #a8dcd0;
+  border-radius: 50%;
+}
+
+.booking-confirmation-notice p {
+  margin: 2px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* ---------- BOOKING ACTION AREA ---------- */
+
+.booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.booking-actions-note {
+  flex: 1 1 220px;
+  margin: 0;
+  color: #718096;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ---------- PREMIUM BUTTON BASE ---------- */
+
+.booking-page .booking-submit,
+.booking-page .booking-back,
+.booking-page .booking-action-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-height: 54px;
+  padding: 15px 25px;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    opacity 220ms ease;
+}
+
+/* ---------- PRIMARY SUBMIT BUTTON ---------- */
+
+.booking-page .booking-submit {
+  color: #ffffff;
+  background: linear-gradient(135deg, #347f73 0%, #4a9b8c 55%, #5aab9b 100%);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 10px 22px rgba(74, 155, 140, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+.booking-page .booking-submit::after {
+  content: "→";
+  font-size: 19px;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+
+.booking-page .booking-submit:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow:
+    0 15px 30px rgba(74, 155, 140, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.booking-page .booking-submit:hover:not(:disabled)::after {
+  transform: translateX(4px);
+}
+
+.booking-page .booking-submit:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* ---------- SECONDARY BUTTON ---------- */
+
+.booking-page .booking-back,
+.booking-page .booking-action-button {
+  color: #1e3a5f;
+  background: #ffffff;
+  border-color: rgba(30, 58, 95, 0.16);
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.05);
+}
+
+.booking-page .booking-back:hover,
+.booking-page .booking-action-button:hover {
+  color: #245f56;
+  background: #f0f8f6;
+  border-color: #4a9b8c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(30, 58, 95, 0.09);
+}
+
+/* ---------- DISABLED / LOADING BUTTONS ---------- */
+
+.booking-page .booking-submit:disabled,
+.booking-page .booking-back:disabled,
+.booking-page .booking-action-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------- BUTTON KEYBOARD ACCESSIBILITY ---------- */
+
+.booking-page .booking-submit:focus-visible,
+.booking-page .booking-back:focus-visible,
+.booking-page .booking-action-button:focus-visible {
+  outline: 3px solid rgba(74, 155, 140, 0.50);
+  outline-offset: 4px;
+}
+
+/* ---------- FORM STATUS MESSAGES ---------- */
+
+.booking-form-status {
+  margin-top: 20px;
+  padding: 15px 18px;
+  color: #1e3a5f;
+  font-size: 13px;
+  line-height: 1.7;
+  background: #f0f8f6;
+  border: 1px solid rgba(74, 155, 140, 0.30);
+  border-radius: 13px;
+}
+
+.booking-form-status:empty {
+  display: none;
+}
+
+.booking-form-status.is-error {
+  color: #8f2929;
+  background: #fff5f5;
+  border-color: rgba(217, 83, 79, 0.30);
+}
+
+.booking-form-status.is-success {
+  color: #245f56;
+  background: #edf8f3;
+  border-color: rgba(74, 155, 140, 0.35);
+}
+
+/* ---------- RESPONSIVE: TABLET ---------- */
+
+@media (max-width: 760px) {
+  .booking-summary-details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .booking-actions {
+    align-items: stretch;
+  }
+
+  .booking-actions-note {
+    flex-basis: 100%;
+  }
+
+  .booking-page .booking-submit,
+  .booking-page .booking-back,
+  .booking-page .booking-action-button {
+    flex: 1 1 auto;
+  }
+}
+
+/* ---------- RESPONSIVE: MOBILE ---------- */
+
+@media (max-width: 560px) {
+  .booking-summary {
+    padding: 23px 17px;
+    border-radius: 19px;
+  }
+
+  .booking-summary-item {
+    padding: 15px;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .booking-page .booking-submit,
+  .booking-page .booking-back,
+  .booking-page .booking-action-button {
+    width: 100%;
+    min-height: 52px;
+  }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-summary-item,
+  .booking-page .booking-submit,
+  .booking-page .booking-back,
+  .booking-page .booking-action-button {
+    transition: none !important;
+  }
+}
+
