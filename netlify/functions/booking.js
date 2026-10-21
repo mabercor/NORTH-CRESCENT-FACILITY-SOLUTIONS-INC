@@ -56,10 +56,139 @@ const EMAIL_TEMPLATE = `<!DOCTYPE html>
 <title>Booking received – North Crescent Facility Solutions</title>
 </head>
 <body style="margin:0;padding:0;background:#f5f7fa;">
+<!-- Preheader (texto que se ve en la bandeja de entrada) -->
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f5f7fa;">Your booking has been received. Here is your summary.</div>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f5f7fa">
 <tr><td align="center" style="padding:24px 12px;">
-<table width="600" border="0" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #E5E7EB;"><tr><td align="center" bgcolor="#1E3A5F" style="background:#1E3A5F;padding:34px 24px 26px;"><div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:26px;line-height:1.15;letter-spacing:2px;color:#ffffff;font-weight:bold;">NORTH CRESCENT</div><div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:3px;color:#C7D8E7;margin-top:6px;">FACILITY SOLUTIONS INC.</div><div style="width:70px;height:3px;background:#4A9B8C;margin:16px auto 14px;font-size:0;line-height:0;">&nbsp;</div><div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#ffffff;">RELIABLE &nbsp;&bull;&nbsp; STRUCTURED &nbsp;&bull;&nbsp; PROFESSIONAL</div></td></tr><tr><td align="center" style="padding:36px 32px 8px;"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="54" height="54" bgcolor="#EAF2F8" style="width:54px;height:54px;border-radius:27px;background:#EAF2F8;font-family:Arial,Helvetica,sans-serif;font-size:26px;line-height:54px;color:#4A9B8C;font-weight:bold;">&#10003;</td></tr></table><h1 style="margin:18px 0 6px;font-family:Cambria,Georgia,'Times New Roman',serif;font-size:28px;line-height:1.25;color:#1E3A5F;font-weight:bold;">Welcome, [[CLIENT_NAME]]</h1><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#5B6573;">Your booking has been received and registered.</p></td></tr><tr><td align="center" style="padding:18px 32px 6px;"><table border="0" cellspacing="0" cellpadding="0" bgcolor="#F4F8FA" style="background:#F4F8FA;border:1px solid #DCE7EC;border-radius:12px;"><tr><td align="center" style="padding:14px 34px;"><div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#6B7280;">BOOKING NUMBER</div><div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:30px;line-height:1.2;color:#1E3A5F;font-weight:bold;margin-top:4px;">[[BOOKING_ID]]</div></td></tr></table></td></tr><tr><td style="padding:22px 36px 6px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7;color:#374151;">[[AI_MESSAGE]]</td></tr><tr><td style="padding:20px 32px 6px;"><div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#4A9B8C;font-weight:bold;padding-bottom:10px;">YOUR BOOKING SUMMARY</div><table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #E5E7EB;border-radius:12px;"><tr><td width="34%" valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">SERVICE</td><td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1E3A5F;font-weight:bold;">[[SERVICE]]</td></tr><tr><td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">DATE</td><td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[DATE]]</td></tr><tr><td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">TIME</td><td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[TIME]]</td></tr><tr><td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">ADDRESS</td><td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[ADDRESS]]</td></tr><tr><td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">CONTACT</td><td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#374151;">[[PHONE]]<br>[[EMAIL]]</td></tr><tr><td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">PROPERTY DETAILS</td><td valign="top" style="padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;">[[NOTES]]</td></tr></table></td></tr><tr><td style="padding:26px 32px 6px;"><div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#4A9B8C;font-weight:bold;padding-bottom:12px;">WHAT HAPPENS NEXT</div><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="38" valign="top" style="padding-bottom:14px;"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#1E3A5F" style="width:28px;height:28px;border-radius:14px;background:#1E3A5F;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">1</td></tr></table></td><td valign="top" style="padding-bottom:14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We review your request.</strong> Our team checks the details and your schedule.</td></tr><tr><td valign="top" style="padding-bottom:14px;"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#1E3A5F" style="width:28px;height:28px;border-radius:14px;background:#1E3A5F;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">2</td></tr></table></td><td valign="top" style="padding-bottom:14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We contact you.</strong> We will reach out shortly to confirm final details.</td></tr><tr><td valign="top"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#4A9B8C" style="width:28px;height:28px;border-radius:14px;background:#4A9B8C;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">3</td></tr></table></td><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We take care of the rest.</strong> Our professional team arrives ready to work.</td></tr></table></td></tr><tr><td align="center" style="padding:26px 32px 8px;"><p style="margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#5B6573;">Need to change something? Reply to this email or call us, and mention your booking number.</p><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" bgcolor="#4A9B8C" style="background:#4A9B8C;border-radius:10px;"><a href="tel:+14288880542" style="display:inline-block;padding:14px 30px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#ffffff;text-decoration:none;">Call +1 (428) 888-0542</a></td></tr></table></td></tr><tr><td align="center" style="padding:26px 32px 30px;font-family:Cambria,Georgia,'Times New Roman',serif;font-size:16px;line-height:1.6;color:#1E3A5F;">Thank you for trusting us.<br><strong>The North Crescent Team</strong></td></tr><tr><td align="center" bgcolor="#1E3A5F" style="background:#1E3A5F;padding:24px 24px 26px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.9;color:#C7D8E7;"><strong style="color:#ffffff;letter-spacing:1px;">NORTH CRESCENT FACILITY SOLUTIONS INC.</strong><br>Moncton, New Brunswick<br><a href="https://northcrescentcleaning.com" style="color:#ffffff;text-decoration:none;">northcrescentcleaning.com</a> &nbsp;|&nbsp;<a href="mailto:info@northcrescentcleaning.com" style="color:#ffffff;text-decoration:none;">info@northcrescentcleaning.com</a><br><a href="tel:+14288880542" style="color:#ffffff;text-decoration:none;">+1 (428) 888-0542</a><br><a href="https://www.linkedin.com/company/north-crescent-facility-solutions-inc/" style="color:#9FD3C7;text-decoration:none;">LinkedIn</a> &nbsp;|&nbsp;<a href="https://www.instagram.com/northcrescentcleaning/" style="color:#9FD3C7;text-decoration:none;">Instagram</a> &nbsp;|&nbsp;<a href="https://www.facebook.com/profile.php?id=61590535282882" style="color:#9FD3C7;text-decoration:none;">Facebook</a></td></tr>
+
+<table width="600" border="0" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #E5E7EB;">
+
+  <!-- HEADER -->
+  <tr>
+    <td align="center" bgcolor="#1E3A5F" style="background:#1E3A5F;padding:34px 24px 26px;">
+      <div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:26px;line-height:1.15;letter-spacing:2px;color:#ffffff;font-weight:bold;">NORTH CRESCENT</div>
+      <div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:3px;color:#C7D8E7;margin-top:6px;">FACILITY SOLUTIONS INC.</div>
+      <div style="width:70px;height:3px;background:#4A9B8C;margin:16px auto 14px;font-size:0;line-height:0;">&nbsp;</div>
+      <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#ffffff;">RELIABLE &nbsp;&bull;&nbsp; STRUCTURED &nbsp;&bull;&nbsp; PROFESSIONAL</div>
+    </td>
+  </tr>
+
+  <!-- WELCOME -->
+  <tr>
+    <td align="center" style="padding:36px 32px 8px;">
+      <table border="0" cellspacing="0" cellpadding="0"><tr>
+        <td align="center" width="54" height="54" bgcolor="#EAF2F8" style="width:54px;height:54px;border-radius:27px;background:#EAF2F8;font-family:Arial,Helvetica,sans-serif;font-size:26px;line-height:54px;color:#4A9B8C;font-weight:bold;">&#10003;</td>
+      </tr></table>
+      <h1 style="margin:18px 0 6px;font-family:Cambria,Georgia,'Times New Roman',serif;font-size:28px;line-height:1.25;color:#1E3A5F;font-weight:bold;">Welcome, [[CLIENT_NAME]]</h1>
+      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#5B6573;">Your booking has been received and registered.</p>
+    </td>
+  </tr>
+
+  <!-- BOOKING NUMBER -->
+  <tr>
+    <td align="center" style="padding:18px 32px 6px;">
+      <table border="0" cellspacing="0" cellpadding="0" bgcolor="#F4F8FA" style="background:#F4F8FA;border:1px solid #DCE7EC;border-radius:12px;">
+        <tr><td align="center" style="padding:14px 34px;">
+          <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:2px;color:#6B7280;">BOOKING NUMBER</div>
+          <div style="font-family:Cambria,Georgia,'Times New Roman',serif;font-size:30px;line-height:1.2;color:#1E3A5F;font-weight:bold;margin-top:4px;">[[BOOKING_ID]]</div>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- MENSAJE PERSONALIZADO (lo escribe la IA) -->
+  <tr>
+    <td style="padding:22px 36px 6px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.7;color:#374151;">
+      [[AI_MESSAGE]]
+    </td>
+  </tr>
+
+  <!-- RESUMEN -->
+  <tr>
+    <td style="padding:20px 32px 6px;">
+      <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#4A9B8C;font-weight:bold;padding-bottom:10px;">YOUR BOOKING SUMMARY</div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #E5E7EB;border-radius:12px;">
+        <tr>
+          <td width="34%" valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">SERVICE</td>
+          <td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#1E3A5F;font-weight:bold;">[[SERVICE]]</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">DATE</td>
+          <td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[DATE]]</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">TIME</td>
+          <td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[TIME]]</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">ADDRESS</td>
+          <td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">[[ADDRESS]]</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">CONTACT</td>
+          <td valign="top" style="padding:12px 14px;border-bottom:1px solid #E5E7EB;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#374151;">[[PHONE]]<br>[[EMAIL]]</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#F8FAFC" style="background:#F8FAFC;padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:1px;color:#6B7280;font-weight:bold;">PROPERTY DETAILS</td>
+          <td valign="top" style="padding:12px 14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;">[[NOTES]]</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- QUE SIGUE -->
+  <tr>
+    <td style="padding:26px 32px 6px;">
+      <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#4A9B8C;font-weight:bold;padding-bottom:12px;">WHAT HAPPENS NEXT</div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="38" valign="top" style="padding-bottom:14px;"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#1E3A5F" style="width:28px;height:28px;border-radius:14px;background:#1E3A5F;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">1</td></tr></table></td>
+          <td valign="top" style="padding-bottom:14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We review your request.</strong> Our team checks the details and your schedule.</td>
+        </tr>
+        <tr>
+          <td valign="top" style="padding-bottom:14px;"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#1E3A5F" style="width:28px;height:28px;border-radius:14px;background:#1E3A5F;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">2</td></tr></table></td>
+          <td valign="top" style="padding-bottom:14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We contact you.</strong> We will reach out shortly to confirm final details.</td>
+        </tr>
+        <tr>
+          <td valign="top"><table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" width="28" height="28" bgcolor="#4A9B8C" style="width:28px;height:28px;border-radius:14px;background:#4A9B8C;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;line-height:28px;">3</td></tr></table></td>
+          <td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#374151;"><strong style="color:#1E3A5F;">We take care of the rest.</strong> Our professional team arrives ready to work.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- BOTON -->
+  <tr>
+    <td align="center" style="padding:26px 32px 8px;">
+      <p style="margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#5B6573;">Need to change something? Reply to this email or call us, and mention your booking number.</p>
+      <table border="0" cellspacing="0" cellpadding="0"><tr>
+        <td align="center" bgcolor="#4A9B8C" style="background:#4A9B8C;border-radius:10px;"><a href="tel:+14288880542" style="display:inline-block;padding:14px 30px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#ffffff;text-decoration:none;">Call +1 (428) 888-0542</a></td>
+      </tr></table>
+    </td>
+  </tr>
+
+  <!-- FIRMA -->
+  <tr>
+    <td align="center" style="padding:26px 32px 30px;font-family:Cambria,Georgia,'Times New Roman',serif;font-size:16px;line-height:1.6;color:#1E3A5F;">
+      Thank you for trusting us.<br><strong>The North Crescent Team</strong>
+    </td>
+  </tr>
+
+  <!-- FOOTER -->
+  <tr>
+    <td align="center" bgcolor="#1E3A5F" style="background:#1E3A5F;padding:24px 24px 26px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.9;color:#C7D8E7;">
+      <strong style="color:#ffffff;letter-spacing:1px;">NORTH CRESCENT FACILITY SOLUTIONS INC.</strong><br>
+      Moncton, New Brunswick<br>
+      <a href="https://northcrescentcleaning.com" style="color:#ffffff;text-decoration:none;">northcrescentcleaning.com</a> &nbsp;|&nbsp;
+      <a href="mailto:info@northcrescentcleaning.com" style="color:#ffffff;text-decoration:none;">info@northcrescentcleaning.com</a><br>
+      <a href="tel:+14288880542" style="color:#ffffff;text-decoration:none;">+1 (428) 888-0542</a><br>
+      <a href="https://www.linkedin.com/company/north-crescent-facility-solutions-inc/" style="color:#9FD3C7;text-decoration:none;">LinkedIn</a> &nbsp;|&nbsp;
+      <a href="https://www.instagram.com/northcrescentcleaning/" style="color:#9FD3C7;text-decoration:none;">Instagram</a> &nbsp;|&nbsp;
+      <a href="https://www.facebook.com/profile.php?id=61590535282882" style="color:#9FD3C7;text-decoration:none;">Facebook</a>
+    </td>
+  </tr>
+
 </table>
 </td></tr>
 </table>
