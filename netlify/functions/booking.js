@@ -97,6 +97,26 @@ const buildConfirmationEmail = (booking) => {
   };
 };
 
+/* ---------- CALENDAR TIMES ----------
+   timeSlot looks like "12:00-16:00" or "08:00-12:00-next-day".
+   Returns local start/end ("YYYY-MM-DDTHH:MM:00") for the calendar event. */
+
+const buildEventTimes = (booking) => {
+  const match = /^(\d{2}):(\d{2})-(\d{2}):(\d{2})(-next-day)?$/.exec(booking.timeSlot);
+  if (!match) return {};
+
+  const [, sh, sm, eh, em, nextDay] = match;
+  const base = new Date(booking.serviceDate + "T00:00:00Z");
+  if (nextDay) base.setUTCDate(base.getUTCDate() + 1);
+  const day = base.toISOString().slice(0, 10);
+
+  return {
+    eventStart: `${day}T${sh}:${sm}:00`,
+    eventEnd: `${day}T${eh}:${em}:00`,
+    eventTimeZone: "America/Moncton"
+  };
+};
+
 exports.handler = async (event) => {
 
   if (event.httpMethod !== "POST") {
@@ -170,6 +190,7 @@ exports.handler = async (event) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...booking,
+        ...buildEventTimes(booking),
         ...buildConfirmationEmail(booking)
       })
     });
