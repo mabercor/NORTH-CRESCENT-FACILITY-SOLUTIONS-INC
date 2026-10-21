@@ -72,9 +72,6 @@ const EMAIL_TEMPLATE = `<!DOCTYPE html>
 <tr><td align="center" bgcolor="#1E3A5F" style="background:#1E3A5F;padding:15px 24px;"><span class="nc-tag" style="font-family:Cambria,Georgia,'Times New Roman',serif;color:#ffffff;font-size:14px;font-weight:bold;letter-spacing:1.5px;line-height:1.5;">You&#8217;ve Worked Hard to Build Your Business. We&#8217;ll Work Hard to Care for It.</span></td></tr>
 <tr><td height="5" bgcolor="#4A9B8C" style="height:5px;line-height:5px;font-size:0;background:#4A9B8C;">&nbsp;</td></tr>
 
-<tr><td align="center" style="padding:26px 24px 12px 24px;"><a href="https://northcrescentcleaning.com/"><img src="https://northcrescentcleaning.com/images/email/email-banner.webp" alt="North Crescent Facility Solutions Inc." width="592" style="display:block;width:100%;max-width:592px;height:auto;border:0;"></a></td></tr>
-
-
 <tr><td align="center" class="nc-pad" style="padding:6px 40px 22px 40px;"><h1 class="nc-h1" style="margin:0;font-family:Cambria,Georgia,'Times New Roman',serif;font-size:22px;line-height:1.3;font-weight:300;color:#4A9B8C;letter-spacing:.5px;">LESS MONEY. BETTER QUALITY. PROFESSIONAL SERVICE.</h1></td></tr>
 <tr><td height="5" bgcolor="#4A9B8C" style="height:5px;line-height:5px;font-size:0;background:#4A9B8C;">&nbsp;</td></tr>
 
