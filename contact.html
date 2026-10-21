@@ -1,4 +1,4 @@
-<!DOCTYPE html>         
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -11,7 +11,6 @@
 <link rel="canonical" href="https://www.northcrescentcleaning.com/contact.html">
 <meta name="robots" content="index, follow">
 
-  
 <!-- GEO -->
 <meta name="geo.region" content="CA-NB">
 <meta name="geo.placename" content="Moncton">
@@ -59,7 +58,7 @@
 }
 </script>
 
-<!-- GOOGLE ANALYTICS --> 
+<!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-48W5J5N037"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -69,17 +68,18 @@ gtag('config', 'G-48W5J5N037');
 </script>
 
 <!-- FONTS & CSS -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<!-- LEGACY CSS — PRESERVED, TEMPORARILY DISABLED -->
-<!-- <link rel="stylesheet" href="/styles.css"> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CONCIERGE WIDGET CSS -->
 <link rel="stylesheet" href="/concierge-widget.css">
 
 <!-- NORTH CRESCENT DESIGN SYSTEM -->
 <link rel="stylesheet" href="/styles/design-system.css">
-  
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHp3lDwQoFDRy4pkx27tpmT29kD5lgpqs&libraries=places"></script>
+
+<!-- PREMIUM FORMS + CONTACT PAGE -->
+<link rel="stylesheet" href="/styles/forms.css?v=20261021">
 
 <!-- FAVICON -->
 <link rel="icon" href="/favicon.ico">
@@ -88,7 +88,7 @@ gtag('config', 'G-48W5J5N037');
 
 </head>
 
-  <body data-page="contact">
+<body data-page="contact">
 
 <div class="menu-overlay"></div>
 <div class="progress-bar"></div>
@@ -154,7 +154,7 @@ gtag('config', 'G-48W5J5N037');
     </a>
 
     <a href="/post-construction-cleaning-moncton.html">
-      
+      Post-Construction Cleaning
     </a>
     <a href="/snow-removal-moncton.html">
   Seasonal Snow Removal
@@ -174,7 +174,7 @@ gtag('config', 'G-48W5J5N037');
         <a href="/reviews.html">Reviews</a>
         <a href="/work.html">Our Work</a>
         <a href="/gallery.html">Gallery</a>
-        <a href="/contact.html" class="btn btn-primary">Contact</a>
+        <a href="/contact.html" class="btn btn-primary" aria-current="page">Contact</a>
       </nav>
 
       <div class="lang-switch">
@@ -187,1070 +187,486 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </header>
 
-<main>
+<main class="nc-contact" id="main">
 
-<section>
-  <div class="container">
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
+  <section class="hero contact-hero">
+    <div class="container hero-content">
 
-    <div class="grid-2">
+      <span class="badge">Free Quote</span>
 
-     <!-- FORM -->
-<div id="contact-form">
-  <div class="contact-box">
+      <h1>Get Your Cleaning Quote in Moncton, Dieppe &amp; Riverview</h1>
 
-    <h2>Get Your Quote & Book Your Preferred Time</h2>
+      <p class="hero-sub">
+        Tell us about your space and we will prepare a clear, fair quote for you.
+      </p>
 
-    <p>
-     ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
+      <ul class="contact-points">
+        <li>Quotes in minutes</li>
+        <li>Appointments within 24 hours</li>
+        <li>Quality service</li>
+        <li>Fair pricing</li>
+      </ul>
 
-    <div class="divider"></div>
+    </div>
+  </section>
 
-    <form
-      id="contactForm"
-      class="contact-form"
-      action="/.netlify/functions/contact-form"
-      method="POST">
 
-      <div class="form-row">
+  <!-- =====================================================
+       FORM + CONTACT DETAILS
+  ===================================================== -->
+  <section class="contact-section contact-section--form">
+    <div class="contact-shell">
 
-        <!-- CLIENT NAME -->
+      <!-- ---------- FORM ---------- -->
+      <div class="nc-form-card" id="contact-form">
 
-        <input
-  type="text"
-  id="clientName"
-  name="clientName"
-  placeholder="Full Name *"
-  required
-  autofocus>
+        <form id="contactForm" class="nc-form" novalidate>
 
-        <!-- EMAIL ADDRESS -->
+          <div class="nc-form-head">
+            <span class="nc-eyebrow">Free quote</span>
+            <h2>Get Your Quote &amp; Book Your Preferred Time</h2>
+            <p>It takes about a minute. The more you tell us, the more accurate your quote.</p>
+          </div>
 
-        <input
-          type="email"
-          name="emailAddress"
-          placeholder="Email Address *"
-          required>
+          <!-- Progress -->
+          <div class="nc-progress">
+            <div class="nc-progress-track" role="progressbar" aria-label="Form completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span class="nc-progress-fill" id="progressFill"></span>
+            </div>
+            <span class="nc-progress-label" id="progressLabel" aria-live="polite">0 of 8 completed</span>
+          </div>
 
-        
+          <!-- ================= 1 · YOUR DETAILS ================= -->
+          <div class="nc-group" role="group" aria-labelledby="group-details">
+            <h3 class="nc-group-title" id="group-details"><span class="nc-step">1</span>Your details</h3>
+
+            <div class="nc-fields">
+
+              <div class="nc-row">
+
+                <div class="nc-field">
+                  <input class="nc-input" type="text" id="clientName" name="clientName"
+                         placeholder=" " autocomplete="name" required
+                         aria-describedby="clientName-error">
+                  <label for="clientName">Full name <span class="nc-req" aria-hidden="true">*</span></label>
+                  <p class="nc-error" id="clientName-error" role="alert"></p>
+                </div>
+
+                <div class="nc-field">
+                  <input class="nc-input" type="email" id="emailAddress" name="emailAddress"
+                         placeholder=" " autocomplete="email" inputmode="email" required
+                         aria-describedby="emailAddress-error">
+                  <label for="emailAddress">Email address <span class="nc-req" aria-hidden="true">*</span></label>
+                  <p class="nc-error" id="emailAddress-error" role="alert"></p>
+                </div>
+
+              </div>
+
+              <div class="nc-field">
+                <input class="nc-input" type="tel" id="phoneNumber" name="phoneNumber"
+                       placeholder=" " autocomplete="tel" inputmode="tel" required
+                       aria-describedby="phoneNumber-error">
+                <label for="phoneNumber">Phone number <span class="nc-req" aria-hidden="true">*</span></label>
+                <p class="nc-error" id="phoneNumber-error" role="alert"></p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= 2 · THE SERVICE ================= -->
+          <div class="nc-group" role="group" aria-labelledby="group-service">
+            <h3 class="nc-group-title" id="group-service"><span class="nc-step">2</span>The service</h3>
+
+            <div class="nc-fields">
+
+              <!-- Address (Google suggestions) -->
+              <div class="nc-field nc-field--address">
+                <svg class="nc-pin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <input class="nc-input" type="text" id="serviceAddress" name="serviceAddress"
+                       placeholder=" " autocomplete="off" required
+                       aria-describedby="serviceAddress-error">
+                <label for="serviceAddress">Service address <span class="nc-req" aria-hidden="true">*</span></label>
+                <p class="nc-error" id="serviceAddress-error" role="alert"></p>
+                <input type="hidden" id="city" name="city">
+                <input type="hidden" id="province" name="province">
+                <input type="hidden" id="postalCode" name="postalCode">
+              </div>
+
+              <!-- Service type -->
+              <div class="nc-field nc-field--select">
+                <select class="nc-input nc-select" id="serviceType" name="serviceType" required
+                        aria-describedby="serviceType-error">
+                  <option value="" hidden></option>
+                  <option>Residential Cleaning</option>
+                  <option>Commercial Cleaning</option>
+                  <option>Deep Cleaning</option>
+                  <option>Move-In / Move-Out</option>
+                  <option>Airbnb Cleaning</option>
+                  <option>Janitorial Cleaning</option>
+                  <option>Post-Construction Cleaning</option>
+                  <option>Seasonal Snow Removal</option>
+                  <option>Gutter Cleaning</option>
+                  <option>Junk Removal</option>
+                </select>
+                <label for="serviceType">Select service <span class="nc-req" aria-hidden="true">*</span></label>
+                <p class="nc-error" id="serviceType-error" role="alert"></p>
+              </div>
+
+              <!-- Frequency -->
+              <div class="nc-field nc-field--select">
+                <select class="nc-input nc-select" id="visitsPerMonth" name="visitsPerMonth" required
+                        aria-describedby="visitsPerMonth-error">
+                  <option value="" hidden></option>
+                  <option value="30">Every Day</option>
+                  <option value="8">2 Times per Week</option>
+                  <option value="4">4 Times per Month</option>
+                  <option value="2">2 Times per Month</option>
+                  <option value="custom">Custom</option>
+                </select>
+                <label for="visitsPerMonth">Cleaning frequency <span class="nc-req" aria-hidden="true">*</span></label>
+                <p class="nc-error" id="visitsPerMonth-error" role="alert"></p>
+              </div>
+
+              <!-- Preferred days (opens smoothly when needed) -->
+              <div class="nc-reveal" id="daysReveal" aria-hidden="true" inert>
+                <div class="nc-reveal-inner">
+                  <div class="nc-days-box" id="daysBox" role="group" aria-labelledby="daysTitle">
+                    <p class="nc-days-title" id="daysTitle">Preferred days <span class="nc-req" aria-hidden="true">*</span></p>
+                    <p class="nc-days-help">Choose the days that work best for you.</p>
+
+                    <div class="nc-days">
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Monday"><span>Mon</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Tuesday"><span>Tue</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Wednesday"><span>Wed</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Thursday"><span>Thu</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Friday"><span>Fri</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Saturday"><span>Sat</span></label>
+                      <label class="nc-chip"><input type="checkbox" name="recurringVisits[]" value="Sunday"><span>Sun</span></label>
+                    </div>
+
+                    <p class="nc-error" id="daysError" role="alert"></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nc-row">
+
+                <!-- Time slot -->
+                <div class="nc-field nc-field--select">
+                  <select class="nc-input nc-select" id="timeSlot" name="timeSlot" required
+                          aria-describedby="timeSlot-error">
+                    <option value="" hidden></option>
+                    <option>12AM – 4AM</option>
+                    <option>4AM – 8AM</option>
+                    <option>8AM – 12PM</option>
+                    <option>12PM – 4PM</option>
+                    <option>4PM – 8PM</option>
+                    <option>8PM – 12AM</option>
+                  </select>
+                  <label for="timeSlot">Preferred time slot <span class="nc-req" aria-hidden="true">*</span></label>
+                  <p class="nc-error" id="timeSlot-error" role="alert"></p>
+                </div>
+
+                <!-- Size -->
+                <div class="nc-field nc-field--suffix">
+                  <input class="nc-input" type="number" id="squareFootage" name="squareFootage"
+                         placeholder=" " min="1" max="999999" step="1" inputmode="numeric"
+                         aria-describedby="squareFootage-error">
+                  <label for="squareFootage">Approximate size (optional)</label>
+                  <span class="nc-suffix" aria-hidden="true">sq ft</span>
+                  <p class="nc-error" id="squareFootage-error" role="alert"></p>
+                </div>
+
+              </div>
+
+              <p class="nc-days-help" style="margin:-4px 4px 0;">
+                Schedule is subject to availability. We will confirm your service plan after review.
+              </p>
+
+            </div>
+          </div>
+
+          <!-- ================= 3 · YOUR SPACE ================= -->
+          <div class="nc-group" role="group" aria-labelledby="group-space">
+            <h3 class="nc-group-title" id="group-space"><span class="nc-step">3</span>Tell us about your space</h3>
+
+            <div class="nc-field nc-field--textarea">
+              <textarea class="nc-input nc-textarea" id="operationalSummary" name="operationalSummary"
+                        placeholder=" " rows="5" required
+                        aria-describedby="operationalSummary-hint operationalSummary-error"></textarea>
+              <label for="operationalSummary">Observations / Tell us about your space <span class="nc-req" aria-hidden="true">*</span></label>
+              <p class="nc-error" id="operationalSummary-error" role="alert"></p>
+              <div class="nc-hint-row">
+                <span id="operationalSummary-hint">Rooms, floors, pets, access, or anything we should know before preparing your quote.</span>
+                <span class="nc-counter" id="messageCounter" aria-live="off">0 / 10 minimum</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Honeypot (hidden from people) -->
+          <div class="nc-hp" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Cloudflare Turnstile -->
+          <div class="nc-turnstile">
+            <div class="cf-turnstile"
+                 data-sitekey="0x4AAAAAADXdGgzFK8q7PqhD"
+                 data-callback="ncTurnstileDone"
+                 data-expired-callback="ncTurnstileExpired"
+                 data-error-callback="ncTurnstileExpired"
+                 data-size="flexible"></div>
+            <p class="nc-error" id="turnstileError" role="alert"></p>
+          </div>
+
+          <!-- Send -->
+          <button type="submit" class="btn btn-primary nc-submit" id="submitBtn">
+            <span class="nc-submit-label">Get My Free Quote</span>
+            <svg class="nc-submit-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="nc-spinner" aria-hidden="true"></span>
+          </button>
+
+          <p class="nc-status" id="formStatus" role="status" aria-live="polite"></p>
+
+          <noscript>
+            <p class="nc-noscript">
+              Please turn on JavaScript to send this form, or call us at
+              <a href="tel:+14288880542">+1 (428) 888-0542</a>.
+            </p>
+          </noscript>
+
+          <ul class="nc-trust">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Secure form
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              No spam
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              Fast response guaranteed
+            </li>
+          </ul>
+
+          <p class="nc-legal">
+            By submitting this form, you agree to our
+            <a href="/privacy.html">Privacy Policy</a>
+            and
+            <a href="/terms-and-conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+          </p>
+
+        </form>
+
       </div>
 
-      <!-- PHONE NUMBER -->
 
-<input
-  type="tel"
-  name="phoneNumber"
-  placeholder="Phone Number *"
-  required>
+      <!-- ---------- CONTACT DETAILS ---------- -->
+      <aside class="contact-aside" aria-label="Contact details">
 
-      <!-- SERVICE ADDRESS -->
+        <div class="aside-card">
+          <h3>Talk to us</h3>
 
-<input
-  type="text"
-  id="serviceAddress"
-  name="serviceAddress"
-  placeholder="Service Address *"
-  required>
-<input type="hidden" id="city" name="city">
-<input type="hidden" id="province" name="province">
-<input type="hidden" id="postalCode" name="postalCode">
+          <div class="contact-rows">
 
-         <!-- SERVICE -->
+            <a class="contact-row" href="tel:+14288880542">
+              <span class="contact-row-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>
+              </span>
+              <span><small>Phone</small>+1 (428) 888-0542</span>
+            </a>
 
-<div class="custom-select">
-
-  <select
-    name="serviceType"
-    required>
-
-    <option value="">
-      Select Service *
-    </option>
-
-    <option>
-      Residential Cleaning
-    </option>
-
-    <option>
-      Commercial Cleaning
-    </option>
-
-    <option>
-      Deep Cleaning
-    </option>
-
-    <option>
-      Move-In / Move-Out
-    </option>
-
-    <option>
-      Airbnb Cleaning
-    </option>
-
-    <option>
-      Janitorial Cleaning
-    </option>
-
-    <option>
-      Post-Construction Cleaning
-    </option>
-    
-    <option>
-  Seasonal Snow Removal
-</option>
-
-  </select>
-
-</div>
-
-<!-- FREQUENCY -->
-
-<div class="form-group">
-
-  <select
-    name="visitsPerMonth"
-    id="frequencySelect">
-    
-
-    <option value="">
-      Cleaning Frequency *
-    </option>
-
-    <option value="30">
-      Every Day
-    </option>
-
-    <option value="8">
-      2 Times per Week
-    </option>
-
-    <option value="4">
-      4 Times per Month
-    </option>
-
-    <option value="2">
-      2 Times per Month
-    </option>
-
-    <option value="custom">
-      Custom
-    </option>
-
-  </select>
-
-</div>
-      
-<!-- DAYS -->
-
-<div
-  id="daysContainer"
-  class="form-group"
-  style="display:none;">
-
-  <label style="font-size:13px;">
-    Select Preferred Days *
-  </label>
-
-  <div class="days-grid">
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Monday">
-      <span>Mon</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Tuesday">
-      <span>Tue</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Wednesday">
-      <span>Wed</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Thursday">
-      <span>Thu</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Friday">
-      <span>Fri</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Saturday">
-      <span>Sat</span>
-    </label>
-
-    <label>
-      <input
-        type="checkbox"
-        name="recurringVisits[]"
-        value="Sunday">
-      <span>Sun</span>
-    </label>
-
-  </div>
-
-</div>
-
-<!-- TIME -->
-
-<div class="form-group">
-
- <select
-    name="timeSlot">
-    
-
-    <option value="">
-      Preferred Time Slot *
-    </option>
-
-    <option>
-      12AM – 4AM
-    </option>
-
-    <option>
-      4AM – 8AM
-    </option>
-
-    <option>
-      8AM – 12PM
-    </option>
-
-    <option>
-      12PM – 4PM
-    </option>
-
-    <option>
-      4PM – 8PM
-    </option>
-
-    <option>
-      8PM – 12AM
-    </option>
-
-  </select>
-
-</div>
-      
-<!-- SQUARE FOOTAGE -->
-
-        <input
-          type="number"
-          name="squareFootage"
-          placeholder="Approximate size (sq ft)">
-
-      
-<!-- NOTE -->
-
-<p style="font-size:12px; color:#64748b;">
-
-  Schedule is subject to availability.
-  We will confirm your service plan after review.
-
-</p>
-
-<!-- MESSAGE -->
-
-<textarea
-  name="operationalSummary"
-  placeholder="Observations / Tell us about your space *"
-  required>
-</textarea>
-<p style="font-size:12px; color:#64748b; margin-top:6px;">
-  Please tell us a little about your space, cleaning needs, or anything we should know before preparing your quote.
-</p>
-      <!-- HONEYPOT ANTI-SPAM -->
-<div style="position:absolute; left:-9999px; opacity:0; pointer-events:none;">
-
-  <input
-    type="text"
-    name="website"
-    tabindex="-1"
-    autocomplete="off">
-
-</div>
-<!-- BUTTON -->
-
-<button
-  type="submit"
-  class="btn btn-primary">
-
-  Get My Free Quote
-
-</button>
-      
-      <!-- CLOUDFLARE TURNSTILE -->
-
-<div
-  class="cf-turnstile"
-  data-sitekey="0x4AAAAAADXdGgzFK8q7PqhD"
-  style="margin-top:20px;">
-</div>
-
-<p style="font-size:12px; color:#64748b;">
-
-  🔒 Secure form • No spam • Fast response guaranteed
-
-</p>
-
-<p style="font-size:11px; color:#64748b;">
-
-  By submitting this form, you agree to our
-
-  <a href="/privacy.html">
-    Privacy Policy
-  </a>
-
-  and
-
-  <a
-    href="/terms-and-conditions.pdf"
-    target="_blank">
-
-    Terms & Conditions
-
-  </a>
-
-</p>
-
-</form>
-
-</div>
-</div>
-
-</div>
-
-</div>
-  </div>
-  
-</section>
+            <a class="contact-row" href="mailto:info@northcrescentcleaning.com">
+              <span class="contact-row-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 7.5l8.5 6 8.5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><small>Email</small>info@northcrescentcleaning.com</span>
+            </a>
+
+            <div class="contact-row">
+              <span class="contact-row-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              </span>
+              <span><small>Location</small>Moncton, New Brunswick</span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-row-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </span>
+              <span><small>Service areas</small>Moncton • Dieppe • Riverview • Shediac</span>
+            </div>
+
+          </div>
+
+          <div class="social-links">
+
+            <a href="https://www.linkedin.com/company/north-crescent-facility-solutions-inc/" target="_blank" rel="noopener" aria-label="North Crescent on LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4V24h-4zM8.5 8h3.8v2.2h.1c.5-1 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24h-4z"/></svg>
+            </a>
+
+            <a href="https://www.facebook.com/profile.php?id=61590535282882" target="_blank" rel="noopener" aria-label="North Crescent on Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5C10.5 7 12 5.5 14.8 5.5H18v3h-2c-1.1 0-1.5.5-1.5 1.4V12H18l-.5 3h-3V22A10 10 0 0022 12z"/></svg>
+            </a>
+
+            <a href="https://www.instagram.com/northcrescentcleaning/" target="_blank" rel="noopener" aria-label="North Crescent on Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.9a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
+            </a>
+
+            <p class="social-note">Follow North Crescent<br>Facility Solutions Inc</p>
+
+          </div>
+        </div>
+
+        <div class="aside-card">
+          <h3>What happens next</h3>
+
+          <ol class="next-steps">
+            <li><strong>Send your request</strong>Tell us about your space and your preferred time.</li>
+            <li><strong>Get your quote</strong>We review your details and prepare your quote in minutes.</li>
+            <li><strong>Book your visit</strong>Appointments are available within 24 hours.</li>
+          </ol>
+        </div>
+
+        <div class="aside-card aside-card--cta">
+          <h3>Prefer to pick a date yourself?</h3>
+          <p>Choose your service, date and time online in under a minute.</p>
+          <a class="btn btn-primary" href="/cleaning-booking-moncton.html">Book Online</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       SERVICES
+  ===================================================== -->
+  <section class="contact-section contact-section--services">
+    <div class="container">
+
+      <div class="section-box" style="text-align:center;">
+
+        <h2>Explore Our Specialized Cleaning Services</h2>
+
+        <div class="divider"></div>
+
+        <p style="max-width:900px; margin:0 auto 35px;">
+          Every property has unique cleaning requirements. Explore our specialized
+          cleaning solutions for businesses, offices, residential properties,
+          Airbnb rentals, and post-construction projects throughout Moncton,
+          Dieppe, Riverview, Shediac, Salisbury, Memramcook, and Southeast
+          New Brunswick.
+        </p>
+
+        <div class="service-links-grid related-services-grid">
+
+          <a href="/commercial-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">🏢</span>
+            <strong>Commercial Cleaning</strong>
+            <span>Professional Business Cleaning</span>
+          </a>
+
+          <a href="/residential-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">🏡</span>
+            <strong>Residential Cleaning</strong>
+            <span>Professional Residential Cleaning</span>
+          </a>
+
+          <a href="/janitorial-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">🧹</span>
+            <strong>Janitorial Services</strong>
+            <span>Recurring Facility Maintenance</span>
+          </a>
+
+          <a href="/deep-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">✨</span>
+            <strong>Deep Cleaning</strong>
+            <span>Detailed Cleaning Solutions</span>
+          </a>
+
+          <a href="/post-construction-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">🏗️</span>
+            <strong>Post-Construction Cleaning</strong>
+            <span>Final Cleaning &amp; Preparation</span>
+          </a>
+
+          <a href="/airbnb-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">🛏️</span>
+            <strong>Airbnb Cleaning</strong>
+            <span>Guest-Ready Turnover Services</span>
+          </a>
+
+          <a href="/office-cleaning-moncton.html">
+            <span class="service-emoji" aria-hidden="true">💼</span>
+            <strong>Office Cleaning</strong>
+            <span>Professional Office Cleaning</span>
+          </a>
+
+          <a href="/snow-removal-moncton.html">
+            <span class="service-emoji" aria-hidden="true">❄️</span>
+            <strong>Seasonal Snow Removal</strong>
+            <span>Residential Winter Maintenance</span>
+          </a>
+
+          <a href="/services.html">
+            <span class="service-emoji" aria-hidden="true">➜</span>
+            <strong>View All Services</strong>
+            <span>Complete Cleaning Solutions</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
 
 </main>
-    
-<!-- 🔥 SUCCESS MODAL -->
-<div id="successModal" class="modal">
 
-  <div class="modal-box">
 
-    <h2>You're one step away from your quote ✅</h2>
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
+<div id="successModal" class="nc-modal" role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle" aria-describedby="modalText" aria-hidden="true" inert>
 
-    <p>
+  <div class="nc-modal-box">
+
+    <svg class="nc-modal-check" viewBox="0 0 84 84" aria-hidden="true">
+      <circle cx="42" cy="42" r="30"/>
+      <path d="M29 43l9 9 18-19"/>
+    </svg>
+
+    <h2 id="modalTitle">You're one step away from your quote</h2>
+
+    <p id="modalText">
       Send photos or a short video so we can prepare your quote
       more accurately and respond faster.
     </p>
 
-    <p class="highlight">
+    <p class="nc-modal-highlight">
       📸 Send photos or a short video by text message for a faster quote.
     </p>
 
-    <a
-      id="smsLink"
-      href="#"
-      class="wa-btn">
+    <a id="smsLink" href="#" class="btn btn-primary">📱 Send Photos by Text Message</a>
 
-      📱 Send Photos by Text Message
-
-    </a>
-
-    <button
-      onclick="closeModal()"
-      class="close-btn">
-
-      Continue browsing
-
-    </button>
+    <button type="button" class="nc-modal-close" data-close-modal>Continue browsing</button>
 
   </div>
 
 </div>
-    
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  function closeModal() {
-
-    const modal =
-    document.getElementById(
-      "successModal"
-    );
-
-    if (modal) {
-
-      modal.style.display =
-      "none";
-
-    }
-
-  }
-
-  window.closeModal =
-  closeModal;
-
-  const form =
-  document.getElementById(
-    "contactForm"
-  );
-
-  if (!form) return;
-  // =========================================
-// HUMAN TIMER
-// =========================================
-
-const formLoadedAt = Date.now();
-
-  form.addEventListener(
-    "submit",
-    function(e) {
-
-      e.preventDefault();
-
-      const formData =
-      new FormData(form);
-      // =========================================
-// SUBMIT LOCK
-// =========================================
-
-const submitButton =
-form.querySelector(
-  'button[type="submit"]'
-);
-
-if (
-  submitButton.dataset.submitting === "true"
-) {
-
-  console.warn("Duplicate submit blocked.");
-
-  return;
-
-}
-
-submitButton.dataset.submitting = "true";
-
-submitButton.disabled = true;
-
-submitButton.innerText =
-"Sending...";
-      
-      // =========================================
-// HONEYPOT ANTI-BOT
-// =========================================
-
-const website = form.querySelector(
-  'input[name="website"]'
-)?.value;
-
-if (website) {
-
-  console.warn("Bot blocked.");
-
-  submitButton.dataset.submitting = "false";
-  submitButton.disabled = false;
-  submitButton.innerText = "Get My Free Quote";
-
-  return;
-
-}
-      // =========================================
-// HUMAN TIME VALIDATION
-// =========================================
-
-const secondsSpent =
-(Date.now() - formLoadedAt) / 1000;
-
-if (secondsSpent < 5) {
-
-  console.warn("Fast submit blocked.");
-
-  return;
-
-}
-      // =========================================
-// BASIC SPAM VALIDATION
-// =========================================
-
-const clientName =
-form.querySelector(
-  'input[name="clientName"]'
-)?.value || "";
-
-const emailAddress =
-form.querySelector(
-  'input[name="emailAddress"]'
-)?.value || "";
-
-const operationalSummary =
-form.querySelector(
-  'textarea[name="operationalSummary"]'
-)?.value || "";
-
-// =========================================
-// HUMAN NAME VALIDATION
-// =========================================
-
-const cleanName =
-clientName.trim().toLowerCase();
-
-// MIN LENGTH
-
-if (cleanName.length < 2) {
-
-  console.warn("Invalid name blocked.");
-
-  return;
-
-}
-
-// ONLY LETTERS + SPACES
-
-const validNamePattern =
-/^[a-zA-ZÀ-ÿ\s'-]+$/;
-
-if (!validNamePattern.test(clientName)) {
-
-  console.warn("Suspicious name blocked.");
-
-  return;
-
-}
-
-// REQUIRE AT LEAST 1 VOWEL
-
-const vowels =
-cleanName.match(/[aeiou]/g);
-
-if (!vowels || vowels.length < 1) {
-
-  console.warn("No vowels detected.");
-
-  return;
-
-}
-
-// BLOCK REPETITIVE CHARACTERS
-
-if (/(.)\1{3,}/.test(cleanName)) {
-
-  console.warn("Repeated characters blocked.");
-
-  return;
-
-}
-
-// BLOCK RANDOM KEYBOARD SPAM
-
-const suspiciousPatterns = [
-  "asdf",
-  "qwer",
-  "zxcv",
-  "test",
-  "admin",
-  "seo"
-];
-
-const containsSuspicious =
-suspiciousPatterns.some(pattern =>
-  cleanName.includes(pattern)
-);
-
-if (containsSuspicious) {
-
-  console.warn("Spam-like name blocked.");
-
-  return;
-
-}
-
-if (
-  !operationalSummary.trim()
-) {
-
-  alert("Please tell us a little about your space or cleaning needs before submitting your request.");
-
-  submitButton.dataset.submitting = "false";
-  submitButton.disabled = false;
-  submitButton.innerText = "Get My Free Quote";
-
-  const observationField =
-    form.querySelector('textarea[name="operationalSummary"]');
-
-  if (observationField) {
-    observationField.focus();
-  }
-
-  return;
-
-}
-
-if (
-  operationalSummary.trim().length < 10
-) {
-
-  alert("Please provide a little more information about your space or cleaning needs.");
-
-  submitButton.dataset.submitting = "false";
-  submitButton.disabled = false;
-  submitButton.innerText = "Get My Free Quote";
-
-  const observationField =
-    form.querySelector('textarea[name="operationalSummary"]');
-
-  if (observationField) {
-    observationField.focus();
-  }
-
-  return;
-
-}
-
-// BLOCK LINKS
-
-const spamPatterns = [
-  "http",
-  "https",
-  ".com",
-  ".ru",
-  "seo",
-  "marketing",
-  "crypto",
-  "bitcoin"
-];
-
-const lowerMessage =
-operationalSummary.toLowerCase();
-
-const containsSpam =
-spamPatterns.some(pattern =>
-  lowerMessage.includes(pattern)
-);
-
-if (containsSpam) {
-
-  console.warn("Spam content blocked.");
-
-  return;
-
-}
-
-      /* =========================================
-         RECURRING VISITS
-      ========================================= */
-
-      const recurringVisits =
-      Array.from(
-
-        document.querySelectorAll(
-          'input[name="recurringVisits[]"]:checked'
-        )
-
-      ).map(cb => cb.value);
-
-      /* REMOVE ORIGINAL */
-
-      formData.delete(
-        "recurringVisits[]"
-      );
-
-      /* APPEND CLEAN */
-
-      formData.append(
-        "recurringVisits",
-        recurringVisits.join(", ")
-      );
-
-      const formObject =
-Object.fromEntries(formData);
-
-// TURNSTILE TOKEN
-
-formObject["cf-turnstile-response"] =
-formData.get("cf-turnstile-response");
-
-fetch("/.netlify/functions/contact-form", {
-
-  method: "POST",
-
-  headers: {
-    "Content-Type": "application/json"
-  },
-
-  body: JSON.stringify(formObject)
-
-})
-
-      .then(response => {
-
-        if (response.ok) {
-
-          /* =========================================
-             CAPTURE FORM DATA
-          ========================================= */
-
-          const clientName =
-          form.querySelector(
-            'input[name="clientName"]'
-          )?.value || "";
-
-          const serviceType =
-          form.querySelector(
-            'select[name="serviceType"]'
-          )?.value || "";
-
-          const visitsPerMonth =
-          form.querySelector(
-            'select[name="visitsPerMonth"]'
-          )?.value || "";
-
-          const operationalSummary =
-          form.querySelector(
-            'textarea[name="operationalSummary"]'
-          )?.value || "";
-
-          const selectedVisits =
-          Array.from(
-
-            document.querySelectorAll(
-              'input[name="recurringVisits[]"]:checked'
-            )
-
-          )
-
-          .map(cb => cb.value)
-
-          .join(", ");
-
-          /* =========================================
-   SMS MESSAGE
-========================================= */
-
-let message =
-  `Hi, my name is ${clientName}.\n\n`;
-
-if (serviceType) {
-
-  message +=
-    `I just submitted a request for ${serviceType}.\n`;
-
-}
-
-if (visitsPerMonth) {
-
-  message +=
-    `Preferred frequency: ${visitsPerMonth}.\n`;
-
-}
-
-if (selectedVisits) {
-
-  message +=
-    `Preferred days: ${selectedVisits}.\n`;
-
-}
-
-if (operationalSummary) {
-
-  message +=
-    `Project details: ${operationalSummary}\n`;
-
-}
-
-
-/* =========================================
-   PHOTO / VIDEO REQUEST
-========================================= */
-
-message +=
-  `\nNext, I'll send photos and/or a short video of the space so you can review it and prepare my quote.`;
-
-
-/* =========================================
-   RESET FORM
-========================================= */
-
-form.reset();
-
-
-/* =========================================
-   SMS LINK
-========================================= */
-
-const smsUrl =
-  "sms:+14288880542?body=" +
-  encodeURIComponent(message);
-
-
-/* =========================================
-   SHOW SUCCESS MODAL
-========================================= */
-
-document.getElementById("smsLink").href = smsUrl;
-
-document.getElementById("successModal").style.display = "flex";
-
-
-/* =========================================
-   UPDATE BUTTON
-========================================= */
-
-submitButton.innerText =
-  "Quote Request Sent";
-
-submitButton.disabled = true;
-
-
-} else {
-
-  submitButton.dataset.submitting = "false";
-
-  submitButton.disabled = false;
-
-  submitButton.innerText =
-    "Get My Free Quote";
-
-  alert("Something went wrong.");
-
-}
-
-})
-.catch(() => {
-
-  submitButton.dataset.submitting = "false";
-
-  submitButton.disabled = false;
-
-  submitButton.innerText =
-    "Get My Free Quote";
-
-  alert("Error sending form.");
-
-});
-
-});
-
-});
-</script>
-    
-       
-    <section class="hero">
-  <div class="container hero-content">
-
-    <div class="badge">Free Quote</div>
-
-    <h1>Get Your Cleaning Quote in Moncton, Dieppe & Riverview</h1>
-
-   <p class="hero-sub">
-  ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-</p>
-
-    <div class="divider"></div>
-
-  </div>
-</section>
-
-    <section>
-  <div class="container">
-
-    <div class="section-box" style="text-align:center;">
-
-      <h2>Explore Our Specialized Cleaning Services</h2>
-
-      <div class="divider"></div>
-
-      <p style="max-width:900px; margin:0 auto 35px;">
-        Every property has unique cleaning requirements. Explore our specialized
-        cleaning solutions for businesses, offices, residential properties,
-        Airbnb rentals, and post-construction projects throughout Moncton,
-        Dieppe, Riverview, Shediac, Salisbury, Memramcook, and Southeast
-        New Brunswick.
-      </p>
-
-      <div class="service-links-grid related-services-grid">
-
-        <a href="/commercial-cleaning-moncton.html">
-
-          🏢
-
-          <strong>Commercial Cleaning</strong>
-
-          <small>Professional Business Cleaning</small>
-
-        </a>
-
-
-       <a href="/residential-cleaning-moncton.html">
-
-          🏡
-
-          <strong>Residential Cleaning</strong>
-
-          <small>Professional Residential Cleaning</small>
-
-        </a>
-       
-
-        <a href="/janitorial-cleaning-moncton.html">
-
-          🧹
-
-          <strong>Janitorial Services</strong>
-
-          <small>Recurring Facility Maintenance</small>
-
-        </a>
-
-        <a href="/deep-cleaning-moncton.html">
-
-          ✨
-
-          <strong>Deep Cleaning</strong>
-
-          <small>Detailed Cleaning Solutions</small>
-
-        </a>
-
-        <a href="/post-construction-cleaning-moncton.html">
-
-          🏗️
-
-          <strong>Post-Construction Cleaning</strong>
-
-          <small>Final Cleaning & Preparation</small>
-
-        </a>
-
-        <a href="/airbnb-cleaning-moncton.html">
-
-          🏡
-
-          <strong>Airbnb Cleaning</strong>
-
-          <small>Guest-Ready Turnover Services</small>
-
-        </a>
-
-       <a href="/office-cleaning-moncton.html">
-
-          🏢
-
-          <strong>Office Cleaning</strong>
-
-          <small>Professional Office Cleaning</small>
-
-        </a>
-        <a href="/snow-removal-moncton.html">
-
-  ❄️
-
-  <strong>Seasonal Snow Removal</strong>
-
-  <small>Residential Winter Maintenance</small>
-
-</a>
-
-        <a href="/services.html">
-
-          ➜
-
-          <strong>View All Services</strong>
-
-          <small>Complete Cleaning Solutions</small>
-
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section>
-  <section>
-  <div class="container">
-
-    <div class="section-box">
-
-      <h2 class="section-title">Contact Information</h2>
-      <div class="divider"></div>
-
-      <div class="text-box">
-        <p><strong>📍 Location:</strong> Moncton, New Brunswick</p>
-
-        <div style="text-align:center; margin-top:20px;">
-
-          <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-
-            <!-- LINKEDIN -->
-            <a href="https://www.linkedin.com/company/north-crescent-facility-solutions-inc/" target="_blank" style="width:45px; height:45px; background:#1E3A5F; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white">
-                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4V24h-4zM8.5 8h3.8v2.2h.1c.5-1 1.8-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V24h-4z"/>
-              </svg>
-            </a>
-
-            <!-- FACEBOOK -->
-            <a href="https://www.facebook.com/profile.php?id=61590535282882" target="_blank" style="width:45px; height:45px; background:#1E3A5F; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white">
-                <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5C10.5 7 12 5.5 14.8 5.5H18v3h-2c-1.1 0-1.5.5-1.5 1.4V12H18l-.5 3h-3V22A10 10 0 0022 12z"/>
-              </svg>
-            </a>
-
-            <!-- INSTAGRAM -->
-            <a href="https://www.instagram.com/northcrescentcleaning/" target="_blank" style="width:45px; height:45px; background:#1E3A5F; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white">
-                <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.9a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/>
-              </svg>
-            </a>
-
-          </div>
-
-          <p style="margin-top:10px; font-size:14px; color:#4A9B8C; font-weight:600;">
-            Follow North Crescent Facility Solutions Inc
-          </p>
-
-        </div>
-
-        <p><strong>📞 Phone:</strong> 
-          <a href="tel:+14288880542">+1 (428) 888-0542</a>
-        </p>
-
-        <p><strong>✉ Email:</strong> 
-          <a href="mailto:info@northcrescentcleaning.com">
-            info@northcrescentcleaning.com
-          </a>
-        </p>
-
-        <p><strong>Service Areas:</strong> Moncton • Dieppe • Riverview • Shediac</p>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
 
 <!-- PREMIUM FOOTER -->
 <footer class="nc-footer">
@@ -1337,7 +753,8 @@ submitButton.disabled = true;
 
 </footer>
 
-   
+
+<!-- MOBILE MENU -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -1369,6 +786,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
+<!-- COOKIE BANNER -->
 <script>
 function acceptCookies() {
   const banner = document.getElementById("cookie-banner");
@@ -1377,149 +796,33 @@ function acceptCookies() {
     banner.style.display = "none";
   }
 
-  localStorage.setItem("cookiesAccepted", "true");
+  try {
+    localStorage.setItem("cookiesAccepted", "true");
+  } catch (error) {}
 }
 
-// 🔁 mantener oculto si ya aceptó
 document.addEventListener("DOMContentLoaded", function () {
   const banner = document.getElementById("cookie-banner");
 
-  if (localStorage.getItem("cookiesAccepted") && banner) {
-    banner.style.display = "none";
-  }
-});
-</script>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  const frequency = document.getElementById("frequencySelect");
-  const daysContainer = document.getElementById("daysContainer");
-
-  if (!frequency || !daysContainer) return;
-
-  function toggleDays() {
-    if (
-  frequency.value === "8" ||
-  frequency.value === "4" ||
-  frequency.value === "2" ||
-  frequency.value === "custom"
-) {
-      daysContainer.style.display = "block";
-    } else {
-      daysContainer.style.display = "none";
+  try {
+    if (localStorage.getItem("cookiesAccepted") && banner) {
+      banner.style.display = "none";
     }
-  }
-
-  frequency.addEventListener("change", toggleDays);
-
-  // 🔥 importante para cuando se recarga
-  toggleDays();
-
+  } catch (error) {}
 });
 </script>
 
-    
-<script>
-window.addEventListener("load", function () {
+<!-- CLOUDFLARE TURNSTILE -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  const nameField =
-  document.getElementById("clientName");
+<!-- GOOGLE ADDRESS SUGGESTIONS (restrict this key to your domain in Google Cloud) -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHp3lDwQoFDRy4pkx27tpmT29kD5lgpqs&libraries=places&loading=async"></script>
 
-  if (!nameField) return;
+<!-- CONTACT FORM -->
+<script src="/contact/contact.js?v=20261021" defer></script>
 
-  setTimeout(function () {
-
-    nameField.focus();
-
-  }, 1000);
-
-});
-</script>
-    
-<script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async
-  defer>
-</script>
-
-    <script>
-
-
-      document.addEventListener("DOMContentLoaded", function () {
-
-  const addressInput =
-  document.getElementById("serviceAddress");
-
-  if (!addressInput) return;
-
-  const autocomplete =
-  new google.maps.places.Autocomplete(
-    addressInput,
-    {
-      types: ["address"],
-      componentRestrictions: {
-        country: "ca"
-      }
-    }
-  );
-
-  autocomplete.addListener(
-    "place_changed",
-    function () {
-
-      const place =
-      autocomplete.getPlace();
-
-      let city = "";
-      let province = "";
-      let postalCode = "";
-
-      place.address_components.forEach(
-        component => {
-
-          const type =
-          component.types[0];
-
-          if (type === "locality") {
-            city = component.long_name;
-          }
-
-          if (
-            type ===
-            "administrative_area_level_1"
-          ) {
-            province =
-            component.short_name;
-          }
-
-          if (type === "postal_code") {
-            postalCode =
-            component.long_name;
-          }
-
-        }
-      );
-
-      document.getElementById("city").value =
-      city;
-
-      document.getElementById("province").value =
-      province;
-
-      document.getElementById("postalCode").value =
-      postalCode;
-
-      console.log({
-        city,
-        province,
-        postalCode
-      });
-
-    }
-  );
-
-});
-</script>
+<!-- CONCIERGE -->
 <script src="/concierge/concierge-widget.js" defer></script>
+
 </body>
 </html>
