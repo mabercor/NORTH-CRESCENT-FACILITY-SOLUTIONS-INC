@@ -113,7 +113,31 @@
     <xhtml:link rel="alternate"
                  hreflang="x-default"
                  href="https://northcrescentcleaning.com/snow-removal-moncton.html"/>
+
+        <!-- CLEANING BOOKING -->
+
+<url>
+    <loc>https://northcrescentcleaning.com/cleaning-booking-moncton.html</loc>
+    <xhtml:link rel="alternate"
+                 hreflang="en"
+                 href="https://northcrescentcleaning.com/cleaning-booking-moncton.html"/>
+    <xhtml:link rel="alternate"
+                 hreflang="x-default"
+                 href="https://northcrescentcleaning.com/cleaning-booking-moncton.html"/>
 </url>
+
+<!-- CLEANING CONCIERGE -->
+
+<url>
+    <loc>https://northcrescentcleaning.com/cleaning-concierge</loc>
+    <xhtml:link rel="alternate"
+                 hreflang="en"
+                 href="https://northcrescentcleaning.com/cleaning-concierge"/>
+    <xhtml:link rel="alternate"
+                 hreflang="x-default"
+                 href="https://northcrescentcleaning.com/cleaning-concierge"/>
+</url>
+
 
 <!-- LEGAL (ENGLISH ONLY) -->
 
