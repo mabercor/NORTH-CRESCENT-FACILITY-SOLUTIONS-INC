@@ -94,11 +94,10 @@
     serviceType: (v) =>
       v ? "" : "Please choose a service.",
 
-    visitsPerMonth: (v) =>
-      v ? "" : "Please choose how often you need the service.",
+    /* Frequency and time slot are optional: fewer steps for the client, we confirm them when we call. */
+    visitsPerMonth: () => "",
 
-    timeSlot: (v) =>
-      v ? "" : "Please choose a preferred time.",
+    timeSlot: () => "",
 
     squareFootage: (v) => {
       if (v === "") return "";
@@ -121,7 +120,7 @@
   /* Fields that count toward the progress meter */
   const REQUIRED = [
     "clientName", "emailAddress", "phoneNumber", "serviceAddress",
-    "serviceType", "visitsPerMonth", "timeSlot", "operationalSummary"
+    "serviceType", "operationalSummary"
   ];
 
   const touched = new Set();
@@ -220,7 +219,7 @@
   function validateDays({ silent = false } = {}) {
     if (!daysNeeded()) return "";
 
-    const message = selectedDays().length ? "" : "Please select at least one preferred day.";
+    const message = ""; /* preferred days are optional too */
 
     if (silent) return message;
 
@@ -234,7 +233,7 @@
   --------------------------------------------------------- */
 
   function updateProgress() {
-    const names = daysNeeded() ? REQUIRED.concat("__days") : REQUIRED.slice();
+    const names = REQUIRED.slice(); /* optional fields (frequency, days, time, size) do not count */
 
     const done = names.filter((name) => {
       if (name === "__days") return validateDays({ silent: true }) === "";
