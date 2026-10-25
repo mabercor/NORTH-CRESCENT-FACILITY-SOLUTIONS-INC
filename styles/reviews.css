@@ -5,7 +5,8 @@
    4. Leave a review 5. Supporting sections   6. Phone
    ========================================================= */
 
-.rv-page {
+.rv-page,
+.rv-featured {
   --rv-star: #F4B400;
   --rv-ink: var(--nc-navy, #0B2D48);
   --rv-muted: var(--nc-text-secondary, #526B86);
@@ -357,3 +358,23 @@
 
 /* city cards only hold a name here */
 .rv-page .service-card-mini { min-height: 0; padding: 15px 16px; }
+
+/* ---------- Home page: three featured Google reviews ---------- */
+
+.rv-featured { margin-top: var(--nc-section-gap, 44px); }
+.rv-featured .section-box { text-align: center; }
+.rv-featured-eyebrow { display: block; text-align: center; }
+
+.rv-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+  text-align: left;
+}
+
+.rv-featured-more { margin: 28px 0 0; text-align: center; }
+
+@media (max-width: 900px) {
+  .rv-featured-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+}
