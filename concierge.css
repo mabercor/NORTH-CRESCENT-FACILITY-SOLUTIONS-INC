@@ -648,3 +648,208 @@ body.concierge-embed-mode .concierge-service-area { display: none !important; }
 .concierge-embed-mode .concierge-chat-identity-text h2 { display: none; }
 .concierge-embed-mode .concierge-online-status { margin-top: 0; }
 .concierge-embed-mode .concierge-chat-action { width: 36px; height: 36px; }
+
+/* =========================================================
+   MASCOT ON THE EMAIL FIELD (concierge/concierge-page-mascot.js)
+   The mascot peeks up from behind the email field and asks the
+   visitor to enter their email, then ducks back down (loop).
+   ========================================================= */
+
+.cc-mascot-anchor {
+  --cc-mascot-w: 126px;
+  position: relative;
+}
+
+#conciergeEmail {
+  position: relative;
+  z-index: 1; /* the mascot hides behind the field */
+}
+
+/* Clips the mascot at the bottom of the field, so it can sink out of sight. */
+.cc-mascot-stage {
+  position: absolute;
+  right: 16px;
+  bottom: 0;
+  z-index: 0;
+  width: var(--cc-mascot-w);
+  height: calc(var(--cc-mascot-w) * 386 / 420 + 56px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cc-mascot-figure {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 42px; /* only the waist stays behind the field */
+  aspect-ratio: 420 / 386;
+  transform: translateY(calc(100% + 50px));
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.55, 0, 0.75, 0.2);
+}
+
+.cc-mascot-anchor.is-out .cc-mascot-figure {
+  transform: none;
+  pointer-events: auto;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cc-mascot-bob { position: absolute; inset: 0; }
+
+.cc-mascot-anchor.is-out .cc-mascot-bob {
+  animation: ccMascotBob 2.6s ease-in-out 0.7s infinite;
+}
+
+.cc-mascot-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cc-mascot-hand { transform-origin: 16.9% 84.4%; }
+
+.cc-mascot-anchor.is-waving .cc-mascot-hand {
+  animation: ccMascotWave 1.6s ease-in-out 1;
+}
+
+/* Bubble: above the label line, to the left of the mascot's head */
+.cc-mascot-bubble {
+  position: absolute;
+  right: calc(16px + var(--cc-mascot-w) - 8px);
+  bottom: calc(100% + 40px);
+  z-index: 2;
+  width: max-content;
+  max-width: 230px;
+  padding: 11px 14px;
+  border: 2px solid var(--cc-teal, #4A9B8C);
+  border-radius: 18px;
+  background: #fff;
+  color: var(--cc-navy, #1E3A5F);
+  box-shadow: 0 12px 28px rgba(20, 42, 69, 0.16);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(12px) scale(0.85);
+  transform-origin: 100% 60%;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.cc-mascot-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: 14px;
+  right: -8px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-top: 2px solid var(--cc-teal, #4A9B8C);
+  border-right: 2px solid var(--cc-teal, #4A9B8C);
+  transform: rotate(45deg);
+}
+
+.cc-mascot-anchor.is-typing .cc-mascot-bubble,
+.cc-mascot-anchor.is-talking .cc-mascot-bubble {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 0.2s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cc-mascot-text {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.cc-mascot-anchor.is-talking .cc-mascot-text { opacity: 1; }
+
+.cc-mascot-dots {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.cc-mascot-anchor.is-typing .cc-mascot-dots { opacity: 1; }
+
+.cc-mascot-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cc-navy, #1E3A5F);
+  animation: ccMascotDot 1s ease-in-out infinite;
+}
+
+.cc-mascot-dots i:nth-child(2) { animation-delay: 0.15s; }
+.cc-mascot-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+.cc-mascot-close {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #DDE6EC;
+  border-radius: 50%;
+  background: #fff;
+  color: #718096;
+  box-shadow: 0 3px 8px rgba(20, 42, 69, 0.15);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cc-mascot-close:hover { color: var(--cc-navy, #1E3A5F); }
+
+@keyframes ccMascotBob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(-1deg); }
+}
+
+@keyframes ccMascotWave {
+  0%, 100% { transform: rotate(0); }
+  15% { transform: rotate(-9deg); }
+  35% { transform: rotate(8deg); }
+  55% { transform: rotate(-9deg); }
+  75% { transform: rotate(7deg); }
+}
+
+@keyframes ccMascotDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .cc-mascot-anchor { --cc-mascot-w: 100px; }
+  .cc-mascot-stage { right: 10px; }
+  .cc-mascot-bubble {
+    right: calc(10px + var(--cc-mascot-w) - 8px);
+    bottom: calc(100% + 30px);
+    max-width: 190px;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-mascot-stage,
+  .cc-mascot-bubble { display: none; }
+}
