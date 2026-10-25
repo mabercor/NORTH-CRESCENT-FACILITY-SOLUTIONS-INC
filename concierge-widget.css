@@ -561,3 +561,13 @@
 
 }
 
+
+/* While the chat panel is open, the "Chat with Us" button steps aside (on phones it sat on top of the panel). */
+body.nc-concierge-widget-open .nc-concierge-widget-button{
+  opacity:0;
+  pointer-events:none;
+}
+/* The cookie notice does not cover the chat panel. */
+body.nc-concierge-widget-open #cookie-banner{
+  display:none !important;
+}
