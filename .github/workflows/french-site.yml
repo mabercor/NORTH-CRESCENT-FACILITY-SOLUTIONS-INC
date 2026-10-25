@@ -1,0 +1,61 @@
+# Keeps the French site in step with the English pages.
+# After every change to an English page on main: translate any new text (fr.json),
+# rebuild fr/*.html, the menus, hreflang tags and sitemap, and commit the result.
+# Netlify then publishes that commit like any other.
+name: French site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.html"
+      - "tools/i18n/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: french-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Find English text without a French translation
+        run: python3 tools/i18n/build_fr.py --check --missing-json "$RUNNER_TEMP/missing.json"
+
+      - name: Translate new text
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 tools/i18n/translate_missing.py "$RUNNER_TEMP/missing.json"
+
+      - name: Build the French pages
+        run: |
+          python3 tools/i18n/build_fr.py | tee "$RUNNER_TEMP/build.txt"
+          {
+            echo "### French site"
+            echo '```'
+            cat "$RUNNER_TEMP/build.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the French pages
+        run: |
+          rm -rf tools/i18n/__pycache__
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard fr)" ]; then
+            echo "French site already up to date"
+            exit 0
+          fi
+          git config user.name "north-crescent-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A fr tools/i18n/fr.json sitemap.xml *.html
+          git commit -m "French site: rebuilt from the English pages"
+          git push
