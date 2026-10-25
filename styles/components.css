@@ -758,6 +758,25 @@ a {
 
 /* HERO — CENTERED CTA GROUP */
 
+/* Button pairs (Get Instant Quote / Book Now) sit centered under their section;
+   the left-aligned hero text keeps its own rule further down */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn-group + .hero-benefits {
+    text-align: center;
+}
+
+.hero-text .btn-group + .hero-benefits {
+    text-align: left;
+}
+
 .hero .btn-group {
     display: flex;
     justify-content: center;
@@ -1112,6 +1131,10 @@ a {
 
     .hero-text .btn-group {
         justify-content: center;
+    }
+
+    .hero-text .btn-group + .hero-benefits {
+        text-align: center;
     }
 
     .hero-image {
