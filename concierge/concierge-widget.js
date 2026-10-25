@@ -363,6 +363,9 @@
       "true"
     );
 
+    /* The visitor found the chat: the mascot stops inviting for this visit. */
+    stopPeekForSession();
+
   }
 
 
@@ -454,6 +457,260 @@
 
     }
   );
+
+
+  /* ---------------------------------------------------------
+     MASCOT PEEK
+     The North Crescent mascot pops out of the "Chat with Us"
+     button, waves and invites the visitor to chat, then hides
+     back inside the button. Repeats in a loop until the visitor
+     opens the chat or hides the mascot (remembered for the visit).
+     --------------------------------------------------------- */
+
+  const PEEK = {
+    firstDelay: 3500,   // after page load, before the first appearance
+    typing: 1300,       // "typing…" dots before the message shows
+    visible: 6800,      // total time outside the button
+    gap: 12000,         // time hidden inside the button between appearances
+    hoverHold: 2500,    // stays out this long after the pointer leaves it
+    storageKey: "ncConciergePeekOff",
+    images: "/images/concierge-mascot-"
+  };
+
+  const PEEK_TEXT = isFrench
+    ? {
+        messages: [
+          "Bonjour ! 👋 Besoin d'une soumission rapide ?",
+          "Des questions sur nos services ? Discutons !",
+          "Un nettoyage à réserver ? Je peux vous aider."
+        ],
+        cta: "Écrivez-nous →",
+        hide: "Masquer"
+      }
+    : {
+        messages: [
+          "Hi there! 👋 Need a quick quote?",
+          "Questions about our services? Let's chat!",
+          "Booking a cleaning? I can help."
+        ],
+        cta: "Chat now →",
+        hide: "Hide"
+      };
+
+  let peekState = null;
+
+  function peekIsOff() {
+    try {
+      return sessionStorage.getItem(PEEK.storageKey) === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function stopPeekForSession() {
+    try {
+      sessionStorage.setItem(PEEK.storageKey, "1");
+    } catch (error) {
+      /* Private mode: it still stops for this page view. */
+    }
+
+    if (!peekState) {
+      return;
+    }
+
+    peekState.stopped = true;
+    clearTimeout(peekState.timer);
+    clearTimeout(peekState.stepTimer);
+    peekState.root.className = "nc-peek";
+  }
+
+  function initPeek() {
+
+    const reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || peekIsOff()) {
+      return;
+    }
+
+    const root = document.createElement("div");
+    root.className = "nc-peek";
+    root.setAttribute("aria-hidden", "true");
+
+    root.innerHTML = `
+      <div class="nc-peek-bubble">
+        <button type="button" class="nc-peek-close" tabindex="-1" title="${PEEK_TEXT.hide}">×</button>
+        <span class="nc-peek-dots"><i></i><i></i><i></i></span>
+        <span class="nc-peek-message">
+          <span class="nc-peek-text"></span>
+          <span class="nc-peek-cta">${PEEK_TEXT.cta}</span>
+        </span>
+      </div>
+      <div class="nc-peek-figure">
+        <div class="nc-peek-bob">
+          <img class="nc-peek-layer" data-layer="base" alt="" width="420" height="386" decoding="async" draggable="false">
+          <img class="nc-peek-layer nc-peek-hand" data-layer="hand" alt="" width="420" height="386" decoding="async" draggable="false">
+          <img class="nc-peek-layer" data-layer="cuff" alt="" width="420" height="386" decoding="async" draggable="false">
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(root);
+
+    const textEl = root.querySelector(".nc-peek-text");
+    const layers = Array.prototype.slice.call(
+      root.querySelectorAll("img[data-layer]")
+    );
+
+    peekState = {
+      root: root,
+      timer: 0,
+      stepTimer: 0,
+      stopped: false,
+      out: false,
+      hovering: false,
+      round: 0
+    };
+
+    /* Sit just under the button, centered on it, tucked behind it. */
+    function placePeek() {
+      const rect = button.getBoundingClientRect();
+      const width = root.offsetWidth || 180;
+      let left = rect.left + rect.width / 2 - width / 2;
+      left = Math.min(left, window.innerWidth - width - 8);
+      root.style.left = Math.round(left) + "px";
+      root.style.top = Math.round(rect.bottom - 6) + "px";
+    }
+
+    function blocked() {
+      return (
+        document.hidden ||
+        !widget.hidden ||
+        document.body.classList.contains("menu-open") ||
+        getComputedStyle(button).visibility === "hidden" ||
+        button.getClientRects().length === 0
+      );
+    }
+
+    function popButton() {
+      button.classList.remove("nc-peek-pop");
+      void button.offsetWidth;
+      button.classList.add("nc-peek-pop");
+      setTimeout(function () {
+        button.classList.remove("nc-peek-pop");
+      }, 500);
+    }
+
+    function schedule(fn, delay) {
+      clearTimeout(peekState.timer);
+      peekState.timer = setTimeout(fn, delay);
+    }
+
+    function show() {
+      if (peekState.stopped) {
+        return;
+      }
+
+      if (blocked()) {
+        schedule(show, PEEK.gap);
+        return;
+      }
+
+      textEl.textContent =
+        PEEK_TEXT.messages[peekState.round % PEEK_TEXT.messages.length];
+      peekState.round += 1;
+
+      placePeek();
+      popButton();
+      peekState.out = true;
+      root.classList.add("is-out");
+
+      clearTimeout(peekState.stepTimer);
+      peekState.stepTimer = setTimeout(function () {
+        root.classList.add("is-typing");
+
+        peekState.stepTimer = setTimeout(function () {
+          root.classList.remove("is-typing");
+          root.classList.add("is-talking", "is-waving");
+        }, PEEK.typing);
+      }, 450);
+
+      schedule(hide, PEEK.visible);
+    }
+
+    function hide() {
+      if (peekState.hovering) {
+        schedule(hide, PEEK.hoverHold);
+        return;
+      }
+
+      clearTimeout(peekState.stepTimer);
+      root.classList.remove("is-typing", "is-talking");
+
+      peekState.stepTimer = setTimeout(function () {
+        root.classList.remove("is-out", "is-waving");
+        peekState.out = false;
+        setTimeout(popButton, 300);
+      }, 220);
+
+      if (!peekState.stopped) {
+        schedule(show, PEEK.gap);
+      }
+    }
+
+    /* Click on the mascot or its bubble opens the chat. */
+    root.addEventListener("click", function (event) {
+      if (event.target.closest(".nc-peek-close")) {
+        event.stopPropagation();
+        root.classList.remove("is-typing", "is-talking");
+        root.classList.remove("is-out", "is-waving");
+        stopPeekForSession();
+        return;
+      }
+
+      if (peekState.out) {
+        openWidget();
+      }
+    });
+
+    root.addEventListener("mouseenter", function () {
+      peekState.hovering = true;
+    });
+
+    root.addEventListener("mouseleave", function () {
+      peekState.hovering = false;
+    });
+
+    window.addEventListener("resize", function () {
+      if (peekState.out) {
+        placePeek();
+      }
+    });
+
+    /* Load the artwork only when it is about to be used. */
+    function start() {
+      layers.forEach(function (img) {
+        img.src = PEEK.images + img.dataset.layer + ".webp";
+      });
+
+      Promise.all(
+        layers.map(function (img) {
+          return img.decode ? img.decode().catch(function () {}) : null;
+        })
+      ).then(function () {
+        schedule(show, PEEK.firstDelay);
+      });
+    }
+
+    if (document.readyState === "complete") {
+      start();
+    } else {
+      window.addEventListener("load", start, { once: true });
+    }
+  }
+
+  initPeek();
 
 
   /* ---------------------------------------------------------

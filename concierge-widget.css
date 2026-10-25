@@ -578,3 +578,260 @@ body.menu-open .nc-concierge-widget-button{
   visibility:hidden;
   pointer-events:none;
 }
+
+
+/* =========================================================
+   MASCOT PEEK
+   The mascot pops out from behind the "Chat with Us" button,
+   invites the visitor to chat, then tucks back in (loop).
+   Position (top/left) is set by concierge-widget.js.
+   ========================================================= */
+
+.nc-peek{
+  --nc-peek-w:180px;
+  position:fixed;
+  top:-999px;
+  left:-999px;
+  z-index:9989; /* just under the button, so it slides out from behind it */
+  width:var(--nc-peek-w);
+  pointer-events:none;
+  font-family:Poppins,Arial,Helvetica,sans-serif;
+}
+
+.nc-peek-figure{
+  position:relative;
+  width:100%;
+  aspect-ratio:420 / 386;
+  transform-origin:50% 0;
+  transform:translateY(-30%) scale(.3);
+  opacity:0;
+  filter:drop-shadow(0 12px 18px rgba(20,42,69,.22));
+  cursor:pointer;
+  transition:
+    transform .42s cubic-bezier(.55,0,.75,.2),
+    opacity .22s ease .2s;
+}
+
+.nc-peek.is-out .nc-peek-figure{
+  transform:none;
+  opacity:1;
+  pointer-events:auto;
+  transition:
+    transform .62s cubic-bezier(.34,1.56,.64,1),
+    opacity .18s ease;
+}
+
+.nc-peek-bob{
+  position:absolute;
+  inset:0;
+}
+
+.nc-peek.is-out .nc-peek-bob{
+  animation:ncPeekBob 2.6s ease-in-out .7s infinite;
+}
+
+.nc-peek-layer{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+/* The raised hand waves from the elbow. */
+.nc-peek-hand{
+  transform-origin:16.9% 84.4%;
+}
+
+.nc-peek.is-waving .nc-peek-hand{
+  animation:ncPeekWave 1.6s ease-in-out 1;
+}
+
+/* Speech bubble, to the left of the mascot's head */
+.nc-peek-bubble{
+  position:absolute;
+  top:-3%;
+  right:calc(100% - 10px);
+  width:max-content;
+  max-width:205px;
+  padding:11px 14px 10px;
+  border:2px solid #4A9B8C;
+  border-radius:18px;
+  background:#fff;
+  color:#1E3A5F;
+  box-shadow:0 12px 28px rgba(20,42,69,.18);
+  font-size:.8rem;
+  font-weight:600;
+  line-height:1.35;
+  cursor:pointer;
+  opacity:0;
+  transform:translateX(12px) scale(.8);
+  transform-origin:100% 40%;
+  transition:opacity .2s ease,transform .25s ease;
+}
+
+.nc-peek-bubble::after{
+  content:"";
+  position:absolute;
+  top:22px;
+  right:-8px;
+  width:12px;
+  height:12px;
+  background:#fff;
+  border-top:2px solid #4A9B8C;
+  border-right:2px solid #4A9B8C;
+  transform:rotate(45deg);
+}
+
+.nc-peek.is-typing .nc-peek-bubble,
+.nc-peek.is-talking .nc-peek-bubble{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+  transition:opacity .2s ease,transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* The message is always laid out, so the bubble keeps its size
+   when the typing dots turn into text. */
+.nc-peek-message{
+  display:block;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+
+.nc-peek-text{
+  display:block;
+}
+
+.nc-peek-cta{
+  display:block;
+  margin-top:4px;
+  color:#4A9B8C;
+  font-size:.72rem;
+  font-weight:700;
+}
+
+.nc-peek.is-talking .nc-peek-message{
+  opacity:1;
+}
+
+.nc-peek-dots{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+
+.nc-peek.is-typing .nc-peek-dots{
+  opacity:1;
+}
+
+.nc-peek-dots i{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#1E3A5F;
+  animation:ncPeekDot 1s ease-in-out infinite;
+}
+
+.nc-peek-dots i:nth-child(2){ animation-delay:.15s; }
+.nc-peek-dots i:nth-child(3){ animation-delay:.3s; }
+
+.nc-peek-close{
+  position:absolute;
+  top:-9px;
+  left:-9px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  padding:0;
+  border:1px solid #DDE6EC;
+  border-radius:50%;
+  background:#fff;
+  color:#718096;
+  box-shadow:0 3px 8px rgba(20,42,69,.15);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.95rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+.nc-peek-close:hover{
+  color:#1E3A5F;
+}
+
+/* The button gives a little "pop" when the mascot leaves or returns */
+.nc-concierge-widget-button.nc-peek-pop{
+  animation:ncPeekButtonPop .45s ease;
+}
+
+/* Out of the way while the chat or the mobile menu is open */
+body.nc-concierge-widget-open .nc-peek,
+body.menu-open .nc-peek{
+  display:none;
+}
+
+@keyframes ncPeekBob{
+  0%,100%{ transform:translateY(0) rotate(0); }
+  50%{ transform:translateY(-3px) rotate(-1deg); }
+}
+
+@keyframes ncPeekWave{
+  0%,100%{ transform:rotate(0); }
+  15%{ transform:rotate(-9deg); }
+  35%{ transform:rotate(8deg); }
+  55%{ transform:rotate(-9deg); }
+  75%{ transform:rotate(7deg); }
+}
+
+@keyframes ncPeekDot{
+  0%,60%,100%{ transform:translateY(0); opacity:.45; }
+  30%{ transform:translateY(-5px); opacity:1; }
+}
+
+@keyframes ncPeekButtonPop{
+  0%{ transform:scale(1); }
+  35%{ transform:scale(.92); }
+  70%{ transform:scale(1.06); }
+  100%{ transform:scale(1); }
+}
+
+@media (max-width:600px){
+
+  .nc-peek{
+    --nc-peek-w:128px;
+  }
+
+  .nc-peek-bubble{
+    max-width:165px;
+    padding:9px 11px 8px;
+    font-size:.72rem;
+  }
+
+  .nc-peek-cta{
+    font-size:.66rem;
+  }
+
+  .nc-peek-bubble::after{
+    top:16px;
+  }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  .nc-peek{
+    display:none;
+  }
+
+}
