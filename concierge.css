@@ -57,7 +57,7 @@ body[data-page="cleaning-concierge"] [hidden]{
   display:none !important;
 }
 
-body[data-page="cleaning-concierge"] .container{
+body[data-page="cleaning-concierge"] main .container{
   width:min(calc(100% - 40px),1240px);
   margin-inline:auto;
 }
@@ -93,7 +93,7 @@ body[data-page="cleaning-concierge"] .site-header{
   box-shadow:0 3px 18px rgba(15,23,42,.04);
 }
 
-body[data-page="cleaning-concierge"] .header-inner{
+body[data-page="cleaning-concierge"] .site-header .header-inner{
   min-height:76px;
   display:flex;
   align-items:center;
@@ -5024,7 +5024,7 @@ body[data-page="cleaning-concierge"] .concierge-loading-card p{
     width:min(calc(100% - 24px),1240px);
   }
 
-  body[data-page="cleaning-concierge"] .header-inner{
+  body[data-page="cleaning-concierge"] .site-header .header-inner{
     min-height:66px;
   }
 
@@ -5908,4 +5908,98 @@ body[data-page="cleaning-concierge"] .brand:hover .brand-subtitle{
 
   }
 
+}
+
+
+/* =========================================================
+   2026-10 — SAME LOOK AS THE REST OF THE SITE + EASIER CHAT
+   (kept last on purpose: it wins over the older layers above)
+   ========================================================= */
+
+/* 1. The page is full width like the other pages (no framed box). */
+html:has(body[data-page="cleaning-concierge"]){ background:#F4F7FA; }
+body[data-page="cleaning-concierge"]{
+  width:auto;
+  margin:0;
+  border:0;
+  box-shadow:none;
+  background:#F4F7FA;
+}
+/* The shared header sits at the top like on the other pages (it is sticky, not fixed). */
+body[data-page="cleaning-concierge"]{ padding-top:0 !important; }
+body[data-page="cleaning-concierge"] .lang-switch a{ color:var(--nc-navy); text-decoration:none; }
+
+/* 2. The concierge page is the chat already: no extra "Chat with Us" bubble. */
+body[data-page="cleaning-concierge"] #floatingConciergeButton{ display:none !important; }
+
+/* 3. Shared header/footer leave the screen while chatting on a phone and inside the site widget. */
+body[data-page="cleaning-concierge"].concierge-embed-mode > header,
+body[data-page="cleaning-concierge"].concierge-embed-mode .menu-overlay,
+body[data-page="cleaning-concierge"].concierge-embed-mode .nc-footer{ display:none !important; }
+@media (max-width:600px){
+  body[data-page="cleaning-concierge"]:has(#conciergeChatSection.concierge-chat-active) > header,
+  body[data-page="cleaning-concierge"]:has(#conciergeChatSection.concierge-chat-active) .menu-overlay,
+  body[data-page="cleaning-concierge"]:has(#conciergeChatSection.concierge-chat-active) .nc-footer{ display:none !important; }
+}
+
+/* 4. Typing: 16px text in the fields. Below 16px the iPhone zooms the whole page in when you tap
+      a field — that is the "screen changes size" when writing. */
+body[data-page="cleaning-concierge"] #conciergeEmail,
+body[data-page="cleaning-concierge"] #conciergeMessageInput{ font-size:16px; }
+body[data-page="cleaning-concierge"] #conciergeMessageInput{
+  min-height:46px;
+  padding:12px 14px;
+  border-radius:14px;
+  line-height:1.35;
+}
+body[data-page="cleaning-concierge"] .concierge-message-form{ align-items:flex-end; gap:8px; }
+body[data-page="cleaning-concierge"] .concierge-input-action,
+body[data-page="cleaning-concierge"] .concierge-send-button{ width:46px; height:46px; border-radius:14px; }
+/* The counter only matters near the limit (shown by the script below 300 characters left). */
+body[data-page="cleaning-concierge"] .concierge-character-count{ display:none; }
+body[data-page="cleaning-concierge"] .concierge-character-count.is-near{ display:block; top:-20px; bottom:auto; right:4px; font-size:12px; }
+
+/* 5. Messages read like a chat: left-aligned text, comfortable size. */
+body[data-page="cleaning-concierge"] .chat-message-bubble,
+body[data-page="cleaning-concierge"] .chat-message-bubble p{ text-align:left; }
+body[data-page="cleaning-concierge"] .chat-message-bubble{ font-size:15px; line-height:1.5; }
+
+/* 6. Solid chat header (text no longer shows through it while scrolling). */
+body[data-page="cleaning-concierge"] .concierge-chat-header{
+  background:#fff !important;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+
+/* 7. Service shortcuts help to start; once the person writes they step aside. */
+body[data-page="cleaning-concierge"] .concierge-messages:has(.chat-message-user) .concierge-quick-start{ display:none; }
+
+/* 8. Phones: the chat follows the visible screen (keyboard open or closed) without jumping. */
+@media (max-width:600px){
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active{
+    top:var(--nc-chat-viewport-top, 0px) !important;
+    height:var(--nc-chat-viewport-height, 100dvh) !important;
+  }
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active > .container,
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active .concierge-chat-card,
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active .concierge-chat-layout{
+    height:100% !important;
+    max-height:none !important;
+    min-height:0 !important;
+  }
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active .concierge-input-area{
+    width:100% !important;
+    border-radius:0 !important;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  body[data-page="cleaning-concierge"] #conciergeChatSection.concierge-chat-active .concierge-input-footer{ display:none; }
+  body[data-page="cleaning-concierge"] .chat-message-content{ max-width:84%; }
+}
+
+/* Phone menu: "Booking" keeps its icon next to the word, like "Concierge". */
+body[data-page="cleaning-concierge"] #nav-menu .booking-nav-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
 }
