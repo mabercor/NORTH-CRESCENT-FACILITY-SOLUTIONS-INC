@@ -1,0 +1,359 @@
+/* =========================================================
+   NORTH CRESCENT — REVIEWS PAGE
+   Loaded after /styles/design-system.css on reviews.html only.
+   1. Hero summary   2. Review wall   3. Review card
+   4. Leave a review 5. Supporting sections   6. Phone
+   ========================================================= */
+
+.rv-page {
+  --rv-star: #F4B400;
+  --rv-ink: var(--nc-navy, #0B2D48);
+  --rv-muted: var(--nc-text-secondary, #526B86);
+  --rv-line: rgb(16 76 112 / 11%);
+}
+
+/* ---------- 1. Hero + summary ---------- */
+
+.rv-hero {
+  width: calc(100% - 60px);
+  max-width: 1200px;
+  margin: 16px auto 0 !important;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: clamp(44px, 6vw, 76px) clamp(22px, 5vw, 64px);
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(90% 120% at 85% 0%, rgb(8 169 157 / 32%), transparent 60%),
+    radial-gradient(70% 90% at 0% 100%, rgb(53 200 185 / 14%), transparent 60%),
+    linear-gradient(135deg, #0B2D48 0%, #104C70 100%);
+}
+
+.rv-hero-inner { max-width: 880px; margin: 0 auto; }
+
+.rv-kicker {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 14px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  color: rgb(255 255 255 / 88%);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rv-hero h1 {
+  margin: 0 auto 16px;
+  color: #fff;
+  font-size: var(--nc-heading-xl, clamp(2.4rem, 4vw, 3.5rem));
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.rv-hero-sub {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgb(255 255 255 / 82%);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.rv-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 22px;
+  margin: 26px auto 0;
+  padding: 14px 22px;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 8%);
+  backdrop-filter: blur(6px);
+}
+
+.rv-summary-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.rv-summary-score .rv-stars { font-size: 1.15rem; }
+
+.rv-summary-text {
+  color: rgb(255 255 255 / 82%);
+  font-size: 0.86rem;
+}
+
+.rv-summary a {
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- 2. Review wall (masonry) ---------- */
+
+.rv-wall-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.rv-wall-head h2 {
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.rv-wall-head p {
+  margin: 8px 0 0;
+  max-width: 620px;
+  color: var(--rv-muted);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.rv-wall {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.rv-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* ---------- 3. Review card ---------- */
+
+.rv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 22px 22px 18px;
+  border: 1px solid var(--rv-line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(11 45 72 / 4%), 0 10px 28px rgb(11 45 72 / 6%);
+}
+
+.rv-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rv-avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.02rem;
+  background: var(--rv-avatar, #104C70);
+}
+
+.rv-who { min-width: 0; }
+
+.rv-name {
+  margin: 0;
+  color: var(--rv-ink);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.rv-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  color: var(--rv-muted);
+  font-size: 0.76rem;
+}
+
+.rv-source svg { width: 13px; height: 13px; flex: none; }
+
+.rv-stars {
+  color: var(--rv-star);
+  letter-spacing: 2px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.rv-quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #23405C;
+  font-size: 0.93rem;
+  line-height: 1.75;
+}
+
+.rv-quote p { margin: 0 0 10px; }
+.rv-quote p:last-child { margin-bottom: 0; }
+
+.rv-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rv-line);
+  font-size: 0.78rem;
+  color: var(--rv-muted);
+}
+
+.rv-card-foot a {
+  color: var(--nc-primary, #104C70);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rv-card-foot a:hover,
+.rv-card-foot a:focus-visible { text-decoration: underline; }
+
+/* ---------- 4. Leave a review ---------- */
+
+.rv-leave {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  align-items: center;
+  gap: 24px 40px;
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 20px;
+  color: #fff;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgb(8 169 157 / 35%), transparent 55%),
+    linear-gradient(135deg, #0B2D48, #104C70);
+}
+
+.rv-leave h2 {
+  margin: 0 0 10px !important;
+  color: #fff !important;
+  text-align: left !important;
+  font-size: clamp(1.45rem, 2.6vw, 2rem) !important;
+}
+
+.rv-leave p {
+  margin: 0;
+  color: rgb(255 255 255 / 84%);
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+.rv-leave-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.rv-btn-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: var(--nc-button-radius, 8px);
+  background: #fff;
+  color: #0B2D48;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 18%);
+  transition: transform var(--nc-transition, .25s ease);
+}
+
+.rv-btn-light:hover { transform: translateY(-1px); }
+
+.rv-btn-ghost {
+  display: inline-flex;
+  justify-content: center;
+  padding: 11px 22px;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: var(--nc-button-radius, 8px);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------- 5. Supporting sections ---------- */
+
+.rv-page main > section { margin-top: var(--nc-section-gap, 44px); }
+
+.rv-page .section-box > p { color: var(--rv-muted); line-height: 1.75; }
+
+.rv-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.rv-values .card { padding: 24px; }
+.rv-values .service-icon { font-size: 1.6rem; margin-bottom: 8px; }
+.rv-values h3 { margin: 0 0 8px; color: var(--rv-ink); font-size: 1.05rem; }
+.rv-values p { margin: 0; color: var(--rv-muted); font-size: 0.9rem; line-height: 1.7; }
+
+.rv-note {
+  margin-top: 28px !important;
+  color: var(--nc-teal, #08A99D) !important;
+  font-weight: 600;
+  text-align: center;
+}
+
+.rv-map {
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--rv-line);
+}
+
+.rv-map iframe { display: block; width: 100%; height: 400px; border: 0; }
+
+.rv-page .faq-card a { color: var(--nc-primary, #104C70); }
+
+/* ---------- 6. Phone ---------- */
+
+@media (max-width: 1000px) {
+  .rv-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rv-stack { display: contents; }
+}
+
+@media (max-width: 860px) {
+  .rv-leave { grid-template-columns: 1fr; }
+  .rv-values { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .rv-wall { grid-template-columns: 1fr; }
+  .rv-hero { width: calc(100% - 24px); border-radius: 16px; }
+  .rv-hero h1 { font-size: 2rem; }
+  .rv-card { padding: 18px 18px 14px; }
+  .rv-wall-head h2 { text-align: center !important; }
+  .rv-wall-head { justify-content: center; text-align: center; }
+  .rv-summary { padding: 12px 14px; }
+  .rv-map iframe { height: 300px; }
+}
+
+/* city cards only hold a name here */
+.rv-page .service-card-mini { min-height: 0; padding: 15px 16px; }

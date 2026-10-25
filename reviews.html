@@ -174,10 +174,8 @@
        CSS
   ================================= -->
 
-  <link
-    rel="stylesheet"
-    href="/styles.css"
-  >
+  <link rel="stylesheet" href="/styles/design-system.css">
+  <link rel="stylesheet" href="/styles/reviews.css">
 
   <!-- ================================
        FAVICON
@@ -375,10 +373,17 @@
 <link rel="stylesheet" href="/concierge-widget.css">
 </head>
 
-<body>
-<!-- ============================================
-     HEADER / NAVIGATION
-     ============================================ -->
+<body class="rv-page" data-page="reviews">
+
+<div class="menu-overlay"></div>
+
+<div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
+  We use cookies to improve your experience. By using our site, you agree to our 
+  <a href="/privacy.html" style="color:#4A9B8C;">Privacy Policy</a>.
+  <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px;">
+    Accept
+  </button>
+</div>
 
 <header>
   <div class="container header-inner">
@@ -438,537 +443,217 @@
     </div>
   </div>
 </header>
-   
 
-  <!-- ============================================
-       REVIEWS HERO
-       ============================================ -->
+<main>
 
-  <section class="page-hero reviews-hero">
+<section class="rv-hero">
+  <div class="rv-hero-inner">
 
-    <div class="container">
+    <span class="rv-kicker">Client Reviews</span>
 
-        <h1>
-        Client Reviews for North Crescent Facility Solutions
-      </h1>
+    <h1>Client Reviews for North Crescent Facility Solutions</h1>
 
-      <p class="hero-description">
-        Discover what homeowners, businesses, property managers, and
-        short-term rental hosts say about their experience with
-        North Crescent Facility Solutions across Moncton and Southeast
-        New Brunswick.
-      </p>
+    <p class="rv-hero-sub">
+      Discover what homeowners, businesses, property managers, and short-term rental hosts say about their experience with North Crescent Facility Solutions across Moncton and Southeast New Brunswick.
+    </p>
 
-      <div class="hero-highlights">
-
-        <span>⭐ Real Client Experiences</span>
-
-        <span>🧹 Professional Cleaning Services</span>
-
-        <span>📍 Southeast New Brunswick</span>
-
-      </div>
-
+    <div class="rv-summary">
+      <div class="rv-summary-score"><span class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span> 8 five-star reviews</div>
+      <span class="rv-summary-text">Every review on this page was posted on our Google Business Profile</span>
+      <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">Read them on Google</a>
     </div>
 
-  </section>
+  </div>
+</section>
 
-<!-- ============================================
-     INTRODUCTION
-     ============================================ -->
-
-<section class="section reviews-intro">
-
+<section>
   <div class="container">
-
     <div class="section-box">
 
-      <div class="section-heading">
+      <div class="rv-wall-head">
+        <div>
+          <span class="section-eyebrow">Client feedback</span>
+          <h2>Real Experiences. Professional Service. Trusted Results.</h2>
+          <p>Choosing a cleaning company means choosing someone you can trust with your home, business, office, property, or facility. Below are real client reviews shared through Google, word for word.</p>
+        </div>
+      </div>
 
-        <span class="section-eyebrow">
-          CLIENT FEEDBACK
-        </span>
+      <div class="rv-wall">
 
-        <h2>
-          Real Experiences. Professional Service. Trusted Results.
-        </h2>
+      <div class="rv-stack">
+        <article class="rv-card" style="--rv-avatar:#08A99D">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">C</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Cristian C.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“North Crescent Facility Solutions Inc. has been a fantastic partner for our business. Their commercial cleaning team is professional, reliable, and always delivers outstanding results. Our office is consistently clean, sanitized, and ready for employees and clients.”</p>
+            <p>“If you’re looking for commercial cleaning, office cleaning, janitorial services, or post-construction cleaning in Moncton, Dieppe, Riverview, or surrounding areas, I highly recommend their team. Excellent communication, attention to detail, and dependable service every time.”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
 
-        <p>
-          Choosing a cleaning company means choosing someone you can
-          trust with your home, business, office, property, or facility.
-          Our clients' experiences help show the level of professionalism,
-          attention to detail, reliability, and care we strive to provide
-          with every service.
-        </p>
+        <article class="rv-card" style="--rv-avatar:#0E8F86">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">M</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Maria V.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“They’re excellent! They always leave my office spotless, clean, and well organized. 🧹✨ I highly recommend this company for their professionalism and great service. 👍😊”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
 
-        <p>
-          Below are real client reviews shared through Google. We are
-          proud of every client who takes the time to share their
-          experience with North Crescent Facility Solutions.
-        </p>
+        <article class="rv-card" style="--rv-avatar:#104C70">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">E</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Evelyn W.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“Alejandro did a wonderful job! Many Thanks”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="rv-stack">
+        <article class="rv-card" style="--rv-avatar:#157A9C">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">H</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Hazel</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“We recently hired this cleaning company to clean our office, and the experience was excellent from start to finish. The team was very professional, punctual, and detail-oriented. They completed a thorough deep cleaning and paid attention to areas that are often overlooked.”</p>
+            <p>“Their service is extremely well-structured and organized, which made the entire process smooth and stress-free. The office looked spotless and refreshed after they were done. I highly recommend them to anyone looking for reliable and professional cleaning services.”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+
+        <article class="rv-card" style="--rv-avatar:#2F7D8C">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">M</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Maria O.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“North Crescent Cleaning has made managing our Airbnb in Moncton completely hassle-free. Their team is professional and ensures the property is always guest-ready between reservations. I like their cleaning verification after each stay, and property presentation standards.”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="rv-stack">
+        <article class="rv-card" style="--rv-avatar:#0B2D48">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">F</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Franca C.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“We hired North Crescent Facility Solutions Inc. for a post-construction cleaning service, and the results were excellent. The team arrived on time, removed all the construction dust and debris, and left the property spotless and ready to use. They were professional, detail-oriented, and delivered outstanding service. Highly recommended!”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+
+        <article class="rv-card" style="--rv-avatar:#36506E">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">O</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Online Assignments</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“This company always does a great job cleaning our office. Their deep cleaning service is thorough, and they consistently keep the facilities clean, fresh, and welcoming. Their pricing is also very budget-friendly, especially when bundling multiple cleanings throughout the month or year. Highly recommended!”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+
+        <article class="rv-card" style="--rv-avatar:#1E5A84">
+          <div class="rv-card-top">
+            <span class="rv-avatar" aria-hidden="true">A</span>
+            <div class="rv-who">
+              <h3 class="rv-name">Aidan S.</h3>
+              <span class="rv-source"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"/></svg>Google review</span>
+            </div>
+          </div>
+          <div class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="rv-quote">
+            <p>“These guys are great! I never have to worry about my business being clean in the morning!”</p>
+          </blockquote>
+          <div class="rv-card-foot">
+            <span>Posted on Google</span>
+            <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer">View on Google</a>
+          </div>
+        </article>
+      </div>
 
       </div>
 
     </div>
-
   </div>
-
 </section>
 
-
-<!-- ============================================
-     REVIEW 1 — EVELYN W.
-============================================ -->
-
-<section class="section review-section">
-
+<section>
   <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Evelyn W.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
+    <div class="rv-leave">
+      <div>
+        <h2>Had a Great Experience With North Crescent?</h2>
+        <p>Your feedback helps other homeowners, businesses, property managers, and local organizations find a professional cleaning company they can trust in Moncton and Southeast New Brunswick.</p>
       </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “Alejandro did a wonderful job! Many Thanks”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
+      <div class="rv-leave-actions">
+        <a href="https://g.page/r/Cchr2fIxGys1EBM/review" target="_blank" rel="noopener noreferrer" class="rv-btn-light">★ Leave Us a Google Review</a>
+        <a href="https://www.google.com/maps?cid=3831185809350421448" target="_blank" rel="noopener noreferrer" class="rv-btn-ghost">See all reviews on Google</a>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
-<!-- ============================================
-     REVIEW 2 — CRISTIAN C.
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Cristian C.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “North Crescent Facility Solutions Inc. has been a fantastic
-          partner for our business. Their commercial cleaning team is
-          professional, reliable, and always delivers outstanding results.
-          Our office is consistently clean, sanitized, and ready for
-          employees and clients.”
-        </p>
-
-        <p>
-          “If you’re looking for commercial cleaning, office cleaning,
-          janitorial services, or post-construction cleaning in Moncton,
-          Dieppe, Riverview, or surrounding areas, I highly recommend
-          their team. Excellent communication, attention to detail,
-          and dependable service every time.”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ============================================
-     REVIEW 3 — FRANCA C.
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Franca C.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “We hired North Crescent Facility Solutions Inc. for a
-          post-construction cleaning service, and the results were
-          excellent. The team arrived on time, removed all the
-          construction dust and debris, and left the property spotless
-          and ready to use. They were professional, detail-oriented,
-          and delivered outstanding service. Highly recommended!”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ============================================
-     REVIEW 4 — MARIA O.
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Maria O.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “North Crescent Cleaning has made managing our Airbnb in
-          Moncton completely hassle-free. Their team is professional
-          and ensures the property is always guest-ready between
-          reservations. I like their cleaning verification after each
-          stay, and property presentation standards.”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ============================================
-     REVIEW 5 — AIDAN S.
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Aidan S.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “These guys are great! I never have to worry about my
-          business being clean in the morning!”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ============================================
-     REVIEW 6 — MARIA V.
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Maria V.
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “They’re excellent! They always leave my office spotless,
-          clean, and well organized. 🧹✨ I highly recommend this
-          company for their professionalism and great service. 👍😊”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-<!-- ============================================
-     REVIEW 7 — ONLINE ASSIGNMENTS
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Online Assignments
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “This company always does a great job cleaning our office.
-          Their deep cleaning service is thorough, and they consistently
-          keep the facilities clean, fresh, and welcoming. Their pricing
-          is also very budget-friendly, especially when bundling multiple
-          cleanings throughout the month or year. Highly recommended!”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ============================================
-     REVIEW 8 — HAZEL
-============================================ -->
-
-<section class="section review-section">
-
-  <div class="container">
-
-    <div class="section-box review-box">
-
-      <h3 class="review-author">
-        Hazel
-      </h3>
-
-      <div
-        class="review-stars"
-        aria-label="5 out of 5 stars">
-        ★★★★★
-      </div>
-
-      <blockquote class="review-quote">
-
-        <p>
-          “We recently hired this cleaning company to clean our office,
-          and the experience was excellent from start to finish. The
-          team was very professional, punctual, and detail-oriented.
-          They completed a thorough deep cleaning and paid attention
-          to areas that are often overlooked.”
-        </p>
-
-        <p>
-          “Their service is extremely well-structured and organized,
-          which made the entire process smooth and stress-free. The
-          office looked spotless and refreshed after they were done.
-          I highly recommend them to anyone looking for reliable and
-          professional cleaning services.”
-        </p>
-
-      </blockquote>
-
-      <div class="google-review">
-
-        <span class="google-logo" aria-hidden="true">
-          G
-        </span>
-
-        <span>
-          Google Review
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-     <!-- ============================================
-     GOOGLE REVIEW CTA
-     ============================================ -->
-
-<section class="section reviews-cta">
-
-  <div class="container">
-
-    <div class="section-box">
-
-      <div class="cta-content">
-
-        <span class="section-eyebrow">
-          SHARE YOUR EXPERIENCE
-        </span>
-
-        <h2>
-          Had a Great Experience With North Crescent?
-        </h2>
-
-        <p>
-          Your feedback helps other homeowners, businesses, property
-          managers, and local organizations find a professional cleaning
-          company they can trust in Moncton and Southeast New Brunswick.
-        </p>
-
-        <a
-          href="https://g.page/r/Cchr2fIxGys1EBM/review"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-light">
-          ⭐ Leave Us a Google Review
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-    <section>
+<section>
   <div class="container">
 
     <div class="section-box" style="text-align:center;">
@@ -1076,10 +761,6 @@
   </div>
 </section>
 
-<!-- =========================================================
-     LOCAL SERVICE AREAS
-========================================================= -->
-
 <section>
 
   <div class="container">
@@ -1179,11 +860,7 @@
 
       <!-- FINAL SERVICE MESSAGE -->
 
-      <p style="
-        margin-top:20px;
-        font-weight:600;
-        color:#4A9B8C;
-      ">
+      <p class="rv-note">
 
         🏢 Wherever your property is located, we're here to help
         care for it. ❤️
@@ -1195,10 +872,6 @@
   </div>
 
 </section>
-
-  <!-- =========================================================
-     WHY CLIENTS CHOOSE NORTH CRESCENT
-========================================================= -->
 
 <section>
 
@@ -1227,7 +900,7 @@
 
       <!-- TRUST VALUES -->
 
-      <div class="airbnb-grid airbnb-grid-3">
+      <div class="rv-values">
 
 
         <!-- PROFESSIONAL STANDARDS -->
@@ -1298,11 +971,7 @@
 
       <!-- FINAL TRUST MESSAGE -->
 
-      <p style="
-        margin-top:35px;
-        font-weight:600;
-        color:#4A9B8C;
-      ">
+      <p class="rv-note">
 
         🤝 Professional service. Reliable support. Genuine care.
 
@@ -1313,70 +982,6 @@
   </div>
 
 </section>
-
-
-<!-- ============================================
-     FINAL CONTACT CTA
-============================================ -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box" style="text-align:center;">
-
-      <span class="section-eyebrow">
-        GET STARTED
-      </span>
-
-      <h2>
-        Ready to Experience the North Crescent Difference?
-      </h2>
-
-      <div class="divider"></div>
-
-      <p style="max-width:900px; margin:0 auto 20px;">
-
-        Whether you need commercial cleaning, office cleaning,
-        residential cleaning, Airbnb turnover, deep cleaning,
-        janitorial services, or post-construction cleaning,
-        we're here to help.
-
-      </p>
-
-      <p style="max-width:800px; margin:0 auto 30px;">
-
-        Request your quote and let us build a cleaning solution
-        around your needs.
-
-      </p>
-
-
-      <div class="cta-buttons">
-
-        <a
-          href="/contact.html"
-          class="btn btn-primary">
-          Request a Free Quote
-        </a>
-
-        <a
-          href="/services.html"
-          class="btn btn-secondary">
-          Explore All Services
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-   
-<!-- ============================================
-     MAP / LOCAL PRESENCE
-============================================ -->
 
 <section>
 
@@ -1403,16 +1008,13 @@
 
       </p>
 
-      <div class="map-container">
+      <div class="rv-map">
 
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d353567.22244137136!2d-64.92461693930902!3d46.1857044507483!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x873802cfecea75f%3A0x352b1b31f2d96bc8!2sNORTH%20CRESCENT%20FACILITY%20SOLUTIONS%20INC!5e0!3m2!1ses-419!2sca!4v1779850049566!5m2!1ses-419!2sca"
           title="North Crescent Facility Solutions - 107 Killam Dr, Moncton, NB"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          width="100%"
-          height="400"
-          style="border:0;"
           allowfullscreen="">
         </iframe>
 
@@ -1423,10 +1025,6 @@
   </div>
 
 </section>
-
-<!-- ============================================
-     REVIEWS FAQ SECTION
-============================================ -->
 
 <section class="faq-section">
 
@@ -1688,11 +1286,6 @@
 
 </section>
 
-
-<!-- ============================================
-     REVIEWS / QUOTE CTA
-============================================ -->
-
 <section>
 
   <div class="container">
@@ -1712,12 +1305,12 @@
 
       <div class="btn-group" style="margin-top:15px;">
 
-        <a href="contact.html" class="btn btn-primary">
+        <a href="/contact.html" class="btn btn-primary">
           Get Free Quote
         </a>
 
-        <a href="/services.html" class="btn btn-primary">
-          Explore All Professional Cleaning Services →
+        <a href="/services.html" class="btn btn-dark">
+          Explore All Professional Cleaning Services
         </a>
 
       </div>
@@ -1728,206 +1321,131 @@
 
 </section>
 
-
 </main>
- <!-- ============================================
-     FOOTER
-     ============================================ -->
 
+<footer class="nc-footer">
 
-<div class="float-container">
+    <div class="nc-footer-container">
 
-  <a
-    href="tel:+14288880542"
-    class="float-btn float-dark"
-    aria-label="Call North Crescent Facility Solutions Inc.">
-    📞
-  </a>
+        <!-- MAIN FOOTER -->
+        <div class="nc-footer-main">
 
-  <a
-    href="https://wa.me/14288880542"
-    class="float-btn float-whatsapp"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contact North Crescent on WhatsApp">
-    💬
-  </a>
+            <!-- BRAND -->
+            <div class="nc-footer-brand">
+                <a href="/index.html" class="nc-footer-brand-name">
+                    North Crescent
+                </a>
 
-  <a
-    href="contact.html"
-    class="float-btn float-primary"
-    aria-label="Contact North Crescent Facility Solutions Inc.">
-    ✉️
-  </a>
+                <span class="nc-footer-brand-subtitle">
+                    FACILITY SOLUTIONS INC.
+                </span>
 
-</div>
+                <p>
+                    Professional cleaning and facility solutions
+                    throughout Southeast New Brunswick.
+                </p>
+            </div>
 
+            <!-- NAVIGATION -->
+            <div class="nc-footer-navigation">
+                <h3>Explore</h3>
 
-<footer style="background:#0F172A; color:#CBD5F5; padding:20px 0 12px; font-family:sans-serif;">
+                <a href="/services.html">Services</a>
+                <a href="/process.html">Our Process</a>
+                <a href="/reviews.html">Customer Reviews</a>
+                <a href="/work.html">Our Work</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/cleaning-concierge.html">Concierge 💬</a>
+            </div>
 
-  <div style="max-width:1100px; margin:auto; padding:0 20px;">
+            <!-- CONTACT -->
+            <div class="nc-footer-contact">
+                <h3>Get in Touch</h3>
 
-    <!-- TOP ROW -->
-    <div
-      class="top-row"
-      style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+                <a href="tel:+14288880542">
+                    <span class="nc-footer-contact-icon">☎</span>
+                    +1 (428) 888-0542
+                </a>
 
-      <!-- BRAND -->
-      <div style="font-size:13px; color:#ffffff;">
-        North Crescent Facility Solutions Inc
-      </div>
+                <a href="mailto:info@northcrescentcleaning.com">
+                    <span class="nc-footer-contact-icon">✉</span>
+                    info@northcrescentcleaning.com
+                </a>
 
+                <a href="/contact.html" class="nc-footer-cta">
+                    Contact Our Team <span>→</span>
+                </a>
+            </div>
 
-      <!-- NAV -->
-      <div
-        class="nav"
-        style="display:flex; gap:18px; font-size:12px;">
+        </div>
 
-        <a
-          href="services.html"
-          style="color:#CBD5F5; text-decoration:none;">
-          Services
-        </a>
+        <!-- DIVIDER -->
+        <div class="nc-footer-divider"></div>
 
-        <a
-          href="process.html"
-          style="color:#CBD5F5; text-decoration:none;">
-          Process
-        </a>
+        <!-- BOTTOM FOOTER -->
+        <div class="nc-footer-bottom">
 
-        <a
-          href="reviews.html"
-          style="color:#CBD5F5; text-decoration:none;">
-          Reviews
-        </a>
+            <p>
+                © 2026 North Crescent Facility Solutions Inc.
+                <span>Moncton, New Brunswick, Canada</span>
+            </p>
 
-        <a
-          href="contact.html"
-          style="color:#CBD5F5; text-decoration:none;">
-          Contact
-        </a>
+            <div class="nc-footer-legal">
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms &amp; Conditions</a>
+            </div>
 
-      </div>
+        </div>
 
-
-      <!-- CONTACT -->
-      <div
-        class="contact"
-        style="font-size:12px; text-align:right;">
-
-        <a
-          href="tel:+14288880542"
-          style="color:#CBD5F5; text-decoration:none;">
-          +1 (428) 888-0542
-        </a>
-
-        <br>
-
-        <a
-          href="mailto:info@northcrescentcleaning.com"
-          style="color:#CBD5F5; text-decoration:none;">
-          info@northcrescentcleaning.com
-        </a>
-
-      </div>
+        <!-- BRAND TAGLINE -->
+        <div class="nc-footer-tagline">
+            We take care of your spaces, so you can focus on your
+            success and well-being.
+        </div>
 
     </div>
-
-
-    <!-- DIVIDER -->
-
-    <div
-      style="border-top:1px solid #1E293B; margin:15px 0;">
-    </div>
-
-
-    <!-- BOTTOM ROW -->
-
-    <div
-      class="bottom-row"
-      style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; font-size:11px; color:#94A3B8; gap:10px;">
-
-      <div>
-        © 2026 North Crescent Facility Solutions Inc • Moncton, NB
-      </div>
-
-
-      <div
-        class="bottom-links"
-        style="display:flex; gap:12px;">
-
-        <a
-          href="privacy.html"
-          style="color:#94A3B8; text-decoration:none;">
-          Privacy
-        </a>
-
-        <a
-          href="terms.html"
-          style="color:#94A3B8; text-decoration:none;">
-          Terms
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </footer>
 
+<script>
+function acceptCookies() {
+  document.getElementById("cookie-banner").style.display = "none";
+  localStorage.setItem("cookiesAccepted", "true");
+}
 
-<!-- ============================================
-     JAVASCRIPT
-     ============================================ -->
+window.onload = function() {
+  if (localStorage.getItem("cookiesAccepted")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+};
+</script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  const toggle =
-    document.getElementById("menu-toggle");
-
-  const nav =
-    document.getElementById("nav-menu");
-
-  const overlay =
-    document.querySelector(".menu-overlay");
-
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
 
   if (!toggle || !nav || !overlay) return;
 
-
   toggle.addEventListener("click", () => {
-
     toggle.classList.toggle("active");
-
     nav.classList.toggle("active");
-
     overlay.classList.toggle("active");
-
     document.body.classList.toggle("menu-open");
-
   });
 
+  overlay.addEventListener("click", closeMenu);
 
-  overlay.addEventListener("click", () => {
-
+  function closeMenu() {
     toggle.classList.remove("active");
-
     nav.classList.remove("active");
-
     overlay.classList.remove("active");
-
     document.body.classList.remove("menu-open");
-
-  });
-
+  }
 });
-
 </script>
 
-<!-- CONCIERGE -->
 <script src="/concierge/concierge-widget.js" defer></script>
 </body>
 </html>
