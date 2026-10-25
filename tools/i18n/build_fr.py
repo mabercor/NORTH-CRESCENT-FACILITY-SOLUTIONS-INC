@@ -2,6 +2,9 @@
 
     python3 tools/i18n/build_fr.py           # writes fr/*.html, lists any English text without a translation
     python3 tools/i18n/build_fr.py --check   # only lists missing translations
+    python3 tools/i18n/build_fr.py --check --missing-json missing.json   # same, saved for translate_missing.py
+
+On GitHub this runs by itself (.github/workflows/french-site.yml) after every change to an English page.
 
 How it works
 - The English page is the source of truth: layout, images, scripts and styles are copied as they are.
@@ -259,6 +262,10 @@ def main():
         for k in dict.fromkeys(keys):
             print(f"missing  {page}: {k[:110]}")
     print(f"{'checked' if check else 'built'} {len(PAGES) - len(HAND_WRITTEN)} French pages, {total} missing strings")
+    if "--missing-json" in sys.argv:
+        # list for translate_missing.py (one entry per English string, in page order)
+        keys = list(dict.fromkeys(k for v in missing.values() for k in v))
+        json.dump(keys, open(sys.argv[sys.argv.index("--missing-json") + 1], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
 if __name__ == "__main__":
