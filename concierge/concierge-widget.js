@@ -588,6 +588,8 @@
         document.hidden ||
         !widget.hidden ||
         document.body.classList.contains("menu-open") ||
+        /* A page with its own mascot (e.g. contact form): stay in the button */
+        document.body.classList.contains("nc-page-mascot") ||
         getComputedStyle(button).visibility === "hidden" ||
         button.getClientRects().length === 0
       );
