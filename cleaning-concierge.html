@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
 
     <meta name="theme-color"
           content="#1E3A5F">
@@ -190,8 +190,10 @@
          CLEANING CONCIERGE STYLES
          ========================================================= -->
 
+    <link rel="stylesheet" href="/styles/design-system.css">
+
     <link rel="stylesheet"
-      href="/concierge.css">
+      href="/concierge.css?v=20261024">
     
 
     <!-- =========================================================
@@ -491,156 +493,92 @@
          HEADER
          ========================================================= -->
 
-    <header class="site-header">
+    <!-- Same header as the rest of the site -->
+    <div class="menu-overlay"></div>
+<header>
+  <div class="container header-inner">
 
-        <div class="container">
+    <div class="logo-container">
+      <a href="/index.html">
+        <img src="/images/logo.jpg" alt="North Crescent Facility Solutions professional cleaning services in Moncton NB" loading="lazy">
+      </a>
+      <div class="brand-title">
+        NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
+      </div>
+    </div>
 
-            <div class="header-inner">
+   <div class="nav-wrapper">
 
+      <div class="hamburger" id="menu-toggle">
+        <span></span><span></span><span></span>
+      </div>
 
-                <!-- =================================================
-                     BRAND / LOGO
-                     ================================================= -->
+      <nav id="nav-menu">
+        <a href="/index.html">Home</a>
+       <div class="dropdown">
 
-                <a
-                    href="/"
-                    class="brand"
-                    aria-label="North Crescent Facility Solutions Inc. Home"
-                >
+  <a href="/services.html" class="menu-link">
+    Services <span class="arrow">▾</span>
+  </a>
 
-                    <img
-                        src="/images/logo.webp"
-                        alt="North Crescent Facility Solutions Inc."
-                        class="brand-logo"
-                        width="56"
-                        height="56"
-                    >
+  <div class="dropdown-menu">
 
-                    <div class="brand-text">
+    <a href="/commercial-cleaning-moncton.html">
+      Commercial Cleaning
+    </a>
+    
+    <a href="/residential-cleaning-moncton.html">
+      Residential Cleaning
+    </a>
 
-                        <span class="brand-name">
-                            North Crescent
-                        </span>
+    <a href="/office-cleaning-moncton.html">
+      Office Cleaning
+    </a>
+    <a href="/airbnb-cleaning-moncton.html">
+      Airbnb Cleaning
+    </a>
 
-                        <span class="brand-subtitle">
-                            Facility Solutions Inc.
-                        </span>
+    <a href="/deep-cleaning-moncton.html">
+      Deep Cleaning
+    </a>
 
-                    </div>
+    <a href="/janitorial-cleaning-moncton.html">
+      Janitorial Services
+    </a>
 
-                </a>
+    <a href="/post-construction-cleaning-moncton.html">
+      Post-Construction Cleaning
+    </a>
+    <a href="/snow-removal-moncton.html">
+  Seasonal Snow Removal
+</a>
+  </div>
 
+</div>
+        <a href="/cleaning-concierge.html" class="concierge-nav-link active" aria-current="page">
+    <span class="concierge-nav-icon" aria-hidden="true">💬</span>
+    <span>Concierge</span>
+</a>
+        <a href="/cleaning-booking-moncton.html" class="booking-nav-link">
+    <span class="booking-nav-icon" aria-hidden="true">📅</span>
+    <span>Booking</span>
+</a>
+        <a href="/process.html">Process</a>
+        <a href="/reviews.html">Reviews</a>
+        <a href="/work.html">Our Work</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/contact.html" class="btn btn-primary">Contact</a>
+      </nav>
 
-                <!-- =================================================
-                     DESKTOP NAVIGATION
-                     ================================================= -->
+      <div class="lang-switch">
+        <a href="/cleaning-concierge.html">EN</a>
+        <a href="/fr/index.html">FR</a>
+      </div>
 
-                <nav
-                    class="main-navigation"
-                    aria-label="Main navigation"
-                >
+    </div>
 
-                    <a href="/">
-                        Home
-                    </a>
-
-                    <a href="/services.html">
-                        Services
-                    </a>
-
-                    <a href="/process.html">
-                        Process
-                    </a>
-
-                    <a href="/reviews.html">
-                        Reviews
-                    </a>
-
-                    <a href="/work.html">
-                        Our Work
-                    </a>
-
-                    <a href="/gallery.html">
-                        Gallery
-                    </a>
-
-                    <a href="/contact.html"
-                       class="nav-cta">
-                        Contact Us
-                    </a>
-
-                </nav>
-
-
-                <!-- =================================================
-                     MOBILE MENU BUTTON
-                     ================================================= -->
-
-                <button
-                    type="button"
-                    class="mobile-menu-toggle"
-                    id="mobileMenuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                    aria-controls="mobileNavigation"
-                >
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                </button>
-
-            </div>
-
-
-            <!-- =====================================================
-                 MOBILE NAVIGATION
-                 ===================================================== -->
-
-            <nav
-                id="mobileNavigation"
-                class="mobile-navigation"
-                aria-label="Mobile navigation"
-                hidden
-            >
-
-                <a href="/">
-                    Home
-                </a>
-
-                <a href="/services.html">
-                    Services
-                </a>
-
-                <a href="/process.html">
-                    Process
-                </a>
-
-                <a href="/reviews.html">
-                    Reviews
-                </a>
-
-                <a href="/work.html">
-                    Our Work
-                </a>
-
-                <a href="/gallery.html">
-                    Gallery
-                </a>
-
-                <a
-                    href="/contact.html"
-                    class="mobile-nav-cta"
-                >
-                    Contact Us
-                </a>
-
-            </nav>
-
-        </div>
-
-    </header>
+  </div>
+</header>
 
 <main id="main-content">
 
@@ -1543,6 +1481,8 @@
                                     name="message"
                                     rows="1"
                                     maxlength="2000"
+                                    enterkeyhint="send"
+                                    autocapitalize="sentences"
                                     placeholder="Tell us how we can help..."
                                     aria-label="Your message"
                                     aria-describedby="conciergeCharacterCount"
@@ -2181,278 +2121,125 @@
          FOOTER
          ========================================================= -->
 
-    <footer class="site-footer">
+<!-- PREMIUM FOOTER -->
+<footer class="nc-footer">
 
-        <div class="container">
+    <div class="nc-footer-container">
 
-            <div class="footer-grid">
+        <!-- MAIN FOOTER -->
+        <div class="nc-footer-main">
 
+            <!-- BRAND -->
+            <div class="nc-footer-brand">
+                <a href="/index.html" class="nc-footer-brand-name">
+                    North Crescent
+                </a>
 
-                <!-- =================================================
-                     BRAND
-                     ================================================= -->
+                <span class="nc-footer-brand-subtitle">
+                    FACILITY SOLUTIONS INC.
+                </span>
 
-                <div class="footer-column footer-brand">
-
-                    <a
-                        href="/"
-                        class="footer-logo-link"
-                        aria-label="North Crescent Facility Solutions Inc. Home"
-                    >
-
-                        <img
-                            src="/images/logo.webp"
-                            alt="North Crescent Facility Solutions Inc."
-                            class="footer-logo"
-                            width="64"
-                            height="64"
-                        >
-
-                    </a>
-
-                    <p class="footer-company-name">
-                        North Crescent Facility Solutions Inc.
-                    </p>
-
-                    <p class="footer-description">
-                        Professional cleaning and facility solutions
-                        serving Greater Moncton and Southeast New Brunswick.
-                    </p>
-
-                    <p class="footer-tagline">
-                        We take care of your spaces, so you can focus on your success.
-                    </p>
-
-                </div>
-
-
-                <!-- =================================================
-                     QUICK LINKS
-                     ================================================= -->
-
-                <div class="footer-column">
-
-                    <h3>
-                        Quick Links
-                    </h3>
-
-                    <ul class="footer-links">
-
-                        <li>
-                            <a href="/">
-                                Home
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Services
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/process.html">
-                                Process
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/reviews.html">
-                                Reviews
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/work.html">
-                                Our Work
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/gallery.html">
-                                Gallery
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/contact.html">
-                                Contact
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <!-- =================================================
-                     SERVICES
-                     ================================================= -->
-
-                <div class="footer-column">
-
-                    <h3>
-                        Services
-                    </h3>
-
-                    <ul class="footer-links">
-
-                        <li>
-                            <a href="/services.html">
-                                Commercial Cleaning
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Residential Cleaning
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Airbnb Cleaning
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Janitorial Services
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Deep Cleaning
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Move-In / Move-Out
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/services.html">
-                                Post-Construction Cleaning
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <!-- =================================================
-                     CONTACT
-                     ================================================= -->
-
-                <div class="footer-column">
-
-                    <h3>
-                        Contact
-                    </h3>
-
-                    <ul class="footer-contact-list">
-
-                        <li>
-
-                            <span
-                                class="footer-contact-icon"
-                                aria-hidden="true"
-                            >
-                                ✉
-                            </span>
-
-                            <a href="mailto:info@northcrescentcleaning.com">
-                                info@northcrescentcleaning.com
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <span
-                                class="footer-contact-icon"
-                                aria-hidden="true"
-                            >
-                                📞
-                            </span>
-
-                            <a href="tel:+14288880542">
-                                428-888-0542
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <span
-                                class="footer-contact-icon"
-                                aria-hidden="true"
-                            >
-                                📍
-                            </span>
-
-                            <span>
-                                Greater Moncton &amp;<br>
-                                Southeast New Brunswick
-                            </span>
-
-                        </li>
-
-                    </ul>
-
-
-                    <a
-                        href="/contact.html"
-                        class="footer-contact-button"
-                    >
-                        Contact North Crescent
-                    </a>
-
-                </div>
-
+                <p>
+                    Professional cleaning and facility solutions
+                    throughout Southeast New Brunswick.
+                </p>
             </div>
 
+            <!-- NAVIGATION -->
+            <div class="nc-footer-navigation">
+                <h3>Explore</h3>
 
-            <!-- =====================================================
-                 FOOTER BOTTOM
-                 ===================================================== -->
+                <a href="/services.html">Services</a>
+                <a href="/process.html">Our Process</a>
+                <a href="/reviews.html">Customer Reviews</a>
+                <a href="/work.html">Our Work</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/cleaning-concierge.html">Concierge 💬</a>
+            </div>
 
-            <div class="footer-bottom">
+            <!-- CONTACT -->
+            <div class="nc-footer-contact">
+                <h3>Get in Touch</h3>
 
-                <div class="footer-copyright">
+                <a href="tel:+14288880542">
+                    <span class="nc-footer-contact-icon">☎</span>
+                    +1 (428) 888-0542
+                </a>
 
-                    © <span id="currentYear"></span>
-                    North Crescent Facility Solutions Inc.
-                    All rights reserved.
+                <a href="mailto:info@northcrescentcleaning.com">
+                    <span class="nc-footer-contact-icon">✉</span>
+                    info@northcrescentcleaning.com
+                </a>
 
-                </div>
-
-
-                <div class="footer-bottom-links">
-
-                    <a href="/contact.html">
-                        Contact
-                    </a>
-
-                    <span aria-hidden="true">
-                        |
-                    </span>
-
-                    <a href="/cleaning-concierge.html">
-                        Cleaning Concierge
-                    </a>
-
-                </div>
-
+                <a href="/cleaning-concierge.html" class="nc-footer-cta">
+                    Contact Our Team <span>→</span>
+                </a>
             </div>
 
         </div>
 
-    </footer>
+        <!-- DIVIDER -->
+        <div class="nc-footer-divider"></div>
+
+        <!-- BOTTOM FOOTER -->
+        <div class="nc-footer-bottom">
+
+            <p>
+                © 2026 North Crescent Facility Solutions Inc.
+                <span>Moncton, New Brunswick, Canada</span>
+            </p>
+
+            <div class="nc-footer-legal">
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms &amp; Conditions</a>
+            </div>
+
+        </div>
+
+        <!-- BRAND TAGLINE -->
+        <div class="nc-footer-tagline">
+            We take care of your spaces, so you can focus on your
+            success and well-being.
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- MOBILE MENU -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-menu");
+  const overlay = document.querySelector(".menu-overlay");
+
+  if (!toggle || !nav || !overlay) return;
+
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  function closeMenu() {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  }
+
+});
+</script>
+
+
 
 
 
@@ -4175,6 +3962,12 @@ restoreChatScrollPosition();
                 characterCount.textContent =
                     `${length} / ${CONFIG.concierge.maxMessageLength}`;
 
+                /* Only shown when the message gets close to the limit. */
+                characterCount.classList.toggle(
+                    "is-near",
+                    length > CONFIG.concierge.maxMessageLength - 300
+                );
+
 
                 if (
                     length >
@@ -4926,6 +4719,11 @@ updateCharacterCount();
             "--nc-chat-composer-top",
             Math.max(0, Math.round(composerTop)) + "px"
         );
+
+        /* iPhone: keep the page itself still and the newest message visible above the keyboard. */
+        if (window.scrollY !== 0) window.scrollTo(0, 0);
+        const list = chat.querySelector(".concierge-messages");
+        if (list) list.scrollTop = list.scrollHeight;
 
     }
 
