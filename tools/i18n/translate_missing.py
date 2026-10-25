@@ -46,7 +46,22 @@ def translate(batch):
     return out
 
 
+def selftest():
+    """Fails (exit 1) when the key is missing or rejected, so the workflow shows it in red."""
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("ANTHROPIC_API_KEY is not set")
+        sys.exit(1)
+    try:
+        print("key works:", translate(["Get your free quote today."])[0])
+    except Exception as error:  # noqa: BLE001
+        print("the translation key did not work:", error)
+        sys.exit(1)
+
+
 def main():
+    if sys.argv[1:] == ["--selftest"]:
+        selftest()
+        return
     missing = json.load(open(sys.argv[1], encoding="utf-8"))
     if not missing:
         print("nothing to translate")
