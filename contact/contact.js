@@ -21,6 +21,11 @@
   const MESSAGE_MIN = 10;
   const REQUEST_TIMEOUT_MS = 20000;
 
+  /* Pages under /fr/ use <html lang="fr">: messages follow the page language.
+     What is sent to the office (field values, frequency label) stays in English. */
+  const FR = (document.documentElement.lang || "").toLowerCase().indexOf("fr") === 0;
+  const tr = (en, fr) => (FR ? fr : en);
+
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const LINK_PATTERN = /(https?:\/\/|www\.)\S+/gi;
 
@@ -30,6 +35,14 @@
     "4": "4 times per month",
     "2": "2 times per month",
     "custom": "Custom"
+  };
+
+  const FREQUENCY_LABELS_FR = {
+    "30": "Tous les jours",
+    "8": "2 fois par semaine",
+    "4": "4 fois par mois",
+    "2": "2 fois par mois",
+    "custom": "Sur mesure"
   };
 
   /* Frequencies that need the "preferred days" picker */
@@ -64,7 +77,7 @@
     smsLink: $("#smsLink")
   };
 
-  const SUBMIT_TEXT = el.submitLabel ? el.submitLabel.textContent.trim() : "Get My Free Quote";
+  const SUBMIT_TEXT = el.submitLabel ? el.submitLabel.textContent.trim() : tr("Get My Free Quote", "Obtenir ma soumission gratuite");
   const formLoadedAt = Date.now();
 
   let turnstileToken = "";
@@ -80,19 +93,19 @@
 
   const RULES = {
     clientName: (v) =>
-      v.trim().length >= 2 ? "" : "Please enter your full name.",
+      v.trim().length >= 2 ? "" : tr("Please enter your full name.", "Veuillez entrer votre nom complet."),
 
     emailAddress: (v) =>
-      EMAIL_PATTERN.test(v.trim()) ? "" : "Please enter a valid email address.",
+      EMAIL_PATTERN.test(v.trim()) ? "" : tr("Please enter a valid email address.", "Veuillez entrer une adresse courriel valide."),
 
     phoneNumber: (v) =>
-      digitsOf(v) >= 10 ? "" : "Please enter a phone number with area code.",
+      digitsOf(v) >= 10 ? "" : tr("Please enter a phone number with area code.", "Veuillez entrer un numéro de téléphone avec l’indicatif régional."),
 
     serviceAddress: (v) =>
-      v.trim().length >= 6 ? "" : "Please enter the service address.",
+      v.trim().length >= 6 ? "" : tr("Please enter the service address.", "Veuillez entrer l’adresse du service."),
 
     serviceType: (v) =>
-      v ? "" : "Please choose a service.",
+      v ? "" : tr("Please choose a service.", "Veuillez choisir un service."),
 
     /* Frequency and time slot are optional: fewer steps for the client, we confirm them when we call. */
     visitsPerMonth: () => "",
@@ -102,16 +115,19 @@
     squareFootage: (v) => {
       if (v === "") return "";
       const n = Number(v);
-      return n > 0 && n < 1000000 ? "" : "Please enter a valid size, or leave it empty.";
+      return n > 0 && n < 1000000 ? "" : tr("Please enter a valid size, or leave it empty.", "Veuillez entrer une superficie valide, ou laissez le champ vide.");
     },
 
     operationalSummary: (v) => {
       const text = v.trim();
       if (text.length < MESSAGE_MIN) {
-        return "Please tell us a little about your space (at least " + MESSAGE_MIN + " characters).";
+        return tr(
+          "Please tell us a little about your space (at least " + MESSAGE_MIN + " characters).",
+          "Parlez-nous un peu de votre espace (au moins " + MESSAGE_MIN + " caractères)."
+        );
       }
       if ((text.match(LINK_PATTERN) || []).length > 1) {
-        return "Please remove the web links from your message.";
+        return tr("Please remove the web links from your message.", "Veuillez retirer les liens web de votre message.");
       }
       return "";
     }
@@ -245,7 +261,7 @@
 
     el.progressFill.style.width = percent + "%";
     el.progressLabel.textContent =
-      done === total ? "All set — ready to send" : done + " of " + total + " completed";
+      done === total ? tr("All set — ready to send", "Tout est prêt — vous pouvez envoyer") : done + tr(" of ", " sur ") + total + tr(" completed", " complétés");
 
     form.classList.toggle("is-complete", done === total);
 
@@ -269,7 +285,7 @@
     const ok = length >= MESSAGE_MIN;
     el.counter.classList.toggle("is-ok", ok);
     el.counter.textContent = ok
-      ? length + " characters"
+      ? length + tr(" characters", " caractères")
       : length + " / " + MESSAGE_MIN + " minimum";
   }
 
@@ -493,7 +509,7 @@
   function showCallMessage(prefix) {
     el.status.className = "nc-status is-error";
     el.status.innerHTML = "";
-    el.status.append(prefix + " Please try again, or call us at ");
+    el.status.append(prefix + tr(" Please try again, or call us at ", " Veuillez réessayer ou nous appeler au "));
 
     const link = document.createElement("a");
     link.href = "tel:" + SMS_NUMBER;
@@ -506,7 +522,7 @@
     el.submit.disabled = loading;
     el.submit.classList.toggle("is-loading", loading);
     el.submit.setAttribute("aria-busy", loading ? "true" : "false");
-    el.submitLabel.textContent = loading ? "Sending..." : SUBMIT_TEXT;
+    el.submitLabel.textContent = loading ? tr("Sending...", "Envoi en cours…") : SUBMIT_TEXT;
   }
 
   /* ---------------------------------------------------------
@@ -588,30 +604,36 @@
   }
 
   function buildSmsLink(payload) {
-    const lines = ["Hi, my name is " + payload.clientName + "."];
+    const lines = [tr("Hi, my name is ", "Bonjour, je m’appelle ") + payload.clientName + "."];
+    const frequencyText = FR
+      ? FREQUENCY_LABELS_FR[payload.visitsPerMonth] || payload.frequencyLabel
+      : payload.frequencyLabel;
 
     if (payload.serviceType) {
-      lines.push("I just submitted a request for " + payload.serviceType + ".");
+      lines.push(tr("I just submitted a request for ", "Je viens d’envoyer une demande pour : ") + payload.serviceType + ".");
     }
-    if (payload.frequencyLabel) {
-      lines.push("Preferred frequency: " + payload.frequencyLabel + ".");
+    if (frequencyText) {
+      lines.push(tr("Preferred frequency: ", "Fréquence souhaitée : ") + frequencyText + ".");
     }
     if (payload.recurringVisits) {
-      lines.push("Preferred days: " + payload.recurringVisits + ".");
+      lines.push(tr("Preferred days: ", "Jours souhaités : ") + payload.recurringVisits + ".");
     }
     if (payload.timeSlot) {
-      lines.push("Preferred time: " + payload.timeSlot + ".");
+      lines.push(tr("Preferred time: ", "Moment souhaité : ") + payload.timeSlot + ".");
     }
     if (payload.serviceAddress) {
-      lines.push("Address: " + payload.serviceAddress + ".");
+      lines.push(tr("Address: ", "Adresse : ") + payload.serviceAddress + ".");
     }
     if (payload.operationalSummary) {
       const details = payload.operationalSummary.slice(0, 300);
-      lines.push("Project details: " + details + (payload.operationalSummary.length > 300 ? "..." : ""));
+      lines.push(tr("Project details: ", "Détails du projet : ") + details + (payload.operationalSummary.length > 300 ? "..." : ""));
     }
 
     lines.push("");
-    lines.push("Next, I'll send photos and/or a short video of the space so you can review it and prepare my quote.");
+    lines.push(tr(
+      "Next, I'll send photos and/or a short video of the space so you can review it and prepare my quote.",
+      "Je vais maintenant envoyer des photos ou une courte vidéo de l’espace pour que vous puissiez préparer ma soumission."
+    ));
 
     return "sms:" + SMS_NUMBER + "?&body=" + encodeURIComponent(lines.join("\n"));
   }
@@ -673,18 +695,18 @@
     const problems = runFullValidation();
 
     if (problems.length) {
-      showStatus("Please check the highlighted fields.", "error");
+      showStatus(tr("Please check the highlighted fields.", "Veuillez vérifier les champs en surbrillance."), "error");
       focusFirstProblem(problems);
       return;
     }
 
     if ((Date.now() - formLoadedAt) / 1000 < MIN_FILL_SECONDS) {
-      showStatus("Please take a moment to review your details, then press the button again.", "info");
+      showStatus(tr("Please take a moment to review your details, then press the button again.", "Prenez un moment pour vérifier vos renseignements, puis appuyez de nouveau sur le bouton."), "info");
       return;
     }
 
     if (!currentToken()) {
-      el.turnstileError.textContent = "Please complete the security check.";
+      el.turnstileError.textContent = tr("Please complete the security check.", "Veuillez compléter la vérification de sécurité.");
       el.turnstileError.classList.add("is-visible");
       el.turnstileError.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
@@ -710,7 +732,7 @@
         resetForm();
         setLoading(false);
         el.submit.classList.add("is-done");
-        el.submitLabel.textContent = "Request sent";
+        el.submitLabel.textContent = tr("Request sent", "Demande envoyée");
         el.submit.disabled = true;
 
         openModal(smsHref);
@@ -721,18 +743,18 @@
       resetTurnstile();
 
       if (response.status === 403) {
-        showStatus("The security check could not be verified. Please complete it again and resend.", "error");
+        showStatus(tr("The security check could not be verified. Please complete it again and resend.", "La vérification de sécurité n’a pas pu être confirmée. Veuillez la refaire et envoyer de nouveau."), "error");
       } else if (response.status === 400 && serverMessage) {
         showStatus(serverMessage, "error");
       } else {
-        showCallMessage("We could not send your request.");
+        showCallMessage(tr("We could not send your request.", "Nous n’avons pas pu envoyer votre demande."));
       }
     } catch (error) {
       resetTurnstile();
       showCallMessage(
         error && error.name === "AbortError"
-          ? "The request took too long."
-          : "We could not send your request."
+          ? tr("The request took too long.", "La demande a pris trop de temps.")
+          : tr("We could not send your request.", "Nous n’avons pas pu envoyer votre demande.")
       );
     }
 

@@ -78,6 +78,36 @@
   const currentService =
     getCurrentService();
 
+
+  /* ---------------------------------------------------------
+     LANGUAGE (pages under /fr/ use <html lang="fr">)
+     --------------------------------------------------------- */
+
+  const isFrench =
+    (document.documentElement.lang || "")
+      .toLowerCase()
+      .indexOf("fr") === 0;
+
+  const TEXT = isFrench
+    ? {
+        open: "Ouvrir le concierge North Crescent",
+        label: "Discuter avec nous",
+        title: "Concierge North Crescent",
+        status: "Ici pour vous aider",
+        close: "Fermer le concierge",
+        frame: "Concierge de nettoyage North Crescent",
+        page: "/fr/cleaning-concierge.html?"
+      }
+    : {
+        open: "Open North Crescent Concierge",
+        label: "Chat with Us",
+        title: "North Crescent Concierge",
+        status: "Here to help",
+        close: "Close Concierge",
+        frame: "North Crescent Cleaning Concierge",
+        page: "/cleaning-concierge.html?"
+      };
+
   const source =
     window.location.pathname
       .split("/")
@@ -103,7 +133,7 @@
 
   button.setAttribute(
     "aria-label",
-    "Open North Crescent Concierge"
+    TEXT.open
   );
 
   button.setAttribute(
@@ -120,7 +150,7 @@
     </span>
 
     <span class="nc-concierge-widget-label">
-      Chat with Us
+      ${TEXT.label}
     </span>
   `;
 
@@ -168,7 +198,7 @@
           <div>
 
             <h2 id="ncConciergeWidgetTitle">
-              North Crescent Concierge
+              ${TEXT.title}
             </h2>
 
             <span class="nc-concierge-widget-status">
@@ -177,7 +207,7 @@
                 aria-hidden="true"
               ></span>
 
-              Here to help
+              ${TEXT.status}
 
             </span>
 
@@ -189,7 +219,7 @@
         <button
           type="button"
           class="nc-concierge-widget-close"
-          aria-label="Close Concierge"
+          aria-label="${TEXT.close}"
           data-concierge-close
         >
           ×
@@ -202,7 +232,7 @@
 
         <iframe
           id="ncConciergeWidgetFrame"
-          title="North Crescent Cleaning Concierge"
+          title="${TEXT.frame}"
           loading="lazy"
           src="about:blank"
         ></iframe>
@@ -261,7 +291,7 @@
     }
 
     return (
-      "/cleaning-concierge.html?" +
+      TEXT.page +
       params.toString()
     );
   }

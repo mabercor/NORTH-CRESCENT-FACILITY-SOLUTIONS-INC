@@ -69,6 +69,26 @@ window.NORTH_CRESCENT_CONCIERGE = {
 (function() {
   "use strict";
   const CONFIG = window.NORTH_CRESCENT_CONCIERGE;
+  /* Pages under /fr/ use <html lang="fr">; the Concierge itself answers in the visitor's language */
+  const FR = (document.documentElement.lang || "").toLowerCase().indexOf("fr") === 0;
+  const tr = (en, fr) => FR ? fr : en;
+  const SERVICES_FR = {
+    commercial: "Nettoyage commercial",
+    residential: "Nettoyage résidentiel",
+    deep: "Nettoyage en profondeur",
+    moveInOut: "Nettoyage d’emménagement / de déménagement",
+    "move-in-out": "Nettoyage d’emménagement / de déménagement",
+    airbnb: "Nettoyage Airbnb",
+    janitorial: "Services d’entretien ménager",
+    postConstruction: "Nettoyage après construction",
+    "post-construction": "Nettoyage après construction",
+    office: "Nettoyage de bureaux",
+    retail: "Nettoyage de commerces de détail",
+    warehouse: "Nettoyage d’entrepôts",
+    industrial: "Nettoyage industriel",
+    medicalOffice: "Nettoyage de bureaux médicaux",
+    facility: "Services aux installations"
+  };
   if (!CONFIG) {
     console.error(
       "North Crescent Concierge configuration is missing."
@@ -248,6 +268,9 @@ window.NORTH_CRESCENT_CONCIERGE = {
     if (!service) {
       return null;
     }
+    if (FR && SERVICES_FR[service]) {
+      return SERVICES_FR[service];
+    }
     return CONFIG.services[service] || service;
   }
   function updateServiceContextUI() {
@@ -310,14 +333,14 @@ window.NORTH_CRESCENT_CONCIERGE = {
         const email = emailInput.value.trim().toLowerCase();
         if (!email) {
           showEmailError(
-            "Please enter your email address."
+            tr("Please enter your email address.", "Veuillez entrer votre adresse courriel.")
           );
           emailInput.focus();
           return;
         }
         if (!isValidEmail(email)) {
           showEmailError(
-            "Please enter a valid email address."
+            tr("Please enter a valid email address.", "Veuillez entrer une adresse courriel valide.")
           );
           emailInput.focus();
           return;
@@ -396,7 +419,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
   }
   function formatMessageTime() {
     return new Intl.DateTimeFormat(
-      "en-CA",
+      FR ? "fr-CA" : "en-CA",
       {
         hour: "numeric",
         minute: "2-digit"
@@ -532,7 +555,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
     if (!chatError) {
       return;
     }
-    chatErrorText.textContent = message || "Please try again.";
+    chatErrorText.textContent = message || tr("Please try again.", "Veuillez réessayer.");
     chatError.hidden = false;
     scrollMessagesToBottom();
   }
@@ -703,7 +726,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
     }
     if (cleanText.length > CONFIG.concierge.maxMessageLength) {
       showChatError(
-        "Your message is too long. Please keep it under 2,000 characters."
+        tr("Your message is too long. Please keep it under 2,000 characters.", "Votre message est trop long. Veuillez ne pas dépasser 2 000 caractères.")
       );
       return;
     }
@@ -766,7 +789,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
         );
       } else {
         addConciergeMessage(
-          "Thank you. We've received your message. If additional information is needed, we'll help connect you with the North Crescent team."
+          tr("Thank you. We've received your message. If additional information is needed, we'll help connect you with the North Crescent team.", "Merci. Nous avons bien reçu votre message. Si d’autres renseignements sont nécessaires, nous vous mettrons en contact avec l’équipe North Crescent.")
         );
       }
     } catch (error) {
@@ -776,7 +799,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
         error
       );
       showChatError(
-        "We couldn't connect with the Concierge right now. Please try again."
+        tr("We couldn't connect with the Concierge right now. Please try again.", "Impossible de joindre le concierge pour le moment. Veuillez réessayer.")
       );
       trackEvent(
         "concierge_error",
@@ -886,12 +909,12 @@ window.NORTH_CRESCENT_CONCIERGE = {
             return;
           }
           const serviceMessages = {
-            commercial: "I need commercial cleaning services.",
-            residential: "I need residential cleaning services.",
-            airbnb: "I need Airbnb cleaning or turnover service.",
-            janitorial: "I need recurring janitorial or office cleaning.",
-            postConstruction: "I need post-construction cleaning.",
-            general: "I have a question about your cleaning services."
+            commercial: tr("I need commercial cleaning services.", "J’ai besoin de services de nettoyage commercial."),
+            residential: tr("I need residential cleaning services.", "J’ai besoin de services de nettoyage résidentiel."),
+            airbnb: tr("I need Airbnb cleaning or turnover service.", "J’ai besoin d’un nettoyage Airbnb ou d’une remise en état entre séjours."),
+            janitorial: tr("I need recurring janitorial or office cleaning.", "J’ai besoin d’entretien ménager récurrent ou de nettoyage de bureaux."),
+            postConstruction: tr("I need post-construction cleaning.", "J’ai besoin d’un nettoyage après construction."),
+            general: tr("I have a question about your cleaning services.", "J’ai une question sur vos services de nettoyage.")
           };
           const message = serviceMessages[service] || "";
           state.service = service;
@@ -947,7 +970,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
       "click",
       function() {
         const confirmed = window.confirm(
-          "Start a new conversation? Your current conversation on this device will be cleared."
+          tr("Start a new conversation? Your current conversation on this device will be cleared.", "Commencer une nouvelle conversation? La conversation en cours sur cet appareil sera effacée.")
         );
         if (!confirmed) {
           return;
@@ -998,7 +1021,7 @@ window.NORTH_CRESCENT_CONCIERGE = {
         )) {
           fileInput.value = "";
           showChatError(
-            "Please select a JPG, PNG, WEBP or HEIC image."
+            tr("Please select a JPG, PNG, WEBP or HEIC image.", "Veuillez choisir une image JPG, PNG, WEBP ou HEIC.")
           );
           return;
         }

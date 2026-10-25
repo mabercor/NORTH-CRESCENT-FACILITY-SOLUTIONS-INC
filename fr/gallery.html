@@ -1,33 +1,36 @@
 <!DOCTYPE html>     
-<html lang="fr">
+<html lang="fr-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Galerie de nettoyage à Moncton, Dieppe et Riverview | NORTH CRESCENT FACILITY SOLUTIONS INC</title>
+<title>Galerie de nos services de nettoyage à Moncton, Dieppe et Riverview | North Crescent Facility Solutions Inc</title>
+<meta name="description" content="Parcourez de vrais résultats de projets de nettoyage résidentiel, commercial et en profondeur à Moncton, Dieppe et Riverview. Voyez la différence.">
 
-<meta name="description" content="Découvrez des résultats réels de nettoyage résidentiel, commercial et en profondeur à Moncton, Dieppe et Riverview. Voyez la différence.">
-
-<!-- ===== SEO PRO ===== -->
-
-<link rel="canonical" href="https://www.northcrescentcleaning.com/fr/gallery.html">
+<!-- SEO -->
+<link rel="canonical" href="https://northcrescentcleaning.com/fr/gallery.html">
+<link rel="alternate" hreflang="en-CA" href="https://northcrescentcleaning.com/gallery.html">
+<link rel="alternate" hreflang="fr-CA" href="https://northcrescentcleaning.com/fr/gallery.html">
+<link rel="alternate" hreflang="x-default" href="https://northcrescentcleaning.com/gallery.html">
 <meta name="robots" content="index, follow">
 
-<!-- HREFLANG -->
-<link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/gallery.html">
-<link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/gallery.html">
+<!-- GEO (AGREGADO) -->
+<meta name="geo.region" content="CA-NB">
+<meta name="geo.placename" content="Moncton">
 
+<!-- HREFLANG (CRÍTICO PARA MULTI-IDIOMA) -->
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Galerie de résultats de nettoyage | North Crescent Facility Solutions Inc">
-<meta property="og:description" content="Découvrez des transformations réelles de nettoyage à Moncton, Dieppe et Riverview. Des résultats professionnels sur lesquels vous pouvez compter.">
-<meta property="og:url" content="https://www.northcrescentcleaning.com/fr/gallery.html">
+<meta property="og:title" content="Galerie de résultats | North Crescent Facility Solutions Inc">
+<meta property="og:description" content="Découvrez de vraies transformations à Moncton, Dieppe et Riverview. Des résultats professionnels en qui vous pouvez avoir confiance.">
+<meta property="og:url" content="https://northcrescentcleaning.com/fr/gallery.html">
+<meta property="og:locale" content="fr_CA">
 <meta property="og:image" content="https://www.northcrescentcleaning.com/images/hero-company-cleaning.jpg">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="North Crescent Facility Solutions Inc">
-<meta name="twitter:description" content="Découvrez nos résultats et transformations en nettoyage.">
+<meta name="twitter:description" content="Découvrez nos résultats et nos transformations.">
 <meta name="twitter:image" content="https://www.northcrescentcleaning.com/images/hero-company-cleaning.jpg">
 
 <!-- Schema -->
@@ -51,7 +54,7 @@
     "Riverview",
     "Shediac"
   ],
-  "description": "Services professionnels de nettoyage résidentiel et commercial avec des résultats visibles et de haute qualité."
+  "description": "Services professionnels de nettoyage résidentiel et commercial aux résultats visibles et de grande qualité."
 }
 </script>
 
@@ -66,16 +69,19 @@ gtag('config', 'G-48W5J5N037');
 
 <!-- Fonts & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<!-- CONCIERGE WIDGET CSS -->
+<link rel="stylesheet" href="/concierge-widget.css">
 
-<!-- FAVICON -->
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<!-- NORTH CRESCENT DESIGN SYSTEM -->
+<link rel="stylesheet" href="/styles/design-system.css">
+
+<!-- FAVICON (UNIFICADO) -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 </head>
-
 <body data-page="gallery">
 
 <div class="menu-overlay"></div>
@@ -85,8 +91,8 @@ gtag('config', 'G-48W5J5N037');
   <div class="container header-inner">
 
     <div class="logo-container">
-      <a href="/fr/index.html">
-        <img src="/images/logo.jpg" alt="Services de nettoyage professionnels North Crescent à Moncton NB" loading="lazy">
+      <a href="/fr/">
+        <img src="/images/logo.webp" alt="North Crescent Facility Solutions — services de nettoyage à Moncton (N.-B.)" width="70" height="70" decoding="async">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -95,65 +101,307 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="nav-wrapper">
 
-      <div class="hamburger" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="hamburger" id="menu-toggle" role="button" aria-label="Ouvrir le menu" tabindex="0">
+        <span></span><span></span><span></span>
       </div>
 
       <nav id="nav-menu">
-        <a href="/fr/index.html">Accueil</a>
-        <a href="/fr/services.html">Services</a>
+        <a href="/fr/">Accueil</a>
+        <div class="dropdown">
+          <a href="/fr/services.html" class="menu-link">
+            Services <span class="arrow">▾</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/fr/commercial-cleaning-moncton.html">Nettoyage commercial</a>
+            <a href="/fr/residential-cleaning-moncton.html">Nettoyage résidentiel</a>
+            <a href="/fr/office-cleaning-moncton.html">Nettoyage de bureaux</a>
+            <a href="/fr/airbnb-cleaning-moncton.html">Nettoyage Airbnb</a>
+            <a href="/fr/deep-cleaning-moncton.html">Nettoyage en profondeur</a>
+            <a href="/fr/janitorial-cleaning-moncton.html">Services d’entretien ménager</a>
+            <a href="/fr/post-construction-cleaning-moncton.html">Nettoyage après construction</a>
+            <a href="/fr/snow-removal-moncton.html">Déneigement saisonnier</a>
+          </div>
+        </div>
+        <a href="/fr/cleaning-concierge.html" class="concierge-nav-link">
+          <span class="concierge-nav-icon" aria-hidden="true">💬</span>
+          <span>Concierge</span>
+        </a>
+        <a href="/fr/cleaning-booking-moncton.html" class="booking-nav-link">
+          <span class="booking-nav-icon" aria-hidden="true">📅</span>
+          <span>Réservation</span>
+        </a>
         <a href="/fr/process.html">Processus</a>
         <a href="/fr/reviews.html">Avis</a>
-        <a href="/fr/work.html">Nos réalisations</a>
-        <a href="/fr/gallery.html" class="active">Galerie</a>
-        <a href="/fr/contact.html" class="btn btn-primary">Contactez-nous</a>
+        <a href="/fr/work.html">Réalisations</a>
+        <a href="/fr/gallery.html" class="active" aria-current="page">Galerie</a>
+        <a href="/fr/contact.html" class="btn btn-primary">Nous joindre</a>
       </nav>
 
       <div class="lang-switch">
-        <a href="/gallery.html">EN</a>
-        <a href="/fr/gallery.html">FR</a>
+        <a href="/gallery.html" lang="en" hreflang="en">EN</a>
+        <a href="/fr/gallery.html" lang="fr" hreflang="fr" aria-current="true">FR</a>
       </div>
 
     </div>
-
   </div>
 </header>
-
+  
 <main>
 
+
+<!-- HERO -->
 <section class="hero">
-  <div class="container hero-content">
+  <div class="container hero-grid">
 
-    <div class="badge">Galerie</div>
+    <div class="hero-text">
+      <div class="badge">
+ Galerie de nettoyage professionnel
+</div>
+   <h1>
+Résultats de nettoyage à Moncton, Dieppe et Riverview
+</h1>
+     <p class="hero-sub">
+De vraies transformations de projets de nettoyage résidentiel, commercial et en profondeur.</p>
 
-    <h1>Résultats de nettoyage à Moncton, Dieppe et Riverview</h1>
+      <p style="font-size:15px; color:#FFFFFF;">
+       ✔ Formation SIMDUT • ✔ Normes PCI • ✔ Contrôle de la qualité • ✔ Résultats constants
+      </p>
 
-    <p class="hero-sub">
-      Transformations réelles issues de projets de nettoyage résidentiel, commercial et en profondeur.
-    </p>
+      <div class="btn-group">
+        <a href="/fr/contact.html" class="btn btn-primary">🚀 Soumission instantanée</a>
+        <a href="/fr/contact.html" class="btn btn-dark">📅 Réserver maintenant</a>
+      </div>
 
-    <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="/fr/contact.html" class="btn btn-primary">Obtenir un devis rapide</a>
-      <a href="/fr/contact.html" class="btn btn-dark">Réserver maintenant</a>
+      <p style="font-size:13px; color:#4A9B8C; font-weight:600;">
+        ⚡ Soumission en quelques minutes • 📅 Rendez-vous en moins de 24 heures • ✨ Service de qualité • 💰 Prix justes
+      </p>
     </div>
 
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-      Disponibilité le jour même • Places limitées cette semaine
-    </p>
+   
+  <!-- =========================================================
+     HERO IMAGE CAROUSEL — NORTH CRESCENT
+     10 IMAGES | AIRBNB AS MAIN IMAGE
+========================================================= -->
 
+<div class="hero-image hero-carousel" id="hero-carousel">
+
+    <div class="hero-carousel-track">
+
+        <!-- SLIDE 1: AIRBNB CLEANING — MAIN IMAGE -->
+        <div class="hero-slide is-active">
+            <img
+                src="/images/airbnb-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage Airbnb à Moncton (Nouveau-Brunswick)"
+                width="960"
+                height="640"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 2: MAIN COMPANY IMAGE -->
+        <div class="hero-slide">
+            <img
+                src="/images/hero-company-cleaning.webp"
+                alt="Équipe de nettoyage professionnelle au service de Moncton (Nouveau-Brunswick)"
+                width="1060"
+                height="707"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 3: COMMERCIAL CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/commercial-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage commercial à Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 4: RESIDENTIAL CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/residential-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage résidentiel à Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 5: DEEP CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/deep-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage en profondeur minutieux"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 6: OFFICE CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/office-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage de bureaux à Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 7: JANITORIAL CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/janitorial-cleaning-moncton-960.webp"
+                alt="Services professionnels d’entretien ménager à Moncton (Nouveau-Brunswick)"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 8: POST-CONSTRUCTION CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/post-construction-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage après construction à Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 9: SNOW REMOVAL -->
+        <div class="hero-slide">
+            <img
+                src="/images/snow-removal-service-960.webp"
+                alt="Services professionnels de déneigement saisonnier à Moncton (Nouveau-Brunswick)"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 10: MOVE-IN / MOVE-OUT CLEANING -->
+        <div class="hero-slide">
+            <img
+                src="/images/move-cleaning-moncton-960.webp"
+                alt="Services professionnels de nettoyage d’emménagement et de déménagement à Moncton"
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async">
+        </div>
+
+    </div>
+
+    <!-- PREVIOUS / NEXT CONTROLS -->
+    <button
+        class="hero-carousel-arrow hero-carousel-prev"
+        type="button"
+        aria-label="Image précédente">
+        &#10094;
+    </button>
+
+    <button
+        class="hero-carousel-arrow hero-carousel-next"
+        type="button"
+        aria-label="Image suivante">
+        &#10095;
+    </button>
+
+    <!-- SLIDE INDICATORS -->
+    <div class="hero-carousel-dots" aria-label="Choisir une image">
+
+        <button
+            type="button"
+            class="hero-carousel-dot is-active"
+            aria-label="Afficher l’image 1"
+            aria-current="true">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 2">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 3">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 4">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 5">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 6">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 7">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 8">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 9">
+        </button>
+
+        <button
+            type="button"
+            class="hero-carousel-dot"
+            aria-label="Afficher l’image 10">
+        </button>
+
+    </div>
+
+</div>
+
+<!-- END HERO IMAGE CAROUSEL -->
   </div>
 </section>
 
+
+
+
+
+
+
+    
+
+  
 <section>
   <div class="container">
 
     <div class="section-box">
 
-      <h2 class="section-title">Nos réalisations en action</h2>
+      <h2 class="section-title">Notre travail en action</h2>
       <div class="divider"></div>
 
       <p class="text-box">
@@ -165,44 +413,226 @@ gtag('config', 'G-48W5J5N037');
         <div class="card">
           <div class="badge">Déneigement</div>
           <div class="image-frame">
-            <img src="/images/snow-removal.jpg" alt="Service de déneigement à Moncton Dieppe Riverview NB" loading="lazy">
+            <img src="/images/snow-removal.jpg" alt="Services de déneigement à Moncton, Dieppe et Riverview (N.-B.)" loading="lazy">
           </div>
         </div>
 
         <div class="card">
           <div class="badge">Nettoyage de bureaux</div>
           <div class="image-frame">
-            <img src="/images/office-cleaning.jpg" alt="Services de nettoyage de bureaux Moncton Dieppe Riverview" loading="lazy">
+            <img src="/images/office-cleaning.jpg" alt="Services de nettoyage de bureaux à Moncton, Dieppe et Riverview" loading="lazy">
           </div>
         </div>
 
         <div class="card">
           <div class="badge">Espace commercial</div>
           <div class="image-frame">
-            <img src="/images/mall-cleaning.jpg" alt="Services de nettoyage commercial Moncton NB centre commercial" loading="lazy">
+            <img src="/images/mall-cleaning.jpg" alt="Services de nettoyage commercial à Moncton (N.-B.), y compris le nettoyage de centres commerciaux" loading="lazy">
           </div>
         </div>
 
         <div class="card">
           <div class="badge">Équipe professionnelle</div>
           <div class="image-frame">
-            <img src="/images/hero-company-cleaning.jpg" alt="Équipe de nettoyage professionnelle à Moncton NB en action" loading="lazy">
+            <img src="/images/hero-company-cleaning.jpg" alt="Équipe de nettoyage professionnelle au travail à Moncton (N.-B.)" loading="lazy">
           </div>
         </div>
 
         <div class="card">
           <div class="badge">Nettoyage d’écoles</div>
           <div class="image-frame">
-            <img src="/images/school-cleaning-moncton.jpg" alt="Services de nettoyage d’écoles Moncton Dieppe Riverview NB" loading="lazy">
+            <img src="/images/school-cleaning-moncton.jpg" alt="Services de nettoyage d’écoles à Moncton, Dieppe et Riverview (N.-B.)" loading="lazy">
           </div>
         </div>
 
         <div class="card">
           <div class="badge">Après construction</div>
           <div class="image-frame">
-            <img src="/images/postconstruction-cleaning-nb.jpg" alt="Nettoyage après construction Moncton Dieppe Riverview Nouveau-Brunswick" loading="lazy">
+            <img src="/images/postconstruction-cleaning-nb.jpg" alt="Services de nettoyage après construction à Moncton, Dieppe et Riverview (N.-B.)" loading="lazy">
           </div>
         </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+   <!-- SERVICE AREAS -->
+<section>
+
+  <div class="container">
+
+    <div class="section-box">
+
+      <h2>Nos secteurs desservis dans le Grand Moncton (N.-B.)</h2>
+
+      <div class="divider"></div>
+
+      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
+        North Crescent Facility Solutions est fière d’offrir des services professionnels de nettoyage de bureaux partout dans le Grand Moncton et le sud-est du Nouveau-Brunswick. Nos programmes structurés aident les entreprises à garder des milieux de travail plus sains, plus propres et plus productifs, avec une qualité constante et un soutien opérationnel fiable.
+      </p>
+
+      <div class="grid grid-3">
+
+        <div class="card">
+          <h3>📍 Moncton</h3>
+          <p>
+            Des programmes de nettoyage de bureaux professionnels pour les bureaux corporatifs, les immeubles commerciaux et les entreprises en croissance de Moncton.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Dieppe</h3>
+          <p>
+            Des services fiables de nettoyage de bureaux qui aident les entreprises à garder des milieux de travail propres, organisés et productifs.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Riverview</h3>
+          <p>
+            Des horaires de nettoyage de bureaux sur mesure, adaptés à vos activités, à vos employés et aux exigences de votre installation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Shediac</h3>
+          <p>
+            Des solutions professionnelles de nettoyage de bureaux pour les entreprises locales, les bureaux commerciaux et les installations administratives.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Salisbury et Memramcook</h3>
+          <p>
+            Des services flexibles de nettoyage de bureaux commerciaux offerts aux communautés voisines selon les besoins opérationnels.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Sud-est du Nouveau-Brunswick</h3>
+          <p>
+            Nous soutenons aussi les entreprises du sud-est du Nouveau-Brunswick avec des programmes de nettoyage de bureaux sur mesure et des solutions de soutien opérationnel.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- RELATED SERVICES -->
+ <section>
+  <div class="container">
+
+    <div class="section-box" style="text-align:center;">
+
+      <h2>Découvrez nos services de nettoyage spécialisés</h2>
+
+      <div class="divider"></div>
+
+      <p style="max-width:900px; margin:0 auto 35px;">
+        Chaque propriété a des besoins de nettoyage uniques. Découvrez nos solutions de nettoyage spécialisées pour les entreprises, les bureaux, les propriétés résidentielles, les locations Airbnb et les projets après construction à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et partout dans le sud-est du Nouveau-Brunswick.
+      </p>
+
+      <div class="service-links-grid related-services-grid">
+
+        <a href="/fr/commercial-cleaning-moncton.html">
+
+          🏢
+
+          <strong>Nettoyage commercial</strong>
+
+          <small>Nettoyage professionnel pour entreprises</small>
+
+        </a>
+
+
+       <a href="/fr/residential-cleaning-moncton.html">
+
+          🏡
+
+          <strong>Nettoyage résidentiel</strong>
+
+          <small>Nettoyage résidentiel professionnel</small>
+
+        </a>
+       
+
+        <a href="/fr/janitorial-cleaning-moncton.html">
+
+          🧹
+
+          <strong>Services d’entretien ménager</strong>
+
+          <small>Entretien récurrent des installations</small>
+
+        </a>
+
+        <a href="/fr/deep-cleaning-moncton.html">
+
+          ✨
+
+          <strong>Nettoyage en profondeur</strong>
+
+          <small>Solutions de nettoyage minutieux</small>
+
+        </a>
+
+        <a href="/fr/post-construction-cleaning-moncton.html">
+
+          🏗️
+
+          <strong>Nettoyage après construction</strong>
+
+          <small>Nettoyage final et préparation</small>
+
+        </a>
+
+        <a href="/fr/airbnb-cleaning-moncton.html">
+
+          🏡
+
+          <strong>Nettoyage Airbnb</strong>
+
+          <small>Remise en état entre deux séjours</small>
+
+        </a>
+
+       <a href="/fr/office-cleaning-moncton.html">
+
+          🏢
+
+          <strong>Nettoyage de bureaux</strong>
+
+          <small>Nettoyage de bureaux professionnel</small>
+
+        </a>
+       <a href="/fr/snow-removal-moncton.html">
+
+  ❄️
+
+  <strong>Déneigement saisonnier</strong>
+
+  <small>Services professionnels d’accès hivernal</small>
+
+</a>
+
+        <a href="/fr/services.html">
+
+          ➜
+
+          <strong>Voir tous les services</strong>
+
+          <small>Solutions de nettoyage complètes</small>
+
+        </a>
+       
 
       </div>
 
@@ -216,7 +646,7 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="section-box" style="text-align:center;">
 
-      <h2>Prêt à obtenir les mêmes résultats ?</h2>
+      <h2>Prêt à obtenir les mêmes résultats?</h2>
       <div class="divider"></div>
 
       <p class="text-box">
@@ -224,7 +654,7 @@ gtag('config', 'G-48W5J5N037');
       </p>
 
       <div class="btn-group" style="margin-top:15px;">
-        <a href="/fr/contact.html" class="btn btn-primary">Obtenir un devis rapide</a>
+        <a href="/fr/contact.html" class="btn btn-primary">Soumission instantanée</a>
         <a href="/fr/contact.html" class="btn btn-dark">Réserver maintenant</a>
       </div>
 
@@ -238,11 +668,11 @@ gtag('config', 'G-48W5J5N037');
   <div class="container">
     <div class="section-box">
 
-      <h2>Galerie de services de nettoyage professionnels à Moncton et dans les environs</h2>
+      <h2>Galerie de nos services de nettoyage professionnels à Moncton et dans les environs</h2>
       <div class="divider"></div>
 
       <p class="text-box">
-        Découvrez des résultats réels de North Crescent Facility Solutions Inc. Nous offrons des services de nettoyage résidentiel, commercial, en profondeur et après construction à Moncton, Dieppe, Riverview et les environs. Notre galerie met en valeur le niveau de détail, de professionnalisme et de qualité qui définit notre travail.
+        Découvrez de vrais résultats de North Crescent Facility Solutions Inc. Nous offrons des services de nettoyage résidentiel, commercial, en profondeur et après construction à Moncton, Dieppe, Riverview et dans les environs. Notre galerie montre le niveau de détail, de professionnalisme et de qualité qui définit notre travail.
       </p>
 
     </div>
@@ -266,57 +696,91 @@ gtag('config', 'G-48W5J5N037');
 </main>
 
 <div class="float-container">
-  <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
-  <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
-  <a href="/fr/contact.html" class="float-btn float-primary">+</a>
+  <a href="tel:+14288880542" class="float-btn float-dark">☎</a>
+  <a href="sms:+14288880542" class="float-btn float-whatsapp">💬</a>
+  <a href="/fr/contact.html" class="float-btn float-primary">✉️</a>
 </div>
 
-<footer style="background:#0F172A; color:#CBD5F5; padding:20px 0 12px; font-family:sans-serif;">
+<!-- PREMIUM FOOTER -->
+<footer class="nc-footer">
 
-  <div style="max-width:1100px; margin:auto; padding:0 20px;">
+    <div class="nc-footer-container">
 
-    <!-- TOP ROW -->
-    <div class="top-row" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+        <!-- MAIN FOOTER -->
+        <div class="nc-footer-main">
 
-      <!-- BRAND -->
-      <div style="font-size:13px; color:#ffffff;">
-        North Crescent Facility Solutions Inc
-      </div>
+            <!-- BRAND -->
+            <div class="nc-footer-brand">
+                <a href="/fr/" class="nc-footer-brand-name">
+                    North Crescent
+                </a>
 
-      <!-- NAV -->
-      <div class="nav" style="display:flex; gap:18px; font-size:12px;">
-        <a href="services.html" style="color:#CBD5F5; text-decoration:none;">Services</a>
-        <a href="process.html" style="color:#CBD5F5; text-decoration:none;">Processus</a>
-        <a href="reviews.html" style="color:#CBD5F5; text-decoration:none;">Avis</a>
-        <a href="contact.html" style="color:#CBD5F5; text-decoration:none;">Contact</a>
-      </div>
+                <span class="nc-footer-brand-subtitle">
+                    FACILITY SOLUTIONS INC.
+                </span>
 
-      <!-- CONTACT -->
-      <div class="contact" style="font-size:12px; text-align:right;">
-        <a href="tel:+14288880542" style="color:#CBD5F5; text-decoration:none;">+1 (428) 888-0542</a><br>
-        <a href="mailto:info@northcrescentcleaning.com" style="color:#CBD5F5; text-decoration:none;">info@northcrescentcleaning.com</a>
-      </div>
+                <p>
+                    Solutions professionnelles de nettoyage et de soutien aux installations partout dans le sud-est du Nouveau-Brunswick.
+                </p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="nc-footer-navigation">
+                <h3>Explorer</h3>
+
+                <a href="/fr/services.html">Services</a>
+                <a href="/fr/process.html">Notre processus</a>
+                <a href="/fr/reviews.html">Avis de clients</a>
+                <a href="/fr/work.html">Nos réalisations</a>
+                <a href="/fr/gallery.html">Galerie</a>
+                <a href="/fr/cleaning-concierge.html">Concierge 💬</a>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="nc-footer-contact">
+                <h3>Nous joindre</h3>
+
+                <a href="tel:+14288880542">
+                    <span class="nc-footer-contact-icon">☎</span>
+                    +1 (428) 888-0542
+                </a>
+
+                <a href="mailto:info@northcrescentcleaning.com">
+                    <span class="nc-footer-contact-icon">✉</span>
+                    info@northcrescentcleaning.com
+                </a>
+
+                <a href="/fr/contact.html" class="nc-footer-cta">
+                    Contactez notre équipe <span>→</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="nc-footer-divider"></div>
+
+        <!-- BOTTOM FOOTER -->
+        <div class="nc-footer-bottom">
+
+            <p>
+                © 2026 North Crescent Facility Solutions Inc.
+                <span>Moncton, Nouveau-Brunswick, Canada</span>
+            </p>
+
+            <div class="nc-footer-legal">
+                <a href="/fr/privacy.html">Politique de confidentialité</a>
+                <a href="/fr/terms.html">Conditions générales</a>
+            </div>
+
+        </div>
+
+        <!-- BRAND TAGLINE -->
+        <div class="nc-footer-tagline">
+            Nous prenons soin de vos espaces pour que vous puissiez vous concentrer sur votre réussite et votre bien-être.
+        </div>
 
     </div>
-
-    <!-- DIVIDER -->
-    <div style="border-top:1px solid #1E293B; margin:15px 0;"></div>
-
-    <!-- BOTTOM ROW -->
-    <div class="bottom-row" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; font-size:11px; color:#94A3B8; gap:10px;">
-
-      <div>
-        © 2026 North Crescent Facility Solutions Inc • Moncton, N.-B.
-      </div>
-
-      <div class="bottom-links" style="display:flex; gap:12px;">
-        <a href="privacy.html" style="color:#94A3B8; text-decoration:none;">Confidentialité</a>
-        <a href="terms.html" style="color:#94A3B8; text-decoration:none;">Conditions</a>
-      </div>
-
-    </div>
-
-  </div>
 
 </footer>
 
@@ -325,7 +789,9 @@ window.addEventListener("scroll", () => {
   const scrollTop = document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const progress = (scrollTop / height) * 100;
-  document.querySelector(".progress-bar").style.width = progress + "%";
+
+  const bar = document.querySelector(".progress-bar");
+  if (bar) bar.style.width = progress + "%"; // ✅ evita errores si no existe
 });
 </script>
 
@@ -345,25 +811,193 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("menu-open");
   });
 
-  overlay.addEventListener("click", () => {
+  overlay.addEventListener("click", closeMenu);
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  function closeMenu() {
     toggle.classList.remove("active");
     nav.classList.remove("active");
     overlay.classList.remove("active");
     document.body.classList.remove("menu-open");
-  });
-
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-      toggle.classList.remove("active");
-      nav.classList.remove("active");
-      overlay.classList.remove("active");
-      document.body.classList.remove("menu-open");
-    });
-  });
+  }
 
 });
 </script>
 
+    <!-- HERO CAROUSEL SCRIPT -->
+<script>
+(() => {
+    const carousel = document.getElementById("hero-carousel");
 
+    if (!carousel || carousel.dataset.initialized === "true") {
+        return;
+    }
+
+    carousel.dataset.initialized = "true";
+
+    const slides = Array.from(
+        carousel.querySelectorAll(".hero-slide")
+    );
+
+    const dots = Array.from(
+        carousel.querySelectorAll(".hero-carousel-dot")
+    );
+
+    const previousButton = carousel.querySelector(
+        ".hero-carousel-prev"
+    );
+
+    const nextButton = carousel.querySelector(
+        ".hero-carousel-next"
+    );
+
+    if (slides.length < 2 || dots.length !== slides.length) {
+        return;
+    }
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    let currentIndex = slides.findIndex(
+        slide => slide.classList.contains("is-active")
+    );
+
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    }
+
+    let timer = null;
+    let touchStartX = 0;
+
+    function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            const active = i === currentIndex;
+
+            slide.classList.toggle("is-active", active);
+
+            if (active) {
+                slide.setAttribute("aria-current", "true");
+            } else {
+                slide.removeAttribute("aria-current");
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            const active = i === currentIndex;
+
+            dot.classList.toggle("is-active", active);
+
+            if (active) {
+                dot.setAttribute("aria-current", "true");
+            } else {
+                dot.removeAttribute("aria-current");
+            }
+        });
+    }
+
+    function stopAutoplay() {
+        if (timer !== null) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+
+        if (
+            reducedMotion.matches ||
+            document.hidden ||
+            carousel.matches(":hover") ||
+            carousel.contains(document.activeElement)
+        ) {
+            return;
+        }
+
+        timer = window.setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+    }
+
+    function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    previousButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+        restartAutoplay();
+    });
+
+    nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+        restartAutoplay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            restartAutoplay();
+        });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+    carousel.addEventListener("focusin", stopAutoplay);
+
+    carousel.addEventListener("focusout", event => {
+        if (!carousel.contains(event.relatedTarget)) {
+            startAutoplay();
+        }
+    });
+
+    carousel.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", event => {
+        const touchEndX = event.changedTouches[0].clientX;
+        const difference = touchEndX - touchStartX;
+
+        if (Math.abs(difference) < 50) {
+            return;
+        }
+
+        showSlide(
+            difference < 0
+                ? currentIndex + 1
+                : currentIndex - 1
+        );
+
+        restartAutoplay();
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    if (typeof reducedMotion.addEventListener === "function") {
+        reducedMotion.addEventListener("change", restartAutoplay);
+    }
+
+    showSlide(currentIndex);
+    startAutoplay();
+})();
+</script>
+<!-- END HERO CAROUSEL SCRIPT -->
+  
+<script src="/concierge/concierge-widget.js" defer></script>
+  
 </body>
 </html>
