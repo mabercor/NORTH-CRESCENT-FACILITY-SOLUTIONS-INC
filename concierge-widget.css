@@ -835,3 +835,217 @@ body.menu-open .nc-peek{
   }
 
 }
+
+
+/* =========================================================
+   FORM MASCOT (contact/contact-mascot.js)
+   The mascot rises from the top edge of a form field or of the
+   submit button, encourages the visitor, then sinks back down.
+   ========================================================= */
+
+.nc-fp{
+  --nc-fp-w:120px;
+  position:absolute;
+  inset:0 0 auto 0;
+  height:0;
+  z-index:3;
+  pointer-events:none;
+  font-family:Poppins,Arial,Helvetica,sans-serif;
+}
+
+/* Zero-height spot on the submit button's top edge (it has a 22px top margin) */
+.nc-fp-anchor{
+  position:relative;
+  top:22px;
+  height:0;
+}
+
+/* Window above the edge: anything below the edge is clipped, so he
+   seems to come up from behind the field. */
+.nc-fp-stage{
+  position:absolute;
+  right:14px;
+  bottom:0;
+  width:var(--nc-fp-w);
+  height:calc(var(--nc-fp-w) * 386 / 420 * .9 + 10px);
+  overflow:hidden;
+}
+
+.nc-fp-figure{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:calc(var(--nc-fp-w) * 386 / 420 * -.12); /* waist stays behind the edge */
+  aspect-ratio:420 / 386;
+  transform:translateY(calc(100% + 20px));
+  cursor:pointer;
+  transition:transform .4s cubic-bezier(.55,0,.75,.2);
+}
+
+.nc-fp.is-out .nc-fp-figure{
+  transform:none;
+  pointer-events:auto;
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1);
+}
+
+.nc-fp-bob{
+  position:absolute;
+  inset:0;
+}
+
+.nc-fp.is-out .nc-fp-bob{
+  animation:ncPeekBob 2.6s ease-in-out .7s infinite;
+}
+
+.nc-fp-layer{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.nc-fp-hand{
+  transform-origin:16.9% 84.4%;
+}
+
+.nc-fp.is-waving .nc-fp-hand{
+  animation:ncPeekWave 1.6s ease-in-out 1;
+}
+
+.nc-fp-bubble{
+  position:absolute;
+  right:calc(14px + var(--nc-fp-w) - 8px);
+  bottom:28px;
+  width:max-content;
+  max-width:240px;
+  padding:11px 14px;
+  border:2px solid #4A9B8C;
+  border-radius:18px;
+  background:#fff;
+  color:#1E3A5F;
+  box-shadow:0 12px 28px rgba(20,42,69,.16);
+  font-size:.86rem;
+  font-weight:600;
+  line-height:1.35;
+  text-align:left;
+  cursor:pointer;
+  opacity:0;
+  transform:translateX(12px) scale(.85);
+  transform-origin:100% 70%;
+  transition:opacity .2s ease,transform .25s ease;
+}
+
+.nc-fp-bubble::after{
+  content:"";
+  position:absolute;
+  bottom:16px;
+  right:-8px;
+  width:12px;
+  height:12px;
+  background:#fff;
+  border-top:2px solid #4A9B8C;
+  border-right:2px solid #4A9B8C;
+  transform:rotate(45deg);
+}
+
+.nc-fp.is-typing .nc-fp-bubble,
+.nc-fp.is-talking .nc-fp-bubble{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+  transition:opacity .2s ease,transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+
+.nc-fp-text{
+  display:block;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+
+.nc-fp.is-talking .nc-fp-text{
+  opacity:1;
+}
+
+.nc-fp-dots{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+
+.nc-fp.is-typing .nc-fp-dots{
+  opacity:1;
+}
+
+.nc-fp-dots i{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#1E3A5F;
+  animation:ncPeekDot 1s ease-in-out infinite;
+}
+
+.nc-fp-dots i:nth-child(2){ animation-delay:.15s; }
+.nc-fp-dots i:nth-child(3){ animation-delay:.3s; }
+
+.nc-fp-close{
+  position:absolute;
+  top:-9px;
+  left:-9px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  padding:0;
+  border:1px solid #DDE6EC;
+  border-radius:50%;
+  background:#fff;
+  color:#718096;
+  box-shadow:0 3px 8px rgba(20,42,69,.15);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.95rem;
+  line-height:1;
+  cursor:pointer;
+}
+
+.nc-fp-close:hover{
+  color:#1E3A5F;
+}
+
+@media (max-width:600px){
+
+  .nc-fp{
+    --nc-fp-w:96px;
+  }
+
+  .nc-fp-stage{
+    right:8px;
+  }
+
+  .nc-fp-bubble{
+    right:calc(8px + var(--nc-fp-w) - 8px);
+    bottom:20px;
+    max-width:190px;
+    padding:9px 12px;
+    font-size:.8rem;
+  }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  .nc-fp{
+    display:none;
+  }
+
+}
