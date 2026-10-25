@@ -1,31 +1,34 @@
-<!DOCTYPE html>     
-<html lang="fr">
+<!DOCTYPE html>    
+<html lang="fr-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Nos réalisations | North Crescent Facility Solutions Inc</title>
+<meta name="description" content="Découvrez de vrais résultats de nettoyage avant et après. Des services de nettoyage professionnels, minutieux et fiables à Moncton (N.-B.).">
 
-<meta name="description" content="Découvrez des résultats réels avant et après nettoyage. Services professionnels, détaillés et fiables à Moncton, NB.">
-
-<link rel="canonical" href="https://www.northcrescentcleaning.com/fr/work.html">
+<link rel="canonical" href="https://northcrescentcleaning.com/fr/work.html">
+<link rel="alternate" hreflang="en-CA" href="https://northcrescentcleaning.com/work.html">
+<link rel="alternate" hreflang="fr-CA" href="https://northcrescentcleaning.com/fr/work.html">
+<link rel="alternate" hreflang="x-default" href="https://northcrescentcleaning.com/work.html">
 <meta name="robots" content="index, follow">
 
-<!-- HREFLANG -->
-<link rel="alternate" hreflang="en" href="https://www.northcrescentcleaning.com/work.html">
-<link rel="alternate" hreflang="fr" href="https://www.northcrescentcleaning.com/fr/work.html">
+<!-- GEO (SEO LOCAL) -->
+<meta name="geo.region" content="CA-NB">
+<meta name="geo.placename" content="Moncton">
 
 <!-- OPEN GRAPH -->
-<meta property="og:title" content="Nos réalisations | North Crescent Facility Solutions">
-<meta property="og:description" content="Découvrez des transformations réelles avant et après nettoyage à Moncton, NB.">
+<meta property="og:title" content="Nos réalisations | North Crescent Facility Solutions Inc">
+<meta property="og:description" content="De vrais résultats de nettoyage avant et après. Des services de nettoyage professionnels et minutieux à Moncton (N.-B.).">
 <meta property="og:image" content="https://www.northcrescentcleaning.com/images/logo.jpg">
-<meta property="og:url" content="https://www.northcrescentcleaning.com/fr/work.html">
+<meta property="og:url" content="https://northcrescentcleaning.com/fr/work.html">
+<meta property="og:locale" content="fr_CA">
 <meta property="og:type" content="website">
 
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nos réalisations | North Crescent">
-<meta name="twitter:description" content="Découvrez des transformations réelles réalisées par notre équipe professionnelle.">
+<meta name="twitter:title" content="North Crescent Facility Solutions Inc">
+<meta name="twitter:description" content="Découvrez de vraies transformations réalisées par notre équipe professionnelle.">
 <meta name="twitter:image" content="https://www.northcrescentcleaning.com/images/logo.jpg">
 
 <!-- GOOGLE ANALYTICS -->
@@ -45,7 +48,7 @@ gtag('config', 'G-48W5J5N037');
  "name": "North Crescent Facility Solutions Inc",
  "image": "https://www.northcrescentcleaning.com/images/logo.jpg",
  "url": "https://www.northcrescentcleaning.com",
- "telephone": "+14288880542",
+ "telephone": "+1-428-888-0542",
  "address": {
    "@type": "PostalAddress",
    "addressLocality": "Moncton",
@@ -56,8 +59,13 @@ gtag('config', 'G-48W5J5N037');
 }
 </script>
 
+<!-- FONTS + CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<!-- CONCIERGE WIDGET CSS -->
+<link rel="stylesheet" href="/concierge-widget.css">
+
+<!-- NORTH CRESCENT DESIGN SYSTEM -->
+<link rel="stylesheet" href="/styles/design-system.css">
 
 <!-- FAVICON -->
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -72,10 +80,10 @@ gtag('config', 'G-48W5J5N037');
 <div class="menu-overlay"></div>
 <div class="progress-bar"></div>
 
-<!-- COOKIE -->
+<!-- COOKIE BANNER -->
 <div id="cookie-banner" style="position:fixed; bottom:0; width:100%; background:#0F172A; color:#fff; padding:12px; text-align:center; font-size:13px; z-index:9999;">
-  Nous utilisons des cookies pour améliorer votre expérience. En utilisant notre site, vous acceptez notre 
-  <a href="/fr/privacy.html" style="color:#4A9B8C;">Politique de confidentialité</a>.
+  Nous utilisons des témoins (cookies) afin d’améliorer votre expérience. En utilisant notre site, vous acceptez notre 
+  <a href="/fr/privacy.html" style="color:#4A9B8C;">Politique de confidentialité</a>
   <button onclick="acceptCookies()" style="margin-left:10px; padding:6px 12px; border:none; background:#4A9B8C; color:white; border-radius:6px; cursor:pointer;">
     Accepter
   </button>
@@ -85,8 +93,8 @@ gtag('config', 'G-48W5J5N037');
   <div class="container header-inner">
 
     <div class="logo-container">
-      <a href="/fr/index.html">
-        <img src="/images/logo.jpg" alt="North Crescent Facility Solutions - services de nettoyage professionnels Moncton NB" loading="lazy">
+      <a href="/fr/">
+        <img src="/images/logo.webp" alt="North Crescent Facility Solutions — services de nettoyage à Moncton (N.-B.)" width="70" height="70" decoding="async">
       </a>
       <div class="brand-title">
         NORTH CRESCENT <span>FACILITY SOLUTIONS</span>
@@ -95,29 +103,48 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="nav-wrapper">
 
-      <div class="hamburger" id="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="hamburger" id="menu-toggle" role="button" aria-label="Ouvrir le menu" tabindex="0">
+        <span></span><span></span><span></span>
       </div>
 
       <nav id="nav-menu">
-        <a href="/fr/index.html">Accueil</a>
-        <a href="/fr/services.html">Services</a>
+        <a href="/fr/">Accueil</a>
+        <div class="dropdown">
+          <a href="/fr/services.html" class="menu-link">
+            Services <span class="arrow">▾</span>
+          </a>
+          <div class="dropdown-menu">
+            <a href="/fr/commercial-cleaning-moncton.html">Nettoyage commercial</a>
+            <a href="/fr/residential-cleaning-moncton.html">Nettoyage résidentiel</a>
+            <a href="/fr/office-cleaning-moncton.html">Nettoyage de bureaux</a>
+            <a href="/fr/airbnb-cleaning-moncton.html">Nettoyage Airbnb</a>
+            <a href="/fr/deep-cleaning-moncton.html">Nettoyage en profondeur</a>
+            <a href="/fr/janitorial-cleaning-moncton.html">Services d’entretien ménager</a>
+            <a href="/fr/post-construction-cleaning-moncton.html">Nettoyage après construction</a>
+            <a href="/fr/snow-removal-moncton.html">Déneigement saisonnier</a>
+          </div>
+        </div>
+        <a href="/fr/cleaning-concierge.html" class="concierge-nav-link">
+          <span class="concierge-nav-icon" aria-hidden="true">💬</span>
+          <span>Concierge</span>
+        </a>
+        <a href="/fr/cleaning-booking-moncton.html" class="booking-nav-link">
+          <span class="booking-nav-icon" aria-hidden="true">📅</span>
+          <span>Réservation</span>
+        </a>
         <a href="/fr/process.html">Processus</a>
         <a href="/fr/reviews.html">Avis</a>
-        <a href="/fr/work.html" class="active">Nos réalisations</a>
+        <a href="/fr/work.html" class="active" aria-current="page">Réalisations</a>
         <a href="/fr/gallery.html">Galerie</a>
-        <a href="/fr/contact.html" class="btn btn-primary">Contactez-nous</a>
+        <a href="/fr/contact.html" class="btn btn-primary">Nous joindre</a>
       </nav>
 
       <div class="lang-switch">
-        <a href="/work.html">EN</a>
-        <a href="/fr/work.html">FR</a>
+        <a href="/work.html" lang="en" hreflang="en">EN</a>
+        <a href="/fr/work.html" lang="fr" hreflang="fr" aria-current="true">FR</a>
       </div>
 
     </div>
-
   </div>
 </header>
 
@@ -131,18 +158,18 @@ gtag('config', 'G-48W5J5N037');
     <h1>Nous ne faisons pas que nettoyer — nous transformons les espaces</h1>
 
     <p class="hero-sub">
-      Des résultats réels avant et après qui démontrent le niveau de détail, de précision et de soin que nous apportons à chaque projet.
+      De vrais résultats avant et après qui montrent le niveau de détail, de précision et de soin que nous apportons à chaque projet.
     </p>
 
     <div class="divider"></div>
 
     <div class="btn-group" style="margin-top:15px;">
-      <a href="/fr/contact.html" class="btn btn-primary">Obtenir un devis rapide</a>
+      <a href="/fr/contact.html" class="btn btn-primary">Soumission instantanée</a>
       <a href="/fr/contact.html" class="btn btn-dark">Réserver maintenant</a>
     </div>
 
     <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-      Résultats avant et après • Qualité 5 étoiles • Disponibilité limitée cette semaine
+      Résultats avant et après • Qualité cinq étoiles • Disponibilités limitées cette semaine
     </p>
 
   </div>
@@ -154,13 +181,13 @@ gtag('config', 'G-48W5J5N037');
     <div class="section-box">
 
       <div class="section-title">
-        <h2>Transformations réelles de nettoyage</h2>
+        <h2>De vraies transformations</h2>
       </div>
 
       <div class="divider"></div>
 
       <p class="text-box">
-        Chaque projet reflète notre engagement envers le détail, la constance et un nettoyage de haute performance. Voici des résultats réels de notre travail.
+        Chaque projet reflète notre engagement envers le détail, la constance et un nettoyage performant. Ce sont de vrais résultats de notre travail.
       </p>
 
       <div class="grid grid-3">
@@ -178,24 +205,24 @@ gtag('config', 'G-48W5J5N037');
   <div class="container">
     <div class="section-box" style="text-align:center;">
 
-      <h2>Pourquoi les clients nous font confiance</h2>
+      <h2>Pourquoi nos clients font confiance à notre travail</h2>
       <div class="divider"></div>
 
       <div class="grid grid-3" style="margin-top:20px;">
 
         <div class="card">
-          <h3>✔ Résultats prouvés</h3>
-          <p>Chaque projet démontre une amélioration mesurable et une transformation visible.</p>
+          <h3>✔ Des résultats prouvés</h3>
+          <p>Chaque projet montre une amélioration mesurable et une transformation visible.</p>
         </div>
 
         <div class="card">
-          <h3>✔ Souci du détail</h3>
-          <p>Nous portons attention aux éléments que d’autres négligent.</p>
+          <h3>✔ Le souci du détail</h3>
+          <p>Nous nous concentrons sur les endroits que d’autres oublient.</p>
         </div>
 
         <div class="card">
-          <h3>✔ Constance</h3>
-          <p>Des résultats de haute qualité à chaque intervention.</p>
+          <h3>✔ La constance</h3>
+          <p>Les mêmes résultats de grande qualité à chaque visite.</p>
         </div>
 
       </div>
@@ -209,16 +236,16 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="section-box" style="text-align:center;">
 
-      <h2>Prêt à obtenir ces résultats dans votre espace ?</h2>
+      <h2>Prêt à obtenir ces résultats dans votre espace?</h2>
 
       <div class="divider"></div>
 
       <p class="text-box">
-        Réservez votre nettoyage dès aujourd’hui et découvrez la différence d’un service professionnel axé sur le détail.
+        Réservez votre nettoyage dès aujourd’hui et découvrez la différence d’un service professionnel et minutieux.
       </p>
 
       <div class="btn-group" style="margin-top:15px;">
-        <a href="/fr/contact.html" class="btn btn-primary">Obtenir un devis gratuit</a>
+        <a href="/fr/contact.html" class="btn btn-primary">Obtenir une soumission gratuite</a>
         <a href="/fr/contact.html" class="btn btn-dark">Réserver maintenant</a>
       </div>
 
@@ -227,74 +254,325 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
-<div class="container">
-  <div class="nav-buttons">
+ <!-- SERVICE AREAS -->
+<section>
 
-    <a href="/fr/reviews.html" class="btn btn-secondary nav-btn btn-prev">
-      ← Précédent
-    </a>
+  <div class="container">
 
-    <a href="/fr/gallery.html" class="btn btn-primary nav-btn btn-next">
-      Suivant →
-    </a>
+    <div class="section-box">
+
+      <h2>Nos secteurs desservis dans le Grand Moncton (N.-B.)</h2>
+
+      <div class="divider"></div>
+
+      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
+        North Crescent Facility Solutions est fière d’offrir des services professionnels de nettoyage de bureaux partout dans le Grand Moncton et le sud-est du Nouveau-Brunswick. Nos programmes structurés aident les entreprises à garder des milieux de travail plus sains, plus propres et plus productifs, avec une qualité constante et un soutien opérationnel fiable.
+      </p>
+
+      <div class="grid grid-3">
+
+        <div class="card">
+          <h3>📍 Moncton</h3>
+          <p>
+            Des programmes de nettoyage de bureaux professionnels pour les bureaux corporatifs, les immeubles commerciaux et les entreprises en croissance de Moncton.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Dieppe</h3>
+          <p>
+            Des services fiables de nettoyage de bureaux qui aident les entreprises à garder des milieux de travail propres, organisés et productifs.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Riverview</h3>
+          <p>
+            Des horaires de nettoyage de bureaux sur mesure, adaptés à vos activités, à vos employés et aux exigences de votre installation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Shediac</h3>
+          <p>
+            Des solutions professionnelles de nettoyage de bureaux pour les entreprises locales, les bureaux commerciaux et les installations administratives.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Salisbury et Memramcook</h3>
+          <p>
+            Des services flexibles de nettoyage de bureaux commerciaux offerts aux communautés voisines selon les besoins opérationnels.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Sud-est du Nouveau-Brunswick</h3>
+          <p>
+            Nous soutenons aussi les entreprises du sud-est du Nouveau-Brunswick avec des programmes de nettoyage de bureaux sur mesure et des solutions de soutien opérationnel.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
-</div>
+
+</section>
+
+  <!-- RELATED SERVICES -->
+ <section>
+  <div class="container">
+
+    <div class="section-box" style="text-align:center;">
+
+      <h2>Découvrez nos services de nettoyage spécialisés</h2>
+
+      <div class="divider"></div>
+
+      <p style="max-width:900px; margin:0 auto 35px;">
+        Chaque propriété a des besoins de nettoyage uniques. Découvrez nos solutions de nettoyage spécialisées pour les entreprises, les bureaux, les propriétés résidentielles, les locations Airbnb et les projets après construction à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et partout dans le sud-est du Nouveau-Brunswick.
+      </p>
+
+      <div class="service-links-grid related-services-grid">
+
+        <a href="/fr/commercial-cleaning-moncton.html">
+
+          🏢
+
+          <strong>Nettoyage commercial</strong>
+
+          <small>Nettoyage professionnel pour entreprises</small>
+
+        </a>
+
+
+       <a href="/fr/residential-cleaning-moncton.html">
+
+          🏡
+
+          <strong>Nettoyage résidentiel</strong>
+
+          <small>Nettoyage résidentiel professionnel</small>
+
+        </a>
+       
+
+        <a href="/fr/janitorial-cleaning-moncton.html">
+
+          🧹
+
+          <strong>Services d’entretien ménager</strong>
+
+          <small>Entretien récurrent des installations</small>
+
+        </a>
+
+        <a href="/fr/deep-cleaning-moncton.html">
+
+          ✨
+
+          <strong>Nettoyage en profondeur</strong>
+
+          <small>Solutions de nettoyage minutieux</small>
+
+        </a>
+
+        <a href="/fr/post-construction-cleaning-moncton.html">
+
+          🏗️
+
+          <strong>Nettoyage après construction</strong>
+
+          <small>Nettoyage final et préparation</small>
+
+        </a>
+
+        <a href="/fr/airbnb-cleaning-moncton.html">
+
+          🏡
+
+          <strong>Nettoyage Airbnb</strong>
+
+          <small>Remise en état entre deux séjours</small>
+
+        </a>
+
+       <a href="/fr/office-cleaning-moncton.html">
+
+          🏢
+
+          <strong>Nettoyage de bureaux</strong>
+
+          <small>Nettoyage de bureaux professionnel</small>
+
+        </a>
+       <a href="/fr/snow-removal-moncton.html">
+
+  ❄️
+
+  <strong>Déneigement saisonnier</strong>
+
+  <small>Services professionnels d’accès hivernal</small>
+
+</a>
+
+        <a href="/fr/services.html">
+
+          ➜
+
+          <strong>Voir tous les services</strong>
+
+          <small>Solutions de nettoyage complètes</small>
+
+        </a>
+       
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+
+  <div class="container">
+
+    <div class="section-box" style="text-align:center;">
+
+      <h2>Plus que du nettoyage de bureaux. Un partenaire opérationnel de confiance.</h2>
+
+      <div class="divider"></div>
+
+      <p style="max-width:900px; margin:0 auto 25px;">
+        Chez North Crescent Facility Solutions, nous faisons plus que nettoyer des bureaux. Nous aidons les entreprises à garder des milieux de travail plus sains, à protéger leur image professionnelle et à simplifier la gestion quotidienne de leurs installations grâce à des méthodes de nettoyage structurées et un service fiable.
+      </p>
+
+      <p style="max-width:900px; margin:0 auto 25px;">
+        Que vous gériez un bureau corporatif, un cabinet professionnel, une clinique médicale, un immeuble commercial ou une entreprise en croissance, nos programmes de nettoyage de bureaux sur mesure sont conçus pour soutenir vos activités tout en vous donnant plus de confiance et de tranquillité d’esprit.
+      </p>
+
+      <p style="max-width:850px; margin:0 auto 35px;">
+        <strong>
+          Faites de North Crescent votre partenaire opérationnel de confiance, pour que votre équipe se concentre sur la croissance de votre entreprise pendant que nous gardons votre milieu de travail propre, sain et productif.
+        </strong>
+      </p>
+
+      <div class="btn-group">
+
+        <a href="/fr/contact.html" class="btn btn-primary">
+          🚀 Demander votre soumission gratuite
+        </a>
+
+        <a href="/fr/contact.html" class="btn btn-dark">
+          📅 Planifier une consultation
+        </a>
+
+      </div>
+
+      <p style="margin-top:35px; color:#4A9B8C; font-weight:600;">
+
+        Nettoyage de bureaux professionnel • Soutien opérationnel • Partenariat de confiance
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
 <div class="float-container">
-  <a href="tel:+14288880542" class="float-btn float-dark">📞</a>
-  <a href="https://wa.me/14288880542" target="_blank" class="float-btn float-whatsapp">💬</a>
-  <a href="/fr/contact.html" class="float-btn float-primary">+</a>
+  <a href="tel:+14288880542" class="float-btn float-dark">☎</a>
+  <a href="sms:+14288880542" class="float-btn float-whatsapp">💬</a>
+  <a href="/fr/contact.html" class="float-btn float-primary">✉️</a>
 </div>
 
-<footer style="background:#0F172A; color:#CBD5F5; padding:20px 0 12px; font-family:sans-serif;">
+<!-- PREMIUM FOOTER -->
+<footer class="nc-footer">
 
-  <div style="max-width:1100px; margin:auto; padding:0 20px;">
+    <div class="nc-footer-container">
 
-    <!-- TOP ROW -->
-    <div class="top-row" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+        <!-- MAIN FOOTER -->
+        <div class="nc-footer-main">
 
-      <!-- BRAND -->
-      <div style="font-size:13px; color:#ffffff;">
-        North Crescent Facility Solutions Inc
-      </div>
+            <!-- BRAND -->
+            <div class="nc-footer-brand">
+                <a href="/fr/" class="nc-footer-brand-name">
+                    North Crescent
+                </a>
 
-      <!-- NAV -->
-      <div class="nav" style="display:flex; gap:18px; font-size:12px;">
-        <a href="services.html" style="color:#CBD5F5; text-decoration:none;">Services</a>
-        <a href="process.html" style="color:#CBD5F5; text-decoration:none;">Processus</a>
-        <a href="reviews.html" style="color:#CBD5F5; text-decoration:none;">Avis</a>
-        <a href="contact.html" style="color:#CBD5F5; text-decoration:none;">Contact</a>
-      </div>
+                <span class="nc-footer-brand-subtitle">
+                    FACILITY SOLUTIONS INC.
+                </span>
 
-      <!-- CONTACT -->
-      <div class="contact" style="font-size:12px; text-align:right;">
-        <a href="tel:+14288880542" style="color:#CBD5F5; text-decoration:none;">+1 (428) 888-0542</a><br>
-        <a href="mailto:info@northcrescentcleaning.com" style="color:#CBD5F5; text-decoration:none;">info@northcrescentcleaning.com</a>
-      </div>
+                <p>
+                    Solutions professionnelles de nettoyage et de soutien aux installations partout dans le sud-est du Nouveau-Brunswick.
+                </p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="nc-footer-navigation">
+                <h3>Explorer</h3>
+
+                <a href="/fr/services.html">Services</a>
+                <a href="/fr/process.html">Notre processus</a>
+                <a href="/fr/reviews.html">Avis de clients</a>
+                <a href="/fr/work.html">Nos réalisations</a>
+                <a href="/fr/gallery.html">Galerie</a>
+                <a href="/fr/cleaning-concierge.html">Concierge 💬</a>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="nc-footer-contact">
+                <h3>Nous joindre</h3>
+
+                <a href="tel:+14288880542">
+                    <span class="nc-footer-contact-icon">☎</span>
+                    +1 (428) 888-0542
+                </a>
+
+                <a href="mailto:info@northcrescentcleaning.com">
+                    <span class="nc-footer-contact-icon">✉</span>
+                    info@northcrescentcleaning.com
+                </a>
+
+                <a href="/fr/contact.html" class="nc-footer-cta">
+                    Contactez notre équipe <span>→</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="nc-footer-divider"></div>
+
+        <!-- BOTTOM FOOTER -->
+        <div class="nc-footer-bottom">
+
+            <p>
+                © 2026 North Crescent Facility Solutions Inc.
+                <span>Moncton, Nouveau-Brunswick, Canada</span>
+            </p>
+
+            <div class="nc-footer-legal">
+                <a href="/fr/privacy.html">Politique de confidentialité</a>
+                <a href="/fr/terms.html">Conditions générales</a>
+            </div>
+
+        </div>
+
+        <!-- BRAND TAGLINE -->
+        <div class="nc-footer-tagline">
+            Nous prenons soin de vos espaces pour que vous puissiez vous concentrer sur votre réussite et votre bien-être.
+        </div>
 
     </div>
-
-    <!-- DIVIDER -->
-    <div style="border-top:1px solid #1E293B; margin:15px 0;"></div>
-
-    <!-- BOTTOM ROW -->
-    <div class="bottom-row" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; font-size:11px; color:#94A3B8; gap:10px;">
-
-      <div>
-        © 2026 North Crescent Facility Solutions Inc • Moncton, N.-B.
-      </div>
-
-      <div class="bottom-links" style="display:flex; gap:12px;">
-        <a href="privacy.html" style="color:#94A3B8; text-decoration:none;">Confidentialité</a>
-        <a href="terms.html" style="color:#94A3B8; text-decoration:none;">Conditions</a>
-      </div>
-
-    </div>
-
-  </div>
 
 </footer>
 
@@ -304,7 +582,6 @@ function acceptCookies() {
   document.getElementById("cookie-banner").style.display = "none";
   localStorage.setItem("cookiesAccepted", "true");
 }
-
 window.onload = function() {
   if(localStorage.getItem("cookiesAccepted")) {
     document.getElementById("cookie-banner").style.display = "none";
@@ -356,6 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+ <script src="/concierge/concierge-widget.js" defer></script>
 
 </body>
 </html>

@@ -12,6 +12,11 @@
 (() => {
   "use strict";
 
+  /* Pages under /fr/ use <html lang="fr"> */
+  const FR = (document.documentElement.lang || "").toLowerCase().indexOf("fr") === 0;
+  const LOCALE = FR ? "fr-CA" : "en-CA";
+  const tr = (en, fr) => (FR ? fr : en);
+
   document.addEventListener("DOMContentLoaded", initializeBooking);
 
   /* Netlify function that verifies Turnstile and forwards to Make */
@@ -139,6 +144,13 @@
       return form.querySelector('input[name="serviceType"]:checked')?.value || "";
     }
 
+    /* What the visitor sees (French on /fr/); the value sent to the office stays in English */
+    function getSelectedServiceLabel() {
+      const input = form.querySelector('input[name="serviceType"]:checked');
+      const name = input?.closest("label")?.querySelector(".booking-service-name");
+      return (name ? name.textContent.replace(/\s+/g, " ").trim() : "") || getSelectedService();
+    }
+
     function isSnowRemoval() {
       return /snow removal/i.test(getSelectedService());
     }
@@ -151,7 +163,7 @@
     function formatLongDate(value) {
       if (!value) return "";
 
-      return parseDateValue(value).toLocaleDateString("en-CA", {
+      return parseDateValue(value).toLocaleDateString(LOCALE, {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -201,14 +213,14 @@
         state.emailAddress = "";
 
         if (announce) {
-          setEmailState("invalid", "Please enter a valid email address.");
+          setEmailState("invalid", tr("Please enter a valid email address.", "Veuillez entrer une adresse courriel valide."));
         }
 
         return false;
       }
 
       state.emailAddress = email;
-      setEmailState("valid", "Thanks. We will send your confirmation here.");
+      setEmailState("valid", tr("Thanks. We will send your confirmation here.", "Merci. Nous vous enverrons la confirmation à cette adresse."));
       return true;
     }
 
@@ -261,7 +273,7 @@
       const daysInPreviousMonth = new Date(year, month, 0).getDate();
 
       el.calendarMonth.textContent = new Date(year, month, 1)
-        .toLocaleDateString("en-CA", { month: "long", year: "numeric" });
+        .toLocaleDateString(LOCALE, { month: "long", year: "numeric" });
 
       el.calendarDays.replaceChildren();
 
@@ -340,7 +352,7 @@
         ?.focus({ preventScroll: true });
 
       if (el.calendarNote) {
-        el.calendarNote.textContent = `${formatLongDate(dateValue)} selected.`;
+        el.calendarNote.textContent = tr(`${formatLongDate(dateValue)} selected.`, `${formatLongDate(dateValue)} — date choisie.`);
       }
 
       refreshSelection();
@@ -416,7 +428,7 @@
         }
 
         if (el.timeFeedback) {
-          el.timeFeedback.textContent = `${state.selectedTimeLabel} selected.`;
+          el.timeFeedback.textContent = tr(`${state.selectedTimeLabel} selected.`, `${state.selectedTimeLabel} — plage choisie.`);
         }
 
         refreshSelection();
@@ -432,7 +444,7 @@
       if (el.timeDateText) {
         el.timeDateText.textContent = hasDate
           ? formatLongDate(state.selectedDate)
-          : "Pick a date to continue";
+          : tr("Pick a date to continue", "Choisissez une date pour continuer");
       }
 
       if (el.timeDate) {
@@ -446,13 +458,13 @@
 
         if (!service && !hasDate) {
           el.timeEmpty.textContent =
-            "Choose a service and a date to see the available time windows.";
+            tr("Choose a service and a date to see the available time windows.", "Choisissez un service et une date pour voir les plages horaires disponibles.");
         } else if (!service) {
           el.timeEmpty.textContent =
-            "Choose a service to see its available time windows.";
+            tr("Choose a service to see its available time windows.", "Choisissez un service pour voir ses plages horaires disponibles.");
         } else {
           el.timeEmpty.textContent =
-            "Choose a date to see the available time windows.";
+            tr("Choose a date to see the available time windows.", "Choisissez une date pour voir les plages horaires disponibles.");
         }
       }
 
@@ -468,7 +480,7 @@
       if (!el.summary) return;
 
       const rows = {
-        service: getSelectedService(),
+        service: getSelectedServiceLabel(),
         date: state.selectedDate ? formatLongDate(state.selectedDate) : "",
         time: state.selectedTime ? formatTimeLabel() : ""
       };
@@ -617,7 +629,7 @@
 
       if (!state.emailAddress) {
         problems.push({
-          label: "a valid email",
+          label: tr("a valid email", "une adresse courriel valide"),
           target: el.emailCard,
           focus: el.emailInput,
           isEmail: true
@@ -626,7 +638,7 @@
 
       if (!el.nameInput.value.trim()) {
         problems.push({
-          label: "your full name",
+          label: tr("your full name", "votre nom complet"),
           target: el.customerSection,
           focus: el.nameInput,
           field: el.nameInput
@@ -635,7 +647,7 @@
 
       if (digitsIn(el.phoneInput.value) < 10) {
         problems.push({
-          label: "a phone number with area code",
+          label: tr("a phone number with area code", "un numéro de téléphone avec l’indicatif régional"),
           target: el.customerSection,
           focus: el.phoneInput,
           field: el.phoneInput
@@ -644,7 +656,7 @@
 
       if (!el.addressInput.value.trim()) {
         problems.push({
-          label: "the service address",
+          label: tr("the service address", "l’adresse du service"),
           target: el.customerSection,
           focus: el.addressInput,
           field: el.addressInput
@@ -656,7 +668,7 @@
 
     function joinList(items) {
       if (items.length <= 1) return items.join("");
-      return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+      return `${items.slice(0, -1).join(", ")}${tr(" and ", " et ")}${items[items.length - 1]}`;
     }
 
     function reportProblems(problems) {
@@ -670,7 +682,7 @@
         if (problem.field) setFieldInvalid(problem.field, true);
 
         if (problem.isEmail) {
-          setEmailState("invalid", "Please enter a valid email address.");
+          setEmailState("invalid", tr("Please enter a valid email address.", "Veuillez entrer une adresse courriel valide."));
         }
 
         panels.add(problem.target);
@@ -682,7 +694,10 @@
 
       if (el.detailsFeedback) {
         el.detailsFeedback.textContent =
-          `Please add ${joinList(problems.map(problem => problem.label))} to continue.`;
+          tr(
+            `Please add ${joinList(problems.map(problem => problem.label))} to continue.`,
+            `Veuillez ajouter ${joinList(problems.map(problem => problem.label))} pour continuer.`
+          );
       }
 
       const first = problems[0];
@@ -720,7 +735,7 @@
       const notes = el.notesInput ? el.notesInput.value.trim() : "";
 
       const fields = {
-        "booking-review-service": getSelectedService(),
+        "booking-review-service": getSelectedServiceLabel(),
         "booking-review-date": formatLongDate(state.selectedDate),
         "booking-review-time": formatTimeLabel(),
         "booking-review-name": el.nameInput.value.trim(),
@@ -732,7 +747,7 @@
       Object.entries(fields).forEach(([id, value]) => {
         const target = $(id);
 
-        if (target) target.textContent = value || "Not provided";
+        if (target) target.textContent = value || tr("Not provided", "Non fourni");
       });
 
       const notesGroup = $("booking-review-notes-group");
@@ -845,14 +860,14 @@
       }
 
       if (!state.turnstileToken) {
-        say("Please complete the security check before sending.");
+        say(tr("Please complete the security check before sending.", "Veuillez compléter la vérification de sécurité avant d’envoyer."));
         return;
       }
 
       state.isSubmitting = true;
       el.submitButton?.classList.add("is-sending");
       el.submitButton?.setAttribute("aria-busy", "true");
-      if (submitLabel) submitLabel.textContent = "Sending...";
+      if (submitLabel) submitLabel.textContent = tr("Sending...", "Envoi en cours…");
       say("");
 
       try {
@@ -884,13 +899,13 @@
         resetTurnstile();
 
         say(
-          "We could not send your request. Please try again, or call us at +1 (428) 888-0542."
+          tr("We could not send your request. Please try again, or call us at +1 (428) 888-0542.", "Nous n’avons pas pu envoyer votre demande. Veuillez réessayer ou nous appeler au +1 (428) 888-0542.")
         );
       } finally {
         state.isSubmitting = false;
         el.submitButton?.classList.remove("is-sending");
         el.submitButton?.removeAttribute("aria-busy");
-        if (submitLabel) submitLabel.textContent = "Submit booking request";
+        if (submitLabel) submitLabel.textContent = tr("Submit booking request", "Envoyer la demande de réservation");
       }
     });
 

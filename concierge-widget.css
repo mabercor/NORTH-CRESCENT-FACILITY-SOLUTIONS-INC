@@ -571,3 +571,10 @@ body.nc-concierge-widget-open .nc-concierge-widget-button{
 body.nc-concierge-widget-open #cookie-banner{
   display:none !important;
 }
+
+/* The open mobile menu sits on top: the chat button steps aside until it closes */
+body.menu-open .nc-concierge-widget-button{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
