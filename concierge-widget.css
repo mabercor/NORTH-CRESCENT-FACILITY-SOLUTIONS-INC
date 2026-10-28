@@ -1066,3 +1066,13 @@ body.menu-open .nc-peek{
   bottom:10px;
   max-width:270px;
 }
+
+/* Home page services card: the guide lives on the grid and is lined
+   up over the first card (offset set by services-mascot.js). */
+.nc-fp.nc-fp--offset .nc-fp-stage{
+  right:var(--nc-fp-r,14px);
+}
+
+.nc-fp.nc-fp--offset .nc-fp-bubble{
+  right:calc(var(--nc-fp-r,14px) + var(--nc-fp-w) - 8px);
+}
