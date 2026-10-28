@@ -1049,3 +1049,20 @@ body.menu-open .nc-peek{
   }
 
 }
+
+/* Booking page: the email-box guide rises from the booking card's top
+   edge, lined up under the email box (offset set by booking-mascot.js).
+   A little smaller so he never covers the email field. */
+.nc-fp.nc-fp--email-stage{
+  --nc-fp-w:96px;
+}
+
+.nc-fp.nc-fp--email-stage .nc-fp-stage{
+  right:var(--nc-fp-r,14px);
+}
+
+.nc-fp.nc-fp--email-stage .nc-fp-bubble{
+  right:calc(var(--nc-fp-r,14px) + var(--nc-fp-w) - 8px);
+  bottom:10px;
+  max-width:270px;
+}

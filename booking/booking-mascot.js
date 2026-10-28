@@ -66,6 +66,13 @@
 
   const TEXT = isFrench
     ? {
+        email: [
+          "Commencez ici : entrez votre courriel pour réserver en une minute ⏱️",
+          "Votre espace impeccable est à quelques clics ✨ Entrez votre courriel"
+        ],
+        emailMissing: [
+          "Il ne manque que votre courriel, juste en haut ☝️"
+        ],
         service: [
           "Commençons ! Choisissez le service dont vous avez besoin 👆",
           "Votre espace impeccable commence ici ✨ Choisissez un service"
@@ -93,6 +100,13 @@
         hide: "Masquer"
       }
     : {
+        email: [
+          "Start here: enter your email and book in under a minute ⏱️",
+          "Your spotless space is a few clicks away ✨ Enter your email"
+        ],
+        emailMissing: [
+          "Only your email is missing, right up top ☝️"
+        ],
         service: [
           "Let’s get started! Pick the service you need 👆",
           "Your spotless space starts here ✨ Choose a service"
@@ -194,6 +208,56 @@
     })
   };
 
+  /* EMAIL (top of the page). When the email card sits beside the hero
+     text (wide screens) there is no room above it, so he rises from the
+     top edge of the booking card, just under the email box. When it is
+     stacked under the text (tablets, phones), he rises over the box. */
+  const emailCard = $("booking-email-card");
+  const emailInput = $("booking-start-email");
+  const heroCopy = document.querySelector(".booking-hero-copy");
+  const stage = $("booking-stage");
+
+  function focusEmail() {
+    return emailInput;
+  }
+
+  const emailOverCard = buildSpot(emailCard, TEXT.email, "email", focusEmail);
+  const emailUnderCard = buildSpot(stage, TEXT.email, "email", focusEmail);
+  if (emailUnderCard) {
+    emailUnderCard.root.classList.add("nc-fp--email-stage");
+  }
+
+  /* Details filled in but the email at the top is still missing. */
+  SPOTS.emailMissing = buildSpot($("booking-customer"), TEXT.emailMissing, "email-missing", focusEmail);
+
+  function emailIsValid() {
+    return !emailCard || emailCard.classList.contains("is-valid");
+  }
+
+  function emailSpot() {
+    if (!emailCard || !emailInput) {
+      return null;
+    }
+    const card = emailCard.getBoundingClientRect();
+    const copy = heroCopy ? heroCopy.getBoundingClientRect() : null;
+    const stacked = !copy || card.top >= copy.bottom - 4;
+
+    if (stacked) {
+      return emailOverCard;
+    }
+
+    /* Line him up under the right part of the email box. */
+    if (emailUnderCard && stage) {
+      const stageRect = stage.getBoundingClientRect();
+      const right = Math.max(14, Math.round(stageRect.right - card.right + 28));
+      emailUnderCard.root.style.setProperty("--nc-fp-r", right + "px");
+    }
+    return emailUnderCard;
+  }
+
+  SPOTS.emailCard = emailOverCard;
+  SPOTS.emailStage = emailUnderCard;
+
   const spots = Object.keys(SPOTS)
     .map(function (key) { return SPOTS[key]; })
     .filter(Boolean);
@@ -235,8 +299,38 @@
 
   function pickSpot() {
     const kind = currentKind();
+
+    /* Nothing chosen yet and no email: invite them to start up top. */
+    if (kind === "service" && !emailIsValid()) {
+      const top = emailSpot();
+      if (top && onScreen(top.host)) {
+        return top;
+      }
+    }
+
+    /* All details typed, only the email is missing. */
+    if (kind === "details" && !emailIsValid() && detailsTyped()) {
+      const top = emailSpot();
+      if (top && onScreen(top.host)) {
+        return top;
+      }
+      if (SPOTS.emailMissing && onScreen(SPOTS.emailMissing.host)) {
+        return SPOTS.emailMissing;
+      }
+    }
+
     const spot = kind ? SPOTS[kind] : null;
     return spot && onScreen(spot.host) ? spot : null;
+  }
+
+  function detailsTyped() {
+    const fields = document.querySelectorAll("#booking-customer input[required]");
+    for (let i = 0; i < fields.length; i += 1) {
+      if (!String(fields[i].value).trim()) {
+        return false;
+      }
+    }
+    return fields.length > 0;
   }
 
   /* ---------------------------------------------------------
@@ -404,13 +498,13 @@
       return;
     }
 
-    const kind = currentKind();
+    const kind = currentKind() + (emailIsValid() ? "" : ":no-email");
     if (kind === state.lastKind) {
       return;
     }
     state.lastKind = kind;
 
-    if (state.current && state.current.kind !== kind) {
+    if (state.current) {
       state.hovering = false;
       retract();
     }
@@ -421,6 +515,9 @@
     const observer = new MutationObserver(onStepChange);
     observer.observe(progress, { subtree: true, attributes: true, attributeFilter: ["class"] });
     observer.observe(reviewButton, { attributes: true, attributeFilter: ["class"] });
+    if (emailCard) {
+      observer.observe(emailCard, { attributes: true, attributeFilter: ["class"] });
+    }
     observer.observe(reviewSection, { attributes: true, attributeFilter: ["hidden"] });
     if (successSection) {
       observer.observe(successSection, { attributes: true, attributeFilter: ["hidden"] });
@@ -452,7 +549,7 @@
      --------------------------------------------------------- */
 
   function start() {
-    state.lastKind = currentKind();
+    state.lastKind = currentKind() + (emailIsValid() ? "" : ":no-email");
 
     const imgs = [];
     spots.forEach(function (spot) {
