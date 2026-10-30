@@ -1,0 +1,540 @@
+/* =========================================================
+   NORTH CRESCENT — COMMERCIAL CLEANING PAGE
+   Builds on process.css (.pr-) and services.css (.sv-).
+========================================================= */
+
+/* Old shared hero sits inside .pr-page: restore its spacing */
+.cc-page .hero {
+    margin-bottom: 0;
+}
+
+.cc-page .hero h1 {
+    margin: 0 0 16px;
+}
+
+.cc-page .hero .hero-sub {
+    margin-bottom: 20px;
+}
+
+.cc-emoji {
+    margin-right: 8px;
+}
+
+/* Hero perks (quotes, appointments, quality, pricing) */
+.cc-perks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-perks li {
+    padding: 6px 12px;
+    border: 1px solid rgb(53 200 185 / 40%);
+    border-radius: 999px;
+    background: rgb(8 169 157 / 16%);
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .cc-perks {
+        justify-content: center;
+    }
+}
+
+
+/* ---------- System ---------- */
+
+.cc-system {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.cc-system .pr-lead {
+    max-width: none;
+}
+
+.cc-system-card {
+    padding: 26px 24px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 100% 0%, rgb(53 200 185 / 25%), transparent 50%),
+        linear-gradient(145deg, #174563, var(--pr-deep));
+    color: #FFFFFF;
+    box-shadow: 0 22px 44px rgb(8 38 62 / 22%);
+}
+
+.cc-system-title {
+    margin-bottom: 16px !important;
+    color: var(--pr-teal-2);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cc-system-card ul {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-system-card li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+
+/* ---------- Service cards extras ---------- */
+
+.cc-tagline {
+    margin-top: 14px !important;
+    color: var(--pr-teal-dark);
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.cc-page .sv-card h3 .cc-emoji {
+    display: none;
+}
+
+.cc-commit {
+    margin-top: 12px !important;
+    padding: 10px 12px;
+    border-left: 3px solid var(--pr-teal-2);
+    border-radius: 0 10px 10px 0;
+    background: var(--pr-soft);
+    color: var(--pr-text) !important;
+    font-size: 0.82rem !important;
+}
+
+.cc-commit strong {
+    color: var(--pr-teal-dark);
+}
+
+a.sv-more {
+    text-decoration: none;
+}
+
+
+/* ---------- Commitment (dark band) ---------- */
+
+.cc-on-dark {
+    color: rgb(255 255 255 / 80%) !important;
+}
+
+.pr-promise .pr-center .pr-h2 {
+    color: #FFFFFF;
+}
+
+.cc-commit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 36px;
+}
+
+.cc-commit-item {
+    align-items: flex-start;
+}
+
+.cc-commit-item h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.cc-commit-item .cc-emoji {
+    display: none;
+}
+
+.cc-commit-item .pr-fact-icon {
+    color: #FFFFFF;
+}
+
+
+/* ---------- Partnership CTA ---------- */
+
+.cc-partner .cc-slogan {
+    margin-top: 12px;
+    color: #FFFFFF;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.cc-partner > div:first-child {
+    max-width: 640px;
+}
+
+
+/* ---------- Property management ---------- */
+
+.cc-pm-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 18px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-pm-item {
+    padding: 16px 18px;
+    border: 1px solid var(--pr-line);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #FFFFFF, var(--pr-soft));
+    transition: border-color 240ms ease, box-shadow 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .cc-pm-item:hover {
+        border-color: rgb(53 200 185 / 55%);
+        box-shadow: 0 12px 26px rgb(16 45 73 / 8%);
+    }
+}
+
+.cc-pm-item h3 {
+    display: flex;
+    align-items: center;
+    font-size: 0.96rem;
+    font-weight: 700;
+}
+
+.cc-pm-item .cc-emoji {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 34px;
+    height: 34px;
+    margin-right: 12px;
+    border-radius: 10px;
+    background: rgb(8 169 157 / 10%);
+    font-size: 1rem;
+}
+
+.cc-pm-item p {
+    margin-top: 6px !important;
+    padding-left: 46px;
+    color: var(--pr-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.cc-sub {
+    margin: 40px 0 0 !important;
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.cc-related {
+    margin-top: 18px !important;
+}
+
+.cc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.cc-actions .btn {
+    min-height: 46px;
+    padding: 12px 22px;
+}
+
+
+/* ---------- Standards ---------- */
+
+.cc-std {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.cc-std .pr-lead {
+    max-width: none;
+}
+
+.cc-std-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.cc-cert {
+    position: relative;
+    overflow: hidden;
+    padding: 22px 20px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #174563, var(--pr-deep));
+    color: #FFFFFF;
+    box-shadow: 0 14px 30px rgb(8 38 62 / 18%);
+}
+
+.cc-cert::after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(53 200 185 / 30%), transparent 70%);
+}
+
+.cc-cert-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0AB7A8, #078C86);
+}
+
+.cc-cert h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.cc-cert p {
+    margin-top: 6px !important;
+    color: rgb(255 255 255 / 75%);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+
+/* ---------- Benefits ---------- */
+
+.cc-benefits {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.cc-benefits .pr-lead {
+    max-width: none;
+}
+
+.cc-benefit-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-benefit-list li {
+    display: flex;
+    gap: 12px;
+}
+
+.cc-benefit-list .pr-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: var(--pr-teal);
+    color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgb(53 200 185 / 15%);
+}
+
+.cc-benefit-list .pr-check svg {
+    width: 13px;
+    height: 13px;
+}
+
+.cc-benefit-list h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+.cc-benefit-list p {
+    margin-top: 4px !important;
+    color: var(--pr-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* checks used in the system card */
+.cc-system-card .pr-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--pr-teal);
+    box-shadow: 0 0 0 4px rgb(53 200 185 / 18%);
+}
+
+.cc-system-card .pr-check svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* ---------- Areas ---------- */
+
+.cc-cities {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-cities li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--pr-line);
+    border-radius: 14px;
+    background: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.cc-links a {
+    color: var(--pr-teal-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgb(8 169 157 / 35%);
+    text-underline-offset: 3px;
+}
+
+
+/* ---------- Complete services strip ---------- */
+
+.cc-complete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-block: clamp(26px, 4vw, 40px);
+}
+
+.cc-complete .pr-h2 {
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+}
+
+.cc-complete .pr-lead {
+    margin-top: 8px;
+}
+
+.cc-complete .btn {
+    min-height: 48px;
+    padding: 13px 24px;
+}
+
+.cc-spacer {
+    height: 50px;
+}
+
+/* legacy blocks kept as they were (Explore grid, FAQ) */
+.cc-page > section:not(.pr-section):not(.hero) {
+    margin-top: 22px;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+    .cc-system,
+    .cc-std,
+    .cc-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .cc-commit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .cc-commit-grid,
+    .cc-pm-grid,
+    .cc-std-grid,
+    .cc-benefit-list,
+    .cc-cities {
+        grid-template-columns: 1fr;
+    }
+
+    .cc-cities {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cc-cities li {
+        padding: 12px;
+        font-size: 0.86rem;
+    }
+
+    .cc-actions .btn,
+    .cc-complete .btn {
+        width: 100%;
+    }
+
+    .cc-pm-item p {
+        padding-left: 0;
+    }
+}
+
+.cc-rel-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.cc-rel-title .cc-emoji {
+    display: none;
+}
+
+.cc-page .pr-service small {
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+/* Align the two original sections (Explore grid, FAQ) with the new panels */
+.cc-page > section:not(.pr-section):not(.hero) > .container {
+    width: calc(100% - 60px);
+    max-width: 1200px;
+    padding-inline: 0;
+}
+
+.cc-page > section:not(.pr-section):not(.hero) .section-box {
+    margin-inline: 0;
+    border-radius: 22px;
+}
+
+@media (max-width: 640px) {
+    .cc-page > section:not(.pr-section):not(.hero) > .container {
+        width: calc(100% - 20px);
+    }
+
+    .cc-page > section:not(.pr-section):not(.hero) .section-box {
+        border-radius: 16px;
+    }
+}
