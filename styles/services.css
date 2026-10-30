@@ -1,0 +1,307 @@
+/* =========================================================
+   NORTH CRESCENT — SERVICES PAGE
+   Builds on /styles/process.css (shared .pr- premium layout).
+   Page-specific pieces use the .sv- prefix.
+========================================================= */
+
+/* ---------- Hero "at a glance" card ---------- */
+
+.sv-glance dl {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.sv-glance dl > div {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+.sv-glance dl > div:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.sv-glance dt {
+    color: var(--pr-teal-2);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.sv-glance dd {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+
+/* ---------- Service cards ---------- */
+
+.sv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 44px;
+}
+
+.sv-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--pr-line);
+    border-radius: 20px;
+    background: #FFFFFF;
+    color: var(--pr-text);
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgb(16 45 73 / 5%);
+    transition:
+        transform 340ms var(--pr-ease),
+        box-shadow 340ms ease,
+        border-color 340ms ease;
+}
+
+.sv-card-media {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    background: var(--pr-soft);
+}
+
+.sv-card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms var(--pr-ease);
+}
+
+.sv-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgb(8 38 62 / 45%));
+    pointer-events: none;
+}
+
+.sv-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 92%);
+    color: var(--pr-navy);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.sv-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 22px 20px;
+}
+
+.sv-card h3 {
+    font-size: 1.12rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.sv-card p {
+    margin-top: 10px;
+    color: var(--pr-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+.sv-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 18px;
+    color: var(--pr-teal-dark);
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.sv-more svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 320ms var(--pr-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .sv-card:hover {
+        transform: translateY(-6px);
+        border-color: rgb(53 200 185 / 55%);
+        box-shadow: 0 24px 46px rgb(16 45 73 / 13%);
+    }
+
+    .sv-card:hover .sv-card-media img {
+        transform: scale(1.05);
+    }
+
+    .sv-card:hover .sv-more svg {
+        transform: translateX(4px);
+    }
+}
+
+.sv-card:focus-visible {
+    outline: 3px solid var(--pr-teal-2);
+    outline-offset: 3px;
+}
+
+
+/* ---------- "Which service is right for you" guide ---------- */
+
+.sv-guide {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.sv-guide .pr-lead {
+    max-width: none;
+}
+
+.sv-guide-list {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--pr-line);
+    border-radius: 18px;
+    list-style: none;
+}
+
+.sv-guide-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--pr-line);
+    background: #FFFFFF;
+    transition: background-color 240ms ease;
+}
+
+.sv-guide-list li:nth-child(even) {
+    background: var(--pr-soft);
+}
+
+.sv-guide-list li:last-child {
+    border-bottom: 0;
+}
+
+.sv-guide-need {
+    color: var(--pr-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.sv-guide-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgb(8 169 157 / 10%);
+    color: var(--pr-teal-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 240ms ease, color 240ms ease;
+}
+
+.sv-guide-list a:hover {
+    background: var(--pr-teal);
+    color: #FFFFFF;
+}
+
+.sv-guide-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.sv-guide-actions .btn {
+    min-height: 46px;
+    padding: 12px 22px;
+}
+
+
+/* ---------- FAQ inside a premium panel ---------- */
+
+.sv-faq .faq-grid {
+    margin-top: 40px;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+    .sv-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sv-guide {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .sv-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .sv-card-body {
+        padding: 18px;
+    }
+
+    .sv-guide-list li {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .sv-guide-list a {
+        justify-self: start;
+    }
+
+    .sv-guide-actions .btn {
+        width: 100%;
+    }
+
+    .sv-glance dl > div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+}
+
+.sv-glance dd a {
+    color: var(--pr-teal-2);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sv-glance dd a:hover {
+    text-decoration: underline;
+}
