@@ -3,3 +3,28 @@
   included_files = [
     "north-crescent-os/ai/concierge/**"
   ]
+
+# ---------------------------------------------------------
+# Best practices: security headers for every page
+# ---------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "interest-cohort=(), browsing-topics=()"
+    Strict-Transport-Security = "max-age=31536000"
+
+# Images rarely change: let browsers and Google keep them for 7 days
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Plain-text summary for AI assistants
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
