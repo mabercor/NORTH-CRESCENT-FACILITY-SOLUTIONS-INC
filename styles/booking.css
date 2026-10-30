@@ -181,44 +181,77 @@
 ========================================================= */
 
 .booking-email-card {
+    position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
     min-width: 0;
-    padding: 18px 20px;
-    border: 1px solid rgb(255 255 255 / 75%);
+    padding: 22px 24px;
+    border: 2px solid var(--bk-teal-2);
     border-radius: 22px;
-    background: rgb(255 255 255 / 96%);
+    background: #FFFFFF;
     color: var(--bk-ink);
     box-shadow:
-        0 4px 10px rgb(0 0 0 / 8%),
-        0 24px 50px rgb(0 0 0 / 22%);
+        0 0 0 6px rgb(53 200 185 / 28%),
+        0 8px 18px rgb(0 0 0 / 14%),
+        0 30px 60px rgb(0 0 0 / 30%);
     transition:
         box-shadow 300ms ease,
         transform 300ms var(--bk-ease);
 }
 
+/* Pulsing halo that draws the eye until the visitor interacts */
+.booking-email-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 rgb(53 200 185 / 55%);
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .booking-email-card::before {
+        animation: booking-email-pulse 2.4s ease-out infinite;
+    }
+
+    .booking-email-card:focus-within::before,
+    .booking-email-card.is-valid::before {
+        animation: none;
+    }
+}
+
+@keyframes booking-email-pulse {
+    0%   { box-shadow: 0 0 0 0 rgb(53 200 185 / 55%); }
+    70%  { box-shadow: 0 0 0 22px rgb(53 200 185 / 0%); }
+    100% { box-shadow: 0 0 0 0 rgb(53 200 185 / 0%); }
+}
+
 .booking-email-card:focus-within {
+    transform: translateY(-2px);
     box-shadow:
-        0 4px 10px rgb(0 0 0 / 8%),
-        0 24px 50px rgb(0 0 0 / 22%),
-        0 0 0 4px rgb(53 200 185 / 35%);
+        0 0 0 6px rgb(53 200 185 / 45%),
+        0 8px 18px rgb(0 0 0 / 14%),
+        0 34px 70px rgb(0 0 0 / 32%);
 }
 
 .booking-email-icon {
     display: grid;
     place-items: center;
-    flex: 0 0 52px;
-    width: 52px;
-    height: 52px;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: #E6F0F6;
-    color: var(--bk-navy);
+    background: linear-gradient(135deg, #0AB7A8, #08A99D 55%, #078C86);
+    color: #FFFFFF;
+    box-shadow: 0 8px 18px rgb(8 169 157 / 35%);
 }
 
 .booking-email-icon svg {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
 }
 
 .booking-email-content {
@@ -228,10 +261,11 @@
 
 .booking-email-content label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     color: var(--bk-navy);
-    font-size: 0.86rem;
-    font-weight: 600;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .booking-email-input-wrap {
@@ -240,21 +274,21 @@
 
 .booking-email-input-wrap input {
     width: 100%;
-    height: 48px;
-    padding: 0 60px 0 16px;
-    border: 1.5px solid var(--bk-line);
+    height: 56px;
+    padding: 0 68px 0 18px;
+    border: 2px solid #B5E3DD;
     border-radius: 12px;
     background: #FFFFFF;
     color: var(--bk-navy);
     font-family: inherit;
-    font-size: 0.92rem;
+    font-size: 1rem;
     transition:
         border-color 220ms ease,
         box-shadow 220ms ease;
 }
 
 .booking-email-input-wrap input::placeholder {
-    color: #8499AB;
+    color: #6E8496;
 }
 
 .booking-email-input-wrap input:focus {
@@ -265,12 +299,12 @@
 
 .booking-email-go {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 6px;
+    right: 6px;
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border: 0;
     border-radius: 50%;
@@ -1675,7 +1709,7 @@
     }
 
     .booking-email-card {
-        padding: 14px;
+        padding: 16px;
         border-radius: 18px;
     }
 
