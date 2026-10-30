@@ -419,11 +419,11 @@
 .booking-progress-step:not(:last-child)::after {
     content: "";
     position: absolute;
-    top: 19px;
+    top: 18px;
     left: calc(50% + 28px);
     width: calc(100% - 56px);
-    height: 2px;
-    border-radius: 2px;
+    height: 4px;
+    border-radius: 4px;
 }
 
 .booking-progress-step:not(:last-child)::before {
@@ -504,6 +504,83 @@
 
 .booking-progress-step.is-complete .booking-progress-label {
     color: var(--bk-teal-dark);
+}
+
+/* ---------- Progress route effects ---------- */
+
+/* Completed segments: solid teal with a light sweeping along the route */
+.booking-progress-step.is-complete:not(:last-child)::after {
+    background:
+        linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 75%) 50%, transparent 100%) no-repeat,
+        linear-gradient(90deg, var(--bk-teal), var(--bk-teal-2));
+    background-size: 40% 100%, 100% 100%;
+    background-position: -60% 0, 0 0;
+}
+
+/* Segment ahead of the current step: animated dashes flowing to the next step */
+.booking-progress-step.is-active:not(.is-complete):not(:last-child)::after {
+    background: repeating-linear-gradient(
+        90deg,
+        var(--bk-teal-2) 0 10px,
+        transparent 10px 18px
+    );
+    background-size: 36px 100%;
+    opacity: 0.85;
+    transform: scaleX(1);
+}
+
+/* Current step: soft "you are here" pulse */
+.booking-progress-step.is-active .booking-progress-number::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgb(53 200 185 / 55%);
+    pointer-events: none;
+}
+
+.booking-progress-step.is-active .booking-progress-number {
+    transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .booking-progress-step.is-complete:not(:last-child)::after {
+        animation: booking-route-shine 2.6s ease-in-out infinite;
+    }
+
+    .booking-progress-step.is-active:not(.is-complete):not(:last-child)::after {
+        animation: booking-route-flow 0.9s linear infinite;
+    }
+
+    .booking-progress-step.is-active .booking-progress-number::after {
+        animation: booking-step-pulse 2s ease-out infinite;
+    }
+
+    .booking-progress-step.is-complete .booking-progress-number {
+        animation: booking-step-pop 420ms var(--bk-ease);
+    }
+}
+
+@keyframes booking-route-shine {
+    0%   { background-position: -60% 0, 0 0; }
+    60%, 100% { background-position: 160% 0, 0 0; }
+}
+
+@keyframes booking-route-flow {
+    from { background-position: 0 0; }
+    to   { background-position: 36px 0; }
+}
+
+@keyframes booking-step-pulse {
+    0%   { box-shadow: 0 0 0 0 rgb(53 200 185 / 55%); }
+    70%  { box-shadow: 0 0 0 12px rgb(53 200 185 / 0%); }
+    100% { box-shadow: 0 0 0 0 rgb(53 200 185 / 0%); }
+}
+
+@keyframes booking-step-pop {
+    0%   { transform: scale(0.7); }
+    60%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
 }
 
 
@@ -1687,7 +1764,7 @@
 
     .booking-progress-step:not(:last-child)::before,
     .booking-progress-step:not(:last-child)::after {
-        top: 16px;
+        top: 15px;
         left: calc(50% + 22px);
         width: calc(100% - 44px);
     }
