@@ -4495,3 +4495,70 @@ header nav > a.booking-nav-link:hover .booking-nav-icon {
         justify-content: center;
     }
 }
+
+
+/* =========================================
+   HOME HERO — BENEFITS GRID (all sizes)
+   Certification on its own highlighted row,
+   the other four in two even columns.
+========================================= */
+
+.hero-features {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 22px;
+    width: 100%;
+    max-width: 560px;
+    padding: 16px 18px;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.hero-features .separator {
+    display: none;
+}
+
+.hero-features .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-features .feature-check {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 3px rgb(53 200 185 / 18%);
+}
+
+.hero-features .feature-item:first-child {
+    grid-column: 1 / -1;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(255 255 255 / 14%);
+    font-weight: 700;
+}
+
+.hero-features .feature-item:first-child .feature-check {
+    flex-basis: 24px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #0AB7A8, #078C86);
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .hero-features {
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-features {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        padding: 14px 16px;
+        font-size: 0.88rem;
+    }
+}
