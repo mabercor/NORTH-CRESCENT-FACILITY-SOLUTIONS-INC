@@ -4408,3 +4408,90 @@ header nav > a.booking-nav-link:hover .booking-nav-icon {
         font-size: 0.82rem;
     }
 }
+
+/* Trust message with rising chart */
+.hero-avail-item--hot {
+    white-space: normal;
+    gap: 9px;
+    padding: 7px 14px 7px 10px;
+}
+
+.hero-avail-item--hot .hero-trend {
+    flex: none;
+    width: 34px;
+    height: 19px;
+    color: #CFF7F2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero-trend rect {
+        transform-box: fill-box;
+        transform-origin: bottom;
+        animation: hero-trend-bar 900ms cubic-bezier(.2, .75, .25, 1) both;
+    }
+
+    .hero-trend rect:nth-child(2) { animation-delay: 120ms; }
+    .hero-trend rect:nth-child(3) { animation-delay: 240ms; }
+    .hero-trend rect:nth-child(4) { animation-delay: 360ms; }
+
+    .hero-trend-line {
+        stroke-dasharray: 32;
+        stroke-dashoffset: 32;
+        animation: hero-trend-draw 900ms ease-out 500ms forwards;
+    }
+
+    .hero-trend-arrow {
+        opacity: 0;
+        animation: hero-trend-arrow 300ms ease-out 1300ms forwards;
+    }
+}
+
+@keyframes hero-trend-bar {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+}
+
+@keyframes hero-trend-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes hero-trend-arrow {
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .hero-avail-item--hot {
+        text-align: left;
+        line-height: 1.35;
+    }
+}
+
+/* Two tidy rows: live availability on top, trust message below */
+.hero-availability {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 18px;
+}
+
+.hero-avail-item--live {
+    gap: 8px;
+    padding: 2px 6px;
+}
+
+@media (max-width: 900px) {
+    .hero-availability {
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-availability {
+        align-items: stretch;
+    }
+
+    .hero-avail-item--live {
+        justify-content: center;
+    }
+}
