@@ -4163,7 +4163,8 @@ header nav > a.booking-nav-link:hover .booking-nav-icon {
 
     body.nc-float-tucked .float-container {
         opacity: 0;
-        transform: translateX(130%);
+        transform: translateX(30px);
+        visibility: hidden;
         pointer-events: none;
     }
 }
