@@ -1,0 +1,457 @@
+/* =========================================================
+   NORTH CRESCENT — OUR WORK (built from the Brand DNA)
+========================================================= */
+
+/* Hero essence card */
+.wk-essence-text {
+    margin: 0 0 18px !important;
+    color: #FFFFFF;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.wk-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wk-values li {
+    padding: 6px 12px;
+    border: 1px solid rgb(53 200 185 / 45%);
+    border-radius: 999px;
+    background: rgb(8 169 157 / 18%);
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Work grid */
+.wk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 44px;
+}
+
+.wk-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--pr-line);
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 20px rgb(16 45 73 / 5%);
+    transition: transform 340ms var(--pr-ease), box-shadow 340ms ease, border-color 340ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .wk-card:hover {
+        transform: translateY(-6px);
+        border-color: rgb(53 200 185 / 55%);
+        box-shadow: 0 24px 46px rgb(16 45 73 / 13%);
+    }
+
+    .wk-card:hover .wk-media img {
+        transform: scale(1.05);
+    }
+}
+
+.wk-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+}
+
+.wk-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms var(--pr-ease);
+}
+
+.wk-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgb(8 38 62 / 45%));
+}
+
+.wk-media .sv-tag {
+    z-index: 1;
+}
+
+.wk-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 22px 22px;
+}
+
+.wk-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.wk-body h3 a {
+    color: var(--pr-text);
+    text-decoration: none;
+}
+
+.wk-body h3 a:hover {
+    color: var(--pr-teal-dark);
+}
+
+.wk-done {
+    display: grid;
+    gap: 7px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wk-done li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--pr-text);
+    font-size: 0.86rem;
+    font-weight: 500;
+}
+
+.wk-done .pr-check,
+.wk-benefits .pr-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pr-teal);
+    color: #FFFFFF;
+}
+
+.wk-done .pr-check svg,
+.wk-benefits .pr-check svg {
+    width: 10px;
+    height: 10px;
+}
+
+.wk-quote {
+    position: relative;
+    margin: auto 0 0;
+    padding: 16px 16px 14px;
+    border-radius: 14px;
+    background: var(--pr-soft);
+    border-left: 3px solid var(--pr-teal-2);
+}
+
+.wk-card .wk-quote,
+.wk-card .wk-line {
+    margin-top: 18px;
+}
+
+.wk-stars {
+    color: #F5B301;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.wk-quote p {
+    margin: 6px 0 8px !important;
+    color: var(--pr-text);
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.wk-quote footer {
+    color: var(--pr-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.wk-quote footer a {
+    color: var(--pr-teal-dark);
+}
+
+.wk-line {
+    margin-top: auto !important;
+    padding: 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #174563, var(--pr-deep));
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: center;
+}
+
+.wk-more {
+    margin-top: 28px !important;
+    text-align: center;
+}
+
+.wk-more a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--pr-teal-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.wk-more svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Audiences band */
+.wk-aud-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.wk-aud {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 20px;
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 18px;
+    background: rgb(255 255 255 / 6%);
+}
+
+.wk-aud-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    background: rgb(255 255 255 / 12%);
+    font-size: 1.4rem;
+}
+
+.wk-aud h3 {
+    color: #FFFFFF;
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.wk-aud p {
+    flex: 1;
+    margin: 10px 0 16px !important;
+    color: rgb(255 255 255 / 82%);
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.wk-aud a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--pr-teal-2);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.wk-aud a svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Trust */
+.wk-trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.wk-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 22px;
+    margin: 28px 0 0;
+    padding: 20px 22px;
+    border-radius: 16px;
+    background: var(--pr-soft);
+    list-style: none;
+}
+
+.wk-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--pr-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Promise */
+.wk-promise {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 48px);
+}
+
+.wk-promise .pr-lead {
+    max-width: none;
+}
+
+.wk-promise .pr-lead a {
+    color: var(--pr-teal-dark);
+    font-weight: 600;
+}
+
+.wk-small {
+    margin-top: 8px !important;
+    color: var(--pr-muted);
+    font-size: 0.8rem;
+}
+
+.wk-promise-side {
+    padding: 26px 24px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 100% 0%, rgb(53 200 185 / 25%), transparent 50%),
+        linear-gradient(145deg, #174563, var(--pr-deep));
+    color: rgb(255 255 255 / 85%);
+    box-shadow: 0 22px 44px rgb(8 38 62 / 22%);
+}
+
+.wk-promise-title {
+    margin-bottom: 10px !important;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.wk-promise-side p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.wk-promise-side .btn {
+    margin-top: 18px;
+}
+
+/* Ready: contact channels (DNA: clients prefer to write) */
+.wk-ready {
+    align-items: center;
+}
+
+.wk-ready > div:first-child {
+    flex: 1 1 380px;
+}
+
+.wk-ready-sign {
+    margin-top: 12px;
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+.wk-channels {
+    display: grid;
+    flex: 1 1 420px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.wk-ch {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid rgb(255 255 255 / 45%);
+    border-radius: 14px;
+    background: rgb(255 255 255 / 10%);
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: background-color 220ms ease, transform 220ms ease;
+}
+
+.wk-ch span {
+    grid-row: span 2;
+    font-size: 1.3rem;
+}
+
+.wk-ch strong {
+    font-size: 0.92rem;
+}
+
+.wk-ch small {
+    overflow: hidden;
+    color: rgb(255 255 255 / 80%);
+    font-size: 0.74rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wk-ch:hover {
+    background: rgb(255 255 255 / 20%);
+    transform: translateY(-2px);
+}
+
+.wk-ch--main {
+    border-color: #FFFFFF;
+    background: #FFFFFF;
+    color: var(--pr-navy);
+}
+
+.wk-ch--main small {
+    color: var(--pr-muted);
+}
+
+.wk-ch--main:hover {
+    background: #FFFFFF;
+}
+
+.wk-slogan {
+    margin-top: 16px !important;
+    color: #FFFFFF !important;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.wk-page .pr-area .cc-emoji {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .wk-grid,
+    .wk-trust-grid,
+    .wk-aud-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .wk-benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .wk-promise {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .wk-grid,
+    .wk-trust-grid,
+    .wk-aud-grid,
+    .wk-benefits,
+    .wk-channels {
+        grid-template-columns: 1fr;
+    }
+}
