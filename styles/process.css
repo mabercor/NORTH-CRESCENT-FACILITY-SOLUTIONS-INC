@@ -1076,3 +1076,61 @@
         transform: translateY(-2px);
     }
 }
+
+
+/* Visible breadcrumb (matches the BreadcrumbList schema) */
+.nc-crumbs {
+    width: calc(100% - 60px);
+    max-width: 1200px;
+    margin: 14px auto 0;
+}
+
+.nc-crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.nc-crumbs li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--pr-muted);
+}
+
+.nc-crumbs li + li::before {
+    content: "›";
+    color: var(--pr-teal);
+    font-weight: 700;
+}
+
+.nc-crumbs a {
+    color: var(--pr-teal-dark);
+    text-decoration: none;
+}
+
+.nc-crumbs a:hover {
+    text-decoration: underline;
+}
+
+.nc-crumbs [aria-current="page"] {
+    color: var(--pr-text);
+}
+
+.nc-crumbs + .hero,
+.nc-crumbs + .pr-hero {
+    margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+    .nc-crumbs {
+        width: calc(100% - 20px);
+    }
+}
+
