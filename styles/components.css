@@ -4112,3 +4112,202 @@ header nav > a.booking-nav-link:hover .booking-nav-icon {
   .nc-gbp-facts > div { grid-template-columns: 1fr; gap: 2px; }
   .nc-gbp-actions .btn { width: 100%; justify-content: center; }
 }
+
+
+/* =========================================
+   HOME HERO — MOBILE CLEAN-UP
+   Benefits become a tidy left-aligned list and the two
+   hero buttons stack full width so nothing gets clipped.
+========================================= */
+
+@media (max-width: 600px) {
+    .hero-features {
+        box-sizing: border-box;
+        display: grid;
+        gap: 8px;
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 0.88rem;
+        line-height: 1.45;
+        text-align: left;
+    }
+
+    .hero-features .separator {
+        display: none;
+    }
+
+    .hero-features .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .hero-features .feature-check {
+        margin-top: 1px;
+    }
+
+    .hero-text .btn-group .btn {
+        flex: 1 1 100%;
+        min-height: 48px;
+    }
+}
+
+/* Floating contact bar tucks away while the home hero is on screen
+   (phones only), so it never covers the hero buttons. */
+@media (max-width: 600px) {
+    .float-container {
+        transition:
+            opacity 300ms ease,
+            transform 300ms cubic-bezier(.2, .75, .25, 1);
+    }
+
+    body.nc-float-tucked .float-container {
+        opacity: 0;
+        transform: translateX(130%);
+        pointer-events: none;
+    }
+}
+
+
+/* =========================================
+   FAQ — LINKS ON BRAND
+========================================= */
+
+.faq-card p a {
+    color: var(--nc-teal-dark, #087F7B);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgb(8 169 157 / 35%);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+}
+
+.faq-card p a:hover {
+    color: var(--nc-navy);
+    text-decoration-color: currentColor;
+}
+
+
+/* =========================================
+   FAQ — ACCORDION (opt-in: .faq-grid[data-accordion])
+   Enhanced by /scripts/faq-accordion.js. Without JS
+   every answer stays visible.
+========================================= */
+
+.faq-grid.is-accordion {
+    align-items: start;
+    gap: 14px 20px;
+}
+
+.faq-grid.is-accordion .faq-card {
+    padding: 0;
+}
+
+.faq-grid.is-accordion .faq-card h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.faq-grid.is-accordion .faq-card h3::before {
+    content: none;
+}
+
+.faq-toggle {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 20px 56px 20px 22px;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-toggle::before {
+    display: grid;
+    place-items: center;
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    border: 1px solid rgb(8 169 157 / 28%);
+    border-radius: 50%;
+    background: rgb(8 169 157 / 9%);
+    color: var(--nc-teal);
+    content: "?";
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* plus / minus */
+.faq-toggle::after {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 28px;
+    height: 28px;
+    margin-top: -14px;
+    border-radius: 50%;
+    background:
+        linear-gradient(#FFFFFF, #FFFFFF) center / 12px 2px no-repeat,
+        linear-gradient(#FFFFFF, #FFFFFF) center / 2px 12px no-repeat,
+        linear-gradient(135deg, #0AB7A8, #078C86);
+    box-shadow: 0 4px 10px rgb(8 169 157 / 25%);
+    content: "";
+    transition: transform 320ms cubic-bezier(.2, .75, .25, 1);
+}
+
+.faq-toggle[aria-expanded="true"]::after {
+    background:
+        linear-gradient(#FFFFFF, #FFFFFF) center / 12px 2px no-repeat,
+        linear-gradient(135deg, #174563, #08263E);
+    transform: rotate(180deg);
+}
+
+.faq-toggle:focus-visible {
+    outline: 3px solid var(--nc-teal-light);
+    outline-offset: -3px;
+    border-radius: 16px;
+}
+
+.faq-grid.is-accordion .faq-card p {
+    padding: 0 22px 22px 56px;
+}
+
+.faq-grid.is-accordion .faq-card.is-open::after {
+    transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .faq-grid.is-accordion .faq-card.is-open p {
+        animation: faq-reveal 320ms ease;
+    }
+}
+
+@keyframes faq-reveal {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 600px) {
+    .faq-toggle {
+        padding: 16px 52px 16px 16px;
+    }
+
+    .faq-toggle::after {
+        right: 14px;
+    }
+
+    .faq-grid.is-accordion .faq-card p {
+        padding: 0 16px 18px 16px;
+    }
+}
+
+.faq-grid.is-accordion .faq-card p[hidden] {
+    padding: 0;
+}

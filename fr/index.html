@@ -65,7 +65,7 @@
 <link rel="stylesheet" href="/concierge-widget.css">
 
 <!-- NORTH CRESCENT DESIGN SYSTEM -->
-<link rel="stylesheet" href="/styles/design-system.css">
+<link rel="stylesheet" href="/styles/design-system.css?v=20261029">
 <link rel="stylesheet" href="/styles/reviews.css">
 
 <!-- FAVICON -->
@@ -1170,7 +1170,7 @@
         Découvrez nos services de nettoyage commercial, de nettoyage de bureaux, d’entretien ménager, de nettoyage en profondeur, de nettoyage Airbnb, de nettoyage après construction et nos solutions de nettoyage professionnelles partout dans le sud-est du Nouveau-Brunswick.
       </p>
 
-      <div class="faq-grid">
+      <div class="faq-grid" data-accordion>
 
         <!-- 1 -->
         <div class="faq-card">
@@ -1756,6 +1756,17 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- END HERO CAROUSEL SCRIPT -->
 
+<script>
+/* Phones: hide the floating contact bar while the hero is on screen */
+(function () {
+  var hero = document.querySelector(".hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
+})();
+</script>
+<script src="/scripts/faq-accordion.js?v=20261029" defer></script>
 <script src="/concierge/concierge-widget.js" defer></script>
 <script src="/concierge/services-mascot.js?v=20261027" defer></script>
  
