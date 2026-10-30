@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- BEST PRACTICES (added) -->
+<link rel="alternate" type="text/plain" title="North Crescent summary for AI assistants" href="/llms.txt">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="theme-color" content="#0B2D48">
+<meta property="og:site_name" content="North Crescent Facility Solutions">
+
 
 <title>Professional Janitorial Services | North Crescent Facility Solutions</title>
 <meta name="description"
@@ -39,7 +46,14 @@ content="Professional janitorial services, facility maintenance, office cleaning
 <link rel="stylesheet" href="/concierge-widget.css">
 
 <!-- NORTH CRESCENT DESIGN SYSTEM -->
-<link rel="stylesheet" href="/styles/design-system.css">
+<link rel="stylesheet" href="/styles/design-system.css?v=20261029">
+<link rel="stylesheet" href="/styles/process.css?v=20261030">
+<link rel="stylesheet" href="/styles/services.css?v=20261029c">
+<link rel="stylesheet" href="/styles/commercial.css?v=20261029">
+<link rel="stylesheet" href="/styles/residential.css?v=20261029b">
+<link rel="stylesheet" href="/styles/office.css?v=20261030">
+<link rel="stylesheet" href="/styles/airbnb.css?v=20261030">
+<link rel="stylesheet" href="/styles/janitorial.css?v=20261030">
 
 <!-- JANITORIAL SERVICES SCHEMA -->
 <script type="application/ld+json">
@@ -281,26 +295,10 @@ content="Professional janitorial services, facility maintenance, office cleaning
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How much do professional janitorial services cost?",
+      "name": "How much do janitorial services cost for an office in Moncton?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Janitorial service costs depend on facility size, cleaning frequency, occupancy levels, and operational requirements. North Crescent Facility Solutions provides customized janitorial programs and free estimates for businesses throughout Southeast New Brunswick."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you provide janitorial services near me?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We provide professional janitorial services for businesses located in Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook, and surrounding communities throughout Southeast New Brunswick."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is included in a professional janitorial program?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our recurring janitorial programs may include office cleaning, restroom sanitization, floor care, waste removal, high-touch surface disinfection, kitchen cleaning, supply monitoring, inspections, and scheduled deep cleaning based on your facility's needs."
+        "text": "Janitorial service costs depend on facility size, cleaning frequency, occupancy levels, service requirements, and operational complexity. We provide customized cleaning programs based on your facility's specific needs, helping you choose a reliable service without paying for unnecessary work."
       }
     },
     {
@@ -308,23 +306,7 @@ content="Professional janitorial services, facility maintenance, office cleaning
       "name": "How often should a commercial facility be professionally cleaned?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cleaning frequency depends on employee traffic, customer volume, industry requirements, and operational hours. Most businesses benefit from daily, weekly, or customized recurring janitorial services."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you clean offices and commercial buildings?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We provide recurring janitorial services for offices, commercial buildings, retail stores, medical clinics, warehouses, educational facilities, and professional workplaces."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you provide office cleaning services?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Our office cleaning services help maintain clean, healthy, organized, and productive work environments through structured recurring cleaning schedules."
+        "text": "Cleaning frequency depends on foot traffic, facility usage, employee count, industry requirements, and the type of environment. Some facilities require daily service, while others may benefit from several visits per week or a customized schedule. We help determine a practical routine that keeps your facility consistently clean, safe, and welcoming."
       }
     },
     {
@@ -332,15 +314,31 @@ content="Professional janitorial services, facility maintenance, office cleaning
       "name": "Can janitorial services be scheduled after business hours?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We offer flexible janitorial schedules including evenings, overnight service, weekends, and other off-peak hours to minimize disruption to your business operations."
+        "text": "Yes. When scheduling and access requirements allow, we can coordinate janitorial services during evenings, overnight periods, weekends, or other off-peak hours. Our goal is to provide dependable cleaning while minimizing disruption to your employees, customers, and daily operations."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you provide day porter services?",
+      "name": "What is included in a commercial janitorial program?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We offer day porter services that include continuous cleaning, restroom maintenance, waste removal, supply replenishment, and common area upkeep during business hours."
+        "text": "A janitorial program can include routine cleaning, restroom sanitation, waste removal, floor care, high-touch surface cleaning, common-area cleaning, supply monitoring, quality inspections, and scheduled additional services based on your facility's needs. We build the program around what your business actually requires."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you customize a janitorial program for our facility?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Every facility operates differently. We consider your building size, layout, traffic, operating hours, priority areas, cleaning frequency, and service expectations when creating a janitorial program. Our goal is to build a reliable routine around your operation, not force your business into a standard package."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if my current cleaning company is doing a good job?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A professional janitorial provider should deliver consistent results, follow clear cleaning procedures, maintain quality standards, and communicate when issues require attention. If the quality changes from visit to visit or important areas are repeatedly overlooked, it may be time to review the cleaning process and expectations."
       }
     },
     {
@@ -348,31 +346,47 @@ content="Professional janitorial services, facility maintenance, office cleaning
       "name": "What is the difference between janitorial services and commercial cleaning?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Commercial cleaning often refers to individual cleaning projects, while janitorial services focus on recurring facility maintenance programs designed to keep commercial environments consistently clean, organized, and professionally maintained."
+        "text": "Commercial cleaning can refer to specific cleaning services or projects, while janitorial services typically focus on ongoing, recurring facility care. A janitorial program is designed to maintain cleanliness and consistency over time, helping businesses stay focused on their operations instead of managing cleaning concerns themselves."
       }
     },
     {
       "@type": "Question",
-      "name": "Why hire a professional janitorial company?",
+      "name": "Do you provide the cleaning products, equipment, and supplies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A professional janitorial company helps maintain healthier workplaces, improves your company's image, supports employee productivity, reduces long-term maintenance costs, and provides consistent cleaning quality through structured systems."
+        "text": "Yes. We can provide the professional cleaning products, equipment, and supplies required for the agreed scope of service. Facility- specific requirements and product preferences can be discussed during the assessment so the cleaning approach is appropriate for your environment."
       }
     },
     {
       "@type": "Question",
-      "name": "Are your janitorial services fully insured?",
+      "name": "How do you maintain consistent janitorial cleaning quality?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. North Crescent Facility Solutions is fully insured and our team follows WHMIS, IPAC, PPE, and industry best practices to deliver reliable, professional janitorial services."
+        "text": "Consistency starts with clear expectations, structured cleaning procedures, attention to detail, and reliable communication. We believe a janitorial service should provide dependable results from visit to visit, giving facility managers confidence that their space is being properly cared for."
       }
     },
     {
       "@type": "Question",
-      "name": "What areas do you serve?",
+      "name": "How do you handle keys, building access, and security?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We proudly provide janitorial services, office cleaning, commercial cleaning, facility maintenance, floor care, and workplace sanitization throughout Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook, and surrounding communities across Southeast New Brunswick."
+        "text": "We understand that ongoing janitorial service often requires access to your facility outside regular business hours. Access instructions, keys, entry procedures, and other operational information are handled responsibly according to the requirements agreed upon with each client. Professionalism, discretion, and accountability are essential to how we work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can our janitorial service be adjusted as our facility needs change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Business needs can change with occupancy, seasons, renovations, staffing, events, or changes in facility use. We can review your cleaning requirements and adjust the service scope or frequency when appropriate, helping your cleaning program continue to support the way your facility operates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide janitorial services near me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We provide janitorial and recurring facility cleaning services throughout Moncton, Dieppe, Riverview, Shediac, and surrounding communities across Southeast New Brunswick. Our goal is to become a dependable cleaning partner that businesses can trust to care for their facilities consistently."
       }
     },
     {
@@ -387,6 +401,245 @@ content="Professional janitorial services, facility maintenance, office cleaning
 }
 </script>
   
+<!-- AI SEARCH: SERVICE, PROCESS, BREADCRUMB (added) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html#janitorial-service",
+      "name": "Janitorial Services in Moncton, Dieppe & Riverview",
+      "serviceType": "Recurring janitorial and facility cleaning",
+      "url": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html",
+      "provider": {
+        "@id": "https://northcrescentcleaning.com/#organization"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Moncton"
+        },
+        {
+          "@type": "City",
+          "name": "Dieppe"
+        },
+        {
+          "@type": "City",
+          "name": "Riverview"
+        },
+        {
+          "@type": "City",
+          "name": "Shediac"
+        },
+        {
+          "@type": "City",
+          "name": "Salisbury"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Southeast New Brunswick"
+        }
+      ],
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Corporate Offices, Medical & Healthcare Facilities, Retail Stores, Commercial Buildings, Warehouses & Industrial Facilities, Professional & Institutional Facilities"
+      },
+      "description": "Our janitorial programs combine recurring cleaning, sanitation, facility care, and quality control into one structured service system. Each program is tailored to the operational requirements of your facility to maintain consistent standards day after day.",
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Janitorial services",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Janitorial service system",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Recurring Facility Cleaning",
+                  "description": "Scheduled cleaning programs designed around your facility's operating hours, traffic levels, and day-to-day maintenance needs."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Restroom Cleaning & Sanitization",
+                  "description": "Thorough cleaning and disinfection of restrooms, fixtures, touchpoints, floors, and other high-use areas to maintain hygienic conditions."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Floor Care & Maintenance",
+                  "description": "Vacuuming, sweeping, mopping, spot treatment, and routine floor care designed to maintain appearance and protect flooring surfaces."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "High-Touch Surface Disinfection",
+                  "description": "Focused cleaning and disinfection of door handles, switches, shared equipment, reception areas, and other frequently touched surfaces."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Waste & Recycling Management",
+                  "description": "Collection of garbage and recycling, liner replacement, and organized waste handling to help keep workspaces and common areas clean and orderly."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Supply Monitoring & Replenishment",
+                  "description": "Monitoring of approved restroom and facility supplies with replenishment support to help keep essential areas properly stocked."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Janitorial service programs",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Recurring Janitorial Cleaning",
+                  "description": "Scheduled cleaning designed to maintain essential areas, restrooms, floors, common spaces, and high-touch surfaces on a consistent basis."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Enhanced Facility Maintenance",
+                  "description": "A broader program combining recurring janitorial cleaning, sanitation, floor care, waste management, quality inspections, and additional facility maintenance needs."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Full Facility Support",
+                  "description": "Comprehensive janitorial support for facilities requiring a more complete operational solution, including recurring cleaning, deep cleaning, day porter support, and customized service coordination."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "knowsAbout": [
+        "WHMIS",
+        "IPAC (Infection Prevention and Control)",
+        "Bloodborne Pathogens",
+        "PPE"
+      ],
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Request a free facility assessment",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://northcrescentcleaning.com/contact.html",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html#process",
+      "name": "Our Janitorial Service Process",
+      "description": "Every facility has different operational requirements. Our structured janitorial process allows us to understand your environment, establish clear service standards, maintain consistent cleaning routines, and continuously improve the program as your needs evolve.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Facility Assessment",
+          "text": "We evaluate your facility, including its size, layout, traffic levels, operational requirements, and priority areas before establishing the cleaning program."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Service Planning",
+          "text": "We establish cleaning frequencies, service priorities, schedules, and procedures designed around your facility's daily operations."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Scheduled Cleaning",
+          "text": "Our team performs the agreed cleaning program using structured procedures designed to maintain consistent service standards."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Quality Inspection",
+          "text": "Cleaning results are reviewed through inspections and checklists to verify consistency, attention to detail, and adherence to established standards."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Client Communication",
+          "text": "We maintain clear communication regarding service observations, operational requests, schedule adjustments, and any issues that require attention."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Continuous Improvement",
+          "text": "Regular reviews and client feedback allow us to refine the cleaning program and adapt our service as your facility and operational requirements change."
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://northcrescentcleaning.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://northcrescentcleaning.com/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Janitorial Services",
+          "item": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 
 <body data-page="janitorial">
@@ -450,10 +703,17 @@ content="Professional janitorial services, facility maintenance, office cleaning
   </div>
 </header>
   
-<main>
+<main class="pr-page cc-page rc-page oc-page ab-page jn-page">
 
-<!-- HERO -->
-<section class="hero">
+  <nav class="nc-crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><span aria-current="page">Janitorial Services</span></li>
+    </ol>
+  </nav>
+
+  <section class="hero">
   <div class="container hero-grid">
 
     <div class="hero-text">
@@ -463,8 +723,11 @@ content="Professional janitorial services, facility maintenance, office cleaning
         Professional janitorial services designed to maintain clean, healthy, and productive facilities for businesses throughout Moncton, Dieppe, Riverview, Shediac, and surrounding communities.
       </p>
 
-      <p style="font-size:15px; color:#FFFFFF;">
-        ✔ WHMIS, IPAC & Bloodborne Certified • ✔ Structured Systems • ✔ Absolute Discipline • ✔ 100% Satisfaction Guarantee
+      <p class="hero-features">
+        <span class="feature-item"><span class="feature-check">✔</span> WHMIS, IPAC & Bloodborne Certified</span>
+        <span class="feature-item"><span class="feature-check">✔</span> Structured Systems</span>
+        <span class="feature-item"><span class="feature-check">✔</span> Absolute Discipline</span>
+        <span class="feature-item"><span class="feature-check">✔</span> 100% Satisfaction Guarantee</span>
       </p>
 
       <div class="btn-group">
@@ -472,9 +735,7 @@ content="Professional janitorial services, facility maintenance, office cleaning
         <a href="contact.html" class="btn btn-dark">📅 Book Service</a>
       </div>
 
-      <p style="font-size:13px; color:#4A9B8C; font-weight:600;">
-        Structured thinking • Visible results • Total control
-      </p>
+      <ul class="cc-perks"><li>Structured thinking</li><li>Visible results</li><li>Total control</li></ul>
     </div>
 
      <!-- =========================================================
@@ -687,679 +948,322 @@ content="Professional janitorial services, facility maintenance, office cleaning
 
   </div>
 </section>
-
-<!-- MORE THAN JANITORIAL CLEANING -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>More Than Janitorial Cleaning</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        A professional facility requires more than occasional cleaning. It
-        requires a reliable system that keeps essential areas maintained,
-        high-touch surfaces sanitized, waste controlled, and the workplace
-        consistently ready for employees, customers, and visitors.
-      </p>
-
-      <p>
-        At North Crescent Facility Solutions, our janitorial programs combine
-        recurring cleaning, facility maintenance, workplace sanitation,
-        quality control, and responsive communication into one structured
-        service system.
-      </p>
-
-      <p>
-        Our objective is simple: to keep your facility clean, organized,
-        professional, and ready to operate every day without adding another
-        operational concern to your team.
-      </p>
-
+  <!-- INTRO -->
+  <section class="pr-section" aria-labelledby="jn-intro-title">
+    <div class="pr-panel rc-services oc-intro">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">A reliable system</span>
+        <h2 class="pr-h2" id="jn-intro-title">More Than Janitorial Cleaning</h2>
+        <p class="pr-lead">A professional facility requires more than occasional cleaning. It requires a reliable system that keeps essential areas maintained, high-touch surfaces sanitized, waste controlled, and the workplace consistently ready for employees, customers, and visitors.</p><p class="pr-lead">At North Crescent Facility Solutions, our janitorial programs combine recurring cleaning, facility maintenance, workplace sanitation, quality control, and responsive communication into one structured service system.</p><p class="pr-lead">Our objective is simple: to keep your facility clean, organized, professional, and ready to operate every day without adding another operational concern to your team.</p>
+        <div class="cc-actions oc-left">
+          <a href="/contact.html" class="btn btn-primary">🚀 Get Free Assessment</a>
+          <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
+        </div>
+      </div>
+      <div class="rc-services-photo pr-reveal">
+        <img src="/images/janitorial-hallway-960.webp" srcset="/images/janitorial-hallway-768.webp 768w, /images/janitorial-hallway-960.webp 960w" sizes="(max-width: 1024px) 100vw, 40vw"
+             alt="Janitorial team member maintaining a facility hallway in Moncton" width="960" height="960" loading="lazy" decoding="async">
+        <div class="rc-services-badge"><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>WHMIS, IPAC &amp; Bloodborne Certified</div>
+      </div>
     </div>
-      <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
-    </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-  </div>
-</section>
-
-  <!-- OUR JANITORIAL SERVICE SYSTEM -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Our Janitorial Service System</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        Our janitorial programs combine recurring cleaning, sanitation,
-        facility care, and quality control into one structured service system.
-        Each program is tailored to the operational requirements of your
-        facility to maintain consistent standards day after day.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
+  </section>
+  <!-- SERVICE SYSTEM -->
+  <section class="pr-section" aria-labelledby="jn-sys-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">What's included</span>
+        <h2 class="pr-h2" id="jn-sys-title">Our Janitorial Service System</h2>
+        <p class="pr-lead">Our janitorial programs combine recurring cleaning, sanitation, facility care, and quality control into one structured service system. Each program is tailored to the operational requirements of your facility to maintain consistent standards day after day.</p>
+      </div>
+      <div class="oc-inc-grid pr-reveal">
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🗓️</span>
           <h3>Recurring Facility Cleaning</h3>
-          <p>
-            Scheduled cleaning programs designed around your facility's
-            operating hours, traffic levels, and day-to-day maintenance needs.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Scheduled cleaning programs designed around your facility's operating hours, traffic levels, and day-to-day maintenance needs.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🚻</span>
           <h3>Restroom Cleaning & Sanitization</h3>
-          <p>
-            Thorough cleaning and disinfection of restrooms, fixtures,
-            touchpoints, floors, and other high-use areas to maintain
-            hygienic conditions.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Thorough cleaning and disinfection of restrooms, fixtures, touchpoints, floors, and other high-use areas to maintain hygienic conditions.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🧽</span>
           <h3>Floor Care & Maintenance</h3>
-          <p>
-            Vacuuming, sweeping, mopping, spot treatment, and routine floor
-            care designed to maintain appearance and protect flooring surfaces.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Vacuuming, sweeping, mopping, spot treatment, and routine floor care designed to maintain appearance and protect flooring surfaces.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">👆</span>
           <h3>High-Touch Surface Disinfection</h3>
-          <p>
-            Focused cleaning and disinfection of door handles, switches,
-            shared equipment, reception areas, and other frequently touched
-            surfaces.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Focused cleaning and disinfection of door handles, switches, shared equipment, reception areas, and other frequently touched surfaces.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">♻️</span>
           <h3>Waste & Recycling Management</h3>
-          <p>
-            Collection of garbage and recycling, liner replacement, and
-            organized waste handling to help keep workspaces and common areas
-            clean and orderly.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Collection of garbage and recycling, liner replacement, and organized waste handling to help keep workspaces and common areas clean and orderly.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🧴</span>
           <h3>Supply Monitoring & Replenishment</h3>
-          <p>
-            Monitoring of approved restroom and facility supplies with
-            replenishment support to help keep essential areas properly
-            stocked.
-          </p>
-        </div>
-
+          <p>Monitoring of approved restroom and facility supplies with replenishment support to help keep essential areas properly stocked.</p>
+        </article>
       </div>
-
     </div>
-  </div>
-</section>
-  
-<!-- WHY BUSINESSES CHOOSE NORTH CRESCENT -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Why Businesses Choose North Crescent</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        A successful janitorial program depends on consistency, accountability,
-        and reliable communication. Our structured approach helps businesses
-        maintain professional facilities while reducing the operational burden
-        of managing cleaning services internally.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-        <div class="card">
-          <h3>Reliable Scheduling</h3>
-          <p>
-            We follow structured cleaning schedules designed around your
-            facility's operating hours, priorities, and day-to-day activities.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Trained & Certified Professionals</h3>
-          <p>
-            Our team follows professional cleaning procedures and workplace
-            safety practices to deliver consistent and dependable service.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Quality Control</h3>
-          <p>
-            Cleaning programs are supported by checklists, inspections, and
-            ongoing quality monitoring to maintain consistent service standards.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Customized Service Programs</h3>
-          <p>
-            Cleaning frequency, service priorities, and operational procedures
-            can be adapted to the unique requirements of your facility.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Responsive Communication</h3>
-          <p>
-            We maintain clear communication with clients and respond quickly
-            to service requests, schedule changes, and operational needs.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Local Service You Can Trust</h3>
-          <p>
-            We proudly support businesses throughout Moncton, Dieppe,
-            Riverview, Shediac, and surrounding communities with dependable
-            janitorial and facility cleaning solutions.
-          </p>
-        </div>
-
+  </section>
+  <!-- WHY BUSINESSES CHOOSE -->
+  <section class="pr-section" aria-labelledby="jn-why-title">
+    <div class="pr-promise pr-reveal">
+      <div class="pr-center">
+        <span class="pr-eyebrow">Why North Crescent</span>
+        <h2 class="pr-h2" id="jn-why-title">Why Businesses Choose North Crescent</h2>
+        <p class="pr-lead cc-on-dark">A successful janitorial program depends on consistency, accountability, and reliable communication. Our structured approach helps businesses maintain professional facilities while reducing the operational burden of managing cleaning services internally.</p>
       </div>
-      
-        <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
+      <div class="cc-commit-grid">
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Reliable Scheduling</h3><span>We follow structured cleaning schedules designed around your facility's operating hours, priorities, and day-to-day activities.</span></div>
+        </div>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Trained & Certified Professionals</h3><span>Our team follows professional cleaning procedures and workplace safety practices to deliver consistent and dependable service.</span></div>
+        </div>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Quality Control</h3><span>Cleaning programs are supported by checklists, inspections, and ongoing quality monitoring to maintain consistent service standards.</span></div>
+        </div>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Customized Service Programs</h3><span>Cleaning frequency, service priorities, and operational procedures can be adapted to the unique requirements of your facility.</span></div>
+        </div>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Responsive Communication</h3><span>We maintain clear communication with clients and respond quickly to service requests, schedule changes, and operational needs.</span></div>
+        </div>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Local Service You Can Trust</h3><span>We proudly support businesses throughout Moncton, Dieppe, Riverview, Shediac, and surrounding communities with dependable janitorial and facility cleaning solutions.</span></div>
+        </div>
+      </div>
     </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- OUR JANITORIAL SERVICE PROCESS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Our Janitorial Service Process</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        Every facility has different operational requirements. Our structured
-        janitorial process allows us to understand your environment, establish
-        clear service standards, maintain consistent cleaning routines, and
-        continuously improve the program as your needs evolve.
-      </p>
-
-     <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
+  </section>
+  <!-- PROCESS -->
+  <section class="pr-section" aria-labelledby="jn-proc-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Step by step</span>
+        <h2 class="pr-h2" id="jn-proc-title">Our Janitorial Service Process</h2>
+        <p class="pr-lead">Every facility has different operational requirements. Our structured janitorial process allows us to understand your environment, establish clear service standards, maintain consistent cleaning routines, and continuously improve the program as your needs evolve.</p>
+      </div>
+      <ol class="oc-steps pr-reveal">
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">01</span>
           <h3>1. Facility Assessment</h3>
-          <p>
-            We evaluate your facility, including its size, layout, traffic
-            levels, operational requirements, and priority areas before
-            establishing the cleaning program.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>We evaluate your facility, including its size, layout, traffic levels, operational requirements, and priority areas before establishing the cleaning program.</p>
+        </li>
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">02</span>
           <h3>2. Service Planning</h3>
-          <p>
-            We establish cleaning frequencies, service priorities, schedules,
-            and procedures designed around your facility's daily operations.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>We establish cleaning frequencies, service priorities, schedules, and procedures designed around your facility's daily operations.</p>
+        </li>
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">03</span>
           <h3>3. Scheduled Cleaning</h3>
-          <p>
-            Our team performs the agreed cleaning program using structured
-            procedures designed to maintain consistent service standards.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Our team performs the agreed cleaning program using structured procedures designed to maintain consistent service standards.</p>
+        </li>
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">04</span>
           <h3>4. Quality Inspection</h3>
-          <p>
-            Cleaning results are reviewed through inspections and checklists
-            to verify consistency, attention to detail, and adherence to
-            established standards.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Cleaning results are reviewed through inspections and checklists to verify consistency, attention to detail, and adherence to established standards.</p>
+        </li>
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">05</span>
           <h3>5. Client Communication</h3>
-          <p>
-            We maintain clear communication regarding service observations,
-            operational requests, schedule adjustments, and any issues that
-            require attention.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>We maintain clear communication regarding service observations, operational requests, schedule adjustments, and any issues that require attention.</p>
+        </li>
+        <li class="oc-step">
+          <span class="oc-step-num" aria-hidden="true">06</span>
           <h3>6. Continuous Improvement</h3>
-          <p>
-            Regular reviews and client feedback allow us to refine the cleaning
-            program and adapt our service as your facility and operational
-            requirements change.
-          </p>
-        </div>
-
-      </div>
-
-      <p style="margin-top:30px;">
-        Our goal is to create a dependable janitorial program that becomes a
-        consistent part of your facility operations, helping your team maintain
-        a clean, organized, and professional environment every day.
-      </p>
-
+          <p>Regular reviews and client feedback allow us to refine the cleaning program and adapt our service as your facility and operational requirements change.</p>
+        </li>
+      </ol>
+      <p class="pr-lead ab-closing pr-reveal">Our goal is to create a dependable janitorial program that becomes a consistent part of your facility operations, helping your team maintain a clean, organized, and professional environment every day.</p>
     </div>
-  </div>
-</section>
-
-<!-- WHO WE SERVE -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Who We Serve</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        Our janitorial services are designed for businesses and facilities
-        that require dependable cleaning, consistent standards, and reliable
-        operational support throughout Greater Moncton and Southeast New
-        Brunswick.
-      </p>
-
-     <div class="grid grid-3" style="margin-top:20px;">
-        <div class="card">
+  </section>
+  <!-- WHO WE SERVE -->
+  <section class="pr-section" aria-labelledby="jn-who-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Who we work with</span>
+        <h2 class="pr-h2" id="jn-who-title">Who We Serve</h2>
+        <p class="pr-lead">Our janitorial services are designed for businesses and facilities that require dependable cleaning, consistent standards, and reliable operational support throughout Greater Moncton and Southeast New Brunswick.</p>
+      </div>
+      <div class="sv-who-grid oc-who-grid pr-reveal">
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏢</span>
           <h3>Corporate Offices</h3>
-          <p>
-            Recurring janitorial programs that help maintain clean, organized,
-            and professional office environments for employees and visitors.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Recurring janitorial programs that help maintain clean, organized, and professional office environments for employees and visitors.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🩺</span>
           <h3>Medical & Healthcare Facilities</h3>
-          <p>
-            Structured cleaning and sanitation programs designed to support
-            hygienic and well-maintained healthcare environments.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Structured cleaning and sanitation programs designed to support hygienic and well-maintained healthcare environments.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🛍️</span>
           <h3>Retail Stores</h3>
-          <p>
-            Reliable cleaning programs that help maintain customer-facing
-            spaces, employee areas, floors, restrooms, and high-touch surfaces.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Reliable cleaning programs that help maintain customer-facing spaces, employee areas, floors, restrooms, and high-touch surfaces.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏬</span>
           <h3>Commercial Buildings</h3>
-          <p>
-            Janitorial support for multi-tenant buildings, shared facilities,
-            common areas, offices, and business centers.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Janitorial support for multi-tenant buildings, shared facilities, common areas, offices, and business centers.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏭</span>
           <h3>Warehouses & Industrial Facilities</h3>
-          <p>
-            Professional cleaning solutions for warehouses, industrial spaces,
-            staff areas, and facilities requiring consistent maintenance.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Professional cleaning solutions for warehouses, industrial spaces, staff areas, and facilities requiring consistent maintenance.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏛️</span>
           <h3>Professional & Institutional Facilities</h3>
-          <p>
-            Customized janitorial programs for professional workplaces and
-            facilities that require dependable cleaning and operational support.
-          </p>
-        </div>
-
+          <p>Customized janitorial programs for professional workplaces and facilities that require dependable cleaning and operational support.</p>
+        </article>
       </div>
-        <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
-    </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-
-    </div>
-  </div>
-</section>
-
-
-  
- <!-- JANITORIAL SERVICE AREAS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Janitorial Service Areas</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        North Crescent Facility Solutions provides professional janitorial
-        services throughout Greater Moncton and Southeast New Brunswick.
-        Our team supports businesses, commercial facilities, and organizations
-        with reliable recurring cleaning and facility maintenance programs.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
-          <h3>Moncton</h3>
-          <p>
-            Professional janitorial services for offices, commercial
-            buildings, retail spaces, and businesses throughout Moncton.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Dieppe</h3>
-          <p>
-            Reliable recurring cleaning and facility maintenance programs
-            designed around the needs of local businesses and organizations.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Riverview</h3>
-          <p>
-            Consistent janitorial cleaning for offices, commercial properties,
-            professional workplaces, and shared facilities.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Shediac</h3>
-          <p>
-            Professional cleaning and facility support for businesses and
-            commercial properties throughout the Shediac area.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Salisbury</h3>
-          <p>
-            Dependable janitorial services for local businesses and facilities
-            requiring recurring cleaning and maintenance support.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Southeast New Brunswick</h3>
-          <p>
-            Customized janitorial programs for surrounding communities based
-            on facility requirements, service needs, and availability.
-          </p>
-        </div>
-
+      <div class="cc-actions pr-reveal">
+        <a href="/contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
+        <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
       </div>
-
     </div>
-  </div>
-</section>
-
-
-<!-- JANITORIAL SERVICE PROGRAMS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Janitorial Service Programs</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        Every facility has different cleaning requirements. Our janitorial
-        programs can be structured around your facility size, operating hours,
-        traffic levels, cleaning priorities, and required service frequency.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
+  </section>
+  <!-- SERVICE PROGRAMS -->
+  <section class="pr-section" aria-labelledby="jn-prog-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Choose your level</span>
+        <h2 class="pr-h2" id="jn-prog-title">Janitorial Service Programs</h2>
+        <p class="pr-lead">Every facility has different cleaning requirements. Our janitorial programs can be structured around your facility size, operating hours, traffic levels, cleaning priorities, and required service frequency.</p>
+      </div>
+      <div class="jn-tiers pr-reveal">
+        <article class="jn-tier">
+          <span class="jn-tier-label">Essential</span>
           <h3>Recurring Janitorial Cleaning</h3>
-          <p>
-            Scheduled cleaning designed to maintain essential areas,
-            restrooms, floors, common spaces, and high-touch surfaces on a
-            consistent basis.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Scheduled cleaning designed to maintain essential areas, restrooms, floors, common spaces, and high-touch surfaces on a consistent basis.</p>
+          <a href="/contact.html" class="btn btn-dark">Request a quote</a>
+        </article>
+        <article class="jn-tier jn-tier--featured">
+          <span class="jn-tier-label">Enhanced</span>
           <h3>Enhanced Facility Maintenance</h3>
-          <p>
-            A broader program combining recurring janitorial cleaning,
-            sanitation, floor care, waste management, quality inspections,
-            and additional facility maintenance needs.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>A broader program combining recurring janitorial cleaning, sanitation, floor care, waste management, quality inspections, and additional facility maintenance needs.</p>
+          <a href="/contact.html" class="btn btn-primary">Request a quote</a>
+        </article>
+        <article class="jn-tier">
+          <span class="jn-tier-label">Complete</span>
           <h3>Full Facility Support</h3>
-          <p>
-            Comprehensive janitorial support for facilities requiring a more
-            complete operational solution, including recurring cleaning,
-            deep cleaning, day porter support, and customized service
-            coordination.
-          </p>
-        </div>
-
+          <p>Comprehensive janitorial support for facilities requiring a more complete operational solution, including recurring cleaning, deep cleaning, day porter support, and customized service coordination.</p>
+          <a href="/contact.html" class="btn btn-dark">Request a quote</a>
+        </article>
       </div>
-
-      <p style="text-align:center; max-width:850px; margin:30px auto 0;">
-        Service frequency and scope are customized after evaluating your
-        facility and understanding your operational requirements.
-      </p>
-
+      <p class="pr-lead jn-note pr-reveal">Service frequency and scope are customized after evaluating your facility and understanding your operational requirements.</p>
     </div>
-  </div>
-</section>
-
-  <!-- HEALTH, SAFETY & PROFESSIONAL STANDARDS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Health, Safety & Professional Standards</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        Professional janitorial service requires more than cleaning
-        procedures. Our team follows structured workplace safety practices,
-        professional cleaning standards, and documented procedures designed
-        to support safe, consistent, and reliable facility maintenance.
-      </p>
-
-     <div class="grid grid-3" style="margin-top:20px;">
-        <div class="card">
+  </section>
+  <!-- HEALTH, SAFETY & STANDARDS -->
+  <section class="pr-section" aria-labelledby="jn-std-title">
+    <div class="pr-panel cc-std">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">Safety first</span>
+        <h2 class="pr-h2" id="jn-std-title">Health, Safety & Professional Standards</h2>
+        <p class="pr-lead">Professional janitorial service requires more than cleaning procedures. Our team follows structured workplace safety practices, professional cleaning standards, and documented procedures designed to support safe, consistent, and reliable facility maintenance.</p>
+      </div>
+      <div class="cc-std-grid jn-std-grid pr-reveal">
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>WHMIS Practices</h3>
-          <p>
-            We follow appropriate WHMIS practices for the safe handling,
-            storage, identification, and use of workplace cleaning products
-            and chemicals.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>We follow appropriate WHMIS practices for the safe handling, storage, identification, and use of workplace cleaning products and chemicals.</p>
+        </article>
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>IPAC Principles</h3>
-          <p>
-            Cleaning and disinfection procedures incorporate infection
-            prevention and control principles appropriate to the facility and
-            the areas being serviced.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Cleaning and disinfection procedures incorporate infection prevention and control principles appropriate to the facility and the areas being serviced.</p>
+        </article>
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>PPE & Safe Procedures</h3>
-          <p>
-            Appropriate personal protective equipment and safe work procedures
-            are used according to the cleaning task, workplace environment,
-            and applicable safety requirements.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Appropriate personal protective equipment and safe work procedures are used according to the cleaning task, workplace environment, and applicable safety requirements.</p>
+        </article>
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>Structured Cleaning Procedures</h3>
-          <p>
-            Our teams work with organized procedures and service expectations
-            designed to promote consistency, accountability, and attention to
-            detail.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Our teams work with organized procedures and service expectations designed to promote consistency, accountability, and attention to detail.</p>
+        </article>
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>Quality & Compliance</h3>
-          <p>
-            Service quality is supported through inspections, checklists, and
-            ongoing monitoring to help maintain established cleaning and
-            facility standards.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Service quality is supported through inspections, checklists, and ongoing monitoring to help maintain established cleaning and facility standards.</p>
+        </article>
+        <article class="cc-cert">
+          <span class="cc-cert-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>Continuous Training</h3>
-          <p>
-            We promote ongoing training and professional development to help
-            our team maintain safe work practices and consistent cleaning
-            standards.
-          </p>
-        </div>
-
+          <p>We promote ongoing training and professional development to help our team maintain safe work practices and consistent cleaning standards.</p>
+        </article>
       </div>
-        <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
     </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- WHAT A STRUCTURED JANITORIAL PROGRAM DELIVERS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>What a Structured Janitorial Program Delivers</h2>
-
-      <div class="divider"></div>
-
-      <p style="text-align:center; max-width:900px; margin:0 auto 35px;">
-        A well-managed janitorial program provides more than a clean
-        facility. It creates consistent standards, reduces operational
-        concerns, and helps businesses maintain professional environments
-        every day.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
-          <h3>Consistent Cleaning Standards</h3>
-          <p>
-            Structured procedures and recurring service help maintain a
-            consistent level of cleanliness throughout your facility.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Cleaner Common Areas</h3>
-          <p>
-            Regular attention to entrances, hallways, restrooms, breakrooms,
-            and shared spaces helps keep essential areas clean and presentable.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Professional Workplace Presentation</h3>
-          <p>
-            Well-maintained facilities create a more organized and professional
-            environment for employees, customers, visitors, and business
-            partners.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Reduced Operational Concerns</h3>
-          <p>
-            A dependable cleaning system reduces the need for your team to
-            manage routine cleaning tasks and recurring facility concerns.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Healthier Shared Environments</h3>
-          <p>
-            Consistent cleaning and appropriate disinfection of high-touch
-            areas support cleaner and more hygienic shared workplace
-            environments.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Greater Facility Control</h3>
-          <p>
-            Scheduled service, quality inspections, and clear communication
-            provide greater visibility and control over your facility's
-            cleaning program.
-          </p>
-        </div>
-
+  </section>
+  <!-- WHAT IT DELIVERS -->
+  <section class="pr-section" aria-labelledby="jn-dl-title">
+    <div class="pr-panel cc-benefits">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">The results</span>
+        <h2 class="pr-h2" id="jn-dl-title">What a Structured Janitorial Program Delivers</h2>
+        <p class="pr-lead">A well-managed janitorial program provides more than a clean facility. It creates consistent standards, reduces operational concerns, and helps businesses maintain professional environments every day.</p>
       </div>
-
+      <ul class="cc-benefit-list pr-reveal">
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Consistent Cleaning Standards</h3><p>Structured procedures and recurring service help maintain a consistent level of cleanliness throughout your facility.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Cleaner Common Areas</h3><p>Regular attention to entrances, hallways, restrooms, breakrooms, and shared spaces helps keep essential areas clean and presentable.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Professional Workplace Presentation</h3><p>Well-maintained facilities create a more organized and professional environment for employees, customers, visitors, and business partners.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Reduced Operational Concerns</h3><p>A dependable cleaning system reduces the need for your team to manage routine cleaning tasks and recurring facility concerns.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Healthier Shared Environments</h3><p>Consistent cleaning and appropriate disinfection of high-touch areas support cleaner and more hygienic shared workplace environments.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Greater Facility Control</h3><p>Scheduled service, quality inspections, and clear communication provide greater visibility and control over your facility's cleaning program.</p></div></li>
+      </ul>
     </div>
-  </div>
-</section>
-  
-<!-- RELATED SERVICES -->
-<section>
+  </section>
+  <!-- SERVICE AREAS -->
+  <section class="pr-section" aria-labelledby="jn-area-title">
+    <div class="pr-panel pr-areas">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">Where we work</span>
+        <h2 class="pr-h2" id="jn-area-title">Janitorial Service Areas</h2>
+        <p class="pr-lead">North Crescent Facility Solutions provides professional janitorial services throughout Greater Moncton and Southeast New Brunswick. Our team supports businesses, commercial facilities, and organizations with reliable recurring cleaning and facility maintenance programs.</p>
+        <p class="pr-areas-badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>Offices, retail, healthcare &amp; commercial buildings</p>
+      </div>
+      <ul class="pr-area-list pr-reveal">
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Moncton</h3><p>Professional janitorial services for offices, commercial buildings, retail spaces, and businesses throughout Moncton.</p></div>
+        </li>
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Dieppe</h3><p>Reliable recurring cleaning and facility maintenance programs designed around the needs of local businesses and organizations.</p></div>
+        </li>
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Riverview</h3><p>Consistent janitorial cleaning for offices, commercial properties, professional workplaces, and shared facilities.</p></div>
+        </li>
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Shediac</h3><p>Professional cleaning and facility support for businesses and commercial properties throughout the Shediac area.</p></div>
+        </li>
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Salisbury</h3><p>Dependable janitorial services for local businesses and facilities requiring recurring cleaning and maintenance support.</p></div>
+        </li>
+        <li class="pr-area">
+          <span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <div><h3>Southeast New Brunswick</h3><p>Customized janitorial programs for surrounding communities based on facility requirements, service needs, and availability.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
   <div class="container">
 
     <div class="section-box" style="text-align:center;">
@@ -1477,11 +1381,7 @@ content="Professional janitorial services, facility maintenance, office cleaning
   </div>
 </section>
 
-<!-- =========================================================
-     JANITORIAL CLEANING — FAQ
-========================================================= -->
-
-<section>
+  <section>
 
   <div class="container">
 
@@ -1499,7 +1399,7 @@ content="Professional janitorial services, facility maintenance, office cleaning
         businesses ask before choosing a professional janitorial partner.
       </p>
 
-      <div class="faq-grid">
+      <div class="faq-grid" data-accordion>
 
 
         <!-- FAQ 1 -->
@@ -1751,45 +1651,23 @@ content="Professional janitorial services, facility maintenance, office cleaning
   </div>
 
 </section>
-
-  
-<!-- FINAL JANITORIAL CTA -->
-<section>
-  <div class="container">
-    <div class="section-box" style="text-align:center;">
-
-      <h2>Ready for a More Reliable Janitorial Program?</h2>
-
-      <div class="divider"></div>
-
-      <p style="max-width:850px; margin:0 auto 30px;">
-        Let us evaluate your facility and build a janitorial cleaning program
-        around your schedule, operational requirements, and cleaning priorities.
-        Our goal is to make facility cleaning one less thing for your team to
-        worry about.
-      </p>
-
-      <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-
-        <a href="/contact.html" class="btn btn-primary">
-          Request a Free Facility Assessment
-        </a>
-
-        <a href="tel:+14288880542" class="btn btn-secondary">
-          Call North Crescent
-        </a>
-
+  <!-- FINAL CTA -->
+  <section class="pr-section">
+    <div class="pr-cta rc-final pr-reveal">
+      <div>
+        <h2>Ready for a More Reliable Janitorial Program?</h2>
+        <p>Let us evaluate your facility and build a janitorial cleaning program around your schedule, operational requirements, and cleaning priorities. Our goal is to make facility cleaning one less thing for your team to worry about.</p>
+        <p class="rc-final-cities">Serving Moncton, Dieppe, Riverview, Shediac, and surrounding communities throughout Southeast New Brunswick.</p>
       </div>
-
-      <p style="margin-top:25px; font-size:0.95rem;">
-        Serving Moncton, Dieppe, Riverview, Shediac, and surrounding
-        communities throughout Southeast New Brunswick.
-      </p>
-
+      <div class="pr-cta-actions">
+        <a href="/contact.html" class="btn pr-btn-white">🚀 Request a Free Facility Assessment</a>
+        <a href="tel:+14288880542" class="btn pr-btn-ghost">📞 Call North Crescent</a>
+        <a href="/cleaning-booking-moncton.html" class="btn pr-btn-ghost">📅 Book Now</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+<div class="cc-spacer"></div>
 </main>
 
 <div class="float-container">
@@ -2080,6 +1958,26 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- END HERO CAROUSEL SCRIPT -->
   
+<script>
+(function () {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("pr-js");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".pr-reveal").forEach(function (el) { io.observe(el); });
+})();
+(function () {
+  var hero = document.querySelector(".hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
+})();
+</script>
+<script src="/scripts/faq-accordion.js?v=20261029" defer></script>
 <script src="/concierge/concierge-widget.js" defer></script>
   
 </body>
