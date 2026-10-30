@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- BEST PRACTICES (added) -->
+<link rel="alternate" type="text/plain" title="Résumé de North Crescent pour les assistants IA" href="/llms.txt">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#0B2D48">
@@ -539,7 +540,7 @@ gtag('config', 'G-48W5J5N037');
 
 <!-- NEW DESIGN SYSTEM -->
 <link rel="stylesheet" href="/styles/design-system.css?v=20261029">
-<link rel="stylesheet" href="/styles/process.css?v=20261029">
+<link rel="stylesheet" href="/styles/process.css?v=20261030">
 <link rel="stylesheet" href="/styles/services.css?v=20261029c">
 
  
@@ -550,6 +551,142 @@ gtag('config', 'G-48W5J5N037');
 <link rel="icon" href="/favicon-16x16.png" sizes="16x16">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+<!-- AI SEARCH + RICH RESULTS: contact point, booking action, service list (added) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://northcrescentcleaning.com/#organization",
+      "slogan": "Nous prenons soin de vos espaces pour que vous puissiez vous concentrer sur votre réussite et votre bien-être.",
+      "knowsAbout": [
+        "WHMIS",
+        "IPAC (Infection Prevention and Control)",
+        "Bloodborne Pathogens",
+        "Commercial cleaning",
+        "Janitorial services",
+        "Residential cleaning",
+        "Snow removal"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+1-428-888-0542",
+        "email": "info@northcrescentcleaning.com",
+        "availableLanguage": [
+          "English"
+        ],
+        "areaServed": "CA-NB",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      }
+    },
+    {
+      "@type": "CleaningService",
+      "@id": "https://northcrescentcleaning.com/services.html#service",
+      "hasMap": "https://www.google.com/maps?cid=3831185809350421448",
+      "slogan": "Nous prenons soin de vos espaces pour que vous puissiez vous concentrer sur votre réussite et votre bien-être.",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Book a cleaning",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://northcrescentcleaning.com/cleaning-booking-moncton.html",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://northcrescentcleaning.com/services.html#services-list",
+      "name": "Services de nettoyage professionnels à Moncton, Dieppe et Riverview",
+      "numberOfItems": 9,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Nettoyage commercial",
+          "url": "https://northcrescentcleaning.com/commercial-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Nettoyage de bureaux",
+          "url": "https://northcrescentcleaning.com/office-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Services d’entretien ménager",
+          "url": "https://northcrescentcleaning.com/janitorial-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Nettoyage après construction",
+          "url": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Nettoyage Airbnb",
+          "url": "https://northcrescentcleaning.com/airbnb-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Nettoyage résidentiel",
+          "url": "https://northcrescentcleaning.com/residential-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Déneigement saisonnier",
+          "url": "https://northcrescentcleaning.com/snow-removal-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Nettoyage en profondeur",
+          "url": "https://northcrescentcleaning.com/deep-cleaning-moncton.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Nettoyage d’emménagement / de déménagement",
+          "url": "https://northcrescentcleaning.com/cleaning-booking-moncton.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://northcrescentcleaning.com/services.html#webpage",
+      "mainEntity": {
+        "@id": "https://northcrescentcleaning.com/services.html#services-list"
+      },
+      "breadcrumb": {
+        "@id": "https://northcrescentcleaning.com/services.html#breadcrumb"
+      }
+    }
+  ]
+}
+</script>
 </head>
 
 <body data-page="services">
@@ -647,6 +784,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
 <main class="pr-page sv-page">
+
+  <nav class="nc-crumbs" aria-label="Fil d’Ariane">
+    <ol>
+      <li><a href="/fr/">Accueil</a></li>
+      <li><span aria-current="page">Services</span></li>
+    </ol>
+  </nav>
 
   <!-- HERO -->
   <section class="pr-hero" aria-labelledby="sv-hero-title">
@@ -1195,6 +1339,16 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 <script src="/scripts/faq-accordion.js?v=20261029" defer></script>
+<script>
+/* Phones: hide the floating contact bar while the hero is on screen */
+(function () {
+  var hero = document.querySelector(".pr-hero, .hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
+})();
+</script>
 <script src="/concierge/concierge-widget.js" defer></script>
 
 </body>

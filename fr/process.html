@@ -48,7 +48,7 @@
 <link rel="stylesheet" href="/styles/design-system.css">
 
 <!-- PROCESS PAGE -->
-<link rel="stylesheet" href="/styles/process.css?v=20261029">
+<link rel="stylesheet" href="/styles/process.css?v=20261030">
 
 </head>
 
@@ -540,6 +540,16 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".pr-reveal, .pr-steps").forEach(function (el) { io.observe(el); });
+})();
+</script>
+<script>
+/* Phones: hide the floating contact bar while the hero is on screen */
+(function () {
+  var hero = document.querySelector(".pr-hero, .hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
 })();
 </script>
 <script src="/concierge/concierge-widget.js" defer></script>
