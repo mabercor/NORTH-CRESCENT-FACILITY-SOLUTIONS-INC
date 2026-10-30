@@ -1,0 +1,336 @@
+/* =========================================================
+   NORTH CRESCENT — RESIDENTIAL CLEANING PAGE
+   Builds on process.css, services.css and commercial.css.
+========================================================= */
+
+/* Back link */
+.rc-back {
+    width: calc(100% - 60px);
+    max-width: 1200px;
+    margin: 14px auto 0;
+}
+
+.rc-back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    color: var(--pr-teal-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgb(16 45 73 / 6%);
+}
+
+.rc-back a:hover {
+    color: var(--pr-navy);
+}
+
+.rc-page .hero {
+    margin-top: 10px;
+}
+
+.rc-page .hero .hero-tagline {
+    margin: 0 0 12px;
+    color: var(--nc-teal-light);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Small highlighted tagline under headings */
+.rc-tag {
+    margin-top: 12px !important;
+    color: var(--pr-teal-dark);
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.pr-promise .rc-tag,
+.pr-promise .pr-quote {
+    color: rgb(255 255 255 / 92%);
+}
+
+
+/* ---------- Care: text + 4 mini cards ---------- */
+
+.rc-care {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 60px);
+}
+
+.rc-care .pr-lead {
+    max-width: none;
+}
+
+.rc-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.rc-mini {
+    padding: 22px 20px;
+    border: 1px solid var(--pr-line);
+    border-radius: 18px;
+    background: linear-gradient(180deg, #FFFFFF, var(--pr-soft));
+    transition: transform 320ms var(--pr-ease), box-shadow 320ms ease, border-color 320ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .rc-mini:hover {
+        transform: translateY(-4px);
+        border-color: rgb(53 200 185 / 55%);
+        box-shadow: 0 18px 34px rgb(16 45 73 / 10%);
+    }
+}
+
+.rc-mini-icon,
+.rc-svc-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    background: rgb(8 169 157 / 10%);
+    font-size: 1.35rem;
+}
+
+.rc-mini h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.rc-mini p {
+    margin-top: 6px !important;
+    color: var(--pr-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+
+/* ---------- Time band ---------- */
+
+.pr-fact .rc-fact-emoji {
+    display: grid;
+    margin-top: 0;
+    background: rgb(255 255 255 / 12%);
+    box-shadow: none;
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.pr-facts .pr-fact h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+
+/* ---------- Services: photo + grid ---------- */
+
+.rc-services {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: clamp(28px, 4vw, 48px);
+}
+
+.rc-services .pr-lead {
+    max-width: none;
+}
+
+.rc-services-photo {
+    position: sticky;
+    top: 110px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 24px 46px rgb(16 45 73 / 16%);
+}
+
+.rc-services-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.rc-services-badge {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgb(8 38 62 / 82%);
+    color: #FFFFFF;
+    font-size: 0.86rem;
+    font-weight: 700;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.rc-services-badge .pr-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--pr-teal);
+}
+
+.rc-services-badge .pr-check svg {
+    width: 12px;
+    height: 12px;
+}
+
+.rc-svc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.rc-svc {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid var(--pr-line);
+    border-radius: 18px;
+    background: #FFFFFF;
+    color: var(--pr-text);
+    text-decoration: none;
+    transition: transform 320ms var(--pr-ease), box-shadow 320ms ease, border-color 320ms ease;
+}
+
+.rc-svc h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.rc-svc p {
+    margin-top: 6px !important;
+    color: var(--pr-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.rc-svc .sv-more {
+    padding-top: 12px;
+}
+
+.rc-svc--link {
+    border-color: rgb(53 200 185 / 45%);
+    background: linear-gradient(180deg, #FFFFFF, rgb(8 169 157 / 5%));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .rc-svc:hover {
+        transform: translateY(-4px);
+        border-color: rgb(53 200 185 / 60%);
+        box-shadow: 0 18px 34px rgb(16 45 73 / 10%);
+    }
+
+    .rc-svc--link:hover .sv-more svg {
+        transform: translateX(4px);
+    }
+}
+
+
+/* ---------- Homes we help ---------- */
+
+.rc-who-emoji {
+    background: rgb(8 169 157 / 10%) !important;
+    font-size: 1.4rem;
+    box-shadow: none !important;
+}
+
+
+/* ---------- Final CTA ---------- */
+
+.rc-final > div:first-child {
+    flex: 1 1 520px;
+    max-width: 680px;
+}
+
+@media (min-width: 900px) {
+    .rc-final {
+        flex-wrap: nowrap;
+    }
+
+    .rc-final .pr-cta-actions {
+        flex-direction: column;
+        flex: 0 0 240px;
+    }
+
+    .rc-final .pr-cta-actions .btn {
+        width: 100%;
+    }
+}
+
+.rc-final p + p {
+    margin-top: 6px;
+}
+
+.rc-final-tag {
+    margin-bottom: 8px;
+    color: #FFFFFF !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.rc-final-cities {
+    margin-top: 14px !important;
+    color: #FFFFFF !important;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+    .rc-care,
+    .rc-services {
+        grid-template-columns: 1fr;
+    }
+
+    .rc-services-photo {
+        position: relative;
+        top: 0;
+        max-width: 560px;
+    }
+
+    .rc-services-photo img {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (max-width: 640px) {
+    .rc-back {
+        width: calc(100% - 20px);
+    }
+
+    .rc-mini-grid,
+    .rc-svc-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rc-who-title {
+    display: block;
+    color: var(--pr-text);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+}

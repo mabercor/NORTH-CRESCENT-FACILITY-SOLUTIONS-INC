@@ -148,7 +148,11 @@ href="https://northcrescentcleaning.com/fr/residential-cleaning-moncton.html">
 <link rel="stylesheet" href="/concierge-widget.css">
 
 <!-- NORTH CRESCENT DESIGN SYSTEM -->
-<link rel="stylesheet" href="/styles/design-system.css">
+<link rel="stylesheet" href="/styles/design-system.css?v=20261029">
+<link rel="stylesheet" href="/styles/process.css?v=20261029">
+<link rel="stylesheet" href="/styles/services.css?v=20261029c">
+<link rel="stylesheet" href="/styles/commercial.css?v=20261029">
+<link rel="stylesheet" href="/styles/residential.css?v=20261029">
 
 <!-- FAVICON -->
 
@@ -491,6 +495,156 @@ gtag('config', 'G-48W5J5N037');
 }
 </script>
 
+<!-- AI SEARCH: SERVICE CATALOG + BREADCRUMB (added) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://northcrescentcleaning.com/residential-cleaning-moncton.html#residential-service",
+      "name": "Residential Cleaning in Moncton",
+      "serviceType": "Residential cleaning",
+      "url": "https://northcrescentcleaning.com/residential-cleaning-moncton.html",
+      "provider": {
+        "@id": "https://northcrescentcleaning.com/#organization"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Moncton"
+        },
+        {
+          "@type": "City",
+          "name": "Dieppe"
+        },
+        {
+          "@type": "City",
+          "name": "Riverview"
+        },
+        {
+          "@type": "City",
+          "name": "Shediac"
+        },
+        {
+          "@type": "City",
+          "name": "Pointe-du-Chêne"
+        },
+        {
+          "@type": "City",
+          "name": "Cap-Pelé"
+        },
+        {
+          "@type": "City",
+          "name": "Cocagne"
+        },
+        {
+          "@type": "City",
+          "name": "Grande-Digue"
+        }
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Busy Families, Working Professionals, Family Homes, Homeowners, Homes Needing Extra Care, Moving Homes, Seniors & Loved Ones, Anyone Who Needs a Hand"
+      },
+      "description": "Professional residential cleaning and sanitization for homes in Moncton, Dieppe, Riverview, Shediac and surrounding communities: regular (weekly, bi-weekly or monthly) house cleaning, deep cleaning, move-in / move-out cleaning, residential sanitization and customized cleaning plans. Backed by a 100% Satisfaction Guarantee.",
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Residential cleaning services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Regular Residential Cleaning",
+              "description": "Reliable recurring cleaning designed to help keep your home consistently clean and comfortable."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Deep Cleaning",
+              "description": "Detailed cleaning for homes that need extra attention, care, and a deeper level of cleaning.",
+              "url": "https://northcrescentcleaning.com/deep-cleaning-moncton.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Move-In / Move-Out Cleaning",
+              "description": "Detailed cleaning to help prepare a home for moving in, moving out, or its next chapter."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Residential Sanitization",
+              "description": "Professional cleaning and sanitization practices designed around the needs of your home."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Customized Cleaning",
+              "description": "Cleaning solutions tailored to your home's specific needs and priorities."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Home Care Support",
+              "description": "Thoughtful cleaning support designed to make caring for your home a little easier."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://northcrescentcleaning.com/residential-cleaning-moncton.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://northcrescentcleaning.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://northcrescentcleaning.com/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Residential Cleaning",
+          "item": "https://northcrescentcleaning.com/residential-cleaning-moncton.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 
 <body data-page="residential">
@@ -557,18 +711,11 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </header>
 
-    <main>
+    <main class="pr-page cc-page rc-page">
 
-  <p style="margin-bottom:15px; font-size:13px;">
-    <a href="/services.html" style="color:#4A9B8C; font-weight:600;">
-      ← Back to All Cleaning Services
-    </a>
-  </p>
-
-
-  <!-- =====================================================
-       RESIDENTIAL CLEANING — HERO
-  ====================================================== -->
+  <nav class="rc-back" aria-label="Breadcrumb">
+    <a href="/services.html">← Back to All Cleaning Services</a>
+  </nav>
 
   <section class="hero">
 
@@ -599,8 +746,12 @@ gtag('config', 'G-48W5J5N037');
           and surrounding communities.
         </p>
           
-        <p style="font-size:15px; color:#1E3A5F;">
-          ✔ Professional Cleaning • ✔ Sanitization • ✔ Genuine Care • ✔ Attention to Detail • ✔ 100% Satisfaction Guarantee
+        <p class="hero-features">
+          <span class="feature-item"><span class="feature-check">✔</span> Professional Cleaning</span>
+          <span class="feature-item"><span class="feature-check">✔</span> Sanitization</span>
+          <span class="feature-item"><span class="feature-check">✔</span> Genuine Care</span>
+          <span class="feature-item"><span class="feature-check">✔</span> Attention to Detail</span>
+          <span class="feature-item"><span class="feature-check">✔</span> 100% Satisfaction Guarantee</span>
         </p>
 
 
@@ -622,9 +773,7 @@ gtag('config', 'G-48W5J5N037');
         </div>
 
 
-        <p style="font-size:13px; color:#4A9B8C; font-weight:600;">
-          Less Stress • More Time • A Home You Can Feel Good About ❤️
-        </p>
+        <ul class="cc-perks"><li>Less Stress</li><li>More Time</li><li>A Home You Can Feel Good About ❤️</li></ul>
 
       </div>
 
@@ -634,15 +783,26 @@ gtag('config', 'G-48W5J5N037');
 
     <div class="hero-carousel-track">
 
-        <!-- SLIDE 1: MAIN HERO -->
+        <!-- SLIDE 3: RESIDENTIAL CLEANING -->
         <div class="hero-slide is-active">
+            <img
+                src="/images/residential-cleaning-moncton-960.webp"
+                alt="Professional residential cleaning services"
+                width="960"
+                height="640"
+                loading="eager" fetchpriority="high"
+                decoding="async">
+        </div>
+
+        <!-- SLIDE 1: MAIN HERO -->
+        <div class="hero-slide">
             <img
                 src="/images/hero-company-cleaning.webp"
                 alt="Professional cleaning team serving Moncton, New Brunswick"
                 width="1060"
                 height="707"
-                loading="eager"
-                fetchpriority="high"
+                loading="lazy"
+               
                 decoding="async">
         </div>
 
@@ -651,17 +811,6 @@ gtag('config', 'G-48W5J5N037');
             <img
                 src="/images/commercial-cleaning-moncton-960.webp"
                 alt="Professional commercial cleaning services in Moncton"
-                width="960"
-                height="640"
-                loading="lazy"
-                decoding="async">
-        </div>
-
-        <!-- SLIDE 3: RESIDENTIAL CLEANING -->
-        <div class="hero-slide">
-            <img
-                src="/images/residential-cleaning-moncton-960.webp"
-                alt="Professional residential cleaning services"
                 width="960"
                 height="640"
                 loading="lazy"
@@ -729,881 +878,218 @@ gtag('config', 'G-48W5J5N037');
 <!-- END HERO IMAGE CAROUSEL -->
   </div>
 </section>
-         
-
-        <!-- =========================================================
-     RESIDENTIAL CLEANING — OUR APPROACH
-========================================================= -->
-
-<section>
-  <div class="container">
-    <div class="section-box" style="text-align:center;">
-
-      <h2>
-    Professional Residential Cleaning Services for Your Home
-</h2>
-
-<p>
-    Cleaning Is a Way of Showing Care ❤️
-</p>
-
-      <div class="divider"></div>
-
-      <p>
-        At North Crescent Facility Solutions Inc., we believe that
-        cleaning is a way of showing love and care — for the people
-        we love, for our surroundings, and for the spaces that
-        matter to us.
-      </p>
-
-      <p>
-        Our trained team approaches every cleaning with dedication,
-        respect, and attention to the little details that truly
-        make a difference.
-      </p>
-
-      <p>
-        That's why we provide professional residential cleaning
-        and sanitization solutions designed to make your life
-        a little easier.
-      </p>
-
-
-      <!-- RESIDENTIAL VALUE CARDS -->
-
-        <div class="grid grid-3" style="margin-top:20px;">
-
-        <!-- CLEANING -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            🧼
-          </div>
-
-          <h3>
-            Professional Cleaning
-          </h3>
-
-          <p>
-            Detailed cleaning focused on the spaces and surfaces
-            that matter most in your home.
-          </p>
-
-        </div>
-
-
-        <!-- SANITIZATION -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            🛡️
-          </div>
-
-          <h3>
-            Professional Sanitization
-          </h3>
-
-          <p>
-            Cleaning and sanitization practices designed to help
-            create a cleaner, more comfortable home environment.
-          </p>
-
-        </div>
-
-
-        <!-- LESS STRESS -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            😌
-          </div>
-
-          <h3>
-            Less Stress
-          </h3>
-
-          <p>
-            Leave the cleaning to us and spend more time with
-            your family, your loved ones, and the things you enjoy.
-          </p>
-
-        </div>
-
-
-        <!-- GENUINE CARE -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            ❤️
-          </div>
-
-          <h3>
-            Genuine Care
-          </h3>
-
-          <p>
-            We treat your home with respect, dedication, and
-            the attention to detail it deserves.
-          </p>
-
-        </div>
-
+  <!-- CARE -->
+  <section class="pr-section" aria-labelledby="rc-care-title">
+    <div class="pr-panel rc-care">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">Our approach</span>
+        <h2 class="pr-h2" id="rc-care-title">Professional Residential Cleaning Services for Your Home</h2>
+        <p class="rc-tag">Cleaning Is a Way of Showing Care ❤️</p>
+        <p class="pr-lead">At North Crescent Facility Solutions Inc., we believe that cleaning is a way of showing love and care — for the people we love, for our surroundings, and for the spaces that matter to us.</p><p class="pr-lead">Our trained team approaches every cleaning with dedication, respect, and attention to the little details that truly make a difference.</p><p class="pr-lead">That's why we provide professional residential cleaning and sanitization solutions designed to make your life a little easier.</p>
       </div>
-
-    </div>
-  </div>
-</section>
-        <!-- =========================================================
-     RESIDENTIAL CLEANING — LESS STRESS / MORE TIME
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box">
-
-      <h2>
-    Residential Cleaning That Saves You Time and Reduces Stress
-</h2>
-
-<p>
-    Less Stress. More Time for What Matters. ❤️
-</p>
-
-      <div class="divider"></div>
-
-      <p>
-        You already have enough things to take care of.
-        Your home should be a place where you can relax,
-        spend time with your family, and enjoy the moments
-        that matter.
-      </p>
-
-      <p>
-        Let us take the cleaning off your hands.
-        Our professional team takes care of the details
-        so you can spend less time cleaning and more time
-        living.
-      </p>
-
-
-      <!-- FOUR BENEFIT CARDS -->
-
-       <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
-
-          <div class="service-icon">
-            ⏰
-          </div>
-
-          <h3>
-            More Time
-          </h3>
-
-          <p>
-            Spend your time with family, friends, or simply
-            doing the things you enjoy.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            😌
-          </div>
-
-          <h3>
-            Less Stress
-          </h3>
-
-          <p>
-            Leave the cleaning responsibilities to our
-            professional team.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            🏠
-          </div>
-
-          <h3>
-            A Comfortable Home
-          </h3>
-
-          <p>
-            Enjoy a home that feels fresh, clean,
-            comfortable, and cared for.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            ❤️
-          </div>
-
-          <h3>
-            Genuine Care
-          </h3>
-
-          <p>
-            We treat your home with respect, dedication,
-            and attention to the details that matter.
-          </p>
-
-        </div>
-
+      <div class="rc-mini-grid pr-reveal">
+        <article class="rc-mini">
+          <span class="rc-mini-icon" aria-hidden="true">🧼</span>
+          <h3>Professional Cleaning</h3>
+          <p>Detailed cleaning focused on the spaces and surfaces that matter most in your home.</p>
+        </article>
+        <article class="rc-mini">
+          <span class="rc-mini-icon" aria-hidden="true">🛡️</span>
+          <h3>Professional Sanitization</h3>
+          <p>Cleaning and sanitization practices designed to help create a cleaner, more comfortable home environment.</p>
+        </article>
+        <article class="rc-mini">
+          <span class="rc-mini-icon" aria-hidden="true">😌</span>
+          <h3>Less Stress</h3>
+          <p>Leave the cleaning to us and spend more time with your family, your loved ones, and the things you enjoy.</p>
+        </article>
+        <article class="rc-mini">
+          <span class="rc-mini-icon" aria-hidden="true">❤️</span>
+          <h3>Genuine Care</h3>
+          <p>We treat your home with respect, dedication, and the attention to detail it deserves.</p>
+        </article>
       </div>
-
     </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESIDENTIAL CLEANING — BENEFITS
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box">
-
-      <h2>
-    How Professional Residential Cleaning Can Improve Your Home
-</h2>
-
-<p>
-    The Difference Professional Cleaning Can Make ❤️
-</p>
-
-      <div class="divider"></div>
-
-      <p>
-        Professional residential cleaning is not only about
-        making your home look better. It can help create a
-        more comfortable environment while giving you back
-        valuable time.
-      </p>
-
-
-        <div class="grid grid-3" style="margin-top:20px;">
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            ✨
-          </div>
-
-          <h3>
-            A Fresher Home
-          </h3>
-
-          <p>
-            Detailed cleaning helps keep your home feeling
-            fresh, comfortable, and cared for.
-          </p>
-
+  </section>
+  <!-- TIME & LESS STRESS -->
+  <section class="pr-section" aria-labelledby="rc-time-title">
+    <div class="pr-promise pr-reveal">
+      <div class="pr-promise-grid">
+        <div>
+          <span class="pr-eyebrow">More time for you</span>
+          <h2 class="pr-h2" id="rc-time-title">Residential Cleaning That Saves You Time and Reduces Stress</h2>
+          <p class="pr-quote">Less Stress. More Time for What Matters. ❤️</p>
+          <p class="pr-lead cc-on-dark">You already have enough things to take care of. Your home should be a place where you can relax, spend time with your family, and enjoy the moments that matter.</p><p class="pr-lead cc-on-dark">Let us take the cleaning off your hands. Our professional team takes care of the details so you can spend less time cleaning and more time living.</p>
         </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            🛡️
+        <div class="pr-facts">
+          <div class="pr-fact">
+            <span class="pr-fact-icon rc-fact-emoji" aria-hidden="true">⏰</span>
+            <div><h3>More Time</h3><span>Spend your time with family, friends, or simply doing the things you enjoy.</span></div>
           </div>
-
-          <h3>
-            Professional Standards
-          </h3>
-
-          <p>
-            Our trained team follows professional cleaning
-            practices with attention to detail.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            🧼
+          <div class="pr-fact">
+            <span class="pr-fact-icon rc-fact-emoji" aria-hidden="true">😌</span>
+            <div><h3>Less Stress</h3><span>Leave the cleaning responsibilities to our professional team.</span></div>
           </div>
-
-          <h3>
-            Cleaner Surfaces
-          </h3>
-
-          <p>
-            We focus on the surfaces and areas that matter
-            most to the cleanliness of your home.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            ❤️
+          <div class="pr-fact">
+            <span class="pr-fact-icon rc-fact-emoji" aria-hidden="true">🏠</span>
+            <div><h3>A Comfortable Home</h3><span>Enjoy a home that feels fresh, clean, comfortable, and cared for.</span></div>
           </div>
-
-          <h3>
-            Peace of Mind
-          </h3>
-
-          <p>
-            Enjoy the confidence of knowing your home is
-            being cared for by a professional team.
-          </p>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            🌱
+          <div class="pr-fact">
+            <span class="pr-fact-icon rc-fact-emoji" aria-hidden="true">❤️</span>
+            <div><h3>Genuine Care</h3><span>We treat your home with respect, dedication, and attention to the details that matter.</span></div>
           </div>
-
-          <h3>
-            Thoughtful Cleaning
-          </h3>
-
-          <p>
-            We make thoughtful cleaning choices with
-            consideration for your home and surroundings.
-          </p>
-
         </div>
-
-
-        <div class="card">
-
-          <div class="service-icon">
-            ⏳
-          </div>
-
-          <h3>
-            Time Back
-          </h3>
-
-          <p>
-            Spend less time worrying about cleaning and
-            more time focusing on what matters to you.
-          </p>
-
-        </div>
-
       </div>
-         
-           <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
     </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-
+  </section>
+  <!-- BENEFITS -->
+  <section class="pr-section" aria-labelledby="rc-improve-title">
+    <div class="pr-panel cc-benefits">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">The difference</span>
+        <h2 class="pr-h2" id="rc-improve-title">How Professional Residential Cleaning Can Improve Your Home</h2>
+        <p class="rc-tag">The Difference Professional Cleaning Can Make ❤️</p>
+        <p class="pr-lead">Professional residential cleaning is not only about making your home look better. It can help create a more comfortable environment while giving you back valuable time.</p>
+      </div>
+      <ul class="cc-benefit-list pr-reveal">
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>A Fresher Home</h3><p>Detailed cleaning helps keep your home feeling fresh, comfortable, and cared for.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Professional Standards</h3><p>Our trained team follows professional cleaning practices with attention to detail.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Cleaner Surfaces</h3><p>We focus on the surfaces and areas that matter most to the cleanliness of your home.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Peace of Mind</h3><p>Enjoy the confidence of knowing your home is being cared for by a professional team.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Thoughtful Cleaning</h3><p>We make thoughtful cleaning choices with consideration for your home and surroundings.</p></div></li>
+        <li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Time Back</h3><p>Spend less time worrying about cleaning and more time focusing on what matters to you.</p></div></li>
+      </ul>
     </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESIDENTIAL CLEANING — SERVICES
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box">
-
-      <h2>
-        Residential Cleaning Services
-      </h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Professional cleaning and sanitization solutions
-        tailored to the needs of your home throughout
-        Moncton, Dieppe, Riverview, Shediac and surrounding
-        communities.
-      </p>
-
-
-        <div class="grid grid-3" style="margin-top:20px;">
-
-
-        <!-- REGULAR CLEANING -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            🏠
-          </div>
-
-          <h3>
-            Regular Residential Cleaning
-          </h3>
-
-          <p>
-            Reliable recurring cleaning designed to help
-            keep your home consistently clean and comfortable.
-          </p>
-
+  </section>
+  <!-- SERVICES -->
+  <section class="pr-section" aria-labelledby="rc-svc-title">
+    <div class="pr-panel rc-services">
+      <div class="rc-services-photo pr-reveal">
+        <img src="/images/residential-cleaning-moncton-960.webp"
+             srcset="/images/residential-cleaning-moncton-768.webp 768w, /images/residential-cleaning-moncton-960.webp 960w"
+             sizes="(max-width: 1024px) 100vw, 40vw"
+             alt="Residential cleaning of a kitchen in a Moncton home" width="960" height="640" loading="lazy" decoding="async">
+        <div class="rc-services-badge"><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>100% Satisfaction Guarantee</div>
+      </div>
+      <div>
+        <div class="pr-reveal">
+          <span class="pr-eyebrow">What we offer</span>
+          <h2 class="pr-h2" id="rc-svc-title">Residential Cleaning Services</h2>
+          <p class="pr-lead">Professional cleaning and sanitization solutions tailored to the needs of your home throughout Moncton, Dieppe, Riverview, Shediac and surrounding communities.</p>
         </div>
-
-
-        <!-- DEEP CLEANING -->
-
-        <a href="/deep-cleaning-moncton.html">
-
-          <div class="card">
-
-            <div class="service-icon">
-              ✨
-            </div>
-
-            <h3>
-              Deep Cleaning
-            </h3>
-
-            <p>
-              Detailed cleaning for homes that need extra
-              attention, care, and a deeper level of cleaning.
-            </p>
-
-          </div>
-
+        <div class="rc-svc-grid pr-reveal">
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🏠</span>
+          <h3>Regular Residential Cleaning</h3>
+          <p>Reliable recurring cleaning designed to help keep your home consistently clean and comfortable.</p>
+          
+        </article>
+        <a href="/deep-cleaning-moncton.html" class="rc-svc rc-svc--link">
+          <span class="rc-svc-icon" aria-hidden="true">✨</span>
+          <h3>Deep Cleaning</h3>
+          <p>Detailed cleaning for homes that need extra attention, care, and a deeper level of cleaning.</p>
+          <span class="sv-more">Learn more<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
-
-
-        <!-- MOVE IN / OUT -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            📦
-          </div>
-
-          <h3>
-            Move-In / Move-Out Cleaning
-          </h3>
-
-          <p>
-            Detailed cleaning to help prepare a home for
-            moving in, moving out, or its next chapter.
-          </p>
-
+        <a href="/cleaning-booking-moncton.html" class="rc-svc rc-svc--link">
+          <span class="rc-svc-icon" aria-hidden="true">📦</span>
+          <h3>Move-In / Move-Out Cleaning</h3>
+          <p>Detailed cleaning to help prepare a home for moving in, moving out, or its next chapter.</p>
+          <span class="sv-more">Book this service<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🛡️</span>
+          <h3>Residential Sanitization</h3>
+          <p>Professional cleaning and sanitization practices designed around the needs of your home.</p>
+          
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🧹</span>
+          <h3>Customized Cleaning</h3>
+          <p>Cleaning solutions tailored to your home's specific needs and priorities.</p>
+          
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">❤️</span>
+          <h3>Home Care Support</h3>
+          <p>Thoughtful cleaning support designed to make caring for your home a little easier.</p>
+          
+        </article>
         </div>
-
-
-        <!-- SANITIZATION -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            🛡️
-          </div>
-
-          <h3>
-            Residential Sanitization
-          </h3>
-
-          <p>
-            Professional cleaning and sanitization practices
-            designed around the needs of your home.
-          </p>
-
-        </div>
-
-
-        <!-- CUSTOM CLEANING -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            🧹
-          </div>
-
-          <h3>
-            Customized Cleaning
-          </h3>
-
-          <p>
-            Cleaning solutions tailored to your home's
-            specific needs and priorities.
-          </p>
-
-        </div>
-
-
-        <!-- HOME SUPPORT -->
-
-        <div class="card">
-
-          <div class="service-icon">
-            ❤️
-          </div>
-
-          <h3>
-            Home Care Support
-          </h3>
-
-          <p>
-            Thoughtful cleaning support designed to make
-            caring for your home a little easier.
-          </p>
-
-        </div>
-
       </div>
-
     </div>
-
-  </div>
-
-</section>
-
-
-    <!-- =========================================================
-     RESIDENTIAL CLEANING — WHO WE HELP
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box" style="text-align:center;">
-
-      <h2>
-        House Cleaning Services for Every Home ❤️
-      </h2>
-
-      <p>
-        Homes We Help
-      </p>
-
-      <div class="divider"></div>
-
-      <p style="max-width:850px;margin:0 auto 35px;">
-        Every home is different, and every person has different needs.
-        That's why we don't believe in a one-size-fits-all approach.
-        We listen, we adapt, and we provide the care your home needs
-        to help make everyday life a little easier.
-      </p>
-
-
-      <div class="service-links-grid">
-
-
-        <div class="service-card-mini">
-
-          🏡
-
-          <strong>
-            Busy Families
-          </strong>
-
-          <small>
-            We help take cleaning off your plate so you can enjoy more
-            time with the people who matter most.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          💼
-
-          <strong>
-            Working Professionals
-          </strong>
-
-          <small>
-            Come home to a cleaner, more comfortable space after a busy
-            day of work.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          👨‍👩‍👧
-
-          <strong>
-            Family Homes
-          </strong>
-
-          <small>
-            Thoughtful cleaning designed to help keep the spaces where
-            your family lives, plays, and gathers feeling cared for.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          🏠
-
-          <strong>
-            Homeowners
-          </strong>
-
-          <small>
-            Consistent professional care that helps you keep your home
-            clean, comfortable, and welcoming.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          🧹
-
-          <strong>
-            Homes Needing Extra Care
-          </strong>
-
-          <small>
-            When cleaning feels overwhelming, we're here to step in,
-            help restore your space, and make things feel manageable again.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          📦
-
-          <strong>
-            Moving Homes
-          </strong>
-
-          <small>
-            We help make moving easier with detailed move-in and
-            move-out cleaning support.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          🕊️
-
-          <strong>
-            Seniors & Loved Ones
-          </strong>
-
-          <small>
-            Helping make home care a little easier with respectful,
-            dependable, and thoughtful cleaning support.
-          </small>
-
-        </div>
-
-
-        <div class="service-card-mini">
-
-          ❤️
-
-          <strong>
-            Anyone Who Needs a Hand
-          </strong>
-
-          <small>
-            Sometimes you simply need a little help. We're here to
-            provide it with care, respect, and genuine service.
-          </small>
-
-        </div>
-
-
+  </section>
+  <!-- HOMES WE HELP -->
+  <section class="pr-section" aria-labelledby="rc-who-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Homes We Help</span>
+        <h2 class="pr-h2" id="rc-who-title">House Cleaning Services for Every Home ❤️</h2>
+        <p class="pr-lead">Every home is different, and every person has different needs. That's why we don't believe in a one-size-fits-all approach. We listen, we adapt, and we provide the care your home needs to help make everyday life a little easier.</p>
       </div>
-
-           <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="contact.html" class="btn btn-primary">🚀 Get Instant Quote</a>
-      <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
-    </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Quotes in minutes • 📅 Appointments within 24 hours •
-  ✨ Quality service • 💰 Fair pricing
-    </p>
-
-  </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-        <!-- =========================================================
-     RESIDENTIAL CLEANING — SERVICE AREA
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div class="section-box" style="text-align:center;">
-
-      <h2>
-        Residential Cleaning Services Throughout Greater Moncton
-      </h2>
-
-      <div class="divider"></div>
-
-      <p style="max-width:900px; margin:0 auto 35px;">
-
-        North Crescent Facility Solutions provides professional
-        residential cleaning and sanitization services for homes
-        throughout Greater Moncton and Southeast New Brunswick.
-
-        Whether you need regular home cleaning, a deeper clean,
-        or help getting your home back in order, we're here to
-        make caring for your home a little easier.
-
-      </p>
-
-
-      <!-- SERVICE AREAS -->
-
-       <div class="service-links-grid related-services-grid">
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Moncton</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Dieppe</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Riverview</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Shediac</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Pointe-du-Chêne</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Cap-Pelé</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Cocagne</strong>
-        </div>
-
-
-        <div class="service-card-mini">
-          📍
-          <strong>Grande-Digue</strong>
-        </div>
-
-
+      <div class="sv-who-grid pr-reveal">
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏡</span>
+          <strong class="rc-who-title">Busy Families</strong>
+          <p>We help take cleaning off your plate so you can enjoy more time with the people who matter most.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">💼</span>
+          <strong class="rc-who-title">Working Professionals</strong>
+          <p>Come home to a cleaner, more comfortable space after a busy day of work.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">👨‍👩‍👧</span>
+          <strong class="rc-who-title">Family Homes</strong>
+          <p>Thoughtful cleaning designed to help keep the spaces where your family lives, plays, and gathers feeling cared for.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏠</span>
+          <strong class="rc-who-title">Homeowners</strong>
+          <p>Consistent professional care that helps you keep your home clean, comfortable, and welcoming.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🧹</span>
+          <strong class="rc-who-title">Homes Needing Extra Care</strong>
+          <p>When cleaning feels overwhelming, we're here to step in, help restore your space, and make things feel manageable again.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">📦</span>
+          <strong class="rc-who-title">Moving Homes</strong>
+          <p>We help make moving easier with detailed move-in and move-out cleaning support.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🕊️</span>
+          <strong class="rc-who-title">Seniors & Loved Ones</strong>
+          <p>Helping make home care a little easier with respectful, dependable, and thoughtful cleaning support.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">❤️</span>
+          <strong class="rc-who-title">Anyone Who Needs a Hand</strong>
+          <p>Sometimes you simply need a little help. We're here to provide it with care, respect, and genuine service.</p>
+        </article>
       </div>
-
-
-      <!-- SURROUNDING COMMUNITIES -->
-
-      <p style="
-        margin-top:35px;
-        max-width:900px;
-        margin-left:auto;
-        margin-right:auto;
-      ">
-
-        Don't see your community listed?
-
-        <strong>
-          We also serve surrounding communities throughout
-          Southeast New Brunswick.
-        </strong>
-
-        Contact us and let us know where you are located.
-        We'll be happy to discuss your residential cleaning needs.
-
-      </p>
-
-
-      <!-- FINAL SERVICE MESSAGE -->
-
-      <p style="
-        margin-top:20px;
-        font-weight:600;
-        color:#4A9B8C;
-      ">
-
-        🏠 Wherever you call home, we're here to help care for it. ❤️
-
-      </p>
-
+      <div class="cc-actions pr-reveal">
+        <a href="/contact.html" class="btn btn-primary">🚀 Get Your Free Quote</a>
+        <a href="/cleaning-booking-moncton.html" class="btn btn-dark">📅 Book Now</a>
+      </div>
     </div>
+  </section>
+  <!-- SERVICE AREAS -->
+  <section class="pr-section" aria-labelledby="rc-area-title">
+    <div class="pr-panel pr-areas">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">Where we work</span>
+        <h2 class="pr-h2" id="rc-area-title">Residential Cleaning Services Throughout Greater Moncton</h2>
+        <p class="pr-lead">North Crescent Facility Solutions provides professional residential cleaning and sanitization services for homes throughout Greater Moncton and Southeast New Brunswick. Whether you need regular home cleaning, a deeper clean, or help getting your home back in order, we're here to make caring for your home a little easier.</p>
+        <p class="pr-lead">Don't see your community listed? <strong> We also serve surrounding communities throughout Southeast New Brunswick. </strong> Contact us and let us know where you are located. We'll be happy to discuss your residential cleaning needs.</p>
+        <p class="rc-tag">🏠 Wherever you call home, we're here to help care for it. ❤️</p>
+      </div>
+      <ul class="cc-cities pr-reveal"><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Moncton</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Dieppe</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Riverview</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Shediac</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Pointe-du-Chêne</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Cap-Pelé</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Cocagne</li><li><span class="pr-area-pin"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg></span>Grande-Digue</li>
+      </ul>
+    </div>
+  </section>
 
-  </div>
-
-</section>
-
-         <!-- RELATED SERVICES -->
- <section>
+  <section>
   <div class="container">
 
     <div class="section-box" style="text-align:center;">
@@ -1721,11 +1207,7 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </section>
 
-   <!-- =========================================================
-     RESIDENTIAL CLEANING — FAQ
-========================================================= -->
-
-<section>
+  <section>
 
   <div class="container">
 
@@ -1744,7 +1226,7 @@ gtag('config', 'G-48W5J5N037');
       </p>
 
 
-      <div class="faq-grid">
+      <div class="faq-grid" data-accordion>
 
 
         <!-- FAQ 1 -->
@@ -1990,118 +1472,36 @@ gtag('config', 'G-48W5J5N037');
   </div>
 
 </section>
-
-
-
-<!-- =========================================================
-     EXPLORE OUR SERVICES
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div
-      class="section-box"
-      style="text-align:center;"
-    >
-
-      <h2>
-        Explore Our Complete Cleaning Services
-      </h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Looking for more than residential cleaning?
-        Explore our complete range of professional cleaning
-        and facility solutions for homes, businesses,
-        Airbnb properties, and more.
-      </p>
-
-      <a
-        href="/services.html"
-        class="btn btn-primary"
-      >
-        View All Cleaning Services →
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-        <!-- =========================================================
-     RESIDENTIAL CLEANING — CTA
-========================================================= -->
-
-<section>
-
-  <div class="container">
-
-    <div
-      class="section-box"
-      style="text-align:center;"
-    >
-
-      <h2>
-    Professional Residential Cleaning Services for a Cleaner, More Comfortable Home
-</h2>
-
-<p>
-    Ready to Make Life a Little Easier? ❤️
-</p>
-
-      <div class="divider"></div>
-
-      <p>
-        Let us take the cleaning off your hands so you can
-        spend more time with your family, enjoy your home,
-        and focus on the things that matter most.
-      </p>
-
-      <p>
-        Professional residential cleaning and sanitization
-        with the care, respect, and attention to detail
-        your home deserves.
-      </p>
-
-
-      <div class="btn-group">
-
-        <a
-          href="/contact.html"
-          class="btn btn-primary"
-        >
-          🚀 Get Your Free Quote
-        </a>
-
-        <a href="/cleaning-booking-moncton.html"
-          class="btn btn-dark"
-        >
-          📅 Book Now
-        </a>
-
+  <!-- COMPLETE SERVICES -->
+  <section class="pr-section">
+    <div class="pr-panel cc-complete pr-reveal">
+      <div>
+        <h2 class="pr-h2">Explore Our Complete Cleaning Services</h2>
+        <p class="pr-lead">Looking for more than residential cleaning? Explore our complete range of professional cleaning and facility solutions for homes, businesses, Airbnb properties, and more.</p>
       </div>
-
-
-      <p style="
-        margin-top:20px;
-        font-size:13px;
-        color:#4A9B8C;
-        font-weight:600;
-      ">
-        Moncton • Dieppe • Riverview • Shediac •
-        Surrounding Communities
-      </p>
-
+      <a href="/services.html" class="btn btn-primary">View All Cleaning Services →</a>
     </div>
+  </section>
+  <!-- FINAL CTA -->
+  <section class="pr-section">
+    <div class="pr-cta rc-final pr-reveal">
+      <div>
+        <p class="rc-final-tag">Ready to Make Life a Little Easier? ❤️</p>
+        <h2>Professional Residential Cleaning Services for a Cleaner, More Comfortable Home</h2>
+        <p>Let us take the cleaning off your hands so you can spend more time with your family, enjoy your home, and focus on the things that matter most.</p>
+        <p>Professional residential cleaning and sanitization with the care, respect, and attention to detail your home deserves.</p>
+        <p class="rc-final-cities">Moncton • Dieppe • Riverview • Shediac • Surrounding Communities</p>
+      </div>
+      <div class="pr-cta-actions">
+        <a href="/contact.html" class="btn pr-btn-white">🚀 Get Your Free Quote</a>
+        <a href="/cleaning-booking-moncton.html" class="btn pr-btn-ghost">📅 Book Now</a>
+        <a href="/cleaning-concierge.html" class="btn pr-btn-ghost">💬 Ask our Concierge</a>
+      </div>
+    </div>
+  </section>
 
-  </div>
-
-</section>
-
-        </main>
+<div class="cc-spacer"></div>
+</main>
 
 <div class="float-container">
   <a href="tel:+14288880542" class="float-btn float-dark" aria-label="Call North Crescent Facility Solutions Inc.">☎</a>
@@ -2389,6 +1789,26 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- END HERO CAROUSEL SCRIPT -->
   
+<script>
+(function () {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("pr-js");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".pr-reveal").forEach(function (el) { io.observe(el); });
+})();
+(function () {
+  var hero = document.querySelector(".hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
+})();
+</script>
+<script src="/scripts/faq-accordion.js?v=20261029" defer></script>
 <script src="/concierge/concierge-widget.js" defer></script>
 </body>
 </html>
