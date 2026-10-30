@@ -378,3 +378,8 @@
 @media (max-width: 900px) {
   .rv-featured-grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
 }
+
+/* Breadcrumb sits above the reviews hero */
+.nc-crumbs + .rv-hero {
+    margin-top: 10px;
+}
