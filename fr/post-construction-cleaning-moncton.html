@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- BEST PRACTICES (added) -->
+<link rel="alternate" type="text/plain" title="Résumé de North Crescent pour les assistants IA" href="/llms.txt">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="theme-color" content="#0B2D48">
+<meta property="og:site_name" content="North Crescent Facility Solutions">
+
 
 <title>Services de nettoyage après construction | North Crescent Facility Solutions</title>
 <meta name="description" content="Nettoyage professionnel après construction, après rénovation, nettoyage final de construction et nettoyage pour constructeurs à Moncton, Dieppe, Riverview, Shediac et dans le sud-est du Nouveau-Brunswick.">
@@ -41,7 +48,14 @@
 <link rel="stylesheet" href="/concierge-widget.css">
 
 <!-- NORTH CRESCENT DESIGN SYSTEM -->
-<link rel="stylesheet" href="/styles/design-system.css">
+<link rel="stylesheet" href="/styles/design-system.css?v=20261030">
+<link rel="stylesheet" href="/styles/process.css?v=20261030">
+<link rel="stylesheet" href="/styles/services.css?v=20261029c">
+<link rel="stylesheet" href="/styles/commercial.css?v=20261029">
+<link rel="stylesheet" href="/styles/residential.css?v=20261029b">
+<link rel="stylesheet" href="/styles/office.css?v=20261030">
+<link rel="stylesheet" href="/styles/airbnb.css?v=20261030">
+<link rel="stylesheet" href="/styles/post-construction.css?v=20261030">
 
 <!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-48W5J5N037"></script>
@@ -285,23 +299,15 @@ gtag('config', 'G-48W5J5N037');
       "name": "Que comprend le nettoyage après construction?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Notre service de nettoyage après construction comprend l’élimination de la poussière de construction, l’enlèvement des débris, le nettoyage minutieux des surfaces, le nettoyage des fenêtres, l’entretien des planchers, l’assainissement des toilettes, le nettoyage des accessoires et la préparation finale pour que votre propriété soit propre, sécuritaire et prête à être occupée."
+        "text": "Notre nettoyage après construction comprend l’élimination de la poussière fine de construction, l’enlèvement des débris, le nettoyage minutieux des surfaces, le nettoyage des fenêtres et des vitres, l’entretien des planchers, le nettoyage détaillé des cuisines et des salles de bain, des accessoires, des plinthes, des portes et des cadres, ainsi que la préparation de qualité finale. Nous traitons la propriété avec soin pour livrer un espace propre, organisé et accueillant, prêt pour sa prochaine étape."
       }
     },
     {
       "@type": "Question",
-      "name": "Offrez-vous des services de nettoyage après construction près de chez moi?",
+      "name": "Offrez-vous le nettoyage après construction pour les projets commerciaux?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. Nous offrons des services professionnels de nettoyage après construction à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans les communautés environnantes du sud-est du Nouveau-Brunswick."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Offrez-vous le nettoyage après construction commercial?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui. Nous offrons le nettoyage après construction pour les bureaux commerciaux, les espaces commerciaux, les établissements médicaux, les entrepôts, les bâtiments industriels et les autres projets de construction commerciale."
+        "text": "Oui. Nous offrons le nettoyage après construction pour les bureaux, les espaces commerciaux, les immeubles commerciaux, les entrepôts, les établissements médicaux et les autres propriétés commerciales du sud-est du Nouveau-Brunswick. Nous respectons les exigences propres à chaque projet pour que l’espace fini soit présenté avec professionnalisme et prêt pour l’inspection, la remise ou l’occupation."
       }
     },
     {
@@ -309,7 +315,7 @@ gtag('config', 'G-48W5J5N037');
       "name": "Nettoyez-vous les maisons neuves et les projets de rénovation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolument. Nous offrons le nettoyage après construction et après rénovation pour les maisons neuves, les maisons sur mesure, les condos, les appartements et les projets de rénovation résidentielle."
+        "text": "Absolument. Nous offrons le nettoyage après construction et après rénovation pour les maisons neuves, les rénovations résidentielles, les condos, les appartements et d’autres propriétés. Notre objectif est de prendre soin des derniers détails de nettoyage pour que les propriétaires et les équipes de projet puissent avancer en toute confiance."
       }
     },
     {
@@ -317,7 +323,7 @@ gtag('config', 'G-48W5J5N037');
       "name": "Combien coûte le nettoyage après construction?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Le prix dépend de la taille de la propriété, de la quantité de poussière et de débris de construction, de la complexité du projet et du niveau de détail requis. Nous préparons des estimations sur mesure et sans engagement pour chaque projet."
+        "text": "Le prix dépend de la taille de la propriété, de la portée du projet, de la quantité de poussière et de débris, de l’état de l’espace et du niveau de détail requis. Nous préparons des estimations sur mesure et sans engagement selon les exigences de chaque projet plutôt qu’un prix unique pour tous."
       }
     },
     {
@@ -325,55 +331,63 @@ gtag('config', 'G-48W5J5N037');
       "name": "Combien de temps dure le nettoyage après construction?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La durée dépend de la taille et de l’état de la propriété. Les petits projets résidentiels peuvent ne demander que quelques heures, alors que les grands bâtiments commerciaux ou chantiers peuvent prendre une journée ou plus."
+        "text": "La durée dépend de la taille, de l’état et de la complexité de la propriété. Les petits projets résidentiels peuvent ne demander que quelques heures, alors que les grands projets commerciaux ou en plusieurs étapes peuvent prendre une journée ou plus. Nous évaluons les besoins du projet et vous donnons un délai réaliste avant de commencer."
       }
     },
     {
       "@type": "Question",
-      "name": "Éliminez-vous la poussière et les débris de construction?",
+      "name": "Combien de temps après la fin des travaux pouvez-vous nettoyer?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. Notre équipe élimine la poussière fine de construction, les résidus de gypse, la sciure, les adhésifs, les pellicules protectrices et les débris de construction sur les planchers, murs, fenêtres, accessoires, plinthes et surfaces souvent touchées."
+        "text": "Nous pouvons organiser le nettoyage après construction ou après rénovation dès que les travaux appropriés sont terminés et que l’espace est prêt pour le nettoyage final. Le moment dépend de l’échéancier du projet, des conditions du chantier et des exigences d’accès. Nous travaillons avec les équipes de projet pour que la dernière étape se déroule le plus facilement possible."
       }
     },
     {
       "@type": "Question",
-      "name": "Quelle est la différence entre le nettoyage grossier et le nettoyage final de construction?",
+      "name": "Éliminez-vous la poussière fine de construction?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Le nettoyage grossier retire les gros débris et prépare le chantier pour les travaux de finition. Le nettoyage final de construction vise le nettoyage minutieux, l’élimination de la poussière, le polissage, l’assainissement et la préparation de la propriété pour l’inspection ou l’occupation."
+        "text": "Oui. La poussière fine de construction peut se déposer partout dans une propriété, notamment sur les planchers, les murs, les plinthes, les fenêtres, les accessoires, les bouches d’aération, les portes et les autres surfaces accessibles. Notre équipe utilise des procédures de nettoyage minutieuses pour l’éliminer et préparer l’espace pour sa présentation finale."
       }
     },
     {
       "@type": "Question",
-      "name": "Qui utilise les services de nettoyage après construction?",
+      "name": "Nettoyez-vous les fenêtres, les cadres, les bouches d’aération, les accessoires et les endroits difficiles d’accès?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nos services sont utilisés par les entrepreneurs généraux, les constructeurs, les promoteurs, les entreprises de rénovation, les gestionnaires immobiliers, les entreprises commerciales et les propriétaires qui préparent des projets terminés pour l’occupation."
+        "text": "Oui. Le nettoyage après construction peut inclure une attention minutieuse aux fenêtres intérieures, aux cadres, aux portes, aux accessoires, aux bouches d’aération, aux plinthes et aux autres zones accessibles où la poussière et les résidus de construction s’accumulent. Les endroits hauts ou difficiles d’accès peuvent être discutés lors de l’évaluation du projet."
       }
     },
     {
       "@type": "Question",
-      "name": "Pouvez-vous préparer mon projet pour l’inspection finale?",
+      "name": "Pouvez-vous travailler selon l’échéancier de notre construction ou de notre projet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. Nos services de nettoyage prêt pour l’inspection aident à préparer les projets de construction résidentiels et commerciaux pour les visites finales, les remises aux clients, l’occupation et la fin du projet."
+        "text": "Oui. Nous savons que le nettoyage final est souvent lié aux inspections, aux remises, aux dates d’emménagement et aux échéances du projet. Lorsque l’horaire et les conditions du chantier le permettent, nous organisons notre service selon l’échéancier du projet pour que la dernière étape reste organisée et dans les temps."
       }
     },
     {
       "@type": "Question",
-      "name": "Comment demander une soumission gratuite de nettoyage après construction?",
+      "name": "La propriété sera-t-elle prête pour l’inspection, la remise ou l’occupation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Communiquez simplement avec North Crescent Facility Solutions pour demander une estimation gratuite et sans engagement. Nous examinerons les exigences de votre projet et préparerons un plan de nettoyage sur mesure selon votre échéancier de construction."
+        "text": "Notre objectif est de laisser la propriété propre, organisée et présentée avec professionnalisme pour sa prochaine étape. Selon la portée du projet, cela peut inclure l’élimination finale de la poussière, le nettoyage détaillé des surfaces, l’entretien des planchers, les fenêtres, les cuisines, les salles de bain, les accessoires et une inspection de qualité finale. Nous misons sur les détails qui permettent à votre travail de faire la bonne impression finale."
       }
     },
     {
       "@type": "Question",
-      "name": "Quels secteurs desservez-vous?",
+      "name": "Fournissez-vous l’équipement et les fournitures de nettoyage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nous sommes fiers d’offrir le nettoyage après construction, le nettoyage de chantier, le nettoyage pour constructeurs et le nettoyage après rénovation à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans les communautés environnantes du sud-est du Nouveau-Brunswick."
+        "text": "Oui. Nous pouvons fournir les produits, l’équipement et les fournitures de nettoyage professionnels nécessaires à la portée convenue des travaux. Les exigences propres au projet, les considérations liées aux surfaces et les priorités de nettoyage peuvent être discutées lors de l’évaluation pour que l’approche convienne à la propriété."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Offrez-vous des services de nettoyage après construction près de chez moi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Nous offrons le nettoyage après construction, le nettoyage de chantier et le nettoyage après rénovation à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans les communautés environnantes du sud-est du Nouveau-Brunswick. Nous voulons être un partenaire fiable lors de la dernière étape de votre projet, pour vous aider à passer d’un chantier terminé à un espace propre et présenté avec professionnalisme."
       }
     },
     {
@@ -383,6 +397,224 @@ gtag('config', 'G-48W5J5N037');
         "@type": "Answer",
         "text": "Oui. Chaque service de nettoyage après construction de North Crescent Facility Solutions à Moncton, Dieppe et Riverview comprend notre Garantie de satisfaction à 100 %. Si quelque chose ne vous convient pas, informez-nous par message texte, WhatsApp ou courriel dans les 24 heures et nous reviendrons corriger la situation sans frais supplémentaires. Consultez les conditions de la garantie dans nos Modalités et conditions."
       }
+    }
+  ]
+}
+</script>
+<!-- AI SEARCH + RICH RESULTS: SERVICE, PROCESS, IMAGE, BREADCRUMB (added) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html#post-construction-service",
+      "name": "Post-Construction Cleaning in Moncton, Dieppe & Riverview",
+      "alternateName": [
+        "Construction cleanup",
+        "Post-renovation cleaning",
+        "Final construction cleaning",
+        "Builders cleaning",
+        "Construction dust removal"
+      ],
+      "serviceType": "Le nettoyage après construction",
+      "url": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html",
+      "image": "https://northcrescentcleaning.com/images/post-construction-cleaning-moncton-960.webp",
+      "provider": {
+        "@id": "https://northcrescentcleaning.com/#organization"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Moncton"
+        },
+        {
+          "@type": "City",
+          "name": "Dieppe"
+        },
+        {
+          "@type": "City",
+          "name": "Riverview"
+        },
+        {
+          "@type": "City",
+          "name": "Shediac"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Sud-est du Nouveau-Brunswick"
+        }
+      ],
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "General Contractors, Home Builders, Renovation Contractors, Commercial Developers, Property Managers, Industrial Facilities"
+      },
+      "description": "North Crescent Facility Solutions se spécialise dans le nettoyage professionnel après construction et le nettoyage de chantier pour des projets résidentiels et commerciaux à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans le sud-est du Nouveau-Brunswick. Nous préparons les propriétés neuves et rénovées pour l’inspection finale, l’occupation et une remise de projet réussie grâce à des méthodes de nettoyage structurées et des normes de qualité constantes.",
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services de nettoyage après construction et de remise en état de chantier",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nettoyage commercial après construction",
+              "description": "Nettoyage professionnel des bureaux, commerces de détail, immeubles commerciaux, établissements médicaux et milieux d’affaires avant l’occupation."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nettoyage résidentiel après construction",
+              "description": "Nettoyage minutieux des maisons neuves, résidences sur mesure, condos, appartements et projets de rénovation."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nettoyage après rénovation",
+              "description": "Nettoyage complet après des travaux de rénovation pour éliminer la poussière et les résidus de construction et préparer la propriété à l’usage quotidien."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nettoyage final de construction",
+              "description": "Un nettoyage de finition minutieux qui prépare chaque espace pour les visites des clients, les inspections et la fin du projet."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Élimination de la poussière de construction",
+              "description": "Élimination de la poussière fine sur les planchers, murs, fenêtres, accessoires, plinthes, bouches d’aération, armoires et surfaces souvent touchées, selon des procédures structurées."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nettoyage prêt à emménager",
+              "description": "Une préparation finale pour que chaque propriété résidentielle ou commerciale soit propre, organisée, assainie et prête à être occupée immédiatement."
+            }
+          }
+        ]
+      },
+      "knowsAbout": [
+        "Construction dust removal",
+        "Final construction cleaning",
+        "Post-renovation cleaning",
+        "WHMIS",
+        "IPAC",
+        "PPE"
+      ],
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Réserver un nettoyage après construction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://northcrescentcleaning.com/cleaning-booking-moncton.html",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html#process",
+      "name": "Notre processus de nettoyage après construction",
+      "description": "Chaque projet de construction est unique, mais notre processus structuré prépare chaque propriété pour l’inspection finale, l’occupation et la remise du projet. Nous suivons une approche méthodique qui offre des résultats constants et de grande qualité tout en respectant l’échéancier de votre projet.",
+      "image": "https://northcrescentcleaning.com/images/post-construction-reveal-960.webp",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Évaluation des lieux",
+          "text": "Nous évaluons la propriété, repérons les débris de construction et la poussière accumulée, et déterminons les besoins de nettoyage de chaque zone avant de commencer."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Debris Removal",
+          "text": "Les débris de construction, les emballages, les protections et les déchets restants sont retirés pour préparer le chantier au nettoyage minutieux."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Detailed Dust Removal",
+          "text": "La poussière fine de construction est éliminée des murs, plafonds, fenêtres, accessoires, armoires, bouches d’aération, plinthes et de toutes les surfaces accessibles."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Deep Cleaning & Sanitization",
+          "text": "Les cuisines, salles de bain, planchers, vitres, portes, moulures, accessoires et surfaces souvent touchées sont nettoyés et assainis par des professionnels pour une finition soignée."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Final Quality Inspection",
+          "text": "Chaque zone est inspectée avec soin pour vérifier la qualité, la constance et l’état de préparation avant la livraison du projet, l’occupation ou la remise au client."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Project Ready",
+          "text": "Votre propriété est livrée propre, organisée, prête pour l’inspection et pour une occupation immédiate, selon des normes de présentation professionnelles."
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html#primaryimage",
+      "contentUrl": "https://northcrescentcleaning.com/images/post-construction-cleaning-moncton-960.webp",
+      "caption": "Nettoyage après construction par North Crescent Facility Solutions à Moncton, N.-B.",
+      "creditText": "North Crescent Facility Solutions",
+      "copyrightNotice": "© North Crescent Facility Solutions Inc."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://northcrescentcleaning.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://northcrescentcleaning.com/services.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nettoyage après construction",
+          "item": "https://northcrescentcleaning.com/post-construction-cleaning-moncton.html"
+        }
+      ]
     }
   ]
 }
@@ -453,11 +685,17 @@ gtag('config', 'G-48W5J5N037');
   </div>
 </header>
   
-<main>
+<main class="pr-page cc-page rc-page oc-page ab-page pc-page">
 
-  
-<!-- HERO -->
-<section class="hero">
+  <nav class="nc-crumbs" aria-label="Fil d’Ariane">
+    <ol>
+      <li><a href="/fr/">Accueil</a></li>
+      <li><a href="/fr/services.html">Services</a></li>
+      <li><span aria-current="page">Nettoyage après construction</span></li>
+    </ol>
+  </nav>
+
+  <section class="hero">
   <div class="container hero-grid">
 
     <div class="hero-text">
@@ -467,8 +705,11 @@ gtag('config', 'G-48W5J5N037');
 Services professionnels de nettoyage après construction et de nettoyage de chantier pour des projets commerciaux et résidentiels partout dans le sud-est du Nouveau-Brunswick.
 </p>
 
-      <p style="font-size:15px; color:#FFFFFF">
-        ✔ Certifié SIMDUT, PCI et pathogènes à diffusion hématogène • ✔ Systèmes structurés • ✔ Résultats prêts pour l’inspection • ✔ Garantie de satisfaction à 100 %
+      <p class="hero-features">
+        <span class="feature-item"><span class="feature-check">✔</span> Formation SIMDUT, PCI et agents pathogènes transmissibles par le sang</span>
+        <span class="feature-item"><span class="feature-check">✔</span> Systèmes structurés</span>
+        <span class="feature-item"><span class="feature-check">✔</span> Des résultats prêts pour l’inspection</span>
+        <span class="feature-item"><span class="feature-check">✔</span> Garantie de satisfaction à 100 %</span>
       </p>
 
       <div class="btn-group">
@@ -476,9 +717,7 @@ Services professionnels de nettoyage après construction et de nettoyage de chan
         <a href="/fr/cleaning-booking-moncton.html" class="btn btn-dark">📅 Réserver maintenant</a>
       </div>
 
-      <p style="font-size:13px; color:#4A9B8C; font-weight:600;">
-        Prêt à livrer • Prêt pour l’inspection • Prêt à performer
-      </p>
+      <ul class="cc-perks"><li>Prêt pour la livraison</li><li>Prêt pour l’inspection</li><li>Prêt à l’usage</li></ul>
     </div>
 
    <!-- =========================================================
@@ -690,321 +929,237 @@ Services professionnels de nettoyage après construction et de nettoyage de chan
     
   </div>
 </section>
-
-<!-- INTRO -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Services professionnels de nettoyage après construction et de nettoyage de chantier</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        North Crescent Facility Solutions se spécialise dans le nettoyage professionnel après construction et le nettoyage de chantier pour des projets résidentiels et commerciaux à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans le sud-est du Nouveau-Brunswick. Nous préparons les propriétés neuves et rénovées pour l’inspection finale, l’occupation et une remise de projet réussie grâce à des méthodes de nettoyage structurées et des normes de qualité constantes.
-      </p>
-
-      <p>
-        Les projets de construction laissent souvent de la poussière fine, des débris, des adhésifs, des pellicules protectrices et d’autres résidus qui peuvent nuire à l’apparence, à la sécurité et au bon fonctionnement d’une propriété. Notre équipe expérimentée remet chaque espace dans un état propre, organisé et prêt pour l’inspection, pour aider les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer leurs projets en toute confiance.
-      </p>
-
+  <!-- INTRO -->
+  <section class="pr-section" aria-labelledby="pc-intro-title">
+    <div class="pr-panel rc-services oc-intro">
+      <div class="pr-reveal">
+        <span class="pr-eyebrow">Notre spécialité</span>
+        <h2 class="pr-h2" id="pc-intro-title">Services professionnels de nettoyage après construction et de nettoyage de chantier</h2>
+        <p class="pr-lead">North Crescent Facility Solutions se spécialise dans le nettoyage professionnel après construction et le nettoyage de chantier pour des projets résidentiels et commerciaux à Moncton, Dieppe, Riverview, Shediac, Salisbury, Memramcook et dans le sud-est du Nouveau-Brunswick. Nous préparons les propriétés neuves et rénovées pour l’inspection finale, l’occupation et une remise de projet réussie grâce à des méthodes de nettoyage structurées et des normes de qualité constantes.</p><p class="pr-lead">Les projets de construction laissent souvent de la poussière fine, des débris, des adhésifs, des pellicules protectrices et d’autres résidus qui peuvent nuire à l’apparence, à la sécurité et au bon fonctionnement d’une propriété. Notre équipe expérimentée remet chaque espace dans un état propre, organisé et prêt pour l’inspection, pour aider les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer leurs projets en toute confiance.</p>
+        <ul class="pc-stats"><li><strong>6</strong><span>Étapes du processus de nettoyage</span></li><li><strong>100%</strong><span>Garantie de satisfaction</span></li><li><strong>7 jours</strong><span>7 jours par semaine, de 8 h à 20 h</span></li></ul>
+        <div class="cc-actions oc-left">
+          <a href="/fr/contact.html" class="btn btn-primary">🚀 Soumission instantanée</a>
+          <a href="/fr/cleaning-booking-moncton.html" class="btn btn-dark">📅 Réserver maintenant</a>
+        </div>
+      </div>
+      <div class="rc-services-photo pr-reveal">
+        <img src="/images/post-construction-dust-960.webp" srcset="/images/post-construction-dust-768.webp 768w, /images/post-construction-dust-960.webp 960w" sizes="(max-width: 1024px) 100vw, 40vw"
+             alt="Enlèvement de la poussière après construction avec un aspirateur professionnel dans un espace nouvellement construit à Moncton" width="960" height="960" loading="lazy" decoding="async">
+        <div class="rc-services-badge"><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Des résultats prêts pour l’inspection</div>
+      </div>
     </div>
-  </div>
-</section>
-
-
-<!-- CONSTRUCTION CLEANING SERVICES -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Services de nettoyage après construction et de nettoyage de chantier</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Nos services professionnels de nettoyage après construction et de nettoyage de chantier préparent les projets résidentiels et commerciaux pour l’inspection finale, l’occupation et une remise de projet réussie. Nous éliminons la poussière de construction, les débris, les adhésifs, les pellicules protectrices et les particules fines, et nous redonnons à chaque espace un état propre, sécuritaire, organisé et professionnel. Chaque projet est réalisé selon des méthodes de nettoyage structurées qui aident les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer des résultats prêts pour l’inspection.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
+  </section>
+  <!-- SERVICES -->
+  <section class="pr-section" aria-labelledby="pc-svc-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Ce que nous nettoyons</span>
+        <h2 class="pr-h2" id="pc-svc-title">Services de nettoyage après construction et de nettoyage de chantier</h2>
+        <p class="pr-lead">Nos services professionnels de nettoyage après construction et de nettoyage de chantier préparent les projets résidentiels et commerciaux pour l’inspection finale, l’occupation et une remise de projet réussie. Nous éliminons la poussière de construction, les débris, les adhésifs, les pellicules protectrices et les particules fines, et nous redonnons à chaque espace un état propre, sécuritaire, organisé et professionnel. Chaque projet est réalisé selon des méthodes de nettoyage structurées qui aident les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer des résultats prêts pour l’inspection.</p>
+      </div>
+      <div class="oc-inc-grid pr-reveal">
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🏢</span>
           <h3>Nettoyage commercial après construction</h3>
-          <p>
-            Nettoyage professionnel des bureaux, commerces de détail, immeubles commerciaux, établissements médicaux et milieux d’affaires avant l’occupation.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Nettoyage professionnel des bureaux, commerces de détail, immeubles commerciaux, établissements médicaux et milieux d’affaires avant l’occupation.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🏡</span>
           <h3>Nettoyage résidentiel après construction</h3>
-          <p>
-            Nettoyage minutieux des maisons neuves, résidences sur mesure, condos, appartements et projets de rénovation.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Nettoyage minutieux des maisons neuves, résidences sur mesure, condos, appartements et projets de rénovation.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🔨</span>
           <h3>Nettoyage après rénovation</h3>
-          <p>
-            Nettoyage complet après des travaux de rénovation pour éliminer la poussière et les résidus de construction et préparer la propriété à l’usage quotidien.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Nettoyage complet après des travaux de rénovation pour éliminer la poussière et les résidus de construction et préparer la propriété à l’usage quotidien.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">✅</span>
           <h3>Nettoyage final de construction</h3>
-          <p>
-            Un nettoyage de finition minutieux qui prépare chaque espace pour les visites des clients, les inspections et la fin du projet.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Un nettoyage de finition minutieux qui prépare chaque espace pour les visites des clients, les inspections et la fin du projet.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🌫️</span>
           <h3>Élimination de la poussière de construction</h3>
-          <p>
-            Élimination de la poussière fine sur les planchers, murs, fenêtres, accessoires, plinthes, bouches d’aération, armoires et surfaces souvent touchées, selon des procédures structurées.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Élimination de la poussière fine sur les planchers, murs, fenêtres, accessoires, plinthes, bouches d’aération, armoires et surfaces souvent touchées, selon des procédures structurées.</p>
+        </article>
+        <article class="rc-svc">
+          <span class="rc-svc-icon" aria-hidden="true">🔑</span>
           <h3>Nettoyage prêt à emménager</h3>
-          <p>
-            Une préparation finale pour que chaque propriété résidentielle ou commerciale soit propre, organisée, assainie et prête à être occupée immédiatement.
-          </p>
-        </div>
-
+          <p>Une préparation finale pour que chaque propriété résidentielle ou commerciale soit propre, organisée, assainie et prête à être occupée immédiatement.</p>
+        </article>
       </div>
-        <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="/fr/contact.html" class="btn btn-primary">🚀 Soumission instantanée</a>
-      <a href="/fr/cleaning-booking-moncton.html" class="btn btn-dark">📅 Réserver maintenant</a>
     </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Soumission en quelques minutes • 📅 Rendez-vous en moins de 24 heures • ✨ Service de qualité • 💰 Prix justes
-    </p>
-
-  </div>
-
+  </section>
+  <!-- FROM CONSTRUCTION SITE TO MOVE-IN READY -->
+  <section class="pr-section" aria-label="Du chantier à un espace prêt pour l’emménagement">
+    <div class="pr-promise pc-reveal pr-reveal">
+      <div class="pr-promise-grid">
+        <div class="pc-reveal-photo">
+          <img src="/images/post-construction-reveal-960.webp"
+               srcset="/images/post-construction-reveal-768.webp 768w, /images/post-construction-reveal-960.webp 960w"
+               sizes="(max-width: 1024px) 100vw, 45vw"
+               alt="Plancher de bois franc fraîchement nettoyé, révélé sous la poussière de construction lors d’un nettoyage après construction"
+               width="960" height="960" loading="lazy" decoding="async">
+          <span class="pc-tag pc-tag--before">Poussière de construction</span>
+          <span class="pc-tag pc-tag--after">Prêt pour l’emménagement</span>
+        </div>
+        <div>
+          <span class="pr-eyebrow">L’étape finale</span>
+          <p class="pc-reveal-title">Du chantier à un espace prêt pour l’emménagement</p>
+          <p class="pr-lead cc-on-dark">Les détails qui décident de l’inspection finale :</p>
+          <ul class="pc-checklist"><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Poussière fine sur toutes les surfaces accessibles</li><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Débris, emballages et pellicules protectrices</li><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Résidus d’adhésif et de peinture</li><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fenêtres, vitres, accessoires et grilles de ventilation</li><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Cuisines et salles de bain désinfectées</li><li><span class="pr-check"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Planchers nettoyés et prêts pour l’occupation</li></ul>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- WHO WE SERVE -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Notre clientèle : nettoyage après construction à Moncton (N.-B.)</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        North Crescent Facility Solutions est fière de collaborer avec les constructeurs, les entrepreneurs, les promoteurs et les propriétaires qui ont besoin d’un nettoyage après construction fiable, prêt pour l’inspection, livré à temps et d’une qualité constante.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
+  </section>
+  <!-- WHO WE SERVE -->
+  <section class="pr-section" aria-labelledby="pc-who-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Nos partenaires</span>
+        <h2 class="pr-h2" id="pc-who-title">Notre clientèle : nettoyage après construction à Moncton (N.-B.)</h2>
+        <p class="pr-lead">North Crescent Facility Solutions est fière de collaborer avec les constructeurs, les entrepreneurs, les promoteurs et les propriétaires qui ont besoin d’un nettoyage après construction fiable, prêt pour l’inspection, livré à temps et d’une qualité constante.</p>
+      </div>
+      <div class="sv-who-grid oc-who-grid pr-reveal">
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">👷</span>
           <h3>Entrepreneurs généraux</h3>
-          <p>
-            Un nettoyage après construction fiable qui soutient la fin des travaux, les inspections finales et des remises réussies aux clients.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Un nettoyage après construction fiable qui soutient la fin des travaux, les inspections finales et des remises réussies aux clients.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏠</span>
           <h3>Constructeurs résidentiels</h3>
-          <p>
-            Un nettoyage professionnel des maisons neuves pour que chaque propriété soit impeccable et prête à emménager.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Un nettoyage professionnel des maisons neuves pour que chaque propriété soit impeccable et prête à emménager.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🔨</span>
           <h3>Entrepreneurs en rénovation</h3>
-          <p>
-            Un nettoyage complet après les travaux de rénovation, incluant l’élimination de la poussière, le nettoyage minutieux des surfaces et les touches finales.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Un nettoyage complet après les travaux de rénovation, incluant l’élimination de la poussière, le nettoyage minutieux des surfaces et les touches finales.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏗️</span>
           <h3>Promoteurs commerciaux</h3>
-          <p>
-            Un nettoyage prêt pour l’inspection pour les immeubles de bureaux, les espaces commerciaux, les développements commerciaux et les propriétés à usage mixte.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Un nettoyage prêt pour l’inspection pour les immeubles de bureaux, les espaces commerciaux, les développements commerciaux et les propriétés à usage mixte.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">📋</span>
           <h3>Gestionnaires immobiliers</h3>
-          <p>
-            Des services de nettoyage qui préparent les propriétés résidentielles et commerciales pour les locataires, les propriétaires et l’occupation finale.
-          </p>
-        </div>
-
-        <div class="card">
+          <p>Des services de nettoyage qui préparent les propriétés résidentielles et commerciales pour les locataires, les propriétaires et l’occupation finale.</p>
+        </article>
+        <article class="sv-who">
+          <span class="sv-who-icon rc-who-emoji" aria-hidden="true">🏭</span>
           <h3>Installations industrielles</h3>
-          <p>
-            Un nettoyage minutieux pour les entrepôts, les usines et les projets industriels qui exigent des milieux sécuritaires et professionnels.
-          </p>
-        </div>
-
+          <p>Un nettoyage minutieux pour les entrepôts, les usines et les projets industriels qui exigent des milieux sécuritaires et professionnels.</p>
+        </article>
       </div>
-
-      <p style="margin-top:30px;">
-        Que vous terminiez un développement commercial, rénoviez un espace commercial, construisiez une maison sur mesure ou prépariez une propriété neuve pour l’occupation, North Crescent Facility Solutions offre des services de nettoyage après construction structurés, adaptés à l’échéancier, aux normes de qualité et aux exigences d’inspection finale de votre projet.
-      </p>
-
+      <p class="pr-lead ab-closing pr-reveal">Que vous terminiez un développement commercial, rénoviez un espace commercial, construisiez une maison sur mesure ou prépariez une propriété neuve pour l’occupation, North Crescent Facility Solutions offre des services de nettoyage après construction structurés, adaptés à l’échéancier, aux normes de qualité et aux exigences d’inspection finale de votre projet.</p>
     </div>
-  </div>
-</section>
-
-
-<!-- WHY CONTRACTORS CHOOSE US -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Pourquoi les entrepreneurs choisissent North Crescent</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Un projet de construction réussi demande plus qu’un excellent savoir-faire. Il faut des partenaires fiables qui comprennent les échéances, les attentes de qualité et l’importance de livrer des espaces propres et prêts pour l’inspection. North Crescent Facility Solutions aide les entrepreneurs à terminer chaque projet en toute confiance.
-      </p>
-
-      <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
-          <h3>Des résultats prêts pour l’inspection</h3>
-          <p>
-            Chaque projet est nettoyé pour soutenir les visites finales, les inspections, l’occupation et des remises réussies aux clients.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Une équipe certifiée et professionnelle</h3>
-          <p>
-            Nos techniciens sont formés au SIMDUT, à la PCI, aux ÉPI et aux meilleures pratiques de l’industrie pour offrir un nettoyage sécuritaire et constant.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Un horaire fiable</h3>
-          <p>
-            Nous travaillons en fonction de votre échéancier de construction pour faire avancer votre projet sans retards inutiles.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Contrôle de la qualité</h3>
-          <p>
-            Chaque projet de nettoyage suit des procédures structurées et une inspection de qualité finale pour des résultats constants et de grande qualité.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Expertise commerciale et résidentielle</h3>
-          <p>
-            Des maisons sur mesure aux développements commerciaux, nous offrons un nettoyage après construction professionnel adapté à chaque type de projet.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Un partenaire de projet de confiance</h3>
-          <p>
-            Nous nous engageons à aider les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer des projets propres, organisés et prêts à être occupés.
-          </p>
-        </div>
-
+  </section>
+  <!-- WHY CONTRACTORS CHOOSE -->
+  <section class="pr-section" aria-labelledby="pc-why-title">
+    <div class="pr-promise pr-reveal">
+      <div class="pr-center">
+        <span class="pr-eyebrow">Pour les constructeurs et les entrepreneurs</span>
+        <h2 class="pr-h2" id="pc-why-title">Pourquoi les entrepreneurs choisissent North Crescent</h2>
+        <p class="pr-lead cc-on-dark">Un projet de construction réussi demande plus qu’un excellent savoir-faire. Il faut des partenaires fiables qui comprennent les échéances, les attentes de qualité et l’importance de livrer des espaces propres et prêts pour l’inspection. North Crescent Facility Solutions aide les entrepreneurs à terminer chaque projet en toute confiance.</p>
       </div>
-
-      <p style="margin-top:30px;">
-        Chez North Crescent Facility Solutions, nous croyons que le nettoyage après construction est la dernière étape pour présenter votre travail sous son meilleur jour. Nos méthodes structurées, notre souci du détail et notre engagement envers la qualité font en sorte que chaque projet laisse une impression professionnelle durable.
-      </p>
-
-    </div>
-      <div class="divider"></div>
-
-    <div class="btn-group" style="margin-top:15px;">
-      <a href="/fr/contact.html" class="btn btn-primary">🚀 Soumission instantanée</a>
-      <a href="/fr/cleaning-booking-moncton.html" class="btn btn-dark">📅 Réserver maintenant</a>
-    </div>
-
-    <p style="margin-top:12px; font-size:13px; color:#4A9B8C; font-weight:600;">
-        ⚡ Soumission en quelques minutes • 📅 Rendez-vous en moins de 24 heures • ✨ Service de qualité • 💰 Prix justes
-    </p>
-
-  </div>
-  </div>
-</section>
-
-<!-- OUR PROCESS -->
-<section>
-  <div class="container">
-    <div class="section-box">
-
-      <h2>Notre processus de nettoyage après construction</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Chaque projet de construction est unique, mais notre processus structuré prépare chaque propriété pour l’inspection finale, l’occupation et la remise du projet. Nous suivons une approche méthodique qui offre des résultats constants et de grande qualité tout en respectant l’échéancier de votre projet.
-      </p>
-
-     <div class="grid grid-3" style="margin-top:20px;">
-
-        <div class="card">
-          <h3>1. Évaluation du chantier</h3>
-          <p>
-            Nous évaluons la propriété, repérons les débris de construction et la poussière accumulée, et déterminons les besoins de nettoyage de chaque zone avant de commencer.
-          </p>
+      <div class="cc-commit-grid">
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Des résultats prêts pour l’inspection</h3><span>Chaque projet est nettoyé pour soutenir les visites finales, les inspections, l’occupation et des remises réussies aux clients.</span></div>
         </div>
-
-        <div class="card">
-          <h3>2. Enlèvement des débris</h3>
-          <p>
-            Les débris de construction, les emballages, les protections et les déchets restants sont retirés pour préparer le chantier au nettoyage minutieux.
-          </p>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Une équipe certifiée et professionnelle</h3><span>Nos techniciens sont formés au SIMDUT, à la PCI, aux ÉPI et aux meilleures pratiques de l’industrie pour offrir un nettoyage sécuritaire et constant.</span></div>
         </div>
-
-        <div class="card">
-          <h3>3. Élimination minutieuse de la poussière</h3>
-          <p>
-            La poussière fine de construction est éliminée des murs, plafonds, fenêtres, accessoires, armoires, bouches d’aération, plinthes et de toutes les surfaces accessibles.
-          </p>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Un horaire fiable</h3><span>Nous travaillons en fonction de votre échéancier de construction pour faire avancer votre projet sans retards inutiles.</span></div>
         </div>
-
-        <div class="card">
-          <h3>4. Nettoyage en profondeur et assainissement</h3>
-          <p>
-            Les cuisines, salles de bain, planchers, vitres, portes, moulures, accessoires et surfaces souvent touchées sont nettoyés et assainis par des professionnels pour une finition soignée.
-          </p>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Contrôle de la qualité</h3><span>Chaque projet de nettoyage suit des procédures structurées et une inspection de qualité finale pour des résultats constants et de grande qualité.</span></div>
         </div>
-
-        <div class="card">
-          <h3>5. Inspection de qualité finale</h3>
-          <p>
-            Chaque zone est inspectée avec soin pour vérifier la qualité, la constance et l’état de préparation avant la livraison du projet, l’occupation ou la remise au client.
-          </p>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Expertise commerciale et résidentielle</h3><span>Des maisons sur mesure aux développements commerciaux, nous offrons un nettoyage après construction professionnel adapté à chaque type de projet.</span></div>
         </div>
-
-        <div class="card">
-          <h3>6. Projet prêt</h3>
-          <p>
-            Votre propriété est livrée propre, organisée, prête pour l’inspection et pour une occupation immédiate, selon des normes de présentation professionnelles.
-          </p>
+        <div class="pr-fact cc-commit-item">
+          <span class="pr-fact-icon"><svg class="pr-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.9-7 9.5-4-1.6-7-5.2-7-9.5V6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 12l2.3 2.3 4.2-4.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><h3 class="oc-check-h">Un partenaire de projet de confiance</h3><span>Nous nous engageons à aider les entrepreneurs, les constructeurs, les promoteurs et les propriétaires à livrer des projets propres, organisés et prêts à être occupés.</span></div>
         </div>
-
       </div>
-
-      <p style="margin-top:30px;">
-        Notre processus structuré de nettoyage après construction aide les entrepreneurs généraux, les constructeurs, les promoteurs, les entreprises de rénovation et les propriétaires à livrer des projets propres, sécuritaires, présentés avec professionnalisme et prêts pour l’occupation, les inspections ou la remise finale au client.
-      </p>
-
+      <p class="pc-quote">Chez North Crescent Facility Solutions, nous croyons que le nettoyage après construction est la dernière étape pour présenter votre travail sous son meilleur jour. Nos méthodes structurées, notre souci du détail et notre engagement envers la qualité font en sorte que chaque projet laisse une impression professionnelle durable.</p>
+      <div class="cc-actions">
+        <a href="/fr/contact.html" class="btn btn-primary">🚀 Soumission instantanée</a>
+        <a href="/fr/cleaning-booking-moncton.html" class="btn pr-btn-ghost">📅 Réserver maintenant</a>
+      </div>
     </div>
-    
-  </div>
-</section>
+  </section>
+  <!-- PROCESS -->
+  <section class="pr-section" aria-labelledby="pc-proc-title">
+    <div class="pr-panel">
+      <div class="pr-center pr-reveal">
+        <span class="pr-eyebrow">Du chantier à la remise des clés</span>
+        <h2 class="pr-h2" id="pc-proc-title">Notre processus de nettoyage après construction</h2>
+        <p class="pr-lead">Chaque projet de construction est unique, mais notre processus structuré prépare chaque propriété pour l’inspection finale, l’occupation et la remise du projet. Nous suivons une approche méthodique qui offre des résultats constants et de grande qualité tout en respectant l’échéancier de votre projet.</p>
+      </div>
+      <ol class="pr-steps pc-steps">
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">1</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">📋</span>
+            <h3>1. Évaluation du chantier</h3>
+            <p>Nous évaluons la propriété, repérons les débris de construction et la poussière accumulée, et déterminons les besoins de nettoyage de chaque zone avant de commencer.</p>
+          </div>
+        </li>
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">2</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">🗑️</span>
+            <h3>2. Enlèvement des débris</h3>
+            <p>Les débris de construction, les emballages, les protections et les déchets restants sont retirés pour préparer le chantier au nettoyage minutieux.</p>
+          </div>
+        </li>
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">3</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">🌫️</span>
+            <h3>3. Élimination minutieuse de la poussière</h3>
+            <p>La poussière fine de construction est éliminée des murs, plafonds, fenêtres, accessoires, armoires, bouches d’aération, plinthes et de toutes les surfaces accessibles.</p>
+          </div>
+        </li>
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">4</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">🧼</span>
+            <h3>4. Nettoyage en profondeur et assainissement</h3>
+            <p>Les cuisines, salles de bain, planchers, vitres, portes, moulures, accessoires et surfaces souvent touchées sont nettoyés et assainis par des professionnels pour une finition soignée.</p>
+          </div>
+        </li>
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">5</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">🔍</span>
+            <h3>5. Inspection de qualité finale</h3>
+            <p>Chaque zone est inspectée avec soin pour vérifier la qualité, la constance et l’état de préparation avant la livraison du projet, l’occupation ou la remise au client.</p>
+          </div>
+        </li>
+        <li class="pr-step">
+          <span class="pr-step-num" aria-hidden="true">6</span>
+          <div class="pr-step-card">
+            <span class="pr-step-icon ab-step-emoji" aria-hidden="true">🔑</span>
+            <h3>6. Projet prêt</h3>
+            <p>Votre propriété est livrée propre, organisée, prête pour l’inspection et pour une occupation immédiate, selon des normes de présentation professionnelles.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="pr-lead ab-closing pr-reveal">Notre processus structuré de nettoyage après construction aide les entrepreneurs généraux, les constructeurs, les promoteurs, les entreprises de rénovation et les propriétaires à livrer des projets propres, sécuritaires, présentés avec professionnalisme et prêts pour l’occupation, les inspections ou la remise finale au client.</p>
+    </div>
+  </section>
 
-<!-- RELATED SERVICES -->
- <section>
+  <section>
   <div class="container">
 
     <div class="section-box" style="text-align:center;">
@@ -1118,13 +1273,7 @@ Services professionnels de nettoyage après construction et de nettoyage de chan
   </div>
 </section>
 
-
-  
-<!-- =========================================================
-     POST-CONSTRUCTION CLEANING — FAQ
-========================================================= -->
-
-<section class="faq-section">
+  <section class="faq-section">
 
   <div class="container">
 
@@ -1140,7 +1289,7 @@ Services professionnels de nettoyage après construction et de nettoyage de chan
         Vous avez des questions sur le nettoyage après construction, le nettoyage de chantier ou le nettoyage après rénovation? Voici les réponses aux questions fréquentes des propriétaires, des entrepreneurs, des constructeurs, des gestionnaires immobiliers et des entreprises.
       </p>
 
-      <div class="faq-grid">
+      <div class="faq-grid" data-accordion>
 
 
         <!-- FAQ 1 -->
@@ -1340,45 +1489,23 @@ Services professionnels de nettoyage après construction et de nettoyage de chan
   </div>
 
 </section>
-  
- 
-<!-- CTA -->
-<section>
-  <div class="container">
-    <div class="section-box" style="text-align:center;">
-
-      <h2>Prêt pour votre inspection finale?</h2>
-
-      <div class="divider"></div>
-
-      <p>
-        Faites équipe avec North Crescent Facility Solutions pour un nettoyage après construction professionnel qui vous aide à livrer chaque projet résidentiel ou commercial propre, sécuritaire, prêt pour l’inspection et pour une occupation immédiate.
-      </p>
-
-      <p>
-        Des maisons sur mesure et des rénovations résidentielles aux développements commerciaux, immeubles de bureaux, espaces commerciaux et installations industrielles, nos méthodes de nettoyage structurées vous aident à présenter chaque projet selon les normes les plus élevées.
-      </p>
-
-      <p>
-        <strong>
-          Nous nous occupons des derniers détails pour que vous puissiez livrer chaque projet en toute confiance.
-        </strong>
-      </p>
-
-      <div class="btn-group">
-        <a href="/fr/contact.html" class="btn btn-primary">
-          🚀 Demander une soumission gratuite
-        </a>
-
-        <a href="/fr/contact.html" class="btn btn-dark">
-          📅 Planifier votre nettoyage
-        </a>
+  <!-- FINAL CTA -->
+  <section class="pr-section">
+    <div class="pr-cta rc-final pc-final pr-reveal">
+      <div>
+        <h2>Prêt pour votre inspection finale?</h2>
+        <p>Faites équipe avec North Crescent Facility Solutions pour un nettoyage après construction professionnel qui vous aide à livrer chaque projet résidentiel ou commercial propre, sécuritaire, prêt pour l’inspection et pour une occupation immédiate.</p><p>Des maisons sur mesure et des rénovations résidentielles aux développements commerciaux, immeubles de bureaux, espaces commerciaux et installations industrielles, nos méthodes de nettoyage structurées vous aident à présenter chaque projet selon les normes les plus élevées.</p>
+        <p class="rc-final-cities"><strong> Nous nous occupons des derniers détails pour que vous puissiez livrer chaque projet en toute confiance. </strong></p>
       </div>
-
+      <div class="pr-cta-actions">
+        <a href="/fr/contact.html" class="btn pr-btn-white">🚀 Demander une soumission gratuite</a>
+        <a href="/fr/cleaning-booking-moncton.html" class="btn pr-btn-ghost">📅 Planifier votre nettoyage</a>
+        <a href="tel:+14288880542" class="btn pr-btn-ghost">📞 +1 (428) 888-0542</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+<div class="cc-spacer"></div>
 </main>
 
 <div class="float-container">
@@ -1666,6 +1793,26 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- END HERO CAROUSEL SCRIPT -->
   
+<script>
+(function () {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("pr-js");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".pr-reveal, .pr-steps").forEach(function (el) { io.observe(el); });
+})();
+(function () {
+  var hero = document.querySelector(".hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(function (e) {
+    document.body.classList.toggle("nc-float-tucked", e[0].isIntersecting);
+  }, { threshold: 0.15 }).observe(hero);
+})();
+</script>
+<script src="/scripts/faq-accordion.js?v=20261029" defer></script>
 <script src="/concierge/concierge-widget.js" defer></script>
   
 </body>
