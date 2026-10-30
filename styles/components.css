@@ -4563,3 +4563,32 @@ header nav > a.booking-nav-link:hover .booking-nav-icon {
         font-size: 0.88rem;
     }
 }
+
+/* Accordion answer panel (wraps every element after the question) */
+.faq-grid.is-accordion .faq-answer {
+    padding: 0 22px 22px 56px;
+}
+
+.faq-grid.is-accordion .faq-answer[hidden] {
+    padding: 0;
+}
+
+.faq-grid.is-accordion .faq-answer p {
+    padding: 0;
+}
+
+.faq-grid.is-accordion .faq-answer p + p {
+    margin-top: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .faq-grid.is-accordion .faq-card.is-open .faq-answer {
+        animation: faq-reveal 320ms ease;
+    }
+}
+
+@media (max-width: 600px) {
+    .faq-grid.is-accordion .faq-answer {
+        padding: 0 16px 18px 16px;
+    }
+}

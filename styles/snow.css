@@ -1,0 +1,99 @@
+/* =========================================================
+   NORTH CRESCENT — SNOW REMOVAL PAGE
+========================================================= */
+
+/* Plans section: anchor target for "Explore Our Seasonal Plans" */
+#snow-removal-plans {
+    scroll-margin-top: 100px;
+}
+
+.sn-plans-panel {
+    background:
+        radial-gradient(circle at 0% 0%, rgb(53 200 185 / 10%), transparent 40%),
+        #FFFFFF;
+}
+
+.sn-plans-title {
+    display: block;
+}
+
+.sn-plan-name {
+    margin: 0 0 14px !important;
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.sn-feat {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.sn-feat li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.sn-feat .pr-check {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: var(--pr-teal);
+    color: #FFFFFF;
+}
+
+.sn-feat .pr-check svg {
+    width: 10px;
+    height: 10px;
+}
+
+.sn-plan-note {
+    flex: 1;
+    margin: 0 0 18px !important;
+    color: var(--pr-muted) !important;
+    font-size: 0.8rem !important;
+    font-style: italic;
+}
+
+.jn-tier--featured .sn-feat li,
+.jn-tier--featured .sn-plan-name {
+    color: #FFFFFF;
+}
+
+.jn-tier--featured .sn-plan-note {
+    color: var(--pr-teal-2) !important;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.sn-tagline {
+    text-align: center;
+    border-left: 0;
+    padding-left: 0;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--pr-teal-2) !important;
+}
+
+.sn-page .jn-note {
+    color: var(--pr-teal-dark);
+    font-weight: 600;
+}
+
+/* 5-step timeline already uses .pr-steps (5 columns) */
+
+.sn-avail {
+    color: var(--pr-text) !important;
+    font-weight: 600;
+}
