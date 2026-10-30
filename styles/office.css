@@ -1,0 +1,196 @@
+/* =========================================================
+   NORTH CRESCENT — OFFICE CLEANING PAGE
+   Builds on process.css, services.css, commercial.css, residential.css.
+========================================================= */
+
+/* Visible breadcrumb (matches the BreadcrumbList schema) */
+.nc-crumbs {
+    width: calc(100% - 60px);
+    max-width: 1200px;
+    margin: 14px auto 0;
+}
+
+.nc-crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.nc-crumbs li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--pr-muted);
+}
+
+.nc-crumbs li + li::before {
+    content: "›";
+    color: var(--pr-teal);
+    font-weight: 700;
+}
+
+.nc-crumbs a {
+    color: var(--pr-teal-dark);
+    text-decoration: none;
+}
+
+.nc-crumbs a:hover {
+    text-decoration: underline;
+}
+
+.nc-crumbs [aria-current="page"] {
+    color: var(--pr-text);
+}
+
+.nc-crumbs + .hero {
+    margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+    .nc-crumbs {
+        width: calc(100% - 20px);
+    }
+}
+
+/* Intro: text left, photo right */
+.oc-intro {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+}
+
+.oc-intro .rc-services-photo {
+    position: relative;
+    top: 0;
+}
+
+.oc-intro .rc-services-photo img {
+    aspect-ratio: 4 / 4.4;
+}
+
+.oc-left {
+    justify-content: flex-start;
+}
+
+/* What's included: 3 columns */
+.oc-inc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+}
+
+/* Numbered system steps */
+.oc-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+}
+
+.oc-step {
+    position: relative;
+    overflow: hidden;
+    padding: 26px 22px 22px;
+    border: 1px solid var(--pr-line);
+    border-radius: 18px;
+    background: linear-gradient(180deg, #FFFFFF, var(--pr-soft));
+    transition: transform 320ms var(--pr-ease), box-shadow 320ms ease, border-color 320ms ease;
+}
+
+.oc-step::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pr-teal), var(--pr-teal-2));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .oc-step:hover {
+        transform: translateY(-4px);
+        border-color: rgb(53 200 185 / 55%);
+        box-shadow: 0 18px 34px rgb(16 45 73 / 10%);
+    }
+}
+
+.oc-step-num {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #174563, var(--pr-deep));
+    color: var(--pr-teal-2);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.oc-step h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+}
+
+.oc-step p {
+    margin-top: 8px !important;
+    color: var(--pr-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+}
+
+/* Trust items keep their ✔ text; the shield icon already shows it */
+.oc-check-h {
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Who we serve: 3 columns */
+.oc-who-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Area cards: hide the 📍 emoji (pin icon already shown) */
+.oc-page .pr-area .cc-emoji {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .oc-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .oc-inc-grid,
+    .oc-steps,
+    .oc-who-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .oc-intro .rc-services-photo img {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (max-width: 640px) {
+    .oc-inc-grid,
+    .oc-steps,
+    .oc-who-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oc-left .btn {
+        width: 100%;
+    }
+}
